@@ -1,0 +1,7 @@
+__pycache__
+py-env
+*.egg-info
+build
+.DS_Store
+.vscode
+node_modules

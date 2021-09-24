@@ -1,0 +1,92 @@
+{
+  "name": "trame",
+  "version": "0.0.0-semantically-release",
+  "description": "Framework for building interactive Web applications quickly in plain Python",
+  "keywords": [
+    "Python",
+    "Interactive",
+    "Web Application",
+    "Framework"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kitware/trame.git"
+  },
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/kitware/trame/issues"
+  },
+  "homepage": "https://github.com/kitware/trame#readme",
+  "devDependencies": {
+    "commitlint": "^13.1.0",
+    "commitizen": "^4.2.4",
+    "cross-env": "7.0.3",
+    "dotenv": "10.0.0",
+    "husky": "7.0.2",
+    "@commitlint/cli": "13.1.0",
+    "@commitlint/config-conventional": "13.1.0",
+    "kw-doc": "3.1.2",
+    "semantic-release": "18.0.0"
+  },
+  "scripts": {
+    "doc": "kw-doc -c ./doc/config.js",
+    "doc:www": "kw-doc -c ./doc/config.js -s",
+    "doc:publish": "kw-doc -c ./doc/config.js -mp",
+    "commit": "git cz",
+    "semantic-release": "semantic-release",
+    "prepare": "node ./.husky/prepare.js"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ],
+    "rules": {
+      "subject-case": [
+        2,
+        "never",
+        [
+          "start-case",
+          "pascal-case",
+          "upper-case"
+        ]
+      ]
+    }
+  },
+  "release": {
+    "branches": [
+      "+([0-9])?(.{+([0-9]),x}).x",
+      "master",
+      "next",
+      "next-major",
+      {
+        "name": "beta",
+        "prerelease": true
+      }
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      [
+        "@semantic-release/npm",
+        {
+          "pkgRoot": "./pkg/umd"
+        }
+      ],
+      [
+        "@semantic-release/npm",
+        {
+          "pkgRoot": "./pkg/esm"
+        }
+      ],
+      "@semantic-release/github"
+    ]
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

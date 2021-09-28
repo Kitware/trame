@@ -31,8 +31,8 @@ setup(
         "Topic :: Software Development :: Libraries :: Python Modules",
     ],
     keywords="Python Interactive Web Application Framework",
-    packages=find_packages("src", exclude=("tests.*", "tests")),
-    package_dir={"": "src"},
+    packages=find_packages(".", exclude=("tests.*", "tests")),
+    package_dir={"": "."},
     package_data={},
     install_requires=["pywebvue"],
 )

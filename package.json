@@ -29,9 +29,9 @@
     "semantic-release": "18.0.0"
   },
   "scripts": {
-    "doc": "kw-doc -c ./doc/config.js",
-    "doc:www": "kw-doc -c ./doc/config.js -s",
-    "doc:publish": "kw-doc -c ./doc/config.js -mp",
+    "doc": "kw-doc -c ./docs/config.js",
+    "doc:www": "kw-doc -c ./docs/config.js -s",
+    "doc:publish": "kw-doc -c ./docs/config.js -mp",
     "commit": "git cz",
     "semantic-release": "semantic-release",
     "prepare": "node ./.husky/prepare.js"

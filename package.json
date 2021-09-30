@@ -18,15 +18,18 @@
   },
   "homepage": "https://github.com/kitware/trame#readme",
   "devDependencies": {
-    "commitlint": "^13.1.0",
+    "@commitlint/cli": "13.1.0",
+    "@commitlint/config-conventional": "13.1.0",
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/git": "^9.0.1",
     "commitizen": "^4.2.4",
+    "commitlint": "^13.1.0",
     "cross-env": "7.0.3",
     "dotenv": "10.0.0",
     "husky": "7.0.2",
-    "@commitlint/cli": "13.1.0",
-    "@commitlint/config-conventional": "13.1.0",
     "kw-doc": "3.1.2",
-    "semantic-release": "18.0.0"
+    "semantic-release": "18.0.0",
+    "semantic-release-pypi": "^2.3.0"
   },
   "scripts": {
     "doc": "kw-doc -c ./docs/config.js",
@@ -60,30 +63,34 @@
   "release": {
     "branches": [
       "+([0-9])?(.{+([0-9]),x}).x",
-      "master",
-      "next",
-      "next-major",
-      {
-        "name": "beta",
-        "prerelease": true
-      }
+      "master"
     ],
     "plugins": [
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
+      "@semantic-release/github",
       [
-        "@semantic-release/npm",
+        "@semantic-release/changelog",
         {
-          "pkgRoot": "./pkg/umd"
+          "changelogFile": "CHANGELOG.md"
         }
       ],
       [
-        "@semantic-release/npm",
+        "@semantic-release/git",
         {
-          "pkgRoot": "./pkg/esm"
+          "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}",
+          "assets": [
+            "CHANGELOG.md"
+          ]
         }
       ],
-      "@semantic-release/github"
+      [
+        "semantic-release-pypi",
+        {
+          "setupPy": "./setup.py",
+          "distDir": "./dist"
+        }
+      ]
     ]
   },
   "publishConfig": {

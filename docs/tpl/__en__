@@ -16,5 +16,7 @@ page:
 sidebar:
   docs:
     getting_started: Getting Started
+    overview: Introduction
   examples:
-    demo: Demo
+    getting_started: Getting Started
+    overview: Introduction

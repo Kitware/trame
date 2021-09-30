@@ -6,12 +6,12 @@ const path = require('path');
 module.exports = {
   baseUrl: '/trame',
   work: './build-tmp',
-  api: [],
+  api: ['../trame'],
   examples: [],
   config: {
     title: 'Trame',
+    subtitle: '"Trame the core of your next Web Application"',
     description: '"Trame a solution for building interactive applications using a Web front-end"',
-    subtitle: '"Framework for building interactive Web applications quickly in plain Python"',
     author: 'Kitware Inc.',
     timezone: 'UTC',
     url: 'https://kitware.github.io/trame',

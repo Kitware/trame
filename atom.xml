@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Trame</title>
+  
+  <subtitle>Framework for building interactive Web applications quickly in plain Python</subtitle>
+  <link href="https://kitware.github.io/trame/atom.xml" rel="self"/>
+  
+  <link href="https://kitware.github.io/trame/"/>
+  <updated>2021-09-24T22:30:01.540Z</updated>
+  <id>https://kitware.github.io/trame/</id>
+  
+  <author>
+    <name>Kitware Inc.</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hexo</title>
+    <link href="https://kitware.github.io/trame/2016/04/28/kw-doc/"/>
+    <id>https://kitware.github.io/trame/2016/04/28/kw-doc/</id>
+    <published>2016-04-29T00:00:00.000Z</published>
+    <updated>2021-09-24T22:30:01.540Z</updated>
+    
+    <content type="html"><![CDATA[<p>Thanks for using kw-doc which is based on Hexo and its template from its own documentation.</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;Thanks for using kw-doc which is based on Hexo and its template from its own documentation.&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+</feed>

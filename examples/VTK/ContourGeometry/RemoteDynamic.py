@@ -105,8 +105,7 @@ html_remote_view = vtk.VtkRemoteView(renderWindow)
 html_sync_view = vtk.VtkSyncView(renderWindow)
 html_view_container = vuetify.VContainer(
     fluid=True,
-    fill_height=True,
-    classes="pa-0",
+    classes="pa-0 fill-height",
     children=[html_sync_view],  # start with SyncView
 )
 

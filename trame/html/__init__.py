@@ -44,6 +44,7 @@ class AbstractElement:
         # Add standard Vue attr/event handling
         self._attr_names += [
             "id",
+            "ref",
             ("classes", "class"),
             "style",
             "v_model",

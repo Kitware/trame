@@ -87,8 +87,7 @@ layout.toolbar.children += [
 layout.content.children += [
     vuetify.VContainer(
         fluid=True,
-        fill_height=True,
-        classes="pa-0",
+        classes="pa-0 fill-height",
         children=[vtk.VtkView([vtk.VtkGeometryRepresentation([html_polydata])])],
     )
 ]

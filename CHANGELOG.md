@@ -1,3 +1,11 @@
+## [1.0.2](https://github.com/kitware/trame/compare/v1.0.1...v1.0.2) (2021-10-04)
+
+
+### Bug Fixes
+
+* **deckgl:** Wrap deckgl module from pywebvue ([0cf9a54](https://github.com/kitware/trame/commit/0cf9a548260d619ef5f895419df26a857bfe788c))
+* **vega:** Wrap vega module from pywebvue ([222ca66](https://github.com/kitware/trame/commit/222ca66455a2a64858e6355cbe3ee925c8e87eec))
+
 ## [1.0.1](https://github.com/kitware/trame/compare/v1.0.0...v1.0.1) (2021-10-01)
 
 

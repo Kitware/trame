@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/kitware/trame/compare/v1.0.3...v1.0.4) (2021-10-05)
+
+
+### Bug Fixes
+
+* **simput:** add support for simput ([f3d8db6](https://github.com/kitware/trame/commit/f3d8db601a51c3200db9dfcb059a13b9713dd907))
+
 ## [1.0.3](https://github.com/kitware/trame/compare/v1.0.2...v1.0.3) (2021-10-05)
 
 

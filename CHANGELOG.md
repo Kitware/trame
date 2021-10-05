@@ -1,3 +1,15 @@
+# [1.1.0](https://github.com/kitware/trame/compare/v1.0.4...v1.1.0) (2021-10-05)
+
+
+### Bug Fixes
+
+* **simput:** Improve api usability ([c2e27b5](https://github.com/kitware/trame/commit/c2e27b5d98abeaa35e9cbd9264706e4e04ced9fb))
+
+
+### Features
+
+* **layout:** Add SinglePageWithDrawer ([9bb1bf5](https://github.com/kitware/trame/commit/9bb1bf54a33ca68db9b25feaa1d56e10c11df12f))
+
 ## [1.0.4](https://github.com/kitware/trame/compare/v1.0.3...v1.0.4) (2021-10-05)
 
 

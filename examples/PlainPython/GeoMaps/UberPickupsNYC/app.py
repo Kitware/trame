@@ -6,19 +6,16 @@ import numpy as np
 import altair as alt
 import pydeck as pdk
 
-from trame.vegaEmbed import VegaEmbed
-from trame.deckgl import Deck
 from trame import start, change, update_state
 from trame.layouts import SinglePage
-from trame.html import Div
-from trame.html.vuetify import VSlider, VRow, VCol, VContainer
+from trame.html import Div, vuetify, deckgl, vega
 
 # -----------------------------------------------------------------------------
 # GUI Components
 # -----------------------------------------------------------------------------
 dynamicTitle = "{{nycTitle}} from {{pickupHour}}:00 and {{pickupHour + 1}}:00"
 
-hourBreakdownChart = VegaEmbed(style="width: 100%")
+hourBreakdownChart = vega.VegaEmbed(style="width: 100%")
 
 mapProps = {
     "classes": "elevation-5",
@@ -26,10 +23,10 @@ mapProps = {
     "style": "height: 50vh;",
 }
 
-nycMap = Deck(**mapProps)
-jfkMap = Deck(**mapProps)
-lgaMap = Deck(**mapProps)
-nwkMap = Deck(**mapProps)
+nycMap = deckgl.Deck(**mapProps)
+jfkMap = deckgl.Deck(**mapProps)
+lgaMap = deckgl.Deck(**mapProps)
+nwkMap = deckgl.Deck(**mapProps)
 
 # -----------------------------------------------------------------------------
 # GUI Layout
@@ -38,21 +35,21 @@ layout = SinglePage("NYC Uber Ridesharing Data")
 layout.title.content = "NYC Uber Ridesharing Data"
 layout.logo.content = "mdi-chart-donut-variant"
 
-mapRow = VRow(
+mapRow = vuetify.VRow(
     [
-        VCol([Div("{{jfkTitle}}", classes="text-h5"), jfkMap], cols=4),
-        VCol([Div("{{lgaTitle}}", classes="text-h5"), lgaMap], cols=4),
-        VCol([Div("{{nwkTitle}}", classes="text-h5"), nwkMap], cols=4),
+        vuetify.VCol([Div("{{jfkTitle}}", classes="text-h5"), jfkMap], cols=4),
+        vuetify.VCol([Div("{{lgaTitle}}", classes="text-h5"), lgaMap], cols=4),
+        vuetify.VCol([Div("{{nwkTitle}}", classes="text-h5"), nwkMap], cols=4),
     ]
 )
 
-mapLayout = VRow(
+mapLayout = vuetify.VRow(
     children=[
-        VCol(
+        vuetify.VCol(
             cols=4,
             children=[Div(dynamicTitle, classes="text-h5"), nycMap],
         ),
-        VCol(
+        vuetify.VCol(
             cols=8,
             children=[mapRow],
         ),
@@ -60,17 +57,17 @@ mapLayout = VRow(
 )
 
 layout.content.children += [
-    VContainer(
+    vuetify.VContainer(
         fluid="true",
         children=[
             Div(
-                """Examining how Uber pickups vary over time in New York City's 
+                """Examining how Uber pickups vary over time in New York City's
                 and at its major regional airports.
-                By sliding the slider on the left you can view different slices 
+                By sliding the slider on the left you can view different slices
                 of time and explore different transportation trends.""",
                 classes="text-body-1",
             ),
-            VSlider(
+            vuetify.VSlider(
                 v_model=("pickupHour", 0),
                 classes="mt-4",
                 label="Select hour of pickup",

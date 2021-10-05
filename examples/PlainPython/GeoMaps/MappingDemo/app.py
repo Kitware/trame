@@ -2,11 +2,9 @@ import pydeck as pdk
 import pandas as pd
 import os
 
-from trame.deckgl import Deck
 from trame import start, change, update_state
 from trame.layouts import SinglePage
-from trame.html import Div
-from trame.html.vuetify import VSelect
+from trame.html import vuetify, deckgl
 
 
 # -----------------------------------------------------------------------------
@@ -27,7 +25,7 @@ from trame.html.vuetify import VSelect
 # GUI Components
 # -----------------------------------------------------------------------------
 # Expect MAPBOX_API_KEY environment variable
-deckMap = Deck(
+deckMap = deckgl.Deck(
     mapboxApiKey=os.environ["MAPBOX_API_KEY"],
     style="width: 100vw;",
     classes="fill-height",
@@ -41,7 +39,7 @@ layout = SinglePage("Deck + Mapbox Demo")
 layout.title.content = "Deck + Mapbox Demo"
 layout.content.children += [
     deckMap,
-    VSelect(
+    vuetify.VSelect(
         style="position: absolute; top: 10px; left: 25px; width: 600px;",
         items=(
             "layerNames",
@@ -129,7 +127,7 @@ defaultLayers = [
 
 
 @change("activeLayers")
-def update_map( activeLayers=defaultLayers, **kwargs):
+def update_map(activeLayers=defaultLayers, **kwargs):
     selected_layers = [
         layer for layer_name, layer in ALL_LAYERS.items() if layer_name in activeLayers
     ]
@@ -156,5 +154,4 @@ def update_map( activeLayers=defaultLayers, **kwargs):
 # -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
-
     start(layout, on_ready=update_map)

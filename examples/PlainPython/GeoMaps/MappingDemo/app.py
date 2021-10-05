@@ -22,14 +22,22 @@ from trame.html import vuetify, deckgl
 # -----------------------------------------------------------------------------
 
 # -----------------------------------------------------------------------------
-# GUI Components
-# -----------------------------------------------------------------------------
+# Deck.gl / MapBox
 # Expect MAPBOX_API_KEY environment variable
+# -----------------------------------------------------------------------------
+
 deckMap = deckgl.Deck(
     mapboxApiKey=os.environ["MAPBOX_API_KEY"],
     style="width: 100vw;",
     classes="fill-height",
 )
+
+defaultLayers = [
+    "Bike Rentals",
+    "Bart Stop Exits",
+    "Bart Stop Names",
+    "Outbound Flow",
+]
 
 # -----------------------------------------------------------------------------
 # GUI Layout
@@ -41,24 +49,8 @@ layout.content.children += [
     deckMap,
     vuetify.VSelect(
         style="position: absolute; top: 10px; left: 25px; width: 600px;",
-        items=(
-            "layerNames",
-            [
-                "Bike Rentals",
-                "Bart Stop Exits",
-                "Bart Stop Names",
-                "Outbound Flow",
-            ],
-        ),
-        v_model=(
-            "activeLayers",
-            [
-                "Bike Rentals",
-                "Bart Stop Exits",
-                "Bart Stop Names",
-                "Outbound Flow",
-            ],
-        ),
+        items=("layerNames", defaultLayers),
+        v_model=("activeLayers", defaultLayers),
         dense=True,
         hide_details=True,
         multiple=True,
@@ -118,16 +110,9 @@ ALL_LAYERS = {
     ),
 }
 
-defaultLayers = [
-    "Bike Rentals",
-    "Bart Stop Exits",
-    "Bart Stop Names",
-    "Outbound Flow",
-]
-
 
 @change("activeLayers")
-def update_map(activeLayers=defaultLayers, **kwargs):
+def update_map(activeLayers, **kwargs):
     selected_layers = [
         layer for layer_name, layer in ALL_LAYERS.items() if layer_name in activeLayers
     ]

@@ -10,7 +10,7 @@ from trame.html.vuetify import VSelect, VSpacer
 
 
 @change("file_name")
-def update_md(file_name="demo.md", **kwargs):
+def update_md(file_name, **kwargs):
     md_file_path = os.path.join(os.path.dirname(__file__), file_name)
     with open(md_file_path) as md:
         update_state("md", md.read())

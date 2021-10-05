@@ -170,7 +170,7 @@ def updateMap(data, lat, lon, zoom, mapRef, **kwarg):
 
 
 @change("pickupHour")
-def updateData(pickupHour=0, **kwargs):
+def updateData(pickupHour, **kwargs):
     update_state(
         "chartTitle",
         f"All New York City from {pickupHour}:00 and {pickupHour + 1}:00",

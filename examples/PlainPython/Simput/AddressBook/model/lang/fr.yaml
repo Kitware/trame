@@ -1,0 +1,16 @@
+Person:
+  _label: Information personnelles
+  LastName:
+    _label: Nom de famille
+  FirstName:
+    _label: Prènom
+  Street:
+    _label: Adresse
+  City:
+    _label: Ville
+  State:
+    _label: Etat
+  ZipCode:
+    _label: Code Zip
+  Country:
+    _label: Pays

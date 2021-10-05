@@ -1,0 +1,21 @@
+<layouts>
+    <ui id="Person">
+        <col>
+            <row>
+                <input class="mr-1" name="FirstName" />
+                <input class="ml-1" name="LastName" />
+            </row>
+            <row>
+                <input name="Street" layout="vertical" />
+            </row>
+            <row>
+                <input name="City" />
+                <input class="mx-2" name="State" />
+                <input name="ZipCode" />
+            </row>
+            <row>
+                <input name="Country" />
+            </row>
+        </col>
+    </ui>
+</layouts>

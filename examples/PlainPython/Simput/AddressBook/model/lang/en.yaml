@@ -1,0 +1,19 @@
+Person:
+  _label: Personal Informations
+  _help: |
+    This capture the informations needed to contact
+    such person.
+  FirstName:
+    _label: First Name
+  LastName:
+    _label: Last Name
+  Street:
+    _label: Street address
+  City:
+    _label: City
+  State:
+    _label: State
+  ZipCode:
+    _label: Zip Code
+  Country:
+    _label: Country

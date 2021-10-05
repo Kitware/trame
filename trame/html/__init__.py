@@ -50,6 +50,8 @@ class AbstractElement:
             "v_model",
             "v_if",
             "v_show",
+            "v_for",
+            ("key", ":key"),
         ]
         self._event_names += ["click", "mousedown", "mouseup"]
 
@@ -163,7 +165,7 @@ class AbstractElement:
 
                 if isinstance(value, str):
                     self._attributes[name] = f'{js_key}="{value}"'
-                elif isinstance(value, types.FunctionType):
+                elif isinstance(value, (types.FunctionType, types.MethodType)):
                     trigger_name = trigger_key(value)
                     self._attributes[name] = f"{js_key}=\"trigger('{trigger_name}')\""
                 elif isinstance(value, tuple):

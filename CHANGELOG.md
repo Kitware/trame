@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/kitware/trame/compare/v1.1.0...v1.1.1) (2021-10-06)
+
+
+### Bug Fixes
+
+* **module:** Add enable_module method ([d9f696b](https://github.com/kitware/trame/commit/d9f696b36bd8819ca130be1787462ae06793b056))
+
 # [1.1.0](https://github.com/kitware/trame/compare/v1.0.4...v1.1.0) (2021-10-05)
 
 

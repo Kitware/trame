@@ -146,6 +146,10 @@ def start(layout=None, name=None, favicon=None, on_ready=None, port=None):
             app.layout = tpl_path
 
     app.on_ready = on_ready
+
+    # Dev validation
+    validate_key_names()
+
     app.run_server(port=port)
 
 
@@ -198,6 +202,12 @@ def update_layout(layout):
     """
     _app = get_app_instance()
     _app.layout = layout if isinstance(layout, str) else layout.html
+
+
+def enable_module(module):
+    """Load module"""
+    _app = get_app_instance()
+    _app.enableModule(module)
 
 
 # -----------------------------------------------------------------------------
@@ -272,3 +282,26 @@ def trigger(name):
     """
     _app = get_app_instance()
     return _app.trigger(name)
+
+
+# -----------------------------------------------------------------------------
+# Dev tools
+# -----------------------------------------------------------------------------
+
+
+def validate_key_names():
+    _app = get_app_instance()
+    errors = []
+    for key in _app.state:
+        if " " in key:
+            errors.append(f"  - '{key}'")
+
+    if errors:
+        print("=" * 60)
+        print(
+            f"Warning: {len(errors)} key{'s' if len(errors) > 1 else ''} inside your state contains spaces"
+        )
+        print("=" * 60)
+        for message in errors:
+            print(message)
+        print("=" * 60)

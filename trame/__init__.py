@@ -210,6 +210,12 @@ def enable_module(module):
     _app.enableModule(module)
 
 
+def get_cli_parser():
+    """Run or add to argparse parser"""
+    _app = get_app_instance()
+    return _app.cli_parser
+
+
 # -----------------------------------------------------------------------------
 # Generate trigger helper
 # -----------------------------------------------------------------------------

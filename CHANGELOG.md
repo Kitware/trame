@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/kitware/trame/compare/v1.1.1...v1.1.2) (2021-10-07)
+
+
+### Bug Fixes
+
+* **cli:** expose cli parser ([8d25005](https://github.com/kitware/trame/commit/8d2500518d1d5faf5be7ad1f0e88e7181de87a03))
+
 ## [1.1.1](https://github.com/kitware/trame/compare/v1.1.0...v1.1.1) (2021-10-06)
 
 

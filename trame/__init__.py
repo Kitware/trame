@@ -216,6 +216,24 @@ def get_cli_parser():
     return _app.cli_parser
 
 
+def flush_state(*args):
+    """Flush dirty state"""
+    _app = get_app_instance()
+    return _app.flush_state(*args)
+
+
+def is_dirty(*args):
+    """See which key in an @change has been modified"""
+    _app = get_app_instance()
+    return _app.is_dirty(*args)
+
+
+def is_dirty_all(*args):
+    """See whether all keys in an @change have been modified"""
+    _app = get_app_instance()
+    return _app.is_dirty_all(*args)
+
+
 # -----------------------------------------------------------------------------
 # Generate trigger helper
 # -----------------------------------------------------------------------------

@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/kitware/trame/compare/v1.1.2...v1.1.3) (2021-10-15)
+
+
+### Bug Fixes
+
+* Expose is_dirty, is_dirty_all, flush_state ([d241751](https://github.com/kitware/trame/commit/d24175147107f080b4a21b21884ccaf184c343b3))
+
 ## [1.1.2](https://github.com/kitware/trame/compare/v1.1.1...v1.1.2) (2021-10-07)
 
 

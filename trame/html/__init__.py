@@ -53,7 +53,7 @@ class AbstractElement:
             "v_for",
             ("key", ":key"),
         ]
-        self._event_names += ["click", "mousedown", "mouseup"]
+        self._event_names += ["click", "mousedown", "mouseup", "contextmenu"]
 
     def _attr_str(self):
         return " ".join(self._attributes.values())
@@ -236,3 +236,14 @@ class Div(AbstractElement):
 class Span(AbstractElement):
     def __init__(self, __content=None, **kwargs):
         super().__init__("span", __content, **kwargs)
+
+
+class Template(AbstractElement):
+    slot_names = set()
+
+    def __init__(self, __content=None, **kwargs):
+        super().__init__("template", __content, **kwargs)
+        self._attr_names += ["v_slot"]
+        for slot_name in Template.slot_names:
+            safe_name = slot_name.replace("-", "_").replace(".", "_")
+            self._attr_names.append((f"v_slot_{safe_name}", f"v-slot:{slot_name}"))

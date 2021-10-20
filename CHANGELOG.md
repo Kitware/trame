@@ -1,3 +1,14 @@
+## [1.1.4](https://github.com/kitware/trame/compare/v1.1.3...v1.1.4) (2021-10-20)
+
+
+### Bug Fixes
+
+* **enable_module:** Use new method name ([9a9eff0](https://github.com/kitware/trame/commit/9a9eff02e1f23138c2f00d725314c866759654b6))
+* **html:** Add Template vue element ([b7aa0be](https://github.com/kitware/trame/commit/b7aa0bedccdb849fdfcb5c2f25e6590c9674335d))
+* **KwWidgets:** Add pywebvue widgets into trame ([4425fd0](https://github.com/kitware/trame/commit/4425fd01a3645e74b985ae1c7ec86cb90946cbb6))
+* **template:** Handle dynamic names ([bcd9f0a](https://github.com/kitware/trame/commit/bcd9f0abcf73922eee2465a992cbde9a1c4dfd89))
+* **vuetify:** add slot name registration ([69aedf1](https://github.com/kitware/trame/commit/69aedf1169efe3cd0bf07646c2751b8b3f5e3cf2))
+
 ## [1.1.3](https://github.com/kitware/trame/compare/v1.1.2...v1.1.3) (2021-10-15)
 
 

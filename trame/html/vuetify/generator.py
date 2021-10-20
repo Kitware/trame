@@ -1,3 +1,4 @@
+import sys
 import argparse
 import json
 
@@ -7,7 +8,7 @@ import json
 
 module_header = """
 from trame import get_app_instance
-from trame.html import AbstractElement
+from trame.html import AbstractElement, Template
 
 # Make sure used module is available
 _app = get_app_instance()
@@ -31,7 +32,7 @@ def get_attributes(tag):
             entry = '"' + name.replace("-", "_") + '",'
             types = attribute.get("value", {}).get("type")
             if "function" in types:
-                entry += " # JS functions unimplemented"
+                entry += "  # JS functions unimplemented"
             attributes.append(entry)
 
     joined_attributes = "\n            ".join(attributes)
@@ -79,7 +80,7 @@ def expand_parenthetical(attribute, attributes):
 
     for size in sizes:
         for number in numbers:
-            attributes.append(f'    "{prefix}{size}{number}",')
+            attributes.append(f'"{prefix}{size}{number}",')
 
 
 def expand_dom_events(event, events):
@@ -111,13 +112,17 @@ def generate_vuetify(input_file, output_file):
         loaded = json.loads(vuetify_input.read())
     tags = loaded.get("contributions", {}).get("html", {}).get("tags")
 
-    generated_module = module_header
+    generated_module = ""
+    slots_names = set()
 
+    # Extract information and generate class definitions
     for tag in tags:
         name = tag.get("name")
         tag_name = tag.get("doc-url").replace("https://www.vuetifyjs.com/api/", "")
         attributes = get_attributes(tag)
         events = get_events(tag)
+        for slot in tag.get("slots", []):
+            slots_names.add(slot.get("name"))
 
         class_def = f"""
 class {name}(AbstractElement):
@@ -130,9 +135,21 @@ class {name}(AbstractElement):
         if events is not None:
             class_def += events
 
+        class_def += "\n\n"
+
         generated_module += class_def
 
+    # Generate slots input
+    generated_slot_names = ["slot_names = ["]
+    for name in slots_names:
+        generated_slot_names.append(f'    "{name}",')
+    generated_slot_names.append("]")
+    generated_slot_names.append("Template.slot_names.update(slot_names)")
+    generated_slot_names.append("")
+
     with open(output_file, "w") as vuetify_module:
+        vuetify_module.write(module_header)
+        vuetify_module.write("\n".join(generated_slot_names))
         vuetify_module.write(generated_module)
 
 
@@ -161,4 +178,4 @@ if __name__ == "__main__":
     try:
         generate_vuetify(args.input, output)
     except (FileNotFoundError, IsADirectoryError) as err:
-        print(f"{sys.argv[0]}: {file}: {err.strerror}", file=sys.stderr)
+        print(f"{sys.argv[0]}: {err.strerror}", file=sys.stderr)

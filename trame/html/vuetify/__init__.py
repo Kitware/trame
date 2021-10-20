@@ -1,11 +1,78 @@
+
 from trame import get_app_instance
-from trame.html import AbstractElement
+from trame.html import AbstractElement, Template
 
 # Make sure used module is available
 _app = get_app_instance()
 if "vuetify" not in _app.vue_use:
     _app.vue_use += ["vuetify"]
 
+
+slot_names = [
+    "group.summary",
+    "expanded-item",
+    "prev",
+    "foot",
+    "no-results",
+    "badge",
+    "appendIcon",
+    "activator",
+    "body.prepend",
+    "top",
+    "group",
+    "header.<name>",
+    "footer.prepend",
+    "footer.page-text",
+    "placeholder",
+    "day-body",
+    "interval",
+    "body.append",
+    "header",
+    "prepend",
+    "group.header",
+    "item",
+    "label",
+    "event",
+    "icon",
+    "next",
+    "opposite",
+    "append",
+    "progress",
+    "selection",
+    "header.data-table-select",
+    "category",
+    "input",
+    "img",
+    "page-text",
+    "body",
+    "day-header",
+    "close",
+    "loading",
+    "action",
+    "day",
+    "extension",
+    "counter",
+    "loader",
+    "thumb-label",
+    "item.data-table-expand",
+    "message",
+    "default",
+    "item.<name>",
+    "prependIcon",
+    "day-month",
+    "append-outer",
+    "footer",
+    "prepend-inner",
+    "item.data-table-select",
+    "day-label",
+    "day-label-header",
+    "prepend-item",
+    "divider",
+    "no-data",
+    "append-item",
+    "actions",
+]
+Template.slot_names.update(slot_names)
 
 class VApp(AbstractElement):
     def __init__(self, __content=None, **kwargs):
@@ -3927,3 +3994,4 @@ class VExpandXTransition(AbstractElement):
         self._attr_names += [
             "mode",
         ]
+

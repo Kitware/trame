@@ -246,4 +246,17 @@ class Template(AbstractElement):
         self._attr_names += ["v_slot"]
         for slot_name in Template.slot_names:
             safe_name = slot_name.replace("-", "_").replace(".", "_")
-            self._attr_names.append((f"v_slot_{safe_name}", f"v-slot:{slot_name}"))
+            if "<name>" in safe_name:
+                safe_header, safe_tail = safe_name.split("<name>")
+                header, tail = slot_name.split("<name>")
+                for key in kwargs:
+                    if key.startswith(header):
+                        dyna_name = key[len(header) : -len(tail)]
+                        self._attr_names.append(
+                            (
+                                f"v_slot_{safe_header}{dyna_name}{safe_tail}",
+                                f"v-slot:{header}{dyna_name}{tail}",
+                            )
+                        )
+            else:
+                self._attr_names.append((f"v_slot_{safe_name}", f"v-slot:{slot_name}"))

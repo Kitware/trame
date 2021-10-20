@@ -5,7 +5,7 @@ from pywebvue.modules import Markdown
 
 # Make sure used module is available
 _app = get_app_instance()
-_app.enableModule(Markdown)
+_app.enable_module(Markdown)
 
 
 class Markdown(AbstractElement):

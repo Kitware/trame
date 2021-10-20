@@ -5,7 +5,7 @@ from simput.pywebvue.modules import SimPut
 
 # Make sure used module is available
 _app = get_app_instance()
-_app.enableModule(SimPut)
+_app.enable_module(SimPut)
 
 
 class Simput(AbstractElement):

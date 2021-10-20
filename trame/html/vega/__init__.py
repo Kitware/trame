@@ -5,7 +5,7 @@ from pywebvue.modules import VegaEmbed
 
 # Make sure used module is available
 _app = get_app_instance()
-_app.enableModule(VegaEmbed)
+_app.enable_module(VegaEmbed)
 
 
 class VegaEmbed(AbstractElement):

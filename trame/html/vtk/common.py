@@ -8,7 +8,7 @@ def use_module(m):
     global MODULE
     MODULE = m
     _app = get_app_instance()
-    _app.enableModule(m)
+    _app.enable_module(m)
 
 
 class VtkAlgorithm(AbstractElement):

@@ -5,7 +5,7 @@ import json
 
 # Make sure used module is available
 _app = get_app_instance()
-_app.enableModule(Deck)
+_app.enable_module(Deck)
 
 
 class Deck(AbstractElement):

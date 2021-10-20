@@ -207,14 +207,21 @@ def update_layout(layout):
 def enable_module(module):
     """Load module"""
     _app = get_app_instance()
-    _app.enableModule(module)
+    _app.enable_module(module)
 
+# -----------------------------------------------------------------------------
+# App CLI handling
+# -----------------------------------------------------------------------------
 
 def get_cli_parser():
     """Run or add to argparse parser"""
     _app = get_app_instance()
     return _app.cli_parser
 
+def get_cli_args():
+    """Return parsed args"""
+    _app = get_app_instance()
+    return _app.cli_args
 
 def flush_state(*args):
     """Flush dirty state"""

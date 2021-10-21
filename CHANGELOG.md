@@ -1,3 +1,11 @@
+## [1.1.5](https://github.com/kitware/trame/compare/v1.1.4...v1.1.5) (2021-10-21)
+
+
+### Bug Fixes
+
+* **html/vtk:** Use snake notation for attributes ([7a15aa3](https://github.com/kitware/trame/commit/7a15aa37f05a09d748bc14cb76245ea51ec8f7b3))
+* **html:** Add form/input/label elements ([904f57d](https://github.com/kitware/trame/commit/904f57db004942bc640f00002003a6c2e380d501))
+
 ## [1.1.4](https://github.com/kitware/trame/compare/v1.1.3...v1.1.4) (2021-10-20)
 
 

@@ -238,6 +238,45 @@ class Span(AbstractElement):
         super().__init__("span", __content, **kwargs)
 
 
+class Form(AbstractElement):
+    def __init__(self, __content=None, **kwargs):
+        super().__init__("form", __content, **kwargs)
+        self._attr_names += ["action"]
+
+
+class Label(AbstractElement):
+    def __init__(self, __content=None, **kwargs):
+        super().__init__("label", __content, **kwargs)
+
+
+class Input(AbstractElement):
+    def __init__(self, __content=None, **kwargs):
+        super().__init__("input", __content, **kwargs)
+        self._attr_names += [
+            "type",
+            "value",
+            "name",
+            "size",
+            "min",
+            "max",
+            "step",
+            "maxlength",
+            "disabled",
+            "readonly",
+            "multiple",
+            "pattern",
+            "placeholder",
+            "required",
+            "autofocus",
+            "src",
+            "width",
+            "height",
+            "alt",
+            "list",
+            "autocomplete",
+        ]
+
+
 class Template(AbstractElement):
     slot_names = set()
 

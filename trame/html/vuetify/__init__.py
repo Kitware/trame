@@ -1,4 +1,3 @@
-
 from trame import get_app_instance
 from trame.html import AbstractElement, Template
 
@@ -73,6 +72,7 @@ slot_names = [
     "actions",
 ]
 Template.slot_names.update(slot_names)
+
 
 class VApp(AbstractElement):
     def __init__(self, __content=None, **kwargs):
@@ -3994,4 +3994,3 @@ class VExpandXTransition(AbstractElement):
         self._attr_names += [
             "mode",
         ]
-

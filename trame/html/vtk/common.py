@@ -14,7 +14,7 @@ def use_module(m):
 class VtkAlgorithm(AbstractElement):
     def __init__(self, __content=None, **kwargs):
         super().__init__("vtk-algorithm", __content, **kwargs)
-        self._attr_names += ["port", "vtkClass", "state"]
+        self._attr_names += ["port", "vtk_class", "state"]
 
 
 class VtkCellData(AbstractElement):
@@ -30,7 +30,7 @@ class VtkDataArray(AbstractElement):
             "registration",
             "type",
             "values",
-            "numberOfComponents",
+            "number_of_components",
         ]
 
 
@@ -44,8 +44,8 @@ class VtkGeometryRepresentation(AbstractElement):
         super().__init__("vtk-geometry-representation", __content, **kwargs)
         self._attr_names += [
             "id",
-            "colorMapPreset",
-            "colorDataRange",
+            "color_map_preset",
+            "color_data_range",
             "actor",
             "mapper",
             "property",
@@ -56,8 +56,8 @@ class VtkGlyphRepresentation(AbstractElement):
     def __init__(self, __content=None, **kwargs):
         super().__init__("vtk-glyph-representation", __content, **kwargs)
         self._attr_names += [
-            "colorMapPreset",
-            "colorDataRange",
+            "color_map_preset",
+            "color_data_range",
             "actor",
             "mapper",
             "property",
@@ -106,13 +106,13 @@ class VtkReader(AbstractElement):
     def __init__(self, **kwargs):
         super().__init__("vtk-reader", **kwargs)
         self._attr_names += [
-            "parseAsArrayBuffer",
-            "parseAsText",
+            "parse_as_array_buffer",
+            "parse_as_text",
             "port",
-            "renderOnUpdate",
-            "resetCameraOnUpdate",
+            "render_on_update",
+            "reset_camera_on_update",
             "url",
-            "vtkClass",
+            "vtk_class",
         ]
 
 
@@ -146,13 +146,13 @@ class VtkRemoteLocalView(AbstractElement):
 
         self._attr_names += [
             # "mode", # <--- Managed by hand above
-            "contextName",
-            "interactiveRatio",
-            "interactorEvents",
-            "interactorSettings",
+            "context_name",
+            "interactive_ratio",
+            "interactor_events",
+            "interactor_settings",
             "namespace",
         ]
-        self._event_names += kwargs.get("interactorEvents", [])
+        self._event_names += kwargs.get("interactor_events", [])
 
     def update_geometry(self):
         _app = get_app_instance()
@@ -178,12 +178,12 @@ class VtkRemoteView(AbstractElement):
         self._attributes["ref"] = f'ref="{ref}"'
         self._attributes["view_id"] = f'id="{MODULE.id(view)}"'
         self._attr_names += [
-            "enablePicking",
-            "interactiveQuality",
-            "interactiveRatio",
-            "interactorEvents",
+            "enable_picking",
+            "interactive_quality",
+            "interactive_ratio",
+            "interactor_events",
         ]
-        self._event_names += kwargs.get("interactorEvents", [])
+        self._event_names += kwargs.get("interactor_events", [])
 
     def update(self):
         MODULE.push_image(self.__view)
@@ -203,8 +203,8 @@ class VtkSyncView(AbstractElement):
         self._attributes["ref"] = f'ref="{ref}"'
         self._attributes["wsClient"] = ':wsClient="wsClient"'
         self._attributes["view_state"] = f':viewState="{self.__scene_id}"'
-        self._attr_names += ["interactorEvents", "interactorSettings", "contextName"]
-        self._event_names += kwargs.get("interactorEvents", [])
+        self._attr_names += ["interactor_events", "interactor_settings", "context_name"]
+        self._event_names += kwargs.get("interactor_events", [])
         self.update()
 
     def update(self):
@@ -218,8 +218,8 @@ class VtkView(AbstractElement):
         self._attributes["ref"] = f'ref="{ref}"'
         self._attr_names += [
             "background",
-            "cubeAxesStyle",
-            "interactorSettings",
-            "pickingModes",
-            "showCubeAxes",
+            "cube_axes_style",
+            "interactor_settings",
+            "picking_modes",
+            "show_cube_axes",
         ]

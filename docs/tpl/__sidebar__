@@ -1,6 +1,10 @@
 docs:
   getting_started:
     overview: index.html
+  tutorial:
+    t_overview: tutorial.html
+    t_download: tutorial-download.html
+    t_setup: tutorial-setup.html
 
 examples:
   getting_started:

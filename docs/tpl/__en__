@@ -17,6 +17,11 @@ sidebar:
   docs:
     getting_started: Getting Started
     overview: Introduction
+    tutorial: Tutorial
+    t_overview: Overview
+    t_download: Download
+    t_setup: Setup
+
   examples:
     getting_started: Getting Started
     overview: Introduction

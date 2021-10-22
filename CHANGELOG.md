@@ -1,3 +1,10 @@
+## [1.1.6](https://github.com/kitware/trame/compare/v1.1.5...v1.1.6) (2021-10-22)
+
+
+### Bug Fixes
+
+* **docs:** Correct site routing for 'Concepts' ([7935e4a](https://github.com/kitware/trame/commit/7935e4ab3b857fd9529a6e5f9883cf4dc02c82ec))
+
 ## [1.1.5](https://github.com/kitware/trame/compare/v1.1.4...v1.1.5) (2021-10-21)
 
 

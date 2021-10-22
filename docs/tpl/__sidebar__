@@ -1,7 +1,7 @@
 docs:
   getting_started:
     overview: index.html
-    concept: concept.html
+    concepts: concepts.html
     api: api.html
   tutorial:
     t_overview: tutorial.html

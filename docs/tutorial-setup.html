@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://kitware.github.io/trame/examples/index.html">
+  <link rel="canonical" href="https://kitware.github.io/trame/docs/tutorial-setup.html">
   <!-- Alternative links -->
   
     
-      <link rel="alternative" hreflang="en" href="https://kitware.github.io/trame/examples/index.html">
+      <link rel="alternative" hreflang="en" href="https://kitware.github.io/trame/docs/tutorial-setup.html">
     
   
   <!-- Icon -->
@@ -41,12 +41,12 @@
   <!-- RSS -->
   <link rel="alternate" href="/trame/atom.xml" title="Trame" type="application/atom+xml">
   <!-- Open Graph -->
-  <meta name="description" content="Hello and Welcome to Trame">
+  <meta name="description" content="Setup environmentTrame requires 3.6+ python3 -m venv .venvsource .&#x2F;.venv&#x2F;bin&#x2F;activatepython -m pip install --upgrade pippip install -r .&#x2F;examples&#x2F;Tutorial&#x2F;setup&#x2F;requirements.txt  Note: venv was added">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Trame">
-<meta property="og:url" content="https://kitware.github.io/trame/examples/index.html">
+<meta property="og:url" content="https://kitware.github.io/trame/docs/tutorial-setup.html">
 <meta property="og:site_name" content="Trame">
-<meta property="og:description" content="Hello and Welcome to Trame">
+<meta property="og:description" content="Setup environmentTrame requires 3.6+ python3 -m venv .venvsource .&#x2F;.venv&#x2F;bin&#x2F;activatepython -m pip install --upgrade pippip install -r .&#x2F;examples&#x2F;Tutorial&#x2F;setup&#x2F;requirements.txt  Note: venv was added">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-10-22T19:13:33.006Z">
 <meta property="article:modified_time" content="2021-10-22T19:13:33.006Z">
@@ -94,12 +94,22 @@
                 <h1 class="article-title" itemprop="name"></h1>
               </header>
               <div class="article-content" itemprop="articleBody">
-                <p>Hello and Welcome to Trame</p>
+                <h2 id="Setup-environment" class="article-heading"><a href="#Setup-environment" class="headerlink" title="Setup environment"></a>Setup environment<a class="article-anchor" href="#Setup-environment" aria-hidden="true"></a></h2><p>Trame requires 3.6+</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">python3 -m venv .venv</span><br><span class="line">source ./.venv/bin/activate</span><br><span class="line">python -m pip install --upgrade pip</span><br><span class="line">pip install -r ./examples/Tutorial/setup/requirements.txt</span><br></pre></td></tr></table></figure>
+
+<p>Note: venv was added in Python 3.3.</p>
+<h2 id="Running-the-application" class="article-heading"><a href="#Running-the-application" class="headerlink" title="Running the application"></a>Running the application<a class="article-anchor" href="#Running-the-application" aria-hidden="true"></a></h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd examples/Tutorial/setup</span><br><span class="line">python ./app.py --port 1234</span><br></pre></td></tr></table></figure>
+
+<p>Open browser on <code>http://localhost:1234/</code></p>
+<p>Note: The default port is 8080, but since this is very common we will use 1234 for our Tutorial.</p>
+<p>Note: If you are running this on a remote machine, then on Linux you define the host to be open (0.0.0.0) to any external connection.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">python ./app.py --port 1234 --host 0.0.0.0</span><br></pre></td></tr></table></figure>
+<p>Note: Firewalls will be more complicated.</p>
 
               </div>
               <footer class="article-footer">
                 <time class="article-footer-updated" datetime="2021-10-22T19:13:33.006Z" itemprop="dateModified">Last updated: 2021-10-22</time>
-                
+                <a href="tutorial-download.html" class="article-footer-prev" title="Download"><i class="fa fa-chevron-left"></i><span>Prev</span></a>
               </footer>
               
             </div>
@@ -107,14 +117,14 @@
           <aside id="article-toc" role="navigation">
             <div id="article-toc-inner">
               <strong class="sidebar-title">Contents</strong>
-              
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Setup-environment"><span class="toc-text">Setup environment</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Running-the-application"><span class="toc-text">Running the application</span></a></li></ol>
               <a href="#" id="article-toc-top">Back to Top</a>
             </div>
           </aside>
         </div>
       </article>
       <aside id="sidebar" role="navigation">
-  <div class="inner"><strong class="sidebar-title">Getting Started</strong><a href="index.html" class="sidebar-link current">Introduction</a></div>
+  <div class="inner"><strong class="sidebar-title">Getting Started</strong><a href="index.html" class="sidebar-link">Introduction</a><strong class="sidebar-title">Tutorial</strong><a href="tutorial.html" class="sidebar-link">Overview</a><a href="tutorial-download.html" class="sidebar-link">Download</a><a href="tutorial-setup.html" class="sidebar-link current">Setup</a></div>
 </aside>
     </div>
   </div>
@@ -154,12 +164,12 @@
       </li>
     </ul>
     
-      <strong class="mobile-nav-title">Getting Started</strong><a href="index.html" class="mobile-nav-link current">Introduction</a>
+      <strong class="mobile-nav-title">Getting Started</strong><a href="index.html" class="mobile-nav-link">Introduction</a><strong class="mobile-nav-title">Tutorial</strong><a href="tutorial.html" class="mobile-nav-link">Overview</a><a href="tutorial-download.html" class="mobile-nav-link">Download</a><a href="tutorial-setup.html" class="mobile-nav-link current">Setup</a>
     
   </div>
   <div id="mobile-lang-select-wrap">
     <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>English</span></span>
-    <select id="mobile-lang-select" data-canonical="">
+    <select id="mobile-lang-select" data-canonical="docs/tutorial-setup.html">
       
         <option value="en" selected>English</option>
       

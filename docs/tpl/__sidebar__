@@ -1,10 +1,14 @@
 docs:
   getting_started:
     overview: index.html
+    concept: concept.html
+    api: api.html
   tutorial:
     t_overview: tutorial.html
     t_download: tutorial-download.html
     t_setup: tutorial-setup.html
+  modules: 
+    vuetify: vuetify.html
 
 examples:
   getting_started:

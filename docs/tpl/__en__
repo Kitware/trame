@@ -17,10 +17,14 @@ sidebar:
   docs:
     getting_started: Getting Started
     overview: Introduction
+    concepts: Concepts
+    api: API / Cheatsheet
     tutorial: Tutorial
     t_overview: Overview
     t_download: Download
     t_setup: Setup
+    modules: Modules
+    vuetify: Vuetify
 
   examples:
     getting_started: Getting Started

@@ -8,6 +8,7 @@
       <a href="https://github.com/{{ config.github }}" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
     </div>
   </div>
+  <!--
     <a
       style="position: fixed; background: #00529b; color: white; top: 0; right: 0; height: 70px"
       href="https://www.kitware.com/careers"
@@ -19,4 +20,5 @@
         <span style="padding: 5px 10px">Kitware is Hiring</span>
       </div>
     </a>
+  -->
 </footer>

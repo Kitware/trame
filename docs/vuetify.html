@@ -41,15 +41,15 @@
   <!-- RSS -->
   <link rel="alternate" href="/trame/atom.xml" title="Trame" type="application/atom+xml">
   <!-- Open Graph -->
-  <meta name="description" content="Vuetify  Trame wraps Vuetify as it&#39;s primary UI Component Library. The api for the wrappings are documented below. More examples are available at the [vuetify website](https:&#x2F;&#x2F;vuetifyjs.com&#x2F;en&#x2F;introd">
+  <meta name="description" content="VuetifyTrame wraps Vuetify as it’s primary UI Component Library. We encourage Trame developers to consult Vuetify’s website for API documentation, usage, and examples. When writing Trame based on the">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Trame">
 <meta property="og:url" content="https://kitware.github.io/trame/docs/vuetify.html">
 <meta property="og:site_name" content="Trame">
-<meta property="og:description" content="Vuetify  Trame wraps Vuetify as it&#39;s primary UI Component Library. The api for the wrappings are documented below. More examples are available at the [vuetify website](https:&#x2F;&#x2F;vuetifyjs.com&#x2F;en&#x2F;introd">
+<meta property="og:description" content="VuetifyTrame wraps Vuetify as it’s primary UI Component Library. We encourage Trame developers to consult Vuetify’s website for API documentation, usage, and examples. When writing Trame based on the">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-10-25T22:03:33.215Z">
-<meta property="article:modified_time" content="2021-10-25T22:03:33.215Z">
+<meta property="article:published_time" content="2021-10-25T22:18:18.109Z">
+<meta property="article:modified_time" content="2021-10-25T22:18:18.109Z">
 <meta property="article:author" content="Kitware Inc.">
 <meta name="twitter:card" content="summary">
   <!-- Google Analytics -->
@@ -94,13 +94,17 @@
                 <h1 class="article-title" itemprop="name"></h1>
               </header>
               <div class="article-content" itemprop="articleBody">
-                <h1 id="Vuetify" class="article-heading"> Vuetify <a class="article-anchor" href="#Vuetify" aria-hidden="true"></a></h1>
-Trame wraps Vuetify as it's primary UI Component Library. The api for the wrappings are documented below. More examples are available at the [vuetify website](https://vuetifyjs.com/en/introduction/why-vuetify/), and [details](/vuetify-decoder.html) are available for web developers translating more vue into trame.
+                <h1 id="Vuetify" class="article-heading"><a href="#Vuetify" class="headerlink" title="Vuetify"></a>Vuetify<a class="article-anchor" href="#Vuetify" aria-hidden="true"></a></h1><p>Trame wraps Vuetify as it’s primary UI Component Library. We encourage Trame developers to consult <a target="_blank" rel="noopener" href="https://vuetifyjs.com/en/introduction/why-vuetify/">Vuetify’s website</a> for API documentation, usage, and examples.</p>
+<p>When writing Trame based on the Vuetify documentation keep the following in mind.</p>
+<h2 id="Evaluating-properties" class="article-heading"><a href="#Evaluating-properties" class="headerlink" title="Evaluating properties"></a>Evaluating properties<a class="article-anchor" href="#Evaluating-properties" aria-hidden="true"></a></h2><p>Trame evaluates properties if they are wrapped in a tuple.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> trame.html <span class="keyword">import</span> vuetify </span><br><span class="line"></span><br><span class="line"><span class="comment"># This sets the label to &quot;myLabel&quot;</span></span><br><span class="line">vuetify.VTextField(label=<span class="string">&quot;myLabel&quot;</span>) </span><br><span class="line"></span><br><span class="line"><span class="comment"># This evaluates &quot;myLabel&quot; in Trame&#x27;s Shared State for a value to set</span></span><br><span class="line">vuetify.VTextField(label=(<span class="string">&quot;myLabel&quot;</span>,)) </span><br><span class="line"></span><br><span class="line"><span class="comment"># This evaluates &quot;myLabel&quot;, which was initially set to &quot;Initial Label&quot;</span></span><br><span class="line">vuetify.VTextField(label=(<span class="string">&quot;myLabel&quot;</span>, <span class="string">&quot;Initial Label&quot;</span>)) </span><br></pre></td></tr></table></figure>
 
+<h2 id="Syntax-changes" class="article-heading"><a href="#Syntax-changes" class="headerlink" title="Syntax changes"></a>Syntax changes<a class="article-anchor" href="#Syntax-changes" aria-hidden="true"></a></h2><p>Wrapping Vuetify with Python was accomplished by making these syntax changes.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> trame.html <span class="keyword">import</span> vuetify</span><br><span class="line"></span><br><span class="line"><span class="comment">#----------------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># Explicit boolean properties</span></span><br><span class="line"><span class="comment">#----------------------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## Vuetify implicitly sets properties to True</span></span><br><span class="line"><span class="comment"># &lt;v-text-field disabled&gt;&lt;/v-text-field&gt; </span></span><br><span class="line"></span><br><span class="line"><span class="comment">## Trame requires explicitly setting True</span></span><br><span class="line">vuetify.VTextField(disabled=<span class="literal">True</span>) </span><br><span class="line"></span><br><span class="line"><span class="comment">#----------------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># Property name changes</span></span><br><span class="line"><span class="comment">#----------------------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## Vuetify writes properties with -</span></span><br><span class="line"><span class="comment"># &lt;v-text-field v-model=&quot;myText&quot;&gt; &lt;/v-text-field&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## Trame writes properties with _</span></span><br><span class="line">vuetify.VTextField(v_model=(<span class="string">&quot;myText&quot;</span>,)) </span><br><span class="line"></span><br><span class="line"><span class="comment">## Vuetify writes events with @</span></span><br><span class="line"><span class="comment"># &lt;v-btn @click=&quot;runMethod&quot;&gt; &lt;/v-button&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## Trame doesn&#x27;t</span></span><br><span class="line">vuetify.VBtn(click=runMethod)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
               </div>
               <footer class="article-footer">
-                <time class="article-footer-updated" datetime="2021-10-25T22:03:33.215Z" itemprop="dateModified">Last updated: 2021-10-25</time>
+                <time class="article-footer-updated" datetime="2021-10-25T22:18:18.109Z" itemprop="dateModified">Last updated: 2021-10-25</time>
                 <a href="tutorial-setup.html" class="article-footer-prev" title="Setup"><i class="fa fa-chevron-left"></i><span>Prev</span></a>
               </footer>
               
@@ -109,7 +113,7 @@ Trame wraps Vuetify as it's primary UI Component Library. The api for the wrappi
           <aside id="article-toc" role="navigation">
             <div id="article-toc-inner">
               <strong class="sidebar-title">Contents</strong>
-              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Vuetify"><span class="toc-text"> Vuetify </span></a></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Vuetify"><span class="toc-text">Vuetify</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Evaluating-properties"><span class="toc-text">Evaluating properties</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Syntax-changes"><span class="toc-text">Syntax changes</span></a></li></ol></li></ol>
               <a href="#" id="article-toc-top">Back to Top</a>
             </div>
           </aside>

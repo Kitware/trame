@@ -163,7 +163,7 @@ def init_argparse():
         usage="%(prog)s [OPTION] [FILE]",
         description="Generate vuetify module for Trame",
     )
-    parser.add_argument("-i", "--input")
+    parser.add_argument("-i", "--input", required=True)
     parser.add_argument("-o", "--output")
     return parser
 
@@ -171,8 +171,6 @@ def init_argparse():
 if __name__ == "__main__":
     parser = init_argparse()
     args = parser.parse_args()
-    if not args.input:
-        raise Exception("Sorry, I need an input")
     output = args.output or "_generated.py"
 
     try:

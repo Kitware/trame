@@ -2,7 +2,7 @@ docs:
   getting_started:
     overview: index.html
     concepts: concepts.html
-    api: api.html
+    cookbook: cookbook.html
   tutorial:
     t_overview: tutorial.html
     t_download: tutorial-download.html

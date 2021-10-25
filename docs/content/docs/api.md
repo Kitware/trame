@@ -63,7 +63,7 @@ def random_update():
   update_state("slider_value", current_value) # update variable with new content
 ```
 
-### Forcing variable exchange
+### Forcing state exchange
 
 Sometime, the variable inside your shared state is an actual object with nested structure. While the state on the Python side always keeps the same reference to that object, you are manually editing its content and you want to flush its content so the client can see your changes. In that use case we have a `flush_state()` methods that can be called with the list of variable names that should be pushed. This is also useful in some async context to control when pieces of the state should be pushed to the other side. The code below provide a usage example.
 
@@ -130,10 +130,77 @@ Layouts are meant to define the core UI elements of an application. Think of Ful
 Layouts let you drop pieces of your UI into pre-defined locations.
 The layout gather the way your application will look and it could be defined once or be redifined at runtime.
 
+[...]
+
+## HTML Elements
+
+HTML elements in trame (trame.html.*) are just helper for generating HTML content. But because they exist as Python objects, users can interact with them simply by setting attributes on them in plain Python.
+
+Below are various way you can translate what you see on a Vue component to a trame syntax.
+
+```python
+# Attribute without value (boolean)
+# <v-btn outlined />
+vuetify.VBtn(outlined=True)
+
+# Bind method to event
+# <v-btn @click="doSomething">
+def doSomething():
+  pass
+vuetify.VBtn(click=doSomething)
+
+# Dash handling (v-model => v_model)
+# <v-slider v-model="slider_value" min="0" max="100" />
+vuetify.VSlider(
+  v_model=("slider_value", 50), # See state section above
+  min=0,
+  max=50,
+)
+```
+
 ## Command line arguments
 
-[...]
+Since a Trame application is a real application and not a service than aim to serve many concurrent users, you may want to provide some information to your application when you start it like which ML model you want to load or the file/directory that you would like to explore or process.
+This can be achieved by adding more CLI parameters using [ArgParse](https://docs.python.org/3/library/argparse.html) like the following example.
+
+```python
+from trame import get_cli_parser
+
+parser = get_cli_parser()
+parser.add_argument("-d", "--data", help="Directory to explore", dest="data")
+args = parser.parse_args()
+print(args.data)
+```
 
 ## Starting the application
 
-[...]
+Trame provide a `start()` function which will actually start your application.
+Usually we put the following section in your main script.
+
+```python
+if __name__ == "__main__":
+    start(layout)
+```
+
+Otherwise the full API is listed below
+
+```python
+def start(layout=None, name=None, favicon=None, on_ready=None, port=None):
+    """
+    Start web server for serving your application
+
+    Parameters
+    ----------
+    layout  : None or str or trame.layouts.*
+        UI content that should be used for your application.
+        If None a ./template.html will be used as content.
+    name    : None or str
+        "Title" that you can see in your tab browser.
+        This will be filled automatically if a trame.layouts.* layout was provided.
+    favicon : None or str
+        Relative path to a png image that should be used as favicon
+    port    : None or Number
+        Port on which the server should run on
+    on_ready: None or function
+        Function called once the server is ready
+```

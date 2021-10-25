@@ -1,5 +1,6 @@
-# API (Cheat Sheet)
-Here are snippets of common tasks in Trame. See 'StartHere' examples which run these. 
+# Cook Book
+
+Here are snippets of common tasks in Trame. See 'StartHere' examples which run these.
 
 ### How do I connect my code to a button?
 ```python

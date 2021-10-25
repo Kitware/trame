@@ -1,4 +1,4 @@
-# API
+# How to use Trame
 
 Trame aims to streamline creation of graphical interface for interactive data manipulation and visualization with a very compact and simple API.
 This document try to capture the core API and concepts behind trame so you can use it when you get started but also as reference once you get more familiar with Trame.

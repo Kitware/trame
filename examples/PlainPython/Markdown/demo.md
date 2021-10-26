@@ -130,7 +130,7 @@ int main(int argc char* argv[]) {
 ```
 
 ### javascript
-```json
+```javascript
 import MarkdownItVue from 'markdown-it-vue'
 export default {
   components: {

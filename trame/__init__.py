@@ -215,6 +215,18 @@ def enable_module(module):
     _app.enable_module(module)
 
 
+def js_call(ref=None, method=None, args=[]):
+    """Python call method on JS element"""
+    _app = get_app_instance()
+    _app.update(ref=ref, method=method, args=args)
+
+
+def js_property(ref=None, property=None, value=None):
+    """Python update property on JS element"""
+    _app = get_app_instance()
+    _app.update(ref=ref, property=property, value=value)
+
+
 # -----------------------------------------------------------------------------
 # App CLI handling
 # -----------------------------------------------------------------------------

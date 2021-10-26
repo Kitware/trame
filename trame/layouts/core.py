@@ -4,7 +4,10 @@ from pywebvue.utils import read_file_as_base64_url
 from trame.html import Div, Span, vuetify
 from trame import base_directory, get_app_instance
 
-LOGO_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "../html/assets/logo.svg"))
+LOGO_PATH = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), "../html/assets/logo.svg")
+)
+
 
 class FullScreenPage:
     def __init__(self, name, favicon=None, on_ready=None):

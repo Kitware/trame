@@ -9,7 +9,14 @@
   </url>
   
   <url>
-    <loc>https://kitware.github.io/trame/docs/api.html</loc>
+    <loc>https://kitware.github.io/trame/docs/vuetify.html</loc>
+    
+    <lastmod>2021-10-26</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/examples/index.html</loc>
     
     <lastmod>2021-10-26</lastmod>
     
@@ -24,6 +31,13 @@
   
   <url>
     <loc>https://kitware.github.io/trame/docs/cookbook.html</loc>
+    
+    <lastmod>2021-10-26</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/getting_started.html</loc>
     
     <lastmod>2021-10-26</lastmod>
     
@@ -59,20 +73,6 @@
   
   <url>
     <loc>https://kitware.github.io/trame/docs/vuetify-decoder.html</loc>
-    
-    <lastmod>2021-10-26</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/vuetify.html</loc>
-    
-    <lastmod>2021-10-26</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/examples/index.html</loc>
     
     <lastmod>2021-10-26</lastmod>
     

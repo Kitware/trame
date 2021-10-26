@@ -34,7 +34,7 @@ layout.toolbar.children += [
 layout.content.children += [
     Markdown(
         classes="pa-4 mx-2",
-        v_model="md",
+        v_model=("md",),
     ),
 ]
 

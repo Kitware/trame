@@ -32,7 +32,8 @@ setup(
     ],
     keywords="Python Interactive Web Application Framework",
     packages=find_packages(".", exclude=("tests.*", "tests")),
-    package_dir={"": "."},
+    package_dir={},
     package_data={},
+    include_package_data=True,
     install_requires=["pywebvue"],
 )

@@ -1,7 +1,7 @@
 docs:
   getting_started:
     overview: index.html
-    api: api.html
+    getting_started: getting_started.html
   tutorial:
     t_overview: tutorial.html
     t_download: tutorial-download.html

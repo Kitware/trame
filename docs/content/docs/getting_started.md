@@ -112,7 +112,7 @@ Some components used in your layout may have some API that you can use and call 
 The code below provide an example of such use case:
 
 ```python
-from trame import call
+from trame import js_call
 from trame.html import vtk
 
 html_view = vtk.VtkView(
@@ -121,7 +121,7 @@ html_view = vtk.VtkView(
 )
 
 def reset_camera():
-  call(ref="vtkView", method="resetCamera", args=[])
+  js_call(ref="vtkView", method="resetCamera", args=[])
 ```
 
 ## Layout management
@@ -130,7 +130,7 @@ Layouts are meant to define the core UI elements of an application. Think of Ful
 Layouts let you drop pieces of your UI into pre-defined locations.
 The layout gather the way your application will look and it could be defined once or be redifined at runtime.
 
-[...]
+When creating a layout, you have the opportunity to define the Tab title along with a path to a favicon and a method to call at startup.
 
 ## HTML Elements
 

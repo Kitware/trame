@@ -1,6 +1,6 @@
-## Setup environment
+## Setup environment for VTK
 
-Trame requires 3.6+
+Trame requires Python 3.6+
 
 ```
 python3 -m venv .venv
@@ -55,4 +55,6 @@ if __name__ == "__main__":
     start(layout)
 ```
 
-`start` can take a number of optional arguments. In this case, we pass in the optional GUI `layout`. You can also optionally set tab *name*, *favicon*, *port* number, and *on_ready* function to call when the server is up and running. However, these items can either be set with command-line arguments (--port 1234) or with calls exposed through the SinglePage layout.
+`start` can take a number of optional arguments. In this case, we pass in the optional GUI `layout`. if not provided, `start` will look for a `./template.html`.
+
+You can also optionally set tab *name*, *favicon*, *port* number, and *on_ready* function to call when the server is up and running. However, these items can either be set with command-line arguments (--port 1234) or with calls exposed through the SinglePage layout.

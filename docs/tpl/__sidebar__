@@ -6,7 +6,8 @@ docs:
   tutorial:
     t_overview: tutorial.html
     t_download: tutorial-download.html
-    t_setup: tutorial-setup.html
+    t_setup-vtk: tutorial-setup-vtk.html
+    t_vtk: tutorial-vtk.html
   modules: 
     vuetify: vuetify.html
 

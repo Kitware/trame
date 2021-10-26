@@ -22,7 +22,8 @@ sidebar:
     tutorial: Tutorial
     t_overview: Overview
     t_download: Download
-    t_setup: Setup
+    t_setup-vtk: Setup for VTK
+    t_vtk: VTK
     modules: Modules
     vuetify: Vuetify
 

@@ -1,2 +1,2 @@
-# Paraview Trame module
+# Paraview 
 [...]

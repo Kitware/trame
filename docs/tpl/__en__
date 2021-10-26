@@ -25,15 +25,15 @@ sidebar:
     t_download: Download
     t_setup-vtk: Setup for VTK
     t_vtk: VTK
-    modules: Modules
-    m_vuetify: Vuetify
-    m_altair: Altair
-    m_deckgl: deck.gl
-    m_markdown: Markdown
-    m_paraview: Paraview
-    m_vtk: Vtk
-    m_vega: Vega
-    m_simput: Simput
+    modules: Html Modules
+    m_vuetify: vuetify
+    m_altair: altair
+    m_deckgl: deckgl
+    m_markdown: markdown
+    m_paraview: paraview
+    m_vtk: vtk
+    m_vega: vega
+    m_simput: simput
 
   examples:
     getting_started: Getting Started

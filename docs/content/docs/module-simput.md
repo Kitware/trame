@@ -1,2 +1,2 @@
-# Simput Trame module
+# Simput 
 [...]

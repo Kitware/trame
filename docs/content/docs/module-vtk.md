@@ -1,2 +1,2 @@
-# Vtk Trame module
+# Vtk 
 [...]

@@ -1,4 +1,4 @@
-# deck.gl Trame module
+# deck.gl 
 deck.gl visualizes large geospatial datasets. 
 
 [... image]

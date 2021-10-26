@@ -1,4 +1,4 @@
-# Markdown Trame module
+# Markdown 
 Trame has extensive support for markdown documents. 
 
 [... image]
@@ -16,7 +16,9 @@ Trame's `markdown` module exposes a `Markdown()` component which will render any
 ```python
 from trame.html import markdown
 
-markdown.Markdown(v_model="# Some markdown...")
+initial_value = "# Some markdown..."
+
+markdown.Markdown(v_model=("myDocument", initial_value))
 ```
 
 Run the markdown example [here](https://github.com/Kitware/trame/blob/master/examples/PlainPython/Markdown/Simple.py) to see more Trame markdown features in action.

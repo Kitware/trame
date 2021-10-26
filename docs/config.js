@@ -17,8 +17,7 @@ module.exports = {
     url: 'https://kitware.github.io/trame',
     root: '/trame/',
     github: 'kitware/trame',
-    // google_analytics: 'UA-90338862-1',
-    // google_analytics_4: 'G-5XH2Z0Y9LQ',
+    google_analytics_4: 'G-H4W9XHTJ7X',
   },
   copy: [],
 };

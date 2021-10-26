@@ -1,13 +1,17 @@
+from genericpath import exists
 import os
 from pywebvue.utils import read_file_as_base64_url
 from trame.html import Div, Span, vuetify
 from trame import base_directory, get_app_instance
 
+LOGO_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "../html/assets/logo.svg"))
 
 class FullScreenPage:
     def __init__(self, name, favicon=None, on_ready=None):
         self.name = name
-        self.favicon = read_file_as_base64_url("../logo.svg", __file__)
+        self.favicon = None
+        if os.path.exists(LOGO_PATH):
+            self.favicon = read_file_as_base64_url(LOGO_PATH)
         self.on_ready = on_ready
         self._app = vuetify.VApp(id="app")
         self.children = self._app.children
@@ -47,12 +51,14 @@ class SinglePage(FullScreenPage):
     def __init__(self, name):
         super().__init__(name)
         self.toolbar = vuetify.VAppBar(app=True)
-        self.logo = Span(
-            f'<img height="32px" width="32px" src="{read_file_as_base64_url("../logo.svg", __file__)}" />',
-            classes="mr-2",
-            style="display: flex; align-content: center;",
-        )
-        # self.logo = vuetify.VIcon("mdi-menu", classes="mr-4")
+        if os.path.exists(LOGO_PATH):
+            self.logo = Span(
+                f'<img height="32px" width="32px" src="{read_file_as_base64_url(LOGO_PATH)}" />',
+                classes="mr-2",
+                style="display: flex; align-content: center;",
+            )
+        else:
+            self.logo = vuetify.VIcon("mdi-menu", classes="mr-4")
         self.title = Span("Trame App", classes="title")
         self.content = vuetify.VMain()
         self.toolbar.children += [self.logo, self.title]

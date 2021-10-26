@@ -137,7 +137,8 @@ def start(layout=None, name=None, favicon=None, on_ready=None, port=None):
         else:
             app.name = layout.name
             app.layout = layout.html
-            app.favicon = layout.favicon
+            if layout.favicon:
+                app.favicon = layout.favicon
             if layout.on_ready:
                 app.on_ready = layout.on_ready
     else:

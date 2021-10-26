@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/kitware/trame/compare/v1.1.6...v1.2.0) (2021-10-26)
+
+
+### Features
+
+* improve defaults: favicon, footer, context_manager ([89556eb](https://github.com/kitware/trame/commit/89556ebed3219ed708d7b3270e13b5548e991382))
+
 ## [1.1.6](https://github.com/kitware/trame/compare/v1.1.5...v1.1.6) (2021-10-22)
 
 

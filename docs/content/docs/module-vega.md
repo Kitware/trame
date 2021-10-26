@@ -1,2 +1,2 @@
-# Vega Trame module
+# Vega 
 [...]

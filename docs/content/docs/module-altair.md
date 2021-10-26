@@ -1,2 +1,2 @@
-# Altair Trame module
+# Altair 
 [...]

@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/kitware/trame/compare/v1.2.0...v1.2.1) (2021-10-26)
+
+
+### Bug Fixes
+
+* **logo:** Fallback logic until logo.svg get bundled ([d2fb7ac](https://github.com/kitware/trame/commit/d2fb7acbf3a265e915baca1294062246a40edc65))
+
 # [1.2.0](https://github.com/kitware/trame/compare/v1.1.6...v1.2.0) (2021-10-26)
 
 

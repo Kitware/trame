@@ -1,3 +1,10 @@
+## [1.2.3](https://github.com/kitware/trame/compare/v1.2.2...v1.2.3) (2021-10-26)
+
+
+### Bug Fixes
+
+* **VtkLocalView:** Add alias to Sync View ([7c9d2ca](https://github.com/kitware/trame/commit/7c9d2ca7da1af9a3b6f9eba8fac3046cac20248e))
+
 ## [1.2.2](https://github.com/kitware/trame/compare/v1.2.1...v1.2.2) (2021-10-26)
 
 

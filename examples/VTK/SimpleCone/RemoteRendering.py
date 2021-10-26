@@ -58,9 +58,11 @@ html_view = vtk.VtkRemoteView(renderWindow, ref="view")
 
 layout = SinglePage("VTK Remote rendering")
 layout.logo.click = "$refs.view.resetCamera()"
+# layout.logo.children = [vuetify.VIcon('mdi-menu')]
 layout.title.content = "Cone Application"
-layout.toolbar.children += [
-    vuetify.VSpacer(),
+
+with layout.toolbar:
+    vuetify.VSpacer()
     vuetify.VSlider(
         v_model=("resolution", DEFAULT_RESOLUTION),
         min=3,
@@ -69,27 +71,23 @@ layout.toolbar.children += [
         hide_details=True,
         dense=True,
         style="max-width: 300px",
-    ),
-    vuetify.VDivider(vertical=True, classes="mx-2"),
-    vuetify.VBtn(
-        icon=True,
-        click=update_reset_resolution,
-        children=[vuetify.VIcon("mdi-undo-variant")],
-    ),
-]
+    )
+    vuetify.VDivider(vertical=True, classes="mx-2")
+    with vuetify.VBtn(icon=True, click=update_reset_resolution):
+        vuetify.VIcon("mdi-undo-variant")
 
-layout.content.children += [
+with layout.content:
     vuetify.VContainer(
         fluid=True,
         classes="pa-0 fill-height",
         children=[html_view],
     )
-]
+
+# layout.footer.hide()
 
 # -----------------------------------------------------------------------------
 # Main
 # -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    # print(layout.html)
     start(layout, on_ready=update_cone)

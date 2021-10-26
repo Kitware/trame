@@ -1,13 +1,24 @@
-from trame.html import Span, vuetify
-from trame import get_app_instance
+import os
+from pywebvue.utils import read_file_as_base64_url
+from trame.html import Div, Span, vuetify
+from trame import base_directory, get_app_instance
 
 
 class FullScreenPage:
-    def __init__(self, name):
+    def __init__(self, name, favicon=None, on_ready=None):
         self.name = name
+        self.favicon = read_file_as_base64_url("../logo.svg", __file__)
+        self.on_ready = on_ready
         self._app = vuetify.VApp(id="app")
         self.children = self._app.children
         self._current_root = self._app
+
+        if favicon:
+            file_path = os.path.join(base_directory(), favicon)
+            if os.path.exists(file_path):
+                self.favicon = file_path
+            else:
+                print(f"Invalid path to favicon: {file_path}")
 
     @property
     def root(self):
@@ -36,11 +47,45 @@ class SinglePage(FullScreenPage):
     def __init__(self, name):
         super().__init__(name)
         self.toolbar = vuetify.VAppBar(app=True)
-        self.logo = vuetify.VIcon("mdi-menu", classes="mr-4")
+        self.logo = Span(
+            f'<img height="32px" width="32px" src="{read_file_as_base64_url("../logo.svg", __file__)}" />',
+            classes="mr-2",
+            style="display: flex; align-content: center;",
+        )
+        # self.logo = vuetify.VIcon("mdi-menu", classes="mr-4")
         self.title = Span("Trame App", classes="title")
         self.content = vuetify.VMain()
         self.toolbar.children += [self.logo, self.title]
-        self._app.children += [self.toolbar, self.content]
+        self.footer = vuetify.VFooter(
+            app=True,
+            classes="my-0 py-0",
+            children=[
+                vuetify.VProgressCircular(
+                    indeterminate=("busy",),
+                    background_opacity=1,
+                    bg_color="#01549b",
+                    color="#04a94d",
+                    size=16,
+                    width=3,
+                    classes="ml-n3 mr-1",
+                ),
+                '<a href="https://kitware.github.io/trame/" class="grey--text lighten-1--text text-caption text-decoration-none" target="_blank">Powered by Trame</a>',
+                vuetify.VSpacer(),
+                '<a href="https://www.kitware.com/" class="grey--text lighten-1--text text-caption text-decoration-none" target="_blank">© 2021 Kitware Inc.</a>',
+                # vuetify.VProgressLinear(
+                #     active=("busy",),
+                #     indeterminate=True,
+                #     absolute=True,
+                #     bottom=True,
+                #     striped=True,
+                #     background_opacity=1,
+                #     color="#01549b",
+                #     background_color="#04a94d",
+                #     height=4,
+                # ),
+            ],
+        )
+        self._app.children += [self.toolbar, self.content, self.footer]
 
 
 class SinglePageWithDrawer(SinglePage):

@@ -44,7 +44,14 @@
   </url>
   
   <url>
-    <loc>https://kitware.github.io/trame/docs/tutorial-setup.html</loc>
+    <loc>https://kitware.github.io/trame/docs/tutorial-setup-vtk.html</loc>
+    
+    <lastmod>2021-10-26</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/tutorial-vtk.html</loc>
     
     <lastmod>2021-10-26</lastmod>
     

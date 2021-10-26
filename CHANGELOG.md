@@ -1,3 +1,32 @@
+## [1.2.3](https://github.com/kitware/trame/compare/v1.2.2...v1.2.3) (2021-10-26)
+
+
+### Bug Fixes
+
+* **VtkLocalView:** Add alias to Sync View ([7c9d2ca](https://github.com/kitware/trame/commit/7c9d2ca7da1af9a3b6f9eba8fac3046cac20248e))
+
+## [1.2.2](https://github.com/kitware/trame/compare/v1.2.1...v1.2.2) (2021-10-26)
+
+
+### Bug Fixes
+
+* **js_call:** Add js_call function ([cce7704](https://github.com/kitware/trame/commit/cce7704301adf7b6afd253b712db422bf7e03197))
+* **package:** Package html assets ([f5dcc90](https://github.com/kitware/trame/commit/f5dcc90c804fd53b3bafad79fb24883d0edc6ae2))
+
+## [1.2.1](https://github.com/kitware/trame/compare/v1.2.0...v1.2.1) (2021-10-26)
+
+
+### Bug Fixes
+
+* **logo:** Fallback logic until logo.svg get bundled ([d2fb7ac](https://github.com/kitware/trame/commit/d2fb7acbf3a265e915baca1294062246a40edc65))
+
+# [1.2.0](https://github.com/kitware/trame/compare/v1.1.6...v1.2.0) (2021-10-26)
+
+
+### Features
+
+* improve defaults: favicon, footer, context_manager ([89556eb](https://github.com/kitware/trame/commit/89556ebed3219ed708d7b3270e13b5548e991382))
+
 ## [1.1.6](https://github.com/kitware/trame/compare/v1.1.5...v1.1.6) (2021-10-22)
 
 

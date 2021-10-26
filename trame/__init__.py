@@ -131,21 +131,26 @@ def start(layout=None, name=None, favicon=None, on_ready=None, port=None):
     if name:
         app.name = name
 
-    if favicon:
-        app.favicon = os.path.join(base_directory(), favicon)
-
     if layout:
         if isinstance(layout, str):
             app.layout = layout
         else:
             app.name = layout.name
             app.layout = layout.html
+            if layout.favicon:
+                app.favicon = layout.favicon
+            if layout.on_ready:
+                app.on_ready = layout.on_ready
     else:
         tpl_path = os.path.join(base_directory(), "template.html")
         if os.path.exists(tpl_path):
             app.layout = tpl_path
 
-    app.on_ready = on_ready
+    if on_ready:
+        app.on_ready = on_ready
+
+    if favicon:
+        app.favicon = os.path.join(base_directory(), favicon)
 
     # Dev validation
     validate_key_names()
@@ -208,6 +213,18 @@ def enable_module(module):
     """Load module"""
     _app = get_app_instance()
     _app.enable_module(module)
+
+
+def js_call(ref=None, method=None, args=[]):
+    """Python call method on JS element"""
+    _app = get_app_instance()
+    _app.update(ref=ref, method=method, args=args)
+
+
+def js_property(ref=None, property=None, value=None):
+    """Python update property on JS element"""
+    _app = get_app_instance()
+    _app.update(ref=ref, property=property, value=value)
 
 
 # -----------------------------------------------------------------------------

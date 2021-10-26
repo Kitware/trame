@@ -13,6 +13,25 @@ def py2js_key(key):
     return key.replace("_", "-")
 
 
+class ElementContextManager:
+    def __init__(self):
+        self.element_stack = []
+
+    def enter(self, elem):
+        self.element_stack.append(elem)
+
+    def exit(self, elem):
+        if len(self.element_stack) and elem == self.element_stack[-1]:
+            self.element_stack.pop()
+
+    def add_child(self, elem):
+        if len(self.element_stack):
+            self.element_stack[-1].add_child(elem)
+
+
+HTML_CTX = ElementContextManager()
+
+
 class AbstractElement:
     _next_id = 1
 
@@ -55,6 +74,9 @@ class AbstractElement:
         ]
         self._event_names += ["click", "mousedown", "mouseup", "contextmenu"]
 
+        # Add ourself to context is any
+        HTML_CTX.add_child(self)
+
     def _attr_str(self):
         return " ".join(self._attributes.values())
 
@@ -91,6 +113,8 @@ class AbstractElement:
             self.__dict__[name] = value
         elif name == "content":
             self._txt = value
+        elif name == "children":
+            self._children = value
         elif name in self._allowed_keys:
             self._py_attr[name] = value
         else:
@@ -190,6 +214,19 @@ class AbstractElement:
                     )
         return self
 
+    def clear(self):
+        self._txt = None
+        self._children.clear()
+
+    def hide(self):
+        self._attributes["__style"] = 'style="display: none"'
+
+    def add_child(self, child):
+        self._children.append(child)
+
+    def add_children(self, children):
+        self._children += children
+
     @property
     def content(self):
         return self._txt
@@ -221,6 +258,17 @@ class AbstractElement:
             )
         else:
             return f"<{self._elem_name} {self._attr_str()} />"
+
+    # -------------------------------------------------------------------------
+    # Resource manager
+    # -------------------------------------------------------------------------
+
+    def __enter__(self):
+        HTML_CTX.enter(self)
+        return self
+
+    def __exit__(self, exc_type, exc_value, exc_traceback):
+        HTML_CTX.exit(self)
 
 
 class Element(AbstractElement):

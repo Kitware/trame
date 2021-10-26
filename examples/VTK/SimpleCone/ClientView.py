@@ -3,14 +3,6 @@ from trame.html import vuetify, vtk
 from trame.layouts import SinglePage
 
 from vtkmodules.vtkFiltersSources import vtkConeSource
-from vtkmodules.vtkRenderingCore import (
-    vtkRenderer,
-    vtkRenderWindow,
-    vtkRenderWindowInteractor,
-    vtkPolyDataMapper,
-    vtkActor,
-)
-from vtkmodules.vtkInteractionStyle import vtkInteractorStyleSwitch
 
 # -----------------------------------------------------------------------------
 # VTK pipeline
@@ -18,23 +10,7 @@ from vtkmodules.vtkInteractionStyle import vtkInteractorStyleSwitch
 
 DEFAULT_RESOLUTION = 6
 
-renderer = vtkRenderer()
-renderWindow = vtkRenderWindow()
-renderWindow.AddRenderer(renderer)
-
-renderWindowInteractor = vtkRenderWindowInteractor()
-renderWindowInteractor.SetRenderWindow(renderWindow)
-renderWindowInteractor.GetInteractorStyle().SetCurrentStyleToTrackballCamera()
-renderWindowInteractor.EnableRenderOff()
-
-cone_source = vtkConeSource()
-mapper = vtkPolyDataMapper()
-actor = vtkActor()
-mapper.SetInputConnection(cone_source.GetOutputPort())
-actor.SetMapper(mapper)
-renderer.AddActor(actor)
-renderer.ResetCamera()
-renderWindow.Render()
+cone_generator = vtkConeSource()
 
 # -----------------------------------------------------------------------------
 # Callbacks
@@ -43,8 +19,8 @@ renderWindow.Render()
 
 @change("resolution")
 def update_cone(resolution=DEFAULT_RESOLUTION, **kwargs):
-    cone_source.SetResolution(resolution)
-    html_view.update()
+    cone_generator.SetResolution(resolution)
+    html_polydata.update()
 
 
 def update_reset_resolution():
@@ -55,9 +31,9 @@ def update_reset_resolution():
 # GUI
 # -----------------------------------------------------------------------------
 
-html_view = vtk.VtkSyncView(renderWindow, ref="view")
+html_polydata = vtk.VtkPolyData("cone", dataset=cone_generator)
 
-layout = SinglePage("VTK Remote View - Local Rendering")
+layout = SinglePage("VTK Local rendering")
 layout.logo.click = "$refs.view.resetCamera()"
 layout.title.content = "Cone Application"
 layout.toolbar.children += [
@@ -83,7 +59,9 @@ layout.content.children += [
     vuetify.VContainer(
         fluid=True,
         classes="pa-0 fill-height",
-        children=[html_view],
+        children=[
+            vtk.VtkView([vtk.VtkGeometryRepresentation([html_polydata])]),
+        ],
     )
 ]
 

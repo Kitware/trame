@@ -18,6 +18,7 @@ sidebar:
     getting_started: Getting Started
     overview: Introduction
     concepts: Concepts
+    api: API
     cookbook: Cookbook
     tutorial: Tutorial
     t_overview: Overview

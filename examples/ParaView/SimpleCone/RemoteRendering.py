@@ -1,48 +1,31 @@
-from trame import html, start, update_state, change
-from trame.html import vuetify, vtk
+# Try handle virtual env if provided
+import sys
+
+if "--virtual-env" in sys.argv:
+    virtualEnvPath = sys.argv[sys.argv.index("--virtual-env") + 1]
+    virtualEnv = virtualEnvPath + "/bin/activate_this.py"
+    exec(open(virtualEnv).read(), {"__file__": virtualEnv})
+
+from trame import start, update_state, change
+from trame.html import vuetify, paraview
 from trame.layouts import SinglePage
 
-from vtkmodules.vtkFiltersSources import vtkConeSource
-from vtkmodules.vtkRenderingCore import (
-    vtkRenderer,
-    vtkRenderWindow,
-    vtkRenderWindowInteractor,
-    vtkPolyDataMapper,
-    vtkActor,
-)
-from vtkmodules.vtkInteractionStyle import vtkInteractorStyleSwitch
-
-# Grab implementation
-import vtkmodules.vtkRenderingOpenGL2
+from paraview import simple
 
 # -----------------------------------------------------------------------------
-# VTK code
+# ParaView code
 # -----------------------------------------------------------------------------
 
 DEFAULT_RESOLUTION = 6
 
-renderer = vtkRenderer()
-renderWindow = vtkRenderWindow()
-renderWindow.AddRenderer(renderer)
-
-renderWindowInteractor = vtkRenderWindowInteractor()
-renderWindowInteractor.SetRenderWindow(renderWindow)
-renderWindowInteractor.GetInteractorStyle().SetCurrentStyleToTrackballCamera()
-renderWindowInteractor.EnableRenderOff()
-
-cone_source = vtkConeSource()
-mapper = vtkPolyDataMapper()
-actor = vtkActor()
-mapper.SetInputConnection(cone_source.GetOutputPort())
-actor.SetMapper(mapper)
-renderer.AddActor(actor)
-renderer.ResetCamera()
-renderWindow.Render()
+cone = simple.Cone()
+representation = simple.Show(cone)
+view = simple.Render()
 
 
 @change("resolution")
-def update_cone(resolution=DEFAULT_RESOLUTION, **kwargs):
-    cone_source.SetResolution(resolution)
+def update_cone(resolution, **kwargs):
+    cone.Resolution = resolution
     html_view.update()
 
 
@@ -54,7 +37,7 @@ def update_reset_resolution():
 # GUI
 # -----------------------------------------------------------------------------
 
-html_view = vtk.VtkRemoteView(renderWindow, ref="view")
+html_view = paraview.VtkRemoteView(view, ref="view")
 
 layout = SinglePage("VTK Remote rendering")
 layout.logo.click = "$refs.view.resetCamera()"

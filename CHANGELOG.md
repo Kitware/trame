@@ -1,3 +1,11 @@
+## [1.2.2](https://github.com/kitware/trame/compare/v1.2.1...v1.2.2) (2021-10-26)
+
+
+### Bug Fixes
+
+* **js_call:** Add js_call function ([cce7704](https://github.com/kitware/trame/commit/cce7704301adf7b6afd253b712db422bf7e03197))
+* **package:** Package html assets ([f5dcc90](https://github.com/kitware/trame/commit/f5dcc90c804fd53b3bafad79fb24883d0edc6ae2))
+
 ## [1.2.1](https://github.com/kitware/trame/compare/v1.2.0...v1.2.1) (2021-10-26)
 
 

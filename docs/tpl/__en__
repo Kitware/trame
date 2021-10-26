@@ -28,7 +28,7 @@ sidebar:
     modules: Modules
     m_vuetify: Vuetify
     m_altair: Altair
-    m_deckgl: Deck.gl
+    m_deckgl: deck.gl
     m_markdown: Markdown
     m_paraview: Paraview
     m_vtk: Vtk

@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://kitware.github.io/trame/docs/tutorial-download.html">
+  <link rel="canonical" href="https://kitware.github.io/trame/docs/module-markdown.html">
   <!-- Alternative links -->
   
     
-      <link rel="alternative" hreflang="en" href="https://kitware.github.io/trame/docs/tutorial-download.html">
+      <link rel="alternative" hreflang="en" href="https://kitware.github.io/trame/docs/module-markdown.html">
     
   
   <!-- Icon -->
@@ -41,12 +41,12 @@
   <!-- RSS -->
   <link rel="alternate" href="/trame/atom.xml" title="Trame" type="application/atom+xml">
   <!-- Open Graph -->
-  <meta name="description" content="Download Tramegit clone https:&#x2F;&#x2F;github.com&#x2F;Kitware&#x2F;trame.git  There is now a directory called trame with the following file structure: ├── docs├── examples├── trame├── CHANGELOG.md├── LICENSE├── READM">
+  <meta name="description" content="Markdown Trame moduleTrame has extensive support for markdown documents.  [… image] Markdown plugins are supported through markdown-it-vue including:  Official markdown syntax AsciiMath Images with si">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Trame">
-<meta property="og:url" content="https://kitware.github.io/trame/docs/tutorial-download.html">
+<meta property="og:url" content="https://kitware.github.io/trame/docs/module-markdown.html">
 <meta property="og:site_name" content="Trame">
-<meta property="og:description" content="Download Tramegit clone https:&#x2F;&#x2F;github.com&#x2F;Kitware&#x2F;trame.git  There is now a directory called trame with the following file structure: ├── docs├── examples├── trame├── CHANGELOG.md├── LICENSE├── READM">
+<meta property="og:description" content="Markdown Trame moduleTrame has extensive support for markdown documents.  [… image] Markdown plugins are supported through markdown-it-vue including:  Official markdown syntax AsciiMath Images with si">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-10-26T22:27:21.026Z">
 <meta property="article:modified_time" content="2021-10-26T22:27:21.026Z">
@@ -103,15 +103,26 @@
                 <h1 class="article-title" itemprop="name"></h1>
               </header>
               <div class="article-content" itemprop="articleBody">
-                <h2 id="Download-Trame" class="article-heading"><a href="#Download-Trame" class="headerlink" title="Download Trame"></a>Download Trame<a class="article-anchor" href="#Download-Trame" aria-hidden="true"></a></h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/Kitware/trame.git</span><br></pre></td></tr></table></figure>
+                <h1 id="Markdown-Trame-module" class="article-heading"><a href="#Markdown-Trame-module" class="headerlink" title="Markdown Trame module"></a>Markdown Trame module<a class="article-anchor" href="#Markdown-Trame-module" aria-hidden="true"></a></h1><p>Trame has extensive support for markdown documents. </p>
+<p>[… image]</p>
+<p>Markdown plugins are supported through <a target="_blank" rel="noopener" href="http://www.aqcoder.com/markdown">markdown-it-vue</a> including:</p>
+<ul>
+<li>Official markdown syntax</li>
+<li><a target="_blank" rel="noopener" href="http://asciimath.org/">AsciiMath</a></li>
+<li>Images with size-control</li>
+<li>Simple charts with <a target="_blank" rel="noopener" href="https://echarts.apache.org/examples/en/index.html">Apache echarts</a></li>
+<li>Diagrams like flow charts and Gantt charts with <a target="_blank" rel="noopener" href="https://mermaid.live/">Mermaid diagrams</a></li>
+<li>And more!</li>
+</ul>
+<p>Trame’s <code>markdown</code> module exposes a <code>Markdown()</code> component which will render any markdown bound to it with <code>v_model</code>.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> trame.html <span class="keyword">import</span> markdown</span><br><span class="line"></span><br><span class="line">markdown.Markdown(v_model=<span class="string">&quot;# Some markdown...&quot;</span>)</span><br></pre></td></tr></table></figure>
 
-<p>There is now a directory called trame with the following file structure:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">├── docs</span><br><span class="line">├── examples</span><br><span class="line">├── trame</span><br><span class="line">├── CHANGELOG.md</span><br><span class="line">├── LICENSE</span><br><span class="line">├── README.md</span><br><span class="line">├── package-lock.json</span><br><span class="line">├── package.json</span><br><span class="line">└── setup.py</span><br><span class="line"></span><br><span class="line">3 directories, 6 files</span><br></pre></td></tr></table></figure>
+<p>Run the markdown example <a target="_blank" rel="noopener" href="https://github.com/Kitware/trame/blob/master/examples/PlainPython/Markdown/Simple.py">here</a> to see more Trame markdown features in action.</p>
 
               </div>
               <footer class="article-footer">
                 <time class="article-footer-updated" datetime="2021-10-26T22:27:21.026Z" itemprop="dateModified">Last updated: 2021-10-26</time>
-                <a href="tutorial.html" class="article-footer-prev" title="Overview"><i class="fa fa-chevron-left"></i><span>Prev</span></a><a href="tutorial-setup-vtk.html" class="article-footer-next" title="Setup for VTK"><span>Next</span><i class="fa fa-chevron-right"></i></a>
+                <a href="module-deckgl.html" class="article-footer-prev" title="deck.gl"><i class="fa fa-chevron-left"></i><span>Prev</span></a><a href="module-paraview.html" class="article-footer-next" title="Paraview"><span>Next</span><i class="fa fa-chevron-right"></i></a>
               </footer>
               
             </div>
@@ -119,14 +130,14 @@
           <aside id="article-toc" role="navigation">
             <div id="article-toc-inner">
               <strong class="sidebar-title">Contents</strong>
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Download-Trame"><span class="toc-text">Download Trame</span></a></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Markdown-Trame-module"><span class="toc-text">Markdown Trame module</span></a></li></ol>
               <a href="#" id="article-toc-top">Back to Top</a>
             </div>
           </aside>
         </div>
       </article>
       <aside id="sidebar" role="navigation">
-  <div class="inner"><strong class="sidebar-title">Getting Started</strong><a href="index.html" class="sidebar-link">Introduction</a><a href="getting_started.html" class="sidebar-link">Getting Started</a><strong class="sidebar-title">Tutorial</strong><a href="tutorial.html" class="sidebar-link">Overview</a><a href="tutorial-download.html" class="sidebar-link current">Download</a><a href="tutorial-setup-vtk.html" class="sidebar-link">Setup for VTK</a><a href="tutorial-vtk.html" class="sidebar-link">VTK</a><a href="tutorial-setup.html" class="sidebar-link">sidebar.docs.t_setup</a><strong class="sidebar-title">Modules</strong><a href="module-altair.html" class="sidebar-link">Altair</a><a href="module-vuetify.html" class="sidebar-link">Vuetify</a><a href="module-deckgl.html" class="sidebar-link">deck.gl</a><a href="module-markdown.html" class="sidebar-link">Markdown</a><a href="module-paraview.html" class="sidebar-link">Paraview</a><a href="module-vtk.html" class="sidebar-link">Vtk</a><a href="module-vega.html" class="sidebar-link">Vega</a><a href="module-simput.html" class="sidebar-link">Simput</a></div>
+  <div class="inner"><strong class="sidebar-title">Getting Started</strong><a href="index.html" class="sidebar-link">Introduction</a><a href="getting_started.html" class="sidebar-link">Getting Started</a><strong class="sidebar-title">Tutorial</strong><a href="tutorial.html" class="sidebar-link">Overview</a><a href="tutorial-download.html" class="sidebar-link">Download</a><a href="tutorial-setup-vtk.html" class="sidebar-link">Setup for VTK</a><a href="tutorial-vtk.html" class="sidebar-link">VTK</a><a href="tutorial-setup.html" class="sidebar-link">sidebar.docs.t_setup</a><strong class="sidebar-title">Modules</strong><a href="module-altair.html" class="sidebar-link">Altair</a><a href="module-vuetify.html" class="sidebar-link">Vuetify</a><a href="module-deckgl.html" class="sidebar-link">deck.gl</a><a href="module-markdown.html" class="sidebar-link current">Markdown</a><a href="module-paraview.html" class="sidebar-link">Paraview</a><a href="module-vtk.html" class="sidebar-link">Vtk</a><a href="module-vega.html" class="sidebar-link">Vega</a><a href="module-simput.html" class="sidebar-link">Simput</a></div>
 </aside>
     </div>
   </div>
@@ -168,12 +179,12 @@
       </li>
     </ul>
     
-      <strong class="mobile-nav-title">Getting Started</strong><a href="index.html" class="mobile-nav-link">Introduction</a><a href="getting_started.html" class="mobile-nav-link">Getting Started</a><strong class="mobile-nav-title">Tutorial</strong><a href="tutorial.html" class="mobile-nav-link">Overview</a><a href="tutorial-download.html" class="mobile-nav-link current">Download</a><a href="tutorial-setup-vtk.html" class="mobile-nav-link">Setup for VTK</a><a href="tutorial-vtk.html" class="mobile-nav-link">VTK</a><a href="tutorial-setup.html" class="mobile-nav-link">sidebar.docs.t_setup</a><strong class="mobile-nav-title">Modules</strong><a href="module-altair.html" class="mobile-nav-link">Altair</a><a href="module-vuetify.html" class="mobile-nav-link">Vuetify</a><a href="module-deckgl.html" class="mobile-nav-link">deck.gl</a><a href="module-markdown.html" class="mobile-nav-link">Markdown</a><a href="module-paraview.html" class="mobile-nav-link">Paraview</a><a href="module-vtk.html" class="mobile-nav-link">Vtk</a><a href="module-vega.html" class="mobile-nav-link">Vega</a><a href="module-simput.html" class="mobile-nav-link">Simput</a>
+      <strong class="mobile-nav-title">Getting Started</strong><a href="index.html" class="mobile-nav-link">Introduction</a><a href="getting_started.html" class="mobile-nav-link">Getting Started</a><strong class="mobile-nav-title">Tutorial</strong><a href="tutorial.html" class="mobile-nav-link">Overview</a><a href="tutorial-download.html" class="mobile-nav-link">Download</a><a href="tutorial-setup-vtk.html" class="mobile-nav-link">Setup for VTK</a><a href="tutorial-vtk.html" class="mobile-nav-link">VTK</a><a href="tutorial-setup.html" class="mobile-nav-link">sidebar.docs.t_setup</a><strong class="mobile-nav-title">Modules</strong><a href="module-altair.html" class="mobile-nav-link">Altair</a><a href="module-vuetify.html" class="mobile-nav-link">Vuetify</a><a href="module-deckgl.html" class="mobile-nav-link">deck.gl</a><a href="module-markdown.html" class="mobile-nav-link current">Markdown</a><a href="module-paraview.html" class="mobile-nav-link">Paraview</a><a href="module-vtk.html" class="mobile-nav-link">Vtk</a><a href="module-vega.html" class="mobile-nav-link">Vega</a><a href="module-simput.html" class="mobile-nav-link">Simput</a>
     
   </div>
   <div id="mobile-lang-select-wrap">
     <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>English</span></span>
-    <select id="mobile-lang-select" data-canonical="docs/tutorial-download.html">
+    <select id="mobile-lang-select" data-canonical="docs/module-markdown.html">
       
         <option value="en" selected>English</option>
       

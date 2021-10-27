@@ -11,10 +11,10 @@ pip install -r ./examples/Tutorial/setup/requirements.txt
 
 **Note**: `venv` was added in Python 3.3.
 
-## Running the application
+## Running the Application
 
 ```
-cd examples/Tutorial/setup
+cd examples/Tutorial/setup-vtk
 python ./app.py --port 1234
 ```
 

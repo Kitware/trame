@@ -1,4 +1,5 @@
-docs: getting_started:
+docs: 
+  getting_started:
     overview: index.html
     getting_started: getting_started.html
   tutorial:

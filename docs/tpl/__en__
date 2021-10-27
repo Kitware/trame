@@ -34,6 +34,7 @@ sidebar:
     m_vtk: vtk
     m_vega: vega
     m_simput: simput
+    m_widgets: widgets
 
   examples:
     getting_started: Getting Started

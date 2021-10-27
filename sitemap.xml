@@ -9,41 +9,6 @@
   </url>
   
   <url>
-    <loc>https://kitware.github.io/trame/docs/module-widgets.html</loc>
-    
-    <lastmod>2021-10-27</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/tutorial-download.html</loc>
-    
-    <lastmod>2021-10-27</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/tutorial-setup-vtk.html</loc>
-    
-    <lastmod>2021-10-27</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/tutorial-vtk.html</loc>
-    
-    <lastmod>2021-10-27</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/tutorial.html</loc>
-    
-    <lastmod>2021-10-27</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://kitware.github.io/trame/docs/vuetify-decoder.html</loc>
     
     <lastmod>2021-10-27</lastmod>
@@ -114,35 +79,35 @@
   </url>
   
   <url>
-    <loc>https://kitware.github.io/trame/docs/getting_started.html</loc>
+    <loc>https://kitware.github.io/trame/docs/module-widgets.html</loc>
     
     <lastmod>2021-10-27</lastmod>
     
   </url>
   
   <url>
-    <loc>https://kitware.github.io/trame/docs/howdoi-bind.html</loc>
+    <loc>https://kitware.github.io/trame/docs/tutorial-download.html</loc>
     
     <lastmod>2021-10-27</lastmod>
     
   </url>
   
   <url>
-    <loc>https://kitware.github.io/trame/docs/howdoi-button.html</loc>
+    <loc>https://kitware.github.io/trame/docs/tutorial-setup-vtk.html</loc>
     
     <lastmod>2021-10-27</lastmod>
     
   </url>
   
   <url>
-    <loc>https://kitware.github.io/trame/docs/howdoi-cli.html</loc>
+    <loc>https://kitware.github.io/trame/docs/tutorial-vtk.html</loc>
     
     <lastmod>2021-10-27</lastmod>
     
   </url>
   
   <url>
-    <loc>https://kitware.github.io/trame/docs/howdoi-debug.html</loc>
+    <loc>https://kitware.github.io/trame/docs/tutorial.html</loc>
     
     <lastmod>2021-10-27</lastmod>
     
@@ -178,6 +143,41 @@
   
   <url>
     <loc>https://kitware.github.io/trame/docs/cookbook.html</loc>
+    
+    <lastmod>2021-10-27</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/getting_started.html</loc>
+    
+    <lastmod>2021-10-27</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/howdoi-bind.html</loc>
+    
+    <lastmod>2021-10-27</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/howdoi-button.html</loc>
+    
+    <lastmod>2021-10-27</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/howdoi-cli.html</loc>
+    
+    <lastmod>2021-10-27</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/howdoi-debug.html</loc>
     
     <lastmod>2021-10-27</lastmod>
     

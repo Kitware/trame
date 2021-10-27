@@ -1,4 +1,4 @@
-docs:
+docs: 
   getting_started:
     overview: index.html
     getting_started: getting_started.html
@@ -7,8 +7,22 @@ docs:
     t_download: tutorial-download.html
     t_setup-vtk: tutorial-setup-vtk.html
     t_vtk: tutorial-vtk.html
-  modules: 
-    vuetify: vuetify.html
+  modules:
+    m_vuetify: module-vuetify.html
+    m_deckgl: module-deckgl.html
+    m_markdown: module-markdown.html
+    m_paraview: module-paraview.html
+    m_vtk: module-vtk.html
+    m_vega: module-vega.html
+    m_simput: module-simput.html
+    m_widgets: module-widgets.html
+  howdoi: 
+    h_button: howdoi-button.html
+    h_debug: howdoi-debug.html
+    h_bind: howdoi-bind.html
+    h_cli: howdoi-cli.html
+    h_files: howdoi-files.html
+    h_input: howdoi-input.html
 
 examples:
   getting_started:

@@ -114,7 +114,7 @@
   </url>
   
   <url>
-    <loc>https://kitware.github.io/trame/docs/index.html</loc>
+    <loc>https://kitware.github.io/trame/docs/concepts.html</loc>
     
     <lastmod>2021-10-27</lastmod>
     
@@ -122,13 +122,6 @@
   
   <url>
     <loc>https://kitware.github.io/trame/docs/cookbook.html</loc>
-    
-    <lastmod>2021-10-27</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/concepts.html</loc>
     
     <lastmod>2021-10-27</lastmod>
     
@@ -156,13 +149,6 @@
   </url>
   
   <url>
-    <loc>https://kitware.github.io/trame/docs/howdoi-cli.html</loc>
-    
-    <lastmod>2021-10-27</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://kitware.github.io/trame/docs/howdoi-debug.html</loc>
     
     <lastmod>2021-10-27</lastmod>
@@ -177,7 +163,21 @@
   </url>
   
   <url>
+    <loc>https://kitware.github.io/trame/docs/howdoi-cli.html</loc>
+    
+    <lastmod>2021-10-27</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://kitware.github.io/trame/docs/howdoi-input.html</loc>
+    
+    <lastmod>2021-10-27</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/index.html</loc>
     
     <lastmod>2021-10-27</lastmod>
     

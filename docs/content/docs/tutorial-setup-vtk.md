@@ -2,7 +2,7 @@
 
 Trame requires Python 3.6+
 
-```
+```bash
 python3 -m venv .venv
 source ./.venv/bin/activate
 python -m pip install --upgrade pip
@@ -13,7 +13,7 @@ pip install -r ./examples/Tutorial/setup/requirements.txt
 
 ## Running the Application
 
-```
+```bash
 cd examples/Tutorial/setup-vtk
 python ./app.py --port 1234
 ```
@@ -24,7 +24,7 @@ Open browser to `http://localhost:1234/`
 
 Note: If you are running this on a remote machine, then on Linux you define the host to be open (0.0.0.0) to any external connection.
 
-```
+```bash
 python ./app.py --port 1234 --host 0.0.0.0
 ```
 
@@ -34,7 +34,7 @@ python ./app.py --port 1234 --host 0.0.0.0
 
 We start by importing the two basic building blocks for our client-server application.
 
-```
+```python
 from trame import start
 from trame.layouts import SinglePage
 ```
@@ -43,14 +43,14 @@ From **Trame** we import the method for starting the Web server, and from Trame'
 
 Next, we define the graaphics user interface (GUI) using a bare minimum of options. We instantiate a `SinglePage` GUI setting the browser tab title as `"Hello Trame"`, and then set the GUI `title.content` to hold `"Hello Trame"`.
 
-```
+```python
 layout = SinglePage("Hello Trame")
 layout.title.content = "Hello Trame"
 ```
 
 Finally, we start the Web server using 
 
-```
+```python
 if __name__ == "__main__":
     start(layout)
 ```

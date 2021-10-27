@@ -8,7 +8,7 @@ Start with the initial *setup-vtk* `app.py`.
 
 **First**, we need to add is an import for `vtk` and `vuetify` from `trame.html`.
 
-```
+```python
 from trame.html import vtk, vuetify
 ```
 
@@ -16,7 +16,7 @@ This provides us access to Trame's helper functions for vtk and vuetify.
 
 **Next**, we will need to import the required objects from vtk. Here we will visualize a simple cone in this example so we will need `vtkConeSource`.
 
-```
+```python
 from vtkmodules.vtkFiltersSources import vtkConeSource
 ```
 
@@ -24,7 +24,7 @@ Other VTK objects will need to be imported based on the desired visualization pi
 
 **Next**, we need to import the VTK rendering core
 
-```
+```python
 from vtkmodules.vtkRenderingCore import (
     vtkActor,
     vtkPolyDataMapper,
@@ -38,15 +38,17 @@ from vtkmodules.vtkRenderingCore import (
 
 `vtkInteractorStyleSwitch` is required for interacter factory initialization.
 
-```
+```python
 from vtkmodules.vtkInteractionStyle import vtkInteractorStyleSwitch #noqa
 ```
 
 The `vtkRenderingOpenGL2` module is required for remote rendering factory initialization. It is not necessary for local rendering, but you'll want to include it so that you can seamlessly switch between *local* and *remote* rendering.
 
-```
+```python
 import vtkmodules.vtkRenderingOpenGL2 #noqa
 ```
+
+**Note**: `#noqa` tells the linter to ignore checking this problematic line.
 
 ## VTK Pipeline
 
@@ -63,7 +65,7 @@ This tutorial will not provide an adequate background for VTK, but we will expla
 
 **First**, we create a `vtkRenderer` and `vtkRenderWindow`. The we tie them together by adding the `renderer` to the `renderWindow`.
 
-```
+```python
 renderer = vtkRenderer()
 renderWindow = vtkRenderWindow()
 renderWindow.AddRenderer(renderer)
@@ -71,7 +73,7 @@ renderWindow.AddRenderer(renderer)
 
 **Second**, we define a `vtkRenderWindowInteractor` which provides a platform-independent interaction mechanism for mouse/key/time events. 
 
-```
+```python
 renderWindowInteractor = vtkRenderWindowInteractor()
 renderWindowInteractor.SetRenderWindow(renderWindow)
 renderWindowInteractor.GetInteractorStyle().SetCurrentStyleToTrackballCamera()
@@ -82,7 +84,7 @@ We create the interactor, connect it to the `renderWindow`, set the interaction 
 
 **Third**, we create the desired visualization. This process requires the creation of an object, a mapper, and an actor.
 
-```
+```python
 cone_source = vtkConeSource()
 mapper = vtkPolyDataMapper()
 mapper.SetInputConnection(cone_source.GetOutputPort())
@@ -94,7 +96,7 @@ The instantiated `vtkConeSource` is our graphics object, and we want to map that
 
 **Finally**, we add all the pipelines (actors) to the `renderer`, reset the camera, and render.
 
-```
+```python
 renderer.AddActor(actor)
 renderer.ResetCamera()
 renderWindow.Render()
@@ -116,7 +118,7 @@ Why do we care about *local* and *remote* rendering? Well each method of renderi
 *Disadvantages*
 
 - The data to be rendered must move from the server to the client. This transfer may be too slow and it may be too large.
-- Where will the data be processed into graphic primitives.The processing may increase load and latency on the server side or the client side.
+- Where will the data be processed into graphic primitives? The processing may increase load and latency on the server side or the client side.
 
 **Remote Rendering**
 
@@ -137,19 +139,19 @@ Down in the GUI section of the application, we **first** need to select a render
 
 for *local rendering*
 
-```
+```python
 html_view = vtk.VtkLocalView(renderWindow, ref="view")
 ```
 
 for *remote rendering*
 
-```
+```python
 html_view = vtk.VtkRemoteView(renderWindow, ref="view")
 ```
 
 and define a container to hold the renderer
 
-```
+```python
 layout.content.children += [
     vuetify.VContainer(
         fluid=True,
@@ -169,25 +171,27 @@ Once the client and server are ready, we need to update the view (`html_view`).
 
 **First**, one needs to provide a function to do this as follows
 
-```
-def update_cone(**kwargs):
+```python
+def update_view(**kwargs):
     html_view.update()
 ```
 
 **Finally**, we revist the `start` function in the `Main`. There is an option variable called `on_ready`, which takes a function name to call when the server and client are ready. So we modify our start function to look like
 
-```
-    start(layout, on_ready=update_cone)
+```python
+    start(layout, on_ready=update_view)
 ```
 
-## Running the Application and Interacting
+## Running the Application
 
-```
+```bash
 cd examples/Tutorial/VTK
 python ./app.py --port 1234
 ```
 
 Open browser to `http://localhost:1234/`
+
+## Interaction
 
 - Rotate: Hold down the mouse and move
 - Zoom: Hold down mouse + control key and move up (out) and down (in)

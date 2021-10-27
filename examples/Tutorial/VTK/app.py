@@ -47,7 +47,7 @@ renderWindow.Render()
 # Functions
 # -----------------------------------------------------------------------------
 
-def update_cone(**kwargs):
+def update_view(**kwargs):
     html_view.update()
 
 # -----------------------------------------------------------------------------
@@ -72,4 +72,4 @@ layout.content.children += [
 # -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    start(layout, on_ready=update_cone)
+    start(layout, on_ready=update_view)

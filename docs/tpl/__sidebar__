@@ -15,6 +15,7 @@ docs:
     m_vtk: module-vtk.html
     m_vega: module-vega.html
     m_simput: module-simput.html
+    m_widgets: module-widgets.html
 
 examples:
   getting_started:

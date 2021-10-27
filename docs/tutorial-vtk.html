@@ -41,15 +41,15 @@
   <!-- RSS -->
   <link rel="alternate" href="/trame/atom.xml" title="Trame" type="application/atom+xml">
   <!-- Open Graph -->
-  <meta name="description" content="VTK">
+  <meta name="description" content="VTKSo we want to start adding VTK visualizations to our application.  VTK ImportsStart with the initial setup-vtk app.py.  First, we need to add is an import for vtk and vuetify from trame.html. from">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Trame">
 <meta property="og:url" content="https://kitware.github.io/trame/docs/tutorial-vtk.html">
 <meta property="og:site_name" content="Trame">
-<meta property="og:description" content="VTK">
+<meta property="og:description" content="VTKSo we want to start adding VTK visualizations to our application.  VTK ImportsStart with the initial setup-vtk app.py.  First, we need to add is an import for vtk and vuetify from trame.html. from">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-10-27T19:19:10.421Z">
-<meta property="article:modified_time" content="2021-10-27T19:19:10.421Z">
+<meta property="article:published_time" content="2021-10-27T20:54:50.842Z">
+<meta property="article:modified_time" content="2021-10-27T20:54:50.842Z">
 <meta property="article:author" content="Kitware Inc.">
 <meta name="twitter:card" content="summary">
   <!-- Google Analytics -->
@@ -103,10 +103,106 @@
                 <h1 class="article-title" itemprop="name"></h1>
               </header>
               <div class="article-content" itemprop="articleBody">
-                <h2 id="VTK" class="article-heading"><a href="#VTK" class="headerlink" title="VTK"></a>VTK<a class="article-anchor" href="#VTK" aria-hidden="true"></a></h2>
+                <h1 id="VTK" class="article-heading"><a href="#VTK" class="headerlink" title="VTK"></a>VTK<a class="article-anchor" href="#VTK" aria-hidden="true"></a></h1><p>So we want to start adding VTK visualizations to our application. </p>
+<h2 id="VTK-Imports" class="article-heading"><a href="#VTK-Imports" class="headerlink" title="VTK Imports"></a>VTK Imports<a class="article-anchor" href="#VTK-Imports" aria-hidden="true"></a></h2><p>Start with the initial <em>setup-vtk</em> <code>app.py</code>. </p>
+<p><strong>First</strong>, we need to add is an import for <code>vtk</code> and <code>vuetify</code> from <code>trame.html</code>.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">from trame.html import vtk, vuetify</span><br></pre></td></tr></table></figure>
+
+<p>This provides us access to Trame’s helper functions for vtk and vuetify. </p>
+<p><strong>Next</strong>, we will need to import the required objects from vtk. Here we will visualize a simple cone in this example so we will need <code>vtkConeSource</code>.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">from vtkmodules.vtkFiltersSources import vtkConeSource</span><br></pre></td></tr></table></figure>
+
+<p>Other VTK objects will need to be imported based on the desired visualization pipelines. </p>
+<p><strong>Next</strong>, we need to import the VTK rendering core</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">from vtkmodules.vtkRenderingCore import (</span><br><span class="line">    vtkActor,</span><br><span class="line">    vtkPolyDataMapper,</span><br><span class="line">    vtkRenderer,</span><br><span class="line">    vtkRenderWindow,</span><br><span class="line">    vtkRenderWindowInteractor,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p><strong>Finally</strong>, we need to import the required modules for the interacter factory and remote rendering factory. </p>
+<p><code>vtkInteractorStyleSwitch</code> is required for interacter factory initialization.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">from vtkmodules.vtkInteractionStyle import vtkInteractorStyleSwitch #noqa</span><br></pre></td></tr></table></figure>
+
+<p>The <code>vtkRenderingOpenGL2</code> module is required for remote rendering factory initialization. It is not necessary for local rendering, but you’ll want to include it so that you can seamlessly switch between <em>local</em> and <em>remote</em> rendering.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import vtkmodules.vtkRenderingOpenGL2 #noqa</span><br></pre></td></tr></table></figure>
+
+<h2 id="VTK-Pipeline" class="article-heading"><a href="#VTK-Pipeline" class="headerlink" title="VTK Pipeline"></a>VTK Pipeline<a class="article-anchor" href="#VTK-Pipeline" aria-hidden="true"></a></h2><p>As promised, to add visualization to your Trame application you simply write VTK pipelines in Python.</p>
+<p>There are a number of ways to learn VTK:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.kitware.com/products/books/VTKUsersGuide.pdf">VTK User Guide</a></li>
+<li><a target="_blank" rel="noopener" href="https://gitlab.kitware.com/vtk/textbook/raw/master/VTKBook/VTKTextBook.pdf">VTK Textbook</a></li>
+<li><a href="https://kitware.github.io/vtk-examples/site/Python">VTK Examples</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.vtk.org/doc/nightly/html/">VTK Documentation</a></li>
+</ul>
+<p>This tutorial will not provide an adequate background for VTK, but we will explain the pieces and parts of the provided exmples at a high level.</p>
+<p><strong>First</strong>, we create a <code>vtkRenderer</code> and <code>vtkRenderWindow</code>. The we tie them together by adding the <code>renderer</code> to the <code>renderWindow</code>.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">renderer = vtkRenderer()</span><br><span class="line">renderWindow = vtkRenderWindow()</span><br><span class="line">renderWindow.AddRenderer(renderer)</span><br></pre></td></tr></table></figure>
+
+<p><strong>Second</strong>, we define a <code>vtkRenderWindowInteractor</code> which provides a platform-independent interaction mechanism for mouse/key/time events. </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">renderWindowInteractor = vtkRenderWindowInteractor()</span><br><span class="line">renderWindowInteractor.SetRenderWindow(renderWindow)</span><br><span class="line">renderWindowInteractor.GetInteractorStyle().SetCurrentStyleToTrackballCamera()</span><br><span class="line">renderWindowInteractor.EnableRenderOff()</span><br></pre></td></tr></table></figure>
+
+<p>We create the interactor, connect it to the <code>renderWindow</code>, set the interaction style, and disable the interactor from calling the <code>renderWindow</code> <code>Render</code> function.</p>
+<p><strong>Third</strong>, we create the desired visualization. This process requires the creation of an object, a mapper, and an actor.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cone_source = vtkConeSource()</span><br><span class="line">mapper = vtkPolyDataMapper()</span><br><span class="line">mapper.SetInputConnection(cone_source.GetOutputPort())</span><br><span class="line">actor = vtkActor()</span><br><span class="line">actor.SetMapper(mapper)</span><br></pre></td></tr></table></figure>
+
+<p>The instantiated <code>vtkConeSource</code> is our graphics object, and we want to map that object to polydata creating a <code>vtkPolyDataMapper</code>. We must digitally create a connection from the cone to the mapper by setting the input connection. We then create an actor and connect the mapper to the actor.</p>
+<p><strong>Finally</strong>, we add all the pipelines (actors) to the <code>renderer</code>, reset the camera, and render.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">renderer.AddActor(actor)</span><br><span class="line">renderer.ResetCamera()</span><br><span class="line">renderWindow.Render()</span><br></pre></td></tr></table></figure>
+
+<p>The VTK specific imports and pipelines defined for a <code>Trame</code> application are precisely the specific imports and pipelines required for a Python VTK script.</p>
+<h2 id="Local-and-Remote-Rendering" class="article-heading"><a href="#Local-and-Remote-Rendering" class="headerlink" title="Local and Remote Rendering"></a>Local and Remote Rendering<a class="article-anchor" href="#Local-and-Remote-Rendering" aria-hidden="true"></a></h2><p>Why do we care about <em>local</em> and <em>remote</em> rendering? Well each method of rendering has it’s advantages and disadvantaages.</p>
+<p><strong>Local Rendering</strong></p>
+<p><em>Advantages</em></p>
+<ul>
+<li>The server doesn’t need a graphics processing unit (GPU). Systems with GPUs are expensive to purchase and expensive to rent (Cloud). These costs are pushed to the end-points on end-users.</li>
+<li>The frames per second rendering is higher. Advancements in the browser access to local GPU resources implies that the performance is nearly as good as available to a desktop application.</li>
+</ul>
+<p><em>Disadvantages</em></p>
+<ul>
+<li>The data to be rendered must move from the server to the client. This transfer may be too slow and it may be too large.</li>
+<li>Where will the data be processed into graphic primitives.The processing may increase load and latency on the server side or the client side.</li>
+</ul>
+<p><strong>Remote Rendering</strong></p>
+<p><em>Advantages</em></p>
+<ul>
+<li>The data to be rendered doesn’t move, only the resulting image.</li>
+<li>Rendering can utilize parallel and distributed processing to handle larger and larger data.</li>
+<li>The server can serve a more diverse set of clients. From cell phone to workstation, their requirements are limited to recieving and rendering images.</li>
+</ul>
+<p><em>Disadvantages</em></p>
+<ul>
+<li>The frames per second rendering might be capped by the speed and latency of image delivery.</li>
+<li>The servers have to be more capable. Remote software rendering is possible, but the framerates will be further impacted.</li>
+</ul>
+<p><strong>Implementation</strong></p>
+<p>Down in the GUI section of the application, we <strong>first</strong> need to select a rendering scheme </p>
+<p>for <em>local rendering</em></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">html_view = vtk.VtkLocalView(renderWindow, ref=&quot;view&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>for <em>remote rendering</em></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">html_view = vtk.VtkRemoteView(renderWindow, ref=&quot;view&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>and define a container to hold the renderer</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">layout.content.children += [</span><br><span class="line">    vuetify.VContainer(</span><br><span class="line">        fluid=True,</span><br><span class="line">        classes=&quot;pa-0 fill-height&quot;,</span><br><span class="line">        children=[html_view],</span><br><span class="line">    )</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>We add a <strong>Vuetify</strong> component to the Web application. In this case, a <code>VContainer</code>. The arguments include: fluid (to get full width container), classes (CSS stylings), and children components (the local or remote view).</p>
+<p>More information on <a target="_blank" rel="noopener" href="https://vuetifyjs.com/en/introduction/why-vuetify/">vuetify</a>.</p>
+<h2 id="Update-and-Start" class="article-heading"><a href="#Update-and-Start" class="headerlink" title="Update and Start"></a>Update and Start<a class="article-anchor" href="#Update-and-Start" aria-hidden="true"></a></h2><p>Once the client and server are ready, we need to update the view (<code>html_view</code>). </p>
+<p><strong>First</strong>, one needs to provide a function to do this as follows</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">def update_cone(**kwargs):</span><br><span class="line">    html_view.update()</span><br></pre></td></tr></table></figure>
+
+<p><strong>Finally</strong>, we revist the <code>start</code> function in the <code>Main</code>. There is an option variable called <code>on_ready</code>, which takes a function name to call when the server and client are ready. So we modify our start function to look like</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">start(layout, on_ready=update_cone)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Running-the-Application-and-Interacting" class="article-heading"><a href="#Running-the-Application-and-Interacting" class="headerlink" title="Running the Application and Interacting"></a>Running the Application and Interacting<a class="article-anchor" href="#Running-the-Application-and-Interacting" aria-hidden="true"></a></h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd examples/Tutorial/VTK</span><br><span class="line">python ./app.py --port 1234</span><br></pre></td></tr></table></figure>
+
+<p>Open browser to <code>http://localhost:1234/</code></p>
+<ul>
+<li>Rotate: Hold down the mouse and move</li>
+<li>Zoom: Hold down mouse + control key and move up (out) and down (in)</li>
+<li>Pan: Hold down the mouse + option key and move</li>
+</ul>
+
               </div>
               <footer class="article-footer">
-                <time class="article-footer-updated" datetime="2021-10-27T19:19:10.421Z" itemprop="dateModified">Last updated: 2021-10-27</time>
+                <time class="article-footer-updated" datetime="2021-10-27T20:54:50.842Z" itemprop="dateModified">Last updated: 2021-10-27</time>
                 <a href="tutorial-setup-vtk.html" class="article-footer-prev" title="Setup for VTK"><i class="fa fa-chevron-left"></i><span>Prev</span></a><a href="module-vuetify.html" class="article-footer-next" title="vuetify"><span>Next</span><i class="fa fa-chevron-right"></i></a>
               </footer>
               
@@ -115,7 +211,7 @@
           <aside id="article-toc" role="navigation">
             <div id="article-toc-inner">
               <strong class="sidebar-title">Contents</strong>
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#VTK"><span class="toc-text">VTK</span></a></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#VTK"><span class="toc-text">VTK</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#VTK-Imports"><span class="toc-text">VTK Imports</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VTK-Pipeline"><span class="toc-text">VTK Pipeline</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Local-and-Remote-Rendering"><span class="toc-text">Local and Remote Rendering</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Update-and-Start"><span class="toc-text">Update and Start</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Running-the-Application-and-Interacting"><span class="toc-text">Running the Application and Interacting</span></a></li></ol></li></ol>
               <a href="#" id="article-toc-top">Back to Top</a>
             </div>
           </aside>

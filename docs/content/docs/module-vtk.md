@@ -1,5 +1,39 @@
 # Vtk 
-The Visual Tool Kit renders 3D images and volumes for Trame. For more python vtk examples, see [here](https://kitware.github.io/vtk-examples/site/Python/).
+The Visual Tool Kit renders 3D images and volumes in Trame. For more Python Vtk examples, see [here](https://kitware.github.io/vtk-examples/site/Python/).  
+
+# VtkRemoteView
+Display a visualization which was rendered on the server.
+```python
+from trame.html import vtk
+from trame import trigger
+
+remoteView = vtk.vtkRemoteView(
+  view_id="-1",             # Which view we should render
+  enable_picking=False,     # Whether to interact with actors in image 
+
+  # Advanced settings
+  wsClient=...,             # The wsClient instance to communicate with
+  ref=...,                  # A canvas identifier to use
+  interactive_quality=60,   # [...]
+  interactive_ratio=...,    # [...]
+  interactor_events=...,    # [...]
+)
+
+# Update pipeline connected to remoteView
+remoteView.update() 
+
+# [...]
+vtkRemoteView.push_image(
+  view, # A new image to push
+)
+
+# Listen for events from the interactor
+@trigger('interactor_events')
+def interact(**kwargs):
+  print(kwargs)
+```
+
+<!--
 # VtkAlgorithm
 ## Properties
 #### `port`
@@ -79,22 +113,6 @@ The Visual Tool Kit renders 3D images and volumes for Trame. For more python vtk
 ## Events
 #### `interactor_events`
 
-# VtkRemoteView
-
-## Properties
-#### `wsClient`
-#### `ref`
-#### `view_id`
-#### `enable_picking`
-#### `interactive_quality`
-#### `interactive_ratio`
-#### `interactor_events`
-#### update
-#### VtkRemoteView.push_image(view)
-
-## Events
-#### `interactor_events`
-
 # VtkShareDataset
 ## Properties
 #### `port`
@@ -122,4 +140,4 @@ The Visual Tool Kit renders 3D images and volumes for Trame. For more python vtk
 #### `cube_axes_style`
 #### `interactor_settings`
 #### `picking_modes`
-#### `show_cube_axes`
+#### `show_cube_axes` -->

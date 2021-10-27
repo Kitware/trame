@@ -196,3 +196,10 @@ Open browser to `http://localhost:1234/`
 - Rotate: Hold down the mouse and move
 - Zoom: Hold down mouse + control key and move up (out) and down (in)
 - Pan: Hold down the mouse + option key and move
+
+## Other VTK Examples
+
+Now you can take much of the code examples at [VTK Examples](https://kitware.github.io/vtk-examples/site/Python) and port them to Trame.
+
+Checkout [Carotid.py]().
+

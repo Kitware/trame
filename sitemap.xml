@@ -9,6 +9,34 @@
   </url>
   
   <url>
+    <loc>https://kitware.github.io/trame/docs/vuetify-decoder.html</loc>
+    
+    <lastmod>2021-10-27</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/examples/index.html</loc>
+    
+    <lastmod>2021-10-27</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/getting_started.html</loc>
+    
+    <lastmod>2021-10-27</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/index.html</loc>
+    
+    <lastmod>2021-10-27</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://kitware.github.io/trame/docs/module-altair.html</loc>
     
     <lastmod>2021-10-27</lastmod>
@@ -65,6 +93,13 @@
   </url>
   
   <url>
+    <loc>https://kitware.github.io/trame/docs/module-widgets.html</loc>
+    
+    <lastmod>2021-10-27</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://kitware.github.io/trame/docs/tutorial-download.html</loc>
     
     <lastmod>2021-10-27</lastmod>
@@ -93,27 +128,6 @@
   </url>
   
   <url>
-    <loc>https://kitware.github.io/trame/docs/vuetify-decoder.html</loc>
-    
-    <lastmod>2021-10-27</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/vuetify.html</loc>
-    
-    <lastmod>2021-10-27</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/examples/index.html</loc>
-    
-    <lastmod>2021-10-27</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://kitware.github.io/trame/docs/concepts.html</loc>
     
     <lastmod>2021-10-27</lastmod>
@@ -122,20 +136,6 @@
   
   <url>
     <loc>https://kitware.github.io/trame/docs/cookbook.html</loc>
-    
-    <lastmod>2021-10-27</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/getting_started.html</loc>
-    
-    <lastmod>2021-10-27</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/index.html</loc>
     
     <lastmod>2021-10-27</lastmod>
     

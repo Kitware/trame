@@ -1,37 +1,38 @@
-# Vtk 
-The Visual Tool Kit renders 3D images and volumes in Trame. For more Python Vtk examples, see [here](https://kitware.github.io/vtk-examples/site/Python/).  
+# VTK 
+The Visualization Toolkit renders 3D images and volumes in Trame. For more Python Vtk examples, see [here](https://kitware.github.io/vtk-examples/site/Python/).  
 
-# VtkRemoteView
-Display a visualization which was rendered on the server.
+# remoteview, localview, localremoteview 
+
+## VtkRemoteView
+The VtkRemoteView component relies on the server for rendering by sending images to the client by simply binding your vtkRenderWindow to it. This component gives you controls to the image size and quality to reduce latency while interacting. 
+
+The component allows you to directly tap into a vtk.js interactor events so you can bind your own method from python to them. The list of available events can be found [here](https://github.com/Kitware/vtk-js/blob/b92ad5463150b88514fcb5020c1fa6c7fcfe2a4f/Sources/Rendering/Core/RenderWindowInteractor/index.js#L23-L60). 
+
+The component also provides a convenient method for forcing a render to the client when you're modifying your scences on the python side.
+
 ```python
 from trame.html import vtk
-from trame import trigger
 
-remoteView = vtk.vtkRemoteView(
-  view_id="-1",             # Which view we should render
-  enable_picking=False,     # Whether to interact with actors in image 
+def end_interaction():
+  pass
 
-  # Advanced settings
-  wsClient=...,             # The wsClient instance to communicate with
-  ref=...,                  # A canvas identifier to use
-  interactive_quality=60,   # [...]
-  interactive_ratio=...,    # [...]
-  interactor_events=...,    # [...]
+remote_view = vtk.vtkRemoteView(
+  view=...,               # Instance of vtkRenderWindow (required)
+  ref=...,                # Identifier for this component
+  interactive_quality=60, # [0, 100] 0 for fastest render, 100 for best quality
+  interactive_ratio=...,  # [0.1, 1] Image size scale factor while interacting
+  interactor_events=(     # Enable vtk.js interactor events for method binding
+    "events", 
+    ['EndAnimation'],
+  ),
+  EndAnimation=end_interaction, # Bind method to the enabled event
 )
 
-# Update pipeline connected to remoteView
-remoteView.update() 
-
-# [...]
-vtkRemoteView.push_image(
-  view, # A new image to push
-)
-
-# Listen for events from the interactor
-@trigger('interactor_events')
-def interact(**kwargs):
-  print(kwargs)
+# Force image to be pushed to client
+remote_view.update() 
 ```
+
+# The rest 
 
 <!--
 # VtkAlgorithm

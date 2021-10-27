@@ -1,7 +1,7 @@
 # deck.gl 
 deck.gl visualizes large geospatial datasets. 
 
-[![deck gl](./deckgl.png)](https://deckgl.readthedocs.io/en/latest/)
+[![deck gl](./module-deckgl-pydeck.jpg)](https://deckgl.readthedocs.io/en/latest/)
 
 Trame developers can make interactive data layers on top of base map providers like [Mapbox](https://github.com/Kitware/trame/blob/3cec4490d9a550d61e44dc1a4c1b059c66a2ce54/examples/PlainPython/GeoMaps/MappingDemo/app.py#L10). This [gallery](https://deckgl.readthedocs.io/en/latest/) documents the capabilities of deck.gl in Python.
 

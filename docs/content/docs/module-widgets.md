@@ -1,19 +1,20 @@
 # Widgets
-These widgets are commonly used across Kitware's web tools.
 
 ## FloatCard
 A container which floats above the application and can be moved freely from a handle.
 
-<img src="./module-widgets-floatcard.gif" width="400px"/>
+<center>
+  <img src="./module-widgets-floatcard.gif" width="400px"/>
+</center>
 
 ```python
 from trame.html import widgets
 
 widgets.FloatCard(
-  handle_color="#aaaaaa", # Sets the color for the handle 
-  handle_position="top",  # Sets the position of the handle: top, left, right, or bottom
-  handle_size=12,         # Sets the size of the handle 
-  location=[0,0],         # Sets coordinates of the FloatCard's location on the page 
+  handle_color="#aaaaaa", # color of the handle 
+  handle_position="top",  # position of the handle: top, left, right, or bottom
+  handle_size=12,         # size of the handle 
+  location=[0,0],         # coordinates of the FloatCard's location on the page 
   **vuetify_vcard_props,  # Vuetify VCard properties
   children=[...]          # VCardTitle, VCardSubTitle, VCardText, VCardActions...
 )

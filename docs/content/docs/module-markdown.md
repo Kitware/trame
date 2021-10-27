@@ -1,8 +1,7 @@
 # Markdown 
 Trame has extensive support for markdown documents. 
 
-[... image]
-
+[![Markdown-it-vue](./markdown.png)](http://www.aqcoder.com/markdown)
 Markdown plugins are supported through [markdown-it-vue](http://www.aqcoder.com/markdown) including:
 
 - Official markdown syntax

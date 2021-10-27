@@ -1,5 +1,4 @@
-docs:
-  getting_started:
+docs: getting_started:
     overview: index.html
     getting_started: getting_started.html
   tutorial:
@@ -16,6 +15,13 @@ docs:
     m_vega: module-vega.html
     m_simput: module-simput.html
     m_widgets: module-widgets.html
+  howdoi: 
+    h_button: howdoi-button.html
+    h_debug: howdoi-debug.html
+    h_bind: howdoi-bind.html
+    h_cli: howdoi-cli.html
+    h_files: howdoi-files.html
+    h_input: howdoi-input.html
 
 examples:
   getting_started:

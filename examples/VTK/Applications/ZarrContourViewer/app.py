@@ -1,4 +1,5 @@
-from trame import start, update_state, change, get_cli_parser
+from trame import start, update_state, get_state, change, get_cli_parser
+from trame.html import Div
 from trame.html import vuetify, vtk
 from trame.layouts import SinglePage
 
@@ -12,8 +13,8 @@ from vtkmodules.vtkRenderingCore import (
     vtkRenderWindowInteractor,
 )
 
-from vtkmodules.vtkInteractionStyle import vtkInteractorStyleSwitch #noqa
-import vtkmodules.vtkRenderingOpenGL2 #noqa
+from vtkmodules.vtkInteractionStyle import vtkInteractorStyleSwitch  # noqa
+import vtkmodules.vtkRenderingOpenGL2  # noqa
 
 # -----------------------------------------------------------------------------
 # set up class to process zarr
@@ -55,17 +56,33 @@ renderWindow.Render()
 # Callbacks
 # -----------------------------------------------------------------------------
 
+update_state("points", 0)
+update_state("cells", 0)
+update_state("level", DEFAULT_LEVEL)
+
 
 @change("level")
 def update_skin(level=DEFAULT_LEVEL, **kwargs):
-    print(f'updating to level {level}')
-    skin_generator.contourForLevel(level)
-    #html_polydata.update()
+    nb_points, nb_cells = skin_generator.contourForLevel(level)
+    update_state("points", nb_points)
+    update_state("cells", nb_cells)
     html_view.update()
 
 
 def update_reset_level():
     update_state("level", DEFAULT_LEVEL)
+
+
+def increase_level():
+    (current_level,) = get_state("level")
+    if current_level < MAX_LEVEL:
+        update_state("level", current_level + 1)
+
+
+def decrease_level():
+    (current_level,) = get_state("level")
+    if 1 < current_level:
+        update_state("level", current_level - 1)
 
 
 # -----------------------------------------------------------------------------
@@ -79,14 +96,25 @@ layout.logo.click = "$refs.view.resetCamera()"
 layout.title.content = "Skin Generator"
 layout.toolbar.children += [
     vuetify.VSpacer(),
-    vuetify.VSlider(
-        v_model=("level", DEFAULT_LEVEL),
-        min=2,
-        max=MAX_LEVEL,
-        step=1,
-        hide_details=True,
-        dense=True,
-        style="max-width: 300px",
+    vuetify.VBtn(
+        vuetify.VIcon("mdi-minus"),
+        x_small=True,
+        icon=True,
+        outlined=True,
+        click=decrease_level,
+        classes="mx-2",
+    ),
+    vuetify.VBtn(
+        vuetify.VIcon("mdi-plus"),
+        x_small=True,
+        icon=True,
+        outlined=True,
+        click=increase_level,
+        classes="mx-2",
+    ),
+    Div(
+        "Level({{ level }}) - Points({{parseInt( points ).toLocaleString()}}) - Cells({{parseInt( cells ).toLocaleString()}})",
+        style="min-width: 350px; text-align: right;",
     ),
     vuetify.VDivider(vertical=True, classes="mx-2"),
     vuetify.VBtn(

@@ -43,12 +43,14 @@ renderWindowInteractor.SetRenderWindow(renderWindow)
 renderWindowInteractor.GetInteractorStyle().SetCurrentStyleToTrackballCamera()
 renderWindowInteractor.EnableRenderOff()
 
-# Create the pipeline
+# Colors and Data
 
 colors = vtkNamedColors()
 
 reader = vtkStructuredPointsReader()
 reader.SetFileName("../data/carotid.vtk")
+
+# Glyphs
 
 threshold = vtkThresholdPoints()
 threshold.SetInputConnection(reader.GetOutputPort())
@@ -86,7 +88,7 @@ vectorMapper.SetLookupTable(lut)
 vectorActor = vtkActor()
 vectorActor.SetMapper(vectorMapper)
 
-# Speed contours
+# Contours
 
 iso = vtkContourFilter()
 iso.SetInputConnection(reader.GetOutputPort())

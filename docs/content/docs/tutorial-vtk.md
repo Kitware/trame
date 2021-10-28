@@ -199,7 +199,148 @@ Open browser to `http://localhost:1234/`
 
 ## Other VTK Examples
 
-Now you can take much of the code examples at [VTK Examples](https://kitware.github.io/vtk-examples/site/Python) and port them to Trame.
+Now you can take most of the code examples at [VTK Examples](https://kitware.github.io/vtk-examples/site/Python) and port them to Trame.
 
 Checkout [Carotid.py]().
 
+**Imports**
+
+Starting with our Hello Trame cone application, we replaced the imports for our cone VTK pipeline on line 5
+
+```python
+from vtkmodules.vtkFiltersSources import vtkConeSource
+```
+
+with imports for multiple VTK pipelines
+
+```python
+from vtkmodules.vtkCommonColor import vtkNamedColors
+from vtkmodules.vtkCommonCore import vtkLookupTable
+from vtkmodules.vtkFiltersCore import (
+    vtkContourFilter,
+    vtkGlyph3D,
+    vtkMaskPoints,
+    vtkThresholdPoints
+)
+from vtkmodules.vtkFiltersModeling import vtkOutlineFilter
+from vtkmodules.vtkFiltersSources import vtkConeSource
+from vtkmodules.vtkIOLegacy import vtkStructuredPointsReader
+```
+
+to create three-dimensional (3D) contours of the carotid artery, 3D Glyphs of the flow field at various points, and an outline of the computational domain.
+
+**Pipelines**
+
+**First**, we replaced the cone pipeline line 36-40 
+
+```python
+cone_source = vtkConeSource()
+mapper = vtkPolyDataMapper()
+mapper.SetInputConnection(cone_source.GetOutputPort())
+actor = vtkActor()
+actor.SetMapper(mapper)
+```
+
+With our three pipelines for the glyphs, contours, and outline.
+
+```python
+# Colors and Data
+
+colors = vtkNamedColors()
+
+reader = vtkStructuredPointsReader()
+reader.SetFileName("../data/carotid.vtk")
+
+# Glyphs
+
+threshold = vtkThresholdPoints()
+threshold.SetInputConnection(reader.GetOutputPort())
+threshold.ThresholdByUpper(200)
+
+mask = vtkMaskPoints()
+mask.SetInputConnection(threshold.GetOutputPort())
+mask.SetOnRatio(5)
+
+cone = vtkConeSource()
+cone.SetResolution(11)
+cone.SetHeight(1)
+cone.SetRadius(0.25)
+
+cones = vtkGlyph3D()
+cones.SetInputConnection(mask.GetOutputPort())
+cones.SetSourceConnection(cone.GetOutputPort())
+cones.SetScaleFactor(0.4)
+cones.SetScaleModeToScaleByVector()
+
+lut = vtkLookupTable()
+lut.SetHueRange(.667, 0.0)
+lut.Build()
+
+scalarRange = [0] * 2
+cones.Update()
+scalarRange[0] = cones.GetOutput().GetPointData().GetScalars().GetRange()[0]
+scalarRange[1] = cones.GetOutput().GetPointData().GetScalars().GetRange()[1]
+
+vectorMapper = vtkPolyDataMapper()
+vectorMapper.SetInputConnection(cones.GetOutputPort())
+vectorMapper.SetScalarRange(scalarRange[0], scalarRange[1])
+vectorMapper.SetLookupTable(lut)
+
+vectorActor = vtkActor()
+vectorActor.SetMapper(vectorMapper)
+
+# Contours
+
+iso = vtkContourFilter()
+iso.SetInputConnection(reader.GetOutputPort())
+iso.SetValue(0, 175)
+
+isoMapper = vtkPolyDataMapper()
+isoMapper.SetInputConnection(iso.GetOutputPort())
+isoMapper.ScalarVisibilityOff()
+
+isoActor = vtkActor()
+isoActor.SetMapper(isoMapper)
+isoActor.GetProperty().SetRepresentationToWireframe()
+isoActor.GetProperty().SetOpacity(0.25)
+
+# Outline
+
+outline = vtkOutlineFilter()
+outline.SetInputConnection(reader.GetOutputPort())
+
+outlineMapper = vtkPolyDataMapper()
+outlineMapper.SetInputConnection(outline.GetOutputPort())
+
+outlineActor = vtkActor()
+outlineActor.SetMapper(outlineMapper)
+outlineActor.GetProperty().SetColor(colors.GetColor3d("White"))
+
+```
+
+**Note**: In the Colors and Data section we instantiate a helper for accessing named colors and read the desired data file on the **server**.
+
+**Finally**, we replace the single cone pipeline actor
+
+```python
+renderer.AddActor(actor)
+```
+
+with the three pipeline actors to the renderer.
+
+```python
+renderer.AddActor(outlineActor)
+renderer.AddActor(vectorActor)
+renderer.AddActor(isoActor)
+```
+
+Our pipelines are the same pipelines used in [VTK Examples](https://kitware.github.io/vtk-examples/site/Python) except for some cosmetic edits (I like `renderer` and `renderWindow` instead of `ren1` and `renWin`).
+
+**Running the Application**
+
+```bash
+cd examples/Tutorial/VTK
+python ./Carotid.py --port 1234
+```
+
+Open browser to `http://localhost:1234/`

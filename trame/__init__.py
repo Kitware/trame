@@ -3,6 +3,8 @@ import inspect
 
 from pywebvue import App
 
+from .version import __version__
+
 NEXT_TRIGGER_ID = 0
 TRIGGER_MAP = {}
 NEXT_APP_ID = 0

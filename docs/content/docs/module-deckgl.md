@@ -11,7 +11,11 @@ pydeck_parameters = # ... (skipped, see pydeck docs)
 deck = pdk.Deck(**pydeck_parameters)
 
 # UI Component
-deckgl.Deck(deck)
+deckgl.Deck(
+  deck=,       # Deck of layers to render 
+  name=...,    # Reference for deck.gl. Generated if left out
+  jsonInput= , # Generate deck from json
+)
 ```
 [![deck gl](./module-deckgl-pydeck.jpg)](https://deckgl.readthedocs.io/en/latest/)
 

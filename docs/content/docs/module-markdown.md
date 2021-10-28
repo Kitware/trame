@@ -6,8 +6,9 @@ from trame.html import markdown
 initial_value = "# Some markdown..."
 
 # UI Component 
-# Renders extended markdown bound to v_model
-markdown.Markdown(v_model=("myDocument", initial_value)) 
+markdown.Markdown(
+  v_model=("myDocument", initial_value), # Shared state binding to extended markdown
+) 
 ```
 
 [![Markdown-it-vue](./markdown.gif)](http://www.aqcoder.com/markdown)

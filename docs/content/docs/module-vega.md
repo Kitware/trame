@@ -1,4 +1,4 @@
-# Vega 
+# Vega
 Trame supports powerful visualization grammars like Vega through easy-to-use libraries like Altair (see documentation [here](https://altair-viz.github.io/gallery/index.html)) for concise visualization.
 
 ```python
@@ -27,5 +27,4 @@ chart_component2.update(myChart)  # Set chart
 chart_component2.update(myChart2) # Make change
 ```
 
-[![Vega charts through altair](./vega.png)](https://altair-viz.github.io/index.html)
-
+[![Vega charts through altair](./vega.jpg)](https://altair-viz.github.io/index.html)

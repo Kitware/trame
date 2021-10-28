@@ -1,4 +1,4 @@
-# Markdown 
+# Markdown
 Trame supports an extended version of markdown for formatting documents, drawing diagrams, and more.
 
 ```python
@@ -6,13 +6,13 @@ from trame.html import markdown
 
 initial_value = "# Some markdown..."
 
-# UI Component 
+# UI Component
 markdown.Markdown(
   v_model=("myDocument", initial_value), # Shared state binding to markdown
-) 
+)
 ```
 
-[...example]
+![Simple example](markdown.jpg)
 
 Markdown plugins are supported through markdown-it-vue (see documentation [here](http://www.aqcoder.com/markdown)) including:
 

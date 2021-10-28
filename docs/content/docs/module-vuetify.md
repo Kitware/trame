@@ -3,8 +3,6 @@ Trame wraps Vuetify as it's primary UI Component Library. We encourage Trame dev
 
 [![Vuetify WebSite](./vuetify.jpg)](https://vuetifyjs.com/en/)
 
-When writing Trame based on the Vuetify documentation keep the following in mind.
-
 ## Evaluating properties
 Trame evaluates properties if they are wrapped in a tuple.
 ```python

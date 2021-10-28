@@ -9,20 +9,20 @@ docs:
     t_vtk: tutorial-vtk.html
   modules:
     m_vuetify: module-vuetify.html
-    m_deckgl: module-deckgl.html
-    m_markdown: module-markdown.html
-    m_paraview: module-paraview.html
-    m_vtk: module-vtk.html
     m_vega: module-vega.html
-    m_simput: module-simput.html
+    m_markdown: module-markdown.html
     m_widgets: module-widgets.html
-  howdoi: 
-    h_button: howdoi-button.html
-    h_debug: howdoi-debug.html
-    h_bind: howdoi-bind.html
-    h_cli: howdoi-cli.html
-    h_files: howdoi-files.html
-    h_input: howdoi-input.html
+    m_vtk: module-vtk.html
+    m_paraview: module-paraview.html
+    m_deckgl: module-deckgl.html
+#    m_simput: module-simput.html
+#  howdoi: 
+#    h_static: howdoi-static.html
+#    h_dynamic: howdoi-dynamic.html
+#    h_interactive: howdoi-interactive.html
+#    h_upload: howdoi-upload.html
+#    h_download: howdoi-download.html
+#    h_cli: howdoi-cli.html
 
 examples:
   getting_started:

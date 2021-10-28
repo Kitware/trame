@@ -35,13 +35,12 @@ sidebar:
     m_simput: simput
     m_widgets: widgets
     howdoi: How do I...
-    h_button: Listen for a button?
-    h_debug: Debug the shared state?
-    h_bind: Bind shared state to UI?
-    h_cli: Read CLI arguments?
-    h_files: Upload/download files?
-    h_input: Read user input?
-
+    h_static: Display static content
+    h_dynamic: Display dynamic content
+    h_interactive: Display interactive UI
+    h_upload: Upload a file
+    h_download: Download a file
+    h_cli: Use CLI arguments
 
   examples:
     getting_started: Getting Started

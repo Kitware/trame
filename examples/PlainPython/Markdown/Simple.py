@@ -26,7 +26,7 @@ layout.toolbar.children += [
     VSpacer(),
     VSelect(
         v_model=("file_name", "demo.md"),
-        items=("options", ["demo.md", "sample.md"]),
+        items=("options", ["demo.md", "sample.md", "module.md"]),
         hide_details=True,
         dense=True,
     ),

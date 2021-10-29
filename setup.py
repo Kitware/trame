@@ -35,7 +35,5 @@ setup(
     package_dir={},
     package_data={},
     include_package_data=True,
-    use_scm_version=True,
-    setup_requires=["setuptools_scm"],
     install_requires=["pywebvue"],
 )

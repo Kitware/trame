@@ -1,22 +1,23 @@
 from trame import start
-from trame.html import vuetify, vtk
 from trame.layouts import SinglePage
+from trame.html import vtk, vuetify
 
 from vtkmodules.vtkFiltersSources import vtkConeSource
 from vtkmodules.vtkRenderingCore import (
+    vtkActor,
+    vtkPolyDataMapper,
     vtkRenderer,
     vtkRenderWindow,
     vtkRenderWindowInteractor,
-    vtkPolyDataMapper,
-    vtkActor,
 )
 
-# Required for interacter faactory
-from vtkmodules.vtkInteractionStyle import vtkInteractorStyleSwitch
+# Required for interacter factory initialization
+from vtkmodules.vtkInteractionStyle import vtkInteractorStyleSwitch #noqa
 
 # Required for remote rendering factory initialization, not necessary for 
 # local rendering, but doesn't hurt to include it
-import vtkmodules.vtkRenderingOpenGL2
+
+import vtkmodules.vtkRenderingOpenGL2 #noqa
 
 
 # -----------------------------------------------------------------------------
@@ -34,9 +35,10 @@ renderWindowInteractor.EnableRenderOff()
 
 cone_source = vtkConeSource()
 mapper = vtkPolyDataMapper()
-actor = vtkActor()
 mapper.SetInputConnection(cone_source.GetOutputPort())
+actor = vtkActor()
 actor.SetMapper(mapper)
+
 renderer.AddActor(actor)
 renderer.ResetCamera()
 renderWindow.Render()
@@ -45,7 +47,7 @@ renderWindow.Render()
 # Functions
 # -----------------------------------------------------------------------------
 
-def update_cone(**kwargs):
+def update_view(**kwargs):
     html_view.update()
 
 # -----------------------------------------------------------------------------
@@ -70,4 +72,4 @@ layout.content.children += [
 # -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    start(layout, on_ready=update_cone)
+    start(layout, on_ready=update_view)

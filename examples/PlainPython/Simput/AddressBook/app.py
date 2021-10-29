@@ -3,20 +3,19 @@ from trame import start, change, update_state, get_state
 from trame.layouts import SinglePageWithDrawer
 from trame.html import simput, vuetify
 
-from simput.core import ObjectManager, UIManager
+from simput.core import ProxyManager, UIManager
 from simput.ui.web import VuetifyResolver
-from simput.pywebvue.modules import SimPut
 
 # -----------------------------------------------------------------------------
 # SimPut initialization
 # -----------------------------------------------------------------------------
 
-obj_manager = ObjectManager()
+pxm = ProxyManager()
 ui_resolver = VuetifyResolver()
-ui_manager = UIManager(obj_manager, ui_resolver)
+ui_manager = UIManager(pxm, ui_resolver)
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
-obj_manager.load_model(yaml_file=os.path.join(BASE_DIR, "model/model.yaml"))
+pxm.load_model(yaml_file=os.path.join(BASE_DIR, "model/model.yaml"))
 ui_manager.load_ui(xml_file=os.path.join(BASE_DIR, "model/layout.xml"))
 
 
@@ -27,19 +26,19 @@ def update_lang(lang, **kwargs):
 
 
 def update_list():
-    ids = list(map(lambda p: p.get("id"), obj_manager.get_type("Person")))
+    ids = list(map(lambda p: p.id, pxm.get_instances_of_type("Person")))
     update_state("person_ids", ids)
 
 
 def create_person():
-    person = obj_manager.create("Person")
-    update_state("active_id", person.get("id"))
+    person = pxm.create("Person")
+    update_state("active_id", person.id)
     update_list()
 
 
 def delete_person():
     (id_to_delete,) = get_state("active_id")
-    obj_manager.delete(id_to_delete)
+    pxm.delete(id_to_delete)
     update_state("active_id", None)
     update_list()
 
@@ -51,7 +50,7 @@ def delete_person():
 html_simput = simput.Simput(ui_manager, prefix="ab")
 
 layout = SinglePageWithDrawer("Trame/Simput")
-layout.logo.content = "mdi-database"
+layout.logo.children = [vuetify.VIcon("mdi-database")]
 layout.title.content = "SimPut Address Book"
 layout.root = html_simput
 

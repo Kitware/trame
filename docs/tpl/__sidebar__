@@ -7,6 +7,7 @@ docs:
     t_download: tutorial-download.html
     t_setup-vtk: tutorial-setup-vtk.html
     t_vtk: tutorial-vtk.html
+    t_layouts: tutorial-layouts.html
   modules:
     m_vuetify: module-vuetify.html
     m_vega: module-vega.html

@@ -1,5 +1,5 @@
 from trame import start
-from trame.layouts import SinglePage
+from trame.layouts import FullScreenPage
 from trame.html import vtk, vuetify
 
 from vtkmodules.vtkFiltersSources import vtkConeSource
@@ -54,12 +54,11 @@ def update_view(**kwargs):
 # GUI
 # -----------------------------------------------------------------------------
 
-layout = SinglePage("Hello Trame")
-layout.title.content = "Hello Trame"
+layout = FullScreenPage("Hello Trame")
 
 html_view = vtk.VtkLocalView(renderWindow)
 
-layout.content.children += [
+layout.children += [
     vuetify.VContainer(
         fluid=True,
         classes="pa-0 fill-height",

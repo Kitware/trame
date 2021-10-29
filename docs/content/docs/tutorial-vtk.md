@@ -140,13 +140,13 @@ Down in the GUI section of the application, we **first** need to select a render
 for *local rendering*
 
 ```python
-html_view = vtk.VtkLocalView(renderWindow, ref="view")
+html_view = vtk.VtkLocalView(renderWindow)
 ```
 
 for *remote rendering*
 
 ```python
-html_view = vtk.VtkRemoteView(renderWindow, ref="view")
+html_view = vtk.VtkRemoteView(renderWindow)
 ```
 
 and define a container to hold the renderer

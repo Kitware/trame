@@ -137,7 +137,7 @@ def update_view(**kwargs):
 layout = SinglePage("Hello Trame")
 layout.title.content = "Hello Trame"
 
-html_view = vtk.VtkLocalView(renderWindow, ref="view")
+html_view = vtk.VtkLocalView(renderWindow)
 
 layout.content.children += [
     vuetify.VContainer(

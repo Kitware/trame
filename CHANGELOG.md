@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/kitware/trame/compare/v1.2.3...v1.3.0) (2021-10-29)
+
+
+### Features
+
+* **version:** Add trame/pywebvue version in footer ([dd6f0cb](https://github.com/kitware/trame/commit/dd6f0cb0ca38e7f62055a0c4b285731af91375ee))
+
 ## [1.2.3](https://github.com/kitware/trame/compare/v1.2.2...v1.2.3) (2021-10-26)
 
 

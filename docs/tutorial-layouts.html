@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>Trame</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://kitware.github.io/trame/docs/tutorial-layouts.html">
+  <!-- Alternative links -->
+  
+    
+      <link rel="alternative" hreflang="en" href="https://kitware.github.io/trame/docs/tutorial-layouts.html">
+    
+  
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/trame/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/trame/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/trame/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/trame/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/trame/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/trame/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/trame/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/trame/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/trame/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/trame/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/trame/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/trame/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/trame/icon/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/trame/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  
+<link rel="stylesheet" href="/trame/css/navy.css">
+
+  <!-- endbuild -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/trame/atom.xml" title="Trame" type="application/atom+xml">
+  <!-- Open Graph -->
+  <meta name="description" content="LayoutsTo simplify create the graphical user interface (GUI) for the web application, Trame defines layouts such as FullScreenPage, SinglePage, and SinglePageWithDrawer.  All core layouts start with a">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Trame">
+<meta property="og:url" content="https://kitware.github.io/trame/docs/tutorial-layouts.html">
+<meta property="og:site_name" content="Trame">
+<meta property="og:description" content="LayoutsTo simplify create the graphical user interface (GUI) for the web application, Trame defines layouts such as FullScreenPage, SinglePage, and SinglePageWithDrawer.  All core layouts start with a">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-10-29T18:52:14.331Z">
+<meta property="article:modified_time" content="2021-10-29T18:52:14.331Z">
+<meta property="article:author" content="Kitware Inc.">
+<meta name="twitter:card" content="summary">
+  <!-- Google Analytics -->
+  
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-H4W9XHTJ7X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-H4W9XHTJ7X');
+</script>
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/trame/" id="logo">Trame</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="/trame/docs/" class="main-nav-link">Documentation</a>
+      <a target="_blank" rel="noopener" href="https://github.com/kitware/trame" class="main-nav-link"><i class="fa fa-github-alt"></i></a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <input type="search" id="search-input" placeholder="Search...">
+      </div>
+    </nav>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div id="content" class="wrapper">
+    <div id="content-inner">
+      <article class="article-container" itemscope itemtype="http://schema.org/Article">
+        <div class="article-inner">
+          <div class="article">
+            <div class="inner">
+              <header class="article-header">
+                <h1 class="article-title" itemprop="name"></h1>
+              </header>
+              <div class="article-content" itemprop="articleBody">
+                <h1 id="Layouts" class="article-heading"><a href="#Layouts" class="headerlink" title="Layouts"></a>Layouts<a class="article-anchor" href="#Layouts" aria-hidden="true"></a></h1><p>To simplify create the graphical user interface (GUI) for the web application, Trame defines layouts such as <code>FullScreenPage</code>, <code>SinglePage</code>, and <code>SinglePageWithDrawer</code>. </p>
+<p>All core layouts start with a <code>VApp</code> (Vuetifies <code>v-app</code>) component. The <code>VApp</code> is <strong>REQUIRED</strong> for all applications. It is the mount point for other Vuetify components and functionality and ensures that it propagates the default application variant (dark/light) to children components while ensuring proper cross-browser support for certain click events in browsers like Safari. <code>VApp</code> should only be rendered within your application <strong>ONCE</strong>.</p>
+<p>More on Vuetify in the next chapter of the tutorial.</p>
+<p>Each of these layouts can be utilized by importing, instantiating, and adding via the <code>start</code> function.</p>
+<h2 id="FullScreenPage" class="article-heading"><a href="#FullScreenPage" class="headerlink" title="FullScreenPage"></a><code>FullScreenPage</code><a class="article-anchor" href="#FullScreenPage" aria-hidden="true"></a></h2><p>The <code>FullScreenPage</code> layout starts with VApp and exposes the children array where one could add in other desired HTML elements (Vuetify UI Components).</p>
+<p><strong>First</strong>, add the import to <code>FullScreenPage</code>.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> trame.layouts <span class="keyword">import</span> FullScreenPage</span><br></pre></td></tr></table></figure>
+
+<p><strong>Second</strong>, we instantiate the <code>layout</code> object, create the <code>vtk.VtkLocalView</code> component, and add it directly to the <code>VApp</code>‘s <code>children</code> using a Vuetify <code>VContainer</code> with arguments descripted in the <a href>VTK</a> chapter.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">layout = FullScreenPage(<span class="string">&quot;Hello Trame&quot;</span>)</span><br><span class="line"></span><br><span class="line">html_view = vtk.VtkLocalView(renderWindow)</span><br><span class="line"></span><br><span class="line">layout.children += [</span><br><span class="line">    vuetify.VContainer(</span><br><span class="line">        fluid=<span class="literal">True</span>,</span><br><span class="line">        classes=<span class="string">&quot;pa-0 fill-height&quot;</span>,</span><br><span class="line">        children=[html_view],</span><br><span class="line">    )</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p><strong>Finally</strong>, we add the <code>layout</code> via the <code>start</code> function.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    start(layout, on_ready=update_view)</span><br></pre></td></tr></table></figure>
+
+<p>The <code>FullScreenPage</code> is really a blank canvas to add your desired Vuetify components.</p>
+<h2 id="SinglePage" class="article-heading"><a href="#SinglePage" class="headerlink" title="SinglePage"></a><code>SinglePage</code><a class="article-anchor" href="#SinglePage" aria-hidden="true"></a></h2><p>The <code>SinglePage</code> extends the <code>FullScreenPage</code> with a few predifined components such as <em>logo</em>, <em>title</em>, <em>toolbar</em>, <em>content</em>, and <em>footer</em>.</p>
+<p>The <em>logo</em> and <em>title</em> sit on the left-hand side of the <em>toolbar</em> and customized as necessary. The logo accepts an 32x32 image or an VIcon suachas those found at <a target="_blank" rel="noopener" href="https://materialdesignicons.com/">Material Design Icons</a>. The <em>toolbar</em> itself exposes its <em>children</em> array where one can add components as needed. The <em>footer</em> can be hidden, but currently has Trame branding and the progress bar. The <em>content</em> has a <em>children</em> array to which you may add your desired Vuetify components.</p>
+<p><strong>First</strong>, we import the <code>SinglePage</code> class.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> trame.layouts <span class="keyword">import</span> SinglePage</span><br></pre></td></tr></table></figure>
+
+<p><strong>Second</strong>, we instantiate the <code>layout</code> object, maybe change the title, create the <code>vtk.VtkLocalView</code> component, and add it to the <code>content</code> component’s <code>children</code> using a Vuetify <code>VContainer</code> with arguments descripted in the <a href>VTK</a> chapter.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">layout = SinglePage(<span class="string">&quot;Hello Trame&quot;</span>)</span><br><span class="line">layout.title.content = <span class="string">&quot;Hello Trame&quot;</span></span><br><span class="line"></span><br><span class="line">html_view = vtk.VtkLocalView(renderWindow)</span><br><span class="line"></span><br><span class="line">layout.content.children += [</span><br><span class="line">    vuetify.VContainer(</span><br><span class="line">        fluid=<span class="literal">True</span>,</span><br><span class="line">        classes=<span class="string">&quot;pa-0 fill-height&quot;</span>,</span><br><span class="line">        children=[html_view],</span><br><span class="line">    )</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p><strong>Finally</strong>, we add the <code>layout</code> via the <code>start</code> function.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    start(layout, on_ready=update_view)</span><br></pre></td></tr></table></figure>
+
+<h2 id="SinglePageWithDrawer" class="article-heading"><a href="#SinglePageWithDrawer" class="headerlink" title="SinglePageWithDrawer"></a><code>SinglePageWithDrawer</code><a class="article-anchor" href="#SinglePageWithDrawer" aria-hidden="true"></a></h2><p>The <code>SinglePageWithDrawer</code> extends the <code>SinglePage</code> with a <em>drawer</em>. You can show and hide the <em>drawer</em> by clicking on the application <em>logo</em> on the <em>toolbar</em>. The <em>drawer</em> has a <em>children</em> array to which you may add necessary Vuetify components.</p>
+<p><strong>First</strong>, we import the <code>SinglePageWithDrawer</code> class.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> trame.layouts <span class="keyword">import</span> SinglePageWithDrawer</span><br></pre></td></tr></table></figure>
+
+<p><strong>Second</strong>, we instantiate the <code>layout</code> object with access to everything within the <code>SinglePage</code> layout.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">layout = SinglePageWithDrawer(<span class="string">&quot;Hello Trame&quot;</span>)</span><br><span class="line">layout.title.content = <span class="string">&quot;Hello Trame&quot;</span></span><br><span class="line"></span><br><span class="line">html_view = vtk.VtkLocalView(renderWindow)</span><br><span class="line"></span><br><span class="line">layout.content.children += [</span><br><span class="line">    vuetify.VContainer(</span><br><span class="line">        fluid=<span class="literal">True</span>,</span><br><span class="line">        classes=<span class="string">&quot;pa-0 fill-height&quot;</span>,</span><br><span class="line">        children=[html_view],</span><br><span class="line">    )</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p><strong>Finally</strong>, we add the <code>layout</code> via the <code>start</code> function.</p>
+<pre><code class="python">if __name__ == &quot;__main__&quot;:
+    start(layout, on_ready=update_view)
+</code></pre>
+
+              </div>
+              <footer class="article-footer">
+                <time class="article-footer-updated" datetime="2021-10-29T18:52:14.331Z" itemprop="dateModified">Last updated: 2021-10-29</time>
+                <a href="tutorial-vtk.html" class="article-footer-prev" title="VTK"><i class="fa fa-chevron-left"></i><span>Prev</span></a><a href="module-vuetify.html" class="article-footer-next" title="vuetify"><span>Next</span><i class="fa fa-chevron-right"></i></a>
+              </footer>
+              
+            </div>
+          </div>
+          <aside id="article-toc" role="navigation">
+            <div id="article-toc-inner">
+              <strong class="sidebar-title">Contents</strong>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Layouts"><span class="toc-text">Layouts</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#FullScreenPage"><span class="toc-text">FullScreenPage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SinglePage"><span class="toc-text">SinglePage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SinglePageWithDrawer"><span class="toc-text">SinglePageWithDrawer</span></a></li></ol></li></ol>
+              <a href="#" id="article-toc-top">Back to Top</a>
+            </div>
+          </aside>
+        </div>
+      </article>
+      <aside id="sidebar" role="navigation">
+  <div class="inner"><strong class="sidebar-title">Getting Started</strong><a href="index.html" class="sidebar-link">Introduction</a><a href="getting_started.html" class="sidebar-link">Getting Started</a><strong class="sidebar-title">Tutorial</strong><a href="tutorial.html" class="sidebar-link">Overview</a><a href="tutorial-download.html" class="sidebar-link">Download</a><a href="tutorial-setup-vtk.html" class="sidebar-link">Setup for VTK</a><a href="tutorial-vtk.html" class="sidebar-link">VTK</a><a href="tutorial-layouts.html" class="sidebar-link current">Layouts</a><strong class="sidebar-title">Html Modules</strong><a href="module-vuetify.html" class="sidebar-link">vuetify</a><a href="module-vega.html" class="sidebar-link">vega</a><a href="module-markdown.html" class="sidebar-link">markdown</a><a href="module-widgets.html" class="sidebar-link">widgets</a><a href="module-vtk.html" class="sidebar-link">vtk</a><a href="module-paraview.html" class="sidebar-link">paraview</a><a href="module-deckgl.html" class="sidebar-link">deckgl</a></div>
+</aside>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2021 <a href="https://www.kitware.com/" target="_blank">Kitware Inc.</a>
+    </div>
+
+    <div id="footer-links">
+      <a href="https://github.com/kitware/trame" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+    </div>
+  </div>
+  <!--
+    <a
+      style="position: fixed; background: #00529b; color: white; top: 0; right: 0; height: 70px"
+      target="_blank" rel="noopener" href="https://www.kitware.com/careers"
+    >
+      <div style="position: relative; text-align: center;">
+        <div
+          style="margin-top: 5px; background: url(https://www.cmake.org/wp-content/uploads/2018/09/jobs_icon.png) no-repeat; background-size: 100%; width: 50px; height: 40px; margin: 5px auto 0;"
+        ></div>
+        <span style="padding: 5px 10px">Kitware is Hiring</span>
+      </div>
+    </a>
+  -->
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="/trame/docs/" class="mobile-nav-link">Documentation</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/kitware/trame" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+      <strong class="mobile-nav-title">Getting Started</strong><a href="index.html" class="mobile-nav-link">Introduction</a><a href="getting_started.html" class="mobile-nav-link">Getting Started</a><strong class="mobile-nav-title">Tutorial</strong><a href="tutorial.html" class="mobile-nav-link">Overview</a><a href="tutorial-download.html" class="mobile-nav-link">Download</a><a href="tutorial-setup-vtk.html" class="mobile-nav-link">Setup for VTK</a><a href="tutorial-vtk.html" class="mobile-nav-link">VTK</a><a href="tutorial-layouts.html" class="mobile-nav-link current">Layouts</a><strong class="mobile-nav-title">Html Modules</strong><a href="module-vuetify.html" class="mobile-nav-link">vuetify</a><a href="module-vega.html" class="mobile-nav-link">vega</a><a href="module-markdown.html" class="mobile-nav-link">markdown</a><a href="module-widgets.html" class="mobile-nav-link">widgets</a><a href="module-vtk.html" class="mobile-nav-link">vtk</a><a href="module-paraview.html" class="mobile-nav-link">paraview</a><a href="module-deckgl.html" class="mobile-nav-link">deckgl</a>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>English</span></span>
+    <select id="mobile-lang-select" data-canonical="docs/tutorial-layouts.html">
+      
+        <option value="en" selected>English</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+
+<script src="/trame/js/lang_select.js"></script>
+
+
+<script src="/trame/js/toc.js"></script>
+
+
+<script src="/trame/js/mobile_nav.js"></script>
+
+<!-- endbuild -->
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+
+
+</body>
+</html>

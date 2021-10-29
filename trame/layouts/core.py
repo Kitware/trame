@@ -1,8 +1,11 @@
 from genericpath import exists
 import os
 from pywebvue.utils import read_file_as_base64_url
-from trame.html import Div, Span, vuetify
+from trame.html import Span, vuetify
 from trame import base_directory, get_app_instance
+
+import pywebvue
+import trame
 
 LOGO_PATH = os.path.abspath(
     os.path.join(os.path.dirname(__file__), "../html/assets/logo.svg")
@@ -78,7 +81,7 @@ class SinglePage(FullScreenPage):
                     width=3,
                     classes="ml-n3 mr-1",
                 ),
-                '<a href="https://kitware.github.io/trame/" class="grey--text lighten-1--text text-caption text-decoration-none" target="_blank">Powered by Trame</a>',
+                f'<a href="https://kitware.github.io/trame/" class="grey--text lighten-1--text text-caption text-decoration-none" target="_blank">Powered by Trame {trame.__version__}/{pywebvue.__version__}</a>',
                 vuetify.VSpacer(),
                 '<a href="https://www.kitware.com/" class="grey--text lighten-1--text text-caption text-decoration-none" target="_blank">© 2021 Kitware Inc.</a>',
                 # vuetify.VProgressLinear(

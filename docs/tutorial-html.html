@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>Trame</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://kitware.github.io/trame/docs/tutorial-html.html">
+  <!-- Alternative links -->
+  
+    
+      <link rel="alternative" hreflang="en" href="https://kitware.github.io/trame/docs/tutorial-html.html">
+    
+  
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/trame/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/trame/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/trame/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/trame/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/trame/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/trame/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/trame/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/trame/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/trame/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/trame/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/trame/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/trame/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/trame/icon/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/trame/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  
+<link rel="stylesheet" href="/trame/css/navy.css">
+
+  <!-- endbuild -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/trame/atom.xml" title="Trame" type="application/atom+xml">
+  <!-- Open Graph -->
+  <meta name="description" content="HTMLTrame leverages Vuetify as its primary UI Component Library for defining HTML graphics user interfaces (GUI). Vuetify is a mature, efficient, and expansive framework for good-looking web applicati">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Trame">
+<meta property="og:url" content="https://kitware.github.io/trame/docs/tutorial-html.html">
+<meta property="og:site_name" content="Trame">
+<meta property="og:description" content="HTMLTrame leverages Vuetify as its primary UI Component Library for defining HTML graphics user interfaces (GUI). Vuetify is a mature, efficient, and expansive framework for good-looking web applicati">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://kitware.github.io/trame/docs/vuetify-example.gif">
+<meta property="article:published_time" content="2021-11-01T22:34:44.773Z">
+<meta property="article:modified_time" content="2021-11-01T22:34:44.773Z">
+<meta property="article:author" content="Kitware Inc.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://kitware.github.io/trame/docs/vuetify-example.gif">
+  <!-- Google Analytics -->
+  
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-H4W9XHTJ7X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-H4W9XHTJ7X');
+</script>
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/trame/" id="logo">Trame</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="/trame/docs/" class="main-nav-link">Documentation</a>
+      <a target="_blank" rel="noopener" href="https://github.com/kitware/trame" class="main-nav-link"><i class="fa fa-github-alt"></i></a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <input type="search" id="search-input" placeholder="Search...">
+      </div>
+    </nav>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div id="content" class="wrapper">
+    <div id="content-inner">
+      <article class="article-container" itemscope itemtype="http://schema.org/Article">
+        <div class="article-inner">
+          <div class="article">
+            <div class="inner">
+              <header class="article-header">
+                <h1 class="article-title" itemprop="name"></h1>
+              </header>
+              <div class="article-content" itemprop="articleBody">
+                <h1 id="HTML" class="article-heading"><a href="#HTML" class="headerlink" title="HTML"></a>HTML<a class="article-anchor" href="#HTML" aria-hidden="true"></a></h1><p>Trame leverages Vuetify as its primary UI Component Library for defining HTML graphics user interfaces (GUI). <a target="_blank" rel="noopener" href="https://vuetifyjs.com/en/introduction/why-vuetify/#what-is-vuetify3f">Vuetify</a> is a mature, efficient, and expansive framework for good-looking web applications with the same simple state management system as Trame. Trame makes Vuetify available in your Python with minimal overhead. </p>
+<h2 id="Using-Veutify" class="article-heading"><a href="#Using-Veutify" class="headerlink" title="Using Veutify"></a>Using Veutify<a class="article-anchor" href="#Using-Veutify" aria-hidden="true"></a></h2><p>We expose all Vuetify components. As an example, let’s look at how we would make a simple text box. This is taken from Vuetify’s excellent <a target="_blank" rel="noopener" href="https://vuetifyjs.com/en/components/text-fields/">examples and documentation</a>, which we recommend you consult while writing frontends with Trame. </p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Somewhere in javascript</span></span><br><span class="line"><span class="keyword">const</span> currentSuffix = <span class="string">&quot;lbs&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> myWeight = <span class="number">28.0</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Somewhere in html --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">v-text-field</span> <span class="attr">label</span>=<span class="string">&quot;Weight&quot;</span> <span class="attr">v-model</span>=<span class="string">&quot;myWeight&quot;</span> <span class="attr">:suffix</span>=<span class="string">&quot;currentSuffix&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">v-text-field</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<img src="./vuetify-example.gif">
+
+<p>Here we have a vuetify text field (<code>v-text-field</code>). In Vue, the <code>v-model</code> is a directive that provides two-way data binding between an input and form data or between two components. The variable <code>myWeight</code> is bound by the <code>v-model</code> attribute, so the shared state can read from it (shown in the GUI form) and write to it (input to the form stored as the variable contents). </p>
+<p>We’ve included, optionally, a <code>label</code> and a <code>suffix</code> for the text box. The <code>label</code> is a static string or title, and the <code>suffix</code> could be a static string, but the “<code>:</code>“ in <code>:suffix</code> means we will look up and use the contents of a variable <code>currentSuffix</code>. This variable could change to ‘kg’ if our user prefers the metric system.</p>
+<p>Looking through the Vuetify documentation, we see a large number of wonderful user interface (UI) components. Trame exposes Vuetify from within Python. Access to Vuetify is provided through Trame using the following import.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> trame.html <span class="keyword">import</span> vuetify</span><br></pre></td></tr></table></figure>
+
+<h2 id="Python-Vuetify-Rules" class="article-heading"><a href="#Python-Vuetify-Rules" class="headerlink" title="Python Vuetify Rules"></a>Python Vuetify Rules<a class="article-anchor" href="#Python-Vuetify-Rules" aria-hidden="true"></a></h2><p>Exposing Vuetify in Python was accomplished by making a few syntax changes.</p>
+<ol>
+<li><p>We use CamelCase in our Python component’s name, while attribute hyphens become underscores. For example, the <code>v-text-field</code> component becomes VTextField, and the <code>v-model</code> attribute becomes <code>v_model</code>.</p>
+</li>
+<li><p>Strings, ints, floats, and booleans used to set attributes are assigned as normal like <code>vuetify.VTextField(label=&quot;myLabel&quot;)</code> for the <code>&quot;myLabel&quot;</code> String.</p>
+</li>
+<li><p>Variables used to set attributes are surrounded by parenthesis like <code>vuetify.VTextField(label=(&quot;myLabel&quot;,))</code>. The comma is used to provide an initial value like <code>vuetify.VTextField(label=(&quot;myLabel&quot;, &quot;Initial Label&quot;))</code>.</p>
+</li>
+<li><p>Vuetify implicitly sets boolean properties. For example, if something is to be <code>disabled</code>, then one simply writes disabled. In our Python implementation, this is done explicitly like <code>vuetify.VTextField(disabled=True)</code>.</p>
+</li>
+<li><p>For events, HTML uses the <code>@</code> like <code>@click=&quot;runMethod&quot;</code> to set the function to call upon a click event and double quotes on the String name of the function to run. In our Python version of Vuetify, we ignore the <code>@</code> and use the reference to the function instead of a the String name of the function call like <code>vuetify.VBtn(click=runMethod)</code>.</p>
+</li>
+</ol>
+<p>Given these rules, we can recreate the JavaScript/HTML text field example in Trame as follows.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">field = VTextField(</span><br><span class="line">    label=<span class="string">&quot;Weight&quot;</span>, </span><br><span class="line">    v_model=(<span class="string">&quot;myWeight&quot;</span>,<span class="number">28</span>), </span><br><span class="line">    suffix=(<span class="string">&quot;currentSuffix&quot;</span>,<span class="string">&quot;lbs&quot;</span>),</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h2 id="State" class="article-heading"><a href="#State" class="headerlink" title="State"></a>State<a class="article-anchor" href="#State" aria-hidden="true"></a></h2><p>In both the previous statements <code>v_model</code> and <code>suffix</code>, we defined and initialized state variables. These variables are available from both the client and server side. </p>
+<p>First, we need to import two more functions from Trame, <code>get_state</code> and <code>update_state</code>.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> trame <span class="keyword">import</span> start, get_state, update_state</span><br></pre></td></tr></table></figure>
+
+<p>From here, we have two capabilities</p>
+<ul>
+<li><code>get_state</code> - returns the value of a given state variable.</li>
+<li><code>update_state</code> - intializes, if not previously defined, or updates a state variable.</li>
+</ul>
+<p>Let’s look at an expmle leveraging the previously defined text field.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">increment_weight</span>():</span></span><br><span class="line">    w, = get_state(<span class="string">&quot;myWeight&quot;</span>)</span><br><span class="line">    w += <span class="number">1</span></span><br><span class="line">    update_state(<span class="string">&quot;myWeight&quot;</span>, w)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">set_metric</span>():</span></span><br><span class="line">    w,s = get_state(<span class="string">&quot;myWeight&quot;</span>,<span class="string">&quot;currentSuffix&quot;</span>)</span><br><span class="line">    w = <span class="number">0.453592</span> * w</span><br><span class="line">    s = <span class="string">&quot;kg&quot;</span></span><br><span class="line">    update_state(<span class="string">&quot;myWeight&quot;</span>, w)</span><br><span class="line">    update_state(<span class="string">&quot;currentSuffix&quot;</span>, s)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">set_imperial</span>():</span></span><br><span class="line">    w,s = get_state(<span class="string">&quot;myWeight&quot;</span>,<span class="string">&quot;currentSuffix&quot;</span>)</span><br><span class="line">    w = <span class="number">2.20462</span> * w</span><br><span class="line">    s = <span class="string">&quot;lb&quot;</span></span><br><span class="line">    update_state(<span class="string">&quot;myWeight&quot;</span>, w)</span><br><span class="line">    update_state(<span class="string">&quot;currentSuffix&quot;</span>, s)</span><br></pre></td></tr></table></figure>
+
+<p>In the <code>increment_weight</code> function, we use the <code>get_state</code> function to access the <code>&quot;myWeight&quot;</code> value. Notice that get_state returns a list, so the comma in <code>w,</code> is necessary. We then increment the weight. Finally, we update the state variable with the <code>update_state</code> function.</p>
+<h2 id="GUI" class="article-heading"><a href="#GUI" class="headerlink" title="GUI"></a>GUI<a class="article-anchor" href="#GUI" aria-hidden="true"></a></h2><p>Let’s modify the Hello Trame app to add some GUI elements!</p>
+<p>So with the <code>SinglePage</code> layout, we could add UI elements to either the <code>toolbar</code>, <code>content</code>, and <code>footer</code>. We’ll limit ourself to the <code>toolbar</code>, but the proceedure is still the same. Let us add to the right side of the <code>toolbar</code> a switch to toggle between light and dark mode of the application and a button to reset the view after panning and zooming.</p>
+<ul>
+<li><p>The VSpacer Vuetify component pushes the extra space on the left side of the component. </p>
+</li>
+<li><p>The VSwitch component toggle s between two different states. In this case, we will update a Vuetify variable vuetify.theme.dark. The hide_details attribute creates a smaller, tighter switch.</p>
+</li>
+<li><p>The VBtn component is a button. We decorate the button with a VIcon component where the argument is a String identifying the <a target="_blank" rel="noopener" href="https://materialdesignicons.com/">Material Design Icons</a> insead of text in this case. The VBtn icon attribute provides proper sizing and padding for the icon. Finally, the click attribute tells the application what method to call when the button is pressed. In this case, we use an interal Trame function, <code>$refs.view.resetCamera()</code>. </p>
+</li>
+</ul>
+<p><strong>Note</strong>: A ref (reference) is made <code>vtk.VtkLocalView(renderWindow)</code> or <code>vtk.VtkRemoteView(renderWindow)</code>. By default, <code>ref=&quot;view&quot;</code>. If you would like to change this or add additional views, the use <code>vtk.VtkLocalView(renderWindow, ref=&quot;newViewName&quot;)</code>.</p>
+<p>We add all the Vuetify components in a <em>flow</em> from left to right, top to bottom to the <code>layout.toolbar.children</code> array.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">layout.toolbar.children += [</span><br><span class="line">    vuetify.VSpacer(),</span><br><span class="line">    vuetify.VSwitch(</span><br><span class="line">        v_model=<span class="string">&quot;$vuetify.theme.dark&quot;</span>,</span><br><span class="line">        hide_details=<span class="literal">True</span>,</span><br><span class="line">    ),</span><br><span class="line">    vuetify.VBtn(</span><br><span class="line">        vuetify.VIcon(<span class="string">&quot;mdi-crop-free&quot;</span>),</span><br><span class="line">        icon=<span class="literal">True</span>,</span><br><span class="line">        click=<span class="string">&quot;$refs.view.resetCamera()&quot;</span>,</span><br><span class="line">    ),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<h2 id="with-Construct" class="article-heading"><a href="#with-Construct" class="headerlink" title="with Construct"></a><code>with</code> Construct<a class="article-anchor" href="#with-Construct" aria-hidden="true"></a></h2><p>The Python <code>with</code> construct can be used in our Veutify GUI creation to make the code cleaner and much more readable. You use the <code>with</code> construct to add components to a component. The <code>toolbar</code> is a component, so we can add the <code>VSpacer</code>, <code>VSwitch</code>, and <code>VBtn</code>. The <code>VBtn</code> is a component that we want to decorate with a <code>VIcon</code> component, so we use the with construct with the <code>VBtn</code> to accomplish this effect.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> layout.toolbar:</span><br><span class="line">    vuetify.VSpacer()</span><br><span class="line">    vuetify.VSwitch(</span><br><span class="line">        v_model=<span class="string">&quot;$vuetify.theme.dark&quot;</span>,</span><br><span class="line">        hide_details=<span class="literal">True</span>,</span><br><span class="line">    )</span><br><span class="line">    <span class="keyword">with</span> vuetify.VBtn(</span><br><span class="line">        icon=<span class="literal">True</span>,</span><br><span class="line">        click=<span class="string">&quot;$refs.view.resetCamera()&quot;</span>,</span><br><span class="line">    ):</span><br><span class="line">        vuetify.VIcon(</span><br><span class="line">            <span class="string">&quot;mdi-crop-free&quot;</span></span><br><span class="line">        )</span><br></pre></td></tr></table></figure>
+
+<p>In addition, the <code>content</code> can be modified to add a <code>VContainer</code> component as follows.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> layout.content:</span><br><span class="line">    vuetify.VContainer(</span><br><span class="line">        fluid=<span class="literal">True</span>,</span><br><span class="line">        classes=<span class="string">&quot;pa-0 fill-height&quot;</span>,</span><br><span class="line">        children=[html_view],</span><br><span class="line">    )</span><br></pre></td></tr></table></figure>
+
+<p>We think it easy to see that utilizing the <code>with</code> construct is much more Pythonic and creates clean readable code, but use either coding style according to your preferences.</p>
+<h2 id="Callbacks" class="article-heading"><a href="#Callbacks" class="headerlink" title="Callbacks"></a>Callbacks<a class="article-anchor" href="#Callbacks" aria-hidden="true"></a></h2><p>We realley want to enable our GUI to interact with our visualization (or application, in general). For example, we want to adjust the <code>resolution</code> (number of line segments) that approximates circle used in defining the cone. </p>
+<p>By default, the <code>resolution</code> is 6, defined in the Globals section. </p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">DEFAULT_RESOLUTION = <span class="number">6</span></span><br></pre></td></tr></table></figure>
+
+<p>Let’s add a <code>VSlider</code> for adjusting the resolution, a <code>VBtn</code> with <code>VIcon</code> to reset the resolution to the default value, and a vertical <code>VDivider</code> to separate our visualization GUI from the application GUI. The following is added after the <code>VSpacer</code> component at the beginning of the <code>with</code> <code>toolbar</code> <em>flow</em>.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">vuetify.VSlider(</span><br><span class="line">    v_model=(<span class="string">&quot;resolution&quot;</span>, DEFAULT_RESOLUTION),</span><br><span class="line">    <span class="built_in">min</span>=<span class="number">3</span>,</span><br><span class="line">    <span class="built_in">max</span>=<span class="number">60</span>,</span><br><span class="line">    step=<span class="number">1</span>,</span><br><span class="line">    hide_details=<span class="literal">True</span>,</span><br><span class="line">    dense=<span class="literal">True</span>,</span><br><span class="line">    style=<span class="string">&quot;max-width: 300px&quot;</span>,</span><br><span class="line">)</span><br><span class="line"><span class="keyword">with</span> vuetify.VBtn(</span><br><span class="line">    icon=<span class="literal">True</span>,</span><br><span class="line">    click=reset_resolution,</span><br><span class="line">):</span><br><span class="line">    vuetify.VIcon(</span><br><span class="line">        <span class="string">&quot;mdi-restore&quot;</span></span><br><span class="line">    )</span><br><span class="line">vuetify.VDivider(</span><br><span class="line">    vertical=<span class="literal">True</span>, </span><br><span class="line">    classes=<span class="string">&quot;mx-2&quot;</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>The <code>VSlider</code> creates <code>resolution</code> as a state variable and is initialized to the default resolution. When interacting with the slider, the code will call a function decorated with <code>@change(&quot;resolution&quot;)</code>.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">@change(<span class="params"><span class="string">&quot;resolution&quot;</span></span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">update_resolution</span>(<span class="params">resolution, **kwargs</span>):</span></span><br><span class="line">    cone_source.SetResolution(resolution)</span><br><span class="line">    update_view()</span><br></pre></td></tr></table></figure>
+
+<p>There is no need to get or update the <code>resolution</code> state variable. This update is carried out on the client-side by the v_model. We simply update the <code>cone_source</code> appropriately and update the view with the previously defined <code>update_view</code> function.</p>
+<p>The <code>VBtn</code> resets the the resolution when pressed by calling the <code>reset_resolution</code> function. This is a <code>trigger</code> event, where <code>v_models</code> are <code>change</code> events. Since, we use the function reference here, there is no need to use a <code>@trigger(&quot;...&quot;)</code> decorator here. It is created by default behind the scene. </p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">reset_resolution</span>():</span></span><br><span class="line">    update_state(<span class="string">&quot;resolution&quot;</span>, DEFAULT_RESOLUTION)</span><br></pre></td></tr></table></figure>
+
+<p><strong>Note</strong>: If you plan to pass arguments to the <code>trigger</code> function, then you would use the decorator.</p>
+
+              </div>
+              <footer class="article-footer">
+                <time class="article-footer-updated" datetime="2021-11-01T22:34:44.773Z" itemprop="dateModified">Last updated: 2021-11-01</time>
+                <a href="tutorial-layouts.html" class="article-footer-prev" title="Layouts"><i class="fa fa-chevron-left"></i><span>Prev</span></a><a href="module-vuetify.html" class="article-footer-next" title="vuetify"><span>Next</span><i class="fa fa-chevron-right"></i></a>
+              </footer>
+              
+            </div>
+          </div>
+          <aside id="article-toc" role="navigation">
+            <div id="article-toc-inner">
+              <strong class="sidebar-title">Contents</strong>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#HTML"><span class="toc-text">HTML</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Using-Veutify"><span class="toc-text">Using Veutify</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Python-Vuetify-Rules"><span class="toc-text">Python Vuetify Rules</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#State"><span class="toc-text">State</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GUI"><span class="toc-text">GUI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#with-Construct"><span class="toc-text">with Construct</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Callbacks"><span class="toc-text">Callbacks</span></a></li></ol></li></ol>
+              <a href="#" id="article-toc-top">Back to Top</a>
+            </div>
+          </aside>
+        </div>
+      </article>
+      <aside id="sidebar" role="navigation">
+  <div class="inner"><strong class="sidebar-title">Getting Started</strong><a href="index.html" class="sidebar-link">Introduction</a><a href="getting_started.html" class="sidebar-link">How to start</a><strong class="sidebar-title">Tutorial</strong><a href="tutorial.html" class="sidebar-link">Overview</a><a href="tutorial-download.html" class="sidebar-link">Download</a><a href="tutorial-setup-vtk.html" class="sidebar-link">Setup for VTK</a><a href="tutorial-vtk.html" class="sidebar-link">VTK</a><a href="tutorial-layouts.html" class="sidebar-link">Layouts</a><a href="tutorial-html.html" class="sidebar-link current">HTML</a><strong class="sidebar-title">Html Modules</strong><a href="module-vuetify.html" class="sidebar-link">vuetify</a><a href="module-vega.html" class="sidebar-link">vega</a><a href="module-markdown.html" class="sidebar-link">markdown</a><a href="module-widgets.html" class="sidebar-link">widgets</a><a href="module-vtk.html" class="sidebar-link">vtk</a><a href="module-paraview.html" class="sidebar-link">paraview</a><a href="module-deckgl.html" class="sidebar-link">deckgl</a><strong class="sidebar-title">How do I...</strong><a href="howdoi-static.html" class="sidebar-link">Display static content</a><a href="howdoi-dynamic.html" class="sidebar-link">Display dynamic content</a><a href="howdoi-interactive.html" class="sidebar-link">Display interactive UI</a><a href="howdoi-upload.html" class="sidebar-link">Upload a file</a><a href="howdoi-download.html" class="sidebar-link">Download a file</a><a href="howdoi-cli.html" class="sidebar-link">Use CLI arguments</a></div>
+</aside>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2021 <a href="https://www.kitware.com/" target="_blank">Kitware Inc.</a>
+    </div>
+
+    <div id="footer-links">
+      <a href="https://github.com/kitware/trame" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+    </div>
+  </div>
+  <!--
+    <a
+      style="position: fixed; background: #00529b; color: white; top: 0; right: 0; height: 70px"
+      target="_blank" rel="noopener" href="https://www.kitware.com/careers"
+    >
+      <div style="position: relative; text-align: center;">
+        <div
+          style="margin-top: 5px; background: url(https://www.cmake.org/wp-content/uploads/2018/09/jobs_icon.png) no-repeat; background-size: 100%; width: 50px; height: 40px; margin: 5px auto 0;"
+        ></div>
+        <span style="padding: 5px 10px">Kitware is Hiring</span>
+      </div>
+    </a>
+  -->
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="/trame/docs/" class="mobile-nav-link">Documentation</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/kitware/trame" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+      <strong class="mobile-nav-title">Getting Started</strong><a href="index.html" class="mobile-nav-link">Introduction</a><a href="getting_started.html" class="mobile-nav-link">How to start</a><strong class="mobile-nav-title">Tutorial</strong><a href="tutorial.html" class="mobile-nav-link">Overview</a><a href="tutorial-download.html" class="mobile-nav-link">Download</a><a href="tutorial-setup-vtk.html" class="mobile-nav-link">Setup for VTK</a><a href="tutorial-vtk.html" class="mobile-nav-link">VTK</a><a href="tutorial-layouts.html" class="mobile-nav-link">Layouts</a><a href="tutorial-html.html" class="mobile-nav-link current">HTML</a><strong class="mobile-nav-title">Html Modules</strong><a href="module-vuetify.html" class="mobile-nav-link">vuetify</a><a href="module-vega.html" class="mobile-nav-link">vega</a><a href="module-markdown.html" class="mobile-nav-link">markdown</a><a href="module-widgets.html" class="mobile-nav-link">widgets</a><a href="module-vtk.html" class="mobile-nav-link">vtk</a><a href="module-paraview.html" class="mobile-nav-link">paraview</a><a href="module-deckgl.html" class="mobile-nav-link">deckgl</a><strong class="mobile-nav-title">How do I...</strong><a href="howdoi-static.html" class="mobile-nav-link">Display static content</a><a href="howdoi-dynamic.html" class="mobile-nav-link">Display dynamic content</a><a href="howdoi-interactive.html" class="mobile-nav-link">Display interactive UI</a><a href="howdoi-upload.html" class="mobile-nav-link">Upload a file</a><a href="howdoi-download.html" class="mobile-nav-link">Download a file</a><a href="howdoi-cli.html" class="mobile-nav-link">Use CLI arguments</a>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>English</span></span>
+    <select id="mobile-lang-select" data-canonical="docs/tutorial-html.html">
+      
+        <option value="en" selected>English</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+
+<script src="/trame/js/lang_select.js"></script>
+
+
+<script src="/trame/js/toc.js"></script>
+
+
+<script src="/trame/js/mobile_nav.js"></script>
+
+<!-- endbuild -->
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+
+
+</body>
+</html>

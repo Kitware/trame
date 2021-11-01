@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/kitware/trame/compare/v1.3.0...v1.3.1) (2021-11-01)
+
+
+### Bug Fixes
+
+* **setup.cfg:** move most of setup.py to setup.cfg ([3dabbf6](https://github.com/kitware/trame/commit/3dabbf6d85a320b3b9b8d6e6c2bb8609915f3e1c))
+
 # [1.3.0](https://github.com/kitware/trame/compare/v1.2.3...v1.3.0) (2021-10-29)
 
 

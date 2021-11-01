@@ -26,6 +26,7 @@ sidebar:
     t_setup-vtk: Setup for VTK
     t_vtk: VTK
     t_layouts: Layouts
+    t_html: HTML
     modules: Html Modules
     m_vuetify: vuetify
     m_altair: altair

@@ -2,6 +2,8 @@
 
 Trame leverages Vuetify as its primary UI Component Library for defining HTML graphics user interfaces (GUI). [Vuetify](https://vuetifyjs.com/en/introduction/why-vuetify/#what-is-vuetify3f) is a mature, efficient, and expansive framework for good-looking web applications with the same simple state management system as Trame. Trame makes Vuetify available in your Python with minimal overhead. 
 
+[![Vuetify WebSite](../images/module-vuetify.jpg)](https://vuetifyjs.com/en/)
+
 ## Using Veutify
 
 We expose all Vuetify components. As an example, let's look at how we would make a simple text box. This is taken from Vuetify's excellent [examples and documentation](https://vuetifyjs.com/en/components/text-fields/), which we recommend you consult while writing frontends with Trame. 
@@ -15,7 +17,7 @@ const myWeight = 28.0;
 <!-- Somewhere in html -->
 <v-text-field label="Weight" v-model="myWeight" :suffix="currentSuffix"></v-text-field>
 ```
-<img src="./vuetify-example.gif" />
+<img src="../images/vuetify-example.gif" />
 
 Here we have a vuetify text field (`v-text-field`). In Vue, the `v-model` is a directive that provides two-way data binding between an input and form data or between two components. The variable `myWeight` is bound by the `v-model` attribute, so the shared state can read from it (shown in the GUI form) and write to it (input to the form stored as the variable contents). 
 
@@ -209,3 +211,5 @@ def reset_resolution():
 ```
 
 **Note**: If you plan to pass arguments to the `trigger` function, then you would use the decorator.
+
+Both of these functions should be included in the Functions or Callbacks section of the code.

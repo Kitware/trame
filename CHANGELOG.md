@@ -1,3 +1,10 @@
+## [1.3.4](https://github.com/kitware/trame/compare/v1.3.3...v1.3.4) (2021-11-01)
+
+
+### Bug Fixes
+
+* **version:** Add missing module __init__ file ([1d86bf3](https://github.com/kitware/trame/commit/1d86bf33e8a6f7c5aca8edc241debf36c26c54c9))
+
 ## [1.3.3](https://github.com/kitware/trame/compare/v1.3.2...v1.3.3) (2021-11-01)
 
 

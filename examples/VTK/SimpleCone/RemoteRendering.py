@@ -1,4 +1,4 @@
-from trame import html, start, update_state, change
+from trame import start, update_state, change
 from trame.html import vuetify, vtk
 from trame.layouts import SinglePage
 
@@ -10,10 +10,10 @@ from vtkmodules.vtkRenderingCore import (
     vtkPolyDataMapper,
     vtkActor,
 )
-from vtkmodules.vtkInteractionStyle import vtkInteractorStyleSwitch
 
-# Grab implementation
-import vtkmodules.vtkRenderingOpenGL2
+# VTK factory initialization
+from vtkmodules.vtkInteractionStyle import vtkInteractorStyleSwitch  # noqa
+import vtkmodules.vtkRenderingOpenGL2  # noqa
 
 # -----------------------------------------------------------------------------
 # VTK code
@@ -28,7 +28,6 @@ renderWindow.AddRenderer(renderer)
 renderWindowInteractor = vtkRenderWindowInteractor()
 renderWindowInteractor.SetRenderWindow(renderWindow)
 renderWindowInteractor.GetInteractorStyle().SetCurrentStyleToTrackballCamera()
-renderWindowInteractor.EnableRenderOff()
 
 cone_source = vtkConeSource()
 mapper = vtkPolyDataMapper()
@@ -58,7 +57,6 @@ html_view = vtk.VtkRemoteView(renderWindow, ref="view")
 
 layout = SinglePage("VTK Remote rendering")
 layout.logo.click = "$refs.view.resetCamera()"
-# layout.logo.children = [vuetify.VIcon('mdi-menu')]
 layout.title.content = "Cone Application"
 
 with layout.toolbar:
@@ -83,7 +81,11 @@ with layout.content:
         children=[html_view],
     )
 
+# Uncomment following line to hide footer
 # layout.footer.hide()
+
+# Uncomment following line to change logo to use mdi icon
+# layout.logo.children = [vuetify.VIcon('mdi-menu')]
 
 # -----------------------------------------------------------------------------
 # Main

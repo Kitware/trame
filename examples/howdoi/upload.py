@@ -9,6 +9,7 @@ layout.children += [
     )
 ]
 
+
 @change("file_exchange")
 def file_uploaded(file_exchange, **kwargs):
     file_name = file_exchange.get("name")
@@ -17,6 +18,7 @@ def file_uploaded(file_exchange, **kwargs):
     file_mime_type = file_exchange.get("type")
     file_binary_content = file_exchange.get("content")
     print(f"Go file {file_name} of size {file_size}")
+
 
 if __name__ == "__main__":
     start(layout)

@@ -1,7 +1,6 @@
 from trame import start
 from trame.layouts import SinglePage
 import trame.html.vuetify as vuetify
-from trame.html import Div
 
 # -----------------------------------------------------------------------------
 # GUI

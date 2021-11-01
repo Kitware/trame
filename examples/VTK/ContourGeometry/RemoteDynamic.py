@@ -13,10 +13,10 @@ from vtkmodules.vtkRenderingCore import (
     vtkPolyDataMapper,
     vtkActor,
 )
-from vtkmodules.vtkInteractionStyle import vtkInteractorStyleSwitch
 
-# Grab implementation
-import vtkmodules.vtkRenderingOpenGL2
+# VTK factory initialization
+from vtkmodules.vtkInteractionStyle import vtkInteractorStyleSwitch  # noqa
+import vtkmodules.vtkRenderingOpenGL2  # noqa
 
 # -----------------------------------------------------------------------------
 # VTK pipeline
@@ -49,14 +49,11 @@ contour.SetValue(0, contour_value)
 # Rendering setup
 renderer = vtkRenderer()
 renderWindow = vtkRenderWindow()
-renderWindow.SetSize(300, 300)
-renderWindow.SetWindowName("rendering")
 renderWindow.AddRenderer(renderer)
 
 renderWindowInteractor = vtkRenderWindowInteractor()
 renderWindowInteractor.SetRenderWindow(renderWindow)
 renderWindowInteractor.GetInteractorStyle().SetCurrentStyleToTrackballCamera()
-renderWindowInteractor.EnableRenderOff()
 
 mapper = vtkPolyDataMapper()
 actor = vtkActor()
@@ -74,7 +71,7 @@ renderWindow.Render()
 def get_html_view(remote_view):
     if remote_view:
         return html_remote_view
-    return html_sync_view
+    return html_local_view
 
 
 @change("contour_value", "interactive")
@@ -102,56 +99,57 @@ def commit_changes():
 # -----------------------------------------------------------------------------
 
 html_remote_view = vtk.VtkRemoteView(renderWindow)
-html_sync_view = vtk.VtkSyncView(renderWindow)
+html_local_view = vtk.VtkLocalView(renderWindow)
+
 html_view_container = vuetify.VContainer(
     fluid=True,
     classes="pa-0 fill-height",
-    children=[html_sync_view],  # start with SyncView
+    children=[html_local_view],  # start with SyncView
 )
 
 layout = SinglePage("VTK contour - Remote/Local rendering")
 layout.title.content = "Contour Application - Remote rendering"
-layout.logo.content = "mdi-virus-outline"
 layout.logo.click = "$refs.view.resetCamera()"
-layout.toolbar.children += [
-    vuetify.VSpacer(),
+
+with layout.toolbar:
+    vuetify.VSpacer()
     vuetify.VSwitch(
         v_model=("remote_view", False),
         hide_details=True,
         label="RemoteView",
         classes="mx-2",
-    ),
+    )
     vuetify.VSwitch(
         v_model=("interactive", False),
         hide_details=True,
         label="Update while dragging",
         classes="mx-2",
-    ),
+    )
     vuetify.VSlider(
         v_model=("contour_value", contour_value),
         change=commit_changes,
-        min=["data_range[0]"],
-        max=["data_range[1]"],
+        min=("data_range[0]",),
+        max=("data_range[1]",),
         hide_details=True,
         dense=True,
         style="max-width: 300px",
-    ),
+    )
     vuetify.VSwitch(
         v_model="$vuetify.theme.dark",
         hide_details=True,
-    ),
-    vuetify.VBtn(
-        vuetify.VIcon("mdi-crop-free"),
+    )
+    with vuetify.VBtn(
         icon=True,
         click="$refs.view.resetCamera()",
-    ),
+    ):
+        vuetify.VIcon("mdi-crop-free")
+
     vuetify.VProgressLinear(
         indeterminate=True,
         absolute=True,
         bottom=True,
-        active=["busy"],
-    ),
-]
+        active=("busy",),
+    )
 
 layout.content.children += [html_view_container]
 
@@ -160,5 +158,4 @@ layout.content.children += [html_view_container]
 # -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    # print(layout.html)
     start(layout, on_ready=commit_changes)

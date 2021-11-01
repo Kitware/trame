@@ -43,5 +43,4 @@ layout.content.children += [
 # -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    # print(layout.html)
     start(layout, on_ready=update_md)

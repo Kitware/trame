@@ -41,7 +41,6 @@ html_view = paraview.VtkRemoteView(view, ref="view")
 
 layout = SinglePage("VTK Remote rendering")
 layout.logo.click = "$refs.view.resetCamera()"
-# layout.logo.children = [vuetify.VIcon('mdi-menu')]
 layout.title.content = "Cone Application"
 
 with layout.toolbar:
@@ -65,8 +64,6 @@ with layout.content:
         classes="pa-0 fill-height",
         children=[html_view],
     )
-
-# layout.footer.hide()
 
 # -----------------------------------------------------------------------------
 # Main

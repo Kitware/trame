@@ -1,4 +1,4 @@
-from trame import start, change, update_state, get_state
+from trame import start, update_state, get_state
 from trame.layouts import SinglePage
 from trame.html.vuetify import VBtn, VTextField
 from trame.html import Div

@@ -1,4 +1,4 @@
-from trame import html, start, update_state, change
+from trame import start, update_state, change
 from trame.html import vuetify, vtk
 from trame.layouts import SinglePage
 

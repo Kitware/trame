@@ -22,9 +22,10 @@ from vtkmodules.vtkRenderingCore import (
     vtkRenderWindowInteractor,
     vtkRenderer,
     vtkVolume,
-    vtkVolumeProperty
+    vtkVolumeProperty,
 )
 from vtkmodules.vtkRenderingVolume import vtkFixedPointVolumeRayCastMapper
+
 # noinspection PyUnresolvedReferences
 from vtkmodules.vtkRenderingVolumeOpenGL2 import vtkOpenGLRayCastImageDisplayHelper
 
@@ -54,8 +55,7 @@ renWin.AddRenderer(ren1)
 
 iren = vtkRenderWindowInteractor()
 iren.SetRenderWindow(renWin)
-iren.GetInteractorStyle().SetCurrentStyleToTrackballCamera() # +++
-iren.EnableRenderOff()                                       # +++
+iren.GetInteractorStyle().SetCurrentStyleToTrackballCamera()  # +++
 
 # Create the reader for the data.
 reader = vtkStructuredPointsReader()
@@ -92,7 +92,7 @@ volume.SetMapper(volumeMapper)
 volume.SetProperty(volumeProperty)
 
 ren1.AddVolume(volume)
-ren1.SetBackground(colors.GetColor3d('Wheat'))
+ren1.SetBackground(colors.GetColor3d("Wheat"))
 ren1.GetActiveCamera().Azimuth(45)
 ren1.GetActiveCamera().Elevation(30)
 ren1.ResetCameraClippingRange()

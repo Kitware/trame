@@ -41,7 +41,6 @@ renderWindow.AddRenderer(renderer)
 renderWindowInteractor = vtkRenderWindowInteractor()
 renderWindowInteractor.SetRenderWindow(renderWindow)
 renderWindowInteractor.GetInteractorStyle().SetCurrentStyleToTrackballCamera()
-renderWindowInteractor.EnableRenderOff()
 
 mapper = vtkPolyDataMapper()
 mapper.SetInputConnection(skin_generator.getContour().GetOutputPort())

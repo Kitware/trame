@@ -54,48 +54,42 @@ html_polydata = vtk.VtkPolyData("contour", dataset=contour)
 
 layout = SinglePage("VTK contour - Remote/Local rendering")
 layout.title.content = "Contour Application - Local rendering"
-layout.logo.content = "mdi-virus-outline"
 layout.logo.click = "$refs.view.resetCamera()"
-layout.toolbar.children += [
-    vuetify.VSpacer(),
+
+with layout.toolbar:
+    vuetify.VSpacer()
     vuetify.VSlider(
         value=("contour_value", contour_value),
-        min=["data_range[0]"],
-        max=["data_range[1]"],
+        min=("data_range[0]",),
+        max=("data_range[1]",),
         hide_details=True,
         dense=True,
         style="max-width: 300px",
-        change="contour_value = $event",
-    ),
+        change="contour_value = Number($event)",
+    )
     vuetify.VSwitch(
         v_model="$vuetify.theme.dark",
         hide_details=True,
-    ),
-    vuetify.VBtn(
-        vuetify.VIcon("mdi-crop-free"),
-        icon=True,
-        click="$refs.view.resetCamera()",
-    ),
+    )
+
+    with vuetify.VBtn(icon=True, click="$refs.view.resetCamera()"):
+        vuetify.VIcon("mdi-crop-free")
+
     vuetify.VProgressLinear(
         indeterminate=True,
         absolute=True,
         bottom=True,
-        active=["busy"],
-    ),
-]
-
-layout.content.children += [
-    vuetify.VContainer(
-        fluid=True,
-        classes="pa-0 fill-height",
-        children=[vtk.VtkView([vtk.VtkGeometryRepresentation([html_polydata])])],
+        active=("busy",),
     )
-]
+
+with layout.content:
+    with vuetify.VContainer(fluid=True, classes="pa-0 fill-height"):
+        with vtk.VtkView():
+            vtk.VtkGeometryRepresentation([html_polydata])
 
 # -----------------------------------------------------------------------------
 # Main
 # -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    # print(layout.html)
     start(layout, on_ready=update_contour)

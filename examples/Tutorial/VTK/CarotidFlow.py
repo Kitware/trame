@@ -8,7 +8,7 @@ from vtkmodules.vtkFiltersCore import (
     vtkContourFilter,
     vtkGlyph3D,
     vtkMaskPoints,
-    vtkThresholdPoints
+    vtkThresholdPoints,
 )
 from vtkmodules.vtkFiltersModeling import vtkOutlineFilter
 from vtkmodules.vtkFiltersSources import vtkConeSource
@@ -22,12 +22,11 @@ from vtkmodules.vtkRenderingCore import (
 )
 
 # Required for interacter factory initialization
-from vtkmodules.vtkInteractionStyle import vtkInteractorStyleSwitch #noqa
+from vtkmodules.vtkInteractionStyle import vtkInteractorStyleSwitch  # noqa
 
-# Required for remote rendering factory initialization, not necessary for 
+# Required for remote rendering factory initialization, not necessary for
 # local rendering, but doesn't hurt to include it
-
-import vtkmodules.vtkRenderingOpenGL2 #noqa
+import vtkmodules.vtkRenderingOpenGL2  # noqa
 
 
 # -----------------------------------------------------------------------------
@@ -41,7 +40,6 @@ renderWindow.AddRenderer(renderer)
 renderWindowInteractor = vtkRenderWindowInteractor()
 renderWindowInteractor.SetRenderWindow(renderWindow)
 renderWindowInteractor.GetInteractorStyle().SetCurrentStyleToTrackballCamera()
-renderWindowInteractor.EnableRenderOff()
 
 # Colors and Data
 
@@ -72,7 +70,7 @@ cones.SetScaleFactor(0.4)
 cones.SetScaleModeToScaleByVector()
 
 lut = vtkLookupTable()
-lut.SetHueRange(.667, 0.0)
+lut.SetHueRange(0.667, 0.0)
 lut.Build()
 
 scalarRange = [0] * 2
@@ -127,8 +125,10 @@ renderWindow.Render()
 # Functions
 # -----------------------------------------------------------------------------
 
+
 def update_view(**kwargs):
     html_view.update()
+
 
 # -----------------------------------------------------------------------------
 # GUI

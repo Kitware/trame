@@ -4,10 +4,10 @@ from trame.html import widgets
 
 selection = ["2"]
 tree = [
-  { "id": "1", "parent": "0", "visible": 0, "name": "Wavelet" },
-  { "id": "2", "parent": "1", "visible": 0, "name": "Clip" },
-  { "id": "3", "parent": "1", "visible": 1, "name": "Slice" },
-  { "id": "4", "parent": "2", "visible": 1, "name": "Slice 2" },
+    {"id": "1", "parent": "0", "visible": 0, "name": "Wavelet"},
+    {"id": "2", "parent": "1", "visible": 0, "name": "Clip"},
+    {"id": "3", "parent": "1", "visible": 1, "name": "Slice"},
+    {"id": "4", "parent": "2", "visible": 1, "name": "Slice 2"},
 ]
 
 git_tree = widgets.GitTree(

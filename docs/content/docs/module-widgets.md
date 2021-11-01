@@ -9,7 +9,7 @@ A [VCard](https://vuetifyjs.com/en/components/cards/) container which floats abo
 <center>
   <figure>
     <img src="./module-widgets-floatcard.gif" width="400px"/>
-    <figcaption> FloatCard example (source <a href="https://github.com/Kitware/trame/tree/master/examples/Modules/Widgets/FloatCard/app.py">here</a>)</figcaption>
+    <figcaption> FloatCard example (source <a href="https://github.com/Kitware/trame/tree/master/examples/Modules/Widgets/FloatCard.py">here</a>)</figcaption>
   </figure>
 </center>
 
@@ -34,15 +34,22 @@ FloatCard also inherits style properties from Vuetify's v-card. See [v-card docu
 
 A component to present a Tree the same way Git does it (Like a subway map).
 
+<center>
+  <figure>
+    <img src="/trame/images/module-widgets-gittree.jpg" width="400px"/>
+    <figcaption> GitTree example (source <a href="https://github.com/Kitware/trame/tree/master/examples/Modules/Widgets/FloatCard.py">here</a>)</figcaption>
+  </figure>
+</center>
+
 ### How to use it?
 
 ```python
 from trame.html import widgets
 
 tree = [
-  { "id": "1", "parent", "0", "name": "Wavelet" },
-  { "id": "2", "parent", "1", "name": "Clip" },
-  { "id": "3", "parent", "1", "name": "Slice" },
+  { "id": "1", "parent": "0", "visible": 1, "name": "Wavelet" },
+  { "id": "2", "parent": "1", "visible": 0, "name": "Clip" },
+  { "id": "3", "parent": "1", "visible": 1, "name": "Slice" },
 ]
 
 selection = ["2"]

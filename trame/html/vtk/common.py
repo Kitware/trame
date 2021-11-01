@@ -124,7 +124,7 @@ class VtkRemoteLocalView(AbstractElement):
         # !!! HACK !!!
         # Allow user to configure view mode by providing (, local/remote)
         __rmode = "remote"
-        __mode_arg = kwargs.get("mode", False)
+        __mode_arg = kwargs.get("mode", (f"{__ns}Mode",))
         if __mode_arg and isinstance(__mode_arg, (tuple, list)) and len(__mode_arg) > 1:
             __rmode = __mode_arg[1]
             self._attributes["mode"] = f':mode="{__mode_arg[0]}"'

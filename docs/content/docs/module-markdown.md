@@ -2,9 +2,9 @@
 
 Markdown is a lightweight markup language that you can use to add formatting elements to plaintext text documents. Created by John Gruber in 2004, Markdown is now one of the world’s most popular markup languages.
 
-Inside Trame it might be usefull to use markdown to simplify the writing of long description and help when some formatting is expected.
-
 ![Simple example](markdown.jpg)
+
+Inside Trame it might be usefull to use markdown to simplify the writing of long description and help when some formatting is expected.
 
 ## How to use it?
 

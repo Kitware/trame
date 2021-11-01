@@ -1,3 +1,10 @@
+## [1.3.3](https://github.com/kitware/trame/compare/v1.3.2...v1.3.3) (2021-11-01)
+
+
+### Bug Fixes
+
+* **version:** determine version programmatically ([797a033](https://github.com/kitware/trame/commit/797a033612a5827dc956cdb55d7d64f4e6fa8d9a))
+
 ## [1.3.2](https://github.com/kitware/trame/compare/v1.3.1...v1.3.2) (2021-11-01)
 
 

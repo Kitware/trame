@@ -1,7 +1,10 @@
 # Widgets
 
+Widgets is a small set of add-on components that tends to be useful when building applications. They mostly come from needs that were driven by applications but became part of the library as they could provide cross application benefits.
+
 ## FloatCard
-A container which floats above the application and can be moved freely from a handle.
+
+A [VCard](https://vuetifyjs.com/en/components/cards/) container which floats above the application and can be moved freely from a handle.
 
 <center>
   <figure>
@@ -10,14 +13,16 @@ A container which floats above the application and can be moved freely from a ha
   </figure>
 </center>
 
+### How to use it?
+
 ```python
 from trame.html import widgets
 
 widgets.FloatCard(
-  handle_color="#aaaaaa", # color of the handle 
+  handle_color="#aaaaaa", # color of the handle
   handle_position="top",  # position of the handle: top, left, right, or bottom
-  handle_size=12,         # size of the handle 
-  location=[0,0],         # coordinates of the FloatCard's location on the page 
+  handle_size=12,         # size of the handle
+  location=[0,0],         # coordinates of the FloatCard's location on the page
   **vuetify_vcard_props,  # Vuetify VCard properties
   children=[...]          # VCardTitle, VCardSubTitle, VCardText, VCardActions...
 )
@@ -26,28 +31,37 @@ widgets.FloatCard(
 FloatCard also inherits style properties from Vuetify's v-card. See [v-card documentation](https://vuetifyjs.com/en/api/v-card/#props) for more about these: `color`, `dark`, `flat`, `height`, `elevation`, `hover`, `img`, `light`, `loader_height`, `loading`, `max_height`, `max_width`, `min_height`, `min_width`, `outlined`, `raised`, `rounded`, `shaped`, `tile`, `width`.
 
 ## GitTree
-A component to visualize a git repository.
 
-[...example]
+A component to present a Tree the same way Git does it (Like a subway map).
+
+### How to use it?
 
 ```python
 from trame.html import widgets
 
+tree = [
+  { "id": "1", "parent", "0", "name": "Wavelet" },
+  { "id": "2", "parent", "1", "name": "Clip" },
+  { "id": "3", "parent", "1", "name": "Slice" },
+]
+
+selection = ["2"]
+
 widgets.GitTree(
-  sources=("mySources", [...])     # Shared state reference to git objects
-  actives=("activeSources", [...]) # Active subset of sources list
+  sources=("tree", tree)           # bind variable with default
+  actives=("selection", selection) # bind variable with default
   **styling_properties,
 )
-
-)
 ```
+
 GitTree can by also be styled with any of these properties: `active_background`, `delta_x`, `delta_y`, `font_size`, `margin`, `multiselect`, `offset`, `palette`, `radius`, `root_id`, `stroke`, `width`, `active_circle_stroke_color`, `not_visible_circle_fill_color`, `text_color`, `text_weight`.
 
 
 ## ListBrowser
-A component to browse a list. This is useful for selecting filepaths.
 
-[...example]
+A component that list items that be used for browsing directories or simple item picking.
+
+### How to use it?
 
 ```python
 from trame.html import widgets

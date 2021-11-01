@@ -16,6 +16,7 @@ page:
 sidebar:
   docs:
     getting_started: Getting Started
+    start: How to start
     overview: Introduction
     concepts: Concepts
     api: API

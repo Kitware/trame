@@ -1,5 +1,14 @@
 # Vega
-Trame supports powerful visualization grammars like Vega through easy-to-use libraries like Altair (see documentation [here](https://altair-viz.github.io/gallery/index.html)) for concise visualization.
+
+Vega is a visualization grammar, a declarative language for creating, saving, and sharing interactive visualization designs. With Vega, you can describe the visual appearance and interactive behavior of a visualization in a JSON format, and generate web-based views using Canvas or SVG.
+
+Vega works well with Altair. Altair’s API is simple, friendly and consistent. This elegant simplicity produces beautiful and effective visualizations with a minimal amount of code.
+
+[![Vega charts through altair](./vega.jpg)](https://altair-viz.github.io/index.html)
+
+## How to use it?
+
+The best and easiest way to create charts for [Vega](https://vega.github.io/vega/) is to use [Altair](https://altair-viz.github.io/index.html). And with Trame, the `Altair` chart can be passed directly to the component. The code snippet below illustrate such usage.
 
 ```python
 from vuetify.html import vega
@@ -12,14 +21,18 @@ myChart = alt.Chart(data.cars()).mark_point().encode(
     y='Miles_per_Gallon',
     color='Origin',
 )
+```
 
-# Method 1 ----------------------------------------------------------------------
+Then you can either pass the `chart` directly at build time and then update it via another instance later.
 
+```python
 chart_component = vega.VegaEmbed(myChart)
 chart_component.update(myChart2) # Make change
+```
 
-# Method 2 ----------------------------------------------------------------------
+Or assign a name to use inside your shared state and update it by either updating the state directly or calling `chart_ui.update(chart_inst)` on the component itself.
 
+```python
 chart_component2 = vega.VegaEmbed(
     name="myChart", # Shared state name for vega chart
 )
@@ -27,4 +40,10 @@ chart_component2.update(myChart)  # Set chart
 chart_component2.update(myChart2) # Make change
 ```
 
-[![Vega charts through altair](./vega.jpg)](https://altair-viz.github.io/index.html)
+By default, if no `name` is provided, one will be automatically generated. This can be seen in the [GeoMaps/UberPickupsNYC](https://github.com/Kitware/trame/blob/master/examples/PlainPython/GeoMaps/UberPickupsNYC/app.py#L18) example.
+
+## Examples
+
+Vega is used in the following set of examples:
+- [GeoMaps/UberPickupsNYC](https://github.com/Kitware/trame/blob/master/examples/PlainPython/GeoMaps/UberPickupsNYC/app.py#L18)
+- more to come...

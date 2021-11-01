@@ -1,7 +1,7 @@
-docs: 
+docs:
   getting_started:
     overview: index.html
-    getting_started: getting_started.html
+    start: getting_started.html
   tutorial:
     t_overview: tutorial.html
     t_download: tutorial-download.html
@@ -17,7 +17,7 @@ docs:
     m_paraview: module-paraview.html
     m_deckgl: module-deckgl.html
 #    m_simput: module-simput.html
-#  howdoi: 
+#  howdoi:
 #    h_static: howdoi-static.html
 #    h_dynamic: howdoi-dynamic.html
 #    h_interactive: howdoi-interactive.html

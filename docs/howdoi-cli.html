@@ -41,15 +41,15 @@
   <!-- RSS -->
   <link rel="alternate" href="/trame/atom.xml" title="Trame" type="application/atom+xml">
   <!-- Open Graph -->
-  <meta name="description" content="How do I use CLI arguments?Trame uses python’s argparse for CLI arguments. Examples are here: https:&#x2F;&#x2F;docs.python.org&#x2F;3&#x2F;library&#x2F;argparse.html from trame import get_cli_parserparser &#x3D; get_cli_parser()p">
+  <meta name="description" content="How do I use CLI arguments?Trame uses python’s argparse for CLI arguments handling. Codefrom trame import get_cli_parserparser &#x3D; get_cli_parser()parser.add_argument(&quot;-o&quot;, &quot;--output&amp;quot">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Trame">
 <meta property="og:url" content="https://kitware.github.io/trame/docs/howdoi-cli.html">
 <meta property="og:site_name" content="Trame">
-<meta property="og:description" content="How do I use CLI arguments?Trame uses python’s argparse for CLI arguments. Examples are here: https:&#x2F;&#x2F;docs.python.org&#x2F;3&#x2F;library&#x2F;argparse.html from trame import get_cli_parserparser &#x3D; get_cli_parser()p">
+<meta property="og:description" content="How do I use CLI arguments?Trame uses python’s argparse for CLI arguments handling. Codefrom trame import get_cli_parserparser &#x3D; get_cli_parser()parser.add_argument(&quot;-o&quot;, &quot;--output&amp;quot">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-11-01T19:25:19.093Z">
-<meta property="article:modified_time" content="2021-11-01T19:25:19.093Z">
+<meta property="article:published_time" content="2021-11-01T19:57:43.441Z">
+<meta property="article:modified_time" content="2021-11-01T19:57:43.441Z">
 <meta property="article:author" content="Kitware Inc.">
 <meta name="twitter:card" content="summary">
   <!-- Google Analytics -->
@@ -103,15 +103,18 @@
                 <h1 class="article-title" itemprop="name"></h1>
               </header>
               <div class="article-content" itemprop="articleBody">
-                <h1 id="How-do-I-use-CLI-arguments" class="article-heading"><a href="#How-do-I-use-CLI-arguments" class="headerlink" title="How do I use CLI arguments?"></a>How do I use CLI arguments?<a class="article-anchor" href="#How-do-I-use-CLI-arguments" aria-hidden="true"></a></h1><p>Trame uses python’s <code>argparse</code> for CLI arguments. Examples are here: <a target="_blank" rel="noopener" href="https://docs.python.org/3/library/argparse.html">https://docs.python.org/3/library/argparse.html</a></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> trame <span class="keyword">import</span> get_cli_parser</span><br><span class="line"></span><br><span class="line">parser = get_cli_parser()</span><br><span class="line">parser.add_argument(<span class="string">&quot;-o&quot;</span>, <span class="string">&quot;--output&quot;</span>, <span class="built_in">help</span>=<span class="string">&quot;Our working directory&quot;</span>)</span><br><span class="line">args = parser.parse_args()</span><br></pre></td></tr></table></figure>
+                <h1 id="How-do-I-use-CLI-arguments" class="article-heading"><a href="#How-do-I-use-CLI-arguments" class="headerlink" title="How do I use CLI arguments?"></a>How do I use CLI arguments?<a class="article-anchor" href="#How-do-I-use-CLI-arguments" aria-hidden="true"></a></h1><p>Trame uses python’s <a target="_blank" rel="noopener" href="https://docs.python.org/3/library/argparse.html"><code>argparse</code></a> for CLI arguments handling.</p>
+<h2 id="Code" class="article-heading"><a href="#Code" class="headerlink" title="Code"></a>Code<a class="article-anchor" href="#Code" aria-hidden="true"></a></h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> trame <span class="keyword">import</span> get_cli_parser</span><br><span class="line"></span><br><span class="line">parser = get_cli_parser()</span><br><span class="line">parser.add_argument(<span class="string">&quot;-o&quot;</span>, <span class="string">&quot;--output&quot;</span>, <span class="built_in">help</span>=<span class="string">&quot;Working directory&quot;</span>)</span><br><span class="line">args = parser.parse_args()</span><br><span class="line"><span class="built_in">print</span>(args.output)</span><br></pre></td></tr></table></figure>
 
-<p>[… Link to full example]</p>
+<h2 id="Example" class="article-heading"><a href="#Example" class="headerlink" title="Example"></a>Example<a class="article-anchor" href="#Example" aria-hidden="true"></a></h2><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/Kitware/trame/blob/master/examples/howdoi/cli.py">Code above</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/Kitware/trame/blob/master/examples/VTK/Applications/ZarrContourViewer/app.py#L25-L28">VTK/Applications/ZarrContourViewer</a> use a <code>--data</code> argument to load a file from disk.</li>
+</ul>
 
               </div>
               <footer class="article-footer">
-                <time class="article-footer-updated" datetime="2021-11-01T19:25:19.093Z" itemprop="dateModified">Last updated: 2021-11-01</time>
-                <a href="index.html" class="article-footer-next" title="Introduction"><span>Next</span><i class="fa fa-chevron-right"></i></a>
+                <time class="article-footer-updated" datetime="2021-11-01T19:57:43.441Z" itemprop="dateModified">Last updated: 2021-11-01</time>
+                <a href="howdoi-interactive.html" class="article-footer-prev" title="Display interactive UI"><i class="fa fa-chevron-left"></i><span>Prev</span></a>
               </footer>
               
             </div>
@@ -119,14 +122,14 @@
           <aside id="article-toc" role="navigation">
             <div id="article-toc-inner">
               <strong class="sidebar-title">Contents</strong>
-              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#How-do-I-use-CLI-arguments"><span class="toc-text">How do I use CLI arguments?</span></a></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#How-do-I-use-CLI-arguments"><span class="toc-text">How do I use CLI arguments?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Code"><span class="toc-text">Code</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Example"><span class="toc-text">Example</span></a></li></ol></li></ol>
               <a href="#" id="article-toc-top">Back to Top</a>
             </div>
           </aside>
         </div>
       </article>
       <aside id="sidebar" role="navigation">
-  <div class="inner"><strong class="sidebar-title">Getting Started</strong><a href="index.html" class="sidebar-link">Introduction</a><a href="getting_started.html" class="sidebar-link">How to start</a><strong class="sidebar-title">Tutorial</strong><a href="tutorial.html" class="sidebar-link">Overview</a><a href="tutorial-download.html" class="sidebar-link">Download</a><a href="tutorial-setup-vtk.html" class="sidebar-link">Setup for VTK</a><a href="tutorial-vtk.html" class="sidebar-link">VTK</a><a href="tutorial-layouts.html" class="sidebar-link">Layouts</a><strong class="sidebar-title">Html Modules</strong><a href="module-vuetify.html" class="sidebar-link">vuetify</a><a href="module-vega.html" class="sidebar-link">vega</a><a href="module-markdown.html" class="sidebar-link">markdown</a><a href="module-widgets.html" class="sidebar-link">widgets</a><a href="module-vtk.html" class="sidebar-link">vtk</a><a href="module-paraview.html" class="sidebar-link">paraview</a><a href="module-deckgl.html" class="sidebar-link">deckgl</a></div>
+  <div class="inner"><strong class="sidebar-title">Getting Started</strong><a href="index.html" class="sidebar-link">Introduction</a><a href="getting_started.html" class="sidebar-link">How to start</a><strong class="sidebar-title">Tutorial</strong><a href="tutorial.html" class="sidebar-link">Overview</a><a href="tutorial-download.html" class="sidebar-link">Download</a><a href="tutorial-setup-vtk.html" class="sidebar-link">Setup for VTK</a><a href="tutorial-vtk.html" class="sidebar-link">VTK</a><a href="tutorial-layouts.html" class="sidebar-link">Layouts</a><strong class="sidebar-title">Html Modules</strong><a href="module-vuetify.html" class="sidebar-link">vuetify</a><a href="module-vega.html" class="sidebar-link">vega</a><a href="module-markdown.html" class="sidebar-link">markdown</a><a href="module-widgets.html" class="sidebar-link">widgets</a><a href="module-vtk.html" class="sidebar-link">vtk</a><a href="module-paraview.html" class="sidebar-link">paraview</a><a href="module-deckgl.html" class="sidebar-link">deckgl</a><strong class="sidebar-title">How do I...</strong><a href="howdoi-static.html" class="sidebar-link">Display static content</a><a href="howdoi-dynamic.html" class="sidebar-link">Display dynamic content</a><a href="howdoi-interactive.html" class="sidebar-link">Display interactive UI</a><a href="howdoi-cli.html" class="sidebar-link current">Use CLI arguments</a></div>
 </aside>
     </div>
   </div>
@@ -168,7 +171,7 @@
       </li>
     </ul>
     
-      <strong class="mobile-nav-title">Getting Started</strong><a href="index.html" class="mobile-nav-link">Introduction</a><a href="getting_started.html" class="mobile-nav-link">How to start</a><strong class="mobile-nav-title">Tutorial</strong><a href="tutorial.html" class="mobile-nav-link">Overview</a><a href="tutorial-download.html" class="mobile-nav-link">Download</a><a href="tutorial-setup-vtk.html" class="mobile-nav-link">Setup for VTK</a><a href="tutorial-vtk.html" class="mobile-nav-link">VTK</a><a href="tutorial-layouts.html" class="mobile-nav-link">Layouts</a><strong class="mobile-nav-title">Html Modules</strong><a href="module-vuetify.html" class="mobile-nav-link">vuetify</a><a href="module-vega.html" class="mobile-nav-link">vega</a><a href="module-markdown.html" class="mobile-nav-link">markdown</a><a href="module-widgets.html" class="mobile-nav-link">widgets</a><a href="module-vtk.html" class="mobile-nav-link">vtk</a><a href="module-paraview.html" class="mobile-nav-link">paraview</a><a href="module-deckgl.html" class="mobile-nav-link">deckgl</a>
+      <strong class="mobile-nav-title">Getting Started</strong><a href="index.html" class="mobile-nav-link">Introduction</a><a href="getting_started.html" class="mobile-nav-link">How to start</a><strong class="mobile-nav-title">Tutorial</strong><a href="tutorial.html" class="mobile-nav-link">Overview</a><a href="tutorial-download.html" class="mobile-nav-link">Download</a><a href="tutorial-setup-vtk.html" class="mobile-nav-link">Setup for VTK</a><a href="tutorial-vtk.html" class="mobile-nav-link">VTK</a><a href="tutorial-layouts.html" class="mobile-nav-link">Layouts</a><strong class="mobile-nav-title">Html Modules</strong><a href="module-vuetify.html" class="mobile-nav-link">vuetify</a><a href="module-vega.html" class="mobile-nav-link">vega</a><a href="module-markdown.html" class="mobile-nav-link">markdown</a><a href="module-widgets.html" class="mobile-nav-link">widgets</a><a href="module-vtk.html" class="mobile-nav-link">vtk</a><a href="module-paraview.html" class="mobile-nav-link">paraview</a><a href="module-deckgl.html" class="mobile-nav-link">deckgl</a><strong class="mobile-nav-title">How do I...</strong><a href="howdoi-static.html" class="mobile-nav-link">Display static content</a><a href="howdoi-dynamic.html" class="mobile-nav-link">Display dynamic content</a><a href="howdoi-interactive.html" class="mobile-nav-link">Display interactive UI</a><a href="howdoi-cli.html" class="mobile-nav-link current">Use CLI arguments</a>
     
   </div>
   <div id="mobile-lang-select-wrap">

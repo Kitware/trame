@@ -1,68 +1,57 @@
+# Try handle virtual env if provided
+import sys
+
+if "--virtual-env" in sys.argv:
+    virtualEnvPath = sys.argv[sys.argv.index("--virtual-env") + 1]
+    virtualEnv = virtualEnvPath + "/bin/activate_this.py"
+    exec(open(virtualEnv).read(), {"__file__": virtualEnv})
+
 import os
 
 from trame import start, update_state, change
-from trame.html import vuetify, vtk
+from trame.html import vuetify, paraview
 from trame.layouts import SinglePage
 
-from vtkmodules.vtkIOXML import vtkXMLImageDataReader
-from vtkmodules.vtkFiltersCore import vtkContourFilter
-from vtkmodules.vtkRenderingCore import (
-    vtkRenderer,
-    vtkRenderWindow,
-    vtkRenderWindowInteractor,
-    vtkPolyDataMapper,
-    vtkActor,
-)
-
-# VTK factory initialization
-from vtkmodules.vtkInteractionStyle import vtkInteractorStyleSwitch  # noqa
-import vtkmodules.vtkRenderingOpenGL2  # noqa
+from paraview import simple
 
 # -----------------------------------------------------------------------------
-# VTK pipeline
+# ParaView pipeline
 # -----------------------------------------------------------------------------
+
+simple.LoadDistributedPlugin("AcceleratedAlgorithms", remote=False, ns=globals())
 
 data_directory = os.path.join(
-    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
+    os.path.dirname(
+        os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    ),
     "data",
 )
 head_vti = os.path.join(data_directory, "head.vti")
 
-reader = vtkXMLImageDataReader()
-reader.SetFileName(head_vti)
-reader.Update()
-
-contour = vtkContourFilter()
-contour.SetInputConnection(reader.GetOutputPort())
-contour.SetComputeNormals(1)
-contour.SetComputeScalars(0)
+reader = simple.XMLImageDataReader(FileName=[head_vti])
+# contour = simple.Contour(Input=reader) # Default filter    => no plugin but slow
+contour = FlyingEdges3D(Input=reader)  # Faster processing => make it interactive
 
 # Extract data range => Update store/state
-data_range = reader.GetOutput().GetPointData().GetScalars().GetRange()
+array = reader.GetPointDataInformation().GetArray(0)
+data_name = array.GetName()
+data_range = array.GetRange()
 contour_value = 0.5 * (data_range[0] + data_range[1])
 update_state("data_range", data_range)
 update_state("contour_value", contour_value)
 
-# Configure contour with valid values
-contour.SetNumberOfContours(1)
-contour.SetValue(0, contour_value)
+contour.ContourBy = ["POINTS", data_name]
+contour.Isosurfaces = [contour_value]
+contour.ComputeNormals = 1
+contour.ComputeScalars = 0
 
 # Rendering setup
-renderer = vtkRenderer()
-renderWindow = vtkRenderWindow()
-renderWindow.AddRenderer(renderer)
-
-renderWindowInteractor = vtkRenderWindowInteractor()
-renderWindowInteractor.SetRenderWindow(renderWindow)
-renderWindowInteractor.GetInteractorStyle().SetCurrentStyleToTrackballCamera()
-
-mapper = vtkPolyDataMapper()
-actor = vtkActor()
-mapper.SetInputConnection(contour.GetOutputPort())
-actor.SetMapper(mapper)
-renderer.AddActor(actor)
-renderer.ResetCamera()
-renderWindow.Render()
+view = simple.GetRenderView()
+view.OrientationAxesVisibility = 0
+representation = simple.Show(contour, view)
+view = simple.Render()
+simple.ResetCamera()
+view.CenterOfRotation = view.CameraFocalPoint
 
 # -----------------------------------------------------------------------------
 # Callbacks
@@ -71,21 +60,21 @@ renderWindow.Render()
 
 @change("contour_value")
 def update_contour(contour_value, **kwargs):
-    contour.SetValue(0, contour_value)
+    contour.Isosurfaces =[contour_value]
     html_view.update_image()
 
 
 # -----------------------------------------------------------------------------
 # GUI
 # -----------------------------------------------------------------------------
-html_view = vtk.VtkRemoteLocalView(
-    renderWindow,
+html_view = paraview.VtkRemoteLocalView(
+    view,
     namespace="demo",
     # second arg is to force the view to start in "local" mode
     mode=("override === 'auto' ? demoMode : override", "local"),
 )
 
-layout = SinglePage("VTK contour - Remote/Local rendering")
+layout = SinglePage("ParaView contour - Remote/Local rendering")
 layout.title.content = "Contour Application - Remote rendering"
 layout.logo.click = "$refs.demo.resetCamera()"
 

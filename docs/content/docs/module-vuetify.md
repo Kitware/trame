@@ -2,7 +2,7 @@
 
 Vuetify is a UI Library with beautifully handcrafted Material Components. No design skills required — everything you need to create amazing applications is at your fingertips.
 
-[![Vuetify WebSite](./vuetify.jpg)](https://vuetifyjs.com/en/)
+[![Vuetify WebSite](/trame/images/module-vuetify.jpg)](https://vuetifyjs.com/en/)
 
 ## How to use it?
 

@@ -4,7 +4,7 @@ Vega is a visualization grammar, a declarative language for creating, saving, an
 
 Vega works well with Altair. Altair’s API is simple, friendly and consistent. This elegant simplicity produces beautiful and effective visualizations with a minimal amount of code.
 
-[![Vega charts through altair](./vega.jpg)](https://altair-viz.github.io/index.html)
+[![Vega charts through altair](/trame/images/module-vega.jpg)](https://altair-viz.github.io/index.html)
 
 ## How to use it?
 

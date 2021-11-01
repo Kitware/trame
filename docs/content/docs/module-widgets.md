@@ -8,7 +8,7 @@ A [VCard](https://vuetifyjs.com/en/components/cards/) container which floats abo
 
 <center>
   <figure>
-    <img src="./module-widgets-floatcard.gif" width="400px"/>
+    <img src="/trame/images/module-widgets-floatcard.gif" width="400px"/>
     <figcaption> FloatCard example (source <a href="https://github.com/Kitware/trame/tree/master/examples/Modules/Widgets/FloatCard.py">here</a>)</figcaption>
   </figure>
 </center>

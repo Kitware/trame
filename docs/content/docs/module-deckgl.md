@@ -4,7 +4,7 @@ deck.gl is a WebGL-powered framework for visual exploratory data analysis of lar
 
 Trame leverages pydeck (see documentation and examples [here](https://deckgl.readthedocs.io/en/latest/)) to build data layers which deck.gl then renders. Developers can make interactive data layers on top of base map providers like [Mapbox](https://github.com/Kitware/trame/blob/3cec4490d9a550d61e44dc1a4c1b059c66a2ce54/examples/PlainPython/GeoMaps/MappingDemo/app.py#L10).
 
-[![deck gl](./module-deckgl-pydeck.jpg)](https://deckgl.readthedocs.io/en/latest/)
+[![deck gl](/trame/images/module-deckgl-pydeck.jpg)](https://deckgl.readthedocs.io/en/latest/)
 
 ## How to use it?
 

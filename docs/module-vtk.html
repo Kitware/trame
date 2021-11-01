@@ -41,17 +41,19 @@
   <!-- RSS -->
   <link rel="alternate" href="/trame/atom.xml" title="Trame" type="application/atom+xml">
   <!-- Open Graph -->
-  <meta name="description" content="VTKThe Visualization Toolkit renders 3D images and volumes in Trame. For more Python Vtk examples, see here.   […example] VtkRemoteViewThe VtkRemoteView component relies on the server for rendering by">
+  <meta name="description" content="VTKThe Visualization Toolkit process images and create 3D computer graphics. For more Python Vtk examples, see here. VTK integration in Trame allow you to create reach visualization and data processin">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Trame">
 <meta property="og:url" content="https://kitware.github.io/trame/docs/module-vtk.html">
 <meta property="og:site_name" content="Trame">
-<meta property="og:description" content="VTKThe Visualization Toolkit renders 3D images and volumes in Trame. For more Python Vtk examples, see here.   […example] VtkRemoteViewThe VtkRemoteView component relies on the server for rendering by">
+<meta property="og:description" content="VTKThe Visualization Toolkit process images and create 3D computer graphics. For more Python Vtk examples, see here. VTK integration in Trame allow you to create reach visualization and data processin">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-11-01T17:26:30.774Z">
-<meta property="article:modified_time" content="2021-11-01T17:26:30.774Z">
+<meta property="og:image" content="https://kitware.github.io/trame/images/module-vtk.jpg">
+<meta property="article:published_time" content="2021-11-01T19:25:19.097Z">
+<meta property="article:modified_time" content="2021-11-01T19:25:19.097Z">
 <meta property="article:author" content="Kitware Inc.">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://kitware.github.io/trame/images/module-vtk.jpg">
   <!-- Google Analytics -->
   
 
@@ -103,70 +105,144 @@
                 <h1 class="article-title" itemprop="name"></h1>
               </header>
               <div class="article-content" itemprop="articleBody">
-                <h1 id="VTK" class="article-heading"><a href="#VTK" class="headerlink" title="VTK"></a>VTK<a class="article-anchor" href="#VTK" aria-hidden="true"></a></h1><p>The Visualization Toolkit renders 3D images and volumes in Trame. For more Python Vtk examples, see <a href="https://kitware.github.io/vtk-examples/site/Python/">here</a>.  </p>
-<p>[…example]</p>
-<h2 id="VtkRemoteView" class="article-heading"><a href="#VtkRemoteView" class="headerlink" title="VtkRemoteView"></a>VtkRemoteView<a class="article-anchor" href="#VtkRemoteView" aria-hidden="true"></a></h2><p>The VtkRemoteView component relies on the server for rendering by sending images to the client by simply binding your vtkRenderWindow to it. This component gives you controls to the image size and quality to reduce latency while interacting. </p>
-<p>The component allows you to directly tap into a vtk.js interactor events so you can bind your own method from python to them. The list of available events can be found <a target="_blank" rel="noopener" href="https://github.com/Kitware/vtk-js/blob/b92ad5463150b88514fcb5020c1fa6c7fcfe2a4f/Sources/Rendering/Core/RenderWindowInteractor/index.js#L23-L60">here</a>. </p>
-<p>The component also provides a convenient method for forcing a render to the client when you’re modifying your scences on the python side.</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> trame.html <span class="keyword">import</span> vtk</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">end</span>():</span></span><br><span class="line">  <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">remote_view = vtk.vtkRemoteView(</span><br><span class="line">  view=...,               <span class="comment"># Instance of vtkRenderWindow (required)</span></span><br><span class="line">  ref=...,                <span class="comment"># Identifier for this component</span></span><br><span class="line">  interactive_quality=<span class="number">60</span>, <span class="comment"># [0, 100] 0 for fastest render, 100 for best quality</span></span><br><span class="line">  interactive_ratio=...,  <span class="comment"># [0.1, 1] Image size scale factor while interacting</span></span><br><span class="line">  interactor_events=(     <span class="comment"># Enable vtk.js interactor events for method binding</span></span><br><span class="line">    <span class="string">&quot;events&quot;</span>, </span><br><span class="line">    [<span class="string">&#x27;EndAnimation&#x27;</span>],</span><br><span class="line">  ),</span><br><span class="line">  EndAnimation=end,       <span class="comment"># Bind method to the enabled event</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">remote_view.update()  <span class="comment"># Force image to be pushed to client</span></span><br></pre></td></tr></table></figure>
-<h2 id="VtkLocalView" class="article-heading"><a href="#VtkLocalView" class="headerlink" title="VtkLocalView"></a>VtkLocalView<a class="article-anchor" href="#VtkLocalView" aria-hidden="true"></a></h2><p>[…]</p>
-<!--
-The VtkLocalView component builds a geometry on the server but renders on the client.
+                <h1 id="VTK" class="article-heading"><a href="#VTK" class="headerlink" title="VTK"></a>VTK<a class="article-anchor" href="#VTK" aria-hidden="true"></a></h1><p>The Visualization Toolkit process images and create 3D computer graphics. For more Python Vtk examples, see <a href="https://kitware.github.io/vtk-examples/site/Python/">here</a>.</p>
+<p>VTK integration in Trame allow you to create reach visualization and data processing applications by leveraging the Python wrapping of the VTK library. Several components are available so you can leverage VTK either for its data processing and/or rendering. Trame let you choose if you want to leverage Remote Rendering or if the client should do the rendering by leveraging vtk.js under the cover.</p>
+<p><a href="https://kitware.github.io/vtk-examples/site/Python/"><img src="/trame/images/module-vtk.jpg" alt="VTK Examples"></a></p>
+<h2 id="VtkRemoteView" class="article-heading"><a href="#VtkRemoteView" class="headerlink" title="VtkRemoteView"></a>VtkRemoteView<a class="article-anchor" href="#VtkRemoteView" aria-hidden="true"></a></h2><p>The VtkRemoteView component relies on the server for rendering by sending images to the client by simply binding your vtkRenderWindow to it. This component gives you controls to the image size reduction and quality to reduce latency while interacting.</p>
+<h3 id="How-to-use-it" class="article-heading"><a href="#How-to-use-it" class="headerlink" title="How to use it?"></a>How to use it?<a class="article-anchor" href="#How-to-use-it" aria-hidden="true"></a></h3><p>The component allows you to directly tap into a vtk.js interactor events so you can bind your own method from python to them. The list of available events can be found <a target="_blank" rel="noopener" href="https://github.com/Kitware/vtk-js/blob/b92ad5463150b88514fcb5020c1fa6c7fcfe2a4f/Sources/Rendering/Core/RenderWindowInteractor/index.js#L23-L60">here</a>.</p>
+<p>The component also provides a convenient method for pushin a new image to the client when you’re modifying your scene on the python side.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> trame.html <span class="keyword">import</span> vtk</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">end</span>():</span></span><br><span class="line">  <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">remote_view = vtk.vtkRemoteView(</span><br><span class="line">  view=...,               <span class="comment"># Instance of vtkRenderWindow (required)</span></span><br><span class="line">  ref=...,                <span class="comment"># Identifier for this component</span></span><br><span class="line">  interactive_quality=<span class="number">60</span>, <span class="comment"># [0, 100] 0 for fastest render, 100 for best quality</span></span><br><span class="line">  interactive_ratio=...,  <span class="comment"># [0.1, 1] Image size scale factor while interacting</span></span><br><span class="line">  interactor_events=(     <span class="comment"># Enable vtk.js interactor events for method binding</span></span><br><span class="line">    <span class="string">&quot;events&quot;</span>,</span><br><span class="line">    [<span class="string">&#x27;EndAnimation&#x27;</span>],</span><br><span class="line">  ),</span><br><span class="line">  EndAnimation=end,       <span class="comment"># Bind method to the enabled event</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">remote_view.update()  <span class="comment"># Force image to be pushed to client</span></span><br></pre></td></tr></table></figure>
 
-The component allows you to directly tap into a vtk.js interactor events so you can bind your own method from python to them. The list of available events can be found [here](https://github.com/Kitware/vtk-js/blob/b92ad5463150b88514fcb5020c1fa6c7fcfe2a4f/Sources/Rendering/Core/RenderWindowInteractor/index.js#L23-L60). 
+<h3 id="Examples" class="article-heading"><a href="#Examples" class="headerlink" title="Examples"></a>Examples<a class="article-anchor" href="#Examples" aria-hidden="true"></a></h3><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/Kitware/trame/blob/master/examples/VTK/SimpleCone/RemoteRendering.py">VTK/SimpleCone/RemoteRendering</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/Kitware/trame/blob/master/examples/VTK/ContourGeometry/RemoteRendering.py">VTK/ContourGeometry/RemoteRendering</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/Kitware/trame/blob/master/examples/VTK/Applications/ZarrContourViewer/app.py">VTK/Applications/ZarrContourViewer</a></li>
+</ul>
+<h2 id="VtkLocalView" class="article-heading"><a href="#VtkLocalView" class="headerlink" title="VtkLocalView"></a>VtkLocalView<a class="article-anchor" href="#VtkLocalView" aria-hidden="true"></a></h2><p>The VtkLocalView component relies on the server for defining the vtkRenderWindow but then only the geometry is exchanged with the client. The server does not need a GPU as no rendering is happening on the server. The vtkRenderWindow is only used to retreived the scene data and parameters (coloring by, representations, …). By relying on the same vtkRenderWindow, you can easily switch from a <code>VtkRemoteView</code> to a <code>VtkLocalView</code> or vice-versa. This component gives you controls on how you want to map mouse interaction with the camera. The default setting mimic default VTK interactor style so you will rarely have to override to the <code>interactor_settings</code>.</p>
+<h3 id="How-to-use-it-1" class="article-heading"><a href="#How-to-use-it-1" class="headerlink" title="How to use it?"></a>How to use it?<a class="article-anchor" href="#How-to-use-it-1" aria-hidden="true"></a></h3><p>The component allows you to directly tap into a vtk.js interactor events so you can bind your own method from python to them. The list of available events can be found <a target="_blank" rel="noopener" href="https://github.com/Kitware/vtk-js/blob/b92ad5463150b88514fcb5020c1fa6c7fcfe2a4f/Sources/Rendering/Core/RenderWindowInteractor/index.js#L23-L60">here</a>.</p>
+<p>The component also provides a convenient method to push the scene to the client when you’re modifying your scene on the python side.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> trame.html <span class="keyword">import</span> vtk</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">end</span>():</span></span><br><span class="line">  <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">local_view = vtk.VtkLocalView(</span><br><span class="line">  view=...,                <span class="comment"># Instance of vtkRenderWindow (required)</span></span><br><span class="line">  ref=...,                 <span class="comment"># Identifier for this component</span></span><br><span class="line">  context_name=...,        <span class="comment"># Namespace for geometry cache</span></span><br><span class="line">  interactor_settings=..., <span class="comment"># Options for camera controls. See below.</span></span><br><span class="line">  interactor_events=(      <span class="comment"># Enable vtk.js interactor events for method binding</span></span><br><span class="line">    <span class="string">&quot;events&quot;</span>,</span><br><span class="line">    [<span class="string">&#x27;EndAnimation&#x27;</span>],</span><br><span class="line">  ),</span><br><span class="line">  EndAnimation=end,        <span class="comment"># Bind method to the enabled event</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">local_view.update()  <span class="comment"># Force geometry to be pushed</span></span><br></pre></td></tr></table></figure>
 
-The component also provides a convenient method to push a render to the client when you're modifying your scences on the python side.
 
-The component can take a list of settings to configure how the mouse and camera will interact. 
-
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> trame.html <span class="keyword">import</span> vtk</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">end</span>():</span></span><br><span class="line">  <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">local_view = vtk.VtkLocalView(</span><br><span class="line">  view=...,                <span class="comment"># Instance of vtkRenderWindow (required)</span></span><br><span class="line">  ref=...,                 <span class="comment"># Identifier for this component</span></span><br><span class="line">  context_name=...,        <span class="comment"># Namespace for geometry cache</span></span><br><span class="line">  interactor_settings=..., <span class="comment"># Options for camera controls. See below.</span></span><br><span class="line">  interactor_events=(      <span class="comment"># Enable vtk.js interactor events for method binding</span></span><br><span class="line">    <span class="string">&quot;events&quot;</span>, </span><br><span class="line">    [<span class="string">&#x27;EndAnimation&#x27;</span>],</span><br><span class="line">  ),</span><br><span class="line">  EndAnimation=end,        <span class="comment"># Bind method to the enabled event</span></span><br><span class="line"></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">local_view.update()  <span class="comment"># Force geometry to be pushed</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="interactorSettings"><a href="#interactorSettings" class="headerlink" title="interactorSettings"></a>interactorSettings</h3><p>For the interactorSettings we expect a list of mouse event type linked to an action. The example below is what is used as default:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">interactorSettings=[</span><br><span class="line">  &#123;</span><br><span class="line">    button: 1,</span><br><span class="line">    action: &#x27;Rotate&#x27;,</span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    button: 2,</span><br><span class="line">    action: &#x27;Pan&#x27;,</span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    button: 3,</span><br><span class="line">    action: &#x27;Zoom&#x27;,</span><br><span class="line">    scrollEnabled: true,</span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    button: 1,</span><br><span class="line">    action: &#x27;Pan&#x27;,</span><br><span class="line">    shift: true,</span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    button: 1,</span><br><span class="line">    action: &#x27;Zoom&#x27;,</span><br><span class="line">    alt: true,</span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    button: 1,</span><br><span class="line">    action: &#x27;ZoomToMouse&#x27;,</span><br><span class="line">    control: true,</span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    button: 1,</span><br><span class="line">    action: &#x27;Roll&#x27;,</span><br><span class="line">    alt: true,</span><br><span class="line">    shift: true,</span><br><span class="line">  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h4 id="Interactor-Settings" class="article-heading"><a href="#Interactor-Settings" class="headerlink" title="Interactor Settings"></a>Interactor Settings<a class="article-anchor" href="#Interactor-Settings" aria-hidden="true"></a></h4><p>For the <code>interactor_settings</code> we expect a list of mouse event type linked to an action. The example below is what is used as default:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">interactor_settings=[</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">button</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">action</span>: <span class="string">&#x27;Rotate&#x27;</span>,</span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    <span class="attr">button</span>: <span class="number">2</span>,</span><br><span class="line">    <span class="attr">action</span>: <span class="string">&#x27;Pan&#x27;</span>,</span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    <span class="attr">button</span>: <span class="number">3</span>,</span><br><span class="line">    <span class="attr">action</span>: <span class="string">&#x27;Zoom&#x27;</span>,</span><br><span class="line">    <span class="attr">scrollEnabled</span>: <span class="literal">true</span>,</span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    <span class="attr">button</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">action</span>: <span class="string">&#x27;Pan&#x27;</span>,</span><br><span class="line">    <span class="attr">shift</span>: <span class="literal">true</span>,</span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    <span class="attr">button</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">action</span>: <span class="string">&#x27;Zoom&#x27;</span>,</span><br><span class="line">    <span class="attr">alt</span>: <span class="literal">true</span>,</span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    <span class="attr">button</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">action</span>: <span class="string">&#x27;ZoomToMouse&#x27;</span>,</span><br><span class="line">    <span class="attr">control</span>: <span class="literal">true</span>,</span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    <span class="attr">button</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">action</span>: <span class="string">&#x27;Roll&#x27;</span>,</span><br><span class="line">    <span class="attr">alt</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">shift</span>: <span class="literal">true</span>,</span><br><span class="line">  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 
 <p>A mouse event can be identified with the following set of properties:</p>
-<pre><code>button: 1/2/3 # Which button should be down
-shift: True/False # Is the Shift key down
-alt: True/False # Is the Alt key down
-control: True/False # Is the Ctrl key down
-scrollEnabled: True/False # Some action could also be triggered by scroll
-dragEnabled: True/False # Mostly used to disable default drag behavior
-</code></pre>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>button</td>
+<td>1, 2, 3</td>
+<td>Which button should be down</td>
+</tr>
+<tr>
+<td>shift</td>
+<td>true/false</td>
+<td>Is the Shift key down</td>
+</tr>
+<tr>
+<td>alt</td>
+<td>true/false</td>
+<td>Is the Alt key down</td>
+</tr>
+<tr>
+<td>control</td>
+<td>true/false</td>
+<td>Is the Ctrl key down</td>
+</tr>
+<tr>
+<td>scrollEnabled</td>
+<td>true/false</td>
+<td>Some action could also be triggered by scroll</td>
+</tr>
+<tr>
+<td>dragEnabled</td>
+<td>true/false</td>
+<td>Mostly used to disable default drag behavior</td>
+</tr>
+</tbody></table>
 <p>And the action could be one of the following:</p>
-<pre><code>Pan: Will pan the object on the plane normal to the camera
-Zoom: Will zoom closer or further from the object based on the drag direction
-Roll: Will rotate the object around the view direction
-ZoomToMouse: Will zoom while keeping the location that was initially under the mouse at the same spot
-</code></pre>
-<p>–&gt;</p>
-<h2 id="VtkRemoteLocalView"><a href="#VtkRemoteLocalView" class="headerlink" title="VtkRemoteLocalView"></a>VtkRemoteLocalView</h2><p>[…]</p>
-<!--
-The VtkRemoteLocalView can change between remote and local rendering modes.
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Pan</td>
+<td>Will pan the object on the plane normal to the camera</td>
+</tr>
+<tr>
+<td>Zoom</td>
+<td>Will zoom closer or further from the object based on the drag direction</td>
+</tr>
+<tr>
+<td>Roll</td>
+<td>Will rotate the object around the view direction</td>
+</tr>
+<tr>
+<td>ZoomToMouse</td>
+<td>Will zoom while keeping the location that was initially under the mouse at the same spot</td>
+</tr>
+</tbody></table>
+<h3 id="Examples-1" class="article-heading"><a href="#Examples-1" class="headerlink" title="Examples"></a>Examples<a class="article-anchor" href="#Examples-1" aria-hidden="true"></a></h3><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/Kitware/trame/blob/master/examples/VTK/SimpleCone/LocalRendering.py">VTK/SimpleCone/LocalRendering</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/Kitware/trame/blob/master/examples/VTK/ContourGeometry/LocalRendering.py">VTK/ContourGeometry/LocalRendering</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/Kitware/trame/blob/master/examples/Tutorial/VTK/CarotidFlow.py">Tutorial/VTK/CarotidFlow</a></li>
+</ul>
+<h2 id="VtkRemoteLocalView" class="article-heading"><a href="#VtkRemoteLocalView" class="headerlink" title="VtkRemoteLocalView"></a>VtkRemoteLocalView<a class="article-anchor" href="#VtkRemoteLocalView" aria-hidden="true"></a></h2><p>The VtkRemoteLocalView component is a blend of <code>VtkLocalView</code> and <code>VtkRemoteView</code> where the user can choose dynamically which mode he/she wants to be in. When instanciating a <code>VtkRemoteLocalView</code> several variables and triggers will be created for you to more easily control your view.</p>
+<h3 id="How-to-use-it-2" class="article-heading"><a href="#How-to-use-it-2" class="headerlink" title="How to use it?"></a>How to use it?<a class="article-anchor" href="#How-to-use-it-2" aria-hidden="true"></a></h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> trame.html <span class="keyword">import</span> vtk</span><br><span class="line"></span><br><span class="line">rl_view = vtk.VtkRemoteLocalView(</span><br><span class="line">  view=...,                <span class="comment"># Instance of vtkRenderWindow (required)</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Just VtkRemoteLocalView params</span></span><br><span class="line">  namespace=...,           <span class="comment"># Prefix for variables and triggers. See below. (required)</span></span><br><span class="line">  mode=<span class="string">&quot;local&quot;</span>,            <span class="comment"># Decide between local or remote. See below.</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># VtkRemoteView params</span></span><br><span class="line">  **remote_view_params,</span><br><span class="line"></span><br><span class="line">  <span class="comment"># VtkLocalView params</span></span><br><span class="line">  **local_view_params,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">rl_view.update_geometry()  <span class="comment"># Force update to geometry</span></span><br><span class="line">rl_view.update_image()     <span class="comment"># Force update to image</span></span><br><span class="line">rl_view.view()             <span class="comment"># Get linked vtkRenderWindow instance</span></span><br></pre></td></tr></table></figure>
 
-It will create several Trame variables and events which can control which mode it is currently or to track animations.
-
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> trame.html <span class="keyword">import</span> vtk</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">end</span>():</span></span><br><span class="line">  <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">rl_view = vtk.VtkRemoteLocalView(</span><br><span class="line">  view=...,                <span class="comment"># Instance of vtkRenderWindow (required)</span></span><br><span class="line">  interactor_events=(      <span class="comment"># Enable vtk.js interactor events for method binding</span></span><br><span class="line">    <span class="string">&quot;events&quot;</span>, </span><br><span class="line">    [<span class="string">&#x27;EndAnimation&#x27;</span>],</span><br><span class="line">  ),</span><br><span class="line">  EndAnimation=end,        <span class="comment"># Bind method to the enabled event</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Just VtkRemoteView params</span></span><br><span class="line">  interactive_ratio=...,   <span class="comment"># [0.1, 1] Image size scale factor while interacting</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Just VtkLocalView params</span></span><br><span class="line">  context_name=...,        <span class="comment"># Namespace for geometry cache</span></span><br><span class="line">  interactor_settings=..., <span class="comment"># Options for camera controls</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Just VtkRemoteLocalView params</span></span><br><span class="line">  namespace=...,           <span class="comment"># Prefix for variables and triggers. See below.</span></span><br><span class="line">  mode=<span class="string">&quot;local&quot;</span>,            <span class="comment"># Decide between local or remote. See below.</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">rl_view.update_geometry()  <span class="comment"># Force update to geometry</span></span><br><span class="line">rl_view.update_image()     <span class="comment"># Force update to image</span></span><br><span class="line">rl_view.view()             <span class="comment"># Get linked vtkRenderWindow instance</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="Namespace-parameter"><a href="#Namespace-parameter" class="headerlink" title="Namespace parameter"></a>Namespace parameter</h3><p>Constructing a VtkRemoteLocalView will set several Trame keys, optinally prefixed by a namespace:</p>
-<pre><code>&quot;mode&quot; # This will store &quot;local&quot; or &quot;remote&quot;
-&quot;id&quot;   # This identifies the view 
-</code></pre>
-<p>Constructing a VtkRemoteLocalView will also set several Trame triggers, optinally prefixed by a namespace:</p>
-<pre><code>&quot;camera&quot;       # [...]
-&quot;animateStop&quot;  # [...]
-&quot;animateStart&quot; # [...]
-</code></pre>
-<h3 id="Mode-parameter"><a href="#Mode-parameter" class="headerlink" title="Mode parameter"></a>Mode parameter</h3><p>When constructing a vtkRemoteLocalView, the “mode” parameter can take several values.</p>
-<ol>
-<li>mode=”local” or mode=”remote”<br>This will set the (optionally namespaced) shared state key “mode” to that particular mode.</li>
-</ol>
-<ol start="2">
-<li>mode=(“…js expression”,)<br>Passing a tuple with length 1 will interpret the value in the tuple as a javascript expression and use the result of that expression when looking up the mode. See example <a target="_blank" rel="noopener" href="https://github.com/Kitware/trame/blob/f6594a02ed7e1ecc24058ffac527e010e8181e22/examples/VTK/ContourGeometry/DynamicLocalRemoteRendering.py#L88">here</a>.</li>
-</ol>
-<ol start="3">
-<li>mode=(“…js expression”, <code>initial_mode</code>)<br>This will do the same as 2) above, but it will also ensure the initial mode is set to <code>initial_mode</code>.</li>
-</ol>
-<p>–&gt;</p>
+<h4 id="Namespace-parameter" class="article-heading"><a href="#Namespace-parameter" class="headerlink" title="Namespace parameter"></a>Namespace parameter<a class="article-anchor" href="#Namespace-parameter" aria-hidden="true"></a></h4><p>Constructing a VtkRemoteLocalView will set several variables, prefixed by a namespace. In the example below we used <code>namespace=&quot;view&quot;</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>viewId</td>
+<td><code>str</code> representing the vtkRenderWindow id</td>
+</tr>
+<tr>
+<td>viewMode</td>
+<td><code>local</code>or <code>remote</code> to control which View is displayed to the user</td>
+</tr>
+</tbody></table>
+<p>Constructing a VtkRemoteLocalView will also set several Trame triggers.</p>
+<table>
+<thead>
+<tr>
+<th>Trigger</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>viewCamera</td>
+<td>When call with no arguments, the server will push its camera to the client</td>
+</tr>
+<tr>
+<td>viewAnimateStart</td>
+<td>Start the animation loop for constantly rendering</td>
+</tr>
+<tr>
+<td>viewAnimateStop</td>
+<td>Stop the animation loop</td>
+</tr>
+</tbody></table>
+<p>The <code>namespace</code> will also be used as <code>ref=</code> unless provided by the user.</p>
+<h4 id="Mode-parameter" class="article-heading"><a href="#Mode-parameter" class="headerlink" title="Mode parameter"></a>Mode parameter<a class="article-anchor" href="#Mode-parameter" aria-hidden="true"></a></h4><p>The mode is driven by the variable <code>&#123;namespace&#125;Mode</code> but can be provided when instanciated so the default can be overriden and a JavaScript expression can be used instead of the default variable. This attribute behave the same way as any trame one except, we won’t register the left side as a state entry since we already have one under <code>&#123;namespace&#125;Mode</code>. This mean, we will evaluate the left side of the expression assuming a tuple is provided and the right side of the tuple is used to set its inital value.</p>
+<h3 id="Examples-2" class="article-heading"><a href="#Examples-2" class="headerlink" title="Examples"></a>Examples<a class="article-anchor" href="#Examples-2" aria-hidden="true"></a></h3><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/Kitware/trame/blob/f6594a02ed7e1ecc24058ffac527e010e8181e22/examples/VTK/ContourGeometry/DynamicLocalRemoteRendering.py">VTK/ContourGeometry/DynamicLocalRemoteRendering</a></li>
+</ul>
 <!--
 # VtkAlgorithm
 ## Properties
@@ -263,7 +339,7 @@ It will create several Trame variables and events which can control which mode i
 
               </div>
               <footer class="article-footer">
-                <time class="article-footer-updated" datetime="2021-11-01T17:26:30.774Z" itemprop="dateModified">Last updated: 2021-11-01</time>
+                <time class="article-footer-updated" datetime="2021-11-01T19:25:19.097Z" itemprop="dateModified">Last updated: 2021-11-01</time>
                 <a href="module-widgets.html" class="article-footer-prev" title="widgets"><i class="fa fa-chevron-left"></i><span>Prev</span></a><a href="module-paraview.html" class="article-footer-next" title="paraview"><span>Next</span><i class="fa fa-chevron-right"></i></a>
               </footer>
               
@@ -272,14 +348,14 @@ It will create several Trame variables and events which can control which mode i
           <aside id="article-toc" role="navigation">
             <div id="article-toc-inner">
               <strong class="sidebar-title">Contents</strong>
-              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#VTK"><span class="toc-text">VTK</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#VtkRemoteView"><span class="toc-text">VtkRemoteView</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VtkLocalView"><span class="toc-text">VtkLocalView</span></a></li></ol></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#VTK"><span class="toc-text">VTK</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#VtkRemoteView"><span class="toc-text">VtkRemoteView</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#How-to-use-it"><span class="toc-text">How to use it?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Examples"><span class="toc-text">Examples</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VtkLocalView"><span class="toc-text">VtkLocalView</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#How-to-use-it-1"><span class="toc-text">How to use it?</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Interactor-Settings"><span class="toc-text">Interactor Settings</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Examples-1"><span class="toc-text">Examples</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VtkRemoteLocalView"><span class="toc-text">VtkRemoteLocalView</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#How-to-use-it-2"><span class="toc-text">How to use it?</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Namespace-parameter"><span class="toc-text">Namespace parameter</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Mode-parameter"><span class="toc-text">Mode parameter</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Examples-2"><span class="toc-text">Examples</span></a></li></ol></li></ol></li></ol>
               <a href="#" id="article-toc-top">Back to Top</a>
             </div>
           </aside>
         </div>
       </article>
       <aside id="sidebar" role="navigation">
-  <div class="inner"><strong class="sidebar-title">Getting Started</strong><a href="index.html" class="sidebar-link">Introduction</a><a href="getting_started.html" class="sidebar-link">Getting Started</a><strong class="sidebar-title">Tutorial</strong><a href="tutorial.html" class="sidebar-link">Overview</a><a href="tutorial-download.html" class="sidebar-link">Download</a><a href="tutorial-setup-vtk.html" class="sidebar-link">Setup for VTK</a><a href="tutorial-vtk.html" class="sidebar-link">VTK</a><a href="tutorial-layouts.html" class="sidebar-link">Layouts</a><strong class="sidebar-title">Html Modules</strong><a href="module-vuetify.html" class="sidebar-link">vuetify</a><a href="module-vega.html" class="sidebar-link">vega</a><a href="module-markdown.html" class="sidebar-link">markdown</a><a href="module-widgets.html" class="sidebar-link">widgets</a><a href="module-vtk.html" class="sidebar-link current">vtk</a><a href="module-paraview.html" class="sidebar-link">paraview</a><a href="module-deckgl.html" class="sidebar-link">deckgl</a></div>
+  <div class="inner"><strong class="sidebar-title">Getting Started</strong><a href="index.html" class="sidebar-link">Introduction</a><a href="getting_started.html" class="sidebar-link">How to start</a><strong class="sidebar-title">Tutorial</strong><a href="tutorial.html" class="sidebar-link">Overview</a><a href="tutorial-download.html" class="sidebar-link">Download</a><a href="tutorial-setup-vtk.html" class="sidebar-link">Setup for VTK</a><a href="tutorial-vtk.html" class="sidebar-link">VTK</a><a href="tutorial-layouts.html" class="sidebar-link">Layouts</a><strong class="sidebar-title">Html Modules</strong><a href="module-vuetify.html" class="sidebar-link">vuetify</a><a href="module-vega.html" class="sidebar-link">vega</a><a href="module-markdown.html" class="sidebar-link">markdown</a><a href="module-widgets.html" class="sidebar-link">widgets</a><a href="module-vtk.html" class="sidebar-link current">vtk</a><a href="module-paraview.html" class="sidebar-link">paraview</a><a href="module-deckgl.html" class="sidebar-link">deckgl</a></div>
 </aside>
     </div>
   </div>
@@ -321,7 +397,7 @@ It will create several Trame variables and events which can control which mode i
       </li>
     </ul>
     
-      <strong class="mobile-nav-title">Getting Started</strong><a href="index.html" class="mobile-nav-link">Introduction</a><a href="getting_started.html" class="mobile-nav-link">Getting Started</a><strong class="mobile-nav-title">Tutorial</strong><a href="tutorial.html" class="mobile-nav-link">Overview</a><a href="tutorial-download.html" class="mobile-nav-link">Download</a><a href="tutorial-setup-vtk.html" class="mobile-nav-link">Setup for VTK</a><a href="tutorial-vtk.html" class="mobile-nav-link">VTK</a><a href="tutorial-layouts.html" class="mobile-nav-link">Layouts</a><strong class="mobile-nav-title">Html Modules</strong><a href="module-vuetify.html" class="mobile-nav-link">vuetify</a><a href="module-vega.html" class="mobile-nav-link">vega</a><a href="module-markdown.html" class="mobile-nav-link">markdown</a><a href="module-widgets.html" class="mobile-nav-link">widgets</a><a href="module-vtk.html" class="mobile-nav-link current">vtk</a><a href="module-paraview.html" class="mobile-nav-link">paraview</a><a href="module-deckgl.html" class="mobile-nav-link">deckgl</a>
+      <strong class="mobile-nav-title">Getting Started</strong><a href="index.html" class="mobile-nav-link">Introduction</a><a href="getting_started.html" class="mobile-nav-link">How to start</a><strong class="mobile-nav-title">Tutorial</strong><a href="tutorial.html" class="mobile-nav-link">Overview</a><a href="tutorial-download.html" class="mobile-nav-link">Download</a><a href="tutorial-setup-vtk.html" class="mobile-nav-link">Setup for VTK</a><a href="tutorial-vtk.html" class="mobile-nav-link">VTK</a><a href="tutorial-layouts.html" class="mobile-nav-link">Layouts</a><strong class="mobile-nav-title">Html Modules</strong><a href="module-vuetify.html" class="mobile-nav-link">vuetify</a><a href="module-vega.html" class="mobile-nav-link">vega</a><a href="module-markdown.html" class="mobile-nav-link">markdown</a><a href="module-widgets.html" class="mobile-nav-link">widgets</a><a href="module-vtk.html" class="mobile-nav-link current">vtk</a><a href="module-paraview.html" class="mobile-nav-link">paraview</a><a href="module-deckgl.html" class="mobile-nav-link">deckgl</a>
     
   </div>
   <div id="mobile-lang-select-wrap">

@@ -41,17 +41,19 @@
   <!-- RSS -->
   <link rel="alternate" href="/trame/atom.xml" title="Trame" type="application/atom+xml">
   <!-- Open Graph -->
-  <meta name="description" content="Paraview[…]">
+  <meta name="description" content="ParaviewParaView is based on the Visualization Toolkit to process images and create 3D computer graphics. To learn more about ParaView and see how it can be user via Python, see its User Guide. ParaVi">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Trame">
 <meta property="og:url" content="https://kitware.github.io/trame/docs/module-paraview.html">
 <meta property="og:site_name" content="Trame">
-<meta property="og:description" content="Paraview[…]">
+<meta property="og:description" content="ParaviewParaView is based on the Visualization Toolkit to process images and create 3D computer graphics. To learn more about ParaView and see how it can be user via Python, see its User Guide. ParaVi">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-11-01T17:26:30.774Z">
-<meta property="article:modified_time" content="2021-11-01T17:26:30.774Z">
+<meta property="og:image" content="https://kitware.github.io/trame/images/module-paraview.jpg">
+<meta property="article:published_time" content="2021-11-01T19:25:19.097Z">
+<meta property="article:modified_time" content="2021-11-01T19:25:19.097Z">
 <meta property="article:author" content="Kitware Inc.">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://kitware.github.io/trame/images/module-paraview.jpg">
   <!-- Google Analytics -->
   
 
@@ -103,11 +105,144 @@
                 <h1 class="article-title" itemprop="name"></h1>
               </header>
               <div class="article-content" itemprop="articleBody">
-                <h1 id="Paraview" class="article-heading"><a href="#Paraview" class="headerlink" title="Paraview"></a>Paraview<a class="article-anchor" href="#Paraview" aria-hidden="true"></a></h1><p>[…]</p>
+                <h1 id="Paraview" class="article-heading"><a href="#Paraview" class="headerlink" title="Paraview"></a>Paraview<a class="article-anchor" href="#Paraview" aria-hidden="true"></a></h1><p>ParaView is based on the Visualization Toolkit to process images and create 3D computer graphics. To learn more about ParaView and see how it can be user via Python, see its <a target="_blank" rel="noopener" href="https://docs.paraview.org/en/latest/">User Guide</a>.</p>
+<p>ParaView integration in Trame allow you to create reach visualization and data processing applications by leveraging the Python infrastructure of ParaView. Several components are available so you can leverage ParaView either for its data processing and/or rendering. Trame let you choose if you want to leverage Remote Rendering or if the client should do the rendering by leveraging vtk.js under the cover.</p>
+<p><a target="_blank" rel="noopener" href="https://docs.paraview.org/en/latest/"><img src="/trame/images/module-paraview.jpg" alt="ParaView Guide"></a></p>
+<h2 id="VtkRemoteView" class="article-heading"><a href="#VtkRemoteView" class="headerlink" title="VtkRemoteView"></a>VtkRemoteView<a class="article-anchor" href="#VtkRemoteView" aria-hidden="true"></a></h2><p>The VtkRemoteView component relies on the server for rendering by sending images to the client by simply binding your view proxy to it. This component gives you controls to the image size reduction and quality to reduce latency while interacting.</p>
+<h3 id="How-to-use-it" class="article-heading"><a href="#How-to-use-it" class="headerlink" title="How to use it?"></a>How to use it?<a class="article-anchor" href="#How-to-use-it" aria-hidden="true"></a></h3><p>The component allows you to directly tap into a vtk.js interactor events so you can bind your own method from python to them. The list of available events can be found <a target="_blank" rel="noopener" href="https://github.com/Kitware/vtk-js/blob/b92ad5463150b88514fcb5020c1fa6c7fcfe2a4f/Sources/Rendering/Core/RenderWindowInteractor/index.js#L23-L60">here</a>.</p>
+<p>The component also provides a convenient method for pushin a new image to the client when you’re modifying your scene on the python side.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> trame.html <span class="keyword">import</span> vtk</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">end</span>():</span></span><br><span class="line">  <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">remote_view = vtk.vtkRemoteView(</span><br><span class="line">  view=...,               <span class="comment"># Instance of view proxy (required)</span></span><br><span class="line">  ref=...,                <span class="comment"># Identifier for this component</span></span><br><span class="line">  interactive_quality=<span class="number">60</span>, <span class="comment"># [0, 100] 0 for fastest render, 100 for best quality</span></span><br><span class="line">  interactive_ratio=...,  <span class="comment"># [0.1, 1] Image size scale factor while interacting</span></span><br><span class="line">  interactor_events=(     <span class="comment"># Enable vtk.js interactor events for method binding</span></span><br><span class="line">    <span class="string">&quot;events&quot;</span>,</span><br><span class="line">    [<span class="string">&#x27;EndAnimation&#x27;</span>],</span><br><span class="line">  ),</span><br><span class="line">  EndAnimation=end,       <span class="comment"># Bind method to the enabled event</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">remote_view.update()  <span class="comment"># Force image to be pushed to client</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Examples" class="article-heading"><a href="#Examples" class="headerlink" title="Examples"></a>Examples<a class="article-anchor" href="#Examples" aria-hidden="true"></a></h3><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/Kitware/trame/blob/master/examples/ParaView/SimpleCone/RemoteRendering.py">ParaView/SimpleCone/RemoteRendering</a></li>
+</ul>
+<h2 id="VtkLocalView" class="article-heading"><a href="#VtkLocalView" class="headerlink" title="VtkLocalView"></a>VtkLocalView<a class="article-anchor" href="#VtkLocalView" aria-hidden="true"></a></h2><p>The VtkLocalView component relies on the server for defining the <code>view</code> but then only the geometry is exchanged with the client. The server does not need a GPU as no rendering is happening on the server. The view proxy is only used to retreived the scene data and parameters (coloring by, representations, …). By relying on the same api, you can easily switch from a <code>VtkRemoteView</code> to a <code>VtkLocalView</code> or vice-versa. This component gives you controls on how you want to map mouse interaction with the camera. The default setting mimic default VTK interactor style so you will rarely have to override to the <code>interactor_settings</code>.</p>
+<h3 id="How-to-use-it-1" class="article-heading"><a href="#How-to-use-it-1" class="headerlink" title="How to use it?"></a>How to use it?<a class="article-anchor" href="#How-to-use-it-1" aria-hidden="true"></a></h3><p>The component allows you to directly tap into a vtk.js interactor events so you can bind your own method from python to them. The list of available events can be found <a target="_blank" rel="noopener" href="https://github.com/Kitware/vtk-js/blob/b92ad5463150b88514fcb5020c1fa6c7fcfe2a4f/Sources/Rendering/Core/RenderWindowInteractor/index.js#L23-L60">here</a>.</p>
+<p>The component also provides a convenient method to push the scene to the client when you’re modifying your scene on the python side.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> trame.html <span class="keyword">import</span> vtk</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">end</span>():</span></span><br><span class="line">  <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">local_view = vtk.VtkLocalView(</span><br><span class="line">  view=...,                <span class="comment"># Instance of view proxy (required)</span></span><br><span class="line">  ref=...,                 <span class="comment"># Identifier for this component</span></span><br><span class="line">  context_name=...,        <span class="comment"># Namespace for geometry cache</span></span><br><span class="line">  interactor_settings=..., <span class="comment"># Options for camera controls. See below.</span></span><br><span class="line">  interactor_events=(      <span class="comment"># Enable vtk.js interactor events for method binding</span></span><br><span class="line">    <span class="string">&quot;events&quot;</span>,</span><br><span class="line">    [<span class="string">&#x27;EndAnimation&#x27;</span>],</span><br><span class="line">  ),</span><br><span class="line">  EndAnimation=end,        <span class="comment"># Bind method to the enabled event</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">local_view.update()  <span class="comment"># Force geometry to be pushed</span></span><br></pre></td></tr></table></figure>
+
+
+<h4 id="Interactor-Settings" class="article-heading"><a href="#Interactor-Settings" class="headerlink" title="Interactor Settings"></a>Interactor Settings<a class="article-anchor" href="#Interactor-Settings" aria-hidden="true"></a></h4><p>For the <code>interactor_settings</code> we expect a list of mouse event type linked to an action. The example below is what is used as default:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">interactor_settings=[</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">button</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">action</span>: <span class="string">&#x27;Rotate&#x27;</span>,</span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    <span class="attr">button</span>: <span class="number">2</span>,</span><br><span class="line">    <span class="attr">action</span>: <span class="string">&#x27;Pan&#x27;</span>,</span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    <span class="attr">button</span>: <span class="number">3</span>,</span><br><span class="line">    <span class="attr">action</span>: <span class="string">&#x27;Zoom&#x27;</span>,</span><br><span class="line">    <span class="attr">scrollEnabled</span>: <span class="literal">true</span>,</span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    <span class="attr">button</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">action</span>: <span class="string">&#x27;Pan&#x27;</span>,</span><br><span class="line">    <span class="attr">shift</span>: <span class="literal">true</span>,</span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    <span class="attr">button</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">action</span>: <span class="string">&#x27;Zoom&#x27;</span>,</span><br><span class="line">    <span class="attr">alt</span>: <span class="literal">true</span>,</span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    <span class="attr">button</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">action</span>: <span class="string">&#x27;ZoomToMouse&#x27;</span>,</span><br><span class="line">    <span class="attr">control</span>: <span class="literal">true</span>,</span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    <span class="attr">button</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">action</span>: <span class="string">&#x27;Roll&#x27;</span>,</span><br><span class="line">    <span class="attr">alt</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">shift</span>: <span class="literal">true</span>,</span><br><span class="line">  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>A mouse event can be identified with the following set of properties:</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>button</td>
+<td>1, 2, 3</td>
+<td>Which button should be down</td>
+</tr>
+<tr>
+<td>shift</td>
+<td>true/false</td>
+<td>Is the Shift key down</td>
+</tr>
+<tr>
+<td>alt</td>
+<td>true/false</td>
+<td>Is the Alt key down</td>
+</tr>
+<tr>
+<td>control</td>
+<td>true/false</td>
+<td>Is the Ctrl key down</td>
+</tr>
+<tr>
+<td>scrollEnabled</td>
+<td>true/false</td>
+<td>Some action could also be triggered by scroll</td>
+</tr>
+<tr>
+<td>dragEnabled</td>
+<td>true/false</td>
+<td>Mostly used to disable default drag behavior</td>
+</tr>
+</tbody></table>
+<p>And the action could be one of the following:</p>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Pan</td>
+<td>Will pan the object on the plane normal to the camera</td>
+</tr>
+<tr>
+<td>Zoom</td>
+<td>Will zoom closer or further from the object based on the drag direction</td>
+</tr>
+<tr>
+<td>Roll</td>
+<td>Will rotate the object around the view direction</td>
+</tr>
+<tr>
+<td>ZoomToMouse</td>
+<td>Will zoom while keeping the location that was initially under the mouse at the same spot</td>
+</tr>
+</tbody></table>
+<h3 id="Examples-1" class="article-heading"><a href="#Examples-1" class="headerlink" title="Examples"></a>Examples<a class="article-anchor" href="#Examples-1" aria-hidden="true"></a></h3><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/Kitware/trame/blob/master/examples/ParaView/SimpleCone/LocalRendering.py">ParaView/SimpleCone/LocalRendering</a></li>
+</ul>
+<h2 id="VtkRemoteLocalView" class="article-heading"><a href="#VtkRemoteLocalView" class="headerlink" title="VtkRemoteLocalView"></a>VtkRemoteLocalView<a class="article-anchor" href="#VtkRemoteLocalView" aria-hidden="true"></a></h2><p>The VtkRemoteLocalView component is a blend of <code>VtkLocalView</code> and <code>VtkRemoteView</code> where the user can choose dynamically which mode he/she wants to be in. When instanciating a <code>VtkRemoteLocalView</code> several variables and triggers will be created for you to more easily control your view.</p>
+<h3 id="How-to-use-it-2" class="article-heading"><a href="#How-to-use-it-2" class="headerlink" title="How to use it?"></a>How to use it?<a class="article-anchor" href="#How-to-use-it-2" aria-hidden="true"></a></h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> trame.html <span class="keyword">import</span> vtk</span><br><span class="line"></span><br><span class="line">rl_view = vtk.VtkRemoteLocalView(</span><br><span class="line">  view=...,                <span class="comment"># Instance of view proxy (required)</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Just VtkRemoteLocalView params</span></span><br><span class="line">  namespace=...,           <span class="comment"># Prefix for variables and triggers. See below. (required)</span></span><br><span class="line">  mode=<span class="string">&quot;local&quot;</span>,            <span class="comment"># Decide between local or remote. See below.</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># VtkRemoteView params</span></span><br><span class="line">  **remote_view_params,</span><br><span class="line"></span><br><span class="line">  <span class="comment"># VtkLocalView params</span></span><br><span class="line">  **local_view_params,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">rl_view.update_geometry()  <span class="comment"># Force update to geometry</span></span><br><span class="line">rl_view.update_image()     <span class="comment"># Force update to image</span></span><br><span class="line">rl_view.view()             <span class="comment"># Get linked vtkRenderWindow instance</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Namespace-parameter" class="article-heading"><a href="#Namespace-parameter" class="headerlink" title="Namespace parameter"></a>Namespace parameter<a class="article-anchor" href="#Namespace-parameter" aria-hidden="true"></a></h4><p>Constructing a VtkRemoteLocalView will set several variables, prefixed by a namespace. In the example below we used <code>namespace=&quot;view&quot;</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>viewId</td>
+<td><code>str</code> representing the vtkRenderWindow id</td>
+</tr>
+<tr>
+<td>viewMode</td>
+<td><code>local</code>or <code>remote</code> to control which View is displayed to the user</td>
+</tr>
+</tbody></table>
+<p>Constructing a VtkRemoteLocalView will also set several Trame triggers.</p>
+<table>
+<thead>
+<tr>
+<th>Trigger</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>viewCamera</td>
+<td>When call with no arguments, the server will push its camera to the client</td>
+</tr>
+<tr>
+<td>viewAnimateStart</td>
+<td>Start the animation loop for constantly rendering</td>
+</tr>
+<tr>
+<td>viewAnimateStop</td>
+<td>Stop the animation loop</td>
+</tr>
+</tbody></table>
+<p>The <code>namespace</code> will also be used as <code>ref=</code> unless provided by the user.</p>
+<h4 id="Mode-parameter" class="article-heading"><a href="#Mode-parameter" class="headerlink" title="Mode parameter"></a>Mode parameter<a class="article-anchor" href="#Mode-parameter" aria-hidden="true"></a></h4><p>The mode is driven by the variable <code>&#123;namespace&#125;Mode</code> but can be provided when instanciated so the default can be overriden and a JavaScript expression can be used instead of the default variable. This attribute behave the same way as any trame one except, we won’t register the left side as a state entry since we already have one under <code>&#123;namespace&#125;Mode</code>. This mean, we will evaluate the left side of the expression assuming a tuple is provided and the right side of the tuple is used to set its inital value.</p>
+<h3 id="Examples-2" class="article-heading"><a href="#Examples-2" class="headerlink" title="Examples"></a>Examples<a class="article-anchor" href="#Examples-2" aria-hidden="true"></a></h3><ul>
+<li>to come…</li>
+</ul>
 
               </div>
               <footer class="article-footer">
-                <time class="article-footer-updated" datetime="2021-11-01T17:26:30.774Z" itemprop="dateModified">Last updated: 2021-11-01</time>
+                <time class="article-footer-updated" datetime="2021-11-01T19:25:19.097Z" itemprop="dateModified">Last updated: 2021-11-01</time>
                 <a href="module-vtk.html" class="article-footer-prev" title="vtk"><i class="fa fa-chevron-left"></i><span>Prev</span></a><a href="module-deckgl.html" class="article-footer-next" title="deckgl"><span>Next</span><i class="fa fa-chevron-right"></i></a>
               </footer>
               
@@ -116,14 +251,14 @@
           <aside id="article-toc" role="navigation">
             <div id="article-toc-inner">
               <strong class="sidebar-title">Contents</strong>
-              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Paraview"><span class="toc-text">Paraview</span></a></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Paraview"><span class="toc-text">Paraview</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#VtkRemoteView"><span class="toc-text">VtkRemoteView</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#How-to-use-it"><span class="toc-text">How to use it?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Examples"><span class="toc-text">Examples</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VtkLocalView"><span class="toc-text">VtkLocalView</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#How-to-use-it-1"><span class="toc-text">How to use it?</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Interactor-Settings"><span class="toc-text">Interactor Settings</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Examples-1"><span class="toc-text">Examples</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VtkRemoteLocalView"><span class="toc-text">VtkRemoteLocalView</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#How-to-use-it-2"><span class="toc-text">How to use it?</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Namespace-parameter"><span class="toc-text">Namespace parameter</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Mode-parameter"><span class="toc-text">Mode parameter</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Examples-2"><span class="toc-text">Examples</span></a></li></ol></li></ol></li></ol>
               <a href="#" id="article-toc-top">Back to Top</a>
             </div>
           </aside>
         </div>
       </article>
       <aside id="sidebar" role="navigation">
-  <div class="inner"><strong class="sidebar-title">Getting Started</strong><a href="index.html" class="sidebar-link">Introduction</a><a href="getting_started.html" class="sidebar-link">Getting Started</a><strong class="sidebar-title">Tutorial</strong><a href="tutorial.html" class="sidebar-link">Overview</a><a href="tutorial-download.html" class="sidebar-link">Download</a><a href="tutorial-setup-vtk.html" class="sidebar-link">Setup for VTK</a><a href="tutorial-vtk.html" class="sidebar-link">VTK</a><a href="tutorial-layouts.html" class="sidebar-link">Layouts</a><strong class="sidebar-title">Html Modules</strong><a href="module-vuetify.html" class="sidebar-link">vuetify</a><a href="module-vega.html" class="sidebar-link">vega</a><a href="module-markdown.html" class="sidebar-link">markdown</a><a href="module-widgets.html" class="sidebar-link">widgets</a><a href="module-vtk.html" class="sidebar-link">vtk</a><a href="module-paraview.html" class="sidebar-link current">paraview</a><a href="module-deckgl.html" class="sidebar-link">deckgl</a></div>
+  <div class="inner"><strong class="sidebar-title">Getting Started</strong><a href="index.html" class="sidebar-link">Introduction</a><a href="getting_started.html" class="sidebar-link">How to start</a><strong class="sidebar-title">Tutorial</strong><a href="tutorial.html" class="sidebar-link">Overview</a><a href="tutorial-download.html" class="sidebar-link">Download</a><a href="tutorial-setup-vtk.html" class="sidebar-link">Setup for VTK</a><a href="tutorial-vtk.html" class="sidebar-link">VTK</a><a href="tutorial-layouts.html" class="sidebar-link">Layouts</a><strong class="sidebar-title">Html Modules</strong><a href="module-vuetify.html" class="sidebar-link">vuetify</a><a href="module-vega.html" class="sidebar-link">vega</a><a href="module-markdown.html" class="sidebar-link">markdown</a><a href="module-widgets.html" class="sidebar-link">widgets</a><a href="module-vtk.html" class="sidebar-link">vtk</a><a href="module-paraview.html" class="sidebar-link current">paraview</a><a href="module-deckgl.html" class="sidebar-link">deckgl</a></div>
 </aside>
     </div>
   </div>
@@ -165,7 +300,7 @@
       </li>
     </ul>
     
-      <strong class="mobile-nav-title">Getting Started</strong><a href="index.html" class="mobile-nav-link">Introduction</a><a href="getting_started.html" class="mobile-nav-link">Getting Started</a><strong class="mobile-nav-title">Tutorial</strong><a href="tutorial.html" class="mobile-nav-link">Overview</a><a href="tutorial-download.html" class="mobile-nav-link">Download</a><a href="tutorial-setup-vtk.html" class="mobile-nav-link">Setup for VTK</a><a href="tutorial-vtk.html" class="mobile-nav-link">VTK</a><a href="tutorial-layouts.html" class="mobile-nav-link">Layouts</a><strong class="mobile-nav-title">Html Modules</strong><a href="module-vuetify.html" class="mobile-nav-link">vuetify</a><a href="module-vega.html" class="mobile-nav-link">vega</a><a href="module-markdown.html" class="mobile-nav-link">markdown</a><a href="module-widgets.html" class="mobile-nav-link">widgets</a><a href="module-vtk.html" class="mobile-nav-link">vtk</a><a href="module-paraview.html" class="mobile-nav-link current">paraview</a><a href="module-deckgl.html" class="mobile-nav-link">deckgl</a>
+      <strong class="mobile-nav-title">Getting Started</strong><a href="index.html" class="mobile-nav-link">Introduction</a><a href="getting_started.html" class="mobile-nav-link">How to start</a><strong class="mobile-nav-title">Tutorial</strong><a href="tutorial.html" class="mobile-nav-link">Overview</a><a href="tutorial-download.html" class="mobile-nav-link">Download</a><a href="tutorial-setup-vtk.html" class="mobile-nav-link">Setup for VTK</a><a href="tutorial-vtk.html" class="mobile-nav-link">VTK</a><a href="tutorial-layouts.html" class="mobile-nav-link">Layouts</a><strong class="mobile-nav-title">Html Modules</strong><a href="module-vuetify.html" class="mobile-nav-link">vuetify</a><a href="module-vega.html" class="mobile-nav-link">vega</a><a href="module-markdown.html" class="mobile-nav-link">markdown</a><a href="module-widgets.html" class="mobile-nav-link">widgets</a><a href="module-vtk.html" class="mobile-nav-link">vtk</a><a href="module-paraview.html" class="mobile-nav-link current">paraview</a><a href="module-deckgl.html" class="mobile-nav-link">deckgl</a>
     
   </div>
   <div id="mobile-lang-select-wrap">

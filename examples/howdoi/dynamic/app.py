@@ -1,5 +1,3 @@
-# How do I render dynamic content?
-```python
 import asyncio
 from trame import start, get_state, update_state, flush_state
 from trame.layouts import SinglePage
@@ -32,6 +30,3 @@ layout.content.children += [text]
 
 if __name__ == "__main__":
     start(layout)
-```
-
-[... link to full example]

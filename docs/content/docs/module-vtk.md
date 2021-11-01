@@ -13,7 +13,7 @@ The component also provides a convenient method for forcing a render to the clie
 ```python
 from trame.html import vtk
 
-def end_interaction():
+def end():
   pass
 
 remote_view = vtk.vtkRemoteView(
@@ -25,14 +25,48 @@ remote_view = vtk.vtkRemoteView(
     "events", 
     ['EndAnimation'],
   ),
-  EndAnimation=end_interaction, # Bind method to the enabled event
+  EndAnimation=end,       # Bind method to the enabled event
 )
 
 remote_view.update()  # Force image to be pushed to client
 ```
 ## VtkLocalView
+[...]
+<!--
+The VtkLocalView component builds a geometry on the server but renders on the client.
+
+The component allows you to directly tap into a vtk.js interactor events so you can bind your own method from python to them. The list of available events can be found [here](https://github.com/Kitware/vtk-js/blob/b92ad5463150b88514fcb5020c1fa6c7fcfe2a4f/Sources/Rendering/Core/RenderWindowInteractor/index.js#L23-L60). 
+
+The component also provides a convenient method to push a render to the client when you're modifying your scences on the python side.
+
+The component can take a list of settings to configure how the mouse and camera will interact. 
+
+```python
+from trame.html import vtk
+
+def end():
+  pass
+
+local_view = vtk.VtkLocalView(
+  view=...,                # Instance of vtkRenderWindow (required)
+  ref=...,                 # Identifier for this component
+  context_name=...,        # Namespace for geometry cache
+  interactor_settings=..., # Options for camera controls. See below.
+  interactor_events=(      # Enable vtk.js interactor events for method binding
+    "events", 
+    ['EndAnimation'],
+  ),
+  EndAnimation=end,        # Bind method to the enabled event
+
+)
+
+local_view.update()  # Force geometry to be pushed
+```
+
+### interactorSettings 
 For the interactorSettings we expect a list of mouse event type linked to an action. The example below is what is used as default:
 
+```
 interactorSettings=[
   {
     button: 1,
@@ -63,6 +97,7 @@ interactorSettings=[
     shift: true,
   }
 ]
+```
 
 A mouse event can be identified with the following set of properties:
 
@@ -80,29 +115,38 @@ And the action could be one of the following:
     Roll: Will rotate the object around the view direction
     ZoomToMouse: Will zoom while keeping the location that was initially under the mouse at the same spot
 
+-->
 ## VtkRemoteLocalView
-The VtkRemoteLocalView component renders on the client a geometry which is made on the server.
+[...]
+<!--
+The VtkRemoteLocalView can change between remote and local rendering modes.
 
-The component allows you to directly tap into a vtk.js interactor events so you can bind your own method from python to them. The list of available events can be found [here](https://github.com/Kitware/vtk-js/blob/b92ad5463150b88514fcb5020c1fa6c7fcfe2a4f/Sources/Rendering/Core/RenderWindowInteractor/index.js#L23-L60). 
-
-The component also provides a convenient method for forcing a render to the client when you're modifying your scences on the python side.
+It will create several Trame variables and events which can control which mode it is currently or to track animations.
 
 ```python
 from trame.html import vtk
 
+def end():
+  pass
+
 rl_view = vtk.VtkRemoteLocalView(
   view=...,                # Instance of vtkRenderWindow (required)
-  mode="local",            # Decide between local or remote. See below.
-  context_name=...,        # Namespace for geometry cache
-  interactor_settings=..., # Options for camera controls
-  namespace=...,           # Prefix for variables and triggers. See below.
-  interactive_ratio=...,   # [0.1, 1] Image size scale factor while interacting
   interactor_events=(      # Enable vtk.js interactor events for method binding
     "events", 
     ['EndAnimation'],
   ),
-  EndAnimation=end_interaction, # Bind method to the enabled event
+  EndAnimation=end,        # Bind method to the enabled event
 
+  # Just VtkRemoteView params
+  interactive_ratio=...,   # [0.1, 1] Image size scale factor while interacting
+
+  # Just VtkLocalView params
+  context_name=...,        # Namespace for geometry cache
+  interactor_settings=..., # Options for camera controls
+
+  # Just VtkRemoteLocalView params
+  namespace=...,           # Prefix for variables and triggers. See below.
+  mode="local",            # Decide between local or remote. See below.
 )
 
 rl_view.update_geometry()  # Force update to geometry
@@ -110,35 +154,32 @@ rl_view.update_image()     # Force update to image
 rl_view.view()             # Get linked vtkRenderWindow instance
 ```
 
-### Mode
+### Namespace parameter
+Constructing a VtkRemoteLocalView will set several Trame keys, optinally prefixed by a namespace:
 
-1) String
-Just "local" or "remote"
+    "mode" # This will store "local" or "remote"
+    "id"   # This identifies the view 
 
-2) Length 1
-js eval
+Constructing a VtkRemoteLocalView will also set several Trame triggers, optinally prefixed by a namespace:
 
-3) Length 2
-js eval, initial namespace+mode
+    "camera"       # [...]
+    "animateStop"  # [...]
+    "animateStart" # [...]
 
-mode = ("override", initial)
 
-Pywebvue Vtk trame state
-# init keys
-self.ref_key = namespace
-self.mode_key = f"{namespace}Mode" if namespace else "mode"
-self.scene_key = f"{namespace}Scene" if namespace else "scene"
-self.camera_key = f"{namespace}Camera" if namespace else "camera"
-self.animation_key = f"{namespace}Animate" if namespace else "animate"
-self.id_key = f"{namespace}Id" if namespace else "id"
+### Mode parameter
+When constructing a vtkRemoteLocalView, the "mode" parameter can take several values.
+1) mode="local" or mode="remote"
+This will set the (optionally namespaced) shared state key "mode" to that particular mode.
 
-# Attach annotations
-self._app.set(self.id_key, self._view_id)
-self._app.set(self.mode_key, mode)
-self._app.trigger(self.camera_key)(self.update_camera)
-self._app.trigger(f"{self.animation_key}Start")(self.start_animation)
-self._app.trigger(f"{self.animation_key}Stop")(self.stop_animation)
 
+2) mode=("...js expression",)
+Passing a tuple with length 1 will interpret the value in the tuple as a javascript expression and use the result of that expression when looking up the mode. See example [here](https://github.com/Kitware/trame/blob/f6594a02ed7e1ecc24058ffac527e010e8181e22/examples/VTK/ContourGeometry/DynamicLocalRemoteRendering.py#L88).
+
+
+3) mode=("...js expression", `initial_mode`)
+This will do the same as 2) above, but it will also ensure the initial mode is set to `initial_mode`.
+-->
 
 <!--
 # VtkAlgorithm

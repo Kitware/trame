@@ -6,7 +6,7 @@ A container which floats above the application and can be moved freely from a ha
 <center>
   <figure>
     <img src="./module-widgets-floatcard.gif" width="400px"/>
-    <figcaption> FloatCard example (source <a href="#">here</a>)</figcaption>
+    <figcaption> FloatCard example (source <a href="https://github.com/Kitware/trame/tree/master/examples/Modules/Widgets/FloatCard/app.py">here</a>)</figcaption>
   </figure>
 </center>
 

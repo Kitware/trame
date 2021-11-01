@@ -1,3 +1,10 @@
+## [1.3.2](https://github.com/kitware/trame/compare/v1.3.1...v1.3.2) (2021-11-01)
+
+
+### Bug Fixes
+
+* **version:** set dev version to just "dev" ([3c98723](https://github.com/kitware/trame/commit/3c98723556352b8382e36e21790a79d8ea015ed4))
+
 ## [1.3.1](https://github.com/kitware/trame/compare/v1.3.0...v1.3.1) (2021-11-01)
 
 

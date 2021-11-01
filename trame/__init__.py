@@ -3,7 +3,10 @@ import inspect
 
 from pywebvue import App
 
-__version__ = "1.3.0"
+from trame.utils.version import get_version
+
+__version__ = get_version()
+
 
 NEXT_TRIGGER_ID = 0
 TRIGGER_MAP = {}

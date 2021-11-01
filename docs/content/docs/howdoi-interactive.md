@@ -1,4 +1,9 @@
 # How do I display interactive UI?
+
+This example illustrate how the shared state works by having method modifing it along with several components showing its value and letting the user edit it.
+
+## Code
+
 ```python
 initial_number = 5
 
@@ -26,4 +31,6 @@ controls = [
 ]
 ```
 
-[... link to full example]
+## Example
+
+- [Code above](https://github.com/Kitware/trame/blob/master/examples/howdoi/interactive.py)

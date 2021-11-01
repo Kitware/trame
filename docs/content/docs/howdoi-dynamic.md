@@ -1,4 +1,11 @@
 # How do I render dynamic content?
+
+This example illustrate how the server can dynamically change the value of variable and make them reflect on the client automatically.
+
+This example is a little bit more complicated as it involve coding some asynchronous Python logic, but the key point to keep in mind is that the variable will automatically propagate to the client when changed on the server. The `flush_state` is only required when the server modify variable in an asynchronous manner.
+
+## Code
+
 ```python
 import asyncio
 from trame import start, get_state, update_state, flush_state
@@ -34,4 +41,6 @@ if __name__ == "__main__":
     start(layout)
 ```
 
-[... link to full example]
+## Example
+
+- [Code above](https://github.com/Kitware/trame/blob/master/examples/howdoi/dynamic.py)

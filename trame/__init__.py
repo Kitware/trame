@@ -174,6 +174,7 @@ def update_state(key, value=None):
     """
     _app = get_app_instance()
     _app.set(key, value)
+    return value
 
 
 # -----------------------------------------------------------------------------
@@ -194,11 +195,14 @@ def get_state(*names):
         List of value matching the requested state property names
     """
     _app = get_app_instance()
-    results = []
-    for name in names:
-        results.append(_app.get(name))
 
-    return results
+    if len(names):
+        results = []
+        for name in names:
+            results.append(_app.get(name))
+        return results
+
+    return _app.state
 
 
 def update_layout(layout):

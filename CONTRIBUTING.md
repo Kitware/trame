@@ -11,13 +11,13 @@ Open a new issues [here](https://github.com/Kitware/trame/issues/new/choose) to 
 ## Development
 We recommend this workflow when working on Trame
 
-1. Fork and clone this repository (instructions [here](https://help.github.com/articles/fork-a-repo/)
+1. Fork and clone this repository (instructions [here](https://help.github.com/articles/fork-a-repo/))
 
 2. Create a python virtual environment for development, eg
 ```sh
 cd trame
-python3 -m venv pylib
-source pylib/bin/activate
+python3 -m venv .venv
+source .venv/bin/activate
 ```
 
 3. `pip` install Trame in "editable mode." This will let python respond to any changes you make to Trame itself.
@@ -32,10 +32,15 @@ edit file1 file2 file3
 git add file1 file2 file3
 ```
 
-5. Use Commitizen to create commits
+5. Use Commitizen to create commits or follow [Angular commit message conventions](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#-commit-message-format).
 
+To run commitizen, you will need to install the project tools.
 ```sh
-$ npm run commit
+npm install 
+```
+Then for each commit you can run this.
+```sh
+npm run commit
 ```
 
 6. Push commits in your feature branch to your fork in GitHub:

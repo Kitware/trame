@@ -1,3 +1,10 @@
+## [1.3.6](https://github.com/kitware/trame/compare/v1.3.5...v1.3.6) (2021-11-02)
+
+
+### Bug Fixes
+
+* **html:** Allow user to list custom prop/event ([72e91c5](https://github.com/kitware/trame/commit/72e91c587491b951a81682fc0d51cd0899d80bdc))
+
 ## [1.3.5](https://github.com/kitware/trame/compare/v1.3.4...v1.3.5) (2021-11-02)
 
 

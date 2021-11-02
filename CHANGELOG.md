@@ -1,3 +1,10 @@
+## [1.3.5](https://github.com/kitware/trame/compare/v1.3.4...v1.3.5) (2021-11-02)
+
+
+### Bug Fixes
+
+* **api:** add flexibility to get_state and update_state ([de251dd](https://github.com/kitware/trame/commit/de251dd4f867baa318a0d9c2b2ba0b28e9a68987))
+
 ## [1.3.4](https://github.com/kitware/trame/compare/v1.3.3...v1.3.4) (2021-11-01)
 
 

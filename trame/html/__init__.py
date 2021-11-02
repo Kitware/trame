@@ -40,8 +40,8 @@ class AbstractElement:
         self._id = AbstractElement._next_id
         self._elem_name = name
         self._allowed_keys = set()
-        self._attr_names = []
-        self._event_names = []
+        self._attr_names = kwargs.get("__properties", [])
+        self._event_names = kwargs.get("__events", [])
 
         self._attributes = {}
         self._txt = None
@@ -72,7 +72,7 @@ class AbstractElement:
             "v_for",
             ("key", ":key"),
         ]
-        self._event_names += ["click", "mousedown", "mouseup", "contextmenu"]
+        self._event_names += ["click", "mousedown", "mouseup", "mouseenter", "mouseleave", "contextmenu"]
 
         # Add ourself to context is any
         HTML_CTX.add_child(self)

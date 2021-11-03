@@ -3,20 +3,18 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to trame's documentation!
+Welcome to Trame's documentation!
 =================================
+
+This is the auto-generated API docs, but the project website is `here <https://kitware.github.io/trame/>`_ with additional guides.
+All classes are listed in the :ref:`genindex`.
 
 .. toctree::
    :maxdepth: 1
-   :caption: Contents:
 
    trame
    trame.html
    trame.layouts
 
-Indices and tables
-==================
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+

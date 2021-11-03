@@ -13,14 +13,15 @@
 import os
 import sys
 
-sys.path.insert(0, "/home/drew/Desktop/trame/trame")
+this_dir = os.path.dirname(os.path.realpath(__file__))
+sys.path.insert(0, os.path.join(this_dir, "/../../../trame"))
 
 
 # -- Project information -----------------------------------------------------
 
-project = "trame"
-copyright = "2021, Author"
-author = "Author"
+project = "Trame"
+copyright = "2021, Kitware Inc."
+author = "Kitware Inc."
 
 
 # -- General configuration ---------------------------------------------------
@@ -75,4 +76,4 @@ html_static_path = ["_static"]
 todo_include_todos = True
 
 
-autodoc_mock_imports = ["vtkmodules.vtkWebCore", "vtkmodules.web", "paraview"]
+autodoc_mock_imports = ["vtkmodules.vtkWebCore", "vtkmodules.web", "pywebvue.modules"]

@@ -49,8 +49,8 @@
 <meta property="og:description" content="VuetifyVuetify is a UI Library with beautifully handcrafted Material Components. No design skills required — everything you need to create amazing applications is at your fingertips.  How to use it?Tr">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://kitware.github.io/trame/images/module-vuetify.jpg">
-<meta property="article:published_time" content="2021-11-03T17:08:24.556Z">
-<meta property="article:modified_time" content="2021-11-03T17:08:24.556Z">
+<meta property="article:published_time" content="2021-11-03T22:53:38.239Z">
+<meta property="article:modified_time" content="2021-11-03T22:53:38.239Z">
 <meta property="article:author" content="Kitware Inc.">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://kitware.github.io/trame/images/module-vuetify.jpg">
@@ -107,15 +107,15 @@
               <div class="article-content" itemprop="articleBody">
                 <h1 id="Vuetify" class="article-heading"><a href="#Vuetify" class="headerlink" title="Vuetify"></a>Vuetify<a class="article-anchor" href="#Vuetify" aria-hidden="true"></a></h1><p>Vuetify is a UI Library with beautifully handcrafted Material Components. No design skills required — everything you need to create amazing applications is at your fingertips.</p>
 <p><a target="_blank" rel="noopener" href="https://vuetifyjs.com/en/"><img src="/trame/images/module-vuetify.jpg" alt="Vuetify WebSite"></a></p>
-<h2 id="How-to-use-it" class="article-heading"><a href="#How-to-use-it" class="headerlink" title="How to use it?"></a>How to use it?<a class="article-anchor" href="#How-to-use-it" aria-hidden="true"></a></h2><p>Trame wraps Vuetify as it’s primary UI Component Library. The original <a target="_blank" rel="noopener" href="https://vuetifyjs.com/en/">Vuetify’s website</a> is very well made for exploring components and understanding components parameters and controls.</p>
+<h2 id="How-to-use-it" class="article-heading"><a href="#How-to-use-it" class="headerlink" title="How to use it?"></a>How to use it?<a class="article-anchor" href="#How-to-use-it" aria-hidden="true"></a></h2><p>Trame wraps Vuetify as it’s primary UI Component Library. The <a target="_blank" rel="noopener" href="https://vuetifyjs.com/en/">Vuetify website</a> is very well made for exploring components and understanding components parameters and controls.</p>
 <p>The way trame translate Vue templates into plain Python code is by doing the following.</p>
-<h3 id="Material-Components" class="article-heading"><a href="#Material-Components" class="headerlink" title="Material Components"></a>Material Components<a class="article-anchor" href="#Material-Components" aria-hidden="true"></a></h3><p>First you need to import the <code>vuetify</code> module so you can instantiate the various Material Components like illustrated below. Moreover, in the documentation the component names use <code>dashes</code> as separators while in Python we use the Camelcase notation for the class name.</p>
+<h3 id="Material-Components" class="article-heading"><a href="#Material-Components" class="headerlink" title="Material Components"></a>Material Components<a class="article-anchor" href="#Material-Components" aria-hidden="true"></a></h3><p>First you need to import the <code>vuetify</code> module so you can instantiate the various Material Components like illustrated below. Moreover, in the documentation the component names use dashes as separators while in Python we use the Camelcase notation for the class name.</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> trame.html <span class="keyword">import</span> vuetify</span><br><span class="line"></span><br><span class="line"><span class="comment"># &lt;v-btn&gt;Hello World&lt;/v-btn&gt;</span></span><br><span class="line">btn = vuetify.VBtn(<span class="string">&quot;Hello World&quot;</span>)</span><br></pre></td></tr></table></figure>
 
-<h3 id="Boolean-attributes" class="article-heading"><a href="#Boolean-attributes" class="headerlink" title="Boolean attributes"></a>Boolean attributes<a class="article-anchor" href="#Boolean-attributes" aria-hidden="true"></a></h3><p>Implicit attribute values must be explicit in Python by assigning <code>True</code> to them.</p>
+<h3 id="Boolean-attributes" class="article-heading"><a href="#Boolean-attributes" class="headerlink" title="Boolean attributes"></a>Boolean attributes<a class="article-anchor" href="#Boolean-attributes" aria-hidden="true"></a></h3><p>Implicit attribute values must be made explicit in Python by assigning <code>True</code> to them.</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># &lt;v-text-field disabled /&gt;</span></span><br><span class="line">vuetify.VTextField(disabled=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
 
-<h3 id="Dash-and-colon-separators" class="article-heading"><a href="#Dash-and-colon-separators" class="headerlink" title="Dash and colon separators"></a>Dash and colon separators<a class="article-anchor" href="#Dash-and-colon-separators" aria-hidden="true"></a></h3><p>Any special caracters (<code>-</code> and <code>:</code>) become <code>_</code> in Python.</p>
+<h3 id="Dash-and-colon-separators" class="article-heading"><a href="#Dash-and-colon-separators" class="headerlink" title="Dash and colon separators"></a>Dash and colon separators<a class="article-anchor" href="#Dash-and-colon-separators" aria-hidden="true"></a></h3><p>Any special characters (<code>-</code> and <code>:</code>) become <code>_</code> in Python.</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># &lt;v-text-field v-model=&quot;myText&quot; /&gt;</span></span><br><span class="line">vuetify.VTextField(v_model=(<span class="string">&quot;myText&quot;</span>,))</span><br></pre></td></tr></table></figure>
 
 <h3 id="Events" class="article-heading"><a href="#Events" class="headerlink" title="Events"></a>Events<a class="article-anchor" href="#Events" aria-hidden="true"></a></h3><p>Events in vue are prefixed with a <code>@</code> but in Python we declare them the same way we declare regular attributes.</p>
@@ -125,7 +125,7 @@
 <ul>
 <li><a target="_blank" rel="noopener" href="https://github.com/Kitware/trame/blob/master/examples/VTK/ContourGeometry/DynamicLocalRemoteRendering.py#L96-L132">VTK/ContourGeometry</a> has a Toggle buttons group, switch, slider and a button.</li>
 <li><a target="_blank" rel="noopener" href="https://github.com/Kitware/trame/blob/master/examples/PlainPython/Markdown/Simple.py#L27-L32">PlainPython/Markdown</a> has a drop down to select which file to load.</li>
-<li><a target="_blank" rel="noopener" href="https://github.com/Kitware/trame/blob/master/examples/PlainPython/GeoMaps/UberPickupsNYC/app.py#L38-L44">GeoMaps/UberPickupsNYC</a> use Row and Cols to manage content layout.</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/Kitware/trame/blob/master/examples/PlainPython/GeoMaps/UberPickupsNYC/app.py#L38-L44">GeoMaps/UberPickupsNYC</a> use Row and Cols to manage content in a grid layout.</li>
 </ul>
 <!--
 ## Evaluating properties
@@ -135,7 +135,7 @@ Trame evaluates properties if they are wrapped in a tuple.
 -->
               </div>
               <footer class="article-footer">
-                <time class="article-footer-updated" datetime="2021-11-03T17:08:24.556Z" itemprop="dateModified">Last updated: 2021-11-03</time>
+                <time class="article-footer-updated" datetime="2021-11-03T22:53:38.239Z" itemprop="dateModified">Last updated: 2021-11-03</time>
                 <a href="tutorial-html.html" class="article-footer-prev" title="HTML"><i class="fa fa-chevron-left"></i><span>Prev</span></a><a href="module-vega.html" class="article-footer-next" title="vega"><span>Next</span><i class="fa fa-chevron-right"></i></a>
               </footer>
               

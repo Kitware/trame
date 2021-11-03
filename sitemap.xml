@@ -9,13 +9,6 @@
   </url>
   
   <url>
-    <loc>https://kitware.github.io/trame/docs/vuetify-decoder.html</loc>
-    
-    <lastmod>2021-11-03</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://kitware.github.io/trame/examples/index.html</loc>
     
     <lastmod>2021-11-03</lastmod>
@@ -178,6 +171,13 @@
   
   <url>
     <loc>https://kitware.github.io/trame/docs/tutorial.html</loc>
+    
+    <lastmod>2021-11-03</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/vuetify-decoder.html</loc>
     
     <lastmod>2021-11-03</lastmod>
     

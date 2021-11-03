@@ -41,15 +41,15 @@
   <!-- RSS -->
   <link rel="alternate" href="/trame/atom.xml" title="Trame" type="application/atom+xml">
   <!-- Open Graph -->
-  <meta name="description" content="LayoutsTo simplify create the graphical user interface (GUI) for the web application, Trame defines layouts such as FullScreenPage, SinglePage, and SinglePageWithDrawer.  All core layouts start with a">
+  <meta name="description" content="LayoutsTo simplify creation of the graphical user interface (GUI) for the web application, Trame defines layouts such as FullScreenPage, SinglePage, and SinglePageWithDrawer.  All core layouts start w">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Trame">
 <meta property="og:url" content="https://kitware.github.io/trame/docs/tutorial-layouts.html">
 <meta property="og:site_name" content="Trame">
-<meta property="og:description" content="LayoutsTo simplify create the graphical user interface (GUI) for the web application, Trame defines layouts such as FullScreenPage, SinglePage, and SinglePageWithDrawer.  All core layouts start with a">
+<meta property="og:description" content="LayoutsTo simplify creation of the graphical user interface (GUI) for the web application, Trame defines layouts such as FullScreenPage, SinglePage, and SinglePageWithDrawer.  All core layouts start w">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-11-03T17:08:24.556Z">
-<meta property="article:modified_time" content="2021-11-03T17:08:24.556Z">
+<meta property="article:published_time" content="2021-11-03T22:53:38.239Z">
+<meta property="article:modified_time" content="2021-11-03T22:53:38.239Z">
 <meta property="article:author" content="Kitware Inc.">
 <meta name="twitter:card" content="summary">
   <!-- Google Analytics -->
@@ -103,7 +103,7 @@
                 <h1 class="article-title" itemprop="name"></h1>
               </header>
               <div class="article-content" itemprop="articleBody">
-                <h1 id="Layouts" class="article-heading"><a href="#Layouts" class="headerlink" title="Layouts"></a>Layouts<a class="article-anchor" href="#Layouts" aria-hidden="true"></a></h1><p>To simplify create the graphical user interface (GUI) for the web application, Trame defines layouts such as <code>FullScreenPage</code>, <code>SinglePage</code>, and <code>SinglePageWithDrawer</code>. </p>
+                <h1 id="Layouts" class="article-heading"><a href="#Layouts" class="headerlink" title="Layouts"></a>Layouts<a class="article-anchor" href="#Layouts" aria-hidden="true"></a></h1><p>To simplify creation of the graphical user interface (GUI) for the web application, Trame defines layouts such as <code>FullScreenPage</code>, <code>SinglePage</code>, and <code>SinglePageWithDrawer</code>. </p>
 <p>All core layouts start with a <code>VApp</code> (Vuetifies <code>v-app</code>) component. The <code>VApp</code> is <strong>REQUIRED</strong> for all applications. It is the mount point for other Vuetify components and functionality and ensures that it propagates the default application variant (dark/light) to children components while ensuring proper cross-browser support for certain click events in browsers like Safari. <code>VApp</code> should only be rendered within your application <strong>ONCE</strong>.</p>
 <p>More on Vuetify in the next chapter of the tutorial.</p>
 <p>Each of these layouts can be utilized by importing, instantiating, and adding via the <code>start</code> function.</p>
@@ -119,7 +119,7 @@
 
 <p>The <code>FullScreenPage</code> is really a blank canvas to add your desired Vuetify components.</p>
 <h2 id="SinglePage" class="article-heading"><a href="#SinglePage" class="headerlink" title="SinglePage"></a><code>SinglePage</code><a class="article-anchor" href="#SinglePage" aria-hidden="true"></a></h2><p>The <code>SinglePage</code> extends the <code>FullScreenPage</code> with a few predifined components such as <em>logo</em>, <em>title</em>, <em>toolbar</em>, <em>content</em>, and <em>footer</em>.</p>
-<p>The <em>logo</em> and <em>title</em> sit on the left-hand side of the <em>toolbar</em> and customized as necessary. The logo accepts an 32x32 image or an VIcon suachas those found at <a target="_blank" rel="noopener" href="https://materialdesignicons.com/">Material Design Icons</a>. The <em>toolbar</em> itself exposes its <em>children</em> array where one can add components as needed. The <em>footer</em> can be hidden, but currently has Trame branding and the progress bar. The <em>content</em> has a <em>children</em> array to which you may add your desired Vuetify components.</p>
+<p>The <em>logo</em> and <em>title</em> sit on the left-hand side of the <em>toolbar</em> and customized as necessary. The logo accepts an 32x32 image or an VIcon such as those found at <a target="_blank" rel="noopener" href="https://materialdesignicons.com/">Material Design Icons</a>. The <em>toolbar</em> itself exposes its <em>children</em> array where one can add components as needed. The <em>footer</em> can be hidden, but currently has Trame branding and the progress bar. The <em>content</em> has a <em>children</em> array to which you may add your desired Vuetify components.</p>
 <p><strong>First</strong>, we import the <code>SinglePage</code> class.</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> trame.layouts <span class="keyword">import</span> SinglePage</span><br></pre></td></tr></table></figure>
 
@@ -143,7 +143,7 @@
 
               </div>
               <footer class="article-footer">
-                <time class="article-footer-updated" datetime="2021-11-03T17:08:24.556Z" itemprop="dateModified">Last updated: 2021-11-03</time>
+                <time class="article-footer-updated" datetime="2021-11-03T22:53:38.239Z" itemprop="dateModified">Last updated: 2021-11-03</time>
                 <a href="tutorial-vtk.html" class="article-footer-prev" title="VTK"><i class="fa fa-chevron-left"></i><span>Prev</span></a><a href="tutorial-html.html" class="article-footer-next" title="HTML"><span>Next</span><i class="fa fa-chevron-right"></i></a>
               </footer>
               

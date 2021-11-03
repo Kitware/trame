@@ -6,7 +6,7 @@ So we want to start adding VTK visualizations to our application.
 
 Start with the initial *setup-vtk* `app.py`.
 
-**First**, we need to add is an import for `vtk` and `vuetify` from `trame.html`.
+**First**, what we need to add is an import for `vtk` and `vuetify` from `trame.html`.
 
 ```python
 from trame.html import vtk, vuetify
@@ -14,7 +14,7 @@ from trame.html import vtk, vuetify
 
 This provides us access to Trame's helper functions for vtk and vuetify.
 
-**Next**, we will need to import the required objects from vtk. Here we will visualize a simple cone in this example so we will need `vtkConeSource`.
+**Next**, we will need to import the required objects from vtk. We will visualize a simple cone in this example so we will need `vtkConeSource`.
 
 ```python
 from vtkmodules.vtkFiltersSources import vtkConeSource
@@ -113,7 +113,7 @@ Why do we care about *local* and *remote* rendering? Well each method of renderi
 *Advantages*
 
 - The server doesn't need a graphics processing unit (GPU). Systems with GPUs are expensive to purchase and expensive to rent (Cloud). These costs are pushed to the end-points on end-users.
-- The frames per second rendering is higher. Advancements in the browser access to local GPU resources implies that the performance is nearly as good as available to a desktop application.
+- The frames per second rendering is higher. Advancements in the browser's access to local GPU resources implies that the performance is nearly as good as available to a desktop application.
 
 *Disadvantages*
 
@@ -189,7 +189,7 @@ cd examples/Tutorial/VTK
 python ./app.py --port 1234
 ```
 
-Open browser to `http://localhost:1234/`
+Open a browser to `http://localhost:1234/`
 
 ## Interaction
 
@@ -343,4 +343,4 @@ cd examples/Tutorial/VTK
 python ./Carotid.py --port 1234
 ```
 
-Open browser to `http://localhost:1234/`
+Open a browser to `http://localhost:1234/`

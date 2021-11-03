@@ -314,8 +314,8 @@ def trigger_key(_fn):
 
 def change(*_args, **_kwargs):
     """
-    @change decorator allow to register a function in a way that it will be
-    automatically called when the given list of state names get modified.
+    The @change decorator allows us to register a function so that it will be
+    automatically called when the given list of state names gets modified.
 
     The decorated function is passed the full state as *kwarg when possible.
     This means you should have a method profile similar to `fn(..., *kwargs)`

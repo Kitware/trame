@@ -1,6 +1,6 @@
 # How do I render static content?
 
-This example illustrate how you can simply add static HTML content to your page.
+This example illustrates how you can simply add static HTML content to your page.
 
 ## Code
 

@@ -4,7 +4,7 @@ Markdown is a lightweight markup language that you can use to add formatting ele
 
 ![Simple example](/trame/images/module-markdown.jpg)
 
-Inside Trame it might be usefull to use markdown to simplify the writing of long description and help when some formatting is expected.
+Inside Trame it might be useful to use markdown to simplify the writing of long description and help when some formatting is expected.
 
 ## How to use it?
 
@@ -25,7 +25,7 @@ markdown.Markdown(
 )
 ```
 
-Trame rely on markdown-it-vue (see documentation [here](http://www.aqcoder.com/markdown)) which support the following set of plugins:
+Trame relies on markdown-it-vue (see documentation [here](http://www.aqcoder.com/markdown)) which supports the following set of plugins:
 - Official markdown syntax
 - [AsciiMath](http://asciimath.org/)
 - Images with size-control
@@ -35,4 +35,4 @@ Trame rely on markdown-it-vue (see documentation [here](http://www.aqcoder.com/m
 
 ## Examples
 
-- [PlainPython/Markdown](https://github.com/Kitware/trame/blob/master/examples/PlainPython/Markdown/Simple.py) reads Markdown files and display them
+- [PlainPython/Markdown](https://github.com/Kitware/trame/blob/master/examples/PlainPython/Markdown/Simple.py) reads Markdown files and displays them

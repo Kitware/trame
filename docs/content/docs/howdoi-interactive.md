@@ -1,6 +1,6 @@
 # How do I display interactive UI?
 
-This example illustrate how the shared state works by having method modifing it along with several components showing its value and letting the user edit it.
+This example illustrates how the shared state works by having a method modifing it along with several components showing its value and letting the user edit it.
 
 ## Code
 

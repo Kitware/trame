@@ -20,9 +20,9 @@ python ./app.py --port 1234
 
 Open browser to `http://localhost:1234/`
 
-**Note**: The default port is 8080, but since this is very common we will use 1234 for our **Tutorial**.
+**Note**: The default port is 8080, but since this is very common we will use 1234 for our Tutorial.
 
-Note: If you are running this on a remote machine, then on Linux you define the host to be open (0.0.0.0) to any external connection.
+**Note**: If you are running this on a remote machine, then on Linux you define the host to be open (0.0.0.0) to any external connection.
 
 ```
 python ./app.py --port 1234 --host 0.0.0.0
@@ -41,7 +41,7 @@ from trame.layouts import SinglePage
 
 From **Trame** we import the method for starting the Web server, and from Trame's `layouts`, we import a skeleton for a single page client application.
 
-Next, we define the graaphics user interface (GUI) using a bare minimum of options. We instantiate a `SinglePage` GUI setting the browser tab title as `"Hello Trame"`, and then set the GUI `title.content` to hold `"Hello Trame"`.
+Next, we define the graphical user interface (GUI) using a bare minimum of options. We instantiate a `SinglePage` GUI setting the browser tab title as `"Hello Trame"`, and then set the GUI `title.content` to hold `"Hello Trame"`.
 
 ```
 layout = SinglePage("Hello Trame")
@@ -55,6 +55,6 @@ if __name__ == "__main__":
     start(layout)
 ```
 
-`start` can take a number of optional arguments. In this case, we pass in the optional GUI `layout`. if not provided, `start` will look for a `./template.html`.
+`start` can take a number of optional arguments. In this case, we pass in the optional GUI `layout`. If not provided, `start` will look for a `./template.html`.
 
-You can also optionally set tab *name*, *favicon*, *port* number, and *on_ready* function to call when the server is up and running. However, these items can either be set with command-line arguments (--port 1234) or with calls exposed through the SinglePage layout.
+You can also optionally set the tab *name*, a *favicon*, a *port* number, and an *on_ready* function to call when the server is up and running. However, these items can either be set with command-line arguments (`--port 1234`) or with calls exposed through the SinglePage layout.

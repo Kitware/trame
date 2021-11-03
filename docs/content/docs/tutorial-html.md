@@ -68,7 +68,7 @@ From here, we have two capabilities
 - `get_state` - returns the value of a given state variable.
 - `update_state` - intializes, if not previously defined, or updates a state variable.
 
-Let's look at an expmle leveraging the previously defined text field.
+Let's look at an example leveraging the previously defined text field.
 
 ```python
 def increment_weight():
@@ -97,15 +97,15 @@ In the `increment_weight` function, we use the `get_state` function to access th
 
 Let's modify the Hello Trame app to add some GUI elements!
 
-So with the `SinglePage` layout, we could add UI elements to either the `toolbar`, `content`, and `footer`. We'll limit ourself to the `toolbar`, but the proceedure is still the same. Let us add to the right side of the `toolbar` a switch to toggle between light and dark mode of the application and a button to reset the view after panning and zooming.
+So with the `SinglePage` layout, we could add UI elements to either the `toolbar`, `content`, or the `footer`. We'll limit ourself to the `toolbar`, but the proceedure is still the same. Let us add to the right side of the `toolbar` a switch to toggle between light and dark mode of the application and a button to reset the view after panning and zooming.
 
 - The VSpacer Vuetify component pushes the extra space on the left side of the component. 
 
-- The VSwitch component toggle s between two different states. In this case, we will update a Vuetify variable vuetify.theme.dark. The hide_details attribute creates a smaller, tighter switch.
+- The VSwitch component toggles between two different states. In this case, we will update a Vuetify variable vuetify.theme.dark. The hide_details attribute creates a smaller, tighter switch.
 
-- The VBtn component is a button. We decorate the button with a VIcon component where the argument is a String identifying the [Material Design Icons](https://materialdesignicons.com/) insead of text in this case. The VBtn icon attribute provides proper sizing and padding for the icon. Finally, the click attribute tells the application what method to call when the button is pressed. In this case, we use an interal Trame function, `$refs.view.resetCamera()`. 
+- The VBtn component is a button. We decorate the button with a VIcon component where the argument is a String identifying the [Material Design Icons](https://materialdesignicons.com/) instead of text in this case. The VBtn icon attribute provides proper sizing and padding for the icon. Finally, the click attribute tells the application what method to call when the button is pressed. In this case, we use an internal Trame function, `$refs.view.resetCamera()`. 
 
-**Note**: A ref (reference) is made `vtk.VtkLocalView(renderWindow)` or `vtk.VtkRemoteView(renderWindow)`. By default, `ref="view"`. If you would like to change this or add additional views, the use `vtk.VtkLocalView(renderWindow, ref="newViewName")`.
+**Note**: A ref (reference) is made by `vtk.VtkLocalView(renderWindow)` or `vtk.VtkRemoteView(renderWindow)`. By default, `ref="view"`. If you would like to change this or add additional views, the use `vtk.VtkLocalView(renderWindow, ref="newViewName")`.
 
 We add all the Vuetify components in a *flow* from left to right, top to bottom to the `layout.toolbar.children` array.
 
@@ -126,7 +126,7 @@ layout.toolbar.children += [
 
 ## `with` Construct
 
-The Python `with` construct can be used in our Veutify GUI creation to make the code cleaner and much more readable. You use the `with` construct to add components to a component. The `toolbar` is a component, so we can add the `VSpacer`, `VSwitch`, and `VBtn`. The `VBtn` is a component that we want to decorate with a `VIcon` component, so we use the with construct with the `VBtn` to accomplish this effect.
+The Python `with` construct can be used in our Vuetify GUI creation to make the code cleaner and much more readable. You use the `with` construct to add components to a component. The `toolbar` is a component, so we can add the `VSpacer`, `VSwitch`, and `VBtn`. The `VBtn` is a component that we want to decorate with a `VIcon` component, so we use the with construct with the `VBtn` to accomplish this effect.
 
 ```python
 with layout.toolbar:

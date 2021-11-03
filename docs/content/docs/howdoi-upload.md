@@ -1,6 +1,6 @@
 # How do I upload a file
 
-Sometime user has to push file to the server so the server can process it. In Trame we rely on the state to achieve that exchange.
+Sometimes a user has to push a file to the server so the server can process it. In Trame we rely on the shared state to achieve that exchange.
 In the example below we use [vuetify.VFileInput](https://vuetifyjs.com/en/components/file-inputs/) to set a JavaScript `File` into a state variable.
 
 ## Code

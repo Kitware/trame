@@ -1,8 +1,8 @@
 # How do I render dynamic content?
 
-This example illustrate how the server can dynamically change the value of variable and make them reflect on the client automatically.
+This example illustrates how the server can dynamically change the value of a variable and make them reflect on the client automatically.
 
-This example is a little bit more complicated as it involve coding some asynchronous Python logic, but the key point to keep in mind is that the variable will automatically propagate to the client when changed on the server. The `flush_state` is only required when the server modify variable in an asynchronous manner.
+This example is a little bit more complicated as it involve coding some asynchronous Python logic, but the key point is that the variable will automatically propagate to the client when changed on the server. The `flush_state` is only required when the server modifies variables in an asynchronous manner.
 
 ## Code
 

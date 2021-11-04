@@ -1,6 +1,6 @@
 from trame import start, change, update_state, get_state
 from trame.layouts import SinglePageWithDrawer
-from trame.html import Div, vtk, vuetify
+from trame.html import Div, vtk, vuetify, widgets
 
 from vtkmodules.vtkIOXML import (
     vtkXMLUnstructuredGridReader,
@@ -24,12 +24,12 @@ from vtkmodules.vtkRenderingCore import (
 )
 
 # Required for interacter factory initialization
-from vtkmodules.vtkInteractionStyle import vtkInteractorStyleSwitch #noqa
+from vtkmodules.vtkInteractionStyle import vtkInteractorStyleSwitch  # noqa
 
-# Required for remote rendering factory initialization, not necessary for 
+# Required for remote rendering factory initialization, not necessary for
 # local rendering, but doesn't hurt to include it
 
-import vtkmodules.vtkRenderingOpenGL2 #noqa
+import vtkmodules.vtkRenderingOpenGL2  # noqa
 
 # -----------------------------------------------------------------------------
 # Globals
@@ -63,7 +63,7 @@ numberOfCellArrays = reader.GetOutput().GetCellData().GetNumberOfArrays()
 
 arrayNames = []
 if numberOfPointArrays > 0:
-    
+
     for i in range(numberOfPointArrays):
         array = reader.GetOutput().GetPointData().GetArray(i)
         array_name = array.GetName()
@@ -97,7 +97,9 @@ meshActor.GetProperty().EdgeVisibilityOff()
 update_state("cubeAxesVisibility", True)
 cubeAxesActor = vtkCubeAxesActor()
 bounds = meshMapper.GetBounds()
-cubeAxesActor.SetBounds( bounds[0], bounds[1], bounds[2], bounds[3], bounds[4], bounds[5])
+cubeAxesActor.SetBounds(
+    bounds[0], bounds[1], bounds[2], bounds[3], bounds[4], bounds[5]
+)
 cubeAxesActor.SetCamera(renderer.GetActiveCamera())
 cubeAxesActor.SetXLabelFormat("%6.1f")
 cubeAxesActor.SetYLabelFormat("%6.1f")
@@ -106,27 +108,27 @@ cubeAxesActor.SetFlyModeToOuterEdges()
 cubeAxesActor.SetVisibility(True)
 
 # contour filter for temperature data
-#contour = vtkContourFilter()
-#contour.SetInputConnection(reader.GetOutputPort())
-#contour.GenerateValues()
-#contourMapper = vtkPolyDataMapper()
-#contourMapper.SetInputConnection(contour.GetOutputPort())
-#contourActor = vtkActor()
-#contourActor.SetMapper(contourMapper)
+# contour = vtkContourFilter()
+# contour.SetInputConnection(reader.GetOutputPort())
+# contour.GenerateValues()
+# contourMapper = vtkPolyDataMapper()
+# contourMapper.SetInputConnection(contour.GetOutputPort())
+# contourActor = vtkActor()
+# contourActor.SetMapper(contourMapper)
 
 # extract skin filter
-#skin = vtkExtractGeometry()
-#skin.SetInputConnection(reader.GetOutputPort())
-#skin.Update()
-#skinMapper = vtkPolyDataMapper()
-#skinMapper.SetInputConnection(skin.GetOutputPort())
-#skinActor = vtkActor()
-#skinActor.SetMapper(skinMapper)
+# skin = vtkExtractGeometry()
+# skin.SetInputConnection(reader.GetOutputPort())
+# skin.Update()
+# skinMapper = vtkPolyDataMapper()
+# skinMapper.SetInputConnection(skin.GetOutputPort())
+# skinActor = vtkActor()
+# skinActor.SetMapper(skinMapper)
 
 renderer.AddActor(meshActor)
 renderer.AddActor(cubeAxesActor)
-#renderer.AddActor(contourActor)
-#renderer.AddActor(skinActor)
+# renderer.AddActor(contourActor)
+# renderer.AddActor(skinActor)
 renderer.ResetCamera()
 renderWindow.Render()
 
@@ -134,24 +136,28 @@ renderWindow.Render()
 # Functions
 # -----------------------------------------------------------------------------
 
+
 def update_view(**kwargs):
     html_view.update()
 
+
 @change("cubeAxesVisibility")
 def update_cube_axes_visibitily(**kwargs):
-    v, = get_state("cubeAxesVisibility")
+    (v,) = get_state("cubeAxesVisibility")
     cubeAxesActor.SetVisibility(v)
     update_view()
 
+
 @change("meshVisibility")
 def update_cube_axes_visibitily(**kwargs):
-    v, = get_state("meshVisibility")
+    (v,) = get_state("meshVisibility")
     meshActor.SetVisibility(v)
     update_view()
 
+
 @change("meshRepresentation")
 def update_mesh_representation(**kwargs):
-    r, = get_state("meshRepresentation")
+    (r,) = get_state("meshRepresentation")
     if r == Points:
         meshActor.GetProperty().SetRepresentationToPoints()
         meshActor.GetProperty().SetPointSize(5)
@@ -170,6 +176,15 @@ def update_mesh_representation(**kwargs):
         meshActor.GetProperty().EdgeVisibilityOn()
     update_view()
 
+
+def actives_change(event):
+    print("actives_change", event)
+
+
+def visibility_change(event):
+    print("visibility_change", event)
+
+
 # -----------------------------------------------------------------------------
 # GUI
 # -----------------------------------------------------------------------------
@@ -179,10 +194,7 @@ layout.title.content = "Viewer"
 
 with layout.toolbar:
     vuetify.VSpacer()
-    vuetify.VDivider(
-        vertical=True, 
-        classes="mx-2"
-    )
+    vuetify.VDivider(vertical=True, classes="mx-2")
     vuetify.VSwitch(
         v_model="$vuetify.theme.dark",
         hide_details=True,
@@ -191,11 +203,21 @@ with layout.toolbar:
         icon=True,
         click="$refs.view.resetCamera()",
     ):
-        vuetify.VIcon(
-            "mdi-crop-free"
-        )
+        vuetify.VIcon("mdi-crop-free")
 
 with layout.drawer:
+    widgets.GitTree(
+        sources=(
+            "pipeline",
+            [
+                {"id": "1", "parent": "0", "visible": 1, "name": "Cube Axes"},
+                {"id": "2", "parent": "0", "visible": 1, "name": "Mesh"},
+            ],
+        ),
+        selection=("pipeline_selection", []),
+        actives_change=(actives_change, "[$event]"),
+        visibility_change=(visibility_change, "[$event]"),
+    )
     with vuetify.VCard(
         classes="ma-4 rounded elevation-8",
     ):
@@ -204,13 +226,13 @@ with layout.drawer:
             style="user-select: none; cursor: pointer",
         ):
             vuetify.VCheckbox(
-                  hide_details=True,
-                  classes="ma-0 pa-0 float-left" ,
-                  v_model="cubeAxesVisibility",
-                  color="#ffd600",
-                  off_icon="mdi-eye-off",
-                  on_icon="mdi-eye" ,
-                  value=True,
+                hide_details=True,
+                classes="ma-0 pa-0 float-left",
+                v_model="cubeAxesVisibility",
+                color="#ffd600",
+                off_icon="mdi-eye-off",
+                on_icon="mdi-eye",
+                value=True,
             )
             Div("Cube Axes")
         vuetify.VCardText(
@@ -228,13 +250,13 @@ with layout.drawer:
             dense=True,
         ):
             vuetify.VCheckbox(
-                  hide_details=True,
-                  classes="ma-0 pa-0 float-left" ,
-                  v_model="meshVisibility",
-                  color="#ffd600",
-                  off_icon="mdi-eye-off",
-                  on_icon="mdi-eye" ,
-                  value=True,
+                hide_details=True,
+                classes="ma-0 pa-0 float-left",
+                v_model="meshVisibility",
+                color="#ffd600",
+                off_icon="mdi-eye-off",
+                on_icon="mdi-eye",
+                value=True,
             )
             Div("Mesh")
         with vuetify.VCardText(
@@ -250,7 +272,7 @@ with layout.drawer:
         vuetify.VCardActions(
             classes="pa-0 pb-3",
         )
-            
+
 html_view = vtk.VtkLocalView(renderWindow)
 
 with layout.content:

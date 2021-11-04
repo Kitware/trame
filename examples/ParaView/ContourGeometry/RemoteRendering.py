@@ -21,9 +21,7 @@ from paraview import simple
 simple.LoadDistributedPlugin("AcceleratedAlgorithms", remote=False, ns=globals())
 
 data_directory = os.path.join(
-    os.path.dirname(
-        os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    ),
+    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
     "data",
 )
 head_vti = os.path.join(data_directory, "head.vti")
@@ -61,12 +59,14 @@ view.CenterOfRotation = view.CameraFocalPoint
 @change("contour_value", "interactive")
 def update_contour(contour_value, interactive, force=False, **kwargs):
     if interactive or force:
-        contour.Isosurfaces =[contour_value]
+        contour.Isosurfaces = [contour_value]
         html_view.update()
+
 
 def commit_changes():
     cv, i = get_state("contour_value", "interactive")
     update_contour(force=True, contour_value=cv, interactive=i)
+
 
 # -----------------------------------------------------------------------------
 # GUI

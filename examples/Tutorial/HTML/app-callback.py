@@ -12,12 +12,12 @@ from vtkmodules.vtkRenderingCore import (
 )
 
 # Required for interacter factory initialization
-from vtkmodules.vtkInteractionStyle import vtkInteractorStyleSwitch #noqa
+from vtkmodules.vtkInteractionStyle import vtkInteractorStyleSwitch  # noqa
 
-# Required for remote rendering factory initialization, not necessary for 
+# Required for remote rendering factory initialization, not necessary for
 # local rendering, but doesn't hurt to include it
 
-import vtkmodules.vtkRenderingOpenGL2 #noqa
+import vtkmodules.vtkRenderingOpenGL2  # noqa
 
 # -----------------------------------------------------------------------------
 # Globals
@@ -52,16 +52,20 @@ renderWindow.Render()
 # Functions
 # -----------------------------------------------------------------------------
 
+
 def update_view(**kwargs):
     html_view.update()
+
 
 @change("resolution")
 def update_resolution(resolution, **kwargs):
     cone_source.SetResolution(resolution)
     update_view()
 
+
 def reset_resolution():
     update_state("resolution", DEFAULT_RESOLUTION)
+
 
 # -----------------------------------------------------------------------------
 # GUI
@@ -85,13 +89,8 @@ with layout.toolbar:
         icon=True,
         click=reset_resolution,
     ):
-        vuetify.VIcon(
-            "mdi-restore"
-        )
-    vuetify.VDivider(
-        vertical=True, 
-        classes="mx-2"
-    )
+        vuetify.VIcon("mdi-restore")
+    vuetify.VDivider(vertical=True, classes="mx-2")
     vuetify.VSwitch(
         v_model="$vuetify.theme.dark",
         hide_details=True,
@@ -100,9 +99,7 @@ with layout.toolbar:
         icon=True,
         click="$refs.view.resetCamera()",
     ):
-        vuetify.VIcon(
-            "mdi-crop-free"
-        )
+        vuetify.VIcon("mdi-crop-free")
 
 html_view = vtk.VtkLocalView(renderWindow)
 

@@ -6,3 +6,5 @@ python:
     - requirements: ./docs/api/requirements.txt
     - method: pip
       path: .
+
+formats: all

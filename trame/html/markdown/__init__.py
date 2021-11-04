@@ -9,6 +9,26 @@ _app.enable_module(Markdown)
 
 
 class Markdown(AbstractElement):
+    """
+    Create a markdown viewer element.
+
+    :param v_model: Variable name in state
+    :return HtmlElement: UI component
+
+    >>> elmt = Markdown(v_model=("document", "**Bold**"))
+
+    >>> content = \"\"\"
+    ...
+    ... # My document
+    ... 1. First
+    ... 2. Second
+    ... 3. Third
+    ...
+    ... Hello "trame"
+    ... \"\"\"
+    >>> elmt = Markdown(v_model=("document2", content))
+    """
+
     def __init__(self, **kwargs):
         super().__init__("markdown-it-vue", **kwargs)
         self._attr_names += [("v_model", ":content")]

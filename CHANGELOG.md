@@ -1,3 +1,10 @@
+## [1.3.7](https://github.com/kitware/trame/compare/v1.3.6...v1.3.7) (2021-11-04)
+
+
+### Bug Fixes
+
+* **Widget:** add missing events ([7d52abf](https://github.com/kitware/trame/commit/7d52abf56c7679947cd14f20f5fd4799b890d768))
+
 ## [1.3.6](https://github.com/kitware/trame/compare/v1.3.5...v1.3.6) (2021-11-02)
 
 

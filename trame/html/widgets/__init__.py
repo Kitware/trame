@@ -74,3 +74,7 @@ class GitTree(AbstractElement):
             "text_color",
             "text_weight",
         ]
+        self._event_names += [
+            ("actives_change", "activesChange"),
+            ("visibility_change", "visibilityChange"),
+        ]

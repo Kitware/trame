@@ -211,8 +211,10 @@ class VtkSyncView(AbstractElement):
         _app = get_app_instance()
         _app.set(self.__scene_id, MODULE.scene(self.__view))
 
+
 class VtkLocalView(VtkSyncView):
     pass
+
 
 class VtkView(AbstractElement):
     def __init__(self, __content=None, ref="view", **kwargs):

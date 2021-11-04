@@ -72,7 +72,14 @@ class AbstractElement:
             "v_for",
             ("key", ":key"),
         ]
-        self._event_names += ["click", "mousedown", "mouseup", "mouseenter", "mouseleave", "contextmenu"]
+        self._event_names += [
+            "click",
+            "mousedown",
+            "mouseup",
+            "mouseenter",
+            "mouseleave",
+            "contextmenu",
+        ]
 
         # Add ourself to context is any
         HTML_CTX.add_child(self)
@@ -194,7 +201,7 @@ class AbstractElement:
                     self._attributes[name] = f"{js_key}=\"trigger('{trigger_name}')\""
                 elif isinstance(value, tuple):
                     trigger_name = value[0]
-                    if isinstance(trigger_name, types.FunctionType):
+                    if isinstance(trigger_name, (types.FunctionType, types.MethodType)):
                         trigger_name = trigger_key(trigger_name)
                     if len(value) == 1:
                         self._attributes[

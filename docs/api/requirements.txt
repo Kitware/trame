@@ -49,7 +49,6 @@ sphinxcontrib-htmlhelp==2.0.0
 sphinxcontrib-jsmath==1.0.1
 sphinxcontrib-qthelp==1.0.3
 sphinxcontrib-serializinghtml==1.1.5
--e git+git@github.com:Kitware/trame.git@7da66952316d6616a38581a341c1e0f9b2a95810#egg=trame
 typing-extensions==3.10.0.2
 unify==0.5
 untokenize==0.1.1

@@ -16,3 +16,6 @@ Did you know that Trame is a French word with the following set of meanings:
 - something that guide you by providing the core part of what you are doing
 
 With this Open Source project we aim to help data scientists and researchers to solve their complex problems. And if need be we will be more than happy to team-up with you to help solve your next big idea.
+
+# Contributing
+See [CONTRIBUTING.md](https://github.com/Kitware/trame/blob/master/CONTRIBUTING.md) for more info on how to contribute.

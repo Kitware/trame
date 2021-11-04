@@ -3,6 +3,6 @@ version: 2
 python:
   version: "3.7"
   install:
-    - requirements: docs/api/requirements.txt
+    - requirements: ./docs/api/requirements.txt
     - method: pip
       path: .

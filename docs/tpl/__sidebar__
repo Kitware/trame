@@ -2,6 +2,7 @@ docs:
   getting_started:
     overview: index.html
     start: getting_started.html
+    api: api.html
   tutorial:
     t_overview: tutorial.html
     t_download: tutorial-download.html

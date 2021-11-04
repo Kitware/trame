@@ -1,3 +1,4 @@
+import os
 from trame import start
 from trame.layouts import SinglePage
 from trame.html import vtk, vuetify
@@ -28,6 +29,7 @@ from vtkmodules.vtkInteractionStyle import vtkInteractorStyleSwitch  # noqa
 # local rendering, but doesn't hurt to include it
 import vtkmodules.vtkRenderingOpenGL2  # noqa
 
+CURRENT_DIRECTORY = os.path.abspath(os.path.dirname(__file__))
 
 # -----------------------------------------------------------------------------
 # VTK pipeline
@@ -46,7 +48,7 @@ renderWindowInteractor.GetInteractorStyle().SetCurrentStyleToTrackballCamera()
 colors = vtkNamedColors()
 
 reader = vtkStructuredPointsReader()
-reader.SetFileName("../data/carotid.vtk")
+reader.SetFileName(os.path.join(CURRENT_DIRECTORY, "../data/carotid.vtk"))
 
 # Glyphs
 

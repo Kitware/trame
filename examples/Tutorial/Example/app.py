@@ -1,3 +1,4 @@
+import os
 from trame import start, change, update_state, get_state
 from trame.layouts import SinglePageWithDrawer
 from trame.html import Div, vtk, vuetify, widgets
@@ -31,6 +32,8 @@ from vtkmodules.vtkInteractionStyle import vtkInteractorStyleSwitch  # noqa
 
 import vtkmodules.vtkRenderingOpenGL2  # noqa
 
+CURRENT_DIRECTORY = os.path.abspath(os.path.dirname(__file__))
+
 # -----------------------------------------------------------------------------
 # Globals
 # -----------------------------------------------------------------------------
@@ -55,7 +58,7 @@ renderWindowInteractor.GetInteractorStyle().SetCurrentStyleToTrackballCamera()
 renderWindowInteractor.EnableRenderOff()
 
 reader = vtkXMLUnstructuredGridReader()
-reader.SetFileName("../data/disk_out_ref.vtu")
+reader.SetFileName(os.path.join(CURRENT_DIRECTORY, "../data/disk_out_ref.vtu"))
 reader.Update()
 
 numberOfPointArrays = reader.GetOutput().GetPointData().GetNumberOfArrays()

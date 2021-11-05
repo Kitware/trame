@@ -118,19 +118,18 @@ def start(layout=None, name=None, favicon=None, on_ready=None, port=None):
     """
     Start web server for serving your application
 
-    Parameters
-    ----------
-    layout  : None or str or trame.layouts.*
-        UI content that should be used for your application
-    name    : None or str
-        "Title" that you can see in your tab browser.
-        This will be filled automatically if a trame.layouts.* layout was provided.
-    favicon : None or str
-        Relative path to a png image that should be used as favicon
-    port    : None or Number
-        Port on which the server should run on
-    on_ready: None or function
-        Function called once the server is ready
+    :param layout: UI content that should be used for your application
+    :type layout: None | str | trame.layouts.*
+    :param name: "Title" that you can see in your tab browser. This will be filled automatically if a trame.layouts.* layout was provided.
+    :type name: None | str
+    :param favicon: Relative path to a png image that should be used as favicon
+    :type name: None | str
+    :param port: Port on which the server should run on
+    :type port: None | Number
+    :param on_ready: Function called once the server is ready
+    :type on_ready: None | function
+
+    >>> start(on_ready=fetch_initial_state)
     """
     app = get_app_instance()
     if name:
@@ -171,6 +170,14 @@ def start(layout=None, name=None, favicon=None, on_ready=None, port=None):
 def update_state(key, value=None):
     """
     Method updating current application state that is shared with the Web UI
+
+    :param key: The key for the value we wish to update
+    :type key: str
+    :param value: The new value
+    :type value: Any
+
+    >>> update_state("workload_finished",  True)
+
     """
     _app = get_app_instance()
     _app.set(key, value)
@@ -184,15 +191,19 @@ def get_state(*names):
     """
     Return a list of the values of the given state keys
 
-    Paramters
-    ---------
-    *names : *str
-        List of name of state values to retreive
+    :param names: List of name of state values to retreive
+    :type names: list[str]
+    :returns: List of values matching the requested state property names
 
-    Returns
-    -------
-    [any, ...]
-        List of value matching the requested state property names
+    >>> greeting, = get_state("greeting")
+    >>> greeting
+    "Hello"
+
+    >>> greeting, name  = get_state("greeting", "name")
+    >>> f'{greeting}, {name}!'
+    "Hello, Trame!"
+
+
     """
     _app = get_app_instance()
 
@@ -209,17 +220,23 @@ def update_layout(layout):
     """
     Dynamically update current application layout
 
-    Parameters
-    ----------
-    layout  : str or trame.layouts.*
-        UI content that should be used for your application
+    :param layout: UI content that should be used for your application
+    :type layout: str | trame.layouts.*
+
+    >>> layout.title.content = "Workload finished!"
+    >>> update_layout(new_layout)
+
     """
     _app = get_app_instance()
     _app.layout = layout if isinstance(layout, str) else layout.html
 
 
 def enable_module(module):
-    """Load module"""
+    """
+    Load a PyWebVue module
+
+    :param module: The module to load
+    """
     _app = get_app_instance()
     _app.enable_module(module)
 
@@ -242,31 +259,81 @@ def js_property(ref=None, property=None, value=None):
 
 
 def get_cli_parser():
-    """Run or add to argparse parser"""
+    """
+    Run or add args to CLI parser
+
+    :returns: Parser from argparse
+
+    >>> parser = get_cli_parser()
+    >>> parser.add_argument("-o", "--output", help="Working directory")
+    """
     _app = get_app_instance()
     return _app.cli_parser
 
 
 def get_cli_args():
-    """Return parsed args"""
+    """
+    Return parsed args
+
+    :returns: Dictionary of parsed arguments
+
+    >>> get_cli_args().get("output")
+    "/home/projects/myProject"
+    """
     _app = get_app_instance()
     return _app.cli_args
 
 
 def flush_state(*args):
-    """Flush dirty state"""
+    """
+    Flush dirty state
+
+    :param args: Which keys to flush
+    :type args: list[str]
+
+    >>> flush_state('myNestedDict')
+    """
     _app = get_app_instance()
     return _app.flush_state(*args)
 
 
 def is_dirty(*args):
-    """See which key in an @change has been modified"""
+    """
+    See which key in an @change has been modified.
+
+    :param args: Which keys to check for modification
+    :type args: list[str]
+    :return: True if any of the keys in `args` are modified.
+    :rtype: bool
+
+    >>> @change('sound_settings', 'picture_settings')
+    ... def show_changed_settings(sound_settings, picture_settings, **kwargs):
+    ...     if is_dirty('sound_settings'):
+    ...         print(sound_settings)
+    ...     if is_dirty('picture_settings'):
+    ...         print(picture_settings)
+
+    """
     _app = get_app_instance()
     return _app.is_dirty(*args)
 
 
 def is_dirty_all(*args):
-    """See whether all keys in an @change have been modified"""
+    """
+    See whether all keys in an @change have been modified.
+
+    :param args: Which keys to check for modification
+    :type args: list[str]
+    :return: True if all of the keys in `args` are modified.
+    :rtype: bool
+
+    >>> @change('sound_settings', 'picture_settings')
+    ... def save_changed_settings(sound_settings, picture_settings, **kwargs):
+    ...     if is_dirty_all('sound_settings', 'picture_settings'):
+    ...         print("Cannot save both sound and picture settings at once")
+    ...         raise
+
+    """
     _app = get_app_instance()
     return _app.is_dirty_all(*args)
 
@@ -282,13 +349,10 @@ def trigger_key(_fn):
 
     Parameters
     ----------
-    _fn : function
-        Function that we would like to be able to call from the client side.
-
-    Returns
-    -------
-    str
-        Unique name that can be used for a trigger to call that function
+    :param _fn: Function that we would like to be able to call from the client side.
+    :type _fn: function
+    :returns: Unique name that can be used for a trigger to call that function
+    :rtype: str
     """
     # Return precomputed key
     global TRIGGER_MAP, NEXT_TRIGGER_ID
@@ -317,13 +381,16 @@ def change(*_args, **_kwargs):
     The @change decorator allows us to register a function so that it will be
     automatically called when the given list of state names gets modified.
 
-    The decorated function is passed the full state as *kwarg when possible.
-    This means you should have a method profile similar to `fn(..., *kwargs)`
+    The decorated function is passed the full state as ``**kwargs`` when possible.
+    This means you should have a method profile similar to ``fn(..., **kwargs)``
 
-    Parameters
-    ----------
-    *_args : *str
-        List of name that your function should listen to
+    :param _args: List of names that your function should listen to
+    :type _args: `list[str]`
+
+    >>> @change('settings')
+    ... def show_settings(settings, **kwargs):
+    ...     print(settings)
+
     """
     _app = get_app_instance()
     return _app.change(*_args, **_kwargs)
@@ -334,12 +401,17 @@ def change(*_args, **_kwargs):
 
 def trigger(name):
     """
-    @trigger decorator allow to register a function as a trigger with a given name
+    @trigger decorator allows you to register a function as a trigger with a given name.
 
     Parameters
     ----------
-    name : str
-        Name of the trigger
+    :param name: Name which this trigger function should listen to.
+    :type name: str
+
+    >>> @trigger('blue_button_clicked')
+    ... def log_clicks():
+    ...     print("The blue button was clicked")
+
     """
     _app = get_app_instance()
     return _app.trigger(name)

@@ -13,7 +13,6 @@ class Markdown(AbstractElement):
     Create a markdown viewer element.
 
     :param v_model: Variable name in state
-    :return HtmlElement: UI component
 
     >>> elmt = Markdown(v_model=("document", "**Bold**"))
 

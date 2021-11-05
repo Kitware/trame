@@ -181,8 +181,8 @@ def update_mesh_representation(**kwargs):
 
 
 def actives_change(ids):
-    _id, = ids
-    pipeline, = get_state("pipeline")
+    (_id,) = ids
+    (pipeline,) = get_state("pipeline")
     for item in pipeline:
         if item.get("id") == _id:
             update_state("active_card", item.get("name"))
@@ -226,8 +226,7 @@ with layout.drawer:
         visibility_change=(visibility_change, "[$event]"),
     )
     with vuetify.VCard(
-        classes="ma-4 rounded elevation-8",
-        v_show="active_card == 'Cube Axes'"
+        classes="ma-4 rounded elevation-8", v_show="active_card == 'Cube Axes'"
     ):
         with vuetify.VCardTitle(
             classes="grey lighten-1 py-0 grey--text text--darken-3",
@@ -250,8 +249,7 @@ with layout.drawer:
             classes="pa-0 pb-3",
         )
     with vuetify.VCard(
-        classes="ma-4 rounded elevation-8",
-        v_show="active_card == 'Mesh'"
+        classes="ma-4 rounded elevation-8", v_show="active_card == 'Mesh'"
     ):
         with vuetify.VCardTitle(
             classes="grey lighten-1 py-0 grey--text text--darken-3",

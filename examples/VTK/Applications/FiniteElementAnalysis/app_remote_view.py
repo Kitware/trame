@@ -1,3 +1,4 @@
+import os
 import io
 import numpy as np
 import pandas as pd
@@ -19,9 +20,9 @@ from vtkmodules.vtkRenderingCore import (
     vtkRenderWindowInteractor,
 )
 
-from trame import start, change, update_state, get_state
+from trame import start, change, update_state, get_state, get_cli_parser
 from trame.layouts import SinglePage
-from trame.html import vuetify, vtk, StateUpdate
+from trame.html import vuetify, vtk
 
 # -----------------------------------------------------------------------------
 # VTK pipeline
@@ -59,7 +60,6 @@ mesh_mapper.SetScalarVisibility(0)
 mesh_actor = vtkActor()
 mesh_actor.SetMapper(mesh_mapper)
 renderer.AddActor(mesh_actor)
-
 
 html_view = vtk.VtkRemoteView(renderWindow, interactive_ratio=("1",))
 
@@ -181,11 +181,21 @@ def update_grid(nodes_file, elems_file, field_file, **kwargs):
         full_min, full_max = vtk_array.GetRange()
         update_state("full_min", full_min)
         update_state("full_max", full_max)
-        update_state("threshold_range", list(vtk_array.GetRange()))
+        update_state("threshold_range", [full_min, full_max])
         update_state("mesh_status", 2)
 
         # Color handling in plain VTK
         filter_mapper.SetScalarRange(full_min, full_max)
+
+        # Write dataset as VTU
+        # from vtkmodules.vtkIOXML import vtkXMLUnstructuredGridWriter
+        # writer = vtkXMLUnstructuredGridWriter()
+        # writer.SetFileName("fea.vtu")
+        # writer.SetInputData(vtk_grid)
+        # writer.SetCompressorTypeToZLib()
+        # writer.SetCompressionLevel(6)
+        # writer.SetDataModeToAppended()
+        # writer.Write()
 
     renderer.ResetCamera()
     html_view.update()
@@ -304,6 +314,30 @@ layout.state = {
     # 0: empty / 1: mesh / 2: mesh+filter
     "mesh_status": 0,
 }
+
+# -----------------------------------------------------------------------------
+# Use --data to skip file upload
+# -----------------------------------------------------------------------------
+
+parser = get_cli_parser()
+parser.add_argument("--data", help="Unstructured file path", dest="data")
+args = parser.parse_args()
+if args.data:
+    from vtkmodules.vtkIOXML import vtkXMLUnstructuredGridReader
+
+    reader = vtkXMLUnstructuredGridReader()
+    reader.SetFileName(os.path.abspath(args.data))
+    reader.Update()
+    vtu = reader.GetOutput()
+    vtk_grid.ShallowCopy(vtu)
+
+    vtk_array = vtu.GetCellData().GetScalars()
+    full_min, full_max = vtk_array.GetRange()
+    update_state("full_min", full_min)
+    update_state("full_max", full_max)
+    update_state("threshold_range", [full_min, full_max])
+    update_state("mesh_status", 2)
+    update_mesh_representations()
 
 # -----------------------------------------------------------------------------
 

@@ -1,3 +1,4 @@
+import os
 import io
 import numpy as np
 import pandas as pd
@@ -8,7 +9,7 @@ from vtkmodules.vtkFiltersCore import vtkThreshold
 from vtkmodules.numpy_interface.dataset_adapter import numpyTovtkDataArray as np2da
 from vtkmodules.util import vtkConstants
 
-from trame import start, change, update_state
+from trame import start, change, update_state, get_cli_parser
 from trame.layouts import SinglePage
 from trame.html import vuetify, vtk, StateUpdate
 
@@ -336,6 +337,30 @@ layout.state = {
     "pick_data": None,
     "tooltip": "",
 }
+
+# -----------------------------------------------------------------------------
+# Use --data to skip file upload
+# -----------------------------------------------------------------------------
+
+parser = get_cli_parser()
+parser.add_argument("--data", help="Unstructured file path", dest="data")
+args = parser.parse_args()
+if args.data:
+    from vtkmodules.vtkIOXML import vtkXMLUnstructuredGridReader
+
+    reader = vtkXMLUnstructuredGridReader()
+    reader.SetFileName(os.path.abspath(args.data))
+    reader.Update()
+    vtu = reader.GetOutput()
+    vtk_grid.ShallowCopy(vtu)
+
+    vtk_array = vtu.GetCellData().GetScalars()
+    full_min, full_max = vtk_array.GetRange()
+    update_state("full_range", [full_min, full_max])
+    update_state("threshold_range", [full_min, full_max])
+    update_state("picking_modes", ["hover"])
+    html_mesh.update()
+    html_threshold.update()
 
 # -----------------------------------------------------------------------------
 

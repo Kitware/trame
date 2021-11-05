@@ -271,19 +271,6 @@ def get_cli_parser():
     return _app.cli_parser
 
 
-def get_cli_args():
-    """
-    Return parsed args
-
-    :returns: Dictionary of parsed arguments
-
-    >>> get_cli_args().get("output")
-    "/home/projects/myProject"
-    """
-    _app = get_app_instance()
-    return _app.cli_args
-
-
 def flush_state(*args):
     """
     Flush dirty state

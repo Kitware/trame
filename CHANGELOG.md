@@ -1,3 +1,10 @@
+## [1.3.8](https://github.com/kitware/trame/compare/v1.3.7...v1.3.8) (2021-11-05)
+
+
+### Bug Fixes
+
+* **cli:** Prefer get_cli_parser + get_known_args ([7c694a6](https://github.com/kitware/trame/commit/7c694a66a0c4b8d3cf270550104ae88dee946482))
+
 ## [1.3.7](https://github.com/kitware/trame/compare/v1.3.6...v1.3.7) (2021-11-04)
 
 

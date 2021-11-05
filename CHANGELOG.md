@@ -1,3 +1,10 @@
+## [1.3.9](https://github.com/kitware/trame/compare/v1.3.8...v1.3.9) (2021-11-05)
+
+
+### Bug Fixes
+
+* **html:** Add triggers and state listener in JS ([0010616](https://github.com/kitware/trame/commit/00106169a53a5d3a8e14e18f2a5816dd39f46485))
+
 ## [1.3.8](https://github.com/kitware/trame/compare/v1.3.7...v1.3.8) (2021-11-05)
 
 

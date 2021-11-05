@@ -33,6 +33,15 @@ HTML_CTX = ElementContextManager()
 
 
 class AbstractElement:
+    """
+    The abstract class behind all HTML views in Trame
+
+    :param _Element__elem_name: The name of the element, like 'div' for a ``<div/>`` element.
+    :type _Element__elem_name: str
+    :param children: The children nested within this element
+    :type children: None | str | list[trame.html.*] | trame.html.*
+    """
+
     _next_id = 1
 
     def __init__(self, name, children=None, **kwargs):
@@ -131,6 +140,9 @@ class AbstractElement:
     # -------------------------------------------------------------------------
 
     def ttsSensitive(self):
+        """
+        Set this element to be reactive to a global timestamp. This is useful for dropdown components.
+        """
         self._attributes["__tts"] = f':key="`w{self._id}-${{tts}}`"'
         return self
 
@@ -284,32 +296,76 @@ class AbstractElement:
 
 
 class Element(AbstractElement):
-    def __init__(self, __elem_name, children=None, **kwargs):
-        super().__init__(__elem_name, children, **kwargs)
+    """
+    Any html element you would like to use in Trame.
+
+    :param _elem_name: The name of the element, like 'div' for a ``<div/>`` element.
+    :type _elem_name: str
+    :param children: The children nested within this element
+    :type children: None | str | list[trame.html.*] | trame.html.*
+    """
+
+    def __init__(self, _elem_name, children=None, **kwargs):
+        super().__init__(_elem_name, children, **kwargs)
 
 
 class Div(AbstractElement):
+    """
+    The standard html content division element.
+
+    :param children: The children nested within this element
+    :type children: None | str | list[trame.html.*] | trame.html.*
+    """
+
     def __init__(self, children=None, **kwargs):
         super().__init__("div", children, **kwargs)
 
 
 class Span(AbstractElement):
+    """
+    The standard html content span element.
+
+    :param children: The children nested within this element
+    :type children: None | str | list[trame.html.*] | trame.html.*
+    """
+
     def __init__(self, children=None, **kwargs):
         super().__init__("span", children, **kwargs)
 
 
 class Form(AbstractElement):
+    """
+    The standard html form element.
+
+    :param children: The children nested within this element
+    :type children: None | str | list[trame.html.*] | trame.html.*
+    """
+
     def __init__(self, children=None, **kwargs):
         super().__init__("form", children, **kwargs)
         self._attr_names += ["action"]
 
 
 class Label(AbstractElement):
+    """
+    The standard html input label element.
+
+    :param children: The children nested within this element
+    :type children: None | str | list[trame.html.*] | trame.html.*
+    """
+
     def __init__(self, children=None, **kwargs):
         super().__init__("label", children, **kwargs)
 
 
 class Input(AbstractElement):
+    """
+    The standard html input (form input) element.
+
+    :param children: The children nested within this element
+    :type children: None | str | list[trame.html.*] | trame.html.*
+    """
+
     def __init__(self, children=None, **kwargs):
         super().__init__("input", children, **kwargs)
         self._attr_names += [
@@ -338,6 +394,13 @@ class Input(AbstractElement):
 
 
 class Template(AbstractElement):
+    """
+    The standard html content template element.
+
+    :param children: The children nested within this element
+    :type children: None | str | list[trame.html.*] | trame.html.*
+    """
+
     slot_names = set()
 
     def __init__(self, children=None, **kwargs):

@@ -77,3 +77,5 @@ todo_include_todos = True
 
 
 autodoc_mock_imports = ["vtkmodules.vtkWebCore", "vtkmodules.web", "pywebvue.modules"]
+
+autodoc_member_order = "bysource"

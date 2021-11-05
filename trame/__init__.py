@@ -114,7 +114,7 @@ def create_app(name):
 # -----------------------------------------------------------------------------
 
 
-def start(layout=None, name=None, favicon=None, on_ready=None, port=None):
+def start(layout=None, name=None, favicon=None, on_ready=None, port=None, debug=False):
     """
     Start web server for serving your application
 
@@ -132,6 +132,7 @@ def start(layout=None, name=None, favicon=None, on_ready=None, port=None):
     >>> start(on_ready=initialize)
     """
     app = get_app_instance()
+    app._debug = debug
     if name:
         app.name = name
 
@@ -149,6 +150,8 @@ def start(layout=None, name=None, favicon=None, on_ready=None, port=None):
         tpl_path = os.path.join(base_directory(), "template.html")
         if os.path.exists(tpl_path):
             app.layout = tpl_path
+        else:
+            print("Error: We could not find your layout or template.html file.")
 
     if on_ready:
         app.on_ready = on_ready

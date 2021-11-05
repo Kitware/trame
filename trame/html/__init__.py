@@ -155,6 +155,15 @@ class AbstractElement:
                 if value is None:
                     continue
 
+                if (
+                    _app._debug
+                    and js_key.startswith("v-")
+                    and not isinstance(value, (tuple, list))
+                ):
+                    print(
+                        f'Warning: A Vue directive is evaluating your expression and Trame would expect a tuple instead of a plain type. <{self._elem_name} {js_key}="{value}" ... />'
+                    )
+
                 if isinstance(value, (tuple, list)):
                     if len(value) > 1 and value[0] not in _app.state:
                         _app.state[value[0]] = value[1]
@@ -354,3 +363,28 @@ class Template(AbstractElement):
                         )
             else:
                 self._attr_names.append((f"v_slot_{safe_name}", f"v-slot:{slot_name}"))
+
+
+class StateUpdate(AbstractElement):
+    def __init__(self, name, **kwargs):
+        super().__init__("py-state-update", **kwargs)
+        self._attributes["value"] = f':value="{name}"'
+        self._event_names += [
+            "change",
+        ]
+
+
+class Triggers(AbstractElement):
+    def __init__(self, ref, triggers={}, **kwargs):
+        super().__init__("py-trigger", **kwargs)
+        self._ref = ref
+        self._attributes["ref"] = f'ref="{ref}"'
+        for key, value in triggers.items():
+            self._attributes[f"_{key}"] = f'@{key}="{value}"'
+
+    def add(self, name, call):
+        self._attributes[f"_{name}"] = f'@{name}="{call}"'
+
+    def call(self, name, *args):
+        _app = get_app_instance()
+        _app.update(ref=self._ref, method="emit", args=[name, *args])

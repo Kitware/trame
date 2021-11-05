@@ -65,9 +65,42 @@ class VtkGlyphRepresentation(AbstractElement):
 
 
 class VtkMesh(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("vtk-mesh", __content, **kwargs)
+    def __init__(
+        self,
+        name,
+        dataset=None,
+        field_to_keep=None,
+        point_arrays=None,
+        cell_arrays=None,
+        **kwargs,
+    ):
+        super().__init__("vtk-mesh", **kwargs)
+        self.__name = name
+        self.__dataset = dataset
+        self.__field_to_keep = field_to_keep
+        self.__point_arrays = point_arrays
+        self.__cell_arrays = cell_arrays
         self._attr_names += ["port", "state"]
+        if dataset:
+            self._attributes["state"] = f':state="{name}"'
+            self.update()
+
+    def set_dataset(self, dataset):
+        self.__dataset = dataset
+        self.update()
+
+    def update(self, **kwargs):
+        if self.__dataset:
+            _app = get_app_instance()
+            _app.set(
+                self.__name,
+                MODULE.mesh(
+                    self.__dataset,
+                    field_to_keep=kwargs.get("field_to_keep", self.__field_to_keep),
+                    point_arrays=kwargs.get("point_arrays", self.__point_arrays),
+                    cell_arrays=kwargs.get("cell_arrays", self.__cell_arrays),
+                ),
+            )
 
 
 class VtkPointData(AbstractElement):
@@ -200,6 +233,7 @@ class VtkSyncView(AbstractElement):
         super().__init__("vtk-sync-view", **kwargs)
         self.__scene_id = f"scene_{self._id}"
         self.__view = view
+        self.__ref = ref
         self._attributes["ref"] = f'ref="{ref}"'
         self._attributes["wsClient"] = ':wsClient="wsClient"'
         self._attributes["view_state"] = f':viewState="{self.__scene_id}"'
@@ -211,6 +245,10 @@ class VtkSyncView(AbstractElement):
         _app = get_app_instance()
         _app.set(self.__scene_id, MODULE.scene(self.__view))
 
+    def reset_camera(self):
+        _app = get_app_instance()
+        _app.update(ref=self.__ref, method="resetCamera")
+
 
 class VtkLocalView(VtkSyncView):
     pass
@@ -219,6 +257,7 @@ class VtkLocalView(VtkSyncView):
 class VtkView(AbstractElement):
     def __init__(self, __content=None, ref="view", **kwargs):
         super().__init__("vtk-view", __content, **kwargs)
+        self._ref = ref
         self._attributes["ref"] = f'ref="{ref}"'
         self._attr_names += [
             "background",
@@ -227,3 +266,13 @@ class VtkView(AbstractElement):
             "picking_modes",
             "show_cube_axes",
         ]
+        self._event_names += [
+            "hover",
+            "click",
+            "select",
+            "resize",
+        ]
+
+    def reset_camera(self):
+        _app = get_app_instance()
+        _app.update(ref=self._ref, method="resetCamera")

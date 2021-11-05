@@ -1,7 +1,7 @@
 from genericpath import exists
 import os
 from pywebvue.utils import read_file_as_base64_url
-from trame.html import Span, vuetify
+from trame.html import Span, vuetify, Triggers
 from trame import base_directory, get_app_instance
 
 import pywebvue
@@ -29,12 +29,16 @@ class FullScreenPage:
     def __init__(self, name, favicon=None, on_ready=None):
         self.name = name
         self.favicon = None
+        self.triggers = Triggers("_js_trame_triggers")
         if os.path.exists(LOGO_PATH):
             self.favicon = read_file_as_base64_url(LOGO_PATH)
         self.on_ready = on_ready
         self._app = vuetify.VApp(id="app")
         self.children = self._app.children
         self._current_root = self._app
+
+        # Always add triggers
+        self._app.children += [self.triggers]
 
         if favicon:
             file_path = os.path.join(base_directory(), favicon)

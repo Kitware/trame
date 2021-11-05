@@ -33,7 +33,6 @@ nwkMap = deckgl.Deck(**mapProps)
 # -----------------------------------------------------------------------------
 layout = SinglePage("NYC Uber Ridesharing Data")
 layout.title.content = "NYC Uber Ridesharing Data"
-layout.logo.content = "mdi-chart-donut-variant"
 
 mapRow = vuetify.VRow(
     [

@@ -123,13 +123,13 @@ def start(layout=None, name=None, favicon=None, on_ready=None, port=None):
     :param name: "Title" that you can see in your tab browser. This will be filled automatically if a trame.layouts.* layout was provided.
     :type name: None | str
     :param favicon: Relative path to a png image that should be used as favicon
-    :type name: None | str
-    :param port: Port on which the server should run on
+    :type favicon: None | str
+    :param port: Port on which the server should run on. Default is 8080. This overrides a port from the command line `--port/-p` option.
     :type port: None | Number
     :param on_ready: Function called once the server is ready
     :type on_ready: None | function
 
-    >>> start(on_ready=fetch_initial_state)
+    >>> start(on_ready=initialize)
     """
     app = get_app_instance()
     if name:
@@ -195,14 +195,17 @@ def get_state(*names):
     :type names: list[str]
     :returns: List of values matching the requested state property names
 
-    >>> greeting, = get_state("greeting")
-    >>> greeting
-    "Hello"
-
     >>> greeting, name  = get_state("greeting", "name")
     >>> f'{greeting}, {name}!'
     "Hello, Trame!"
 
+    >>> greeting, = get_state("greeting")
+    >>> greeting
+    "Hello"
+
+    >>> full_state = get_state()
+    >>> full_state.get("greeting")
+    "Hello"
 
     """
     _app = get_app_instance()
@@ -224,7 +227,7 @@ def update_layout(layout):
     :type layout: str | trame.layouts.*
 
     >>> layout.title.content = "Workload finished!"
-    >>> update_layout(new_layout)
+    >>> update_layout(layout)
 
     """
     _app = get_app_instance()
@@ -259,13 +262,14 @@ def js_property(ref=None, property=None, value=None):
 
 
 def get_cli_parser():
-    """
-    Run or add args to CLI parser
+    """Run or add args to CLI parser
 
     :returns: Parser from argparse
 
     >>> parser = get_cli_parser()
     >>> parser.add_argument("-o", "--output", help="Working directory")
+    >>> args = parser.parse_known_args()
+    >>> print(args.output)
     """
     _app = get_app_instance()
     return _app.cli_parser
@@ -273,7 +277,7 @@ def get_cli_parser():
 
 def flush_state(*args):
     """
-    Flush dirty state
+    Force push selected keys of the server state to the client.
 
     :param args: Which keys to flush
     :type args: list[str]

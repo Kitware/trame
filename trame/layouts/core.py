@@ -13,6 +13,19 @@ LOGO_PATH = os.path.abspath(
 
 
 class FullScreenPage:
+    """
+    A layout that takes the whole screen.
+
+    :param name: Text for this page's browser tab (required)
+    :type name: str
+    :param favicon: Filename of image for this page's browser tab
+    :type favicon: str
+    :param on_ready: Function to run on startup
+    :type on_ready: function
+
+    >>> trame.start(FullScreenPage("Simple Page"))
+    """
+
     def __init__(self, name, favicon=None, on_ready=None):
         self.name = name
         self.favicon = None
@@ -54,6 +67,15 @@ class FullScreenPage:
 
 
 class SinglePage(FullScreenPage):
+    """
+    A layout that takes the whole screen, adding an App bar for a header and a footer.
+
+    :param name: Text for this page's browser tab (required)
+    :type name: str
+
+    >>> trame.start(SinglePage("Page with header / app bar"))
+    """
+
     def __init__(self, name):
         super().__init__(name)
         self.toolbar = vuetify.VAppBar(app=True)
@@ -101,6 +123,21 @@ class SinglePage(FullScreenPage):
 
 
 class SinglePageWithDrawer(SinglePage):
+    """
+    A layout that takes the whole screen, adding an App bar for a header, a drawer, and a footer.
+
+    :param name: Text for this page's browser tab (required)
+    :type name: str
+    :param show_drawer: Whether the drawer is open. Default True
+    :type show_drawer: bool
+    :param width: How many pixels wide the drawer should be
+    :type width: Number
+    :param show_drawer_name: The name referencing the drawer's state. Default "drawerOpen".
+    :type show_drawer_name: str
+
+    >>> trame.start(SinglePageWithDrawer("Page with drawer"))
+    """
+
     def __init__(
         self, name, show_drawer=True, width=200, show_drawer_name="drawerOpen"
     ):

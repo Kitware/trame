@@ -6,7 +6,7 @@
 Welcome to Trame's documentation!
 =================================
 
-This is the auto-generated API docs, but the project website is `here <https://kitware.github.io/trame/>`_ with additional guides.
+This is the auto-generated API documentation for Trame, but the project website is `here <https://kitware.github.io/trame/>`_ with additional guides.
 All classes are listed in the :ref:`genindex`.
 
 .. toctree::

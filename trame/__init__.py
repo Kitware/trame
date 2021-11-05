@@ -116,7 +116,7 @@ def create_app(name):
 
 def start(layout=None, name=None, favicon=None, on_ready=None, port=None, debug=False):
     """
-    Start web server for serving your application
+    Start the Trame web server for your application
 
     :param layout: UI content that should be used for your application
     :type layout: None | str | trame.layouts.*
@@ -124,10 +124,12 @@ def start(layout=None, name=None, favicon=None, on_ready=None, port=None, debug=
     :type name: None | str
     :param favicon: Relative path to a png image that should be used as favicon
     :type favicon: None | str
-    :param port: Port on which the server should run on. Default is 8080. This overrides a port from the command line `--port/-p` option.
+    :param port: Port on which the server should run on. Default is 8080. This overrides a port from the command line ``--port/-p`` option.
     :type port: None | Number
     :param on_ready: Function called once the server is ready
     :type on_ready: None | function
+    :param debug: Whether to print debugging information
+    :type debug: bool
 
     >>> start(on_ready=initialize)
     """
@@ -192,11 +194,16 @@ def update_state(key, value=None):
 
 def get_state(*names):
     """
-    Return a list of the values of the given state keys
+    Return a dictionary of all state keys, or a list of the values of the given state keys
 
-    :param names: List of name of state values to retreive
+    :param names: List of names of state values to retreive
     :type names: list[str]
-    :returns: List of values matching the requested state property names
+    :rtype: dict[str, Any] | List[Any]
+    :returns: Either a dict of all state keys or a list of values matching the given state property names
+
+    >>> full_state = get_state()
+    >>> full_state.get("greeting")
+    "Hello"
 
     >>> greeting, name  = get_state("greeting", "name")
     >>> f'{greeting}, {name}!'
@@ -206,9 +213,6 @@ def get_state(*names):
     >>> greeting
     "Hello"
 
-    >>> full_state = get_state()
-    >>> full_state.get("greeting")
-    "Hello"
 
     """
     _app = get_app_instance()
@@ -226,7 +230,7 @@ def update_layout(layout):
     """
     Dynamically update current application layout
 
-    :param layout: UI content that should be used for your application
+    :param layout: UI content for your application
     :type layout: str | trame.layouts.*
 
     >>> layout.title.content = "Workload finished!"

@@ -69,6 +69,26 @@ class FullScreenPage:
     def state(self, value):
         get_app_instance().state.update(value)
 
+    def flush_content(self):
+        """Push new content to client"""
+        _app = get_app_instance()
+        _app.layout = self.html
+
+    def start(self, port=None, debug=False):
+        _app = get_app_instance()
+
+        _app.name = self.name
+        _app.layout = self.html
+        if self.favicon:
+            _app.favicon = self.favicon
+        if self.on_ready:
+            _app.on_ready = self.on_ready
+
+        # Dev validation
+        trame.validate_key_names()
+
+        _app.run_server(port=port)
+
 
 class SinglePage(FullScreenPage):
     """

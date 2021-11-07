@@ -1,3 +1,10 @@
+## [1.3.10](https://github.com/kitware/trame/compare/v1.3.9...v1.3.10) (2021-11-07)
+
+
+### Bug Fixes
+
+* **layout:** Add helper methods ([ad2783b](https://github.com/kitware/trame/commit/ad2783b07eed9a3a643d4ced0ea3808f66fad0ef))
+
 ## [1.3.9](https://github.com/kitware/trame/compare/v1.3.8...v1.3.9) (2021-11-05)
 
 

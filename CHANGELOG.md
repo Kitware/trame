@@ -1,3 +1,15 @@
+# [1.4.0](https://github.com/kitware/trame/compare/v1.3.12...v1.4.0) (2021-11-08)
+
+
+### Bug Fixes
+
+* **VTK:** Use ref as scene_id var ([de04a6d](https://github.com/kitware/trame/commit/de04a6df6b1c1012ed28beea7e9c4d946eec9abe))
+
+
+### Features
+
+* **reload:** Add --dev arg to dynamically reload server when developing ([e4a4d16](https://github.com/kitware/trame/commit/e4a4d1687031dd39c1e9dc89b99669bd1279e7e1))
+
 ## [1.3.12](https://github.com/kitware/trame/compare/v1.3.11...v1.3.12) (2021-11-08)
 
 

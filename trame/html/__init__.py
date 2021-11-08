@@ -141,7 +141,7 @@ class AbstractElement:
 
     def ttsSensitive(self):
         """
-        Set this element to be reactive to a global timestamp. This is useful for dropdown components.
+        Set this element to be reactive to a global timestamp.
         """
         self._attributes["__tts"] = f':key="`w{self._id}-${{tts}}`"'
         return self

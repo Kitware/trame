@@ -18,6 +18,8 @@ if "vuetify" not in _app.vue_use:
 
 """
 
+tts_sensitive_elements = ["VSelect"]
+
 
 def get_attributes(tag):
     if len(tag.get("attributes")) == 0:
@@ -66,6 +68,38 @@ def get_events(tag):
         self._event_names += [
             {joined_events}
         ]"""
+
+
+def get_docs(tag):
+    url = tag.get("doc-url", "https://vuetifyjs.com/en/introduction/why-vuetify/")
+    url = url.replace("www.", "")  # www redirects to start page
+
+    name = tag.get("name")
+    attributes = tag.get("attributes", [])
+    params = ""
+    for attribute in attributes:
+        raw_name = attribute.get("name")
+        attribute_name = raw_name.replace("-", "_")
+        attribute_type = attribute.get("value", {}).get("type", "string")
+        description = attribute.get("description")
+        if "](" in description:
+            # Hide descriptions with markdown
+            description = f"See description |{name}_vuetify_link|."
+        params += f"""
+    :param {attribute_name}: {description}
+    :type {attribute_type}:"""
+
+    return f"""
+    \"\"\"
+    Vuetify's {name} component. See more info and examples |{name}_vuetify_link|.
+
+    .. |{name}_vuetify_link| raw:: html
+
+        <a href="{url}" target="_blank">here</a>
+
+    {params}
+    \"\"\"
+    """
 
 
 def expand_parenthetical(attribute, attributes):
@@ -121,13 +155,18 @@ def generate_vuetify(input_file, output_file):
         tag_name = tag.get("doc-url").replace("https://www.vuetifyjs.com/api/", "")
         attributes = get_attributes(tag)
         events = get_events(tag)
+        docs = get_docs(tag)
         for slot in tag.get("slots", []):
             slots_names.add(slot.get("name"))
 
         class_def = f"""
 class {name}(AbstractElement):
+    {docs}
     def __init__(self, children=None, **kwargs):
         super().__init__("{tag_name}", children, **kwargs)"""
+
+        if name in tts_sensitive_elements:
+            class_def += "\n        self.ttsSensitive()"
 
         if attributes is not None:
             class_def += attributes

@@ -6,7 +6,7 @@ Vuetify is a UI Library with beautifully handcrafted Material Components. No des
 
 ## How to use it?
 
-Trame wraps Vuetify as it's primary UI Component Library. The [Vuetify website](https://vuetifyjs.com/en/) is very well made for exploring components and understanding components parameters and controls.
+Trame wraps Vuetify as it's primary UI Component Library. The [Vuetify website](https://vuetifyjs.com/en/) is very well made for exploring components and understanding components' parameters and controls, while a reference to our wrapper API is available [here](https://trame.readthedocs.io/en/latest/trame.html.vuetify.html).
 
 The way trame translate Vue templates into plain Python code is by doing the following.
 

@@ -1,4 +1,5 @@
 import os
+import asyncio
 import inspect
 
 from pywebvue import App
@@ -134,7 +135,9 @@ def start(layout=None, name=None, favicon=None, on_ready=None, port=None, debug=
     >>> start(on_ready=initialize)
     """
     app = get_app_instance()
+    app.cli_parser.add_argument("--server", help="Prevent your browser from opening at startup", action='store_true')
     app._debug = debug
+    app.on_ready = print_server_info()
     if name:
         app.name = name
 
@@ -147,7 +150,7 @@ def start(layout=None, name=None, favicon=None, on_ready=None, port=None, debug=
             if layout.favicon:
                 app.favicon = layout.favicon
             if layout.on_ready:
-                app.on_ready = layout.on_ready
+                app.on_ready = print_server_info(layout.on_ready)
     else:
         tpl_path = os.path.join(base_directory(), "template.html")
         if os.path.exists(tpl_path):
@@ -156,7 +159,7 @@ def start(layout=None, name=None, favicon=None, on_ready=None, port=None, debug=
             print("Error: We could not find your layout or template.html file.")
 
     if on_ready:
-        app.on_ready = on_ready
+        app.on_ready = print_server_info(on_ready)
 
     if favicon:
         app.favicon = os.path.join(base_directory(), favicon)
@@ -419,6 +422,38 @@ def trigger(name):
 # Dev tools
 # -----------------------------------------------------------------------------
 
+def print_server_info(_fn=None):
+    def ready(**kwargs):
+        parser = get_cli_parser()
+        args = parser.parse_known_args()[0]
+        local_url = f"http://{args.host}:{args.port}/"
+
+        import socket
+        host_name = socket.gethostname()
+        host_ip = socket.gethostbyname(host_name)
+
+        print()
+        print(" App running at:")
+        print(f" - Local:   {local_url}")
+        print(f" - Network: http://{host_ip}:{args.port}/")
+        print()
+        print("Note that for multi-users you need to use and configure a launcher.")
+
+        if _fn:
+            try:
+                _fn(**kwargs)
+            except TypeError:
+                _fn()
+
+        if not args.server:
+            import webbrowser
+            import asyncio
+            loop = asyncio.get_event_loop()
+            loop.call_later(0.1, lambda: webbrowser.open(local_url))
+            print("And to prevent your browser from opening, add '--server' to your command line.")
+        print()
+
+    return ready
 
 def validate_key_names():
     _app = get_app_instance()

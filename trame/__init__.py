@@ -1,5 +1,5 @@
 import os
-import asyncio
+import sys
 import inspect
 
 from pywebvue import App
@@ -32,6 +32,8 @@ def base_directory():
         BASE_DIRECTORY = os.path.abspath(os.path.dirname(module.__file__))
     return BASE_DIRECTORY
 
+def _log_js_error(message):
+    print(f" > JS error | {message}")
 
 # -----------------------------------------------------------------------------
 # App management
@@ -105,7 +107,13 @@ def create_app(name):
     global NEXT_APP_ID, APPS
     NEXT_APP_ID += 1
     _app_id = f"trame_app_{NEXT_APP_ID}"
-    APPS[_app_id] = App(name)
+    _app = App(name)
+
+    # Default app initialization
+    _app.trigger("js_error")(_log_js_error)
+    _app.cli_parser.add_argument("--server", help="Prevent your browser from opening at startup", action='store_true')
+
+    APPS[_app_id] = _app
     activate_app(_app_id)
     return _app_id
 
@@ -135,7 +143,6 @@ def start(layout=None, name=None, favicon=None, on_ready=None, port=None, debug=
     >>> start(on_ready=initialize)
     """
     app = get_app_instance()
-    app.cli_parser.add_argument("--server", help="Prevent your browser from opening at startup", action='store_true')
     app._debug = debug
     app.on_ready = print_server_info()
     if name:
@@ -471,3 +478,36 @@ def validate_key_names():
         for message in errors:
             print(message)
         print("=" * 60)
+
+
+def main():
+    """trame app.py --dev"""
+    _app = get_app_instance()
+    parser = _app.cli_parser
+    parser.add_argument("--dev", help="Allow to dynamically reload server", action='store_true')
+    args, scripts = parser.parse_known_args()
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("app", scripts[0])
+    app = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(app)
+
+    # Register reload trigger
+    def reload():
+        print("\nReloading application...")
+        _app._change_callbacks.clear()
+        _app._triggers.clear()
+        _app.reload_app()
+
+        # Keep sys trame ones
+        _app._triggers["server_reload"] = reload
+        _app._triggers["js_error"] = _log_js_error
+
+        spec = importlib.util.spec_from_file_location("app", scripts[0])
+        app = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(app)
+        app.layout.flush_content()
+        print(" > done !\n")
+
+    _app.trigger("server_reload")(reload)
+
+    app.layout.start(debug=args.dev)

@@ -2,7 +2,7 @@ from genericpath import exists
 import os
 from pywebvue.utils import read_file_as_base64_url
 from trame.html import Span, vuetify, Triggers
-from trame import base_directory, get_app_instance
+from trame import base_directory, get_app_instance, get_cli_parser
 
 import pywebvue
 import trame
@@ -79,10 +79,12 @@ class FullScreenPage:
 
         _app.name = self.name
         _app.layout = self.html
+        _app.on_ready = trame.print_server_info()
+
         if self.favicon:
             _app.favicon = self.favicon
         if self.on_ready:
-            _app.on_ready = self.on_ready
+            _app.on_ready = trame.print_server_info(self.on_ready)
 
         # Dev validation
         trame.validate_key_names()
@@ -100,8 +102,8 @@ class SinglePage(FullScreenPage):
     >>> trame.start(SinglePage("Page with header / app bar"))
     """
 
-    def __init__(self, name):
-        super().__init__(name)
+    def __init__(self, name, favicon=None, on_ready=None):
+        super().__init__(name, favicon, on_ready)
         self.toolbar = vuetify.VAppBar(app=True)
         if os.path.exists(LOGO_PATH):
             self.logo = Span(
@@ -111,6 +113,10 @@ class SinglePage(FullScreenPage):
             )
         else:
             self.logo = vuetify.VIcon("mdi-menu", classes="mr-4")
+
+        args = get_cli_parser().parse_known_args()[0]
+        dev = args.dev if hasattr(args, "dev") else False
+
         self.title = Span("Trame App", classes="title")
         self.content = vuetify.VMain()
         self.toolbar.children += [self.logo, self.title]
@@ -129,6 +135,14 @@ class SinglePage(FullScreenPage):
                 ),
                 f'<a href="https://kitware.github.io/trame/" class="grey--text lighten-1--text text-caption text-decoration-none" target="_blank">Powered by Trame {trame.__version__}/{pywebvue.__version__}</a>',
                 vuetify.VSpacer(),
+                vuetify.VBtn(
+                    vuetify.VIcon("mdi-autorenew", x_small=True),
+                    v_if=("__dev_reload", dev),
+                    x_small=True,
+                    icon=True,
+                    click="trigger('server_reload')",
+                    classes="mx-2",
+                ),
                 '<a href="https://www.kitware.com/" class="grey--text lighten-1--text text-caption text-decoration-none" target="_blank">© 2021 Kitware Inc.</a>',
                 # vuetify.VProgressLinear(
                 #     active=("busy",),
@@ -163,9 +177,9 @@ class SinglePageWithDrawer(SinglePage):
     """
 
     def __init__(
-        self, name, show_drawer=True, width=200, show_drawer_name="drawerOpen"
+        self, name, favicon=None, on_ready=None, show_drawer=True, width=200, show_drawer_name="drawerOpen"
     ):
-        super().__init__(name)
+        super().__init__(name, favicon, on_ready)
         self.drawer = vuetify.VNavigationDrawer(
             app=True,
             clipped=True,

@@ -1,6 +1,6 @@
 import os
 
-from trame import start, update_state, change, get_state
+import trame as tr
 from trame.html import vuetify, vtk
 from trame.layouts import SinglePage
 
@@ -40,7 +40,7 @@ contour.SetComputeScalars(0)
 # Extract data range => Update store/state
 data_range = reader.GetOutput().GetPointData().GetScalars().GetRange()
 contour_value = 0.5 * (data_range[0] + data_range[1])
-update_state("data_range", data_range)
+tr.update_state("data_range", data_range)
 
 # Configure contour with valid values
 contour.SetNumberOfContours(1)
@@ -68,7 +68,7 @@ renderWindow.Render()
 # -----------------------------------------------------------------------------
 
 
-@change("contour_value", "interactive")
+@tr.change("contour_value", "interactive")
 def update_contour(contour_value, interactive, force=False, **kwargs):
     if interactive or force:
         contour.SetValue(0, contour_value)
@@ -76,16 +76,16 @@ def update_contour(contour_value, interactive, force=False, **kwargs):
 
 
 def commit_changes():
-    cv, i = get_state("contour_value", "interactive")
+    cv, i = tr.get_state("contour_value", "interactive")
     update_contour(force=True, contour_value=cv, interactive=i)
 
 
 # -----------------------------------------------------------------------------
 # GUI
 # -----------------------------------------------------------------------------
-html_view = vtk.VtkSyncView(renderWindow)  # Only change compare to RemoteRendering
+html_view = vtk.VtkLocalView(renderWindow)  # Only change compare to RemoteRendering
 
-layout = SinglePage("VTK contour - Remote/Local rendering")
+layout = SinglePage("VTK contour - Remote/Local rendering", on_ready=html_view.update)
 layout.title.content = "Contour Application - Remote rendering"
 layout.logo.click = "$refs.view.resetCamera()"
 
@@ -127,4 +127,4 @@ with layout.content:
 # -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    start(layout, on_ready=html_view.update)
+    layout.start()

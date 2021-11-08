@@ -1,6 +1,6 @@
 import os
 
-from trame import start, update_state, change, get_app_instance
+import trame as tr
 from trame.html import vuetify, vtk
 from trame.layouts import SinglePage
 
@@ -29,7 +29,6 @@ contour.SetComputeScalars(0)
 # Extract data range => Update store/state
 data_range = reader.GetOutput().GetPointData().GetScalars().GetRange()
 contour_value = 0.5 * (data_range[0] + data_range[1])
-update_state("data_range", data_range)
 
 # Configure contour with valid values
 contour.SetNumberOfContours(1)
@@ -41,7 +40,7 @@ contour.SetValue(0, contour_value)
 # -----------------------------------------------------------------------------
 
 
-@change("contour_value")
+@tr.change("contour_value")
 def update_contour(contour_value, **kwargs):
     contour.SetValue(0, contour_value)
     html_polydata.update()
@@ -52,9 +51,13 @@ def update_contour(contour_value, **kwargs):
 # -----------------------------------------------------------------------------
 html_polydata = vtk.VtkPolyData("contour", dataset=contour)
 
-layout = SinglePage("VTK contour - Remote/Local rendering")
+layout = SinglePage("VTK contour - Remote/Local rendering", on_ready=update_contour)
 layout.title.content = "Contour Application - Local rendering"
 layout.logo.click = "$refs.view.resetCamera()"
+
+layout.state = {
+    "data_range": data_range,
+}
 
 with layout.toolbar:
     vuetify.VSpacer()
@@ -92,4 +95,4 @@ with layout.content:
 # -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    start(layout, on_ready=update_contour)
+    layout.start()

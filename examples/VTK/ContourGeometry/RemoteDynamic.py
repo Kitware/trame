@@ -1,6 +1,6 @@
 import os
 
-from trame import start, update_state, change, get_state, update_layout
+import trame as tr
 from trame.html import vuetify, vtk
 from trame.layouts import SinglePage
 
@@ -40,7 +40,6 @@ contour.SetComputeScalars(0)
 # Extract data range => Update store/state
 data_range = reader.GetOutput().GetPointData().GetScalars().GetRange()
 contour_value = 0.5 * (data_range[0] + data_range[1])
-update_state("data_range", data_range)
 
 # Configure contour with valid values
 contour.SetNumberOfContours(1)
@@ -74,23 +73,23 @@ def get_html_view(remote_view):
     return html_local_view
 
 
-@change("contour_value", "interactive")
+@tr.change("contour_value", "interactive")
 def update_contour(contour_value, interactive, remote_view, force=False, **kwargs):
     if interactive or force:
         contour.SetValue(0, contour_value)
         get_html_view(remote_view).update()
 
 
-@change("remote_view")
+@tr.change("remote_view")
 def update_view_type(remote_view, **kwargs):
     elem = get_html_view(remote_view)
     html_view_container.children[0] = elem
-    update_layout(layout)
+    layout.flush_content()
     commit_changes()
 
 
 def commit_changes():
-    cv, i, rv = get_state("contour_value", "interactive", "remote_view")
+    cv, i, rv = tr.get_state("contour_value", "interactive", "remote_view")
     update_contour(force=True, contour_value=cv, interactive=i, remote_view=rv)
 
 
@@ -107,9 +106,13 @@ html_view_container = vuetify.VContainer(
     children=[html_local_view],  # start with SyncView
 )
 
-layout = SinglePage("VTK contour - Remote/Local rendering")
+layout = SinglePage("VTK contour - Remote/Local rendering", on_ready=commit_changes)
 layout.title.content = "Contour Application - Remote rendering"
 layout.logo.click = "$refs.view.resetCamera()"
+
+layout.state = {
+    "data_range": data_range,
+}
 
 with layout.toolbar:
     vuetify.VSpacer()
@@ -158,4 +161,4 @@ layout.content.children += [html_view_container]
 # -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    start(layout, on_ready=commit_changes)
+    layout.start()

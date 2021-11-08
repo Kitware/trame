@@ -1,3 +1,10 @@
+## [1.3.12](https://github.com/kitware/trame/compare/v1.3.11...v1.3.12) (2021-11-08)
+
+
+### Bug Fixes
+
+* **server:** Add server IP and open browser without --server arg ([264eab1](https://github.com/kitware/trame/commit/264eab107d4817256d4d84550dede64c290c79b9))
+
 ## [1.3.11](https://github.com/kitware/trame/compare/v1.3.10...v1.3.11) (2021-11-08)
 
 

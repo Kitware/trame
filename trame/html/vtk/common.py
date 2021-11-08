@@ -231,7 +231,7 @@ class VtkShareDataset(AbstractElement):
 class VtkSyncView(AbstractElement):
     def __init__(self, view, ref="view", **kwargs):
         super().__init__("vtk-sync-view", **kwargs)
-        self.__scene_id = f"scene_{self._id}"
+        self.__scene_id = f"scene_{ref}"
         self.__view = view
         self.__ref = ref
         self._attributes["ref"] = f'ref="{ref}"'

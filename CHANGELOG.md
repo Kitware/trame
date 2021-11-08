@@ -1,3 +1,10 @@
+## [1.3.11](https://github.com/kitware/trame/compare/v1.3.10...v1.3.11) (2021-11-08)
+
+
+### Bug Fixes
+
+* **AbstractElement:** Simplify constructor ([f5ce355](https://github.com/kitware/trame/commit/f5ce3557e03bea14ad3eefd112b65f962cb1303a))
+
 ## [1.3.10](https://github.com/kitware/trame/compare/v1.3.9...v1.3.10) (2021-11-07)
 
 

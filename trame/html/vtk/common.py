@@ -12,14 +12,14 @@ def use_module(m):
 
 
 class VtkAlgorithm(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("vtk-algorithm", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("vtk-algorithm", children, **kwargs)
         self._attr_names += ["port", "vtk_class", "state"]
 
 
 class VtkCellData(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("vtk-cell-data", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("vtk-cell-data", children, **kwargs)
 
 
 class VtkDataArray(AbstractElement):
@@ -35,13 +35,13 @@ class VtkDataArray(AbstractElement):
 
 
 class VtkFieldData(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("vtk-field-data", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("vtk-field-data", children, **kwargs)
 
 
 class VtkGeometryRepresentation(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("vtk-geometry-representation", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("vtk-geometry-representation", children, **kwargs)
         self._attr_names += [
             "id",
             "color_map_preset",
@@ -53,8 +53,8 @@ class VtkGeometryRepresentation(AbstractElement):
 
 
 class VtkGlyphRepresentation(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("vtk-glyph-representation", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("vtk-glyph-representation", children, **kwargs)
         self._attr_names += [
             "color_map_preset",
             "color_data_range",
@@ -104,13 +104,13 @@ class VtkMesh(AbstractElement):
 
 
 class VtkPointData(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("vtk-point-data", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("vtk-point-data", children, **kwargs)
 
 
 class VtkPolyData(AbstractElement):
-    def __init__(self, name, __content=None, dataset=None, **kwargs):
-        super().__init__("vtk-polydata", __content, **kwargs)
+    def __init__(self, name, children=None, dataset=None, **kwargs):
+        super().__init__("vtk-polydata", children, **kwargs)
         self.__name = name
         self.__dataset = dataset
         self._attr_names += [
@@ -223,8 +223,8 @@ class VtkRemoteView(AbstractElement):
 
 
 class VtkShareDataset(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("vtk-share-dataset", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("vtk-share-dataset", children, **kwargs)
         self._attr_names += ["port", "name"]
 
 
@@ -255,8 +255,8 @@ class VtkLocalView(VtkSyncView):
 
 
 class VtkView(AbstractElement):
-    def __init__(self, __content=None, ref="view", **kwargs):
-        super().__init__("vtk-view", __content, **kwargs)
+    def __init__(self, children=None, ref="view", **kwargs):
+        super().__init__("vtk-view", children, **kwargs)
         self._ref = ref
         self._attributes["ref"] = f'ref="{ref}"'
         self._attr_names += [

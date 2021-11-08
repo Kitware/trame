@@ -126,8 +126,8 @@ def generate_vuetify(input_file, output_file):
 
         class_def = f"""
 class {name}(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("{tag_name}", __content, **kwargs)"""
+    def __init__(self, children=None, **kwargs):
+        super().__init__("{tag_name}", children, **kwargs)"""
 
         if attributes is not None:
             class_def += attributes

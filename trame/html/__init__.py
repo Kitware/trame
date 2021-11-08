@@ -35,7 +35,7 @@ HTML_CTX = ElementContextManager()
 class AbstractElement:
     _next_id = 1
 
-    def __init__(self, name, __content=None, children=None, **kwargs):
+    def __init__(self, name, children=None, **kwargs):
         AbstractElement._next_id += 1
         self._id = AbstractElement._next_id
         self._elem_name = name
@@ -48,17 +48,13 @@ class AbstractElement:
         self._py_attr = kwargs
         self._children = []
 
-        if __content:
-            if isinstance(__content, str):
-                self._txt = __content
-            elif isinstance(__content, list):
-                self._children.extend(__content)
-            else:
-                self._children.append(__content)
-
-        # Add standard Vue attribute handling
         if children:
-            self._children.extend(children)
+            if isinstance(children, str):
+                self._txt = children
+            elif isinstance(children, list):
+                self._children.extend(children)
+            else:
+                self._children.append(children)
 
         # Add standard Vue attr/event handling
         self._attr_names += [
@@ -288,34 +284,34 @@ class AbstractElement:
 
 
 class Element(AbstractElement):
-    def __init__(self, __elem_name, __content=None, **kwargs):
-        super().__init__(__elem_name, __content, **kwargs)
+    def __init__(self, __elem_name, children=None, **kwargs):
+        super().__init__(__elem_name, children, **kwargs)
 
 
 class Div(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("div", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("div", children, **kwargs)
 
 
 class Span(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("span", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("span", children, **kwargs)
 
 
 class Form(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("form", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("form", children, **kwargs)
         self._attr_names += ["action"]
 
 
 class Label(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("label", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("label", children, **kwargs)
 
 
 class Input(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("input", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("input", children, **kwargs)
         self._attr_names += [
             "type",
             "value",
@@ -344,8 +340,8 @@ class Input(AbstractElement):
 class Template(AbstractElement):
     slot_names = set()
 
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("template", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("template", children, **kwargs)
         self._attr_names += ["v_slot"]
         for slot_name in Template.slot_names:
             safe_name = slot_name.replace("-", "_").replace(".", "_")

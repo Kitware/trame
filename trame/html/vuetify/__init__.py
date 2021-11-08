@@ -1,3 +1,4 @@
+
 from trame import get_app_instance
 from trame.html import AbstractElement, Template
 
@@ -8,83 +9,82 @@ if "vuetify" not in _app.vue_use:
 
 
 slot_names = [
-    "group.summary",
-    "expanded-item",
-    "prev",
-    "foot",
-    "no-results",
-    "badge",
-    "appendIcon",
-    "activator",
-    "body.prepend",
-    "top",
-    "group",
-    "header.<name>",
-    "footer.prepend",
-    "footer.page-text",
-    "placeholder",
-    "day-body",
-    "interval",
-    "body.append",
-    "header",
-    "prepend",
-    "group.header",
-    "item",
-    "label",
-    "event",
-    "icon",
-    "next",
-    "opposite",
-    "append",
-    "progress",
-    "selection",
-    "header.data-table-select",
-    "category",
-    "input",
-    "img",
-    "page-text",
-    "body",
     "day-header",
+    "body.prepend",
     "close",
-    "loading",
-    "action",
-    "day",
-    "extension",
+    "icon",
+    "day-body",
+    "activator",
     "counter",
-    "loader",
-    "thumb-label",
-    "item.data-table-expand",
-    "message",
-    "default",
-    "item.<name>",
-    "prependIcon",
-    "day-month",
-    "append-outer",
-    "footer",
-    "prepend-inner",
-    "item.data-table-select",
-    "day-label",
-    "day-label-header",
-    "prepend-item",
-    "divider",
-    "no-data",
-    "append-item",
+    "header",
+    "group.header",
     "actions",
+    "day",
+    "action",
+    "loading",
+    "label",
+    "page-text",
+    "prev",
+    "prepend",
+    "body",
+    "badge",
+    "prepend-item",
+    "append-outer",
+    "footer.page-text",
+    "group.summary",
+    "append",
+    "footer",
+    "appendIcon",
+    "opposite",
+    "progress",
+    "day-month",
+    "item",
+    "no-data",
+    "group",
+    "item.data-table-expand",
+    "foot",
+    "extension",
+    "header.data-table-select",
+    "header.<name>",
+    "img",
+    "body.append",
+    "expanded-item",
+    "input",
+    "selection",
+    "message",
+    "thumb-label",
+    "event",
+    "placeholder",
+    "item.<name>",
+    "day-label",
+    "category",
+    "item.data-table-select",
+    "prepend-inner",
+    "no-results",
+    "default",
+    "divider",
+    "day-label-header",
+    "interval",
+    "next",
+    "top",
+    "loader",
+    "footer.prepend",
+    "append-item",
+    "prependIcon",
 ]
 Template.slot_names.update(slot_names)
 
-
 class VApp(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-app", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-app", children, **kwargs)
         self._attr_names += [
             "id",
         ]
 
 
 class VAppBar(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-app-bar", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-app-bar", children, **kwargs)
         self._attr_names += [
             "absolute",
             "app",
@@ -130,18 +130,18 @@ class VAppBar(AbstractElement):
 
 
 class VAppBarNavIcon(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-app-bar-nav-icon", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-app-bar-nav-icon", children, **kwargs)
 
 
 class VAppBarTitle(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-app-bar-title", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-app-bar-title", children, **kwargs)
 
 
 class VAlert(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-alert", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-alert", children, **kwargs)
         self._attr_names += [
             "border",
             "close_icon",
@@ -179,8 +179,8 @@ class VAlert(AbstractElement):
 
 
 class VAutocomplete(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-autocomplete", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-autocomplete", children, **kwargs)
         self._attr_names += [
             "allow_overflow",
             "append_icon",
@@ -277,8 +277,8 @@ class VAutocomplete(AbstractElement):
 
 
 class VAvatar(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-avatar", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-avatar", children, **kwargs)
         self._attr_names += [
             "color",
             "height",
@@ -296,8 +296,8 @@ class VAvatar(AbstractElement):
 
 
 class VBadge(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-badge", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-badge", children, **kwargs)
         self._attr_names += [
             "avatar",
             "bordered",
@@ -323,8 +323,8 @@ class VBadge(AbstractElement):
 
 
 class VBanner(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-banner", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-banner", children, **kwargs)
         self._attr_names += [
             "app",
             "color",
@@ -352,8 +352,8 @@ class VBanner(AbstractElement):
 
 
 class VBottomNavigation(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-bottom-navigation", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-bottom-navigation", children, **kwargs)
         self._attr_names += [
             "absolute",
             "active_class",
@@ -387,8 +387,8 @@ class VBottomNavigation(AbstractElement):
 
 
 class VBottomSheet(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-bottom-sheet", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-bottom-sheet", children, **kwargs)
         self._attr_names += [
             "activator",
             "attach",
@@ -421,8 +421,8 @@ class VBottomSheet(AbstractElement):
 
 
 class VBreadcrumbs(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-breadcrumbs", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-breadcrumbs", children, **kwargs)
         self._attr_names += [
             "dark",
             "divider",
@@ -433,8 +433,8 @@ class VBreadcrumbs(AbstractElement):
 
 
 class VBreadcrumbsItem(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-breadcrumbs-item", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-breadcrumbs-item", children, **kwargs)
         self._attr_names += [
             "active_class",
             "append",
@@ -454,13 +454,13 @@ class VBreadcrumbsItem(AbstractElement):
 
 
 class VBreadcrumbsDivider(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-breadcrumbs-divider", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-breadcrumbs-divider", children, **kwargs)
 
 
 class VBtn(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-btn", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-btn", children, **kwargs)
         self._attr_names += [
             "absolute",
             "active_class",
@@ -518,8 +518,8 @@ class VBtn(AbstractElement):
 
 
 class VBtnToggle(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-btn-toggle", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-btn-toggle", children, **kwargs)
         self._attr_names += [
             "active_class",
             "background_color",
@@ -544,8 +544,8 @@ class VBtnToggle(AbstractElement):
 
 
 class VCalendar(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-calendar", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-calendar", children, **kwargs)
         self._attr_names += [
             "categories",
             "category_days",
@@ -671,8 +671,8 @@ class VCalendar(AbstractElement):
 
 
 class VCalendarDaily(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-calendar-daily", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-calendar-daily", children, **kwargs)
         self._attr_names += [
             "color",
             "dark",
@@ -701,8 +701,8 @@ class VCalendarDaily(AbstractElement):
 
 
 class VCalendarWeekly(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-calendar-weekly", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-calendar-weekly", children, **kwargs)
         self._attr_names += [
             "color",
             "dark",
@@ -726,8 +726,8 @@ class VCalendarWeekly(AbstractElement):
 
 
 class VCalendarMonthly(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-calendar-monthly", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-calendar-monthly", children, **kwargs)
         self._attr_names += [
             "color",
             "dark",
@@ -751,8 +751,8 @@ class VCalendarMonthly(AbstractElement):
 
 
 class VCard(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-card", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-card", children, **kwargs)
         self._attr_names += [
             "active_class",
             "append",
@@ -795,28 +795,28 @@ class VCard(AbstractElement):
 
 
 class VCardActions(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-card-actions", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-card-actions", children, **kwargs)
 
 
 class VCardSubtitle(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-card-subtitle", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-card-subtitle", children, **kwargs)
 
 
 class VCardText(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-card-text", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-card-text", children, **kwargs)
 
 
 class VCardTitle(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-card-title", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-card-title", children, **kwargs)
 
 
 class VCarousel(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-carousel", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-carousel", children, **kwargs)
         self._attr_names += [
             "active_class",
             "continuous",
@@ -851,8 +851,8 @@ class VCarousel(AbstractElement):
 
 
 class VCarouselItem(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-carousel-item", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-carousel-item", children, **kwargs)
         self._attr_names += [
             "active_class",
             "append",
@@ -876,8 +876,8 @@ class VCarouselItem(AbstractElement):
 
 
 class VCheckbox(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-checkbox", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-checkbox", children, **kwargs)
         self._attr_names += [
             "append_icon",
             "background_color",
@@ -926,8 +926,8 @@ class VCheckbox(AbstractElement):
 
 
 class VSimpleCheckbox(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-simple-checkbox", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-simple-checkbox", children, **kwargs)
         self._attr_names += [
             "color",
             "dark",
@@ -946,8 +946,8 @@ class VSimpleCheckbox(AbstractElement):
 
 
 class VChip(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-chip", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-chip", children, **kwargs)
         self._attr_names += [
             "active",
             "active_class",
@@ -993,8 +993,8 @@ class VChip(AbstractElement):
 
 
 class VChipGroup(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-chip-group", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-chip-group", children, **kwargs)
         self._attr_names += [
             "active_class",
             "center_active",
@@ -1018,8 +1018,8 @@ class VChipGroup(AbstractElement):
 
 
 class VColorPicker(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-color-picker", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-color-picker", children, **kwargs)
         self._attr_names += [
             "canvas_height",
             "dark",
@@ -1047,16 +1047,16 @@ class VColorPicker(AbstractElement):
 
 
 class VContent(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-content", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-content", children, **kwargs)
         self._attr_names += [
             "tag",
         ]
 
 
 class VCombobox(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-combobox", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-combobox", children, **kwargs)
         self._attr_names += [
             "allow_overflow",
             "append_icon",
@@ -1154,8 +1154,8 @@ class VCombobox(AbstractElement):
 
 
 class VDataIterator(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-data-iterator", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-data-iterator", children, **kwargs)
         self._attr_names += [
             "checkbox_color",
             "custom_filter",  # JS functions unimplemented
@@ -1215,8 +1215,8 @@ class VDataIterator(AbstractElement):
 
 
 class VDataFooter(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-data-footer", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-data-footer", children, **kwargs)
         self._attr_names += [
             "disable_items_per_page",
             "disable_pagination",
@@ -1239,8 +1239,8 @@ class VDataFooter(AbstractElement):
 
 
 class VDataTable(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-data-table", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-data-table", children, **kwargs)
         self._attr_names += [
             "calculate_widths",
             "caption",
@@ -1318,8 +1318,8 @@ class VDataTable(AbstractElement):
 
 
 class VEditDialog(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-edit-dialog", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-edit-dialog", children, **kwargs)
         self._attr_names += [
             "cancel_text",
             "dark",
@@ -1340,8 +1340,8 @@ class VEditDialog(AbstractElement):
 
 
 class VDataTableHeader(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-data-table-header", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-data-table-header", children, **kwargs)
         self._attr_names += [
             "checkbox_color",
             "disable_sort",
@@ -1358,8 +1358,8 @@ class VDataTableHeader(AbstractElement):
 
 
 class VSimpleTable(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-simple-table", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-simple-table", children, **kwargs)
         self._attr_names += [
             "dark",
             "dense",
@@ -1370,8 +1370,8 @@ class VSimpleTable(AbstractElement):
 
 
 class VDatePicker(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-date-picker", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-date-picker", children, **kwargs)
         self._attr_names += [
             "active_picker",
             "allowed_dates",  # JS functions unimplemented
@@ -1518,8 +1518,8 @@ class VDatePicker(AbstractElement):
 
 
 class VDialog(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-dialog", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-dialog", children, **kwargs)
         self._attr_names += [
             "activator",
             "attach",
@@ -1556,8 +1556,8 @@ class VDialog(AbstractElement):
 
 
 class VDivider(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-divider", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-divider", children, **kwargs)
         self._attr_names += [
             "dark",
             "inset",
@@ -1567,8 +1567,8 @@ class VDivider(AbstractElement):
 
 
 class VExpansionPanels(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-expansion-panels", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-expansion-panels", children, **kwargs)
         self._attr_names += [
             "accordion",
             "active_class",
@@ -1591,8 +1591,8 @@ class VExpansionPanels(AbstractElement):
 
 
 class VExpansionPanel(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-expansion-panel", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-expansion-panel", children, **kwargs)
         self._attr_names += [
             "active_class",
             "disabled",
@@ -1605,8 +1605,8 @@ class VExpansionPanel(AbstractElement):
 
 
 class VExpansionPanelHeader(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-expansion-panel-header", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-expansion-panel-header", children, **kwargs)
         self._attr_names += [
             "color",
             "disable_icon_rotate",
@@ -1620,8 +1620,8 @@ class VExpansionPanelHeader(AbstractElement):
 
 
 class VExpansionPanelContent(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-expansion-panel-content", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-expansion-panel-content", children, **kwargs)
         self._attr_names += [
             "color",
             "eager",
@@ -1629,8 +1629,8 @@ class VExpansionPanelContent(AbstractElement):
 
 
 class VFileInput(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-file-input", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-file-input", children, **kwargs)
         self._attr_names += [
             "append_icon",
             "append_outer_icon",
@@ -1707,8 +1707,8 @@ class VFileInput(AbstractElement):
 
 
 class VFooter(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-footer", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-footer", children, **kwargs)
         self._attr_names += [
             "absolute",
             "app",
@@ -1734,8 +1734,8 @@ class VFooter(AbstractElement):
 
 
 class VForm(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-form", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-form", children, **kwargs)
         self._attr_names += [
             "disabled",
             "lazy_validation",
@@ -1749,8 +1749,8 @@ class VForm(AbstractElement):
 
 
 class VContainer(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-container", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-container", children, **kwargs)
         self._attr_names += [
             "fluid",
             "id",
@@ -1759,8 +1759,8 @@ class VContainer(AbstractElement):
 
 
 class VCol(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-col", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-col", children, **kwargs)
         self._attr_names += [
             "align_self",
             "cols",
@@ -1783,8 +1783,8 @@ class VCol(AbstractElement):
 
 
 class VRow(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-row", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-row", children, **kwargs)
         self._attr_names += [
             "align",
             "align_content",
@@ -1808,13 +1808,13 @@ class VRow(AbstractElement):
 
 
 class VSpacer(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-spacer", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-spacer", children, **kwargs)
 
 
 class VLayout(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-layout", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-layout", children, **kwargs)
         self._attr_names += [
             "align_baseline",
             "align_center",
@@ -1842,8 +1842,8 @@ class VLayout(AbstractElement):
 
 
 class VFlex(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-flex", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-flex", children, **kwargs)
         self._attr_names += [
             "sm1",
             "sm2",
@@ -2005,8 +2005,8 @@ class VFlex(AbstractElement):
 
 
 class VHover(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-hover", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-hover", children, **kwargs)
         self._attr_names += [
             "close_delay",
             "disabled",
@@ -2016,8 +2016,8 @@ class VHover(AbstractElement):
 
 
 class VIcon(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-icon", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-icon", children, **kwargs)
         self._attr_names += [
             "color",
             "dark",
@@ -2036,8 +2036,8 @@ class VIcon(AbstractElement):
 
 
 class VImg(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-img", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-img", children, **kwargs)
         self._attr_names += [
             "alt",
             "aspect_ratio",
@@ -2069,8 +2069,8 @@ class VImg(AbstractElement):
 
 
 class VInput(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-input", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-input", children, **kwargs)
         self._attr_names += [
             "append_icon",
             "background_color",
@@ -2109,8 +2109,8 @@ class VInput(AbstractElement):
 
 
 class VItem(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-item", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-item", children, **kwargs)
         self._attr_names += [
             "active_class",
             "disabled",
@@ -2119,8 +2119,8 @@ class VItem(AbstractElement):
 
 
 class VItemGroup(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-item-group", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-item-group", children, **kwargs)
         self._attr_names += [
             "active_class",
             "dark",
@@ -2137,8 +2137,8 @@ class VItemGroup(AbstractElement):
 
 
 class VLazy(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-lazy", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-lazy", children, **kwargs)
         self._attr_names += [
             "height",
             "max_height",
@@ -2154,28 +2154,28 @@ class VLazy(AbstractElement):
 
 
 class VListItemActionText(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-list-item-action-text", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-list-item-action-text", children, **kwargs)
 
 
 class VListItemContent(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-list-item-content", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-list-item-content", children, **kwargs)
 
 
 class VListItemTitle(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-list-item-title", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-list-item-title", children, **kwargs)
 
 
 class VListItemSubtitle(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-list-item-subtitle", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-list-item-subtitle", children, **kwargs)
 
 
 class VList(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-list", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-list", children, **kwargs)
         self._attr_names += [
             "color",
             "dark",
@@ -2204,8 +2204,8 @@ class VList(AbstractElement):
 
 
 class VListGroup(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-list-group", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-list-group", children, **kwargs)
         self._attr_names += [
             "active_class",
             "append_icon",
@@ -2225,8 +2225,8 @@ class VListGroup(AbstractElement):
 
 
 class VListItem(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-list-item", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-list-item", children, **kwargs)
         self._attr_names += [
             "active_class",
             "append",
@@ -2260,13 +2260,13 @@ class VListItem(AbstractElement):
 
 
 class VListItemAction(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-list-item-action", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-list-item-action", children, **kwargs)
 
 
 class VListItemAvatar(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-list-item-avatar", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-list-item-avatar", children, **kwargs)
         self._attr_names += [
             "color",
             "height",
@@ -2285,13 +2285,13 @@ class VListItemAvatar(AbstractElement):
 
 
 class VListItemIcon(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-list-item-icon", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-list-item-icon", children, **kwargs)
 
 
 class VListItemGroup(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-list-item-group", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-list-item-group", children, **kwargs)
         self._attr_names += [
             "active_class",
             "color",
@@ -2309,16 +2309,16 @@ class VListItemGroup(AbstractElement):
 
 
 class VMain(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-main", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-main", children, **kwargs)
         self._attr_names += [
             "tag",
         ]
 
 
 class VMenu(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-menu", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-menu", children, **kwargs)
         self._attr_names += [
             "absolute",
             "activator",
@@ -2371,8 +2371,8 @@ class VMenu(AbstractElement):
 
 
 class VNavigationDrawer(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-navigation-drawer", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-navigation-drawer", children, **kwargs)
         self._attr_names += [
             "absolute",
             "app",
@@ -2411,8 +2411,8 @@ class VNavigationDrawer(AbstractElement):
 
 
 class VOverflowBtn(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-overflow-btn", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-overflow-btn", children, **kwargs)
         self._attr_names += [
             "allow_overflow",
             "append_icon",
@@ -2511,8 +2511,8 @@ class VOverflowBtn(AbstractElement):
 
 
 class VOverlay(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-overlay", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-overlay", children, **kwargs)
         self._attr_names += [
             "absolute",
             "color",
@@ -2525,8 +2525,8 @@ class VOverlay(AbstractElement):
 
 
 class VPagination(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-pagination", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-pagination", children, **kwargs)
         self._attr_names += [
             "circle",
             "color",
@@ -2552,8 +2552,8 @@ class VPagination(AbstractElement):
 
 
 class VSheet(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-sheet", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-sheet", children, **kwargs)
         self._attr_names += [
             "color",
             "dark",
@@ -2574,8 +2574,8 @@ class VSheet(AbstractElement):
 
 
 class VParallax(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-parallax", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-parallax", children, **kwargs)
         self._attr_names += [
             "alt",
             "height",
@@ -2585,8 +2585,8 @@ class VParallax(AbstractElement):
 
 
 class VProgressCircular(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-progress-circular", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-progress-circular", children, **kwargs)
         self._attr_names += [
             "button",
             "color",
@@ -2599,8 +2599,8 @@ class VProgressCircular(AbstractElement):
 
 
 class VProgressLinear(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-progress-linear", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-progress-linear", children, **kwargs)
         self._attr_names += [
             "absolute",
             "active",
@@ -2628,8 +2628,8 @@ class VProgressLinear(AbstractElement):
 
 
 class VRadioGroup(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-radio-group", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-radio-group", children, **kwargs)
         self._attr_names += [
             "active_class",
             "append_icon",
@@ -2674,8 +2674,8 @@ class VRadioGroup(AbstractElement):
 
 
 class VRadio(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-radio", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-radio", children, **kwargs)
         self._attr_names += [
             "active_class",
             "color",
@@ -2703,8 +2703,8 @@ class VRadio(AbstractElement):
 
 
 class VRangeSlider(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-range-slider", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-range-slider", children, **kwargs)
         self._attr_names += [
             "append_icon",
             "background_color",
@@ -2761,8 +2761,8 @@ class VRangeSlider(AbstractElement):
 
 
 class VRating(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-rating", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-rating", children, **kwargs)
         self._attr_names += [
             "background_color",
             "clearable",
@@ -2794,8 +2794,8 @@ class VRating(AbstractElement):
 
 
 class VResponsive(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-responsive", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-responsive", children, **kwargs)
         self._attr_names += [
             "aspect_ratio",
             "content_class",
@@ -2809,8 +2809,8 @@ class VResponsive(AbstractElement):
 
 
 class VSelect(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-select", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-select", children, **kwargs)
         self._attr_names += [
             "append_icon",
             "append_outer_icon",
@@ -2901,8 +2901,8 @@ class VSelect(AbstractElement):
 
 
 class VSkeletonLoader(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-skeleton-loader", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-skeleton-loader", children, **kwargs)
         self._attr_names += [
             "boilerplate",
             "dark",
@@ -2923,8 +2923,8 @@ class VSkeletonLoader(AbstractElement):
 
 
 class VSlider(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-slider", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-slider", children, **kwargs)
         self._attr_names += [
             "append_icon",
             "background_color",
@@ -2981,8 +2981,8 @@ class VSlider(AbstractElement):
 
 
 class VSlideGroup(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-slide-group", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-slide-group", children, **kwargs)
         self._attr_names += [
             "active_class",
             "center_active",
@@ -3006,8 +3006,8 @@ class VSlideGroup(AbstractElement):
 
 
 class VSlideItem(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-slide-item", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-slide-item", children, **kwargs)
         self._attr_names += [
             "active_class",
             "disabled",
@@ -3016,8 +3016,8 @@ class VSlideItem(AbstractElement):
 
 
 class VSnackbar(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-snackbar", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-snackbar", children, **kwargs)
         self._attr_names += [
             "absolute",
             "app",
@@ -3055,8 +3055,8 @@ class VSnackbar(AbstractElement):
 
 
 class VSparkline(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-sparkline", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-sparkline", children, **kwargs)
         self._attr_names += [
             "auto_draw",
             "auto_draw_duration",
@@ -3080,8 +3080,8 @@ class VSparkline(AbstractElement):
 
 
 class VSpeedDial(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-speed-dial", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-speed-dial", children, **kwargs)
         self._attr_names += [
             "absolute",
             "bottom",
@@ -3099,8 +3099,8 @@ class VSpeedDial(AbstractElement):
 
 
 class VStepper(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-stepper", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-stepper", children, **kwargs)
         self._attr_names += [
             "alt_labels",
             "color",
@@ -3129,16 +3129,16 @@ class VStepper(AbstractElement):
 
 
 class VStepperContent(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-stepper-content", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-stepper-content", children, **kwargs)
         self._attr_names += [
             "step",
         ]
 
 
 class VStepperStep(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-stepper-step", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-stepper-step", children, **kwargs)
         self._attr_names += [
             "color",
             "complete",
@@ -3155,18 +3155,18 @@ class VStepperStep(AbstractElement):
 
 
 class VStepperHeader(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-stepper-header", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-stepper-header", children, **kwargs)
 
 
 class VStepperItems(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-stepper-items", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-stepper-items", children, **kwargs)
 
 
 class VSubheader(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-subheader", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-subheader", children, **kwargs)
         self._attr_names += [
             "dark",
             "inset",
@@ -3175,8 +3175,8 @@ class VSubheader(AbstractElement):
 
 
 class VSwitch(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-switch", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-switch", children, **kwargs)
         self._attr_names += [
             "append_icon",
             "background_color",
@@ -3223,8 +3223,8 @@ class VSwitch(AbstractElement):
 
 
 class VSystemBar(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-system-bar", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-system-bar", children, **kwargs)
         self._attr_names += [
             "absolute",
             "app",
@@ -3239,8 +3239,8 @@ class VSystemBar(AbstractElement):
 
 
 class VTabs(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-tabs", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-tabs", children, **kwargs)
         self._attr_names += [
             "active_class",
             "align_with_title",
@@ -3272,8 +3272,8 @@ class VTabs(AbstractElement):
 
 
 class VTab(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-tab", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-tab", children, **kwargs)
         self._attr_names += [
             "active_class",
             "append",
@@ -3300,8 +3300,8 @@ class VTab(AbstractElement):
 
 
 class VTabItem(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-tab-item", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-tab-item", children, **kwargs)
         self._attr_names += [
             "active_class",
             "disabled",
@@ -3314,8 +3314,8 @@ class VTabItem(AbstractElement):
 
 
 class VTabsItems(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-tabs-items", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-tabs-items", children, **kwargs)
         self._attr_names += [
             "active_class",
             "continuous",
@@ -3341,16 +3341,16 @@ class VTabsItems(AbstractElement):
 
 
 class VTabsSlider(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-tabs-slider", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-tabs-slider", children, **kwargs)
         self._attr_names += [
             "color",
         ]
 
 
 class VTextarea(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-textarea", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-textarea", children, **kwargs)
         self._attr_names += [
             "append_icon",
             "append_outer_icon",
@@ -3424,8 +3424,8 @@ class VTextarea(AbstractElement):
 
 
 class VTextField(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-text-field", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-text-field", children, **kwargs)
         self._attr_names += [
             "append_icon",
             "append_outer_icon",
@@ -3495,8 +3495,8 @@ class VTextField(AbstractElement):
 
 
 class VThemeProvider(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-theme-provider", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-theme-provider", children, **kwargs)
         self._attr_names += [
             "dark",
             "light",
@@ -3505,8 +3505,8 @@ class VThemeProvider(AbstractElement):
 
 
 class VTimeline(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-timeline", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-timeline", children, **kwargs)
         self._attr_names += [
             "align_top",
             "dark",
@@ -3517,8 +3517,8 @@ class VTimeline(AbstractElement):
 
 
 class VTimelineItem(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-timeline-item", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-timeline-item", children, **kwargs)
         self._attr_names += [
             "color",
             "dark",
@@ -3535,8 +3535,8 @@ class VTimelineItem(AbstractElement):
 
 
 class VTimePicker(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-time-picker", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-time-picker", children, **kwargs)
         self._attr_names += [
             "allowed_hours",  # JS functions unimplemented
             "allowed_minutes",  # JS functions unimplemented
@@ -3572,8 +3572,8 @@ class VTimePicker(AbstractElement):
 
 
 class VToolbar(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-toolbar", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-toolbar", children, **kwargs)
         self._attr_names += [
             "absolute",
             "bottom",
@@ -3605,18 +3605,18 @@ class VToolbar(AbstractElement):
 
 
 class VToolbarItems(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-toolbar-items", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-toolbar-items", children, **kwargs)
 
 
 class VToolbarTitle(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-toolbar-title", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-toolbar-title", children, **kwargs)
 
 
 class VTooltip(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-tooltip", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-tooltip", children, **kwargs)
         self._attr_names += [
             "absolute",
             "activator",
@@ -3655,8 +3655,8 @@ class VTooltip(AbstractElement):
 
 
 class VTreeview(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-treeview", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-treeview", children, **kwargs)
         self._attr_names += [
             "activatable",
             "active",
@@ -3700,8 +3700,8 @@ class VTreeview(AbstractElement):
 
 
 class VVirtualScroll(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-virtual-scroll", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-virtual-scroll", children, **kwargs)
         self._attr_names += [
             "bench",
             "height",
@@ -3716,8 +3716,8 @@ class VVirtualScroll(AbstractElement):
 
 
 class VWindow(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-window", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-window", children, **kwargs)
         self._attr_names += [
             "active_class",
             "continuous",
@@ -3740,8 +3740,8 @@ class VWindow(AbstractElement):
 
 
 class VWindowItem(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-window-item", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-window-item", children, **kwargs)
         self._attr_names += [
             "active_class",
             "disabled",
@@ -3753,8 +3753,8 @@ class VWindowItem(AbstractElement):
 
 
 class VCarouselTransition(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-carousel-transition", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-carousel-transition", children, **kwargs)
         self._attr_names += [
             "group",
             "hide_on_leave",
@@ -3765,8 +3765,8 @@ class VCarouselTransition(AbstractElement):
 
 
 class VCarouselReverseTransition(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-carousel-reverse-transition", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-carousel-reverse-transition", children, **kwargs)
         self._attr_names += [
             "group",
             "hide_on_leave",
@@ -3777,8 +3777,8 @@ class VCarouselReverseTransition(AbstractElement):
 
 
 class VTabTransition(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-tab-transition", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-tab-transition", children, **kwargs)
         self._attr_names += [
             "group",
             "hide_on_leave",
@@ -3789,8 +3789,8 @@ class VTabTransition(AbstractElement):
 
 
 class VTabReverseTransition(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-tab-reverse-transition", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-tab-reverse-transition", children, **kwargs)
         self._attr_names += [
             "group",
             "hide_on_leave",
@@ -3801,8 +3801,8 @@ class VTabReverseTransition(AbstractElement):
 
 
 class VMenuTransition(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-menu-transition", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-menu-transition", children, **kwargs)
         self._attr_names += [
             "group",
             "hide_on_leave",
@@ -3813,8 +3813,8 @@ class VMenuTransition(AbstractElement):
 
 
 class VFabTransition(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-fab-transition", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-fab-transition", children, **kwargs)
         self._attr_names += [
             "group",
             "hide_on_leave",
@@ -3825,8 +3825,8 @@ class VFabTransition(AbstractElement):
 
 
 class VDialogTransition(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-dialog-transition", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-dialog-transition", children, **kwargs)
         self._attr_names += [
             "group",
             "hide_on_leave",
@@ -3837,8 +3837,8 @@ class VDialogTransition(AbstractElement):
 
 
 class VDialogBottomTransition(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-dialog-bottom-transition", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-dialog-bottom-transition", children, **kwargs)
         self._attr_names += [
             "group",
             "hide_on_leave",
@@ -3849,8 +3849,8 @@ class VDialogBottomTransition(AbstractElement):
 
 
 class VDialogTopTransition(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-dialog-top-transition", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-dialog-top-transition", children, **kwargs)
         self._attr_names += [
             "group",
             "hide_on_leave",
@@ -3861,8 +3861,8 @@ class VDialogTopTransition(AbstractElement):
 
 
 class VFadeTransition(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-fade-transition", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-fade-transition", children, **kwargs)
         self._attr_names += [
             "group",
             "hide_on_leave",
@@ -3873,8 +3873,8 @@ class VFadeTransition(AbstractElement):
 
 
 class VScaleTransition(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-scale-transition", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-scale-transition", children, **kwargs)
         self._attr_names += [
             "group",
             "hide_on_leave",
@@ -3885,8 +3885,8 @@ class VScaleTransition(AbstractElement):
 
 
 class VScrollXTransition(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-scroll-x-transition", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-scroll-x-transition", children, **kwargs)
         self._attr_names += [
             "group",
             "hide_on_leave",
@@ -3897,8 +3897,8 @@ class VScrollXTransition(AbstractElement):
 
 
 class VScrollXReverseTransition(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-scroll-x-reverse-transition", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-scroll-x-reverse-transition", children, **kwargs)
         self._attr_names += [
             "group",
             "hide_on_leave",
@@ -3909,8 +3909,8 @@ class VScrollXReverseTransition(AbstractElement):
 
 
 class VScrollYTransition(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-scroll-y-transition", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-scroll-y-transition", children, **kwargs)
         self._attr_names += [
             "group",
             "hide_on_leave",
@@ -3921,8 +3921,8 @@ class VScrollYTransition(AbstractElement):
 
 
 class VScrollYReverseTransition(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-scroll-y-reverse-transition", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-scroll-y-reverse-transition", children, **kwargs)
         self._attr_names += [
             "group",
             "hide_on_leave",
@@ -3933,8 +3933,8 @@ class VScrollYReverseTransition(AbstractElement):
 
 
 class VSlideXTransition(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-slide-x-transition", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-slide-x-transition", children, **kwargs)
         self._attr_names += [
             "group",
             "hide_on_leave",
@@ -3945,8 +3945,8 @@ class VSlideXTransition(AbstractElement):
 
 
 class VSlideXReverseTransition(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-slide-x-reverse-transition", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-slide-x-reverse-transition", children, **kwargs)
         self._attr_names += [
             "group",
             "hide_on_leave",
@@ -3957,8 +3957,8 @@ class VSlideXReverseTransition(AbstractElement):
 
 
 class VSlideYTransition(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-slide-y-transition", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-slide-y-transition", children, **kwargs)
         self._attr_names += [
             "group",
             "hide_on_leave",
@@ -3969,8 +3969,8 @@ class VSlideYTransition(AbstractElement):
 
 
 class VSlideYReverseTransition(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-slide-y-reverse-transition", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-slide-y-reverse-transition", children, **kwargs)
         self._attr_names += [
             "group",
             "hide_on_leave",
@@ -3981,16 +3981,17 @@ class VSlideYReverseTransition(AbstractElement):
 
 
 class VExpandTransition(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-expand-transition", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-expand-transition", children, **kwargs)
         self._attr_names += [
             "mode",
         ]
 
 
 class VExpandXTransition(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("v-expand-x-transition", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-expand-x-transition", children, **kwargs)
         self._attr_names += [
             "mode",
         ]
+

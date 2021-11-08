@@ -9,8 +9,8 @@ _app.enable_module(SimPut)
 
 
 class Simput(AbstractElement):
-    def __init__(self, ui_manager, prefix=None, __content=None, **kwargs):
-        super().__init__("Simput", __content, **kwargs)
+    def __init__(self, ui_manager, prefix=None, children=None, **kwargs):
+        super().__init__("Simput", children, **kwargs)
         ns = f"simput_{self._id}"
         if prefix:
             ns = prefix
@@ -55,8 +55,8 @@ class Simput(AbstractElement):
 
 
 class SimputItem(AbstractElement):
-    def __init__(self, __content=None, extract=[], **kwargs):
-        super().__init__("SimputItem", __content, **kwargs)
+    def __init__(self, children=None, extract=[], **kwargs):
+        super().__init__("SimputItem", children, **kwargs)
         self._attr_names += [
             ("itemId", ":itemId"),
             "no_ui",

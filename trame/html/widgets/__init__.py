@@ -8,8 +8,8 @@ _app.enable_module(Widgets)
 
 
 class FloatCard(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("kw-float-card", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("kw-float-card", children, **kwargs)
         self._attr_names += [
             "handle_color",
             "handle_position",
@@ -39,8 +39,8 @@ class FloatCard(AbstractElement):
 
 
 class ListBrowser(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("kw-list-browser", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("kw-list-browser", children, **kwargs)
         self._attr_names += [
             "path_icon",
             "path_selected_icon",
@@ -52,8 +52,8 @@ class ListBrowser(AbstractElement):
 
 
 class GitTree(AbstractElement):
-    def __init__(self, __content=None, **kwargs):
-        super().__init__("kw-git-tree", __content, **kwargs)
+    def __init__(self, children=None, **kwargs):
+        super().__init__("kw-git-tree", children, **kwargs)
         self._attr_names += [
             "sources",
             "actives",

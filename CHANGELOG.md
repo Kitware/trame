@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/kitware/trame/compare/v1.4.0...v1.4.1) (2021-11-09)
+
+
+### Bug Fixes
+
+* **imports:** Prefer start, on_ready from layouts ([7f83cc9](https://github.com/kitware/trame/commit/7f83cc97849e96c34b2a4d267d43e3353fe5a8a0))
+
 # [1.4.0](https://github.com/kitware/trame/compare/v1.3.12...v1.4.0) (2021-11-08)
 
 

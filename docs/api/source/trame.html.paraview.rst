@@ -1,7 +1,7 @@
 trame.html.paraview
 ===========================
 
-These auto-generated docs only show this module's objects, which rely on keyword arguments (`**kwargs`) for configuration. You can find more information in the modules section |module_link|, or more about these components in the vue-vtk documentation |paraview_link|.
+These auto-generated docs only show this module's objects, which rely on keyword arguments (`**kwargs`) for configuration. You can find more information about using Paraview with Trame |module_link|, or more about these components in the vue-vtk-js documentation |paraview_link|.
 
 .. |module_link| raw:: html
 

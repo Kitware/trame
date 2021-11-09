@@ -54,7 +54,7 @@ vuetify.VBtn(click=runMethod)
 ## Examples
 
 Vuetify is the core of any widgets structure we use inside our examples.
-
+- [API](https://trame.readthedocs.io/en/latest/trame.html.vuetify.html)
 - [VTK/ContourGeometry](https://github.com/Kitware/trame/blob/master/examples/VTK/ContourGeometry/DynamicLocalRemoteRendering.py#L96-L132) has a Toggle buttons group, switch, slider and a button.
 - [PlainPython/Markdown](https://github.com/Kitware/trame/blob/master/examples/PlainPython/Markdown/Simple.py#L27-L32) has a drop down to select which file to load.
 - [GeoMaps/UberPickupsNYC](https://github.com/Kitware/trame/blob/master/examples/PlainPython/GeoMaps/UberPickupsNYC/app.py#L38-L44) use Row and Cols to manage content in a grid layout.

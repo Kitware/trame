@@ -25,3 +25,7 @@ simput.Simput(
   prefix="...",   # Identifier for manager if multiple 
 )
 ```
+
+## Examples
+
+- [API](https://trame.readthedocs.io/en/latest/trame.html.simput.html)

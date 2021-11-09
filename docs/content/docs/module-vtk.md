@@ -195,6 +195,7 @@ The mode is driven by the variable `{namespace}Mode` but can be provided when in
 
 ### Examples
 
+- [API](https://trame.readthedocs.io/en/latest/trame.html.vtk.html)
 - [VTK/ContourGeometry/DynamicLocalRemoteRendering](https://github.com/Kitware/trame/blob/f6594a02ed7e1ecc24058ffac527e010e8181e22/examples/VTK/ContourGeometry/DynamicLocalRemoteRendering.py)
 
 <!--

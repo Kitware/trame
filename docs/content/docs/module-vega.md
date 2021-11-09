@@ -45,5 +45,6 @@ By default, if no `name` is provided, one will be automatically generated. This 
 ## Examples
 
 Vega is used in the following set of examples:
+- [API] (https://trame.readthedocs.io/en/latest/trame.html.vega.html)
 - [GeoMaps/UberPickupsNYC](https://github.com/Kitware/trame/blob/master/examples/PlainPython/GeoMaps/UberPickupsNYC/app.py#L18)
 - more to come...

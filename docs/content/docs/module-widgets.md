@@ -81,3 +81,7 @@ widgets.ListBrowser(
 )
 ```
 ListBrowser can also be styled with any of these properties: `path_icon`, `path_selected_icon`, `filter_icon`.
+
+## Examples
+
+- [API](https://trame.readthedocs.io/en/latest/trame.html.widgets.html)

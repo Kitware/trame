@@ -38,24 +38,29 @@ class AbstractElement:
 
     .. |vue_doc_link| raw:: html
 
-        <a href="https://vuejs.org/v2/guide/components.html" target="_blank">here</a>
+        <a href="https://vuejs.org/v2/guide/instance.html" target="_blank">here</a>
 
     :param name: The name of the element, like 'div' for a ``<div/>`` element.
     :type name: str
     :param children: The children nested within this element
     :type children: None | str | list[trame.html.*] | trame.html.*
+    :param __properties: Add more attributes to this element
+    :param __events: Add more events to this element
+
+    Html attributes
+
+    :param id:
+    :param classes:
+    :param style:
 
     Vue attributes
 
-    :param id:
     :param ref:
-    :param classes:
-    :param style:
     :param v_model:
     :param v_if:
     :param v_show:
     :param v_for:
-    :param key":
+    :param key:
 
     Events
 
@@ -79,14 +84,11 @@ class AbstractElement:
         self._event_names = kwargs.get("__events", [])
 
         self._attributes = {}
-        self._txt = None
         self._py_attr = kwargs
         self._children = []
 
         if children:
-            if isinstance(children, str):
-                self._txt = children
-            elif isinstance(children, list):
+            if isinstance(children, list):
                 self._children.extend(children)
             else:
                 self._children.append(children)
@@ -149,8 +151,6 @@ class AbstractElement:
     def __setattr__(self, name, value):
         if name[0] == "_":
             self.__dict__[name] = value
-        elif name == "content":
-            self._txt = value
         elif name == "children":
             self._children = value
         elif name in self._allowed_keys:
@@ -265,10 +265,15 @@ class AbstractElement:
         return self
 
     def clear(self):
-        self._txt = None
+        """
+        Remove all children
+        """
         self._children.clear()
 
     def hide(self):
+        """
+        Hide element while keeping it in the DOM.
+        """
         self._attributes["__style"] = 'style="display: none"'
 
     def add_child(self, child):
@@ -278,12 +283,12 @@ class AbstractElement:
         self._children += children
 
     @property
-    def content(self):
-        return self._txt
-
-    @property
     def children(self):
         return self._children
+
+    def set_text(self, value):
+        self.clear()
+        self._children.append(value)
 
     @property
     def html(self):
@@ -305,10 +310,6 @@ class AbstractElement:
                     out_buffer.append(child.html)
             out_buffer.append(f"</{self._elem_name}>")
             return "\n".join(out_buffer)
-        elif self._txt:
-            return (
-                f"<{self._elem_name} {self._attr_str()}>{self._txt}</{self._elem_name}>"
-            )
         else:
             return f"<{self._elem_name} {self._attr_str()} />"
 

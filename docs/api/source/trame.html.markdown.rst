@@ -1,7 +1,7 @@
 trame.html.markdown
 ===========================
 
-These auto-generated docs only show this module's objects, which rely on keyword arguments (`**kwargs`) for configuration. You can find more information in the modules section |module_link|.
+You can find more information about using Markdown with Trame |module_link|.
 
 .. |module_link| raw:: html
 

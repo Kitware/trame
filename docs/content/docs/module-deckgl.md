@@ -43,5 +43,6 @@ deck_component2.update(deck2) # Make changes
 
 ## Examples
 
+- [API](https://trame.readthedocs.io/en/latest/trame.html.deckgl.html)
 - [GeoMaps/UberPickupsNYC](https://github.com/Kitware/trame/blob/master/examples/PlainPython/GeoMaps/UberPickupsNYC)
 - [GeoMaps/MappingDemo](https://github.com/Kitware/trame/blob/master/examples/PlainPython/GeoMaps/MappingDemo)

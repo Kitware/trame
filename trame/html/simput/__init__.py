@@ -36,18 +36,40 @@ class Simput(AbstractElement):
 
     @property
     def controller(self):
+        """
+        Simput helper object
+        """
         return self._simput_helper
 
     def apply(self):
+        """
+        Flush modified properties so they can be pushed to their concrete objects
+        """
         self._simput_helper.apply()
 
     def reset(self):
+        """
+        Unapply properties
+        """
+
         self._simput_helper.reset()
 
     def push(self, id=None, type=None):
+        """
+        Ask server to push data, ui, or constraints.
+        """
         self._simput_helper.push(id, type)
 
     def update(self, change_set):
+        """
+        List of properties and value to update
+
+        >>> change_set = [
+        ... {"id":"12", "name":"Radius", "value": 0.75},
+        ... {"id": "12", "name":"Resolution", "value": 24}
+        ... ]
+
+        """
         self._simput_helper.update(change_set)
 
     def refresh(self, id=0, property=""):
@@ -55,14 +77,23 @@ class Simput(AbstractElement):
 
     @property
     def changeset(self):
+        """
+        All unapplied changesets.
+        """
         return self._simput_helper.changeset()
 
     @property
     def has_changes(self):
+        """
+        Does the changeset have content?
+        """
         return self._simput_helper.has_changes
 
     @property
     def auto_update(self):
+        """
+        Whether to automatically apply changes.
+        """
         return self._simput_helper.auto_update
 
     @auto_update.setter

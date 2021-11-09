@@ -190,4 +190,5 @@ The mode is driven by the variable `{namespace}Mode` but can be provided when in
 
 ### Examples
 
+- [API](https://trame.readthedocs.io/en/latest/trame.html.paraview.html)
 - to come...

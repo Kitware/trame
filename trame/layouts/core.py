@@ -206,7 +206,7 @@ class SinglePage(FullScreenPage):
 
 class SinglePageWithDrawer(SinglePage):
     """
-    A layout that takes the whole screen, adding an App bar for a header, a drawer, and a footer.
+    A layout that takes the whole screen, adding a |layout_vuetify_link| for a header, a drawer, and a footer.
 
     :param name: Text for this page's browser tab (required)
     :type name: str

@@ -1,3 +1,10 @@
+## [1.4.2](https://github.com/kitware/trame/compare/v1.4.1...v1.4.2) (2021-11-09)
+
+
+### Bug Fixes
+
+* **setup:** Set minumum pywebvue ([b8024ae](https://github.com/kitware/trame/commit/b8024aeb607dbd74f8a359a479c9b70f5a955456))
+
 ## [1.4.1](https://github.com/kitware/trame/compare/v1.4.0...v1.4.1) (2021-11-09)
 
 

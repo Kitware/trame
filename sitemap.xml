@@ -9,34 +9,6 @@
   </url>
   
   <url>
-    <loc>https://kitware.github.io/trame/docs/index.html</loc>
-    
-    <lastmod>2021-11-09</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/module-deckgl.html</loc>
-    
-    <lastmod>2021-11-09</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/module-markdown.html</loc>
-    
-    <lastmod>2021-11-09</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/module-paraview.html</loc>
-    
-    <lastmod>2021-11-09</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://kitware.github.io/trame/docs/module-simput.html</loc>
     
     <lastmod>2021-11-09</lastmod>
@@ -185,6 +157,34 @@
   
   <url>
     <loc>https://kitware.github.io/trame/docs/howdoi-upload.html</loc>
+    
+    <lastmod>2021-11-09</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/index.html</loc>
+    
+    <lastmod>2021-11-09</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/module-deckgl.html</loc>
+    
+    <lastmod>2021-11-09</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/module-markdown.html</loc>
+    
+    <lastmod>2021-11-09</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/module-paraview.html</loc>
     
     <lastmod>2021-11-09</lastmod>
     

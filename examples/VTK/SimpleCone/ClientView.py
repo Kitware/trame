@@ -1,4 +1,4 @@
-from trame import start, update_state, change
+from trame import update_state, change
 from trame.html import vuetify, vtk
 from trame.layouts import SinglePage
 
@@ -33,7 +33,7 @@ def update_reset_resolution():
 
 html_polydata = vtk.VtkPolyData("cone", dataset=cone_generator)
 
-layout = SinglePage("VTK Local rendering")
+layout = SinglePage("VTK Local rendering", on_ready=update_cone)
 layout.logo.click = "$refs.view.resetCamera()"
 layout.title.content = "Cone Application"
 layout.toolbar.children += [
@@ -71,4 +71,4 @@ layout.content.children += [
 
 if __name__ == "__main__":
     # print(layout.html)
-    start(layout, on_ready=update_cone)
+    layout.start()

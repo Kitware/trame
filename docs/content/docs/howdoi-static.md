@@ -5,7 +5,6 @@ This example illustrates how you can simply add static HTML content to your page
 ## Code
 
 ```python
-from trame import start
 from trame.layouts import FullScreenPage
 
 html = """
@@ -20,7 +19,7 @@ layout = FullScreenPage("Hello")
 layout.children += [html]
 
 if __name__ == "__main__":
-    start(layout)
+    layout.start()
 ```
 
 ## Example

@@ -1,4 +1,3 @@
-from trame import start
 from trame.layouts import FullScreenPage
 from trame.html import widgets
 
@@ -19,4 +18,4 @@ layout = FullScreenPage("Git Tree")
 layout.children += [git_tree]
 
 if __name__ == "__main__":
-    start(layout)
+    layout.start()

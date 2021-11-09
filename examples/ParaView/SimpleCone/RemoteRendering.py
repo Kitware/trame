@@ -6,7 +6,7 @@ if "--virtual-env" in sys.argv:
     virtualEnv = virtualEnvPath + "/bin/activate_this.py"
     exec(open(virtualEnv).read(), {"__file__": virtualEnv})
 
-from trame import start, update_state, change
+from trame import update_state, change
 from trame.html import vuetify, paraview
 from trame.layouts import SinglePage
 
@@ -39,7 +39,7 @@ def update_reset_resolution():
 
 html_view = paraview.VtkRemoteView(view, ref="view")
 
-layout = SinglePage("VTK Remote rendering")
+layout = SinglePage("VTK Remote rendering", on_ready=update_cone)
 layout.logo.click = "$refs.view.resetCamera()"
 layout.title.content = "Cone Application"
 
@@ -70,4 +70,4 @@ with layout.content:
 # -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    start(layout, on_ready=update_cone)
+    layout.start()

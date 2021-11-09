@@ -9,7 +9,7 @@ from vtkmodules.vtkFiltersCore import vtkThreshold
 from vtkmodules.numpy_interface.dataset_adapter import numpyTovtkDataArray as np2da
 from vtkmodules.util import vtkConstants
 
-from trame import start, change, update_state, get_cli_parser
+from trame import change, update_state, get_cli_parser
 from trame.layouts import SinglePage
 from trame.html import vuetify, vtk, StateUpdate
 
@@ -365,4 +365,4 @@ if args.data:
 # -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    start(layout)
+    layout.start()

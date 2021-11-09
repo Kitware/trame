@@ -6,7 +6,7 @@ In the example below we use [vuetify.VFileInput](https://vuetifyjs.com/en/compon
 ## Code
 
 ```python
-from trame import start, change
+from trame import change
 from trame.layouts import FullScreenPage
 from trame.html import vuetify
 
@@ -27,7 +27,7 @@ def file_uploaded(file_exchange, **kwargs):
     print(f"Go file {file_name} of size {file_size}")
 
 if __name__ == "__main__":
-    start(layout)
+    layout.start()
 ```
 ## Example
 

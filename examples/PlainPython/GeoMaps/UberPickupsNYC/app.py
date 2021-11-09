@@ -6,7 +6,7 @@ import numpy as np
 import altair as alt
 import pydeck as pdk
 
-from trame import start, change, update_state
+from trame import change, update_state
 from trame.layouts import SinglePage
 from trame.html import Div, vuetify, deckgl, vega
 
@@ -31,7 +31,7 @@ nwkMap = deckgl.Deck(**mapProps)
 # -----------------------------------------------------------------------------
 # GUI Layout
 # -----------------------------------------------------------------------------
-layout = SinglePage("NYC Uber Ridesharing Data")
+layout = SinglePage("NYC Uber Ridesharing Data", on_ready=updateData)
 layout.title.content = "NYC Uber Ridesharing Data"
 
 mapRow = vuetify.VRow(
@@ -212,4 +212,4 @@ def updateData(pickupHour, **kwargs):
 # -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    start(layout, on_ready=updateData)
+    layout.start()

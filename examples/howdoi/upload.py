@@ -1,4 +1,4 @@
-from trame import start, change
+from trame import change
 from trame.layouts import FullScreenPage
 from trame.html import vuetify
 
@@ -21,4 +21,4 @@ def file_uploaded(file_exchange, **kwargs):
 
 
 if __name__ == "__main__":
-    start(layout)
+    layout.start()

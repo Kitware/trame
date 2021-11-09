@@ -2,10 +2,9 @@ from genericpath import exists
 import os
 from pywebvue.utils import read_file_as_base64_url
 from trame.html import Span, vuetify, Triggers
-from trame import base_directory, get_app_instance, get_cli_parser
 
 import pywebvue
-import trame
+import trame as tr
 
 LOGO_PATH = os.path.abspath(
     os.path.join(os.path.dirname(__file__), "../html/assets/logo.svg")
@@ -23,7 +22,7 @@ class FullScreenPage:
     :param on_ready: Function to run on startup
     :type on_ready: function
 
-    >>> trame.start(FullScreenPage("Simple Page"))
+    >>> FullScreenPage("Simple Page").start()
     """
 
     def __init__(self, name, favicon=None, on_ready=None):
@@ -41,7 +40,7 @@ class FullScreenPage:
         self._app.children += [self.triggers]
 
         if favicon:
-            file_path = os.path.join(base_directory(), favicon)
+            file_path = os.path.join(tr.base_directory(), favicon)
             if os.path.exists(file_path):
                 self.favicon = file_path
             else:
@@ -63,31 +62,36 @@ class FullScreenPage:
 
     @property
     def state(self):
-        return get_app_instance().state
+        return tr.get_app_instance().state
 
     @state.setter
     def state(self, value):
-        get_app_instance().state.update(value)
+        app = tr.get_app_instance()
+        for (k, v) in value.items():
+            app.set(k, v)
+
+    def get_state_values(self, *names):
+        return tr.get_state(*names)
 
     def flush_content(self):
         """Push new content to client"""
-        _app = get_app_instance()
+        _app = tr.get_app_instance()
         _app.layout = self.html
 
     def start(self, port=None, debug=False):
-        _app = get_app_instance()
+        _app = tr.get_app_instance()
 
         _app.name = self.name
         _app.layout = self.html
-        _app.on_ready = trame.print_server_info()
+        _app.on_ready = tr.print_server_info()
 
         if self.favicon:
             _app.favicon = self.favicon
         if self.on_ready:
-            _app.on_ready = trame.print_server_info(self.on_ready)
+            _app.on_ready = tr.print_server_info(self.on_ready)
 
         # Dev validation
-        trame.validate_key_names()
+        tr.validate_key_names()
 
         _app.run_server(port=port)
 
@@ -99,7 +103,7 @@ class SinglePage(FullScreenPage):
     :param name: Text for this page's browser tab (required)
     :type name: str
 
-    >>> trame.start(SinglePage("Page with header / app bar"))
+    >>> SinglePage("Page with header / app bar").start()
     """
 
     def __init__(self, name, favicon=None, on_ready=None):
@@ -114,7 +118,7 @@ class SinglePage(FullScreenPage):
         else:
             self.logo = vuetify.VIcon("mdi-menu", classes="mr-4")
 
-        args = get_cli_parser().parse_known_args()[0]
+        args = tr.get_cli_parser().parse_known_args()[0]
         dev = args.dev if hasattr(args, "dev") else False
 
         self.title = Span("Trame App", classes="title")
@@ -133,7 +137,7 @@ class SinglePage(FullScreenPage):
                     width=3,
                     classes="ml-n3 mr-1",
                 ),
-                f'<a href="https://kitware.github.io/trame/" class="grey--text lighten-1--text text-caption text-decoration-none" target="_blank">Powered by Trame {trame.__version__}/{pywebvue.__version__}</a>',
+                f'<a href="https://kitware.github.io/trame/" class="grey--text lighten-1--text text-caption text-decoration-none" target="_blank">Powered by Trame {tr.__version__}/{pywebvue.__version__}</a>',
                 vuetify.VSpacer(),
                 vuetify.VBtn(
                     vuetify.VIcon("mdi-autorenew", x_small=True),
@@ -173,11 +177,17 @@ class SinglePageWithDrawer(SinglePage):
     :param show_drawer_name: The name referencing the drawer's state. Default "drawerOpen".
     :type show_drawer_name: str
 
-    >>> trame.start(SinglePageWithDrawer("Page with drawer"))
+    >>> SinglePageWithDrawer("Page with drawer").start()
     """
 
     def __init__(
-        self, name, favicon=None, on_ready=None, show_drawer=True, width=200, show_drawer_name="drawerOpen"
+        self,
+        name,
+        favicon=None,
+        on_ready=None,
+        show_drawer=True,
+        width=200,
+        show_drawer_name="drawerOpen",
     ):
         super().__init__(name, favicon, on_ready)
         self.drawer = vuetify.VNavigationDrawer(

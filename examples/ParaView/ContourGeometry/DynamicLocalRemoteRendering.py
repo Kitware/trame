@@ -8,7 +8,7 @@ if "--virtual-env" in sys.argv:
 
 import os
 
-from trame import start, update_state, change
+from trame import update_state, change
 from trame.html import vuetify, paraview
 from trame.layouts import SinglePage
 
@@ -72,7 +72,9 @@ html_view = paraview.VtkRemoteLocalView(
     mode=("override === 'auto' ? demoMode : override", "local"),
 )
 
-layout = SinglePage("ParaView contour - Remote/Local rendering")
+layout = SinglePage(
+    "ParaView contour - Remote/Local rendering", on_ready=html_view.update_geometry
+)
 layout.title.content = "Contour Application - Remote rendering"
 layout.logo.click = "$refs.demo.resetCamera()"
 
@@ -132,4 +134,4 @@ with layout.content:
 # -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    start(layout, on_ready=html_view.update_geometry)
+    layout.start()

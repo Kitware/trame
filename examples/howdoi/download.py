@@ -1,4 +1,3 @@
-from trame import start
 from trame.layouts import FullScreenPage
 from trame.html import vuetify
 
@@ -20,4 +19,4 @@ a,b,c
 }
 
 if __name__ == "__main__":
-    start(layout)
+    layout.start()

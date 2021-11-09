@@ -1,5 +1,4 @@
 import os
-from trame import start
 from trame.layouts import SinglePage
 from trame.html import vtk, vuetify
 
@@ -136,7 +135,7 @@ def update_view(**kwargs):
 # GUI
 # -----------------------------------------------------------------------------
 
-layout = SinglePage("Hello Trame")
+layout = SinglePage("Hello Trame", on_ready=update_view)
 layout.title.content = "Hello Trame"
 
 html_view = vtk.VtkLocalView(renderWindow)
@@ -154,4 +153,4 @@ layout.content.children += [
 # -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    start(layout, on_ready=update_view)
+    layout.start()

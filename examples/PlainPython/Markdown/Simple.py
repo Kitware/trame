@@ -1,5 +1,5 @@
 import os
-from trame import start, change, update_state
+from trame import change, update_state
 from trame.layouts import SinglePage
 from trame.html.markdown import Markdown
 from trame.html.vuetify import VSelect, VSpacer
@@ -20,7 +20,7 @@ def update_md(file_name, **kwargs):
 # GUI
 # -----------------------------------------------------------------------------
 
-layout = SinglePage("MD Viewer")
+layout = SinglePage("MD Viewer", on_ready=update_md)
 layout.title.content = "Markdown Viewer"
 layout.toolbar.children += [
     VSpacer(),
@@ -43,4 +43,4 @@ layout.content.children += [
 # -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    start(layout, on_ready=update_md)
+    layout.start()

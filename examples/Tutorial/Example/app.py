@@ -1,5 +1,5 @@
 import os
-from trame import start, change, update_state, get_state
+from trame import change, update_state, get_state
 from trame.layouts import SinglePageWithDrawer
 from trame.html import Div, vtk, vuetify, widgets
 
@@ -196,7 +196,7 @@ def visibility_change(event):
 # GUI
 # -----------------------------------------------------------------------------
 
-layout = SinglePageWithDrawer("Trame Viewer")
+layout = SinglePageWithDrawer("Trame Viewer", on_ready=update_view)
 layout.title.content = "Viewer"
 
 with layout.toolbar:
@@ -299,4 +299,4 @@ layout.state = {
 # -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    start(layout, on_ready=update_view)
+    layout.start()

@@ -1,5 +1,5 @@
 import asyncio
-from trame import start, get_state, update_state, flush_state
+from trame import get_state, update_state, flush_state
 from trame.layouts import SinglePage
 from trame.html import vuetify
 
@@ -29,4 +29,4 @@ layout.toolbar.children += [vuetify.VSpacer(), button]
 layout.content.children += [text]
 
 if __name__ == "__main__":
-    start(layout)
+    layout.start()

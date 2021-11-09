@@ -2,7 +2,7 @@ import pydeck as pdk
 import pandas as pd
 import os
 
-from trame import start, change, update_state
+from trame import change, update_state
 from trame.layouts import SinglePage
 from trame.html import vuetify, deckgl
 
@@ -39,24 +39,6 @@ defaultLayers = [
     "Outbound Flow",
 ]
 
-# -----------------------------------------------------------------------------
-# GUI Layout
-# -----------------------------------------------------------------------------
-
-layout = SinglePage("Deck + Mapbox Demo")
-layout.title.content = "Deck + Mapbox Demo"
-layout.content.children += [
-    deckMap,
-    vuetify.VSelect(
-        style="position: absolute; top: 10px; left: 25px; width: 600px;",
-        items=("layerNames", defaultLayers),
-        v_model=("activeLayers", defaultLayers),
-        dense=True,
-        hide_details=True,
-        multiple=True,
-        chips=True,
-    ),
-]
 # -----------------------------------------------------------------------------
 
 
@@ -133,10 +115,29 @@ def update_map(activeLayers, **kwargs):
     else:
         update_state("error", "Please choose at least one layer above.")
 
+# -----------------------------------------------------------------------------
+# GUI Layout
+# -----------------------------------------------------------------------------
+
+layout = SinglePage("Deck + Mapbox Demo", on_ready=update_map)
+layout.title.content = "Deck + Mapbox Demo"
+layout.content.children += [
+    deckMap,
+    vuetify.VSelect(
+        style="position: absolute; top: 10px; left: 25px; width: 600px;",
+        items=("layerNames", defaultLayers),
+        v_model=("activeLayers", defaultLayers),
+        dense=True,
+        hide_details=True,
+        multiple=True,
+        chips=True,
+    ),
+]
+
 
 # -----------------------------------------------------------------------------
 # Start server
 # -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    start(layout, on_ready=update_map)
+    layout.start()

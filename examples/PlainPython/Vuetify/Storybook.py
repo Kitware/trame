@@ -1,4 +1,3 @@
-from trame import start
 from trame.layouts import SinglePage
 import trame.html.vuetify as vuetify
 
@@ -25,4 +24,4 @@ for (name, component) in all_vuetify_exports:
 # -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    start(layout)
+    layout.start()

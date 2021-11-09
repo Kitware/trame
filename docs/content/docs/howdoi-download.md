@@ -5,7 +5,6 @@ Sometimes a user has to download a file from the server so the client can save i
 ## Code
 
 ```python
-from trame import start
 from trame.layouts import FullScreenPage
 from trame.html import vuetify
 
@@ -27,7 +26,7 @@ a,b,c
 }
 
 if __name__ == "__main__":
-    start(layout)
+    layout.start()
 ```
 ## Example
 

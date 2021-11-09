@@ -1,4 +1,3 @@
-from trame import start
 from trame.layouts import SinglePage
 from trame.html import widgets
 
@@ -12,4 +11,4 @@ layout.content.children += [
 ]
 
 if __name__ == "__main__":
-    start(layout)
+    layout.start()

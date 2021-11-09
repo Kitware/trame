@@ -1,4 +1,4 @@
-from trame import start, change, update_state
+from trame import change, update_state
 from trame.layouts import SinglePage
 from trame.html import vtk, vuetify
 
@@ -71,7 +71,7 @@ def reset_resolution():
 # GUI
 # -----------------------------------------------------------------------------
 
-layout = SinglePage("Hello Trame")
+layout = SinglePage("Hello Trame", on_ready=update_view)
 layout.title.content = "Hello Trame"
 
 with layout.toolbar:
@@ -115,4 +115,4 @@ with layout.content:
 # -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    start(layout, on_ready=update_view)
+    layout.start()

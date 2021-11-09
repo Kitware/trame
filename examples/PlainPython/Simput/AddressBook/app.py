@@ -1,5 +1,5 @@
 import os
-from trame import start, change, update_state, get_state
+from trame import change, update_state, get_state
 from trame.layouts import SinglePageWithDrawer
 from trame.html import simput, vuetify
 
@@ -49,7 +49,7 @@ def delete_person():
 
 html_simput = simput.Simput(ui_manager, prefix="ab")
 
-layout = SinglePageWithDrawer("Trame/Simput")
+layout = SinglePageWithDrawer("Trame/Simput", on_ready=update_lang)
 layout.logo.children = [vuetify.VIcon("mdi-database")]
 layout.title.content = "SimPut Address Book"
 layout.root = html_simput
@@ -167,4 +167,4 @@ layout.state = {
 
 if __name__ == "__main__":
     update_list()
-    start(layout, on_ready=update_lang)
+    layout.start()

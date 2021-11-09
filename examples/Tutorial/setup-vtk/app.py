@@ -1,4 +1,3 @@
-from trame import start
 from trame.layouts import SinglePage
 
 # -----------------------------------------------------------------------------
@@ -13,4 +12,4 @@ layout.title.content = "Hello Trame"
 # -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    start(layout)
+    layout.start()

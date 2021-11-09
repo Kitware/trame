@@ -1,4 +1,4 @@
-from trame import start, update_state, get_state, change, get_cli_parser
+from trame import update_state, get_state, change, get_cli_parser
 from trame.html import Div
 from trame.html import vuetify, vtk
 from trame.layouts import SinglePage
@@ -90,7 +90,7 @@ def decrease_level():
 
 html_view = vtk.VtkRemoteView(renderWindow, ref="view")
 
-layout = SinglePage("Zarr Skin Generator Demo")
+layout = SinglePage("Zarr Skin Generator Demo", on_ready=update_skin)
 layout.logo.click = "$refs.view.resetCamera()"
 layout.title.content = "Skin Generator"
 layout.toolbar.children += [
@@ -136,4 +136,4 @@ layout.content.children += [
 # -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    start(layout, on_ready=update_skin)
+    layout.start()

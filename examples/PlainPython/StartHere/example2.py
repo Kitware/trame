@@ -1,4 +1,4 @@
-from trame import start, change, update_state, get_state
+from trame import change, update_state, get_state
 from trame.layouts import SinglePage
 from trame.html.vuetify import VBtn, VTextField
 from trame.html import Div
@@ -47,4 +47,4 @@ layout.content.children += [
 
 
 if __name__ == "__main__":
-    start(layout)
+    layout.start()

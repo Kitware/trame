@@ -48,6 +48,9 @@ class FullScreenPage:
 
     @property
     def root(self):
+        """
+        Top level Vue component. Useful for providing / injecting into children components. Setting makes old root child of new root.
+        """
         return self._current_root
 
     @root.setter
@@ -58,10 +61,16 @@ class FullScreenPage:
 
     @property
     def html(self):
+        """
+        String of the html this layout has built up.
+        """
         return self.root.html
 
     @property
     def state(self):
+        """
+        App state as a dictionary. Setting updates instead of overwriting.
+        """
         return tr.get_app_instance().state
 
     @state.setter
@@ -71,6 +80,26 @@ class FullScreenPage:
             app.set(k, v)
 
     def get_state_values(self, *names):
+        """
+        Query the app state for particular names. Returns whole state dict if no names given.
+
+        :params names: Which values to get from state.
+        :type names: list[str] | None
+
+        >>> full_state = get_state()
+        >>> full_state.get("greeting")
+        "Hello"
+
+        >>> greeting, name  = get_state("greeting", "name")
+        >>> f'{greeting}, {name}!'
+        "Hello, Trame!"
+
+        >>> greeting, = get_state("greeting")
+        >>> greeting
+        "Hello"
+
+
+        """
         return tr.get_state(*names)
 
     def flush_content(self):
@@ -79,6 +108,13 @@ class FullScreenPage:
         _app.layout = self.html
 
     def start(self, port=None, debug=False):
+        """
+        Run the application server.
+
+        :param port: Which port to run the server on
+        :param debug: Whether to enable debugging tools. Defaults to False.
+        :type debug: bool
+        """
         _app = tr.get_app_instance()
 
         _app.name = self.name
@@ -98,7 +134,7 @@ class FullScreenPage:
 
 class SinglePage(FullScreenPage):
     """
-    A layout that takes the whole screen, adding an App bar for a header and a footer.
+    A layout that takes the whole screen, adding a vuetify app bar for a header and a footer.
 
     :param name: Text for this page's browser tab (required)
     :type name: str

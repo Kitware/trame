@@ -89,6 +89,20 @@ def get_docs(tag):
     :param {attribute_name}: {description}
     :type {attribute_type}:"""
 
+    events = tag.get("events")
+    event_params = ""
+    for event in events:
+        entry = event.get("name")
+        description = event.get("description")
+
+        # Ignore calendar events, AbstractElement events
+        if not "<" in entry and entry not in ["mouseup", "mousedown", "click"]:
+            entry = entry.replace(":", "_").replace("-", "_")
+            event_params += f"\n    :param {entry}: {description}"
+
+    if len(event_params):
+        event_params = "\n    Events\n" + event_params
+
     return f"""
     \"\"\"
     Vuetify's {name} component. See more info and examples |{name}_vuetify_link|.
@@ -98,6 +112,7 @@ def get_docs(tag):
         <a href="{url}" target="_blank">here</a>
 
     {params}
+    {event_params}
     \"\"\"
     """
 

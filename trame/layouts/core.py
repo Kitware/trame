@@ -134,7 +134,11 @@ class FullScreenPage:
 
 class SinglePage(FullScreenPage):
     """
-    A layout that takes the whole screen, adding a vuetify app bar for a header and a footer.
+    A layout that takes the whole screen, adding a |layout_vuetify_link| for a header and a footer.
+
+    .. |layout_vuetify_link| raw:: html
+
+        <a href="https://vuetifyjs.com/api/v-app-bar" target="_blank">vuetify app bar</a>
 
     :param name: Text for this page's browser tab (required)
     :type name: str

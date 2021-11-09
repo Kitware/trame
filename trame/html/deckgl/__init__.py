@@ -9,8 +9,26 @@ _app.enable_module(Deck)
 
 
 class Deck(AbstractElement):
+    """
+    Deck.gl component. See vue-deck docs |deck_link| for more info.
+
+    .. |deck_link| raw:: html
+
+        <a href="https://github.com/localeai/vue-deck.gl" target="_blank">here</a>
+
+    :param name: Identifier for this element in shared state. Generated if not given.
+    :type name: None | str
+    :param deck: pydeck instance to display
+    :param mapboxApiKey: See vue-deck docs |deck_link| for more info.
+    :param tooltip: See vue-deck docs |deck_link| for more info.
+    :param customLibraries: See vue-deck docs |deck_link| for more info.
+    """
+
     @staticmethod
     def to_jsonInput(deck):
+        """
+        Serialize pydeck instance
+        """
         return json.loads(deck.to_json())
 
     def __init__(self, name=None, deck=None, **kwargs):
@@ -22,6 +40,11 @@ class Deck(AbstractElement):
         self.update(deck)
 
     def update(self, deck=None):
+        """
+        Change the deck this component displays.
+
+        :param deck: pydeck instance to display
+        """
         if deck:
             self._deck = deck
         if self._deck:

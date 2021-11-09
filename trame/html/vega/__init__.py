@@ -9,8 +9,22 @@ _app.enable_module(VegaEmbed)
 
 
 class VegaEmbed(AbstractElement):
+    """
+    Vega component. See vega docs |vega_link| for more info.
+
+    .. |vega_link| raw:: html
+
+        <a href="https://github.com/vega/vega-embed" target="_blank">here</a>
+
+    :param chart: The chart to display. Defaults to None.
+    :param name: The identifier of this components data in shared state. Generated if not given.
+    """
+
     @staticmethod
     def altair_to_spec(chart):
+        """
+        Serialize altair chart
+        """
         return chart.to_dict()
 
     def __init__(self, chart=None, name=None, **kwargs):
@@ -20,6 +34,11 @@ class VegaEmbed(AbstractElement):
         self._attributes["spec"] = f':spec="{self._name}"'
 
     def update(self, chart=None):
+        """
+        Change which chart is displayed.
+
+        :param chart: The chart to display. Defaults to None.
+        """
         if chart:
             self._chart = chart
         if self._chart:

@@ -9,6 +9,22 @@ _app.enable_module(SimPut)
 
 
 class Simput(AbstractElement):
+    """
+    Simput data management component. Must be set as the root of a layout to provide children with Simput data. See simput docs |simput_link| for more info.
+
+    .. |simput_link| raw:: html
+
+        <a href="https://github.com/Kitware/py-simput" target="_blank">here</a>
+
+    :param ui_manager: See simput docs |simput_link| for more info.
+    :param prefix: Constructing a Simput component will set several variables, optionally prefixed by a namespace.
+    :type prefix: None | str
+    :param children: The children nested within this element
+    :type children: None | str | list[trame.html.*] | trame.html.*
+
+    >>> layout.root = simput.Simput(ui_manager, prefix="myForm")
+    """
+
     def __init__(self, ui_manager, prefix=None, children=None, **kwargs):
         super().__init__("Simput", children, **kwargs)
         ns = f"simput_{self._id}"
@@ -55,6 +71,24 @@ class Simput(AbstractElement):
 
 
 class SimputItem(AbstractElement):
+    """
+    Simput data display component. Must be child of a Simput component to have access to Simput data. See simput docs |simput_link| for more info.
+
+    :param itemId: The simput id of the data to display.
+    :type itemId: str
+    :param extract: Columns to make available from this component to its children.
+    :type extract: list[str]
+    :param no_ui: Whether to show simput template UI
+    :type no_ui: bool
+    :param children: The children nested within this element
+    :type children: None | str | list[trame.html.*] | trame.html.*
+
+    Events
+
+    :param dirty: Function to call when itemId is changed
+    :type dirty: function
+    """
+
     def __init__(self, children=None, extract=[], **kwargs):
         super().__init__("SimputItem", children, **kwargs)
         self._attr_names += [

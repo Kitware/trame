@@ -34,12 +34,38 @@ HTML_CTX = ElementContextManager()
 
 class AbstractElement:
     """
-    The abstract class behind all HTML views in Trame
+    A Vue component which can integrate with the rest of Trame. See Vue docs |vue_doc_link| for more info.
 
-    :param _Element__elem_name: The name of the element, like 'div' for a ``<div/>`` element.
-    :type _Element__elem_name: str
+    .. |vue_doc_link| raw:: html
+
+        <a href="https://vuejs.org/v2/guide/components.html" target="_blank">here</a>
+
+    :param name: The name of the element, like 'div' for a ``<div/>`` element.
+    :type name: str
     :param children: The children nested within this element
     :type children: None | str | list[trame.html.*] | trame.html.*
+
+    Vue attributes
+
+    :param id:
+    :param ref:
+    :param classes:
+    :param style:
+    :param v_model:
+    :param v_if:
+    :param v_show:
+    :param v_for:
+    :param key":
+
+    Events
+
+    :param click:
+    :param mousedown:
+    :param mouseup:
+    :param mouseenter:
+    :param mouseleave:
+    :param contextmenu:
+
     """
 
     _next_id = 1
@@ -261,6 +287,9 @@ class AbstractElement:
 
     @property
     def html(self):
+        """
+        A string representation of the HTML component.
+        """
         # Build attributes
         self.attrs(*self._attr_names)
         self.events(*self._event_names)
@@ -425,6 +454,18 @@ class Template(AbstractElement):
 
 
 class StateUpdate(AbstractElement):
+    """
+    Component to display part of the state
+
+    :param name: Which part of the state to display.
+    :type name: str
+
+    Events
+
+    :param change: Function to run if state changes
+    :type change: function
+    """
+
     def __init__(self, name, **kwargs):
         super().__init__("py-state-update", **kwargs)
         self._attributes["value"] = f':value="{name}"'
@@ -434,6 +475,14 @@ class StateUpdate(AbstractElement):
 
 
 class Triggers(AbstractElement):
+    """
+    Component to trigger JS actions from Python.
+
+    :param ref:
+    :param triggers:
+    :type triggers: dict[str, str]
+    """
+
     def __init__(self, ref, triggers={}, **kwargs):
         super().__init__("py-trigger", **kwargs)
         self._ref = ref
@@ -442,6 +491,14 @@ class Triggers(AbstractElement):
             self._attributes[f"_{key}"] = f'@{key}="{value}"'
 
     def add(self, name, call):
+        """
+        Add a trigger which can call JS from Python.
+
+        :param name: Reference for this JS expression trigger
+        :type name: str
+        :param call: JS expression to call when triggered
+        :type call: str
+        """
         self._attributes[f"_{name}"] = f'@{name}="{call}"'
 
     def call(self, name, *args):

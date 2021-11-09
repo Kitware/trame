@@ -5,7 +5,7 @@ from trame.layouts import SinglePage
 # -----------------------------------------------------------------------------
 
 layout = SinglePage("Hello Trame")
-layout.title.content = "Hello Trame"
+layout.title.set_text("Hello Trame")
 
 # -----------------------------------------------------------------------------
 # Main

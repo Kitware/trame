@@ -32,8 +32,10 @@ def base_directory():
         BASE_DIRECTORY = os.path.abspath(os.path.dirname(module.__file__))
     return BASE_DIRECTORY
 
+
 def _log_js_error(message):
     print(f" > JS error | {message}")
+
 
 # -----------------------------------------------------------------------------
 # App management
@@ -111,7 +113,11 @@ def create_app(name):
 
     # Default app initialization
     _app.trigger("js_error")(_log_js_error)
-    _app.cli_parser.add_argument("--server", help="Prevent your browser from opening at startup", action='store_true')
+    _app.cli_parser.add_argument(
+        "--server",
+        help="Prevent your browser from opening at startup",
+        action="store_true",
+    )
 
     APPS[_app_id] = _app
     activate_app(_app_id)
@@ -243,7 +249,7 @@ def update_layout(layout):
     :param layout: UI content for your application
     :type layout: str | trame.layouts.*
 
-    >>> layout.title.content = "Workload finished!"
+    >>> layout.title.set_text("Workload finished!")
     >>> update_layout(layout)
 
     """
@@ -429,6 +435,7 @@ def trigger(name):
 # Dev tools
 # -----------------------------------------------------------------------------
 
+
 def print_server_info(_fn=None):
     def ready(**kwargs):
         parser = get_cli_parser()
@@ -436,6 +443,7 @@ def print_server_info(_fn=None):
         local_url = f"http://{args.host}:{args.port}/"
 
         import socket
+
         host_name = socket.gethostname()
         host_ip = socket.gethostbyname(host_name)
 
@@ -455,12 +463,16 @@ def print_server_info(_fn=None):
         if not args.server:
             import webbrowser
             import asyncio
+
             loop = asyncio.get_event_loop()
             loop.call_later(0.1, lambda: webbrowser.open(local_url))
-            print("And to prevent your browser from opening, add '--server' to your command line.")
+            print(
+                "And to prevent your browser from opening, add '--server' to your command line."
+            )
         print()
 
     return ready
+
 
 def validate_key_names():
     _app = get_app_instance()
@@ -484,9 +496,12 @@ def main():
     """trame app.py --dev"""
     _app = get_app_instance()
     parser = _app.cli_parser
-    parser.add_argument("--dev", help="Allow to dynamically reload server", action='store_true')
+    parser.add_argument(
+        "--dev", help="Allow to dynamically reload server", action="store_true"
+    )
     args, scripts = parser.parse_known_args()
     import importlib.util
+
     spec = importlib.util.spec_from_file_location("app", scripts[0])
     app = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(app)

@@ -51,7 +51,7 @@ html_simput = simput.Simput(ui_manager, prefix="ab")
 
 layout = SinglePageWithDrawer("Trame/Simput", on_ready=update_lang)
 layout.logo.children = [vuetify.VIcon("mdi-database")]
-layout.title.content = "SimPut Address Book"
+layout.title.set_text("SimPut Address Book")
 layout.root = html_simput
 
 btn_styles = {

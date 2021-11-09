@@ -242,7 +242,7 @@ def reset():
 
 layout = SinglePage("FEA - Mesh viewer")
 layout.logo.click = reset
-layout.title.content = "Mesh Viewer"
+layout.title.set_text("Mesh Viewer")
 
 file_style = {
     "dense": True,

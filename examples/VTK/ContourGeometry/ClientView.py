@@ -52,7 +52,7 @@ def update_contour(contour_value, **kwargs):
 html_polydata = vtk.VtkPolyData("contour", dataset=contour)
 
 layout = SinglePage("VTK contour - Remote/Local rendering", on_ready=update_contour)
-layout.title.content = "Contour Application - Local rendering"
+layout.title.set_text("Contour Application - Local rendering")
 layout.logo.click = "$refs.view.resetCamera()"
 
 layout.state = {

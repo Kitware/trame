@@ -35,7 +35,7 @@ html_polydata = vtk.VtkPolyData("cone", dataset=cone_generator)
 
 layout = SinglePage("VTK Local rendering", on_ready=update_cone)
 layout.logo.click = "$refs.view.resetCamera()"
-layout.title.content = "Cone Application"
+layout.title.set_text("Cone Application")
 layout.toolbar.children += [
     vuetify.VSpacer(),
     vuetify.VSlider(

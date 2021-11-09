@@ -197,7 +197,7 @@ def visibility_change(event):
 # -----------------------------------------------------------------------------
 
 layout = SinglePageWithDrawer("Trame Viewer", on_ready=update_view)
-layout.title.content = "Viewer"
+layout.title.set_text("Viewer")
 
 with layout.toolbar:
     vuetify.VSpacer()

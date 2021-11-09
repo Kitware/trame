@@ -103,7 +103,7 @@ ren1.ResetCamera()
 # -----------------------------------------------------------------------------
 
 layout = SinglePage("Hello Trame")
-layout.title.content = "Hello Trame"
+layout.title.set_text("Hello Trame")
 
 # html_view = vtk.VtkRemoteView(renWin)
 html_view = vtk.VtkLocalView(renWin)

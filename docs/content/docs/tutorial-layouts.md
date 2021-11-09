@@ -59,7 +59,7 @@ from trame.layouts import SinglePage
 
 ```python
 layout = SinglePage("Hello Trame")
-layout.title.content = "Hello Trame"
+layout.title.set_text("Hello Trame")
 
 html_view = vtk.VtkLocalView(renderWindow)
 
@@ -93,7 +93,7 @@ from trame.layouts import SinglePageWithDrawer
 
 ```python
 layout = SinglePageWithDrawer("Hello Trame")
-layout.title.content = "Hello Trame"
+layout.title.set_text("Hello Trame")
 
 html_view = vtk.VtkLocalView(renderWindow)
 

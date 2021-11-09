@@ -92,7 +92,7 @@ html_view = vtk.VtkRemoteView(renderWindow, ref="view")
 
 layout = SinglePage("Zarr Skin Generator Demo", on_ready=update_skin)
 layout.logo.click = "$refs.view.resetCamera()"
-layout.title.content = "Skin Generator"
+layout.title.set_text("Skin Generator")
 layout.toolbar.children += [
     vuetify.VSpacer(),
     vuetify.VBtn(

@@ -115,12 +115,13 @@ def update_map(activeLayers, **kwargs):
     else:
         update_state("error", "Please choose at least one layer above.")
 
+
 # -----------------------------------------------------------------------------
 # GUI Layout
 # -----------------------------------------------------------------------------
 
 layout = SinglePage("Deck + Mapbox Demo", on_ready=update_map)
-layout.title.content = "Deck + Mapbox Demo"
+layout.title.set_text("Deck + Mapbox Demo")
 layout.content.children += [
     deckMap,
     vuetify.VSelect(

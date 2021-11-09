@@ -107,7 +107,7 @@ html_view_container = vuetify.VContainer(
 )
 
 layout = SinglePage("VTK contour - Remote/Local rendering", on_ready=commit_changes)
-layout.title.content = "Contour Application - Remote rendering"
+layout.title.set_text("Contour Application - Remote rendering")
 layout.logo.click = "$refs.view.resetCamera()"
 
 layout.state = {

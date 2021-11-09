@@ -32,7 +32,7 @@ nwkMap = deckgl.Deck(**mapProps)
 # GUI Layout
 # -----------------------------------------------------------------------------
 layout = SinglePage("NYC Uber Ridesharing Data", on_ready=updateData)
-layout.title.content = "NYC Uber Ridesharing Data"
+layout.title.set_text("NYC Uber Ridesharing Data")
 
 mapRow = vuetify.VRow(
     [

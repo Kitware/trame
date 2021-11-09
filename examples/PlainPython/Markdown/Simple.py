@@ -21,7 +21,7 @@ def update_md(file_name, **kwargs):
 # -----------------------------------------------------------------------------
 
 layout = SinglePage("MD Viewer", on_ready=update_md)
-layout.title.content = "Markdown Viewer"
+layout.title.set_text("Markdown Viewer")
 layout.toolbar.children += [
     VSpacer(),
     VSelect(

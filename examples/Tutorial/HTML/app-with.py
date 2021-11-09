@@ -56,7 +56,7 @@ def update_view(**kwargs):
 # -----------------------------------------------------------------------------
 
 layout = SinglePage("Hello Trame", on_ready=update_view)
-layout.title.content = "Hello Trame"
+layout.title.set_text("Hello Trame")
 
 with layout.toolbar:
     vuetify.VSpacer()

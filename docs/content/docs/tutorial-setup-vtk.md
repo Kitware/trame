@@ -45,7 +45,7 @@ Next, we define the graphical user interface (GUI) using a bare minimum of optio
 
 ```
 layout = SinglePage("Hello Trame")
-layout.title.content = "Hello Trame"
+layout.title.set_text("Hello Trame")
 ```
 
 Finally, we start the Web server using 

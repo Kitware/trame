@@ -75,7 +75,7 @@ html_view = paraview.VtkRemoteLocalView(
 layout = SinglePage(
     "ParaView contour - Remote/Local rendering", on_ready=html_view.update_geometry
 )
-layout.title.content = "Contour Application - Remote rendering"
+layout.title.set_text("Contour Application - Remote rendering")
 layout.logo.click = "$refs.demo.resetCamera()"
 
 modes = (

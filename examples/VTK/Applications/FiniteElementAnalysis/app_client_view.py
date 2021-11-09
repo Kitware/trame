@@ -252,7 +252,7 @@ def update_tooltip(pick_data, pixel_ratio, **kwargs):
 # -----------------------------------------------------------------------------
 
 layout = SinglePage("FEA - Mesh viewer")
-layout.title.content = "Mesh Viewer"
+layout.title.set_text("Mesh Viewer")
 layout.logo.click = reset
 
 # Let the server know the browser pixel ratio

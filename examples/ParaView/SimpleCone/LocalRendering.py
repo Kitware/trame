@@ -41,7 +41,7 @@ html_view = paraview.VtkLocalView(view, ref="view")
 
 layout = SinglePage("VTK Remote rendering", on_ready=update_cone)
 layout.logo.click = "$refs.view.resetCamera()"
-layout.title.content = "Cone Application"
+layout.title.set_text("Cone Application")
 
 with layout.toolbar:
     vuetify.VSpacer()

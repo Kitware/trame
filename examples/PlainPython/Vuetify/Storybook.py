@@ -6,7 +6,7 @@ import trame.html.vuetify as vuetify
 # -----------------------------------------------------------------------------
 
 layout = SinglePage("Vuetify Storybook")
-layout.title.content = "List of Vuetify components"
+layout.title.set_text("List of Vuetify components")
 
 excluded = ["AbstractElement", "VApp", "VNavigationDrawer", "VDialog", "VOverlay"]
 all_vuetify_exports = vuetify.__dict__.items()

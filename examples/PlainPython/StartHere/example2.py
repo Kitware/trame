@@ -37,7 +37,7 @@ controls = [
 
 
 layout = SinglePage("Counter")
-layout.title.content = "Simple Counter Demo"
+layout.title.set_text("Simple Counter Demo")
 layout.content.children += [
     Div(
         controls,

@@ -86,7 +86,7 @@ def commit_changes():
 html_view = vtk.VtkLocalView(renderWindow)  # Only change compare to RemoteRendering
 
 layout = SinglePage("VTK contour - Remote/Local rendering", on_ready=html_view.update)
-layout.title.content = "Contour Application - Remote rendering"
+layout.title.set_text("Contour Application - Remote rendering")
 layout.logo.click = "$refs.view.resetCamera()"
 
 with layout.toolbar:

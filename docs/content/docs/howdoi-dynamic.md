@@ -33,7 +33,7 @@ text = vuetify.VTextField(v_model=("countdown", coundown_init), classes="ma-8")
 button = vuetify.VBtn("Start countdown", click=start_countdown)
 
 layout = SinglePage("Coundown")
-layout.title.content = "Countdown"
+layout.title.set_text("Countdown")
 layout.toolbar.children += [vuetify.VSpacer(), button]
 layout.content.children += [text]
 

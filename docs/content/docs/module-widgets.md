@@ -76,7 +76,6 @@ from trame.html import widgets
 widgets.ListBrowser(
   list=("myList", [...]), # Shared state reference to the list
   filter=...,             # JS function to filter list
-  path="...",             # [... unsure]
   **styling_properties,
 )
 ```

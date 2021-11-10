@@ -79,12 +79,12 @@ class ListBrowser(AbstractElement):
     """
     A component that list items that be used for browsing directories or simple item picking.
 
+    :param list: List stored in Trame state
+    :param filter: Function to filter list
     :param path_icon:
     :param path_selected_icon:
     :param filter_icon:
-    :param filter:
     :param path:
-    :param list:
     """
 
     def __init__(self, children=None, **kwargs):
@@ -103,8 +103,8 @@ class GitTree(AbstractElement):
     """
     A component to present a Tree the same way Git does it (Like a subway map).
 
-    :param sources:
-    :param actives:
+    :param sources: All of the elements of the tree
+    :param actives: Any active elements of the tree
 
     Vuetify styling attributes
 

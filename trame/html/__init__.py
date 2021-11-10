@@ -40,6 +40,10 @@ class AbstractElement:
 
         <a href="https://vuejs.org/v2/guide/instance.html" target="_blank">here</a>
 
+    .. |mdn_doc_link| raw:: html
+
+        <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes" target="_blank">here</a>
+
     :param name: The name of the element, like 'div' for a ``<div/>`` element.
     :type name: str
     :param children: The children nested within this element
@@ -47,13 +51,13 @@ class AbstractElement:
     :param __properties: Add more attributes to this element
     :param __events: Add more events to this element
 
-    Html attributes
+    Html attributes. See |mdn_doc_link| for more info.
 
     :param id:
     :param classes:
     :param style:
 
-    Vue attributes
+    Vue attributes. See |vue_doc_link| for more info.
 
     :param ref:
     :param v_model:
@@ -173,6 +177,9 @@ class AbstractElement:
         return self
 
     def attrs(self, *names):
+        """
+        The HTML attributes of this instance
+        """
         _app = get_app_instance()
         for _name in names:
             js_key = None
@@ -221,6 +228,9 @@ class AbstractElement:
         return self
 
     def events(self, *names):
+        """
+        All events this instance might listen to
+        """
         _app = get_app_instance()
         for _name in names:
             js_key = None
@@ -277,16 +287,31 @@ class AbstractElement:
         self._attributes["__style"] = 'style="display: none"'
 
     def add_child(self, child):
+        """
+        Add a component to this component's children
+        """
         self._children.append(child)
 
     def add_children(self, children):
+        """
+        Add components to this component's children
+        """
         self._children += children
 
     @property
     def children(self):
+        """
+        Children components
+        """
         return self._children
 
     def set_text(self, value):
+        """
+        Replace children with a single text child element
+
+        :param value: The text for the new text child element
+        :type value: str
+        """
         self.clear()
         self._children.append(value)
 
@@ -425,10 +450,16 @@ class Input(AbstractElement):
 
 class Template(AbstractElement):
     """
-    The standard html content template element.
+    The standard html content template element. This is mostly used by |slot_doc_link|.
+
+    .. |slot_doc_link| raw:: html
+
+        <a href="https://vuejs.org/v2/guide/instance.html" target="_blank">vue's slot system</a>
+
 
     :param children: The children nested within this element
     :type children: None | str | list[trame.html.*] | trame.html.*
+    :param v_slot: The slot this template corresponds to
     """
 
     slot_names = set()
@@ -479,8 +510,9 @@ class Triggers(AbstractElement):
     """
     Component to trigger JS actions from Python.
 
-    :param ref:
-    :param triggers:
+    :param ref: Name for Vue reference to this object
+    :type ref: str
+    :param triggers: Mapping from names of triggers to expressions or methods in JS which they will call
     :type triggers: dict[str, str]
     """
 
@@ -493,15 +525,22 @@ class Triggers(AbstractElement):
 
     def add(self, name, call):
         """
-        Add a trigger which can call JS from Python.
+        Add a trigger which can call JS from Python
 
-        :param name: Reference for this JS expression trigger
+        :param name: Reference for this JS method or expression trigger
         :type name: str
-        :param call: JS expression to call when triggered
+        :param call: JS method or expression to call when triggered
         :type call: str
         """
         self._attributes[f"_{name}"] = f'@{name}="{call}"'
 
     def call(self, name, *args):
+        """
+        Trigger JS code previously added to this object
+
+        :param name: Reference for this JS method or expression trigger
+        :type name: str
+        :param args: Parameters passed to JS method
+        """
         _app = get_app_instance()
         _app.update(ref=self._ref, method="emit", args=[name, *args])

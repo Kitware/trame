@@ -9,34 +9,6 @@
   </url>
   
   <url>
-    <loc>https://kitware.github.io/trame/docs/howdoi-download.html</loc>
-    
-    <lastmod>2021-11-10</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/howdoi-dynamic.html</loc>
-    
-    <lastmod>2021-11-10</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/howdoi-interactive.html</loc>
-    
-    <lastmod>2021-11-10</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/howdoi-static.html</loc>
-    
-    <lastmod>2021-11-10</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://kitware.github.io/trame/docs/howdoi-upload.html</loc>
     
     <lastmod>2021-11-10</lastmod>
@@ -185,6 +157,34 @@
   
   <url>
     <loc>https://kitware.github.io/trame/docs/howdoi-cli.html</loc>
+    
+    <lastmod>2021-11-10</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/howdoi-download.html</loc>
+    
+    <lastmod>2021-11-10</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/howdoi-dynamic.html</loc>
+    
+    <lastmod>2021-11-10</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/howdoi-interactive.html</loc>
+    
+    <lastmod>2021-11-10</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/howdoi-static.html</loc>
     
     <lastmod>2021-11-10</lastmod>
     

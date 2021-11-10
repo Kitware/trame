@@ -124,7 +124,7 @@ class AbstractElement:
             "contextmenu",
         ]
 
-        # Add ourself to context is any
+        # Add ourself to context if any
         HTML_CTX.add_child(self)
 
     def _attr_str(self):

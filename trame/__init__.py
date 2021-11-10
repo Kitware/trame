@@ -494,13 +494,15 @@ def main():
     """trame app.py --dev"""
     _app = get_app_instance()
     parser = _app.cli_parser
+    parser.add_argument("script", help="The Trame script to run")
     parser.add_argument(
         "--dev", help="Allow to dynamically reload server", action="store_true"
     )
-    args, scripts = parser.parse_known_args()
+    args, _unknown = parser.parse_known_args()
+
     import importlib.util
 
-    spec = importlib.util.spec_from_file_location("app", scripts[0])
+    spec = importlib.util.spec_from_file_location("app", args.script)
     app = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(app)
 
@@ -515,7 +517,7 @@ def main():
         _app._triggers["server_reload"] = reload
         _app._triggers["js_error"] = _log_js_error
 
-        spec = importlib.util.spec_from_file_location("app", scripts[0])
+        spec = importlib.util.spec_from_file_location("app", args.script)
         app = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(app)
         app.layout.flush_content()

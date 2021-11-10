@@ -1,3 +1,10 @@
+## [1.4.3](https://github.com/kitware/trame/compare/v1.4.2...v1.4.3) (2021-11-10)
+
+
+### Bug Fixes
+
+* **cli:** Require script argument ([5a207a4](https://github.com/kitware/trame/commit/5a207a415e58bcc702ca0d54639346a1dc2e37f0))
+
 ## [1.4.2](https://github.com/kitware/trame/compare/v1.4.1...v1.4.2) (2021-11-09)
 
 

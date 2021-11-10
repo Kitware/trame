@@ -35,7 +35,7 @@ class VegaEmbed(AbstractElement):
 
     def update(self, chart=None):
         """
-        Change which chart is displayed.
+        Change which chart is displayed
 
         :param chart: The chart to display. Defaults to None.
         """

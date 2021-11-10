@@ -1,7 +1,7 @@
 trame.html
 ==================
 
-This module provides the fundamental elements for HTML and the root class for the other html modules. 
+This module provides the fundamental elements for HTML and the root class for the ``trame.html`` submodules. 
 
 
 .. toctree::

@@ -16,12 +16,12 @@ class Deck(AbstractElement):
 
         <a href="https://github.com/localeai/vue-deck.gl" target="_blank">here</a>
 
-    :param name: Identifier for this element in shared state. Generated if not given.
-    :type name: None | str
+    :param name: Identifier for this element in shared state. Generated if not given
+    :type name:  str | None
     :param deck: pydeck instance to display
-    :param mapboxApiKey: See vue-deck docs |deck_link| for more info.
-    :param tooltip: See vue-deck docs |deck_link| for more info.
-    :param customLibraries: See vue-deck docs |deck_link| for more info.
+    :param mapboxApiKey: See vue-deck docs |deck_link| for more info
+    :param tooltip: See vue-deck docs |deck_link| for more info
+    :param customLibraries: See vue-deck docs |deck_link| for more info
     """
 
     @staticmethod
@@ -41,7 +41,7 @@ class Deck(AbstractElement):
 
     def update(self, deck=None):
         """
-        Change the deck this component displays.
+        Change the deck this component displays
 
         :param deck: pydeck instance to display
         """

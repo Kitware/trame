@@ -34,7 +34,9 @@ HTML_CTX = ElementContextManager()
 
 class AbstractElement:
     """
-    A Vue component which can integrate with the rest of Trame. See Vue docs |vue_doc_link| for more info.
+    A Vue component which can integrate with the rest of Trame
+
+    See Vue docs |vue_doc_link| for more info
 
     .. |vue_doc_link| raw:: html
 
@@ -44,36 +46,40 @@ class AbstractElement:
 
         <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes" target="_blank">here</a>
 
-    :param name: The name of the element, like 'div' for a ``<div/>`` element.
+    .. |mdn_event_link| raw:: html
+
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element#mouse_events">here</a>
+
+    :param name: The name of the element, like 'div' for a ``<div/>`` element
     :type name: str
     :param children: The children nested within this element
-    :type children: None | str | list[trame.html.*] | trame.html.*
+    :type children:  str | list[trame.html.*] | trame.html.* | None
     :param __properties: Add more attributes to this element
     :param __events: Add more events to this element
 
-    Html attributes. See |mdn_doc_link| for more info.
+    Html attributes - See |mdn_doc_link| for more info
 
-    :param id:
-    :param classes:
-    :param style:
+    :param id: See |mdn_doc_link| for more info
+    :param classes: See |mdn_doc_link| for more info
+    :param style: See |mdn_doc_link| for more info
 
-    Vue attributes. See |vue_doc_link| for more info.
+    Vue attributes - See |vue_doc_link| for more info
 
-    :param ref:
-    :param v_model:
-    :param v_if:
-    :param v_show:
-    :param v_for:
-    :param key:
+    :param ref: See |vue_doc_link| for more info
+    :param v_model: See |vue_doc_link| for more info
+    :param v_if: See |vue_doc_link| for more info
+    :param v_show: See |vue_doc_link| for more info
+    :param v_for: See |vue_doc_link| for more info
+    :param key: See |vue_doc_link| for more info
 
-    Events
+    Events - See |mdn_event_link| for more info
 
-    :param click:
-    :param mousedown:
-    :param mouseup:
-    :param mouseenter:
-    :param mouseleave:
-    :param contextmenu:
+    :param click: See |mdn_event_link| for more info
+    :param mousedown: See |mdn_event_link| for more info
+    :param mouseup: See |mdn_event_link| for more info
+    :param mouseenter: See |mdn_event_link| for more info
+    :param mouseleave: See |mdn_event_link| for more info
+    :param contextmenu: See |mdn_event_link| for more info
 
     """
 
@@ -171,7 +177,7 @@ class AbstractElement:
 
     def ttsSensitive(self):
         """
-        Set this element to be reactive to a global timestamp.
+        Set this element to be reactive to a global timestamp
         """
         self._attributes["__tts"] = f':key="`w{self._id}-${{tts}}`"'
         return self
@@ -282,7 +288,7 @@ class AbstractElement:
 
     def hide(self):
         """
-        Hide element while keeping it in the DOM.
+        Hide element while keeping it in the DOM
         """
         self._attributes["__style"] = 'style="display: none"'
 
@@ -318,7 +324,7 @@ class AbstractElement:
     @property
     def html(self):
         """
-        A string representation of the HTML component.
+        A string representation of the HTML component
         """
         # Build attributes
         self.attrs(*self._attr_names)
@@ -352,12 +358,12 @@ class AbstractElement:
 
 class Element(AbstractElement):
     """
-    Any html element you would like to use in Trame.
+    Any html element you would like to use in Trame
 
-    :param _elem_name: The name of the element, like 'div' for a ``<div/>`` element.
+    :param _elem_name: The name of the element, like 'div' for a ``<div/>`` element
     :type _elem_name: str
     :param children: The children nested within this element
-    :type children: None | str | list[trame.html.*] | trame.html.*
+    :type children:  str | list[trame.html.*] | trame.html.* | None
     """
 
     def __init__(self, _elem_name, children=None, **kwargs):
@@ -366,10 +372,10 @@ class Element(AbstractElement):
 
 class Div(AbstractElement):
     """
-    The standard html content division element.
+    The standard html content division element
 
     :param children: The children nested within this element
-    :type children: None | str | list[trame.html.*] | trame.html.*
+    :type children:  str | list[trame.html.*] | trame.html.* | None
     """
 
     def __init__(self, children=None, **kwargs):
@@ -378,10 +384,10 @@ class Div(AbstractElement):
 
 class Span(AbstractElement):
     """
-    The standard html content span element.
+    The standard html content span element
 
     :param children: The children nested within this element
-    :type children: None | str | list[trame.html.*] | trame.html.*
+    :type children:  str | list[trame.html.*] | trame.html.* | None
     """
 
     def __init__(self, children=None, **kwargs):
@@ -390,10 +396,10 @@ class Span(AbstractElement):
 
 class Form(AbstractElement):
     """
-    The standard html form element.
+    The standard html form element
 
     :param children: The children nested within this element
-    :type children: None | str | list[trame.html.*] | trame.html.*
+    :type children:  str | list[trame.html.*] | trame.html.* | None
     """
 
     def __init__(self, children=None, **kwargs):
@@ -403,10 +409,10 @@ class Form(AbstractElement):
 
 class Label(AbstractElement):
     """
-    The standard html input label element.
+    The standard html input label element
 
     :param children: The children nested within this element
-    :type children: None | str | list[trame.html.*] | trame.html.*
+    :type children:  str | list[trame.html.*] | trame.html.* | None
     """
 
     def __init__(self, children=None, **kwargs):
@@ -415,10 +421,10 @@ class Label(AbstractElement):
 
 class Input(AbstractElement):
     """
-    The standard html input (form input) element.
+    The standard html input (form input) element
 
     :param children: The children nested within this element
-    :type children: None | str | list[trame.html.*] | trame.html.*
+    :type children:  str | list[trame.html.*] | trame.html.* | None
     """
 
     def __init__(self, children=None, **kwargs):
@@ -458,7 +464,7 @@ class Template(AbstractElement):
 
 
     :param children: The children nested within this element
-    :type children: None | str | list[trame.html.*] | trame.html.*
+    :type children:  str | list[trame.html.*] | trame.html.* | None
     :param v_slot: The slot this template corresponds to
     """
 
@@ -489,7 +495,7 @@ class StateUpdate(AbstractElement):
     """
     Component to display part of the state
 
-    :param name: Which part of the state to display.
+    :param name: Which part of the state to display
     :type name: str
 
     Events
@@ -508,7 +514,7 @@ class StateUpdate(AbstractElement):
 
 class Triggers(AbstractElement):
     """
-    Component to trigger JS actions from Python.
+    Component to trigger JS actions from Python
 
     :param ref: Name for Vue reference to this object
     :type ref: str

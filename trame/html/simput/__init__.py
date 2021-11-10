@@ -10,17 +10,17 @@ _app.enable_module(SimPut)
 
 class Simput(AbstractElement):
     """
-    Simput data management component. Must be set as the root of a layout to provide children with Simput data. See simput docs |simput_link| for more info.
+    Simput data management component. This must be set as the root of a layout to provide children with Simput data. See simput docs |simput_link| for more info.
 
     .. |simput_link| raw:: html
 
         <a href="https://github.com/Kitware/py-simput" target="_blank">here</a>
 
-    :param ui_manager: See simput docs |simput_link| for more info.
-    :param prefix: Constructing a Simput component will set several variables, optionally prefixed by a namespace.
-    :type prefix: None | str
+    :param ui_manager: See simput docs |simput_link| for more info
+    :param prefix: Constructing a Simput component will set several variables, optionally prefixed by a namespace
+    :type prefix:  str | None
     :param children: The children nested within this element
-    :type children: None | str | list[trame.html.*] | trame.html.*
+    :type children:  str | list[trame.html.*] | trame.html.* | None
 
     >>> layout.root = simput.Simput(ui_manager, prefix="myForm")
     """
@@ -56,7 +56,7 @@ class Simput(AbstractElement):
 
     def push(self, id=None, type=None):
         """
-        Ask server to push data, ui, or constraints.
+        Ask server to push data, ui, or constraints
         """
         self._simput_helper.push(id, type)
 
@@ -78,7 +78,7 @@ class Simput(AbstractElement):
     @property
     def changeset(self):
         """
-        All unapplied changesets.
+        All unapplied changesets
         """
         return self._simput_helper.changeset()
 
@@ -92,7 +92,7 @@ class Simput(AbstractElement):
     @property
     def auto_update(self):
         """
-        Whether to automatically apply changes.
+        Whether to automatically apply changes
         """
         return self._simput_helper.auto_update
 
@@ -103,16 +103,16 @@ class Simput(AbstractElement):
 
 class SimputItem(AbstractElement):
     """
-    Simput data display component. Must be child of a Simput component to have access to Simput data. See simput docs |simput_link| for more info.
+    Simput data display component. This must be child of a Simput component to have access to Simput data. See simput docs |simput_link| for more info.
 
-    :param itemId: The simput id of the data to display.
+    :param itemId: The simput id of the data to display
     :type itemId: str
-    :param extract: Columns to make available from this component to its children.
+    :param extract: Columns to make available from this component to its children
     :type extract: list[str]
     :param no_ui: Whether to show simput template UI
     :type no_ui: bool
     :param children: The children nested within this element
-    :type children: None | str | list[trame.html.*] | trame.html.*
+    :type children:  str | list[trame.html.*] | trame.html.* | None
 
     Events
 

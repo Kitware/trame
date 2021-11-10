@@ -9,7 +9,7 @@ _app.enable_module(Widgets)
 
 class FloatCard(AbstractElement):
     """
-    A |floatcard_vuetify_link| which floats above the application and can be moved freely from a handle.
+    A |floatcard_vuetify_link| which floats above the application and can be moved freely from a handle
 
     .. |floatcard_vuetify_link| raw:: html
 
@@ -77,7 +77,7 @@ class FloatCard(AbstractElement):
 
 class ListBrowser(AbstractElement):
     """
-    A component that list items that be used for browsing directories or simple item picking.
+    A component that list items that be used for browsing directories or simple item picking
 
     :param list: List stored in Trame state
     :param filter: Function to filter list
@@ -101,7 +101,7 @@ class ListBrowser(AbstractElement):
 
 class GitTree(AbstractElement):
     """
-    A component to present a Tree the same way Git does it (Like a subway map).
+    A component to present a Tree the same way Git does it (Like a subway map)
 
     :param sources: All of the elements of the tree
     :param actives: Any active elements of the tree

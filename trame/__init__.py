@@ -44,8 +44,8 @@ def _log_js_error(message):
 
 def get_app_instance():
     """
-    Return the current active PyWebVue App instance and
-    create one if none was available yet.
+    Return the current active PyWebVue App instance or
+    create one if none were available yet
 
     (This method is meant for advanced users and should not be needed for most)
     """
@@ -62,7 +62,7 @@ def get_app_instance():
 
 def activate_app(app_id):
     """
-    When multiple application instances are use this method allow to toggle
+    When multiple application instances are use this method allows you to toggle
     which app should be current based on the app_id.
 
     (This method is meant for advanced users and should not be needed for most)
@@ -81,8 +81,8 @@ def activate_app(app_id):
 
 def deactivate_app():
     """
-    When multiple application instances are use this method allow to activate
-    the previously activated app by desactivating the current one.
+    When multiple application instances are used, this method allows you to activate
+    the previously activated app by deactivating the current one.
 
     (This method is meant for advanced users and should not be needed for most)
     """
@@ -101,8 +101,8 @@ def deactivate_app():
 def create_app(name):
     """
     This will create a PyWebVue application instance,
-    activate it and return its app_id so you could
-    desactivate and reactivate it later.
+    activate it, and return its app_id for you to
+    desactivate or reactivate it later.
 
     (This method is meant for advanced users and should not be needed for most)
     """
@@ -190,7 +190,7 @@ def start(layout=None, name=None, favicon=None, on_ready=None, port=None, debug=
 
 def update_state(key, value=None):
     """
-    Method updating current application state that is shared with the Web UI
+    Updating the current application state that is shared with the Web UI
 
     :param key: The key for the value we wish to update
     :type key: str
@@ -300,7 +300,7 @@ def get_cli_parser():
 
 def flush_state(*args):
     """
-    Force push selected keys of the server state to the client.
+    Force push selected keys of the server state to the client
 
     :param args: Which keys to flush
     :type args: list[str]
@@ -313,12 +313,11 @@ def flush_state(*args):
 
 def is_dirty(*args):
     """
-    See which key in an @change has been modified.
+    See which key in an @change has been modified
 
     :param args: Which keys to check for modification
     :type args: list[str]
-    :return: True if any of the keys in `args` are modified.
-    :rtype: bool
+    :return: True if any of the keys in `args` are modified
 
     >>> @change('sound_settings', 'picture_settings')
     ... def show_changed_settings(sound_settings, picture_settings, **kwargs):
@@ -334,12 +333,11 @@ def is_dirty(*args):
 
 def is_dirty_all(*args):
     """
-    See whether all keys in an @change have been modified.
+    See whether all keys in an @change have been modified
 
     :param args: Which keys to check for modification
     :type args: list[str]
-    :return: True if all of the keys in `args` are modified.
-    :rtype: bool
+    :return: True if all of the keys in `args` are modified
 
     >>> @change('sound_settings', 'picture_settings')
     ... def save_changed_settings(sound_settings, picture_settings, **kwargs):

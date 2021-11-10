@@ -10,11 +10,11 @@ _app.enable_module(Markdown)
 
 class Markdown(AbstractElement):
     """
-    Create a markdown viewer element.
+    Create a markdown viewer element
 
     :param v_model: Variable name in state
 
-    >>> elmt = Markdown(v_model=("document", "**Bold**"))
+    >>> component = Markdown(v_model=("document", "**Bold**"))
 
     >>> content = \"\"\"
     ...
@@ -25,7 +25,7 @@ class Markdown(AbstractElement):
     ...
     ... Hello "trame"
     ... \"\"\"
-    >>> elmt = Markdown(v_model=("document2", content))
+    >>> component = Markdown(v_model=("document2", content))
     """
 
     def __init__(self, **kwargs):

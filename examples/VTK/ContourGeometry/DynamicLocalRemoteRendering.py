@@ -85,10 +85,8 @@ html_view = vtk.VtkRemoteLocalView(
     mode=("override === 'auto' ? demoMode : override", "local"),
 )
 
-layout = SinglePage(
-    "VTK contour - Remote/Local rendering", on_ready=html_view.update_geometry
-)
-layout.title.set_text("Contour Application - Remote rendering")
+layout = SinglePage("VTK contour", on_ready=html_view.update_geometry)
+layout.title.content = "Contour"
 layout.logo.click = "$refs.demo.resetCamera()"
 
 modes = (

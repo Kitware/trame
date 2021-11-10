@@ -23,6 +23,7 @@ docs:
     h_static: howdoi-static.html
     h_dynamic: howdoi-dynamic.html
     h_interactive: howdoi-interactive.html
+    h_table: howdoi-table.html
     h_upload: howdoi-upload.html
     h_download: howdoi-download.html
     h_cli: howdoi-cli.html

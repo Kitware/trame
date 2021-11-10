@@ -1,76 +1,129 @@
-
 from trame import get_app_instance
 from trame.html import AbstractElement, Template
+import numpy as np
+import pandas as pd
+from numbers import Number
 
 # Make sure used module is available
 _app = get_app_instance()
 if "vuetify" not in _app.vue_use:
     _app.vue_use += ["vuetify"]
 
+type_mapper = {
+    "b": ["textColumn"],
+    "i": [],  # ["numericColumn", "numberColumnFilter"],
+    "u": [],  # ["numericColumn", "numberColumnFilter"],
+    "f": [],  # ["numericColumn", "numberColumnFilter"],
+    "c": [],
+    "m": [],  # ['timedeltaFormat'],
+    "M": [],  # ["dateColumnFilter", "shortDateTimeFormat"],
+    "O": [],
+    "S": [],
+    "U": [],
+    "V": [],
+}
 
+
+def cast_to_serializable(value):
+    isoformat = getattr(value, "isoformat", None)
+    if (isoformat) and callable(isoformat):
+        return isoformat()
+    elif isinstance(value, Number):
+        if np.isnan(value) or np.isinf(value):
+            return value.__str__()
+        return value
+
+    return value.__str__()
+
+
+def dataframe_to_grid(dataframe, options={}):
+    """
+    Transform a dataframe for use with a VDataTable
+
+    :param dataframe: A pandas dataframe
+    :param options: Control which columns are sortable, filterable, grouped, aligned, etc. A dictionary where keys are the columns from the dataframe and values are Vuetify DataTableHeader objects. See more info |header_doc_link|.
+
+    .. |header_doc_link| raw:: html
+
+        <a href="https://vuetifyjs.com/en/api/v-data-table/#props-headers" target="_blank">here</a>
+
+    >>> headers, rows = vuetify.dataframe_to_grid(dataframe)
+    >>> VDataTable(
+    ...     headers=("table_headers", headers),
+    ...     items=("table_rows", rows))
+    """
+    headers = {}
+    for col_name in dataframe.columns:
+        headers[col_name] = {"text": col_name, "value": col_name}
+        if options.get(col_name):
+            headers[col_name].update(options.get(col_name))
+
+    return list(headers.values()), dataframe.applymap(cast_to_serializable).to_dict(
+        orient="records"
+    )
 slot_names = [
+    "label",
+    "loading",
     "page-text",
-    "appendIcon",
-    "day-label",
-    "day-body",
-    "actions",
-    "prepend",
-    "interval",
-    "footer.page-text",
-    "body",
-    "prev",
-    "no-results",
-    "group.summary",
     "append-outer",
-    "expanded-item",
-    "prepend-item",
-    "progress",
-    "activator",
-    "opposite",
-    "append",
-    "item",
-    "group",
-    "footer.prepend",
-    "placeholder",
-    "append-item",
-    "message",
-    "icon",
-    "prependIcon",
-    "badge",
-    "day",
-    "day-label-header",
     "header.<name>",
     "input",
-    "header",
-    "body.append",
-    "counter",
-    "foot",
-    "loading",
-    "item.data-table-select",
-    "close",
+    "prev",
+    "append",
+    "no-results",
     "divider",
-    "item.<name>",
-    "no-data",
-    "group.header",
-    "thumb-label",
+    "actions",
+    "selection",
     "default",
-    "loader",
+    "expanded-item",
+    "group",
+    "item.data-table-expand",
+    "body.append",
+    "appendIcon",
+    "day-label-header",
+    "item",
+    "icon",
+    "group.header",
+    "day-month",
+    "badge",
+    "interval",
+    "foot",
+    "group.summary",
+    "header.data-table-select",
     "event",
     "top",
+    "prependIcon",
+    "activator",
     "next",
-    "body.prepend",
-    "label",
-    "footer",
-    "extension",
-    "day-header",
     "action",
-    "category",
-    "header.data-table-select",
+    "body",
+    "prepend",
+    "day",
+    "day-label",
+    "opposite",
+    "body.prepend",
+    "prepend-item",
+    "extension",
+    "progress",
+    "thumb-label",
+    "header",
+    "close",
+    "placeholder",
+    "item.<name>",
+    "no-data",
+    "loader",
+    "counter",
+    "footer.prepend",
+    "message",
     "img",
-    "selection",
-    "day-month",
+    "footer.page-text",
+    "day-body",
+    "day-header",
+    "footer",
     "prepend-inner",
-    "item.data-table-expand",
+    "item.data-table-select",
+    "category",
+    "append-item",
 ]
 Template.slot_names.update(slot_names)
 
@@ -3471,6 +3524,7 @@ class VDataTable(AbstractElement):
     
     def __init__(self, children=None, **kwargs):
         super().__init__("v-data-table", children, **kwargs)
+        self.ttsSensitive()
         self._attr_names += [
             "calculate_widths",
             "caption",

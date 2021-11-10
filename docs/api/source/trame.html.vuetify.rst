@@ -11,4 +11,5 @@ You can find more information about using Vuetify with Trame |module_link|.
 .. automodule:: trame.html.vuetify
    :members:
    :undoc-members:
+   :exclude-members: cast_to_serializable
    :show-inheritance:

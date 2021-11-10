@@ -1,24 +1,16 @@
 import sys
 import argparse
 import json
+import os
 
 # ----------------------------------------
 # Helpers
 # ----------------------------------------
+script_dir = os.path.dirname(__file__)
+with open(os.path.join(script_dir, "./header.py")) as header:
+    module_header = header.read()
 
-module_header = """
-from trame import get_app_instance
-from trame.html import AbstractElement, Template
-
-# Make sure used module is available
-_app = get_app_instance()
-if "vuetify" not in _app.vue_use:
-    _app.vue_use += ["vuetify"]
-
-
-"""
-
-tts_sensitive_elements = ["VSelect"]
+tts_sensitive_elements = ["VSelect", "VDataTable"]
 
 
 def get_attributes(tag):

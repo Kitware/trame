@@ -41,6 +41,7 @@ sidebar:
     h_static: Display static content
     h_dynamic: Display dynamic content
     h_interactive: Display interactive UI
+    h_table: Display a dataframe
     h_upload: Upload a file
     h_download: Download a file
     h_cli: Use CLI arguments

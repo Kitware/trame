@@ -134,13 +134,13 @@ def update_representation(actor, mode):
         property.EdgeVisibilityOn()
 
 
-def contour_by_array(filter, array, reset_value=True):
+def contour_by_array(filter, array):
     _min, _max = array.get("range")
     step = 0.01 * (_max - _min)
     value = 0.5 * (_max + _min)
     filter.SetInputArrayToProcess(0, 0, 0, array.get("type"), array.get("text"))
-    if reset_value:
-        filter.SetValue(0, value)
+    filter.SetValue(0, value)
+
     return value, step
 
 
@@ -472,23 +472,30 @@ def contour_card():
 layout = SinglePageWithDrawer("Trame Viewer", on_ready=html_view.update)
 layout.title.set_text("Viewer")
 
-toggle_buttons = [
-    (("cube_axes_visibility", True), "mdi-cube-outline", "mdi-cube-off-outline"),
-    ("$vuetify.theme.dark", "mdi-lightbulb-off-outline", "mdi-lightbulb-outline"),
-    (("local_vs_remote", True), "mdi-lan-disconnect", "mdi-lan-connect"),
-]
-
 with layout.toolbar:
     vuetify.VSpacer()
     vuetify.VDivider(vertical=True, classes="mx-2")
-    for model, on, off in toggle_buttons:
-        vuetify.VCheckbox(
-            v_model=model,
-            on_icon=on,
-            off_icon=off,
-            classes="mx-1",
-            **compact_style,
-        )
+    vuetify.VCheckbox(
+        v_model=("cube_axes_visibility", True),
+        on_icon="mdi-cube-outline",
+        off_icon="mdi-cube-off-outline",
+        classes="mx-1",
+        **compact_style,
+    )
+    vuetify.VCheckbox(
+        v_model="$vuetify.theme.dark",
+        on_icon="mdi-lightbulb-off-outline",
+        off_icon="mdi-lightbulb-outline",
+        classes="mx-1",
+        **compact_style,
+    )
+    vuetify.VCheckbox(
+        v_model=("local_vs_remote", True),
+        on_icon="mdi-lan-disconnect",
+        off_icon="mdi-lan-connect",
+        classes="mx-1",
+        **compact_style,
+    )
     with vuetify.VBtn(icon=True, click="$refs.view.resetCamera()"):
         vuetify.VIcon("mdi-crop-free")
 

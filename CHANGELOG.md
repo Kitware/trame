@@ -1,3 +1,10 @@
+## [1.4.5](https://github.com/kitware/trame/compare/v1.4.4...v1.4.5) (2021-11-11)
+
+
+### Bug Fixes
+
+* **vuetify:** Remove dependency on pandas, numpy ([686da68](https://github.com/kitware/trame/commit/686da6882ac05ea4f090e9f2f2f03960220e24d3))
+
 ## [1.4.4](https://github.com/kitware/trame/compare/v1.4.3...v1.4.4) (2021-11-11)
 
 

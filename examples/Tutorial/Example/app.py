@@ -1,5 +1,4 @@
 import os
-from enum import Enum
 
 from trame import change, update_state
 from trame.layouts import SinglePageWithDrawer
@@ -37,66 +36,40 @@ CURRENT_DIRECTORY = os.path.abspath(os.path.dirname(__file__))
 # -----------------------------------------------------------------------------
 # Constants
 # -----------------------------------------------------------------------------
-
-
-class Representation(Enum):
+class Representation:
     Points = 0
     Wireframe = 1
     Surface = 2
     SurfaceWithEdges = 3
 
 
-REPRESENTATIONS = [
-    {"text": "Points", "value": 0},
-    {"text": "Wireframe", "value": 1},
-    {"text": "Surface", "value": 2},
-    {"text": "SurfaceWithEdges", "value": 3},
-]
-
-
-class LUT(Enum):
+class LookupTable:
     Rainbow = 0
     Inverted_Rainbow = 1
     Greyscale = 2
     Inverted_Greyscale = 3
 
 
-COLOR_MAPS = [
-    {"text": "Rainbow", "value": 0},
-    {"text": "Inv Rainbow", "value": 1},
-    {"text": "Greyscale", "value": 2},
-    {"text": "Inv Greyscale", "value": 3},
-]
-
 # -----------------------------------------------------------------------------
 # VTK helpers
 # -----------------------------------------------------------------------------
 
 
-def create_representation(input):
-    mapper = vtkDataSetMapper()
-    mapper.SetInputConnection(input.GetOutputPort())
-    actor = vtkActor()
-    actor.SetMapper(mapper)
-    return actor
-
-
 def use_preset(actor, preset):
     lut = actor.GetMapper().GetLookupTable()
-    lut_preset = LUT(preset)
-    if lut_preset == LUT.Rainbow:
+    if preset == LookupTable.Rainbow:
         lut.SetHueRange(0.666, 0.0)
         lut.SetSaturationRange(1.0, 1.0)
         lut.SetValueRange(1.0, 1.0)
-    elif lut_preset == LUT.Inverted_Rainbow:
+    elif preset == LookupTable.Inverted_Rainbow:
         lut.SetHueRange(0.0, 0.666)
         lut.SetSaturationRange(1.0, 1.0)
         lut.SetValueRange(1.0, 1.0)
-    elif lut_preset == LUT.Greyscale:
+    elif preset == LookupTable.Greyscale:
         lut.SetHueRange(0.0, 0.0)
         lut.SetSaturationRange(0.0, 0.0)
         lut.SetValueRange(0.0, 1.0)
-    elif lut_preset == LUT.Inverted_Greyscale:
+    elif preset == LookupTable.Inverted_Greyscale:
         lut.SetHueRange(0.0, 0.666)
         lut.SetSaturationRange(0.0, 0.0)
         lut.SetValueRange(1.0, 0.0)
@@ -115,20 +88,19 @@ def color_by_array(actor, array):
 
 def update_representation(actor, mode):
     property = actor.GetProperty()
-    rep = Representation(mode)
-    if rep == Representation.Points:
+    if mode == Representation.Points:
         property.SetRepresentationToPoints()
         property.SetPointSize(5)
         property.EdgeVisibilityOff()
-    elif rep == Representation.Wireframe:
+    elif mode == Representation.Wireframe:
         property.SetRepresentationToWireframe()
         property.SetPointSize(1)
         property.EdgeVisibilityOff()
-    elif rep == Representation.Surface:
+    elif mode == Representation.Surface:
         property.SetRepresentationToSurface()
         property.SetPointSize(1)
         property.EdgeVisibilityOff()
-    elif rep == Representation.SurfaceWithEdges:
+    elif mode == Representation.SurfaceWithEdges:
         property.SetRepresentationToSurface()
         property.SetPointSize(1)
         property.EdgeVisibilityOn()
@@ -183,10 +155,15 @@ for field in fields:
 default_array = dataset_arrays[0]
 
 # Mesh
-mesh_actor = create_representation(reader)
+mesh_mapper = vtkDataSetMapper()
+mesh_mapper.SetInputConnection(reader.GetOutputPort())
+mesh_actor = vtkActor()
+mesh_actor.SetMapper(mesh_mapper)
+
 update_representation(mesh_actor, Representation.Surface)
-use_preset(mesh_actor, LUT.Rainbow)
+use_preset(mesh_actor, LookupTable.Rainbow)
 color_by_array(mesh_actor, default_array)
+
 renderer.AddActor(mesh_actor)
 
 # Cube Axes
@@ -202,12 +179,18 @@ renderer.AddActor(cube_axes)
 # Contour
 contour = vtkContourFilter()
 contour.SetInputConnection(reader.GetOutputPort())
-contour_value, contour_step = contour_by_array(contour, default_array)
-contour_actor = create_representation(contour)
+
+contour_mapper = vtkDataSetMapper()
+contour_mapper.SetInputConnection(contour.GetOutputPort())
+contour_actor = vtkActor()
+contour_actor.SetMapper(contour_mapper)
+
 contour_min, contour_max = default_array.get("range")
+contour_value, contour_step = contour_by_array(contour, default_array)
 update_representation(contour_actor, Representation.Surface)
-use_preset(contour_actor, LUT.Rainbow)
+use_preset(contour_actor, LookupTable.Rainbow)
 color_by_array(contour_actor, default_array)
+
 renderer.AddActor(contour_actor)
 
 renderer.ResetCamera()
@@ -342,17 +325,6 @@ def visibility_change(event):
 # GUI Cards
 # -----------------------------------------------------------------------------
 
-compact_style = {
-    "hide_details": True,
-    "dense": True,
-}
-
-select_style = {
-    **compact_style,
-    "outlined": True,
-    "classes": "pt-1",
-}
-
 
 def ui_card(title, ui_name):
     with vuetify.VCard(v_show=f"active_ui == '{ui_name}'"):
@@ -360,7 +332,8 @@ def ui_card(title, ui_name):
             title,
             classes="grey lighten-1 py-1 grey--text text--darken-3",
             style="user-select: none; cursor: pointer",
-            **compact_style,
+            hide_details=True,
+            dense=True,
         )
         content = vuetify.VCardText(classes="py-2")
 
@@ -382,12 +355,23 @@ def pipeline_browser():
 
 
 def mesh_card():
-    with ui_card("Mesh", "mesh"):
+    with ui_card(title="Mesh", ui_name="mesh"):
         vuetify.VSelect(
-            v_model=("mesh_representation", Representation.Surface.value),
-            items=("representations", REPRESENTATIONS),
+            v_model=("mesh_representation", Representation.Surface),
+            items=(
+                "representations",
+                [
+                    {"text": "Points", "value": 0},
+                    {"text": "Wireframe", "value": 1},
+                    {"text": "Surface", "value": 2},
+                    {"text": "SurfaceWithEdges", "value": 3},
+                ],
+            ),
             label="Representation",
-            **select_style,
+            hide_details=True,
+            dense=True,
+            outlined=True,
+            classes="pt-1",
         )
         with vuetify.VRow(classes="pt-2", dense=True):
             with vuetify.VCol(cols="6"):
@@ -395,14 +379,28 @@ def mesh_card():
                     label="Color by",
                     v_model=("mesh_color_array_idx", 0),
                     items=("array_list", dataset_arrays),
-                    **select_style,
+                    hide_details=True,
+                    dense=True,
+                    outlined=True,
+                    classes="pt-1",
                 )
             with vuetify.VCol(cols="6"):
                 vuetify.VSelect(
                     label="Colormap",
-                    v_model=("mesh_color_preset", LUT.Rainbow.value),
-                    items=("colormaps", COLOR_MAPS),
-                    **select_style,
+                    v_model=("mesh_color_preset", LookupTable.Rainbow),
+                    items=(
+                        "colormaps",
+                        [
+                            {"text": "Rainbow", "value": 0},
+                            {"text": "Inv Rainbow", "value": 1},
+                            {"text": "Greyscale", "value": 2},
+                            {"text": "Inv Greyscale", "value": 3},
+                        ],
+                    ),
+                    hide_details=True,
+                    dense=True,
+                    outlined=True,
+                    classes="pt-1",
                 )
         vuetify.VSlider(
             v_model=("mesh_opacity", 1.0),
@@ -411,17 +409,21 @@ def mesh_card():
             step=0.1,
             label="Opacity",
             classes="mt-1",
-            **compact_style,
+            hide_details=True,
+            dense=True,
         )
 
 
 def contour_card():
-    with ui_card("Contour", "contour"):
+    with ui_card(title="Contour", ui_name="contour"):
         vuetify.VSelect(
             label="Contour by",
             v_model=("contour_by_array_idx", 0),
             items=("array_list", dataset_arrays),
-            **select_style,
+            hide_details=True,
+            dense=True,
+            outlined=True,
+            classes="pt-1",
         )
         vuetify.VSlider(
             v_model=("contour_value", contour_value),
@@ -430,13 +432,25 @@ def contour_card():
             step=("contour_step", contour_step),
             label="Value",
             classes="my-1",
-            **compact_style,
+            hide_details=True,
+            dense=True,
         )
         vuetify.VSelect(
-            v_model=("contour_representation", Representation.Surface.value),
-            items=("representations", REPRESENTATIONS),
+            v_model=("contour_representation", Representation.Surface),
+            items=(
+                "representations",
+                [
+                    {"text": "Points", "value": 0},
+                    {"text": "Wireframe", "value": 1},
+                    {"text": "Surface", "value": 2},
+                    {"text": "SurfaceWithEdges", "value": 3},
+                ],
+            ),
             label="Representation",
-            **select_style,
+            hide_details=True,
+            dense=True,
+            outlined=True,
+            classes="pt-1",
         )
         with vuetify.VRow(classes="pt-2", dense=True):
             with vuetify.VCol(cols="6"):
@@ -444,14 +458,28 @@ def contour_card():
                     label="Color by",
                     v_model=("contour_color_array_idx", 0),
                     items=("array_list", dataset_arrays),
-                    **select_style,
+                    hide_details=True,
+                    dense=True,
+                    outlined=True,
+                    classes="pt-1",
                 )
             with vuetify.VCol(cols="6"):
                 vuetify.VSelect(
                     label="Colormap",
-                    v_model=("contour_color_preset", LUT.Rainbow.value),
-                    items=("colormaps", COLOR_MAPS),
-                    **select_style,
+                    v_model=("contour_color_preset", LookupTable.Rainbow),
+                    items=(
+                        "colormaps",
+                        [
+                            {"text": "Rainbow", "value": 0},
+                            {"text": "Inv Rainbow", "value": 1},
+                            {"text": "Greyscale", "value": 2},
+                            {"text": "Inv Greyscale", "value": 3},
+                        ],
+                    ),
+                    hide_details=True,
+                    dense=True,
+                    outlined=True,
+                    classes="pt-1",
                 )
         vuetify.VSlider(
             v_model=("contour_opacity", 1.0),
@@ -460,7 +488,8 @@ def contour_card():
             step=0.1,
             label="Opacity",
             classes="mt-1",
-            **compact_style,
+            hide_details=True,
+            dense=True,
         )
 
 
@@ -479,21 +508,24 @@ with layout.toolbar:
         on_icon="mdi-cube-outline",
         off_icon="mdi-cube-off-outline",
         classes="mx-1",
-        **compact_style,
+        hide_details=True,
+        dense=True,
     )
     vuetify.VCheckbox(
         v_model="$vuetify.theme.dark",
         on_icon="mdi-lightbulb-off-outline",
         off_icon="mdi-lightbulb-outline",
         classes="mx-1",
-        **compact_style,
+        hide_details=True,
+        dense=True,
     )
     vuetify.VCheckbox(
         v_model=("local_vs_remote", True),
         on_icon="mdi-lan-disconnect",
         off_icon="mdi-lan-connect",
         classes="mx-1",
-        **compact_style,
+        hide_details=True,
+        dense=True,
     )
     with vuetify.VBtn(icon=True, click="$refs.view.resetCamera()"):
         vuetify.VIcon("mdi-crop-free")

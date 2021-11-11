@@ -2,33 +2,30 @@
 
 Trame requires Python 3.6+
 
-```
+```bash
 python3 -m venv .venv
 source ./.venv/bin/activate
 python -m pip install --upgrade pip
-pip install -r ./examples/Tutorial/setup/requirements.txt
+pip install -r ./examples/Tutorial/setup-vtk/requirements.txt
 ```
 
-**Note**: `venv` was added in Python 3.3.
+**Notes**:
+ - `venv` was added in Python 3.3.
+ - The command lines above assume you are inside the cloned `trame` repository
+ - On mac with Arm architecture, VTK is only available on Python 3.9
 
 ## Running the application
 
 ```
-cd examples/Tutorial/setup
+cd examples/Tutorial/setup-vtk
 python ./app.py --port 1234
 ```
 
-Open browser to `http://localhost:1234/`
+Your browser should open to `http://localhost:1234/`
 
-**Note**: The default port is 8080, but since this is very common we will use 1234 for our Tutorial.
-
-**Note**: If you are running this on a remote machine, then on Linux you define the host to be open (0.0.0.0) to any external connection.
-
-```
-python ./app.py --port 1234 --host 0.0.0.0
-```
-
-**Note**: Firewalls will be more complicated.
+**Notes**:
+ - The default port is 8080, but since this is very common we will use 1234 for our Tutorial.
+ - If you are running this on a remote machine, you may have to set the host to 0.0.0.0 to allow any external connection. (`python ./app.py --port 1234 --host 0.0.0.0`)
 
 ## Annotation of Hello Trame Application
 
@@ -48,7 +45,7 @@ layout = SinglePage("Hello Trame")
 layout.title.set_text("Hello Trame")
 ```
 
-Finally, we start the Web server using 
+Finally, we start the Web server using
 
 ```
 if __name__ == "__main__":

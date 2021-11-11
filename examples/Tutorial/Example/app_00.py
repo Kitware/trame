@@ -200,15 +200,14 @@ cube_axes.SetFlyModeToOuterEdges()
 renderer.AddActor(cube_axes)
 
 # Contour
-contour_array = dataset_arrays[0]
 contour = vtkContourFilter()
 contour.SetInputConnection(reader.GetOutputPort())
-contour_value, contour_step = contour_by_array(contour, contour_array)
+contour_value, contour_step = contour_by_array(contour, default_array)
 contour_actor = create_representation(contour)
-contour_min, contour_max = contour_array.get("range")
+contour_min, contour_max = default_array.get("range")
 update_representation(contour_actor, Representation.Surface)
 use_preset(contour_actor, LUT.Rainbow)
-color_by_array(contour_actor, contour_array)
+color_by_array(contour_actor, default_array)
 renderer.AddActor(contour_actor)
 
 renderer.ResetCamera()

@@ -51,20 +51,6 @@ class LookupTable:
 
 
 # -----------------------------------------------------------------------------
-# VTK helpers
-# -----------------------------------------------------------------------------
-
-def contour_by_array(filter, array):
-    _min, _max = array.get("range")
-    step = 0.01 * (_max - _min)
-    value = 0.5 * (_max + _min)
-    filter.SetInputArrayToProcess(0, 0, 0, array.get("type"), array.get("text"))
-    filter.SetValue(0, value)
-
-    return value, step
-
-
-# -----------------------------------------------------------------------------
 # VTK pipeline
 # -----------------------------------------------------------------------------
 
@@ -108,6 +94,7 @@ mesh_mapper = vtkDataSetMapper()
 mesh_mapper.SetInputConnection(reader.GetOutputPort())
 mesh_actor = vtkActor()
 mesh_actor.SetMapper(mesh_mapper)
+renderer.AddActor(mesh_actor)
 
 # Mesh: Setup default representation to surface
 mesh_actor.GetProperty().SetRepresentationToSurface()
@@ -127,8 +114,6 @@ mesh_mapper.SetScalarModeToUsePointFieldData()
 mesh_mapper.SetScalarVisibility(True)
 mesh_mapper.SetUseLookupTableScalarRange(True)
 
-renderer.AddActor(mesh_actor)
-
 # Cube Axes
 cube_axes = vtkCubeAxesActor()
 cube_axes.SetBounds(mesh_actor.GetBounds())
@@ -147,10 +132,13 @@ contour_mapper = vtkDataSetMapper()
 contour_mapper.SetInputConnection(contour.GetOutputPort())
 contour_actor = vtkActor()
 contour_actor.SetMapper(contour_mapper)
+renderer.AddActor(contour_actor)
 
 # Contour: ContourBy default array
 contour_value = 0.5 * (default_max + default_min)
-contour.SetInputArrayToProcess(0, 0, 0, default_array.get("type"), default_array.get("text"))
+contour.SetInputArrayToProcess(
+    0, 0, 0, default_array.get("type"), default_array.get("text")
+)
 contour.SetValue(0, contour_value)
 
 # Contour: Setup default representation to surface
@@ -171,7 +159,6 @@ contour_mapper.SetScalarModeToUsePointFieldData()
 contour_mapper.SetScalarVisibility(True)
 contour_mapper.SetUseLookupTableScalarRange(True)
 
-renderer.AddActor(contour_actor)
 
 renderer.ResetCamera()
 
@@ -229,6 +216,7 @@ def update_representation(actor, mode):
         property.SetPointSize(1)
         property.EdgeVisibilityOn()
 
+
 @change("mesh_representation")
 def update_mesh_representation(mesh_representation, **kwargs):
     update_representation(mesh_actor, mesh_representation)
@@ -253,6 +241,7 @@ def color_by_array(actor, array):
     mapper.SetScalarVisibility(True)
     mapper.SetUseLookupTableScalarRange(True)
 
+
 @change("mesh_color_array_idx")
 def update_mesh_color_by_name(mesh_color_array_idx, **kwargs):
     array = dataset_arrays[mesh_color_array_idx]
@@ -265,6 +254,7 @@ def update_contour_color_by_name(contour_color_array_idx, **kwargs):
     array = dataset_arrays[contour_color_array_idx]
     color_by_array(contour_actor, array)
     html_view.update()
+
 
 # -----------------------------------------------------------------------------
 # ColorMap preset change handling
@@ -288,6 +278,7 @@ def use_preset(actor, preset):
         lut.SetSaturationRange(0.0, 0.0)
         lut.SetValueRange(1.0, 0.0)
     lut.Build()
+
 
 @change("mesh_color_preset")
 def update_mesh_color_preset(mesh_color_preset, **kwargs):
@@ -315,15 +306,21 @@ def update_contour_opacity(contour_opacity, **kwargs):
     contour_actor.GetProperty().SetOpacity(contour_opacity)
     html_view.update()
 
+
 # -----------------------------------------------------------------------------
 # Contour  change handling
 # -----------------------------------------------------------------------------
 @change("contour_by_array_idx")
 def update_contour_by(contour_by_array_idx, **kwargs):
     array = dataset_arrays[contour_by_array_idx]
-    contour_value, contour_step = contour_by_array(contour, array)
-    contour_min, contour_max = array.get("range")
 
+    contour_min, contour_max = array.get("range")
+    contour_step = 0.01 * (contour_max - contour_min)
+    contour_value = 0.5 * (contour_max + contour_min)
+    filter.SetInputArrayToProcess(0, 0, 0, array.get("type"), array.get("text"))
+    filter.SetValue(0, contour_value)
+
+    # Update UI
     update_state("contour_min", contour_min)
     update_state("contour_max", contour_max)
     update_state("contour_value", contour_value)
@@ -336,6 +333,7 @@ def update_contour_by(contour_by_array_idx, **kwargs):
 def update_contour_value(contour_value, **kwargs):
     contour.SetValue(0, float(contour_value))
     html_view.update()
+
 
 # -----------------------------------------------------------------------------
 # Pipeline events handling

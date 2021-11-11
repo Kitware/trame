@@ -27,7 +27,7 @@ def ScatterMatrix():
             alt.Y(alt.repeat("row"), type="quantitative"),
             color="Origin:N",
         )
-        .properties(width=150, height=150)
+        .properties(width=200, height=200)
         .repeat(
             row=["Horsepower", "Acceleration", "Miles_per_Gallon"],
             column=["Miles_per_Gallon", "Acceleration", "Horsepower"],
@@ -54,7 +54,7 @@ def USIncomeByState():
             shape="geo:G",
             color="pct:Q",
             tooltip=["name:N", "pct:Q"],
-            facet=alt.Facet("group:N", columns=2),
+            facet=alt.Facet("group:N", columns=3),
         )
         .transform_lookup(
             lookup="id", from_=alt.LookupData(data=states, key="id"), as_="geo"
@@ -118,6 +118,7 @@ def StreamGraph():
             alt.Y("sum(count):Q", stack="center", axis=None),
             alt.Color("series:N", scale=alt.Scale(scheme="category20b")),
         )
+        .properties(width="container")
         .interactive()
     )
 

@@ -29,62 +29,6 @@ lgaMap = deckgl.Deck(**mapProps)
 nwkMap = deckgl.Deck(**mapProps)
 
 # -----------------------------------------------------------------------------
-# GUI Layout
-# -----------------------------------------------------------------------------
-layout = SinglePage("NYC Uber Ridesharing Data", on_ready=updateData)
-layout.title.set_text("NYC Uber Ridesharing Data")
-
-mapRow = vuetify.VRow(
-    [
-        vuetify.VCol([Div("{{jfkTitle}}", classes="text-h5"), jfkMap], cols=4),
-        vuetify.VCol([Div("{{lgaTitle}}", classes="text-h5"), lgaMap], cols=4),
-        vuetify.VCol([Div("{{nwkTitle}}", classes="text-h5"), nwkMap], cols=4),
-    ]
-)
-
-mapLayout = vuetify.VRow(
-    children=[
-        vuetify.VCol(
-            cols=4,
-            children=[Div(dynamicTitle, classes="text-h5"), nycMap],
-        ),
-        vuetify.VCol(
-            cols=8,
-            children=[mapRow],
-        ),
-    ]
-)
-
-layout.content.children += [
-    vuetify.VContainer(
-        fluid="true",
-        children=[
-            Div(
-                """Examining how Uber pickups vary over time in New York City's
-                and at its major regional airports.
-                By sliding the slider on the left you can view different slices
-                of time and explore different transportation trends.""",
-                classes="text-body-1",
-            ),
-            vuetify.VSlider(
-                v_model=("pickupHour", 0),
-                classes="mt-4",
-                label="Select hour of pickup",
-                min=0,
-                max=23,
-                thumb_label=True,
-            ),
-            mapLayout,
-            Div(
-                classes="text-center mt-6",
-                children=[hourBreakdownChart],
-            ),
-        ],
-    )
-]
-
-
-# -----------------------------------------------------------------------------
 # LOADING DATA
 # -----------------------------------------------------------------------------
 DATE_TIME = "date/time"
@@ -205,6 +149,62 @@ def updateData(pickupHour, **kwargs):
         )
         .configure_mark(opacity=0.5, color="red")
     )
+
+
+# -----------------------------------------------------------------------------
+# GUI Layout
+# -----------------------------------------------------------------------------
+layout = SinglePage("NYC Uber Ridesharing Data", on_ready=updateData)
+layout.title.set_text("NYC Uber Ridesharing Data")
+
+mapRow = vuetify.VRow(
+    [
+        vuetify.VCol([Div("{{jfkTitle}}", classes="text-h5"), jfkMap], cols=4),
+        vuetify.VCol([Div("{{lgaTitle}}", classes="text-h5"), lgaMap], cols=4),
+        vuetify.VCol([Div("{{nwkTitle}}", classes="text-h5"), nwkMap], cols=4),
+    ]
+)
+
+mapLayout = vuetify.VRow(
+    children=[
+        vuetify.VCol(
+            cols=4,
+            children=[Div(dynamicTitle, classes="text-h5"), nycMap],
+        ),
+        vuetify.VCol(
+            cols=8,
+            children=[mapRow],
+        ),
+    ]
+)
+
+layout.content.children += [
+    vuetify.VContainer(
+        fluid="true",
+        children=[
+            Div(
+                """Examining how Uber pickups vary over time in New York City's
+                and at its major regional airports.
+                By sliding the slider on the left you can view different slices
+                of time and explore different transportation trends.""",
+                classes="text-body-1",
+            ),
+            vuetify.VSlider(
+                v_model=("pickupHour", 0),
+                classes="mt-4",
+                label="Select hour of pickup",
+                min=0,
+                max=23,
+                thumb_label=True,
+            ),
+            mapLayout,
+            Div(
+                classes="text-center mt-6",
+                children=[hourBreakdownChart],
+            ),
+        ],
+    )
+]
 
 
 # -----------------------------------------------------------------------------

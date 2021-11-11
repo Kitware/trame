@@ -1,3 +1,10 @@
+## [1.4.4](https://github.com/kitware/trame/compare/v1.4.3...v1.4.4) (2021-11-11)
+
+
+### Bug Fixes
+
+* **update_state:** Add more flexibility ([4fb15dd](https://github.com/kitware/trame/commit/4fb15dd323cafa4eb2219edada2802615d184875))
+
 ## [1.4.3](https://github.com/kitware/trame/compare/v1.4.2...v1.4.3) (2021-11-10)
 
 

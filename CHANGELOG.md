@@ -1,3 +1,10 @@
+## [1.4.6](https://github.com/kitware/trame/compare/v1.4.5...v1.4.6) (2021-11-11)
+
+
+### Bug Fixes
+
+* **pandas:** Remove wrongly required pandas dependency ([43d7a39](https://github.com/kitware/trame/commit/43d7a39b2548ad9e5779341ae44e05036d2c8284))
+
 ## [1.4.5](https://github.com/kitware/trame/compare/v1.4.4...v1.4.5) (2021-11-11)
 
 

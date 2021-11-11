@@ -75,3 +75,4 @@ if __name__ == "__main__":
 ## Example
 
 - [Code above](https://github.com/Kitware/trame/blob/master/examples/howdoi/table.py)
+- [Advanced table](https://github.com/Kitware/trame/blob/master/examples/PlainPython/Tables/app.py)

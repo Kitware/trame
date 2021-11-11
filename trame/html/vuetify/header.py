@@ -1,8 +1,5 @@
 from trame import get_app_instance
 from trame.html import AbstractElement, Template
-import numpy as np
-import pandas as pd
-from numbers import Number
 
 # Make sure used module is available
 _app = get_app_instance()
@@ -25,6 +22,9 @@ type_mapper = {
 
 
 def cast_to_serializable(value):
+    import numpy as np
+    from numbers import Number
+
     isoformat = getattr(value, "isoformat", None)
     if (isoformat) and callable(isoformat):
         return isoformat()

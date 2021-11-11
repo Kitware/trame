@@ -1,7 +1,9 @@
 import os
-from trame import start, change, update_state, get_state, update_layout
+from enum import Enum
+
+from trame import change, flush_state, update_state
 from trame.layouts import SinglePageWithDrawer
-from trame.html import Div, vtk, vuetify, widgets
+from trame.html import vtk, vuetify, widgets
 
 from vtkmodules.vtkCommonDataModel import (
     vtkDataObject,
@@ -17,7 +19,6 @@ from vtkmodules.vtkFiltersCore import (
 )
 from vtkmodules.vtkRenderingCore import (
     vtkActor,
-    vtkPolyDataMapper,
     vtkDataSetMapper,
     vtkRenderer,
     vtkRenderWindow,
@@ -29,7 +30,6 @@ from vtkmodules.vtkInteractionStyle import vtkInteractorStyleSwitch  # noqa
 
 # Required for remote rendering factory initialization, not necessary for
 # local rendering, but doesn't hurt to include it
-
 import vtkmodules.vtkRenderingOpenGL2  # noqa
 
 CURRENT_DIRECTORY = os.path.abspath(os.path.dirname(__file__))
@@ -38,31 +38,111 @@ CURRENT_DIRECTORY = os.path.abspath(os.path.dirname(__file__))
 # Globals
 # -----------------------------------------------------------------------------
 
-Points = 0
-Wireframe = 1
-Surface = 2
-SurfaceWithEdges = 3
 
-representations = [
+class Representation(Enum):
+    Points = 0
+    Wireframe = 1
+    Surface = 2
+    SurfaceWithEdges = 3
+
+
+REPRESENTATIONS = [
     {"text": "Points", "value": 0},
     {"text": "Wireframe", "value": 1},
     {"text": "Surface", "value": 2},
     {"text": "SurfaceWithEdges", "value": 3},
 ]
-update_state("representations", representations)
 
-Rainbow = 0
-Inverted_Rainbow = 1
-Greyscale = 2
-Inverted_Greyscale = 3
 
-colormaps = [
+class LUT(Enum):
+    Rainbow = 0
+    Inverted_Rainbow = 1
+    Greyscale = 2
+    Inverted_Greyscale = 3
+
+
+COLOR_MAPS = [
     {"text": "Rainbow", "value": 0},
     {"text": "Inv Rainbow", "value": 1},
     {"text": "Greyscale", "value": 2},
     {"text": "Inv Greyscale", "value": 3},
 ]
-update_state("colormaps", colormaps)
+
+# -----------------------------------------------------------------------------
+# VTK helpers
+# -----------------------------------------------------------------------------
+
+
+def create_representation(input):
+    mapper = vtkDataSetMapper()
+    mapper.SetInputConnection(input.GetOutputPort())
+    actor = vtkActor()
+    actor.SetMapper(mapper)
+    return actor
+
+
+def use_preset(actor, preset):
+    lut = actor.GetMapper().GetLookupTable()
+    lut_preset = LUT(preset)
+    if lut_preset == LUT.Rainbow:
+        lut.SetHueRange(0.666, 0.0)
+        lut.SetSaturationRange(1.0, 1.0)
+        lut.SetValueRange(1.0, 1.0)
+    elif lut_preset == LUT.Inverted_Rainbow:
+        lut.SetHueRange(0.0, 0.666)
+        lut.SetSaturationRange(1.0, 1.0)
+        lut.SetValueRange(1.0, 1.0)
+    elif lut_preset == LUT.Greyscale:
+        lut.SetHueRange(0.0, 0.0)
+        lut.SetSaturationRange(0.0, 0.0)
+        lut.SetValueRange(0.0, 1.0)
+    elif lut_preset == LUT.Inverted_Greyscale:
+        lut.SetHueRange(0.0, 0.666)
+        lut.SetSaturationRange(0.0, 0.0)
+        lut.SetValueRange(1.0, 0.0)
+    lut.Build()
+
+
+def color_by_array(actor, array):
+    _min, _max = array.get("range")
+    mapper = actor.GetMapper()
+    mapper.GetLookupTable().SetRange(_min, _max)
+    mapper.SelectColorArray(array.get("text"))
+    mapper.SetScalarModeToUsePointFieldData()
+    mapper.SetScalarVisibility(True)
+    mapper.SetUseLookupTableScalarRange(True)
+
+
+def update_representation(actor, mode):
+    property = actor.GetProperty()
+    rep = Representation(mode)
+    if rep == Representation.Points:
+        property.SetRepresentationToPoints()
+        property.SetPointSize(5)
+        property.EdgeVisibilityOff()
+    elif rep == Representation.Wireframe:
+        property.SetRepresentationToWireframe()
+        property.SetPointSize(1)
+        property.EdgeVisibilityOff()
+    elif rep == Representation.Surface:
+        property.SetRepresentationToSurface()
+        property.SetPointSize(1)
+        property.EdgeVisibilityOff()
+    elif rep == Representation.SurfaceWithEdges:
+        property.SetRepresentationToSurface()
+        property.SetPointSize(1)
+        property.EdgeVisibilityOn()
+
+
+def contour_by_array(filter, array, reset_value=True):
+    _min, _max = array.get("range")
+    step = 0.01 * (_max - _min)
+    value = 0.5 * (_max + _min)
+    filter.SetInputArrayToProcess(0, 0, 0, array.get("type"), array.get("text"))
+    if reset_value:
+        filter.SetValue(0, value)
+    return value, step
+
 
 # -----------------------------------------------------------------------------
 # VTK pipeline
@@ -75,545 +155,393 @@ renderWindow.AddRenderer(renderer)
 renderWindowInteractor = vtkRenderWindowInteractor()
 renderWindowInteractor.SetRenderWindow(renderWindow)
 renderWindowInteractor.GetInteractorStyle().SetCurrentStyleToTrackballCamera()
-renderWindowInteractor.EnableRenderOff()
 
 reader = vtkXMLUnstructuredGridReader()
 reader.SetFileName(os.path.join(CURRENT_DIRECTORY, "../data/disk_out_ref.vtu"))
 reader.Update()
+dataset = reader.GetOutput()
 
-numberOfPointArrays = reader.GetOutput().GetPointData().GetNumberOfArrays()
-numberOfCellArrays = reader.GetOutput().GetCellData().GetNumberOfArrays()
-
-arrayData = []
-update_state("arrayData", arrayData)
-if numberOfPointArrays > 0:
-    for i in range(numberOfPointArrays):
-        array = reader.GetOutput().GetPointData().GetArray(i)
-        array_name = array.GetName()
+# Extract arrays informations
+dataset_arrays = []
+fields = [
+    (dataset.GetPointData(), vtkDataObject.FIELD_ASSOCIATION_POINTS),
+    (dataset.GetCellData(), vtkDataObject.FIELD_ASSOCIATION_CELLS),
+]
+for field in fields:
+    field_arrays, association = field
+    for i in range(field_arrays.GetNumberOfArrays()):
+        array = field_arrays.GetArray(i)
         array_range = array.GetRange()
-        arrayData.append(
+        dataset_arrays.append(
             {
-            "text": array_name, 
-            "value": i, 
-            "min": array_range[0], 
-            "max": array_range[1], 
-            "type": vtkDataObject.FIELD_ASSOCIATION_POINTS
+                "text": array.GetName(),
+                "value": i,
+                "range": list(array_range),
+                "type": association,
             }
         )
-if numberOfCellArrays > 0:
-    cellNames = []
-    for i in range(numberOfCellArrays):
-        array = reader.GetOutput().GetCellData().GetArray(i)
-        array_name = array.GetName()
-        array_range = array.GetRange()
-        arrayData.append(
-            {
-            "text": array_name, 
-            "value": i, 
-            "min": array_range[0], 
-            "max": array_range[1], 
-            "type": vtkDataObject.FIELD_ASSOCIATION_CELLS
-            }
-        )
+default_array = dataset_arrays[0]
 
-# Mesh Actor
+# Mesh
+mesh_actor = create_representation(reader)
+update_representation(mesh_actor, Representation.Surface)
+use_preset(mesh_actor, LUT.Rainbow)
+color_by_array(mesh_actor, default_array)
+renderer.AddActor(mesh_actor)
 
-meshMapper = vtkDataSetMapper()
-meshMapper.SetInputConnection(reader.GetOutputPort())
+# Keep track of pipeline elements
+pipeline_server = {
+    "1": {
+        "actor": mesh_actor,
+        "ui": "mesh",
+        "shared": {
+            "representation": Representation.Surface.value,
+            "color_preset": LUT.Rainbow.value,
+            "color_array_idx": 0,
+            "contour_by_array_idx": 0,
+            "opacity": 1.0,
+        },
+    }
+}
+pipeline_client = [{"id": "1", "parent": "0", "visible": 1, "name": "Mesh"}]
 
-meshLUT = meshMapper.GetLookupTable()
-update_state("meshColormap", Rainbow)
-meshLUT.SetHueRange(0.666, 0.0)
-meshLUT.SetSaturationRange(1.0, 1.0)
-meshLUT.SetRange(float(arrayData[0]["min"]), float(arrayData[0]["max"]))
-update_state("meshColorByName", 0)
-meshMapper.SelectColorArray(arrayData[0]["text"])
-meshMapper.SetScalarModeToUsePointFieldData()
-meshMapper.SetScalarVisibility(True)
-meshMapper.SetUseLookupTableScalarRange(True)
+# Cube Axes
+cube_axes = vtkCubeAxesActor()
+cube_axes.SetBounds(mesh_actor.GetBounds())
+cube_axes.SetCamera(renderer.GetActiveCamera())
+cube_axes.SetXLabelFormat("%6.1f")
+cube_axes.SetYLabelFormat("%6.1f")
+cube_axes.SetZLabelFormat("%6.1f")
+cube_axes.SetFlyModeToOuterEdges()
+renderer.AddActor(cube_axes)
 
-meshActor = vtkActor()
-meshActor.SetMapper(meshMapper)
-update_state("meshVisibility", True)
-meshActor.SetVisibility(True)
-update_state("meshRepresentation", Surface)
-meshActor.GetProperty().SetRepresentationToSurface()
-meshActor.GetProperty().EdgeVisibilityOff()
-update_state("meshOpacity", 1.0)
-meshActor.GetProperty().SetOpacity(1.0)
+# Contour(s)
+for i in range(4):
+    array = dataset_arrays[i]
+    contour = vtkContourFilter()
+    contour.SetInputConnection(reader.GetOutputPort())
+    contour_value, contour_step = contour_by_array(contour, array)
+    contour_actor = create_representation(contour)
+    contour_min, contour_max = array.get("range")
+    update_representation(contour_actor, Representation.Surface)
+    use_preset(contour_actor, LUT.Rainbow)
+    color_by_array(contour_actor, array)
+    renderer.AddActor(contour_actor)
 
-# Cube Axes Actor
-cubeAxesActor = vtkCubeAxesActor()
-bounds = meshMapper.GetBounds()
-cubeAxesActor.SetBounds(
-    bounds[0], bounds[1], bounds[2], bounds[3], bounds[4], bounds[5]
-)
-cubeAxesActor.SetCamera(renderer.GetActiveCamera())
-cubeAxesActor.SetXLabelFormat("%6.1f")
-cubeAxesActor.SetYLabelFormat("%6.1f")
-cubeAxesActor.SetZLabelFormat("%6.1f")
-cubeAxesActor.SetFlyModeToOuterEdges()
-update_state("cubeAxesVisibility", True)
-cubeAxesActor.SetVisibility(True)
+    # Register actor and definition in pipeline
+    _id = f"{i+2}"
+    pipeline_server[_id] = {
+        "actor": contour_actor,
+        "ui": "contour",
+        "filter": contour,
+        "shared": {
+            "representation": Representation.Surface.value,
+            "color_preset": LUT.Rainbow.value,
+            "color_array_idx": i,
+            "opacity": 1.0,
+            # contour add-on
+            "contour_by_array_idx": i,
+            "contour_value": contour_value,
+            "contour_min": contour_min,
+            "contour_max": contour_max,
+            "contour_step": contour_step,
+        },
+    }
+    pipeline_client.append(
+        {
+            "id": _id,
+            "parent": "1",
+            "visible": 1,
+            "name": f"Contour {i + 1}",
+        }
+    )
 
-# Contour Actor
-contour = vtkContourFilter()
-update_state("contourBy", 0)
-contour.SetInputArrayToProcess(0, 0, 0, arrayData[0]["type"], arrayData[0]["text"])
-contour.SetInputConnection(reader.GetOutputPort())
-update_state("contourMin", float(arrayData[0]["min"]))
-update_state("contourMax", float(arrayData[0]["max"]))
-contourStep = 0.01 * (arrayData[0]["max"] - arrayData[0]["min"])
-update_state("contourStep", contourStep)
-contourValue = 0.5 * (arrayData[0]["max"] + arrayData[0]["min"])
-update_state("contourValue", contourValue)
-contour.SetValue(0, contourValue)
-
-contourMapper = vtkPolyDataMapper()
-contourMapper.SetInputConnection(contour.GetOutputPort())
-
-contourLUT = contourMapper.GetLookupTable()
-update_state("contourColormap", Rainbow)
-contourLUT.SetHueRange(0.666, 0.0)
-contourLUT.SetSaturationRange(1.0, 1.0)
-contourLUT.SetRange(float(arrayData[0]["min"]), float(arrayData[0]["max"]))
-update_state("contourColorByName", 0)
-contourMapper.SelectColorArray(arrayData[0]["text"])
-contourMapper.SetScalarModeToUsePointFieldData()
-contourMapper.SetScalarVisibility(True)
-contourMapper.SetUseLookupTableScalarRange(True)
-
-contourActor = vtkActor()
-contourActor.SetMapper(contourMapper)
-update_state("contourVisibility", True)
-contourActor.SetVisibility(True)
-update_state("contourRepresentation", Surface)
-contourActor.GetProperty().SetRepresentationToSurface()
-contourActor.GetProperty().EdgeVisibilityOff()
-update_state("contourOpacity", 1.0)
-contourActor.GetProperty().SetOpacity(1.0)
-
-renderer.AddActor(meshActor)
-renderer.AddActor(cubeAxesActor)
-renderer.AddActor(contourActor)
 
 renderer.ResetCamera()
-renderWindow.Render()
 
 # -----------------------------------------------------------------------------
 # Functions
 # -----------------------------------------------------------------------------
 
-
-def update_view(**kwargs):
-    html_view.update()
-
 local_view = vtk.VtkLocalView(renderWindow)
 remote_view = vtk.VtkRemoteView(renderWindow, interactive_ratio=(1,))
 html_view = local_view
-update_state("local_vs_remote", True)
+
+
+@change("cube_axes_visibility")
+def update_cube_axes_visibility(cube_axes_visibility, **kwargs):
+    cube_axes.SetVisibility(cube_axes_visibility)
+    html_view.update()
+
 
 @change("local_vs_remote")
-def update_local_vs_remote(**kwargs):
+def update_local_vs_remote(local_vs_remote, **kwargs):
+    # Switch html_view
     global html_view
-    lvr, = get_state("local_vs_remote")
-    if lvr:
+    if local_vs_remote:
         html_view = local_view
     else:
         html_view = remote_view
+
+    # Update layout
     layout.content.children[0].children[0] = html_view
-    update_layout(layout)
-    update_view()
+    layout.flush_content()
 
-@change("meshRepresentation")
-def update_mesh_representation(**kwargs):
-    r, = get_state("meshRepresentation")
-    if r == Points:
-        meshActor.GetProperty().SetRepresentationToPoints()
-        meshActor.GetProperty().SetPointSize(5)
-        meshActor.GetProperty().EdgeVisibilityOff()
-    elif r == Wireframe:
-        meshActor.GetProperty().SetRepresentationToWireframe()
-        meshActor.GetProperty().SetPointSize(1)
-        meshActor.GetProperty().EdgeVisibilityOff()
-    elif r == Surface:
-        meshActor.GetProperty().SetRepresentationToSurface()
-        meshActor.GetProperty().SetPointSize(1)
-        meshActor.GetProperty().EdgeVisibilityOff()
-    elif r == SurfaceWithEdges:
-        meshActor.GetProperty().SetRepresentationToSurface()
-        meshActor.GetProperty().SetPointSize(1)
-        meshActor.GetProperty().EdgeVisibilityOn()
-    update_view()
+    # Update View data
+    html_view.update()
 
-@change("meshColorByName")
-def update_mesh_color_by_name(**kwargs):
-    c, = get_state("meshColorByName")
-    meshMapper.SelectColorArray(arrayData[c]["text"])
-    meshLUT.SetRange(float(arrayData[c]["min"]), float(arrayData[c]["max"]))
-    update_view()
 
-@change("meshColormap")
-def update_mesh_colormap(**kwargs):
-    c, = get_state("meshColormap")
-    if c == Rainbow:
-        meshLUT.SetHueRange(0.666, 0.0)
-        meshLUT.SetSaturationRange(1.0, 1.0)
-        meshLUT.SetValueRange(1.0, 1.0)
-    elif c == Inverted_Rainbow:
-        meshLUT.SetHueRange(0.0, 0.666)
-        meshLUT.SetSaturationRange(1.0, 1.0)
-        meshLUT.SetValueRange(1.0, 1.0)
-    elif c == Greyscale:
-        meshLUT.SetHueRange(0.0, 0.0)
-        meshLUT.SetSaturationRange(0.0, 0.0)
-        meshLUT.SetValueRange(0.0, 1.0)
-    elif c == Inverted_Greyscale:
-        meshLUT.SetHueRange(0.0, 0.666)
-        meshLUT.SetSaturationRange(0.0, 0.0)
-        meshLUT.SetValueRange(1.0, 0.0)
-    meshLUT.Build()
-    update_view()
+@change("representation")
+def update_active_representation(active_id, representation, **kwargs):
+    active_item = pipeline_server.get(active_id)
+    if not active_item:
+        return
 
-@change("meshOpacity")
-def update_mesh_opacity(**kwargs):
-    o, = get_state("meshOpacity")
-    meshActor.GetProperty().SetOpacity(o)
-    update_view()
+    active_item["shared"]["representation"] = representation
+    update_representation(active_item["actor"], representation)
+    html_view.update()
 
-@change("contourBy")
-def update_contour_by(**kwargs):
-    c, = get_state("contourBy")
-    contour.SetInputArrayToProcess(0, 0, 0, arrayData[c]["type"], arrayData[c]["text"])
-    update_state("contourMin", float(arrayData[c]["min"]))
-    update_state("contourMax", float(arrayData[c]["max"]))
-    contourStep = 0.01 * (arrayData[c]["max"] - arrayData[c]["min"])
-    update_state("contourStep", contourStep)
-    contourValue = 0.5 * (arrayData[c]["max"] + arrayData[c]["min"])
-    update_state("contourValue", contourValue)
-    contour.SetValue(0, contourValue)
-    update_view()
 
-@change("contourValue")
-def update_contourValue(**kwargs):
-    c, = get_state("contourValue")
-    contour.SetValue(0, c)
-    update_view()
+@change("color_array_idx")
+def update_active_color_by_name(active_id, color_array_idx, **kwargs):
+    array = dataset_arrays[color_array_idx]
+    active_item = pipeline_server.get(active_id)
+    if not active_item:
+        return
 
-@change("contourRepresentation")
-def update_contour_representation(**kwargs):
-    r, = get_state("contourRepresentation")
-    if r == Points:
-        contourActor.GetProperty().SetRepresentationToPoints()
-        contourActor.GetProperty().SetPointSize(5)
-        contourActor.GetProperty().EdgeVisibilityOff()
-    elif r == Wireframe:
-        contourActor.GetProperty().SetRepresentationToWireframe()
-        contourActor.GetProperty().SetPointSize(1)
-        contourActor.GetProperty().EdgeVisibilityOff()
-    elif r == Surface:
-        contourActor.GetProperty().SetRepresentationToSurface()
-        contourActor.GetProperty().SetPointSize(1)
-        contourActor.GetProperty().EdgeVisibilityOff()
-    elif r == SurfaceWithEdges:
-        contourActor.GetProperty().SetRepresentationToSurface()
-        contourActor.GetProperty().SetPointSize(1)
-        contourActor.GetProperty().EdgeVisibilityOn()
-    update_view()
+    active_item["shared"]["color_array_idx"] = color_array_idx
+    color_by_array(active_item["actor"], array)
+    html_view.update()
 
-@change("contourColorByName")
-def update_contour_color_by_name(**kwargs):
-    c, = get_state("contourColorByName")
-    contourMapper.SelectColorArray(arrayData[c]["text"])
-    contourLUT.SetRange(float(arrayData[c]["min"]), float(arrayData[c]["max"]))
-    update_view()
 
-@change("contourColormap")
-def update_contour_colormap(**kwargs):
-    c, = get_state("contourColormap")
-    if c == Rainbow:
-        contourLUT.SetHueRange(0.666, 0.0)
-        contourLUT.SetSaturationRange(1.0, 1.0)
-        contourLUT.SetValueRange(1.0, 1.0)
-    elif c == Inverted_Rainbow:
-        contourLUT.SetHueRange(0.0, 0.666)
-        contourLUT.SetSaturationRange(1.0, 1.0)
-        contourLUT.SetValueRange(1.0, 1.0)
-    elif c == Greyscale:
-        contourLUT.SetHueRange(0.0, 0.0)
-        contourLUT.SetSaturationRange(0.0, 0.0)
-        contourLUT.SetValueRange(0.0, 1.0)
-    elif c == Inverted_Greyscale:
-        contourLUT.SetHueRange(0.0, 0.666)
-        contourLUT.SetSaturationRange(0.0, 0.0)
-        contourLUT.SetValueRange(1.0, 0.0)
-    contourLUT.Build()
-    update_view()
+@change("color_preset")
+def update_active_color_preset(active_id, color_preset, **kwargs):
+    active_item = pipeline_server.get(active_id)
+    if not active_item:
+        return
 
-@change("contourOpacity")
-def update_contour_opacity(**kwargs):
-    o, = get_state("contourOpacity")
-    contourActor.GetProperty().SetOpacity(o)
-    update_view()
+    active_item["shared"]["color_preset"] = color_preset
+    use_preset(active_item["actor"], color_preset)
+    html_view.update()
 
+
+@change("opacity")
+def update_active_opacity(active_id, opacity, **kwargs):
+    active_item = pipeline_server.get(active_id)
+    if not active_item:
+        return
+
+    active_item["shared"]["opacity"] = opacity
+    active_item["actor"].GetProperty().SetOpacity(opacity)
+    html_view.update()
+
+
+@change("contour_by_array_idx")
+def update_contour_by(active_id, contour_by_array_idx, **kwargs):
+    active_item = pipeline_server.get(active_id)
+    if not active_item:
+        return
+
+    active_item["shared"]["contour_by_array_idx"] = contour_by_array_idx
+
+    contour = active_item.get("filter")
+    array = dataset_arrays[contour_by_array_idx]
+    value, step = contour_by_array(contour, array)
+    contour_min, contour_max = array.get("range")
+    update_state("contour_min", contour_min)
+    update_state("contour_max", contour_max)
+    update_state("contour_step", step)
+    update_state("contour_value", value)
+
+    html_view.update()
+
+
+@change("contour_value")
+def update_contour_value(active_id, contour_value, **kwargs):
+    active_item = pipeline_server.get(active_id)
+    if not active_item:
+        return
+
+    active_item["shared"]["contour_value"] = contour_value
+    contour = active_item.get("filter")
+    contour.SetValue(0, float(contour_value))
+
+    html_view.update()
+
+
+# Called by pipeline when selection change
 def actives_change(ids):
-    (_id,) = ids
-    (pipeline,) = get_state("pipeline")
-    for item in pipeline:
-        if item.get("id") == _id:
-            update_state("active_card", item.get("name"))
+    _id = update_state("active_id", ids[0])
+    selected_pipeline = pipeline_server[_id]
+    update_state("active_ui", selected_pipeline.get("ui"))
+    update_state(selected_pipeline.get("shared"))
 
+
+# Called by pipeline when visibility change
 def visibility_change(event):
-    if int(event["id"]) == 1:
-        update_state("cubeAxesVisibility", event["visible"])
-        cubeAxesActor.SetVisibility(event["visible"])
-        update_view()
-    elif int(event["id"]) == 2:
-        update_state("meshVisibility", event["visible"])
-        meshActor.SetVisibility(event["visible"])
-        update_view()
-    elif int(event["id"]) == 3:
-        update_state("contourVisibility", event["visible"])
-        contourActor.SetVisibility(event["visible"])
-        update_view()
+    _id = event["id"]
+    _visibility = event["visible"]
+    pipeline_server[_id].get("actor").SetVisibility(_visibility)
+
+    # Update view of pipeline
+    for item in pipeline_client:
+        if item.get("id") == _id:
+            item["visible"] = _visibility
+    update_state("pipeline", pipeline_client, force=True)
+
+    html_view.update()
+
 
 # -----------------------------------------------------------------------------
 # GUI Cards
 # -----------------------------------------------------------------------------
 
-<<<<<<< HEAD
-layout = SinglePageWithDrawer("Trame Viewer", on_ready=update_view)
+compact_style = {
+    "hide_details": True,
+    "dense": True,
+}
+
+select_style = {
+    **compact_style,
+    "outlined": True,
+    "classes": "pt-1",
+}
+opacity_style = {
+    **compact_style,
+    "style": "max-width: 300px",
+}
+
+
+def ui_preset_selector(variable_name, initial_value, **kwargs):
+    return vuetify.VSelect(
+        label="Colormap",
+        v_model=(variable_name, initial_value),
+        items=("colormaps", COLOR_MAPS),
+        **kwargs,
+    )
+
+
+def ui_array_selector(title, variable_name, initial_index=0, **kwargs):
+    return vuetify.VSelect(
+        label=title,
+        v_model=(variable_name, initial_index),
+        items=("array_list", dataset_arrays),
+        **kwargs,
+    )
+
+
+def ui_representation_selector(variable_name, initial_value, **kwargs):
+    return vuetify.VSelect(
+        v_model=(variable_name, initial_value),
+        items=("representations", REPRESENTATIONS),
+        label="Representation",
+        **kwargs,
+    )
+
+
+def ui_opacity_slider(variable_name, initial_value, **kwargs):
+    return vuetify.VSlider(
+        v_model=(variable_name, initial_value),
+        min=0,
+        max=1,
+        step=0.1,
+        label="Opacity",
+        **kwargs,
+    )
+
+
+def ui_card(title, ui_name):
+    card_style = {}
+    title_style = {
+        "classes": "grey lighten-1 py-1 grey--text text--darken-3",
+        "style": "user-select: none; cursor: pointer",
+        **compact_style,
+    }
+    content_style = {"classes": "py-2"}
+    with vuetify.VCard(v_show=f"active_ui == '{ui_name}'", **card_style):
+        vuetify.VCardTitle(title + " ({{active_id}})", **title_style)
+        content = vuetify.VCardText(**content_style)
+
+    return content
+
+
+def ui_common(rep=Representation.Surface.value, lut=LUT.Rainbow.value, opacity=1):
+    ui_representation_selector("representation", rep, **select_style)
+    with vuetify.VRow(classes="pt-2", dense=True):
+        with vuetify.VCol(cols="6"):
+            ui_array_selector("Color by", "color_array_idx", **select_style)
+        with vuetify.VCol(cols="6"):
+            ui_preset_selector("color_preset", lut, **select_style)
+    ui_opacity_slider("opacity", opacity, classes="mt-1", **compact_style)
+
+
+def pipeline_viewer():
+    widgets.GitTree(
+        sources=("pipeline", pipeline_client),
+        actives=("[active_id]",),
+        actives_change=(actives_change, "[$event]"),
+        visibility_change=(visibility_change, "[$event]"),
+    )
+
+
+def mesh_card():
+    with ui_card("Mesh", "mesh"):
+        ui_common()
+
+
+def contour_card():
+    with ui_card("Contour", "contour"):
+        ui_array_selector("Contour by", "contour_by_array_idx", **select_style)
+        vuetify.VSlider(
+            v_model=("contour_value", contour_value),
+            min=("contour_min", contour_min),
+            max=("contour_max", contour_max),
+            step=("contour_step", contour_step),
+            label="Value",
+            classes="my-1",
+            **compact_style,
+        )
+        ui_common()
+
+
+# -----------------------------------------------------------------------------
+# GUI
+# -----------------------------------------------------------------------------
+
+layout = SinglePageWithDrawer("Trame Viewer", on_ready=html_view.update)
 layout.title.set_text("Viewer")
 
 with layout.toolbar:
     vuetify.VSpacer()
     vuetify.VDivider(vertical=True, classes="mx-2")
-    vuetify.VSwitch(
+    vuetify.VCheckbox(
+        v_model=("cube_axes_visibility", True),
+        on_icon="mdi-cube-outline",
+        off_icon="mdi-cube-off-outline",
+        classes="mx-1",
+        **compact_style,
+    )
+    vuetify.VCheckbox(
         v_model="$vuetify.theme.dark",
-        hide_details=True,
-    )
-    with vuetify.VBtn(
-        icon=True,
-        click="$refs.view.resetCamera()",
-    ):
-        vuetify.VIcon("mdi-crop-free")
-
-with layout.drawer:
-=======
-def pipeline_viewer():
->>>>>>> ff7ee51 (docs(tutorial): update app)
-    widgets.GitTree(
-        sources=(
-            "pipeline",
-            [
-                {"id": "1", "parent": "0", "visible": 1, "name": "Cube Axes"},
-                {"id": "2", "parent": "0", "visible": 1, "name": "Mesh"},
-                {"id": "3", "parent": "0", "visible": 1, "name": "Contour"},
-            ],
-        ),
-        selection=("pipeline_selection", []),
-        actives_change=(actives_change, "[$event]"),
-        visibility_change=(visibility_change, "[$event]"),
-    )
-
-def cube_axes_card():
-    with vuetify.VCard(
-        classes="ma-4 rounded elevation-8", v_show="active_card == 'Cube Axes'"
-    ):
-        with vuetify.VCardTitle(
-            classes="grey lighten-1 py-0 grey--text text--darken-3",
-            style="user-select: none; cursor: pointer",
-        ):
-            Div("Cube Axes")
-        vuetify.VCardText(
-            classes="pb-0 mb-n2 px-0",
-        )
-        vuetify.VCardActions(
-            classes="pa-0 pb-3",
-        )
-
-def mesh_card():
-    with vuetify.VCard(
-        classes="ma-4 rounded elevation-8", v_show="active_card == 'Mesh'"
-    ):
-        with vuetify.VCardTitle(
-            classes="grey lighten-1 py-0 grey--text text--darken-3",
-            style="user-select: none; cursor: pointer",
-            dense=True,
-        ):
-            Div("Mesh")
-        with vuetify.VCardText(
-            classes="pb-0 mb-n2 px-0",
-        ):
-            vuetify.VSelect(
-                classes="pt-1",
-                v_model="meshRepresentation",
-                items=["representations"],
-                label="Representations",
-                hide_details=True,
-                dense=True,
-                outlined=True,
-            )
-            with vuetify.VRow(
-                classes="pa-0",
-            ):
-                with vuetify.VCol(
-                    cols="6",
-                ):
-                    vuetify.VSelect(
-                        classes="pt-1",
-                        v_model="meshColorByName",
-                        items=["arrayData"],
-                        label="Color by",
-                        hide_details=True,
-                        dense=True,
-                        outlined=True,
-                    )
-                with vuetify.VCol(
-                    cols="6",
-                ):
-                    vuetify.VSelect(
-                        classes="pt-1",
-                        v_model="meshColormap",
-                        items=["colormaps"],
-                        label="Colormap",
-                        hide_details=True,
-                        dense=True,
-                        outlined=True,
-                    )
-            vuetify.VSlider(
-                v_model=("meshOpacity", 1.0),
-                min=0,
-                max=1,
-                step=0.1,
-                label="Opacity",
-                hide_details=True,
-                dense=True,
-                style="max-width: 300px",
-                )
-        vuetify.VCardActions(
-            classes="pa-0 pb-3",
-        )
-
-def contour_card():
-    with vuetify.VCard(
-        classes="ma-4 rounded elevation-8",
-        v_show="active_card == 'Contour'"
-    ):
-        with vuetify.VCardTitle(
-            classes="grey lighten-1 py-0 grey--text text--darken-3",
-            style="user-select: none; cursor: pointer",
-            dense=True,
-        ):
-            Div("Contour")
-        with vuetify.VCardText(
-            classes="pb-0 mb-n2 px-0",
-        ):
-            vuetify.VSelect(
-                classes="pt-1",
-                v_model="contourBy",
-                items=["arrayData"],
-                label="Contour By",
-                hide_details=True,
-                dense=True,
-                outlined=True,
-            )
-            vuetify.VSlider(
-                v_model="contourValue",
-                min=("contourMin",),
-                max=("contourMax",),
-                step=("contourStep",),
-                label="Value",
-                hide_details=True,
-                dense=True,
-                style="max-width: 300px",
-            )
-            vuetify.VSelect(
-                classes="pt-1",
-                v_model="contourRepresentation",
-                items=["representations"],
-                label="Representation",
-                hide_details=True,
-                dense=True,
-                outlined=True,
-            )
-            with vuetify.VRow(
-                classes="pa-0",
-            ):
-                with vuetify.VCol(
-                    cols="6",
-                ):
-                    vuetify.VSelect(
-                        classes="pt-1",
-                        v_model="contourColorByName",
-                        items=["arrayData"],
-                        label="Color by",
-                        hide_details=True,
-                        dense=True,
-                        outlined=True,
-                    )
-                with vuetify.VCol(
-                    cols="6",
-                ):
-                    vuetify.VSelect(
-                        classes="pt-1",
-                        v_model="contourColormap",
-                        items=["colormaps"],
-                        label="Colormap",
-                        hide_details=True,
-                        dense=True,
-                        outlined=True,
-                    )
-            vuetify.VSlider(
-                v_model=("contourOpacity", 1.0),
-                min=0,
-                max=1,
-                step=0.1,
-                label="Opacity",
-                hide_details=True,
-                dense=True,
-                style="max-width: 300px",
-            )
-        vuetify.VCardActions(
-            classes="pa-0 pb-3",
-        )
-# -----------------------------------------------------------------------------
-# GUI
-# -----------------------------------------------------------------------------
-
-layout = SinglePageWithDrawer("Trame Viewer")
-layout.title.content = "Viewer"
-
-with layout.toolbar:
-    vuetify.VSpacer()
-    vuetify.VDivider(vertical=True, classes="mx-2")
-    vuetify.VCheckbox(
-                hide_details=True,
-                classes="ma-0 pa-0 float-left",
-                v_model="$vuetify.theme.dark",
-                on_icon="mdi-lightbulb-off-outline",
-                off_icon="mdi-lightbulb-outline",
-                value=True,
+        on_icon="mdi-lightbulb-off-outline",
+        off_icon="mdi-lightbulb-outline",
+        classes="mx-1",
+        **compact_style,
     )
     vuetify.VCheckbox(
-                hide_details=True,
-                classes="ma-0 pa-0 float-left",
-                v_model="local_vs_remote",
-                on_icon="mdi-lan-disconnect",
-                off_icon="mdi-lan-connect",
-                value=True,
+        v_model=("local_vs_remote", True),
+        on_icon="mdi-lan-disconnect",
+        off_icon="mdi-lan-connect",
+        classes="mx-1",
+        **compact_style,
     )
-    with vuetify.VBtn(
-        icon=True,
-        click="$refs.view.resetCamera()",
-    ):
+    with vuetify.VBtn(icon=True, click="$refs.view.resetCamera()"):
         vuetify.VIcon("mdi-crop-free")
 
 with layout.drawer as drawer:
-    drawer.width = "300px"
+    drawer.width = 325
     pipeline_viewer()
-    vuetify.VDivider(vertical=False)
-    cube_axes_card()
+    vuetify.VDivider()
     mesh_card()
     contour_card()
 
@@ -624,8 +552,10 @@ with layout.content:
         children=[html_view],
     )
 
+# State use to track active pipeline element
 layout.state = {
-    "active_card": "",
+    "active_id": None,
+    "active_ui": None,
 }
 
 # -----------------------------------------------------------------------------

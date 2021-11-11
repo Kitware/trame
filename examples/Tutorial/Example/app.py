@@ -35,7 +35,7 @@ import vtkmodules.vtkRenderingOpenGL2  # noqa
 CURRENT_DIRECTORY = os.path.abspath(os.path.dirname(__file__))
 
 # -----------------------------------------------------------------------------
-# Globals
+# Constants
 # -----------------------------------------------------------------------------
 
 
@@ -342,16 +342,17 @@ def update_contour_by(active_id, contour_by_array_idx, **kwargs):
     if not active_item:
         return
 
-    active_item["shared"]["contour_by_array_idx"] = contour_by_array_idx
-
     contour = active_item.get("filter")
     array = dataset_arrays[contour_by_array_idx]
-    value, step = contour_by_array(contour, array)
+    contour_value, contour_step = contour_by_array(contour, array)
     contour_min, contour_max = array.get("range")
-    update_state("contour_min", contour_min)
-    update_state("contour_max", contour_max)
-    update_state("contour_step", step)
-    update_state("contour_value", value)
+
+    active_item["shared"]["contour_by_array_idx"] = contour_by_array_idx
+    active_item["shared"]["contour_min"] = contour_min
+    active_item["shared"]["contour_max"] = contour_max
+    active_item["shared"]["contour_step"] = contour_step
+    active_item["shared"]["contour_value"] = contour_value
+    update_state(active_item["shared"])  # let client know about contour edited params
 
     html_view.update()
 
@@ -406,19 +407,6 @@ select_style = {
     "outlined": True,
     "classes": "pt-1",
 }
-opacity_style = {
-    **compact_style,
-    "style": "max-width: 300px",
-}
-
-
-def ui_preset_selector(variable_name, initial_value, **kwargs):
-    return vuetify.VSelect(
-        label="Colormap",
-        v_model=(variable_name, initial_value),
-        items=("colormaps", COLOR_MAPS),
-        **kwargs,
-    )
 
 
 def ui_array_selector(title, variable_name, initial_index=0, **kwargs):
@@ -426,26 +414,6 @@ def ui_array_selector(title, variable_name, initial_index=0, **kwargs):
         label=title,
         v_model=(variable_name, initial_index),
         items=("array_list", dataset_arrays),
-        **kwargs,
-    )
-
-
-def ui_representation_selector(variable_name, initial_value, **kwargs):
-    return vuetify.VSelect(
-        v_model=(variable_name, initial_value),
-        items=("representations", REPRESENTATIONS),
-        label="Representation",
-        **kwargs,
-    )
-
-
-def ui_opacity_slider(variable_name, initial_value, **kwargs):
-    return vuetify.VSlider(
-        v_model=(variable_name, initial_value),
-        min=0,
-        max=1,
-        step=0.1,
-        label="Opacity",
         **kwargs,
     )
 
@@ -466,21 +434,30 @@ def ui_card(title, ui_name):
 
 
 def ui_common(rep=Representation.Surface.value, lut=LUT.Rainbow.value, opacity=1):
-    ui_representation_selector("representation", rep, **select_style)
+    vuetify.VSelect(
+        v_model=("representation", rep),
+        items=("representations", REPRESENTATIONS),
+        label="Representation",
+        **select_style,
+    )
     with vuetify.VRow(classes="pt-2", dense=True):
         with vuetify.VCol(cols="6"):
             ui_array_selector("Color by", "color_array_idx", **select_style)
         with vuetify.VCol(cols="6"):
-            ui_preset_selector("color_preset", lut, **select_style)
-    ui_opacity_slider("opacity", opacity, classes="mt-1", **compact_style)
-
-
-def pipeline_viewer():
-    widgets.GitTree(
-        sources=("pipeline", pipeline_client),
-        actives=("[active_id]",),
-        actives_change=(actives_change, "[$event]"),
-        visibility_change=(visibility_change, "[$event]"),
+            vuetify.VSelect(
+                label="Colormap",
+                v_model=("color_preset", lut),
+                items=("colormaps", COLOR_MAPS),
+                **select_style,
+            )
+    vuetify.VSlider(
+        v_model=("opacity", opacity),
+        min=0,
+        max=1,
+        step=0.1,
+        label="Opacity",
+        classes="mt-1",
+        **compact_style,
     )
 
 
@@ -511,36 +488,34 @@ def contour_card():
 layout = SinglePageWithDrawer("Trame Viewer", on_ready=html_view.update)
 layout.title.set_text("Viewer")
 
+toggle_buttons = [
+    (("cube_axes_visibility", True), "mdi-cube-outline", "mdi-cube-off-outline"),
+    ("$vuetify.theme.dark", "mdi-lightbulb-off-outline", "mdi-lightbulb-outline"),
+    (("local_vs_remote", True), "mdi-lan-disconnect", "mdi-lan-connect"),
+]
+
 with layout.toolbar:
     vuetify.VSpacer()
     vuetify.VDivider(vertical=True, classes="mx-2")
-    vuetify.VCheckbox(
-        v_model=("cube_axes_visibility", True),
-        on_icon="mdi-cube-outline",
-        off_icon="mdi-cube-off-outline",
-        classes="mx-1",
-        **compact_style,
-    )
-    vuetify.VCheckbox(
-        v_model="$vuetify.theme.dark",
-        on_icon="mdi-lightbulb-off-outline",
-        off_icon="mdi-lightbulb-outline",
-        classes="mx-1",
-        **compact_style,
-    )
-    vuetify.VCheckbox(
-        v_model=("local_vs_remote", True),
-        on_icon="mdi-lan-disconnect",
-        off_icon="mdi-lan-connect",
-        classes="mx-1",
-        **compact_style,
-    )
+    for model, on, off in toggle_buttons:
+        vuetify.VCheckbox(
+            v_model=model,
+            on_icon=on,
+            off_icon=off,
+            classes="mx-1",
+            **compact_style,
+        )
     with vuetify.VBtn(icon=True, click="$refs.view.resetCamera()"):
         vuetify.VIcon("mdi-crop-free")
 
 with layout.drawer as drawer:
     drawer.width = 325
-    pipeline_viewer()
+    widgets.GitTree(
+        sources=("pipeline", pipeline_client),
+        actives=("[active_id]",),
+        actives_change=(actives_change, "[$event]"),
+        visibility_change=(visibility_change, "[$event]"),
+    )
     vuetify.VDivider()
     mesh_card()
     contour_card()

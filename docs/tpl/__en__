@@ -1,6 +1,9 @@
 menu:
+  trame: Trame
   docs: Documentation
   examples: Examples
+  discussions: Discussions
+  issues: Issues
 
 index:
   get_started: Get started

@@ -39,3 +39,7 @@ The resulting Trame applications act as local desktop applications or remote Clo
 - [Issues](https://github.com/Kitware/trame/issues)
 - [RoadMap](https://github.com/Kitware/trame/projects/1)
 - [Support](https://www.kitware.com/what-we-offer/#support)
+
+## Enjoying trame?
+
+Share your experience [with a testimonial](https://github.com/Kitware/trame/issues/18) or [with a brand approval](https://github.com/Kitware/trame/issues/19).

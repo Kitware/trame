@@ -16,27 +16,6 @@
   </url>
   
   <url>
-    <loc>https://kitware.github.io/trame/docs/module-vtk.html</loc>
-    
-    <lastmod>2021-11-12</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/module-vuetify.html</loc>
-    
-    <lastmod>2021-11-12</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/module-widgets.html</loc>
-    
-    <lastmod>2021-11-12</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://kitware.github.io/trame/docs/tutorial-download.html</loc>
     
     <lastmod>2021-11-12</lastmod>
@@ -192,6 +171,27 @@
   
   <url>
     <loc>https://kitware.github.io/trame/docs/module-vega.html</loc>
+    
+    <lastmod>2021-11-12</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/module-vtk.html</loc>
+    
+    <lastmod>2021-11-12</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/module-vuetify.html</loc>
+    
+    <lastmod>2021-11-12</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/module-widgets.html</loc>
     
     <lastmod>2021-11-12</lastmod>
     

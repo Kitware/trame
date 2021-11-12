@@ -1,3 +1,10 @@
+## [1.4.7](https://github.com/kitware/trame/compare/v1.4.6...v1.4.7) (2021-11-12)
+
+
+### Bug Fixes
+
+* **footer:** use lowercase trame ([2ad8d53](https://github.com/kitware/trame/commit/2ad8d535858e389b359031f14d83a64903355709))
+
 ## [1.4.6](https://github.com/kitware/trame/compare/v1.4.5...v1.4.6) (2021-11-11)
 
 

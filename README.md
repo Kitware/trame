@@ -1,6 +1,6 @@
 # trame: simple, powerful, innovative
 
-**trame** lets one weave together open-source components into bespoke visual analytics applications easily.
+**trame** -  weave together open-source components into bespoke visual analytics applications easily.
 
 **trame** is French for
 - the core that ties things together
@@ -8,7 +8,7 @@
 
 ![Welcome to trame and 3D visualization](https://kitware.github.io/trame/examples/MultiFilter.jpg)
 
-With **trame**, one can create stunning, interactive Web applications compactly and intuitively.
+With **trame**, create stunning, interactive Web applications compactly and intuitively.
 
 <p float="left">
   <img src="https://kitware.github.io/trame/examples/CarotidFlow.jpg" width="250" />

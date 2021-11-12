@@ -9,20 +9,6 @@
   </url>
   
   <url>
-    <loc>https://kitware.github.io/trame/docs/tutorial.html</loc>
-    
-    <lastmod>2021-11-12</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/vuetify-decoder.html</loc>
-    
-    <lastmod>2021-11-12</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://kitware.github.io/trame/examples/index.html</loc>
     
     <lastmod>2021-11-12</lastmod>
@@ -192,6 +178,20 @@
   
   <url>
     <loc>https://kitware.github.io/trame/docs/tutorial-vtk.html</loc>
+    
+    <lastmod>2021-11-12</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/tutorial.html</loc>
+    
+    <lastmod>2021-11-12</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/vuetify-decoder.html</loc>
     
     <lastmod>2021-11-12</lastmod>
     

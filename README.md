@@ -10,6 +10,12 @@ Trame is French for
 
 With Trame, one can create stunning, interactive Web applications compactly and intuitively.
 
+<center>
+  <img src="https://kitware.github.io/trame/examples/CarotidFlow.jpg" width="100" />
+  <img src="https://kitware.github.io/trame/examples/UberPickupsNYC.jpg" width="100" />
+  <img src="https://kitware.github.io/trame/examples/FiniteElementAnalysis.jpg" width="100" />
+</center>
+
 ## 3D Visualization
 
 VTK and ParaView are first-class citizens at the core of Trame, providing complete control of 3D visualizations and data movement. The developers enjoy a write-once environment while Trame simply exposes both local and remote rendering through a single method.

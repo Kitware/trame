@@ -53,7 +53,7 @@ typing-extensions==3.10.0.2
 unify==0.5
 untokenize==0.1.1
 urllib3==1.26.7
-vtk==9.0.1
+vtk>=9.0.1
 watchdog==2.1.6
 wslink==1.1.0
 yapf==0.31.0

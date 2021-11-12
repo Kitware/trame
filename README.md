@@ -11,9 +11,9 @@ Trame is French for
 With Trame, one can create stunning, interactive Web applications compactly and intuitively.
 
 <p float="left">
-  <img src="https://kitware.github.io/trame/examples/CarotidFlow.jpg" width="200" />
-  <img src="https://kitware.github.io/trame/examples/UberPickupsNYC.jpg" width="200" />
-  <img src="https://kitware.github.io/trame/examples/FiniteElementAnalysis.jpg" width="200" />
+  <img src="https://kitware.github.io/trame/examples/CarotidFlow.jpg" width="250" />
+  <img src="https://kitware.github.io/trame/examples/UberPickupsNYC.jpg" width="250" />
+  <img src="https://kitware.github.io/trame/examples/FiniteElementAnalysis.jpg" width="250" />
 </p>
 
 ## 3D Visualization

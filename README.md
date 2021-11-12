@@ -6,7 +6,7 @@
 - the core that ties things together
 - a guide providing the essence of a task
 
-![Welcome to trame and 3D visualization](https://kitware.github.io/trame/images/trame_welcome.jpg)
+![Welcome to trame and 3D visualization](https://kitware.github.io/trame/examples/MultiFilter.jpg)
 
 With **trame**, one can create stunning, interactive Web applications compactly and intuitively.
 

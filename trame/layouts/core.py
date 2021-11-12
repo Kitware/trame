@@ -92,7 +92,7 @@ class FullScreenPage:
 
         >>> greeting, name  = get_state("greeting", "name")
         >>> f'{greeting}, {name}!'
-        "Hello, Trame!"
+        "Hello, trame!"
 
         >>> greeting, = get_state("greeting")
         >>> greeting
@@ -161,7 +161,7 @@ class SinglePage(FullScreenPage):
         args = tr.get_cli_parser().parse_known_args()[0]
         dev = args.dev if hasattr(args, "dev") else False
 
-        self.title = Span("Trame App", classes="title")
+        self.title = Span("trame app", classes="title")
         self.content = vuetify.VMain()
         self.toolbar.children += [self.logo, self.title]
         self.footer = vuetify.VFooter(
@@ -177,7 +177,7 @@ class SinglePage(FullScreenPage):
                     width=3,
                     classes="ml-n3 mr-1",
                 ),
-                f'<a href="https://kitware.github.io/trame/" class="grey--text lighten-1--text text-caption text-decoration-none" target="_blank">Powered by Trame {tr.__version__}/{pywebvue.__version__}</a>',
+                f'<a href="https://kitware.github.io/trame/" class="grey--text lighten-1--text text-caption text-decoration-none" target="_blank">Powered by trame {tr.__version__}/{pywebvue.__version__}</a>',
                 vuetify.VSpacer(),
                 vuetify.VBtn(
                     vuetify.VIcon("mdi-autorenew", x_small=True),

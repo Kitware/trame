@@ -1,0 +1,3 @@
+trame
+pandas
+numpy

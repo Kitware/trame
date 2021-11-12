@@ -1,0 +1,4 @@
+trame
+pandas
+numpy
+pydeck

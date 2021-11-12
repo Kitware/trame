@@ -1,0 +1,4 @@
+trame
+altair
+pandas
+numpy

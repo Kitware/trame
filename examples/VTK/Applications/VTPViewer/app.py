@@ -98,7 +98,7 @@ with layout.toolbar:
         multiple=True,
         show_size=True,
         small_chips=True,
-        truncate_length="25",
+        truncate_length=25,
         v_model=("files", None),
         dense=True,
         hide_details=True,

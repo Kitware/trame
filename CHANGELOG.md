@@ -1,3 +1,10 @@
+## [1.4.8](https://github.com/kitware/trame/compare/v1.4.7...v1.4.8) (2021-11-12)
+
+
+### Bug Fixes
+
+* **version:** Improve version handling ([c100526](https://github.com/kitware/trame/commit/c1005264356ccfcdf8204d7a3018633717d3da31))
+
 ## [1.4.7](https://github.com/kitware/trame/compare/v1.4.6...v1.4.7) (2021-11-12)
 
 

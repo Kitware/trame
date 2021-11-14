@@ -196,6 +196,8 @@ def update_state(key, value=None, force=False):
     :type key: str
     :param value: The new value
     :type value: Any
+    :param force: Set to True when you want to force push a new or same value to the client.
+    :type force: bool
 
     >>> update_state("workload_finished",  True)
 
@@ -232,16 +234,13 @@ def update_state(key, value=None, force=False):
 
 def get_state(*names):
     """
-    Return a dictionary of all state keys, or a list of the values of the given state keys
+    Return the list of values of the given state keys or the full state
+    dictionary if no key names were provided.
 
     :param names: List of names of state values to retreive
     :type names: list[str]
-    :rtype: dict[str, Any] | List[Any]
-    :returns: Either a dict of all state keys or a list of values matching the given state property names
-
-    >>> full_state = get_state()
-    >>> full_state.get("greeting")
-    "Hello"
+    :rtype: List[Any] | dict[str, Any]
+    :returns: Either a list of values matching the given state property names or the full state dict
 
     >>> greeting, name  = get_state("greeting", "name")
     >>> f'{greeting}, {name}!'
@@ -251,6 +250,9 @@ def get_state(*names):
     >>> greeting
     "Hello"
 
+    >>> full_state = get_state()
+    >>> full_state.get("greeting")
+    "Hello"
 
     """
     _app = get_app_instance()
@@ -266,7 +268,7 @@ def get_state(*names):
 
 def update_layout(layout):
     """
-    Dynamically update current application layout
+    Flush layout to the client
 
     :param layout: UI content for your application
     :type layout: str | trame.layouts.*
@@ -313,7 +315,7 @@ def get_cli_parser():
 
     >>> parser = get_cli_parser()
     >>> parser.add_argument("-o", "--output", help="Working directory")
-    >>> args = parser.parse_known_args()
+    >>> args, unknown = parser.parse_known_args()
     >>> print(args.output)
     """
     _app = get_app_instance()
@@ -335,7 +337,7 @@ def flush_state(*args):
 
 def is_dirty(*args):
     """
-    See which key in an @change has been modified
+    Check if a set of keys in an @change have been modified
 
     :param args: Which keys to check for modification
     :type args: list[str]
@@ -379,7 +381,8 @@ def is_dirty_all(*args):
 
 def trigger_key(_fn):
     """
-    Providing a function, a generated trigger name will be returned
+    Providing a function, a generated trigger name will be returned.
+    The function will return the same string for the same function.
 
     Parameters
     ----------
@@ -413,7 +416,7 @@ def trigger_key(_fn):
 def change(*_args, **_kwargs):
     """
     The @change decorator allows us to register a function so that it will be
-    automatically called when the given list of state names gets modified.
+    automatically called when any of the given list of state names gets modified.
 
     The decorated function is passed the full state as ``**kwargs`` when possible.
     This means you should have a method profile similar to ``fn(..., **kwargs)``
@@ -422,8 +425,8 @@ def change(*_args, **_kwargs):
     :type _args: `list[str]`
 
     >>> @change('settings')
-    ... def show_settings(settings, **kwargs):
-    ...     print(settings)
+    ... def show_settings(settings, user, **kwargs):
+    ...     print(settings, "for", user)
 
     """
     _app = get_app_instance()
@@ -442,6 +445,8 @@ def trigger(name):
     :param name: Name which this trigger function should listen to.
     :type name: str
 
+    <v-btn @click="blue_button_clicked">Blue Button</v-btn>
+
     >>> @trigger('blue_button_clicked')
     ... def log_clicks():
     ...     print("The blue button was clicked")
@@ -457,6 +462,8 @@ def trigger(name):
 
 
 def print_server_info(_fn=None):
+    """Provide network information so clients can connect to the started server"""
+
     def ready(**kwargs):
         parser = get_cli_parser()
         args = parser.parse_known_args()[0]
@@ -495,6 +502,7 @@ def print_server_info(_fn=None):
 
 
 def validate_key_names():
+    """Warn user when invalid key names have been used"""
     _app = get_app_instance()
     errors = []
     for key in _app.state:
@@ -513,7 +521,23 @@ def validate_key_names():
 
 
 def main():
-    """trame app.py --dev"""
+    """
+    This function is called when using the `trame` executable.
+    trame executable aim to provide additional functionalities for
+    development such as dynamically reloading the Python application
+    without restarting the server or the client.
+
+    >>> trame app.py --dev
+
+    trame executable assume you will have a `layout` variable inside
+    your main script and will provide a reload button in the footer
+    of your UI so you can control, when you actually want to reprocess
+    your server side changes. This is especially usefull when adjusting
+    UI styles.
+
+    This functionallity is in Alpha but we aim to improve it based on
+    needs and feedback from the community.
+    """
     _app = get_app_instance()
     parser = _app.cli_parser
     parser.add_argument("script", help="The Trame script to run")

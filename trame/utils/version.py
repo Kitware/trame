@@ -7,6 +7,7 @@ except ImportError:
         get_distribution,
         DistributionNotFound as PackageNotFoundError,
     )
+
     def version(x):
         return get_distribution(x).version
 

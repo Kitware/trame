@@ -10,6 +10,7 @@ docs:
     t_vtk: tutorial-vtk.html
     t_layouts: tutorial-layouts.html
     t_html: tutorial-html.html
+    t_example: tutorial-example.html
   modules:
     m_vuetify: module-vuetify.html
     m_vega: module-vega.html

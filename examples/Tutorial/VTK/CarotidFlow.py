@@ -42,9 +42,7 @@ renderWindowInteractor = vtkRenderWindowInteractor()
 renderWindowInteractor.SetRenderWindow(renderWindow)
 renderWindowInteractor.GetInteractorStyle().SetCurrentStyleToTrackballCamera()
 
-# Colors and Data
-
-colors = vtkNamedColors()
+# Read the data
 
 reader = vtkStructuredPointsReader()
 reader.SetFileName(os.path.join(CURRENT_DIRECTORY, "../data/carotid.vtk"))
@@ -103,6 +101,8 @@ isoActor.GetProperty().SetRepresentationToWireframe()
 isoActor.GetProperty().SetOpacity(0.25)
 
 # Outline
+
+colors = vtkNamedColors()
 
 outline = vtkOutlineFilter()
 outline.SetInputConnection(reader.GetOutputPort())

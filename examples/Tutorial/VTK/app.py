@@ -39,16 +39,13 @@ actor.SetMapper(mapper)
 
 renderer.AddActor(actor)
 renderer.ResetCamera()
-renderWindow.Render()
 
 # -----------------------------------------------------------------------------
 # Functions
 # -----------------------------------------------------------------------------
 
-
 def update_view(**kwargs):
     html_view.update()
-
 
 # -----------------------------------------------------------------------------
 # GUI

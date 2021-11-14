@@ -205,7 +205,15 @@ Checkout [Carotid.py]().
 
 **Imports**
 
-Starting with our Hello Trame cone application, we replaced the imports for our cone VTK pipeline on line 5
+We are going to read a file. So we will want to import the `os` module and set the current directory. Starting with our Hello Trame cone application, we add
+
+```python
+import os
+
+CURRENT_DIRECTORY = os.path.abspath(os.path.dirname(__file__))
+```
+
+We replaced the imports for our cone VTK pipeline on line 5
 
 ```python
 from vtkmodules.vtkFiltersSources import vtkConeSource
@@ -243,14 +251,16 @@ actor.SetMapper(mapper)
 
 With our three pipelines for the glyphs, contours, and outline.
 
-```python
-# Colors and Data
+We read the data using the `vtkStructuredPointsReader` and the full file path, provided by adding `CURRENT_DIRECTORY` to the beginning of the relative file path.
 
-colors = vtkNamedColors()
+```python
+# Read the Data
 
 reader = vtkStructuredPointsReader()
-reader.SetFileName("../data/carotid.vtk")
+reader.SetFileName(os.path.join(CURRENT_DIRECTORY, "../data/carotid.vtk")
+```
 
+```python
 # Glyphs
 
 threshold = vtkThresholdPoints()
@@ -305,6 +315,8 @@ isoActor.GetProperty().SetRepresentationToWireframe()
 isoActor.GetProperty().SetOpacity(0.25)
 
 # Outline
+
+colors = vtkNamedColors()
 
 outline = vtkOutlineFilter()
 outline.SetInputConnection(reader.GetOutputPort())

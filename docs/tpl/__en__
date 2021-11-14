@@ -30,6 +30,7 @@ sidebar:
     t_vtk: VTK
     t_layouts: Layouts
     t_html: HTML
+    t_example: Example
     modules: Html Modules
     m_vuetify: vuetify
     m_altair: altair

@@ -132,17 +132,41 @@ With these few lines, we have created a 3D cone, which we can adjust the resolut
 
 To learn more about ParaView scripting, you should look into ParaView trace which let you convert your UI interaction into actual Python code that can then be reused in your application.
 
-
+<center>
+<img src="../images/tutorial-paraview-trace.jpg" width="75%" />
+</center>
 
 ## Advanced example
 
-With the basics in place, we can go further by using some built-in feature of ParaView like saving and loading a state file. State files are a convinient way for capturing all the setting that were used to generate a visualization with Paraview.
+With the basics in place, we can now dive further in by using some built-in features of ParaView, such as saving and loading a state file. State files are a convinient way of capturing all the settings that were used to generate a visualization with Paraview.
 
-Let's analyse the example in `./examples/ParaView/StateViewer/app.py`.
+![Rock Core](https://kitware.github.io/trame/examples/StateViewer-rock.jpg)
 
-![Simple Cone](https://kitware.github.io/trame/examples/StateViewer-rock.jpg)
+Let's analyse the example in `./examples/ParaView/StateViewer/app.py`. The ***trame*** core of the example is as follows
 
-The core of the example is as follow which setup the UI and do only one action at startup time.
+**Script Header**
+
+Only the `import trame as tr` is new and will be used and explained later.
+
+```python
+import os
+import sys
+
+if "--virtual-env" in sys.argv:
+    virtualEnvPath = sys.argv[sys.argv.index("--virtual-env") + 1]
+    virtualEnv = virtualEnvPath + "/bin/activate_this.py"
+    exec(open(virtualEnv).read(), {"__file__": virtualEnv})
+
+import trame as tr
+from trame.html import vuetify, paraview
+from trame.layouts import SinglePage
+
+from paraview import simple
+```
+
+**Script Core**
+
+The rest of the script we've seen before, but we are missing the details of the `load_data` function.
 
 ```python
 def load_data():
@@ -157,11 +181,16 @@ if __name__ == "__main__":
     layout.start()
 ```
 
-Let's focus on what we want to add into that `load_data()` function.
-1. Add and process a `--data` argument with the path to the file to load
+**`load_data`**
+
+The `load_data()` function requires us to code the follow
+
+1. Process a `--data` argument that contains the path to the file to load
 2. Load the provided file path as state file.
-3. Create a view element connected to the view defined in the state
+3. Create a view element and connect it to the view defined in the state
 4. Add that view element into the content of our UI
+
+** Process CLI argument `--data`**
 
 The (1) is achieved with the following set of lines. More information on CLI are available [here](https://kitware.github.io/trame/docs/howdoi-cli.html).
 
@@ -174,7 +203,9 @@ full_path = os.path.abspath(args.data)
 working_directory = os.path.dirname(full_path)
 ```
 
-To achieve (2) with ParaView the following set of lines are needed. ParaView trace should be able to remove most of the magic by using the UI and looking at the corresponding Python code.
+**Load the state file**
+
+To achieve (2) with ParaView the following set of lines are needed. ParaView trace should be able to explain the magic using the UI and looking at the corresponding Python code.
 
 
 ```python
@@ -187,20 +218,24 @@ view = simple.GetActiveView()
 view.MakeRenderWindowInteractor(True)
 ```
 
-Then (3) is done like before by doing the following.
+**Create and Connect a view element**
+
+Then (3) is similarly as before for VTK.
 
 ```python
 html_view = paraview.VtkRemoteView(view)
 ```
 
-Finally for (4) we need to update the layout the same way we were doing it in VTK when switching from Remote to Local.
+**Add view element to UI**
+    
+Finally (4) is achieved with the following set of lines, the same way it was achieved with VTK in ***trame*** when switching from remote to local rendering.
 
 ```python
 layout.content.children[0].add_child(html_view)
 layout.flush_content()
 ```
 
-And that's it. You now have a ParaView `trame` application that let you reproduce complex visualization in a web context.
+That's it. You now have a ParaView `trame` application that let you reproduce complex visualization in a web context.
 
 <center>
 <img src="https://kitware.github.io/trame/examples/StateViewer-asteroid.jpg" width="49%" />

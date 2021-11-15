@@ -1,4 +1,4 @@
-## Download Trame
+## Download trame
 
 ```
 git clone https://github.com/Kitware/trame.git

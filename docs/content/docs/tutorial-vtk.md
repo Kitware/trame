@@ -179,7 +179,7 @@ def update_view(**kwargs):
 **Finally**, we revist the `layout` to provide the `on_ready` variable, which takes a function to call when the server and client are ready. So we modify our layout constructor call to look like
 
 ```python
-layout = SinglePage("Hello Trame", on_ready=update_view)
+layout = SinglePage("Hello trame", on_ready=update_view)
 ```
 
 ## Running the Application

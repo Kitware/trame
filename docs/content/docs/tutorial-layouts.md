@@ -1,6 +1,6 @@
 # Layouts
 
-To simplify creation of the graphical user interface (GUI) for the web application, Trame defines layouts such as `FullScreenPage`, `SinglePage`, and `SinglePageWithDrawer`. 
+To simplify creation of the graphical user interface (GUI) for the web application, trame defines layouts such as `FullScreenPage`, `SinglePage`, and `SinglePageWithDrawer`. 
 
 All core layouts start with a `VApp` (Vuetifies `v-app`) component. The `VApp` is **REQUIRED** for all applications. It is the mount point for other Vuetify components and functionality and ensures that it propagates the default application variant (dark/light) to children components while ensuring proper cross-browser support for certain click events in browsers like Safari. `VApp` should only be rendered within your application **ONCE**.
 
@@ -21,7 +21,7 @@ from trame.layouts import FullScreenPage
 **Second**, we instantiate the `layout` object, create the `vtk.VtkLocalView` component, and add it directly to the `VApp`'s `children` using a Vuetify `VContainer` with arguments descripted in the [VTK]() chapter.
 
 ```python
-layout = FullScreenPage("Hello Trame", on_ready=update_view))
+layout = FullScreenPage("Hello trame", on_ready=update_view))
 
 html_view = vtk.VtkLocalView(renderWindow)
 
@@ -47,7 +47,7 @@ The `FullScreenPage` is really a blank canvas to add your desired Vuetify compon
 
 The `SinglePage` extends the `FullScreenPage` with a few predifined components such as *logo*, *title*, *toolbar*, *content*, and *footer*.
 
-The *logo* and *title* sit on the left-hand side of the *toolbar* and customized as necessary. The logo accepts an 32x32 image or an VIcon such as those found at [Material Design Icons](https://materialdesignicons.com/). The *toolbar* itself exposes its *children* array where one can add components as needed. The *footer* can be hidden, but currently has Trame branding and the progress bar. The *content* has a *children* array to which you may add your desired Vuetify components.
+The *logo* and *title* sit on the left-hand side of the *toolbar* and customized as necessary. The logo accepts an 32x32 image or an VIcon such as those found at [Material Design Icons](https://materialdesignicons.com/). The *toolbar* itself exposes its *children* array where one can add components as needed. The *footer* can be hidden, but currently has trame branding and the progress bar. The *content* has a *children* array to which you may add your desired Vuetify components.
 
 **First**, we import the `SinglePage` class.
 
@@ -58,8 +58,8 @@ from trame.layouts import SinglePage
 **Second**, we instantiate the `layout` object, maybe change the title, create the `vtk.VtkLocalView` component, and add it to the `content` component's `children` using a Vuetify `VContainer` with arguments descripted in the [VTK]() chapter.
 
 ```python
-layout = SinglePage("Hello Trame", on_ready=update_view)
-layout.title.set_text("Hello Trame")
+layout = SinglePage("Hello trame", on_ready=update_view)
+layout.title.set_text("Hello trame")
 
 html_view = vtk.VtkLocalView(renderWindow)
 
@@ -92,8 +92,8 @@ from trame.layouts import SinglePageWithDrawer
 **Second**, we instantiate the `layout` object with access to everything within the `SinglePage` layout.
 
 ```python
-layout = SinglePageWithDrawer("Hello Trame", on_ready=update_view)
-layout.title.set_text("Hello Trame")
+layout = SinglePageWithDrawer("Hello trame", on_ready=update_view)
+layout.title.set_text("Hello trame")
 
 html_view = vtk.VtkLocalView(renderWindow)
 

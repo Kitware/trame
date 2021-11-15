@@ -12,7 +12,7 @@
 <a id="imports-id"></a>
 ## Imports
 
-**First**, we are going to read an example file. Thus, we import the `os` module and set the current directory. Starting with our Hello Trame cone application, we add
+**First**, we are going to read an example file. Thus, we import the `os` module and set the current directory. Starting with our Hello trame cone application, we add
 
 ```python
 import os
@@ -20,7 +20,7 @@ import os
 CURRENT_DIRECTORY = os.path.abspath(os.path.dirname(__file__))
 ```
 
-**Next**, our Trame imports have also changed. Thus, we will replace
+**Next**, our trame imports have also changed. Thus, we will replace
 
 ```python
 from trame.layouts import SinglePage
@@ -34,7 +34,7 @@ from trame.layouts import SinglePageWithDrawer
 from trame.html import vtk, vuetify, widgets
 ```
 
-We are creating a single page application with a drawer (`trame.layouts`), and we want to use one of Trame's predefined widgets (`trame.html`) for displaying and interacting with visualization pipelines.
+We are creating a single page application with a drawer (`trame.layouts`), and we want to use one of trame's predefined widgets (`trame.html`) for displaying and interacting with visualization pipelines.
 
 **Finally**, our VTK pipelines are fairly straight forward, but not available as one of the vtk examples. We replaced the import for our cone VTK pipeline
 

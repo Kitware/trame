@@ -21,7 +21,7 @@ from trame.layouts import FullScreenPage
 **Second**, we instantiate the `layout` object, create the `vtk.VtkLocalView` component, and add it directly to the `VApp`'s `children` using a Vuetify `VContainer` with arguments descripted in the [VTK]() chapter.
 
 ```python
-layout = FullScreenPage("Hello Trame")
+layout = FullScreenPage("Hello Trame", on_ready=update_view))
 
 html_view = vtk.VtkLocalView(renderWindow)
 
@@ -34,11 +34,11 @@ layout.children += [
 ]
 ```
 
-**Finally**, we add the `layout` via the `start` function.
+**Finally**, we call start on the `layout` directly
 
 ```python
 if __name__ == "__main__":
-    start(layout, on_ready=update_view)
+    layout.start()
 ```
 
 The `FullScreenPage` is really a blank canvas to add your desired Vuetify components.
@@ -58,7 +58,7 @@ from trame.layouts import SinglePage
 **Second**, we instantiate the `layout` object, maybe change the title, create the `vtk.VtkLocalView` component, and add it to the `content` component's `children` using a Vuetify `VContainer` with arguments descripted in the [VTK]() chapter.
 
 ```python
-layout = SinglePage("Hello Trame")
+layout = SinglePage("Hello Trame", on_ready=update_view)
 layout.title.set_text("Hello Trame")
 
 html_view = vtk.VtkLocalView(renderWindow)
@@ -72,11 +72,11 @@ layout.content.children += [
 ]
 ```
 
-**Finally**, we add the `layout` via the `start` function.
+**Finally**, we serve the `layout` via the `start` function.
 
 ```python
 if __name__ == "__main__":
-    start(layout, on_ready=update_view)
+    layout.start()
 ```
 
 ## `SinglePageWithDrawer`
@@ -92,7 +92,7 @@ from trame.layouts import SinglePageWithDrawer
 **Second**, we instantiate the `layout` object with access to everything within the `SinglePage` layout.
 
 ```python
-layout = SinglePageWithDrawer("Hello Trame")
+layout = SinglePageWithDrawer("Hello Trame", on_ready=update_view)
 layout.title.set_text("Hello Trame")
 
 html_view = vtk.VtkLocalView(renderWindow)
@@ -106,8 +106,8 @@ layout.content.children += [
 ]
 ```
 
-**Finally**, we add the `layout` via the `start` function.
+**Finally**, we serve the `layout` via the `start` function.
 
 ```python
 if __name__ == "__main__":
-    start(layout, on_ready=update_view)
+    layout.start()

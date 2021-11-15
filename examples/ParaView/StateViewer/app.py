@@ -19,6 +19,7 @@ from paraview import simple
 
 layout = None
 
+
 def load_data():
     # CLI
     parser = tr.get_cli_parser()

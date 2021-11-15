@@ -181,7 +181,8 @@ contour_mapper.GetLookupTable().SetRange(default_min, default_max)
 if default_array.get("type") == vtkDataObject.FIELD_ASSOCIATION_POINTS:
     contour_mapper.SetScalarModeToUsePointFieldData()
 else:
-    contour_mapper.SetScalarModeToUseCellFieldData()contour_mapper.SetScalarVisibility(True)
+    contour_mapper.SetScalarModeToUseCellFieldData()
+    contour_mapper.SetScalarVisibility(True)
 contour_mapper.SetUseLookupTableScalarRange(True)
 ```
 
@@ -793,7 +794,6 @@ def color_by_array(actor, array):
         mesh_mapper.SetScalarModeToUsePointFieldData()
     else:
         mesh_mapper.SetScalarModeToUseCellFieldData()
-    mapper.SetScalarModeToUsePointFieldData()
     mapper.SetScalarVisibility(True)
     mapper.SetUseLookupTableScalarRange(True)
 ```

@@ -55,3 +55,5 @@ if __name__ == "__main__":
 `start` can take a number of optional arguments. In this case, we pass in the optional GUI `layout`. If not provided, `start` will look for a `./template.html`.
 
 You can also optionally set the tab *name*, a *favicon*, a *port* number, and an *on_ready* function to call when the server is up and running. However, these items can either be set with command-line arguments (`--port 1234`) or with calls exposed through the SinglePage layout.
+
+Down the road, we will use the `start` method that exist on the layout directly as it will save us an import.

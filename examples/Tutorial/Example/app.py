@@ -34,11 +34,13 @@ class Representation:
     Surface = 2
     SurfaceWithEdges = 3
 
+
 class LookupTable:
     Rainbow = 0
     Inverted_Rainbow = 1
     Greyscale = 2
     Inverted_Greyscale = 3
+
 
 # -----------------------------------------------------------------------------
 # VTK pipeline
@@ -172,17 +174,21 @@ html_view = local_view
 # Callbacks
 # -----------------------------------------------------------------------------
 
+
 def update_view(**kwargs):
     html_view.update()
+
 
 # -----------------------------------------------------------------------------
 # Toolbar Callbacks
 # -----------------------------------------------------------------------------
 
+
 @change("cube_axes_visibility")
 def update_cube_axes_visibility(cube_axes_visibility, **kwargs):
     cube_axes.SetVisibility(cube_axes_visibility)
     update_view()
+
 
 @change("local_vs_remote")
 def update_local_vs_remote(local_vs_remote, **kwargs):
@@ -200,9 +206,11 @@ def update_local_vs_remote(local_vs_remote, **kwargs):
     # Update View
     update_view()
 
+
 # -----------------------------------------------------------------------------
 # Representation Callbacks
 # -----------------------------------------------------------------------------
+
 
 def update_representation(actor, mode):
     property = actor.GetProperty()
@@ -223,19 +231,23 @@ def update_representation(actor, mode):
         property.SetPointSize(1)
         property.EdgeVisibilityOn()
 
+
 @change("mesh_representation")
 def update_mesh_representation(mesh_representation, **kwargs):
     update_representation(mesh_actor, mesh_representation)
     update_view()
+
 
 @change("contour_representation")
 def update_contour_representation(contour_representation, **kwargs):
     update_representation(contour_actor, contour_representation)
     update_view()
 
+
 # -----------------------------------------------------------------------------
 # ColorBy Callbacks
 # -----------------------------------------------------------------------------
+
 
 def color_by_array(actor, array):
     _min, _max = array.get("range")
@@ -250,11 +262,13 @@ def color_by_array(actor, array):
     mapper.SetScalarVisibility(True)
     mapper.SetUseLookupTableScalarRange(True)
 
+
 @change("mesh_color_array_idx")
 def update_mesh_color_by_name(mesh_color_array_idx, **kwargs):
     array = dataset_arrays[mesh_color_array_idx]
     color_by_array(mesh_actor, array)
     update_view()
+
 
 @change("contour_color_array_idx")
 def update_contour_color_by_name(contour_color_array_idx, **kwargs):
@@ -262,9 +276,11 @@ def update_contour_color_by_name(contour_color_array_idx, **kwargs):
     color_by_array(contour_actor, array)
     update_view()
 
+
 # -----------------------------------------------------------------------------
 # ColorMap Callbacks
 # -----------------------------------------------------------------------------
+
 
 def use_preset(actor, preset):
     lut = actor.GetMapper().GetLookupTable()
@@ -286,33 +302,40 @@ def use_preset(actor, preset):
         lut.SetValueRange(1.0, 0.0)
     lut.Build()
 
+
 @change("mesh_color_preset")
 def update_mesh_color_preset(mesh_color_preset, **kwargs):
     use_preset(mesh_actor, mesh_color_preset)
     update_view()
+
 
 @change("contour_color_preset")
 def update_contour_color_preset(contour_color_preset, **kwargs):
     use_preset(contour_actor, contour_color_preset)
     update_view()
 
+
 # -----------------------------------------------------------------------------
 # Opacity Callbacks
 # -----------------------------------------------------------------------------
+
 
 @change("mesh_opacity")
 def update_mesh_opacity(mesh_opacity, **kwargs):
     mesh_actor.GetProperty().SetOpacity(mesh_opacity)
     update_view()
 
+
 @change("contour_opacity")
 def update_contour_opacity(contour_opacity, **kwargs):
     contour_actor.GetProperty().SetOpacity(contour_opacity)
     update_view()
 
+
 # -----------------------------------------------------------------------------
 # Contour Callbacks
 # -----------------------------------------------------------------------------
+
 
 @change("contour_by_array_idx")
 def update_contour_by(contour_by_array_idx, **kwargs):
@@ -332,10 +355,12 @@ def update_contour_by(contour_by_array_idx, **kwargs):
     # Update View
     update_view()
 
+
 @change("contour_value")
 def update_contour_value(contour_value, **kwargs):
     contour.SetValue(0, float(contour_value))
     update_view()
+
 
 # -----------------------------------------------------------------------------
 # Pipeline Widget Callbacks
@@ -351,6 +376,7 @@ def actives_change(ids):
     else:
         update_state("active_ui", "nothing")
 
+
 # Visibility Change
 def visibility_change(event):
     _id = event["id"]
@@ -362,9 +388,11 @@ def visibility_change(event):
         contour_actor.SetVisibility(_visibility)
     update_view()
 
+
 # -----------------------------------------------------------------------------
 # GUI Toolbar Buttons
 # -----------------------------------------------------------------------------
+
 
 def standard_buttons():
     vuetify.VCheckbox(
@@ -394,9 +422,11 @@ def standard_buttons():
     with vuetify.VBtn(icon=True, click="$refs.view.resetCamera()"):
         vuetify.VIcon("mdi-crop-free")
 
+
 # -----------------------------------------------------------------------------
 # GUI Pipelines Widget
 # -----------------------------------------------------------------------------
+
 
 def pipeline_widget():
     widgets.GitTree(
@@ -411,9 +441,11 @@ def pipeline_widget():
         visibility_change=(visibility_change, "[$event]"),
     )
 
+
 # -----------------------------------------------------------------------------
 # GUI Cards
 # -----------------------------------------------------------------------------
+
 
 def ui_card(title, ui_name):
     with vuetify.VCard(v_show=f"active_ui == '{ui_name}'"):
@@ -426,6 +458,7 @@ def ui_card(title, ui_name):
         )
         content = vuetify.VCardText(classes="py-2")
     return content
+
 
 def mesh_card():
     with ui_card(title="Mesh", ui_name="mesh"):
@@ -485,6 +518,7 @@ def mesh_card():
             hide_details=True,
             dense=True,
         )
+
 
 def contour_card():
     with ui_card(title="Contour", ui_name="contour"):
@@ -563,6 +597,7 @@ def contour_card():
             hide_details=True,
             dense=True,
         )
+
 
 # -----------------------------------------------------------------------------
 # GUI

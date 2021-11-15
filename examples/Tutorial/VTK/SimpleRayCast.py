@@ -116,5 +116,7 @@ layout.content.children += [
     )
 ]
 
+layout.on_ready = html_view.update
+
 if __name__ == "__main__":
-    start(layout, on_ready=html_view.update)
+    layout.start()

@@ -1,4 +1,3 @@
-from trame import start
 from trame.layouts import SinglePage
 from trame.html import vtk, vuetify
 
@@ -68,9 +67,11 @@ layout.content.children += [
     )
 ]
 
+layout.on_ready = update_view
+
 # -----------------------------------------------------------------------------
 # Main
 # -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    start(layout, on_ready=update_view)
+    layout.start()

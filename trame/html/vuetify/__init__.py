@@ -65,6 +65,8 @@ def dataframe_to_grid(dataframe, options={}):
     return list(headers.values()), dataframe.applymap(cast_to_serializable).to_dict(
         orient="records"
     )
+
+
 slot_names = [
     "day-label",
     "group.header",
@@ -131,8 +133,9 @@ slot_names = [
 ]
 Template.slot_names.update(slot_names)
 
+
 class VApp(AbstractElement):
-    
+
     """
     Vuetify's VApp component. See more info and examples |VApp_vuetify_link|.
 
@@ -140,12 +143,12 @@ class VApp(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-app" target="_blank">here</a>
 
-    
+
     :param id: Sets the DOM id on the component
     :type string:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-app", children, **kwargs)
         self._attr_names += [
@@ -154,7 +157,7 @@ class VApp(AbstractElement):
 
 
 class VAppBar(AbstractElement):
-    
+
     """
     Vuetify's VAppBar component. See more info and examples |VAppBar_vuetify_link|.
 
@@ -162,7 +165,7 @@ class VAppBar(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-app-bar" target="_blank">here</a>
 
-    
+
     :param absolute: Applies position: absolute to the component.
     :type boolean:
     :param app: See description |VAppBar_vuetify_link|.
@@ -189,7 +192,7 @@ class VAppBar(AbstractElement):
     :type ['number', 'string']:
     :param extended: Use this prop to increase the height of the toolbar _without_ using the `extension` slot for adding content. May be used in conjunction with the **extension-height** prop, and any of the other props that affect the height of the toolbar, e.g. **prominent**, **dense**, etc., **WITH THE EXCEPTION** of **height**.
     :type boolean:
-    :param extension_height: Specify an explicit height for the `extension` slot. 
+    :param extension_height: Specify an explicit height for the `extension` slot.
     :type ['number', 'string']:
     :param fade_img_on_scroll: When using the **src** prop or `img` slot, will fade the image when scrolling.
     :type boolean:
@@ -243,9 +246,9 @@ class VAppBar(AbstractElement):
     :type boolean:
     :param width: Sets the width for the component.
     :type ['number', 'string']:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-app-bar", children, **kwargs)
         self._attr_names += [
@@ -293,7 +296,7 @@ class VAppBar(AbstractElement):
 
 
 class VAppBarNavIcon(AbstractElement):
-    
+
     """
     Vuetify's VAppBarNavIcon component. See more info and examples |VAppBarNavIcon_vuetify_link|.
 
@@ -301,16 +304,16 @@ class VAppBarNavIcon(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-app-bar-nav-icon" target="_blank">here</a>
 
-    
-    
+
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-app-bar-nav-icon", children, **kwargs)
 
 
 class VAppBarTitle(AbstractElement):
-    
+
     """
     Vuetify's VAppBarTitle component. See more info and examples |VAppBarTitle_vuetify_link|.
 
@@ -318,16 +321,16 @@ class VAppBarTitle(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-app-bar-title" target="_blank">here</a>
 
-    
-    
+
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-app-bar-title", children, **kwargs)
 
 
 class VAlert(AbstractElement):
-    
+
     """
     Vuetify's VAlert component. See more info and examples |VAlert_vuetify_link|.
 
@@ -335,7 +338,7 @@ class VAlert(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-alert" target="_blank">here</a>
 
-    
+
     :param border: Puts a border on the alert. Accepts **top** \| **right** \| **bottom** \| **left**.
     :type string:
     :param close_icon: Change the default icon used for **dismissible** alerts.
@@ -394,12 +397,12 @@ class VAlert(AbstractElement):
     :type boolean:
     :param width: Sets the width for the component.
     :type ['number', 'string']:
-    
+
     Events
 
     :param input: The updated bound model
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-alert", children, **kwargs)
         self._attr_names += [
@@ -439,7 +442,7 @@ class VAlert(AbstractElement):
 
 
 class VAutocomplete(AbstractElement):
-    
+
     """
     Vuetify's VAutocomplete component. See more info and examples |VAutocomplete_vuetify_link|.
 
@@ -447,7 +450,7 @@ class VAutocomplete(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-autocomplete" target="_blank">here</a>
 
-    
+
     :param allow_overflow: Allow the menu to overflow off the screen
     :type boolean:
     :param append_icon: Appends an icon to the component, uses the same syntax as `v-icon`
@@ -474,7 +477,7 @@ class VAutocomplete(AbstractElement):
     :type string:
     :param counter: Creates counter for input length; if no number is specified, it defaults to 25. Does not apply any validation.
     :type ['boolean', 'number', 'string']:
-    :param counter_value: 
+    :param counter_value:
     :type function:
     :param dark: See description |VAutocomplete_vuetify_link|.
     :type boolean:
@@ -594,7 +597,7 @@ class VAutocomplete(AbstractElement):
     :type any:
     :param value_comparator: See description |VAutocomplete_vuetify_link|.
     :type function:
-    
+
     Events
 
     :param blur: Emitted when the input is blurred
@@ -611,7 +614,7 @@ class VAutocomplete(AbstractElement):
     :param update_list_index: Emitted when menu item is selected using keyboard arrows
     :param update_search_input: The `search-input.sync` event
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-autocomplete", children, **kwargs)
         self._attr_names += [
@@ -710,7 +713,7 @@ class VAutocomplete(AbstractElement):
 
 
 class VAvatar(AbstractElement):
-    
+
     """
     Vuetify's VAvatar component. See more info and examples |VAvatar_vuetify_link|.
 
@@ -718,7 +721,7 @@ class VAvatar(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-avatar" target="_blank">here</a>
 
-    
+
     :param color: See description |VAvatar_vuetify_link|.
     :type string:
     :param height: Sets the height for the component.
@@ -743,9 +746,9 @@ class VAvatar(AbstractElement):
     :type boolean:
     :param width: Sets the width for the component.
     :type ['number', 'string']:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-avatar", children, **kwargs)
         self._attr_names += [
@@ -765,7 +768,7 @@ class VAvatar(AbstractElement):
 
 
 class VBadge(AbstractElement):
-    
+
     """
     Vuetify's VBadge component. See more info and examples |VBadge_vuetify_link|.
 
@@ -773,7 +776,7 @@ class VBadge(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-badge" target="_blank">here</a>
 
-    
+
     :param avatar: Removes badge padding for the use of the `v-avatar` in the **badge** slot.
     :type boolean:
     :param bordered: Applies a **2px** by default and **1.5px** border around the badge when using the **dot** property.
@@ -814,9 +817,9 @@ class VBadge(AbstractElement):
     :type string:
     :param value: Controls whether the component is visible or hidden.
     :type any:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-badge", children, **kwargs)
         self._attr_names += [
@@ -844,7 +847,7 @@ class VBadge(AbstractElement):
 
 
 class VBanner(AbstractElement):
-    
+
     """
     Vuetify's VBanner component. See more info and examples |VBanner_vuetify_link|.
 
@@ -852,7 +855,7 @@ class VBanner(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-banner" target="_blank">here</a>
 
-    
+
     :param app: When used inside of `v-main`, will calculate top based upon application `v-toolbar` and `v-system-bar`.
     :type boolean:
     :param color: See description |VBanner_vuetify_link|.
@@ -897,9 +900,9 @@ class VBanner(AbstractElement):
     :type boolean:
     :param width: Sets the width for the component.
     :type ['number', 'string']:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-banner", children, **kwargs)
         self._attr_names += [
@@ -929,7 +932,7 @@ class VBanner(AbstractElement):
 
 
 class VBottomNavigation(AbstractElement):
-    
+
     """
     Vuetify's VBottomNavigation component. See more info and examples |VBottomNavigation_vuetify_link|.
 
@@ -937,7 +940,7 @@ class VBottomNavigation(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-bottom-navigation" target="_blank">here</a>
 
-    
+
     :param absolute: Applies **position: absolute** to the component.
     :type boolean:
     :param active_class: See description |VBottomNavigation_vuetify_link|.
@@ -986,13 +989,13 @@ class VBottomNavigation(AbstractElement):
     :type any:
     :param width: Sets the width for the component.
     :type ['number', 'string']:
-    
+
     Events
 
     :param change: The value of currently selected button. If no value is assigned, will be the current index of the button.
     :param update_input_value: The event used for `input-value.sync`.
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-bottom-navigation", children, **kwargs)
         self._attr_names += [
@@ -1028,7 +1031,7 @@ class VBottomNavigation(AbstractElement):
 
 
 class VBottomSheet(AbstractElement):
-    
+
     """
     Vuetify's VBottomSheet component. See more info and examples |VBottomSheet_vuetify_link|.
 
@@ -1036,7 +1039,7 @@ class VBottomSheet(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-bottom-sheet" target="_blank">here</a>
 
-    
+
     :param activator: Designate a custom activator when the `activator` slot is not used. String can be any valid querySelector and Object can be any valid Node.
     :type any:
     :param attach: Specifies which DOM element that this component should detach to. String can be any valid querySelector and Object can be any valid Node. This will attach to the root `v-app` component by default.
@@ -1067,7 +1070,7 @@ class VBottomSheet(AbstractElement):
     :type boolean:
     :param open_delay: Milliseconds to wait before opening component.
     :type ['number', 'string']:
-    :param open_on_focus: 
+    :param open_on_focus:
     :type boolean:
     :param open_on_hover: Designates whether component should activate when its activator is hovered.
     :type boolean:
@@ -1081,7 +1084,7 @@ class VBottomSheet(AbstractElement):
     :type boolean:
     :param retain_focus: Tab focus will return to the first child of the dialog by default. Disable this when using external tools that require focus such as TinyMCE or vue-clipboard.
     :type boolean:
-    :param return_value: 
+    :param return_value:
     :type any:
     :param scrollable: See description |VBottomSheet_vuetify_link|.
     :type boolean:
@@ -1091,9 +1094,9 @@ class VBottomSheet(AbstractElement):
     :type any:
     :param width: Sets the width for the component.
     :type ['string', 'number']:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-bottom-sheet", children, **kwargs)
         self._attr_names += [
@@ -1128,7 +1131,7 @@ class VBottomSheet(AbstractElement):
 
 
 class VBreadcrumbs(AbstractElement):
-    
+
     """
     Vuetify's VBreadcrumbs component. See more info and examples |VBreadcrumbs_vuetify_link|.
 
@@ -1136,7 +1139,7 @@ class VBreadcrumbs(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-breadcrumbs" target="_blank">here</a>
 
-    
+
     :param dark: See description |VBreadcrumbs_vuetify_link|.
     :type boolean:
     :param divider: Specifies the dividing character between items.
@@ -1147,9 +1150,9 @@ class VBreadcrumbs(AbstractElement):
     :type boolean:
     :param light: Applies the light theme variant to the component.
     :type boolean:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-breadcrumbs", children, **kwargs)
         self._attr_names += [
@@ -1162,7 +1165,7 @@ class VBreadcrumbs(AbstractElement):
 
 
 class VBreadcrumbsItem(AbstractElement):
-    
+
     """
     Vuetify's VBreadcrumbsItem component. See more info and examples |VBreadcrumbsItem_vuetify_link|.
 
@@ -1170,7 +1173,7 @@ class VBreadcrumbsItem(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-breadcrumbs-item" target="_blank">here</a>
 
-    
+
     :param active_class: See description |VBreadcrumbsItem_vuetify_link|.
     :type string:
     :param append: See description |VBreadcrumbsItem_vuetify_link|.
@@ -1199,9 +1202,9 @@ class VBreadcrumbsItem(AbstractElement):
     :type string:
     :param to: See description |VBreadcrumbsItem_vuetify_link|.
     :type ['string', 'object']:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-breadcrumbs-item", children, **kwargs)
         self._attr_names += [
@@ -1223,7 +1226,7 @@ class VBreadcrumbsItem(AbstractElement):
 
 
 class VBreadcrumbsDivider(AbstractElement):
-    
+
     """
     Vuetify's VBreadcrumbsDivider component. See more info and examples |VBreadcrumbsDivider_vuetify_link|.
 
@@ -1231,16 +1234,16 @@ class VBreadcrumbsDivider(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-breadcrumbs-divider" target="_blank">here</a>
 
-    
-    
+
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-breadcrumbs-divider", children, **kwargs)
 
 
 class VBtn(AbstractElement):
-    
+
     """
     Vuetify's VBtn component. See more info and examples |VBtn_vuetify_link|.
 
@@ -1248,7 +1251,7 @@ class VBtn(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-btn" target="_blank">here</a>
 
-    
+
     :param absolute: Applies **position: absolute** to the component.
     :type boolean:
     :param active_class: See description |VBtn_vuetify_link|.
@@ -1347,9 +1350,9 @@ class VBtn(AbstractElement):
     :type boolean:
     :param x_small: Makes the component extra small.
     :type boolean:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-btn", children, **kwargs)
         self._attr_names += [
@@ -1409,7 +1412,7 @@ class VBtn(AbstractElement):
 
 
 class VBtnToggle(AbstractElement):
-    
+
     """
     Vuetify's VBtnToggle component. See more info and examples |VBtnToggle_vuetify_link|.
 
@@ -1417,7 +1420,7 @@ class VBtnToggle(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-btn-toggle" target="_blank">here</a>
 
-    
+
     :param active_class: The **active-class** applied to children when they are activated.
     :type string:
     :param background_color: Changes the background-color for the component.
@@ -1450,12 +1453,12 @@ class VBtnToggle(AbstractElement):
     :type boolean:
     :param value: The designated model value for the component.
     :type any:
-    
+
     Events
 
     :param change: Emitted when the input is changed by user interaction
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-btn-toggle", children, **kwargs)
         self._attr_names += [
@@ -1482,7 +1485,7 @@ class VBtnToggle(AbstractElement):
 
 
 class VCalendar(AbstractElement):
-    
+
     """
     Vuetify's VCalendar component. See more info and examples |VCalendar_vuetify_link|.
 
@@ -1490,7 +1493,7 @@ class VCalendar(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-calendar" target="_blank">here</a>
 
-    
+
     :param categories: Specifies what categories to display in the `category` view. This controls the order of the categories as well. If the calendar uses events any categories specified in those events not specified in this value are dynamically rendered in the view unless `category-hide-dynamic` is true.
     :type ['array', 'string']:
     :param category_days: The number of days to render in the `category` view.
@@ -1595,7 +1598,7 @@ class VCalendar(AbstractElement):
     :type function:
     :param weekdays: Specifies which days of the week to display. To display Monday through Friday only, a value of `[1, 2, 3, 4, 5]` can be used. To display a week starting on Monday a value of `[1, 2, 3, 4, 5, 6, 0]` can be used.
     :type ['array', 'string']:
-    
+
     Events
 
     :param change: The range of days displayed on the calendar changed. This is triggered on initialization. The event passed is an object with start and end date objects.
@@ -1665,7 +1668,7 @@ class VCalendar(AbstractElement):
     :param touchstart_time: The touchstart event at a specific time in the `day` view. The event passed is the day & time object.
     :param touchstart_time_category: The touchstart event at a specific time in the `category` view. The event passed is the day & time object.
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-calendar", children, **kwargs)
         self._attr_names += [
@@ -1793,7 +1796,7 @@ class VCalendar(AbstractElement):
 
 
 class VCalendarDaily(AbstractElement):
-    
+
     """
     Vuetify's VCalendarDaily component. See more info and examples |VCalendarDaily_vuetify_link|.
 
@@ -1801,7 +1804,7 @@ class VCalendarDaily(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-calendar-daily" target="_blank">here</a>
 
-    
+
     :param color: See description |VCalendarDaily_vuetify_link|.
     :type string:
     :param dark: See description |VCalendarDaily_vuetify_link|.
@@ -1848,9 +1851,9 @@ class VCalendarDaily(AbstractElement):
     :type function:
     :param weekdays: Specifies which days of the week to display. To display Monday through Friday only, a value of `[1, 2, 3, 4, 5]` can be used. To display a week starting on Monday a value of `[1, 2, 3, 4, 5, 6, 0]` can be used.
     :type ['array', 'string']:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-calendar-daily", children, **kwargs)
         self._attr_names += [
@@ -1881,7 +1884,7 @@ class VCalendarDaily(AbstractElement):
 
 
 class VCalendarWeekly(AbstractElement):
-    
+
     """
     Vuetify's VCalendarWeekly component. See more info and examples |VCalendarWeekly_vuetify_link|.
 
@@ -1889,7 +1892,7 @@ class VCalendarWeekly(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-calendar-weekly" target="_blank">here</a>
 
-    
+
     :param color: See description |VCalendarWeekly_vuetify_link|.
     :type string:
     :param dark: See description |VCalendarWeekly_vuetify_link|.
@@ -1926,9 +1929,9 @@ class VCalendarWeekly(AbstractElement):
     :type function:
     :param weekdays: Specifies which days of the week to display. To display Monday through Friday only, a value of `[1, 2, 3, 4, 5]` can be used. To display a week starting on Monday a value of `[1, 2, 3, 4, 5, 6, 0]` can be used.
     :type ['array', 'string']:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-calendar-weekly", children, **kwargs)
         self._attr_names += [
@@ -1954,7 +1957,7 @@ class VCalendarWeekly(AbstractElement):
 
 
 class VCalendarMonthly(AbstractElement):
-    
+
     """
     Vuetify's VCalendarMonthly component. See more info and examples |VCalendarMonthly_vuetify_link|.
 
@@ -1962,7 +1965,7 @@ class VCalendarMonthly(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-calendar-monthly" target="_blank">here</a>
 
-    
+
     :param color: See description |VCalendarMonthly_vuetify_link|.
     :type string:
     :param dark: See description |VCalendarMonthly_vuetify_link|.
@@ -1999,9 +2002,9 @@ class VCalendarMonthly(AbstractElement):
     :type function:
     :param weekdays: Specifies which days of the week to display. To display Monday through Friday only, a value of `[1, 2, 3, 4, 5]` can be used. To display a week starting on Monday a value of `[1, 2, 3, 4, 5, 6, 0]` can be used.
     :type ['array', 'string']:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-calendar-monthly", children, **kwargs)
         self._attr_names += [
@@ -2027,7 +2030,7 @@ class VCalendarMonthly(AbstractElement):
 
 
 class VCard(AbstractElement):
-    
+
     """
     Vuetify's VCard component. See more info and examples |VCard_vuetify_link|.
 
@@ -2035,7 +2038,7 @@ class VCard(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-card" target="_blank">here</a>
 
-    
+
     :param active_class: See description |VCard_vuetify_link|.
     :type string:
     :param append: See description |VCard_vuetify_link|.
@@ -2104,9 +2107,9 @@ class VCard(AbstractElement):
     :type ['string', 'object']:
     :param width: Sets the width for the component.
     :type ['number', 'string']:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-card", children, **kwargs)
         self._attr_names += [
@@ -2151,7 +2154,7 @@ class VCard(AbstractElement):
 
 
 class VCardActions(AbstractElement):
-    
+
     """
     Vuetify's VCardActions component. See more info and examples |VCardActions_vuetify_link|.
 
@@ -2159,16 +2162,16 @@ class VCardActions(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-card-actions" target="_blank">here</a>
 
-    
-    
+
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-card-actions", children, **kwargs)
 
 
 class VCardSubtitle(AbstractElement):
-    
+
     """
     Vuetify's VCardSubtitle component. See more info and examples |VCardSubtitle_vuetify_link|.
 
@@ -2176,16 +2179,16 @@ class VCardSubtitle(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-card-subtitle" target="_blank">here</a>
 
-    
-    
+
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-card-subtitle", children, **kwargs)
 
 
 class VCardText(AbstractElement):
-    
+
     """
     Vuetify's VCardText component. See more info and examples |VCardText_vuetify_link|.
 
@@ -2193,16 +2196,16 @@ class VCardText(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-card-text" target="_blank">here</a>
 
-    
-    
+
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-card-text", children, **kwargs)
 
 
 class VCardTitle(AbstractElement):
-    
+
     """
     Vuetify's VCardTitle component. See more info and examples |VCardTitle_vuetify_link|.
 
@@ -2210,16 +2213,16 @@ class VCardTitle(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-card-title" target="_blank">here</a>
 
-    
-    
+
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-card-title", children, **kwargs)
 
 
 class VCarousel(AbstractElement):
-    
+
     """
     Vuetify's VCarousel component. See more info and examples |VCarousel_vuetify_link|.
 
@@ -2227,7 +2230,7 @@ class VCarousel(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-carousel" target="_blank">here</a>
 
-    
+
     :param active_class: The **active-class** applied to children when they are activated.
     :type string:
     :param continuous: Determines whether carousel is continuous
@@ -2280,12 +2283,12 @@ class VCarousel(AbstractElement):
     :type boolean:
     :param vertical_delimiters: Displays carousel delimiters vertically.
     :type string:
-    
+
     Events
 
     :param change: Emitted when the component value is changed by user interaction
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-carousel", children, **kwargs)
         self._attr_names += [
@@ -2322,7 +2325,7 @@ class VCarousel(AbstractElement):
 
 
 class VCarouselItem(AbstractElement):
-    
+
     """
     Vuetify's VCarouselItem component. See more info and examples |VCarouselItem_vuetify_link|.
 
@@ -2330,7 +2333,7 @@ class VCarouselItem(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-carousel-item" target="_blank">here</a>
 
-    
+
     :param active_class: See description |VCarouselItem_vuetify_link|.
     :type string:
     :param append: See description |VCarouselItem_vuetify_link|.
@@ -2367,9 +2370,9 @@ class VCarouselItem(AbstractElement):
     :type ['boolean', 'string']:
     :param value: The value used when the component is selected in a group. If not provided, the index will be used.
     :type any:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-carousel-item", children, **kwargs)
         self._attr_names += [
@@ -2395,7 +2398,7 @@ class VCarouselItem(AbstractElement):
 
 
 class VCheckbox(AbstractElement):
-    
+
     """
     Vuetify's VCheckbox component. See more info and examples |VCheckbox_vuetify_link|.
 
@@ -2403,7 +2406,7 @@ class VCheckbox(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-checkbox" target="_blank">here</a>
 
-    
+
     :param append_icon: Appends an icon to the component, uses the same syntax as `v-icon`
     :type string:
     :param background_color: Changes the background-color of the input
@@ -2470,7 +2473,7 @@ class VCheckbox(AbstractElement):
     :type any:
     :param value_comparator: Apply a custom value comparator function
     :type function:
-    
+
     Events
 
     :param change: Emitted when the input is changed by user interaction
@@ -2479,7 +2482,7 @@ class VCheckbox(AbstractElement):
     :param update_error: The `error.sync` event
     :param update_indeterminate: The **indeterminate.sync** event.
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-checkbox", children, **kwargs)
         self._attr_names += [
@@ -2530,7 +2533,7 @@ class VCheckbox(AbstractElement):
 
 
 class VSimpleCheckbox(AbstractElement):
-    
+
     """
     Vuetify's VSimpleCheckbox component. See more info and examples |VSimpleCheckbox_vuetify_link|.
 
@@ -2538,7 +2541,7 @@ class VSimpleCheckbox(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-simple-checkbox" target="_blank">here</a>
 
-    
+
     :param color: See description |VSimpleCheckbox_vuetify_link|.
     :type string:
     :param dark: See description |VSimpleCheckbox_vuetify_link|.
@@ -2559,12 +2562,12 @@ class VSimpleCheckbox(AbstractElement):
     :type boolean:
     :param value: A boolean value that represents whether the simple checkbox is checked.
     :type boolean:
-    
+
     Events
 
     :param input: The updated bound model
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-simple-checkbox", children, **kwargs)
         self._attr_names += [
@@ -2585,7 +2588,7 @@ class VSimpleCheckbox(AbstractElement):
 
 
 class VChip(AbstractElement):
-    
+
     """
     Vuetify's VChip component. See more info and examples |VChip_vuetify_link|.
 
@@ -2593,7 +2596,7 @@ class VChip(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-chip" target="_blank">here</a>
 
-    
+
     :param active: Determines whether the chip is visible or not.
     :type boolean:
     :param active_class: See description |VChip_vuetify_link|.
@@ -2662,14 +2665,14 @@ class VChip(AbstractElement):
     :type boolean:
     :param x_small: Makes the component extra small.
     :type boolean:
-    
+
     Events
 
     :param click_close: Emitted when close icon is clicked
     :param input: The updated bound model
     :param update_active: Emitted when close icon is clicked, sets active to `false`
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-chip", children, **kwargs)
         self._attr_names += [
@@ -2717,7 +2720,7 @@ class VChip(AbstractElement):
 
 
 class VChipGroup(AbstractElement):
-    
+
     """
     Vuetify's VChipGroup component. See more info and examples |VChipGroup_vuetify_link|.
 
@@ -2725,7 +2728,7 @@ class VChipGroup(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-chip-group" target="_blank">here</a>
 
-    
+
     :param active_class: The **active-class** applied to children when they are activated.
     :type string:
     :param center_active: Forces the selected chip to be centered
@@ -2756,12 +2759,12 @@ class VChipGroup(AbstractElement):
     :type string:
     :param value: The designated model value for the component.
     :type any:
-    
+
     Events
 
     :param change: Emitted when the component value is changed by user interaction
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-chip-group", children, **kwargs)
         self._attr_names += [
@@ -2787,7 +2790,7 @@ class VChipGroup(AbstractElement):
 
 
 class VColorPicker(AbstractElement):
-    
+
     """
     Vuetify's VColorPicker component. See more info and examples |VColorPicker_vuetify_link|.
 
@@ -2795,7 +2798,7 @@ class VColorPicker(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-color-picker" target="_blank">here</a>
 
-    
+
     :param canvas_height: Height of canvas
     :type ['string', 'number']:
     :param dark: See description |VColorPicker_vuetify_link|.
@@ -2830,14 +2833,14 @@ class VColorPicker(AbstractElement):
     :type ['object', 'string']:
     :param width: Sets the width of the color picker
     :type ['number', 'string']:
-    
+
     Events
 
     :param input: Selected color. Depending on what you passed to the `value` prop this is either a string or an object
     :param update_color: Selected color. This is the internal representation of the color, containing all values.
     :param update_mode: Selected mode
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-color-picker", children, **kwargs)
         self._attr_names += [
@@ -2867,7 +2870,7 @@ class VColorPicker(AbstractElement):
 
 
 class VContent(AbstractElement):
-    
+
     """
     Vuetify's VContent component. See more info and examples |VContent_vuetify_link|.
 
@@ -2875,12 +2878,12 @@ class VContent(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-content" target="_blank">here</a>
 
-    
+
     :param tag: Specify a custom tag used on the root element.
     :type string:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-content", children, **kwargs)
         self._attr_names += [
@@ -2889,7 +2892,7 @@ class VContent(AbstractElement):
 
 
 class VCombobox(AbstractElement):
-    
+
     """
     Vuetify's VCombobox component. See more info and examples |VCombobox_vuetify_link|.
 
@@ -2897,7 +2900,7 @@ class VCombobox(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-combobox" target="_blank">here</a>
 
-    
+
     :param allow_overflow: Allow the menu to overflow off the screen
     :type boolean:
     :param append_icon: Appends an icon to the component, uses the same syntax as `v-icon`
@@ -2924,7 +2927,7 @@ class VCombobox(AbstractElement):
     :type string:
     :param counter: Creates counter for input length; if no number is specified, it defaults to 25. Does not apply any validation.
     :type ['boolean', 'number', 'string']:
-    :param counter_value: 
+    :param counter_value:
     :type function:
     :param dark: See description |VCombobox_vuetify_link|.
     :type boolean:
@@ -3046,7 +3049,7 @@ class VCombobox(AbstractElement):
     :type any:
     :param value_comparator: See description |VCombobox_vuetify_link|.
     :type function:
-    
+
     Events
 
     :param blur: Emitted when the input is blurred
@@ -3063,7 +3066,7 @@ class VCombobox(AbstractElement):
     :param update_list_index: Emitted when menu item is selected using keyboard arrows
     :param update_search_input: The `search-input.sync` event
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-combobox", children, **kwargs)
         self._attr_names += [
@@ -3163,7 +3166,7 @@ class VCombobox(AbstractElement):
 
 
 class VDataIterator(AbstractElement):
-    
+
     """
     Vuetify's VDataIterator component. See more info and examples |VDataIterator_vuetify_link|.
 
@@ -3171,8 +3174,8 @@ class VDataIterator(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-data-iterator" target="_blank">here</a>
 
-    
-    :param checkbox_color: 
+
+    :param checkbox_color:
     :type string:
     :param custom_filter: Function to filter items
     :type function:
@@ -3222,9 +3225,9 @@ class VDataIterator(AbstractElement):
     :type string:
     :param no_results_text: Text shown when `search` prop is used and there are no results
     :type string:
-    :param options: 
+    :param options:
     :type DataOptions:
-    :param page: 
+    :param page:
     :type number:
     :param search: Text input used to filter items
     :type string:
@@ -3242,28 +3245,28 @@ class VDataIterator(AbstractElement):
     :type ['boolean', 'array']:
     :param value: Used for controlling selected rows
     :type array:
-    
+
     Events
 
-    :param current_items: 
+    :param current_items:
     :param input: Array of selected items
     :param item_expanded: Event emitted when an item is expanded or closed
     :param item_selected: Event emitted when an item is selected or deselected
-    :param page_count: 
-    :param pagination: 
-    :param toggle_select_all: 
+    :param page_count:
+    :param pagination:
+    :param toggle_select_all:
     :param update_expanded: The `.sync` event for `expanded` prop
-    :param update_group_by: 
-    :param update_group_desc: 
-    :param update_items_per_page: 
-    :param update_multi_sort: 
-    :param update_must_sort: 
-    :param update_options: 
-    :param update_page: 
-    :param update_sort_by: 
-    :param update_sort_desc: 
+    :param update_group_by:
+    :param update_group_desc:
+    :param update_items_per_page:
+    :param update_multi_sort:
+    :param update_must_sort:
+    :param update_options:
+    :param update_page:
+    :param update_sort_by:
+    :param update_sort_desc:
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-data-iterator", children, **kwargs)
         self._attr_names += [
@@ -3325,7 +3328,7 @@ class VDataIterator(AbstractElement):
 
 
 class VDataFooter(AbstractElement):
-    
+
     """
     Vuetify's VDataFooter component. See more info and examples |VDataFooter_vuetify_link|.
 
@@ -3333,7 +3336,7 @@ class VDataFooter(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-data-footer" target="_blank">here</a>
 
-    
+
     :param disable_items_per_page: Disables items-per-page dropdown
     :type boolean:
     :param disable_pagination: Disables pagination buttons
@@ -3352,7 +3355,7 @@ class VDataFooter(AbstractElement):
     :type string:
     :param options: DataOptions
     :type object:
-    :param page_text: 
+    :param page_text:
     :type string:
     :param pagination: DataPagination
     :type object:
@@ -3362,12 +3365,12 @@ class VDataFooter(AbstractElement):
     :type boolean:
     :param show_first_last_page: Show first/last icons
     :type boolean:
-    
+
     Events
 
     :param update_options: The `.sync` event for `options` prop
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-data-footer", children, **kwargs)
         self._attr_names += [
@@ -3392,7 +3395,7 @@ class VDataFooter(AbstractElement):
 
 
 class VDataTable(AbstractElement):
-    
+
     """
     Vuetify's VDataTable component. See more info and examples |VDataTable_vuetify_link|.
 
@@ -3400,7 +3403,7 @@ class VDataTable(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-data-table" target="_blank">here</a>
 
-    
+
     :param calculate_widths: Enables calculation of column widths. `widths` property will be available in select scoped slots
     :type boolean:
     :param caption: Set the caption (using `<caption>`)
@@ -3475,9 +3478,9 @@ class VDataTable(AbstractElement):
     :type string:
     :param no_results_text: Text shown when `search` prop is used and there are no results
     :type string:
-    :param options: 
+    :param options:
     :type DataOptions:
-    :param page: 
+    :param page:
     :type number:
     :param search: Text input used to filter items
     :type string:
@@ -3501,31 +3504,31 @@ class VDataTable(AbstractElement):
     :type ['boolean', 'array']:
     :param value: Used for controlling selected rows
     :type array:
-    
+
     Events
 
     :param click_row: Emits when a table row is clicked. This event provides 2 arguments: the first is the item data that was clicked and the second is the other related data provided by the `item` slot. **NOTE:** will not emit when table rows are defined through a slot such as `item` or `body`.
     :param contextmenu_row: Emits when a table row is right-clicked. The item for the row is included. **NOTE:** will not emit when table rows are defined through a slot such as `item` or `body`.
-    :param current_items: 
+    :param current_items:
     :param dblclick_row: Emits when a table row is double-clicked. The item for the row is included. **NOTE:** will not emit when table rows are defined through a slot such as `item` or `body`.
     :param input: Array of selected items
     :param item_expanded: Event emitted when an item is expanded or closed
     :param item_selected: Event emitted when an item is selected or deselected
-    :param page_count: 
-    :param pagination: 
-    :param toggle_select_all: 
+    :param page_count:
+    :param pagination:
+    :param toggle_select_all:
     :param update_expanded: The `.sync` event for `expanded` prop
-    :param update_group_by: 
-    :param update_group_desc: 
-    :param update_items_per_page: 
-    :param update_multi_sort: 
-    :param update_must_sort: 
-    :param update_options: 
-    :param update_page: 
-    :param update_sort_by: 
-    :param update_sort_desc: 
+    :param update_group_by:
+    :param update_group_desc:
+    :param update_items_per_page:
+    :param update_multi_sort:
+    :param update_must_sort:
+    :param update_options:
+    :param update_page:
+    :param update_sort_by:
+    :param update_sort_desc:
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-data-table", children, **kwargs)
         self.ttsSensitive()
@@ -3606,7 +3609,7 @@ class VDataTable(AbstractElement):
 
 
 class VEditDialog(AbstractElement):
-    
+
     """
     Vuetify's VEditDialog component. See more info and examples |VEditDialog_vuetify_link|.
 
@@ -3614,7 +3617,7 @@ class VEditDialog(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-edit-dialog" target="_blank">here</a>
 
-    
+
     :param cancel_text: Sets the default text for the cancel button when using the **large** prop
     :type any:
     :param dark: See description |VEditDialog_vuetify_link|.
@@ -3627,13 +3630,13 @@ class VEditDialog(AbstractElement):
     :type boolean:
     :param persistent: Clicking outside or pressing **esc** key will not dismiss the dialog
     :type boolean:
-    :param return_value: 
+    :param return_value:
     :type any:
     :param save_text: Sets the default text for the save button when using the **large** prop
     :type any:
     :param transition: See description |VEditDialog_vuetify_link|.
     :type string:
-    
+
     Events
 
     :param cancel: Emits when editing is canceled
@@ -3641,7 +3644,7 @@ class VEditDialog(AbstractElement):
     :param open: Emits when editing is opened
     :param save: Emits when edit-dialog save button is pressed
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-edit-dialog", children, **kwargs)
         self._attr_names += [
@@ -3664,7 +3667,7 @@ class VEditDialog(AbstractElement):
 
 
 class VDataTableHeader(AbstractElement):
-    
+
     """
     Vuetify's VDataTableHeader component. See more info and examples |VDataTableHeader_vuetify_link|.
 
@@ -3672,8 +3675,8 @@ class VDataTableHeader(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-data-table-header" target="_blank">here</a>
 
-    
-    :param checkbox_color: 
+
+    :param checkbox_color:
     :type string:
     :param disable_sort: Toggles rendering of sort button
     :type boolean:
@@ -3695,9 +3698,9 @@ class VDataTableHeader(AbstractElement):
     :type string:
     :param sort_icon: Icon used for sort button
     :type string:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-data-table-header", children, **kwargs)
         self._attr_names += [
@@ -3716,7 +3719,7 @@ class VDataTableHeader(AbstractElement):
 
 
 class VSimpleTable(AbstractElement):
-    
+
     """
     Vuetify's VSimpleTable component. See more info and examples |VSimpleTable_vuetify_link|.
 
@@ -3724,7 +3727,7 @@ class VSimpleTable(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-simple-table" target="_blank">here</a>
 
-    
+
     :param dark: See description |VSimpleTable_vuetify_link|.
     :type boolean:
     :param dense: Decreases paddings to render a dense table
@@ -3735,9 +3738,9 @@ class VSimpleTable(AbstractElement):
     :type ['number', 'string']:
     :param light: Applies the light theme variant to the component.
     :type boolean:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-simple-table", children, **kwargs)
         self._attr_names += [
@@ -3750,7 +3753,7 @@ class VSimpleTable(AbstractElement):
 
 
 class VDatePicker(AbstractElement):
-    
+
     """
     Vuetify's VDatePicker component. See more info and examples |VDatePicker_vuetify_link|.
 
@@ -3758,7 +3761,7 @@ class VDatePicker(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-date-picker" target="_blank">here</a>
 
-    
+
     :param active_picker: Determines which picker in the date or month picker is being displayed. Allowed values: `'DATE'`, `'MONTH'`, `'YEAR'`
     :type string:
     :param allowed_dates: Restricts which dates can be selected
@@ -3805,9 +3808,9 @@ class VDatePicker(AbstractElement):
     :type boolean:
     :param next_icon: Sets the icon for next month/year button
     :type string:
-    :param next_month_aria_label: 
+    :param next_month_aria_label:
     :type string:
-    :param next_year_aria_label: 
+    :param next_year_aria_label:
     :type string:
     :param no_title: Hide the picker title
     :type boolean:
@@ -3815,9 +3818,9 @@ class VDatePicker(AbstractElement):
     :type string:
     :param prev_icon: Sets the icon for previous month/year button
     :type string:
-    :param prev_month_aria_label: 
+    :param prev_month_aria_label:
     :type string:
-    :param prev_year_aria_label: 
+    :param prev_year_aria_label:
     :type string:
     :param range: Allow the selection of date range
     :type boolean:
@@ -3849,7 +3852,7 @@ class VDatePicker(AbstractElement):
     :type function:
     :param year_icon: Sets the icon in the year selection button
     :type string:
-    
+
     Events
 
     :param change: Reactive date picker emits `input` even when any part of the date (year/month/day) changes, but `change` event is emitted only when the day (for date pickers) or month (for month pickers) changes. If `range` prop is set, date picker emits `change` when both [from, to] are selected.
@@ -3857,7 +3860,7 @@ class VDatePicker(AbstractElement):
     :param update_active_picker: The `.sync` event for `active-picker` prop
     :param update_picker_date: The `.sync` event for `picker-date` prop
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-date-picker", children, **kwargs)
         self._attr_names += [
@@ -4006,7 +4009,7 @@ class VDatePicker(AbstractElement):
 
 
 class VDialog(AbstractElement):
-    
+
     """
     Vuetify's VDialog component. See more info and examples |VDialog_vuetify_link|.
 
@@ -4014,7 +4017,7 @@ class VDialog(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-dialog" target="_blank">here</a>
 
-    
+
     :param activator: Designate a custom activator when the `activator` slot is not used. String can be any valid querySelector and Object can be any valid Node.
     :type any:
     :param attach: Specifies which DOM element that this component should detach to. String can be any valid querySelector and Object can be any valid Node. This will attach to the root `v-app` component by default.
@@ -4043,7 +4046,7 @@ class VDialog(AbstractElement):
     :type boolean:
     :param open_delay: Milliseconds to wait before opening component.
     :type ['number', 'string']:
-    :param open_on_focus: 
+    :param open_on_focus:
     :type boolean:
     :param open_on_hover: Designates whether component should activate when its activator is hovered.
     :type boolean:
@@ -4057,7 +4060,7 @@ class VDialog(AbstractElement):
     :type boolean:
     :param retain_focus: Tab focus will return to the first child of the dialog by default. Disable this when using external tools that require focus such as TinyMCE or vue-clipboard.
     :type boolean:
-    :param return_value: 
+    :param return_value:
     :type any:
     :param scrollable: See description |VDialog_vuetify_link|.
     :type boolean:
@@ -4067,14 +4070,14 @@ class VDialog(AbstractElement):
     :type any:
     :param width: Sets the width for the component.
     :type ['string', 'number']:
-    
+
     Events
 
     :param click_outside: Event that fires when clicking outside an active dialog.
     :param input: The updated bound model
     :param keydown: Event that fires when key is pressed. If dialog is active and not using the **persistent** prop, the **esc** key will deactivate it.
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-dialog", children, **kwargs)
         self._attr_names += [
@@ -4113,7 +4116,7 @@ class VDialog(AbstractElement):
 
 
 class VDivider(AbstractElement):
-    
+
     """
     Vuetify's VDivider component. See more info and examples |VDivider_vuetify_link|.
 
@@ -4121,7 +4124,7 @@ class VDivider(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-divider" target="_blank">here</a>
 
-    
+
     :param dark: See description |VDivider_vuetify_link|.
     :type boolean:
     :param inset: Adds indentation (72px) for **normal** dividers, reduces max height for **vertical**.
@@ -4130,9 +4133,9 @@ class VDivider(AbstractElement):
     :type boolean:
     :param vertical: Displays dividers vertically
     :type boolean:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-divider", children, **kwargs)
         self._attr_names += [
@@ -4144,7 +4147,7 @@ class VDivider(AbstractElement):
 
 
 class VExpansionPanels(AbstractElement):
-    
+
     """
     Vuetify's VExpansionPanels component. See more info and examples |VExpansionPanels_vuetify_link|.
 
@@ -4152,7 +4155,7 @@ class VExpansionPanels(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-expansion-panels" target="_blank">here</a>
 
-    
+
     :param accordion: Removes the margin around open panels
     :type boolean:
     :param active_class: The **active-class** applied to children when they are activated.
@@ -4187,9 +4190,9 @@ class VExpansionPanels(AbstractElement):
     :type boolean:
     :param value: Controls the opened/closed state of content in the expansion-panel. Corresponds to a zero-based index of the currently opened content. If the `multiple` prop (previously `expand` in 1.5.x) is used then it is an array of numbers where each entry corresponds to the index of the opened content.  The index order is not relevant.
     :type any:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-expansion-panels", children, **kwargs)
         self._attr_names += [
@@ -4214,7 +4217,7 @@ class VExpansionPanels(AbstractElement):
 
 
 class VExpansionPanel(AbstractElement):
-    
+
     """
     Vuetify's VExpansionPanel component. See more info and examples |VExpansionPanel_vuetify_link|.
 
@@ -4222,19 +4225,19 @@ class VExpansionPanel(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-expansion-panel" target="_blank">here</a>
 
-    
+
     :param active_class: See description |VExpansionPanel_vuetify_link|.
     :type string:
     :param disabled: Disables the expansion-panel content
     :type boolean:
     :param readonly: Makes the expansion-panel content read only.
     :type boolean:
-    
+
     Events
 
     :param change: Toggles the value of the selected panel
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-expansion-panel", children, **kwargs)
         self._attr_names += [
@@ -4249,7 +4252,7 @@ class VExpansionPanel(AbstractElement):
 
 
 class VExpansionPanelHeader(AbstractElement):
-    
+
     """
     Vuetify's VExpansionPanelHeader component. See more info and examples |VExpansionPanelHeader_vuetify_link|.
 
@@ -4257,7 +4260,7 @@ class VExpansionPanelHeader(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-expansion-panel-header" target="_blank">here</a>
 
-    
+
     :param color: See description |VExpansionPanelHeader_vuetify_link|.
     :type string:
     :param disable_icon_rotate: Removes the icon rotation animation when expanding a panel
@@ -4268,9 +4271,9 @@ class VExpansionPanelHeader(AbstractElement):
     :type boolean:
     :param ripple: See description |VExpansionPanelHeader_vuetify_link|.
     :type ['boolean', 'object']:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-expansion-panel-header", children, **kwargs)
         self._attr_names += [
@@ -4286,7 +4289,7 @@ class VExpansionPanelHeader(AbstractElement):
 
 
 class VExpansionPanelContent(AbstractElement):
-    
+
     """
     Vuetify's VExpansionPanelContent component. See more info and examples |VExpansionPanelContent_vuetify_link|.
 
@@ -4294,14 +4297,14 @@ class VExpansionPanelContent(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-expansion-panel-content" target="_blank">here</a>
 
-    
+
     :param color: See description |VExpansionPanelContent_vuetify_link|.
     :type string:
     :param eager: Will force the components content to render on mounted. This is useful if you have content that will not be rendered in the DOM that you want crawled for SEO.
     :type boolean:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-expansion-panel-content", children, **kwargs)
         self._attr_names += [
@@ -4311,7 +4314,7 @@ class VExpansionPanelContent(AbstractElement):
 
 
 class VFileInput(AbstractElement):
-    
+
     """
     Vuetify's VFileInput component. See more info and examples |VFileInput_vuetify_link|.
 
@@ -4319,7 +4322,7 @@ class VFileInput(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-file-input" target="_blank">here</a>
 
-    
+
     :param append_icon: Appends an icon to the component, uses the same syntax as `v-icon`
     :type string:
     :param append_outer_icon: Appends an icon to the outside the component's input, uses same syntax as `v-icon`
@@ -4342,7 +4345,7 @@ class VFileInput(AbstractElement):
     :type string:
     :param counter_string: See description |VFileInput_vuetify_link|.
     :type string:
-    :param counter_value: 
+    :param counter_value:
     :type function:
     :param dark: See description |VFileInput_vuetify_link|.
     :type boolean:
@@ -4430,7 +4433,7 @@ class VFileInput(AbstractElement):
     :type boolean:
     :param value: See description |VFileInput_vuetify_link|.
     :type any:
-    
+
     Events
 
     :param blur: Emitted when the input is blurred
@@ -4445,7 +4448,7 @@ class VFileInput(AbstractElement):
     :param keydown: Emitted when **any** key is pressed
     :param update_error: The `error.sync` event
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-file-input", children, **kwargs)
         self._attr_names += [
@@ -4524,7 +4527,7 @@ class VFileInput(AbstractElement):
 
 
 class VFooter(AbstractElement):
-    
+
     """
     Vuetify's VFooter component. See more info and examples |VFooter_vuetify_link|.
 
@@ -4532,7 +4535,7 @@ class VFooter(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-footer" target="_blank">here</a>
 
-    
+
     :param absolute: Applies **position: absolute** to the component.
     :type boolean:
     :param app: See description |VFooter_vuetify_link|.
@@ -4573,9 +4576,9 @@ class VFooter(AbstractElement):
     :type boolean:
     :param width: Sets the width for the component.
     :type ['number', 'string']:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-footer", children, **kwargs)
         self._attr_names += [
@@ -4603,7 +4606,7 @@ class VFooter(AbstractElement):
 
 
 class VForm(AbstractElement):
-    
+
     """
     Vuetify's VForm component. See more info and examples |VForm_vuetify_link|.
 
@@ -4611,7 +4614,7 @@ class VForm(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-form" target="_blank">here</a>
 
-    
+
     :param disabled: Puts all children inputs into a disabled state.
     :type boolean:
     :param lazy_validation: If enabled, **value** will always be _true_ unless there are visible validation errors. You can still call `validate()` to manually trigger validation
@@ -4620,13 +4623,13 @@ class VForm(AbstractElement):
     :type boolean:
     :param value: A boolean value representing the validity of the form.
     :type boolean:
-    
+
     Events
 
     :param input: The updated bound model
     :param submit: Emitted when form is submitted
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-form", children, **kwargs)
         self._attr_names += [
@@ -4642,7 +4645,7 @@ class VForm(AbstractElement):
 
 
 class VContainer(AbstractElement):
-    
+
     """
     Vuetify's VContainer component. See more info and examples |VContainer_vuetify_link|.
 
@@ -4650,16 +4653,16 @@ class VContainer(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-container" target="_blank">here</a>
 
-    
+
     :param fluid: Removes viewport maximum-width size breakpoints
     :type boolean:
     :param id: Sets the DOM id on the component
     :type string:
     :param tag: Specify a custom tag used on the root element.
     :type string:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-container", children, **kwargs)
         self._attr_names += [
@@ -4670,7 +4673,7 @@ class VContainer(AbstractElement):
 
 
 class VCol(AbstractElement):
-    
+
     """
     Vuetify's VCol component. See more info and examples |VCol_vuetify_link|.
 
@@ -4678,7 +4681,7 @@ class VCol(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-col" target="_blank">here</a>
 
-    
+
     :param align_self: See description |VCol_vuetify_link|.
     :type string:
     :param cols: Sets the default number of columns the component extends. Available options are **1 -> 12** and **auto**.
@@ -4713,9 +4716,9 @@ class VCol(AbstractElement):
     :type string:
     :param xl: Changes the number of columns on extra large and greater breakpoints.
     :type ['boolean', 'string', 'number']:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-col", children, **kwargs)
         self._attr_names += [
@@ -4740,7 +4743,7 @@ class VCol(AbstractElement):
 
 
 class VRow(AbstractElement):
-    
+
     """
     Vuetify's VRow component. See more info and examples |VRow_vuetify_link|.
 
@@ -4748,7 +4751,7 @@ class VRow(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-row" target="_blank">here</a>
 
-    
+
     :param align: See description |VRow_vuetify_link|.
     :type string:
     :param align_content: See description |VRow_vuetify_link|.
@@ -4785,9 +4788,9 @@ class VRow(AbstractElement):
     :type boolean:
     :param tag: Specify a custom tag used on the root element.
     :type string:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-row", children, **kwargs)
         self._attr_names += [
@@ -4813,7 +4816,7 @@ class VRow(AbstractElement):
 
 
 class VSpacer(AbstractElement):
-    
+
     """
     Vuetify's VSpacer component. See more info and examples |VSpacer_vuetify_link|.
 
@@ -4821,16 +4824,16 @@ class VSpacer(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-spacer" target="_blank">here</a>
 
-    
-    
+
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-spacer", children, **kwargs)
 
 
 class VLayout(AbstractElement):
-    
+
     """
     Vuetify's VLayout component. See more info and examples |VLayout_vuetify_link|.
 
@@ -4838,54 +4841,54 @@ class VLayout(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-layout" target="_blank">here</a>
 
-    
-    :param align_baseline: 
+
+    :param align_baseline:
     :type Boolean:
-    :param align_center: 
+    :param align_center:
     :type Boolean:
-    :param align_content_center: 
+    :param align_content_center:
     :type Boolean:
-    :param align_content_end: 
+    :param align_content_end:
     :type Boolean:
-    :param align_content_space_around: 
+    :param align_content_space_around:
     :type Boolean:
-    :param align_content_space_between: 
+    :param align_content_space_between:
     :type Boolean:
-    :param align_content_start: 
+    :param align_content_start:
     :type Boolean:
-    :param align_end: 
+    :param align_end:
     :type Boolean:
-    :param align_start: 
+    :param align_start:
     :type Boolean:
-    :param column: 
+    :param column:
     :type boolean:
-    :param d_{type}: 
+    :param d_{type}:
     :type Boolean:
-    :param fill_height: 
+    :param fill_height:
     :type Boolean:
     :param id: Sets the DOM id on the component
     :type string:
-    :param justify_center: 
+    :param justify_center:
     :type Boolean:
-    :param justify_end: 
+    :param justify_end:
     :type Boolean:
-    :param justify_space_around: 
+    :param justify_space_around:
     :type Boolean:
-    :param justify_space_between: 
+    :param justify_space_between:
     :type Boolean:
-    :param justify_start: 
+    :param justify_start:
     :type Boolean:
-    :param reverse: 
+    :param reverse:
     :type boolean:
-    :param row: 
+    :param row:
     :type boolean:
     :param tag: Specify a custom tag used on the root element.
     :type String:
-    :param wrap: 
+    :param wrap:
     :type boolean:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-layout", children, **kwargs)
         self._attr_names += [
@@ -4915,7 +4918,7 @@ class VLayout(AbstractElement):
 
 
 class VFlex(AbstractElement):
-    
+
     """
     Vuetify's VFlex component. See more info and examples |VFlex_vuetify_link|.
 
@@ -4923,32 +4926,32 @@ class VFlex(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-flex" target="_blank">here</a>
 
-    
-    :param (size)(1_12): 
+
+    :param (size)(1_12):
     :type boolean:
-    :param align_self_baseline: 
+    :param align_self_baseline:
     :type boolean:
-    :param align_self_center: 
+    :param align_self_center:
     :type boolean:
-    :param align_self_end: 
+    :param align_self_end:
     :type boolean:
-    :param align_self_start: 
+    :param align_self_start:
     :type boolean:
-    :param grow: 
+    :param grow:
     :type boolean:
     :param id: Sets the DOM id on the component
     :type string:
-    :param offset_(size)(0_12): 
+    :param offset_(size)(0_12):
     :type boolean:
-    :param order_(size)(1_12): 
+    :param order_(size)(1_12):
     :type boolean:
-    :param shrink: 
+    :param shrink:
     :type boolean:
     :param tag: Specify a custom tag used on the root element.
     :type string:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-flex", children, **kwargs)
         self._attr_names += [
@@ -5112,7 +5115,7 @@ class VFlex(AbstractElement):
 
 
 class VHover(AbstractElement):
-    
+
     """
     Vuetify's VHover component. See more info and examples |VHover_vuetify_link|.
 
@@ -5120,7 +5123,7 @@ class VHover(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-hover" target="_blank">here</a>
 
-    
+
     :param close_delay: Milliseconds to wait before closing component.
     :type ['number', 'string']:
     :param disabled: Turns off hover functionality
@@ -5129,9 +5132,9 @@ class VHover(AbstractElement):
     :type ['number', 'string']:
     :param value: Controls whether the component is visible or hidden.
     :type boolean:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-hover", children, **kwargs)
         self._attr_names += [
@@ -5143,7 +5146,7 @@ class VHover(AbstractElement):
 
 
 class VIcon(AbstractElement):
-    
+
     """
     Vuetify's VIcon component. See more info and examples |VIcon_vuetify_link|.
 
@@ -5151,7 +5154,7 @@ class VIcon(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-icon" target="_blank">here</a>
 
-    
+
     :param color: See description |VIcon_vuetify_link|.
     :type string:
     :param dark: See description |VIcon_vuetify_link|.
@@ -5178,9 +5181,9 @@ class VIcon(AbstractElement):
     :type boolean:
     :param x_small: Makes the component extra small.
     :type boolean:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-icon", children, **kwargs)
         self._attr_names += [
@@ -5201,7 +5204,7 @@ class VIcon(AbstractElement):
 
 
 class VImg(AbstractElement):
-    
+
     """
     Vuetify's VImg component. See more info and examples |VImg_vuetify_link|.
 
@@ -5209,7 +5212,7 @@ class VImg(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-img" target="_blank">here</a>
 
-    
+
     :param alt: Alternate text for screen readers. Leave empty for decorative images
     :type string:
     :param aspect_ratio: Calculated as `width/height`, so for a 1920x1080px image this will be `1.7778`. Will be calculated automatically if omitted
@@ -5252,14 +5255,14 @@ class VImg(AbstractElement):
     :type ['boolean', 'string']:
     :param width: Sets the width for the component.
     :type ['number', 'string']:
-    
+
     Events
 
     :param error: Emitted when there is an error
     :param load: Emitted when image is loaded
     :param loadstart: Emitted when the image starts to load
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-img", children, **kwargs)
         self._attr_names += [
@@ -5293,7 +5296,7 @@ class VImg(AbstractElement):
 
 
 class VInput(AbstractElement):
-    
+
     """
     Vuetify's VInput component. See more info and examples |VInput_vuetify_link|.
 
@@ -5301,7 +5304,7 @@ class VInput(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-input" target="_blank">here</a>
 
-    
+
     :param append_icon: Appends an icon to the component, uses the same syntax as `v-icon`
     :type string:
     :param background_color: Changes the background-color of the input
@@ -5352,7 +5355,7 @@ class VInput(AbstractElement):
     :type boolean:
     :param value: The input's value
     :type any:
-    
+
     Events
 
     :param change: Emitted when the input is changed by user interaction
@@ -5360,7 +5363,7 @@ class VInput(AbstractElement):
     :param click_prepend: Emitted when prepended icon is clicked
     :param update_error: The `error.sync` event
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-input", children, **kwargs)
         self._attr_names += [
@@ -5401,7 +5404,7 @@ class VInput(AbstractElement):
 
 
 class VItem(AbstractElement):
-    
+
     """
     Vuetify's VItem component. See more info and examples |VItem_vuetify_link|.
 
@@ -5409,16 +5412,16 @@ class VItem(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-item" target="_blank">here</a>
 
-    
+
     :param active_class: See description |VItem_vuetify_link|.
     :type string:
     :param disabled: Removes the ability to click or target the component.
     :type boolean:
     :param value: The value used when the component is selected in a group. If not provided, the index will be used.
     :type any:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-item", children, **kwargs)
         self._attr_names += [
@@ -5429,7 +5432,7 @@ class VItem(AbstractElement):
 
 
 class VItemGroup(AbstractElement):
-    
+
     """
     Vuetify's VItemGroup component. See more info and examples |VItemGroup_vuetify_link|.
 
@@ -5437,7 +5440,7 @@ class VItemGroup(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-item-group" target="_blank">here</a>
 
-    
+
     :param active_class: See description |VItemGroup_vuetify_link|.
     :type string:
     :param dark: See description |VItemGroup_vuetify_link|.
@@ -5454,12 +5457,12 @@ class VItemGroup(AbstractElement):
     :type string:
     :param value: The designated model value for the component.
     :type any:
-    
+
     Events
 
     :param change: Emitted when the component value is changed by user interaction
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-item-group", children, **kwargs)
         self._attr_names += [
@@ -5478,7 +5481,7 @@ class VItemGroup(AbstractElement):
 
 
 class VLazy(AbstractElement):
-    
+
     """
     Vuetify's VLazy component. See more info and examples |VLazy_vuetify_link|.
 
@@ -5486,7 +5489,7 @@ class VLazy(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-lazy" target="_blank">here</a>
 
-    
+
     :param height: Sets the height for the component.
     :type ['number', 'string']:
     :param max_height: Sets the maximum height for the component.
@@ -5507,9 +5510,9 @@ class VLazy(AbstractElement):
     :type any:
     :param width: Sets the width for the component.
     :type ['number', 'string']:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-lazy", children, **kwargs)
         self._attr_names += [
@@ -5527,7 +5530,7 @@ class VLazy(AbstractElement):
 
 
 class VListItemActionText(AbstractElement):
-    
+
     """
     Vuetify's VListItemActionText component. See more info and examples |VListItemActionText_vuetify_link|.
 
@@ -5535,16 +5538,16 @@ class VListItemActionText(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-list-item-action-text" target="_blank">here</a>
 
-    
-    
+
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-list-item-action-text", children, **kwargs)
 
 
 class VListItemContent(AbstractElement):
-    
+
     """
     Vuetify's VListItemContent component. See more info and examples |VListItemContent_vuetify_link|.
 
@@ -5552,16 +5555,16 @@ class VListItemContent(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-list-item-content" target="_blank">here</a>
 
-    
-    
+
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-list-item-content", children, **kwargs)
 
 
 class VListItemTitle(AbstractElement):
-    
+
     """
     Vuetify's VListItemTitle component. See more info and examples |VListItemTitle_vuetify_link|.
 
@@ -5569,16 +5572,16 @@ class VListItemTitle(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-list-item-title" target="_blank">here</a>
 
-    
-    
+
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-list-item-title", children, **kwargs)
 
 
 class VListItemSubtitle(AbstractElement):
-    
+
     """
     Vuetify's VListItemSubtitle component. See more info and examples |VListItemSubtitle_vuetify_link|.
 
@@ -5586,16 +5589,16 @@ class VListItemSubtitle(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-list-item-subtitle" target="_blank">here</a>
 
-    
-    
+
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-list-item-subtitle", children, **kwargs)
 
 
 class VList(AbstractElement):
-    
+
     """
     Vuetify's VList component. See more info and examples |VList_vuetify_link|.
 
@@ -5603,7 +5606,7 @@ class VList(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-list" target="_blank">here</a>
 
-    
+
     :param color: See description |VList_vuetify_link|.
     :type string:
     :param dark: See description |VList_vuetify_link|.
@@ -5650,9 +5653,9 @@ class VList(AbstractElement):
     :type boolean:
     :param width: Sets the width for the component.
     :type ['number', 'string']:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-list", children, **kwargs)
         self._attr_names += [
@@ -5683,7 +5686,7 @@ class VList(AbstractElement):
 
 
 class VListGroup(AbstractElement):
-    
+
     """
     Vuetify's VListGroup component. See more info and examples |VListGroup_vuetify_link|.
 
@@ -5691,7 +5694,7 @@ class VListGroup(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-list-group" target="_blank">here</a>
 
-    
+
     :param active_class: See description |VListGroup_vuetify_link|.
     :type string:
     :param append_icon: Appends an icon to the component, uses the same syntax as `v-icon`
@@ -5714,9 +5717,9 @@ class VListGroup(AbstractElement):
     :type boolean:
     :param value: Expands / Collapse the list-group
     :type any:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-list-group", children, **kwargs)
         self._attr_names += [
@@ -5738,7 +5741,7 @@ class VListGroup(AbstractElement):
 
 
 class VListItem(AbstractElement):
-    
+
     """
     Vuetify's VListItem component. See more info and examples |VListItem_vuetify_link|.
 
@@ -5746,7 +5749,7 @@ class VListItem(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-list-item" target="_blank">here</a>
 
-    
+
     :param active_class: See description |VListItem_vuetify_link|.
     :type string:
     :param append: See description |VListItem_vuetify_link|.
@@ -5795,12 +5798,12 @@ class VListItem(AbstractElement):
     :type boolean:
     :param value: See description |VListItem_vuetify_link|.
     :type any:
-    
+
     Events
 
-    :param keydown: 
+    :param keydown:
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-list-item", children, **kwargs)
         self._attr_names += [
@@ -5836,7 +5839,7 @@ class VListItem(AbstractElement):
 
 
 class VListItemAction(AbstractElement):
-    
+
     """
     Vuetify's VListItemAction component. See more info and examples |VListItemAction_vuetify_link|.
 
@@ -5844,16 +5847,16 @@ class VListItemAction(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-list-item-action" target="_blank">here</a>
 
-    
-    
+
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-list-item-action", children, **kwargs)
 
 
 class VListItemAvatar(AbstractElement):
-    
+
     """
     Vuetify's VListItemAvatar component. See more info and examples |VListItemAvatar_vuetify_link|.
 
@@ -5861,7 +5864,7 @@ class VListItemAvatar(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-list-item-avatar" target="_blank">here</a>
 
-    
+
     :param color: See description |VListItemAvatar_vuetify_link|.
     :type string:
     :param height: Sets the height for the component.
@@ -5888,9 +5891,9 @@ class VListItemAvatar(AbstractElement):
     :type boolean:
     :param width: Sets the width for the component.
     :type ['number', 'string']:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-list-item-avatar", children, **kwargs)
         self._attr_names += [
@@ -5911,7 +5914,7 @@ class VListItemAvatar(AbstractElement):
 
 
 class VListItemIcon(AbstractElement):
-    
+
     """
     Vuetify's VListItemIcon component. See more info and examples |VListItemIcon_vuetify_link|.
 
@@ -5919,16 +5922,16 @@ class VListItemIcon(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-list-item-icon" target="_blank">here</a>
 
-    
-    
+
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-list-item-icon", children, **kwargs)
 
 
 class VListItemGroup(AbstractElement):
-    
+
     """
     Vuetify's VListItemGroup component. See more info and examples |VListItemGroup_vuetify_link|.
 
@@ -5936,7 +5939,7 @@ class VListItemGroup(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-list-item-group" target="_blank">here</a>
 
-    
+
     :param active_class: The **active-class** applied to children when they are activated.
     :type string:
     :param color: See description |VListItemGroup_vuetify_link|.
@@ -5955,12 +5958,12 @@ class VListItemGroup(AbstractElement):
     :type string:
     :param value: Sets the active list-item inside the list-group
     :type any:
-    
+
     Events
 
     :param change: Emitted when the component value is changed by user interaction
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-list-item-group", children, **kwargs)
         self._attr_names += [
@@ -5980,7 +5983,7 @@ class VListItemGroup(AbstractElement):
 
 
 class VMain(AbstractElement):
-    
+
     """
     Vuetify's VMain component. See more info and examples |VMain_vuetify_link|.
 
@@ -5988,12 +5991,12 @@ class VMain(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-main" target="_blank">here</a>
 
-    
+
     :param tag: Specify a custom tag used on the root element.
     :type string:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-main", children, **kwargs)
         self._attr_names += [
@@ -6002,7 +6005,7 @@ class VMain(AbstractElement):
 
 
 class VMenu(AbstractElement):
-    
+
     """
     Vuetify's VMenu component. See more info and examples |VMenu_vuetify_link|.
 
@@ -6010,7 +6013,7 @@ class VMenu(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-menu" target="_blank">here</a>
 
-    
+
     :param absolute: Applies **position: absolute** to the component.
     :type boolean:
     :param activator: Designate a custom activator when the `activator` slot is not used. String can be any valid querySelector and Object can be any valid Node.
@@ -6073,7 +6076,7 @@ class VMenu(AbstractElement):
     :type ['number', 'string']:
     :param open_on_click: Designates whether menu should open on activator click
     :type boolean:
-    :param open_on_focus: 
+    :param open_on_focus:
     :type boolean:
     :param open_on_hover: Designates whether menu should open on activator hover
     :type boolean:
@@ -6099,12 +6102,12 @@ class VMenu(AbstractElement):
     :type any:
     :param z_index: The z-index used for the component
     :type ['number', 'string']:
-    
+
     Events
 
     :param input: The updated bound model
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-menu", children, **kwargs)
         self._attr_names += [
@@ -6159,7 +6162,7 @@ class VMenu(AbstractElement):
 
 
 class VNavigationDrawer(AbstractElement):
-    
+
     """
     Vuetify's VNavigationDrawer component. See more info and examples |VNavigationDrawer_vuetify_link|.
 
@@ -6167,7 +6170,7 @@ class VNavigationDrawer(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-navigation-drawer" target="_blank">here</a>
 
-    
+
     :param absolute: Applies **position: absolute** to the component.
     :type boolean:
     :param app: See description |VNavigationDrawer_vuetify_link|.
@@ -6224,14 +6227,14 @@ class VNavigationDrawer(AbstractElement):
     :type any:
     :param width: Sets the width for the component.
     :type ['number', 'string']:
-    
+
     Events
 
     :param input: The updated bound model
     :param transitionend: Emits event object when transition is complete.
     :param update_mini_variant: The `mini-variant.sync` event
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-navigation-drawer", children, **kwargs)
         self._attr_names += [
@@ -6272,7 +6275,7 @@ class VNavigationDrawer(AbstractElement):
 
 
 class VOverflowBtn(AbstractElement):
-    
+
     """
     Vuetify's VOverflowBtn component. See more info and examples |VOverflowBtn_vuetify_link|.
 
@@ -6280,7 +6283,7 @@ class VOverflowBtn(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-overflow-btn" target="_blank">here</a>
 
-    
+
     :param allow_overflow: Allow the menu to overflow off the screen
     :type boolean:
     :param append_icon: Appends an icon to the component, uses the same syntax as `v-icon`
@@ -6307,7 +6310,7 @@ class VOverflowBtn(AbstractElement):
     :type string:
     :param counter: Creates counter for input length; if no number is specified, it defaults to 25. Does not apply any validation.
     :type ['boolean', 'number', 'string']:
-    :param counter_value: 
+    :param counter_value:
     :type function:
     :param dark: See description |VOverflowBtn_vuetify_link|.
     :type boolean:
@@ -6431,7 +6434,7 @@ class VOverflowBtn(AbstractElement):
     :type any:
     :param value_comparator: See description |VOverflowBtn_vuetify_link|.
     :type function:
-    
+
     Events
 
     :param blur: Emitted when the input is blurred
@@ -6448,7 +6451,7 @@ class VOverflowBtn(AbstractElement):
     :param update_list_index: Emitted when menu item is selected using keyboard arrows
     :param update_search_input: The `search-input.sync` event
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-overflow-btn", children, **kwargs)
         self._attr_names += [
@@ -6549,7 +6552,7 @@ class VOverflowBtn(AbstractElement):
 
 
 class VOverlay(AbstractElement):
-    
+
     """
     Vuetify's VOverlay component. See more info and examples |VOverlay_vuetify_link|.
 
@@ -6557,7 +6560,7 @@ class VOverlay(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-overlay" target="_blank">here</a>
 
-    
+
     :param absolute: Applies **position: absolute** to the component.
     :type boolean:
     :param color: See description |VOverlay_vuetify_link|.
@@ -6572,9 +6575,9 @@ class VOverlay(AbstractElement):
     :type any:
     :param z_index: The z-index used for the component
     :type ['number', 'string']:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-overlay", children, **kwargs)
         self._attr_names += [
@@ -6589,7 +6592,7 @@ class VOverlay(AbstractElement):
 
 
 class VPagination(AbstractElement):
-    
+
     """
     Vuetify's VPagination component. See more info and examples |VPagination_vuetify_link|.
 
@@ -6597,12 +6600,12 @@ class VPagination(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-pagination" target="_blank">here</a>
 
-    
+
     :param circle: Shape pagination elements as circles
     :type boolean:
     :param color: See description |VPagination_vuetify_link|.
     :type string:
-    :param current_page_aria_label: 
+    :param current_page_aria_label:
     :type string:
     :param dark: See description |VPagination_vuetify_link|.
     :type boolean:
@@ -6612,30 +6615,30 @@ class VPagination(AbstractElement):
     :type number:
     :param light: Applies the light theme variant to the component.
     :type boolean:
-    :param next_aria_label: 
+    :param next_aria_label:
     :type string:
     :param next_icon: Specify the icon to use for the next icon
     :type string:
-    :param page_aria_label: 
+    :param page_aria_label:
     :type string:
     :param prev_icon: Specify the icon to use for the prev icon
     :type string:
-    :param previous_aria_label: 
+    :param previous_aria_label:
     :type string:
     :param total_visible: Specify the max total visible pagination numbers
     :type ['number', 'string']:
     :param value: Current selected page
     :type number:
-    :param wrapper_aria_label: 
+    :param wrapper_aria_label:
     :type string:
-    
+
     Events
 
     :param input: The updated bound model
     :param next: Emitted when going to next item
     :param previous: Emitted when going to previous item
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-pagination", children, **kwargs)
         self._attr_names += [
@@ -6663,7 +6666,7 @@ class VPagination(AbstractElement):
 
 
 class VSheet(AbstractElement):
-    
+
     """
     Vuetify's VSheet component. See more info and examples |VSheet_vuetify_link|.
 
@@ -6671,7 +6674,7 @@ class VSheet(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-sheet" target="_blank">here</a>
 
-    
+
     :param color: See description |VSheet_vuetify_link|.
     :type string:
     :param dark: See description |VSheet_vuetify_link|.
@@ -6702,9 +6705,9 @@ class VSheet(AbstractElement):
     :type boolean:
     :param width: Sets the width for the component.
     :type ['number', 'string']:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-sheet", children, **kwargs)
         self._attr_names += [
@@ -6727,7 +6730,7 @@ class VSheet(AbstractElement):
 
 
 class VParallax(AbstractElement):
-    
+
     """
     Vuetify's VParallax component. See more info and examples |VParallax_vuetify_link|.
 
@@ -6735,7 +6738,7 @@ class VParallax(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-parallax" target="_blank">here</a>
 
-    
+
     :param alt: Attaches an alt property to the parallax image
     :type string:
     :param height: Sets the height for the component
@@ -6744,9 +6747,9 @@ class VParallax(AbstractElement):
     :type string:
     :param srcset: See description |VParallax_vuetify_link|.
     :type string:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-parallax", children, **kwargs)
         self._attr_names += [
@@ -6758,7 +6761,7 @@ class VParallax(AbstractElement):
 
 
 class VProgressCircular(AbstractElement):
-    
+
     """
     Vuetify's VProgressCircular component. See more info and examples |VProgressCircular_vuetify_link|.
 
@@ -6766,7 +6769,7 @@ class VProgressCircular(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-progress-circular" target="_blank">here</a>
 
-    
+
     :param button: Deprecated - Pending removal
     :type boolean:
     :param color: See description |VProgressCircular_vuetify_link|.
@@ -6781,9 +6784,9 @@ class VProgressCircular(AbstractElement):
     :type ['number', 'string']:
     :param width: Sets the stroke of the circle in pixels
     :type ['number', 'string']:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-progress-circular", children, **kwargs)
         self._attr_names += [
@@ -6798,7 +6801,7 @@ class VProgressCircular(AbstractElement):
 
 
 class VProgressLinear(AbstractElement):
-    
+
     """
     Vuetify's VProgressLinear component. See more info and examples |VProgressLinear_vuetify_link|.
 
@@ -6806,7 +6809,7 @@ class VProgressLinear(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-progress-linear" target="_blank">here</a>
 
-    
+
     :param absolute: Applies **position: absolute** to the component.
     :type boolean:
     :param active: Reduce the height to 0, hiding component
@@ -6845,12 +6848,12 @@ class VProgressLinear(AbstractElement):
     :type boolean:
     :param value: The designated model value for the component.
     :type ['number', 'string']:
-    
+
     Events
 
     :param change: Emitted when the component value is changed by user interaction
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-progress-linear", children, **kwargs)
         self._attr_names += [
@@ -6880,7 +6883,7 @@ class VProgressLinear(AbstractElement):
 
 
 class VRadioGroup(AbstractElement):
-    
+
     """
     Vuetify's VRadioGroup component. See more info and examples |VRadioGroup_vuetify_link|.
 
@@ -6888,7 +6891,7 @@ class VRadioGroup(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-radio-group" target="_blank">here</a>
 
-    
+
     :param active_class: The **active-class** applied to children when they are activated.
     :type string:
     :param append_icon: Appends an icon to the component, uses the same syntax as `v-icon`
@@ -6951,7 +6954,7 @@ class VRadioGroup(AbstractElement):
     :type any:
     :param value_comparator: Apply a custom value comparator function
     :type function:
-    
+
     Events
 
     :param change: Emitted when the input is changed by user interaction
@@ -6959,7 +6962,7 @@ class VRadioGroup(AbstractElement):
     :param click_prepend: Emitted when prepended icon is clicked
     :param update_error: The `error.sync` event
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-radio-group", children, **kwargs)
         self._attr_names += [
@@ -7006,7 +7009,7 @@ class VRadioGroup(AbstractElement):
 
 
 class VRadio(AbstractElement):
-    
+
     """
     Vuetify's VRadio component. See more info and examples |VRadio_vuetify_link|.
 
@@ -7014,7 +7017,7 @@ class VRadio(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-radio" target="_blank">here</a>
 
-    
+
     :param active_class: See description |VRadio_vuetify_link|.
     :type string:
     :param color: See description |VRadio_vuetify_link|.
@@ -7041,7 +7044,7 @@ class VRadio(AbstractElement):
     :type ['boolean', 'object']:
     :param value: The value used when the component is selected in a group. If not provided, the index will be used.
     :type any:
-    
+
     Events
 
     :param change: Emitted when the input is changed by user interaction
@@ -7049,7 +7052,7 @@ class VRadio(AbstractElement):
     :param click_prepend: Emitted when prepended icon is clicked
     :param update_error: The `error.sync` event
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-radio", children, **kwargs)
         self._attr_names += [
@@ -7079,7 +7082,7 @@ class VRadio(AbstractElement):
 
 
 class VRangeSlider(AbstractElement):
-    
+
     """
     Vuetify's VRangeSlider component. See more info and examples |VRangeSlider_vuetify_link|.
 
@@ -7087,7 +7090,7 @@ class VRangeSlider(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-range-slider" target="_blank">here</a>
 
-    
+
     :param append_icon: Appends an icon to the component, uses the same syntax as `v-icon`
     :type string:
     :param background_color: Changes the background-color of the input
@@ -7166,7 +7169,7 @@ class VRangeSlider(AbstractElement):
     :type any:
     :param vertical: Changes slider direction to vertical
     :type boolean:
-    
+
     Events
 
     :param change: Emitted when the input is changed by user interaction
@@ -7177,7 +7180,7 @@ class VRangeSlider(AbstractElement):
     :param start: Slider value emitted at start of slider movement
     :param update_error: The `error.sync` event
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-range-slider", children, **kwargs)
         self._attr_names += [
@@ -7236,7 +7239,7 @@ class VRangeSlider(AbstractElement):
 
 
 class VRating(AbstractElement):
-    
+
     """
     Vuetify's VRating component. See more info and examples |VRating_vuetify_link|.
 
@@ -7244,7 +7247,7 @@ class VRating(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-rating" target="_blank">here</a>
 
-    
+
     :param background_color: The color used empty icons
     :type string:
     :param clearable: Allows for the component to be cleared. Triggers when the icon containing the current value is clicked.
@@ -7291,12 +7294,12 @@ class VRating(AbstractElement):
     :type boolean:
     :param x_small: Makes the component extra small.
     :type boolean:
-    
+
     Events
 
     :param input: Emits the rating number when this value changes
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-rating", children, **kwargs)
         self._attr_names += [
@@ -7330,7 +7333,7 @@ class VRating(AbstractElement):
 
 
 class VResponsive(AbstractElement):
-    
+
     """
     Vuetify's VResponsive component. See more info and examples |VResponsive_vuetify_link|.
 
@@ -7338,7 +7341,7 @@ class VResponsive(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-responsive" target="_blank">here</a>
 
-    
+
     :param aspect_ratio: Sets a base aspect ratio, calculated as width/height. This will only set a **minimum** height, the component can still grow if it has a lot of content.
     :type ['string', 'number']:
     :param content_class: Apply a custom class to the responsive content div.
@@ -7355,9 +7358,9 @@ class VResponsive(AbstractElement):
     :type ['number', 'string']:
     :param width: Sets the width for the component.
     :type ['number', 'string']:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-responsive", children, **kwargs)
         self._attr_names += [
@@ -7373,7 +7376,7 @@ class VResponsive(AbstractElement):
 
 
 class VSelect(AbstractElement):
-    
+
     """
     Vuetify's VSelect component. See more info and examples |VSelect_vuetify_link|.
 
@@ -7381,7 +7384,7 @@ class VSelect(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-select" target="_blank">here</a>
 
-    
+
     :param append_icon: Appends an icon to the component, uses the same syntax as `v-icon`
     :type string:
     :param append_outer_icon: Appends an icon to the outside the component's input, uses same syntax as `v-icon`
@@ -7404,7 +7407,7 @@ class VSelect(AbstractElement):
     :type string:
     :param counter: Creates counter for input length; if no number is specified, it defaults to 25. Does not apply any validation.
     :type ['boolean', 'number', 'string']:
-    :param counter_value: 
+    :param counter_value:
     :type function:
     :param dark: See description |VSelect_vuetify_link|.
     :type boolean:
@@ -7516,7 +7519,7 @@ class VSelect(AbstractElement):
     :type any:
     :param value_comparator: See description |VSelect_vuetify_link|.
     :type function:
-    
+
     Events
 
     :param blur: Emitted when the input is blurred
@@ -7533,7 +7536,7 @@ class VSelect(AbstractElement):
     :param update_list_index: Emitted when menu item is selected using keyboard arrows
     :param update_search_input: The `search-input.sync` event
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-select", children, **kwargs)
         self.ttsSensitive()
@@ -7627,7 +7630,7 @@ class VSelect(AbstractElement):
 
 
 class VSkeletonLoader(AbstractElement):
-    
+
     """
     Vuetify's VSkeletonLoader component. See more info and examples |VSkeletonLoader_vuetify_link|.
 
@@ -7635,7 +7638,7 @@ class VSkeletonLoader(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-skeleton-loader" target="_blank">here</a>
 
-    
+
     :param boilerplate: Remove the loading animation from the skeleton
     :type boolean:
     :param dark: See description |VSkeletonLoader_vuetify_link|.
@@ -7666,9 +7669,9 @@ class VSkeletonLoader(AbstractElement):
     :type object:
     :param width: Sets the width for the component.
     :type ['number', 'string']:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-skeleton-loader", children, **kwargs)
         self._attr_names += [
@@ -7691,7 +7694,7 @@ class VSkeletonLoader(AbstractElement):
 
 
 class VSlider(AbstractElement):
-    
+
     """
     Vuetify's VSlider component. See more info and examples |VSlider_vuetify_link|.
 
@@ -7699,7 +7702,7 @@ class VSlider(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-slider" target="_blank">here</a>
 
-    
+
     :param append_icon: Appends an icon to the component, uses the same syntax as `v-icon`
     :type string:
     :param background_color: Changes the background-color of the input
@@ -7778,7 +7781,7 @@ class VSlider(AbstractElement):
     :type any:
     :param vertical: Changes slider direction to vertical
     :type boolean:
-    
+
     Events
 
     :param change: Emitted when the input is changed by user interaction
@@ -7789,7 +7792,7 @@ class VSlider(AbstractElement):
     :param start: Slider value emitted at start of slider movement
     :param update_error: The `error.sync` event
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-slider", children, **kwargs)
         self._attr_names += [
@@ -7848,7 +7851,7 @@ class VSlider(AbstractElement):
 
 
 class VSlideGroup(AbstractElement):
-    
+
     """
     Vuetify's VSlideGroup component. See more info and examples |VSlideGroup_vuetify_link|.
 
@@ -7856,7 +7859,7 @@ class VSlideGroup(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-slide-group" target="_blank">here</a>
 
-    
+
     :param active_class: The **active-class** applied to children when they are activated.
     :type string:
     :param center_active: Forces the selected component to be centered
@@ -7883,14 +7886,14 @@ class VSlideGroup(AbstractElement):
     :type string:
     :param value: The designated model value for the component.
     :type any:
-    
+
     Events
 
     :param change: Emitted when the component value is changed by user interaction
     :param click_next: Emitted when the next is clicked
     :param click_prev: Emitted when the prev is clicked
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-slide-group", children, **kwargs)
         self._attr_names += [
@@ -7916,7 +7919,7 @@ class VSlideGroup(AbstractElement):
 
 
 class VSlideItem(AbstractElement):
-    
+
     """
     Vuetify's VSlideItem component. See more info and examples |VSlideItem_vuetify_link|.
 
@@ -7924,16 +7927,16 @@ class VSlideItem(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-slide-item" target="_blank">here</a>
 
-    
+
     :param active_class: See description |VSlideItem_vuetify_link|.
     :type string:
     :param disabled: Removes the ability to click or target the component.
     :type boolean:
     :param value: The value used when the component is selected in a group. If not provided, the index will be used.
     :type any:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-slide-item", children, **kwargs)
         self._attr_names += [
@@ -7944,7 +7947,7 @@ class VSlideItem(AbstractElement):
 
 
 class VSnackbar(AbstractElement):
-    
+
     """
     Vuetify's VSnackbar component. See more info and examples |VSnackbar_vuetify_link|.
 
@@ -7952,7 +7955,7 @@ class VSnackbar(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-snackbar" target="_blank">here</a>
 
-    
+
     :param absolute: Applies **position: absolute** to the component.
     :type boolean:
     :param app: Respects boundaries of—and will not overlap with—other `app` components like `v-app-bar`, `v-navigation-drawer`, and `v-footer`.
@@ -8011,12 +8014,12 @@ class VSnackbar(AbstractElement):
     :type boolean:
     :param width: Sets the width for the component.
     :type ['number', 'string']:
-    
+
     Events
 
     :param input: The updated bound model
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-snackbar", children, **kwargs)
         self._attr_names += [
@@ -8056,7 +8059,7 @@ class VSnackbar(AbstractElement):
 
 
 class VSparkline(AbstractElement):
-    
+
     """
     Vuetify's VSparkline component. See more info and examples |VSparkline_vuetify_link|.
 
@@ -8064,7 +8067,7 @@ class VSparkline(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-sparkline" target="_blank">here</a>
 
-    
+
     :param auto_draw: Trace the length of the line when first rendered
     :type boolean:
     :param auto_draw_duration: Amount of time (in ms) to run the trace animation
@@ -8101,9 +8104,9 @@ class VSparkline(AbstractElement):
     :type array:
     :param width: Width of the SVG trendline or bars
     :type ['number', 'string']:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-sparkline", children, **kwargs)
         self._attr_names += [
@@ -8129,7 +8132,7 @@ class VSparkline(AbstractElement):
 
 
 class VSpeedDial(AbstractElement):
-    
+
     """
     Vuetify's VSpeedDial component. See more info and examples |VSpeedDial_vuetify_link|.
 
@@ -8137,7 +8140,7 @@ class VSpeedDial(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-speed-dial" target="_blank">here</a>
 
-    
+
     :param absolute: Applies **position: absolute** to the component.
     :type boolean:
     :param bottom: Aligns the component towards the bottom.
@@ -8162,9 +8165,9 @@ class VSpeedDial(AbstractElement):
     :type string:
     :param value: Controls whether the component is visible or hidden.
     :type any:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-speed-dial", children, **kwargs)
         self._attr_names += [
@@ -8184,7 +8187,7 @@ class VSpeedDial(AbstractElement):
 
 
 class VStepper(AbstractElement):
-    
+
     """
     Vuetify's VStepper component. See more info and examples |VStepper_vuetify_link|.
 
@@ -8192,7 +8195,7 @@ class VStepper(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-stepper" target="_blank">here</a>
 
-    
+
     :param alt_labels: Places the labels beneath the step
     :type boolean:
     :param color: See description |VStepper_vuetify_link|.
@@ -8233,12 +8236,12 @@ class VStepper(AbstractElement):
     :type boolean:
     :param width: Sets the width for the component.
     :type ['number', 'string']:
-    
+
     Events
 
     :param change: Emitted when step is changed by user interaction
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-stepper", children, **kwargs)
         self._attr_names += [
@@ -8269,7 +8272,7 @@ class VStepper(AbstractElement):
 
 
 class VStepperContent(AbstractElement):
-    
+
     """
     Vuetify's VStepperContent component. See more info and examples |VStepperContent_vuetify_link|.
 
@@ -8277,12 +8280,12 @@ class VStepperContent(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-stepper-content" target="_blank">here</a>
 
-    
+
     :param step: Sets step to associate the content to
     :type ['number', 'string']:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-stepper-content", children, **kwargs)
         self._attr_names += [
@@ -8291,7 +8294,7 @@ class VStepperContent(AbstractElement):
 
 
 class VStepperStep(AbstractElement):
-    
+
     """
     Vuetify's VStepperStep component. See more info and examples |VStepperStep_vuetify_link|.
 
@@ -8299,7 +8302,7 @@ class VStepperStep(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-stepper-step" target="_blank">here</a>
 
-    
+
     :param color: See description |VStepperStep_vuetify_link|.
     :type string:
     :param complete: Marks step as complete
@@ -8316,9 +8319,9 @@ class VStepperStep(AbstractElement):
     :type array:
     :param step: Content to display inside step circle
     :type ['number', 'string']:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-stepper-step", children, **kwargs)
         self._attr_names += [
@@ -8337,7 +8340,7 @@ class VStepperStep(AbstractElement):
 
 
 class VStepperHeader(AbstractElement):
-    
+
     """
     Vuetify's VStepperHeader component. See more info and examples |VStepperHeader_vuetify_link|.
 
@@ -8345,16 +8348,16 @@ class VStepperHeader(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-stepper-header" target="_blank">here</a>
 
-    
-    
+
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-stepper-header", children, **kwargs)
 
 
 class VStepperItems(AbstractElement):
-    
+
     """
     Vuetify's VStepperItems component. See more info and examples |VStepperItems_vuetify_link|.
 
@@ -8362,16 +8365,16 @@ class VStepperItems(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-stepper-items" target="_blank">here</a>
 
-    
-    
+
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-stepper-items", children, **kwargs)
 
 
 class VSubheader(AbstractElement):
-    
+
     """
     Vuetify's VSubheader component. See more info and examples |VSubheader_vuetify_link|.
 
@@ -8379,16 +8382,16 @@ class VSubheader(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-subheader" target="_blank">here</a>
 
-    
+
     :param dark: See description |VSubheader_vuetify_link|.
     :type boolean:
     :param inset: Adds indentation (72px)
     :type boolean:
     :param light: Applies the light theme variant to the component.
     :type boolean:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-subheader", children, **kwargs)
         self._attr_names += [
@@ -8399,7 +8402,7 @@ class VSubheader(AbstractElement):
 
 
 class VSwitch(AbstractElement):
-    
+
     """
     Vuetify's VSwitch component. See more info and examples |VSwitch_vuetify_link|.
 
@@ -8407,7 +8410,7 @@ class VSwitch(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-switch" target="_blank">here</a>
 
-    
+
     :param append_icon: Appends an icon to the component, uses the same syntax as `v-icon`
     :type string:
     :param background_color: Changes the background-color of the input
@@ -8472,7 +8475,7 @@ class VSwitch(AbstractElement):
     :type any:
     :param value_comparator: Apply a custom value comparator function
     :type function:
-    
+
     Events
 
     :param change: Emitted when the input is changed by user interaction
@@ -8480,7 +8483,7 @@ class VSwitch(AbstractElement):
     :param click_prepend: Emitted when prepended icon is clicked
     :param update_error: The `error.sync` event
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-switch", children, **kwargs)
         self._attr_names += [
@@ -8529,7 +8532,7 @@ class VSwitch(AbstractElement):
 
 
 class VSystemBar(AbstractElement):
-    
+
     """
     Vuetify's VSystemBar component. See more info and examples |VSystemBar_vuetify_link|.
 
@@ -8537,7 +8540,7 @@ class VSystemBar(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-system-bar" target="_blank">here</a>
 
-    
+
     :param absolute: Applies **position: absolute** to the component.
     :type boolean:
     :param app: See description |VSystemBar_vuetify_link|.
@@ -8556,9 +8559,9 @@ class VSystemBar(AbstractElement):
     :type boolean:
     :param window: Increases the system bar height to 32px (24px default).
     :type boolean:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-system-bar", children, **kwargs)
         self._attr_names += [
@@ -8575,7 +8578,7 @@ class VSystemBar(AbstractElement):
 
 
 class VTabs(AbstractElement):
-    
+
     """
     Vuetify's VTabs component. See more info and examples |VTabs_vuetify_link|.
 
@@ -8583,7 +8586,7 @@ class VTabs(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-tabs" target="_blank">here</a>
 
-    
+
     :param active_class: The **active-class** applied to children when they are activated.
     :type string:
     :param align_with_title: Make `v-tabs` lined up with the toolbar title
@@ -8630,12 +8633,12 @@ class VTabs(AbstractElement):
     :type any:
     :param vertical: Stacks tabs on top of each other vertically.
     :type boolean:
-    
+
     Events
 
     :param change: Emitted when tab is changed by user interaction. Returns a string if **href** attribute is set and number if it is not.
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-tabs", children, **kwargs)
         self._attr_names += [
@@ -8669,7 +8672,7 @@ class VTabs(AbstractElement):
 
 
 class VTab(AbstractElement):
-    
+
     """
     Vuetify's VTab component. See more info and examples |VTab_vuetify_link|.
 
@@ -8677,7 +8680,7 @@ class VTab(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-tab" target="_blank">here</a>
 
-    
+
     :param active_class: See description |VTab_vuetify_link|.
     :type string:
     :param append: See description |VTab_vuetify_link|.
@@ -8710,13 +8713,13 @@ class VTab(AbstractElement):
     :type string:
     :param to: See description |VTab_vuetify_link|.
     :type ['string', 'object']:
-    
+
     Events
 
     :param change: Emitted when tab becomes active
     :param keydown: Emitted when **enter** key is pressed
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-tab", children, **kwargs)
         self._attr_names += [
@@ -8745,7 +8748,7 @@ class VTab(AbstractElement):
 
 
 class VTabItem(AbstractElement):
-    
+
     """
     Vuetify's VTabItem component. See more info and examples |VTabItem_vuetify_link|.
 
@@ -8753,7 +8756,7 @@ class VTabItem(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-tab-item" target="_blank">here</a>
 
-    
+
     :param active_class: See description |VTabItem_vuetify_link|.
     :type string:
     :param disabled: Removes the ability to click or target the component.
@@ -8768,9 +8771,9 @@ class VTabItem(AbstractElement):
     :type ['boolean', 'string']:
     :param value: Sets the value of the tab. If not provided, the index will be used.
     :type any:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-tab-item", children, **kwargs)
         self._attr_names += [
@@ -8785,7 +8788,7 @@ class VTabItem(AbstractElement):
 
 
 class VTabsItems(AbstractElement):
-    
+
     """
     Vuetify's VTabsItems component. See more info and examples |VTabsItems_vuetify_link|.
 
@@ -8793,7 +8796,7 @@ class VTabsItems(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-tabs-items" target="_blank">here</a>
 
-    
+
     :param active_class: The **active-class** applied to children when they are activated.
     :type string:
     :param continuous: If `true`, window will "wrap around" from the last item to the first, and from the first item to the last
@@ -8828,12 +8831,12 @@ class VTabsItems(AbstractElement):
     :type any:
     :param vertical: Uses a vertical transition when changing windows.
     :type boolean:
-    
+
     Events
 
     :param change: Emitted when user swipes between tabs.
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-tabs-items", children, **kwargs)
         self._attr_names += [
@@ -8861,7 +8864,7 @@ class VTabsItems(AbstractElement):
 
 
 class VTabsSlider(AbstractElement):
-    
+
     """
     Vuetify's VTabsSlider component. See more info and examples |VTabsSlider_vuetify_link|.
 
@@ -8869,12 +8872,12 @@ class VTabsSlider(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-tabs-slider" target="_blank">here</a>
 
-    
+
     :param color: See description |VTabsSlider_vuetify_link|.
     :type string:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-tabs-slider", children, **kwargs)
         self._attr_names += [
@@ -8883,7 +8886,7 @@ class VTabsSlider(AbstractElement):
 
 
 class VTextarea(AbstractElement):
-    
+
     """
     Vuetify's VTextarea component. See more info and examples |VTextarea_vuetify_link|.
 
@@ -8891,7 +8894,7 @@ class VTextarea(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-textarea" target="_blank">here</a>
 
-    
+
     :param append_icon: Appends an icon to the component, uses the same syntax as `v-icon`
     :type string:
     :param append_outer_icon: Appends an icon to the outside the component's input, uses same syntax as `v-icon`
@@ -8910,7 +8913,7 @@ class VTextarea(AbstractElement):
     :type string:
     :param counter: Creates counter for input length; if no number is specified, it defaults to 25. Does not apply any validation.
     :type ['boolean', 'number', 'string']:
-    :param counter_value: 
+    :param counter_value:
     :type function:
     :param dark: See description |VTextarea_vuetify_link|.
     :type boolean:
@@ -8996,7 +8999,7 @@ class VTextarea(AbstractElement):
     :type boolean:
     :param value: The input's value
     :type any:
-    
+
     Events
 
     :param blur: Emitted when the input is blurred
@@ -9011,7 +9014,7 @@ class VTextarea(AbstractElement):
     :param keydown: Emitted when **any** key is pressed
     :param update_error: The `error.sync` event
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-textarea", children, **kwargs)
         self._attr_names += [
@@ -9087,7 +9090,7 @@ class VTextarea(AbstractElement):
 
 
 class VTextField(AbstractElement):
-    
+
     """
     Vuetify's VTextField component. See more info and examples |VTextField_vuetify_link|.
 
@@ -9095,7 +9098,7 @@ class VTextField(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-text-field" target="_blank">here</a>
 
-    
+
     :param append_icon: Appends an icon to the component, uses the same syntax as `v-icon`
     :type string:
     :param append_outer_icon: Appends an icon to the outside the component's input, uses same syntax as `v-icon`
@@ -9112,7 +9115,7 @@ class VTextField(AbstractElement):
     :type string:
     :param counter: Creates counter for input length; if no number is specified, it defaults to 25. Does not apply any validation.
     :type ['boolean', 'number', 'string']:
-    :param counter_value: 
+    :param counter_value:
     :type function:
     :param dark: See description |VTextField_vuetify_link|.
     :type boolean:
@@ -9192,7 +9195,7 @@ class VTextField(AbstractElement):
     :type boolean:
     :param value: The input's value
     :type any:
-    
+
     Events
 
     :param blur: Emitted when the input is blurred
@@ -9207,7 +9210,7 @@ class VTextField(AbstractElement):
     :param keydown: Emitted when **any** key is pressed
     :param update_error: The `error.sync` event
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-text-field", children, **kwargs)
         self._attr_names += [
@@ -9279,7 +9282,7 @@ class VTextField(AbstractElement):
 
 
 class VThemeProvider(AbstractElement):
-    
+
     """
     Vuetify's VThemeProvider component. See more info and examples |VThemeProvider_vuetify_link|.
 
@@ -9287,16 +9290,16 @@ class VThemeProvider(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-theme-provider" target="_blank">here</a>
 
-    
+
     :param dark: See description |VThemeProvider_vuetify_link|.
     :type boolean:
     :param light: Applies the light theme variant to the component.
     :type boolean:
     :param root: Use the current value of `$vuetify.theme.dark` as opposed to the provided one.
     :type boolean:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-theme-provider", children, **kwargs)
         self._attr_names += [
@@ -9307,7 +9310,7 @@ class VThemeProvider(AbstractElement):
 
 
 class VTimeline(AbstractElement):
-    
+
     """
     Vuetify's VTimeline component. See more info and examples |VTimeline_vuetify_link|.
 
@@ -9315,7 +9318,7 @@ class VTimeline(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-timeline" target="_blank">here</a>
 
-    
+
     :param align_top: Align caret and dot of timeline items to the top
     :type boolean:
     :param dark: See description |VTimeline_vuetify_link|.
@@ -9326,9 +9329,9 @@ class VTimeline(AbstractElement):
     :type boolean:
     :param reverse: Reverse direction of timeline items
     :type boolean:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-timeline", children, **kwargs)
         self._attr_names += [
@@ -9341,7 +9344,7 @@ class VTimeline(AbstractElement):
 
 
 class VTimelineItem(AbstractElement):
-    
+
     """
     Vuetify's VTimelineItem component. See more info and examples |VTimelineItem_vuetify_link|.
 
@@ -9349,7 +9352,7 @@ class VTimelineItem(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-timeline-item" target="_blank">here</a>
 
-    
+
     :param color: See description |VTimelineItem_vuetify_link|.
     :type string:
     :param dark: See description |VTimelineItem_vuetify_link|.
@@ -9372,9 +9375,9 @@ class VTimelineItem(AbstractElement):
     :type boolean:
     :param small: Small size dot
     :type boolean:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-timeline-item", children, **kwargs)
         self._attr_names += [
@@ -9393,7 +9396,7 @@ class VTimelineItem(AbstractElement):
 
 
 class VTimePicker(AbstractElement):
-    
+
     """
     Vuetify's VTimePicker component. See more info and examples |VTimePicker_vuetify_link|.
 
@@ -9401,7 +9404,7 @@ class VTimePicker(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-time-picker" target="_blank">here</a>
 
-    
+
     :param allowed_hours: Restricts which hours can be selected
     :type ['function', 'array']:
     :param allowed_minutes: Restricts which minutes can be selected
@@ -9446,7 +9449,7 @@ class VTimePicker(AbstractElement):
     :type any:
     :param width: Width of the picker
     :type ['number', 'string']:
-    
+
     Events
 
     :param change: Emitted when the time selection is done (when user changes the minute for HH:MM picker and the second for HH:MM:SS picker
@@ -9456,7 +9459,7 @@ class VTimePicker(AbstractElement):
     :param input: The updated bound model
     :param update_period: Emitted when user clicks the AM/PM button
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-time-picker", children, **kwargs)
         self._attr_names += [
@@ -9494,7 +9497,7 @@ class VTimePicker(AbstractElement):
 
 
 class VToolbar(AbstractElement):
-    
+
     """
     Vuetify's VToolbar component. See more info and examples |VToolbar_vuetify_link|.
 
@@ -9502,7 +9505,7 @@ class VToolbar(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-toolbar" target="_blank">here</a>
 
-    
+
     :param absolute: Applies position: absolute to the component.
     :type boolean:
     :param bottom: Aligns the component towards the bottom.
@@ -9519,7 +9522,7 @@ class VToolbar(AbstractElement):
     :type ['number', 'string']:
     :param extended: Use this prop to increase the height of the toolbar _without_ using the `extension` slot for adding content. May be used in conjunction with the **extension-height** prop, and any of the other props that affect the height of the toolbar, e.g. **prominent**, **dense**, etc., **WITH THE EXCEPTION** of **height**.
     :type boolean:
-    :param extension_height: Specify an explicit height for the `extension` slot. 
+    :param extension_height: Specify an explicit height for the `extension` slot.
     :type ['number', 'string']:
     :param flat: Removes the toolbar's box-shadow.
     :type boolean:
@@ -9555,9 +9558,9 @@ class VToolbar(AbstractElement):
     :type boolean:
     :param width: Sets the width for the component.
     :type ['number', 'string']:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-toolbar", children, **kwargs)
         self._attr_names += [
@@ -9591,7 +9594,7 @@ class VToolbar(AbstractElement):
 
 
 class VToolbarItems(AbstractElement):
-    
+
     """
     Vuetify's VToolbarItems component. See more info and examples |VToolbarItems_vuetify_link|.
 
@@ -9599,16 +9602,16 @@ class VToolbarItems(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-toolbar-items" target="_blank">here</a>
 
-    
-    
+
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-toolbar-items", children, **kwargs)
 
 
 class VToolbarTitle(AbstractElement):
-    
+
     """
     Vuetify's VToolbarTitle component. See more info and examples |VToolbarTitle_vuetify_link|.
 
@@ -9616,16 +9619,16 @@ class VToolbarTitle(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-toolbar-title" target="_blank">here</a>
 
-    
-    
+
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-toolbar-title", children, **kwargs)
 
 
 class VTooltip(AbstractElement):
-    
+
     """
     Vuetify's VTooltip component. See more info and examples |VTooltip_vuetify_link|.
 
@@ -9633,7 +9636,7 @@ class VTooltip(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-tooltip" target="_blank">here</a>
 
-    
+
     :param absolute: Applies **position: absolute** to the component.
     :type boolean:
     :param activator: Designate a custom activator when the `activator` slot is not used. String can be any valid querySelector and Object can be any valid Node.
@@ -9680,7 +9683,7 @@ class VTooltip(AbstractElement):
     :type ['number', 'string']:
     :param open_on_click: Designates whether the tooltip should open on activator click
     :type boolean:
-    :param open_on_focus: 
+    :param open_on_focus:
     :type boolean:
     :param open_on_hover: Designates whether the tooltip should open on activator hover
     :type boolean:
@@ -9700,9 +9703,9 @@ class VTooltip(AbstractElement):
     :type any:
     :param z_index: The z-index used for the component
     :type ['number', 'string']:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-tooltip", children, **kwargs)
         self._attr_names += [
@@ -9743,7 +9746,7 @@ class VTooltip(AbstractElement):
 
 
 class VTreeview(AbstractElement):
-    
+
     """
     Vuetify's VTreeview component. See more info and examples |VTreeview_vuetify_link|.
 
@@ -9751,7 +9754,7 @@ class VTreeview(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-treeview" target="_blank">here</a>
 
-    
+
     :param activatable: Allows user to mark a node as active by clicking on it
     :type boolean:
     :param active: Syncable prop that allows one to control which nodes are active. The array consists of the `item-key` of each active item.
@@ -9818,14 +9821,14 @@ class VTreeview(AbstractElement):
     :type boolean:
     :param value: Allows one to control which nodes are selected. The array consists of the `item-key` of each selected item. Is used with `@input` event to allow for `v-model` binding.
     :type array:
-    
+
     Events
 
     :param input: Emits the array of selected items when this value changes
     :param update_active: Emits the array of active items when this value changes
     :param update_open: Emits the array of open items when this value changes
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-treeview", children, **kwargs)
         self._attr_names += [
@@ -9871,7 +9874,7 @@ class VTreeview(AbstractElement):
 
 
 class VVirtualScroll(AbstractElement):
-    
+
     """
     Vuetify's VVirtualScroll component. See more info and examples |VVirtualScroll_vuetify_link|.
 
@@ -9879,7 +9882,7 @@ class VVirtualScroll(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-virtual-scroll" target="_blank">here</a>
 
-    
+
     :param bench: The number of items **outside** the user view that are rendered (even if they are **not** viewable); to help prevent empty white space when scrolling *fast*.
     :type ['number', 'string']:
     :param height: Height of the component as a css value
@@ -9898,9 +9901,9 @@ class VVirtualScroll(AbstractElement):
     :type ['number', 'string']:
     :param width: Sets the width for the component.
     :type ['number', 'string']:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-virtual-scroll", children, **kwargs)
         self._attr_names += [
@@ -9917,7 +9920,7 @@ class VVirtualScroll(AbstractElement):
 
 
 class VWindow(AbstractElement):
-    
+
     """
     Vuetify's VWindow component. See more info and examples |VWindow_vuetify_link|.
 
@@ -9925,7 +9928,7 @@ class VWindow(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-window" target="_blank">here</a>
 
-    
+
     :param active_class: The **active-class** applied to children when they are activated.
     :type string:
     :param continuous: If `true`, window will "wrap around" from the last item to the first, and from the first item to the last
@@ -9954,12 +9957,12 @@ class VWindow(AbstractElement):
     :type any:
     :param vertical: Uses a vertical transition when changing windows.
     :type boolean:
-    
+
     Events
 
     :param change: Emitted when the component value is changed by user interaction
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-window", children, **kwargs)
         self._attr_names += [
@@ -9984,7 +9987,7 @@ class VWindow(AbstractElement):
 
 
 class VWindowItem(AbstractElement):
-    
+
     """
     Vuetify's VWindowItem component. See more info and examples |VWindowItem_vuetify_link|.
 
@@ -9992,7 +9995,7 @@ class VWindowItem(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-window-item" target="_blank">here</a>
 
-    
+
     :param active_class: See description |VWindowItem_vuetify_link|.
     :type string:
     :param disabled: Prevents the item from becoming active when using the "next" and "prev" buttons or the `toggle` method
@@ -10005,9 +10008,9 @@ class VWindowItem(AbstractElement):
     :type ['boolean', 'string']:
     :param value: The value used when the component is selected in a group. If not provided, the index will be used.
     :type any:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-window-item", children, **kwargs)
         self._attr_names += [
@@ -10021,7 +10024,7 @@ class VWindowItem(AbstractElement):
 
 
 class VCarouselTransition(AbstractElement):
-    
+
     """
     Vuetify's VCarouselTransition component. See more info and examples |VCarouselTransition_vuetify_link|.
 
@@ -10029,7 +10032,7 @@ class VCarouselTransition(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-carousel-transition" target="_blank">here</a>
 
-    
+
     :param group: See description |VCarouselTransition_vuetify_link|.
     :type boolean:
     :param hide_on_leave: Hides the leaving element (no exit animation)
@@ -10040,9 +10043,9 @@ class VCarouselTransition(AbstractElement):
     :type string:
     :param origin: See description |VCarouselTransition_vuetify_link|.
     :type string:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-carousel-transition", children, **kwargs)
         self._attr_names += [
@@ -10055,7 +10058,7 @@ class VCarouselTransition(AbstractElement):
 
 
 class VCarouselReverseTransition(AbstractElement):
-    
+
     """
     Vuetify's VCarouselReverseTransition component. See more info and examples |VCarouselReverseTransition_vuetify_link|.
 
@@ -10063,7 +10066,7 @@ class VCarouselReverseTransition(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-carousel-reverse-transition" target="_blank">here</a>
 
-    
+
     :param group: See description |VCarouselReverseTransition_vuetify_link|.
     :type boolean:
     :param hide_on_leave: Hides the leaving element (no exit animation)
@@ -10074,9 +10077,9 @@ class VCarouselReverseTransition(AbstractElement):
     :type string:
     :param origin: See description |VCarouselReverseTransition_vuetify_link|.
     :type string:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-carousel-reverse-transition", children, **kwargs)
         self._attr_names += [
@@ -10089,7 +10092,7 @@ class VCarouselReverseTransition(AbstractElement):
 
 
 class VTabTransition(AbstractElement):
-    
+
     """
     Vuetify's VTabTransition component. See more info and examples |VTabTransition_vuetify_link|.
 
@@ -10097,7 +10100,7 @@ class VTabTransition(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-tab-transition" target="_blank">here</a>
 
-    
+
     :param group: See description |VTabTransition_vuetify_link|.
     :type boolean:
     :param hide_on_leave: Hides the leaving element (no exit animation)
@@ -10108,9 +10111,9 @@ class VTabTransition(AbstractElement):
     :type string:
     :param origin: See description |VTabTransition_vuetify_link|.
     :type string:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-tab-transition", children, **kwargs)
         self._attr_names += [
@@ -10123,7 +10126,7 @@ class VTabTransition(AbstractElement):
 
 
 class VTabReverseTransition(AbstractElement):
-    
+
     """
     Vuetify's VTabReverseTransition component. See more info and examples |VTabReverseTransition_vuetify_link|.
 
@@ -10131,7 +10134,7 @@ class VTabReverseTransition(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-tab-reverse-transition" target="_blank">here</a>
 
-    
+
     :param group: See description |VTabReverseTransition_vuetify_link|.
     :type boolean:
     :param hide_on_leave: Hides the leaving element (no exit animation)
@@ -10142,9 +10145,9 @@ class VTabReverseTransition(AbstractElement):
     :type string:
     :param origin: See description |VTabReverseTransition_vuetify_link|.
     :type string:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-tab-reverse-transition", children, **kwargs)
         self._attr_names += [
@@ -10157,7 +10160,7 @@ class VTabReverseTransition(AbstractElement):
 
 
 class VMenuTransition(AbstractElement):
-    
+
     """
     Vuetify's VMenuTransition component. See more info and examples |VMenuTransition_vuetify_link|.
 
@@ -10165,7 +10168,7 @@ class VMenuTransition(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-menu-transition" target="_blank">here</a>
 
-    
+
     :param group: See description |VMenuTransition_vuetify_link|.
     :type boolean:
     :param hide_on_leave: Hides the leaving element (no exit animation)
@@ -10176,9 +10179,9 @@ class VMenuTransition(AbstractElement):
     :type string:
     :param origin: See description |VMenuTransition_vuetify_link|.
     :type string:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-menu-transition", children, **kwargs)
         self._attr_names += [
@@ -10191,7 +10194,7 @@ class VMenuTransition(AbstractElement):
 
 
 class VFabTransition(AbstractElement):
-    
+
     """
     Vuetify's VFabTransition component. See more info and examples |VFabTransition_vuetify_link|.
 
@@ -10199,7 +10202,7 @@ class VFabTransition(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-fab-transition" target="_blank">here</a>
 
-    
+
     :param group: See description |VFabTransition_vuetify_link|.
     :type boolean:
     :param hide_on_leave: Hides the leaving element (no exit animation)
@@ -10210,9 +10213,9 @@ class VFabTransition(AbstractElement):
     :type string:
     :param origin: See description |VFabTransition_vuetify_link|.
     :type string:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-fab-transition", children, **kwargs)
         self._attr_names += [
@@ -10225,7 +10228,7 @@ class VFabTransition(AbstractElement):
 
 
 class VDialogTransition(AbstractElement):
-    
+
     """
     Vuetify's VDialogTransition component. See more info and examples |VDialogTransition_vuetify_link|.
 
@@ -10233,7 +10236,7 @@ class VDialogTransition(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-dialog-transition" target="_blank">here</a>
 
-    
+
     :param group: See description |VDialogTransition_vuetify_link|.
     :type boolean:
     :param hide_on_leave: Hides the leaving element (no exit animation)
@@ -10244,9 +10247,9 @@ class VDialogTransition(AbstractElement):
     :type string:
     :param origin: See description |VDialogTransition_vuetify_link|.
     :type string:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-dialog-transition", children, **kwargs)
         self._attr_names += [
@@ -10259,7 +10262,7 @@ class VDialogTransition(AbstractElement):
 
 
 class VDialogBottomTransition(AbstractElement):
-    
+
     """
     Vuetify's VDialogBottomTransition component. See more info and examples |VDialogBottomTransition_vuetify_link|.
 
@@ -10267,7 +10270,7 @@ class VDialogBottomTransition(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-dialog-bottom-transition" target="_blank">here</a>
 
-    
+
     :param group: See description |VDialogBottomTransition_vuetify_link|.
     :type boolean:
     :param hide_on_leave: Hides the leaving element (no exit animation)
@@ -10278,9 +10281,9 @@ class VDialogBottomTransition(AbstractElement):
     :type string:
     :param origin: See description |VDialogBottomTransition_vuetify_link|.
     :type string:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-dialog-bottom-transition", children, **kwargs)
         self._attr_names += [
@@ -10293,7 +10296,7 @@ class VDialogBottomTransition(AbstractElement):
 
 
 class VDialogTopTransition(AbstractElement):
-    
+
     """
     Vuetify's VDialogTopTransition component. See more info and examples |VDialogTopTransition_vuetify_link|.
 
@@ -10301,7 +10304,7 @@ class VDialogTopTransition(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-dialog-top-transition" target="_blank">here</a>
 
-    
+
     :param group: See description |VDialogTopTransition_vuetify_link|.
     :type boolean:
     :param hide_on_leave: Hides the leaving element (no exit animation)
@@ -10312,9 +10315,9 @@ class VDialogTopTransition(AbstractElement):
     :type string:
     :param origin: See description |VDialogTopTransition_vuetify_link|.
     :type string:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-dialog-top-transition", children, **kwargs)
         self._attr_names += [
@@ -10327,7 +10330,7 @@ class VDialogTopTransition(AbstractElement):
 
 
 class VFadeTransition(AbstractElement):
-    
+
     """
     Vuetify's VFadeTransition component. See more info and examples |VFadeTransition_vuetify_link|.
 
@@ -10335,7 +10338,7 @@ class VFadeTransition(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-fade-transition" target="_blank">here</a>
 
-    
+
     :param group: See description |VFadeTransition_vuetify_link|.
     :type boolean:
     :param hide_on_leave: Hides the leaving element (no exit animation)
@@ -10346,9 +10349,9 @@ class VFadeTransition(AbstractElement):
     :type string:
     :param origin: See description |VFadeTransition_vuetify_link|.
     :type string:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-fade-transition", children, **kwargs)
         self._attr_names += [
@@ -10361,7 +10364,7 @@ class VFadeTransition(AbstractElement):
 
 
 class VScaleTransition(AbstractElement):
-    
+
     """
     Vuetify's VScaleTransition component. See more info and examples |VScaleTransition_vuetify_link|.
 
@@ -10369,7 +10372,7 @@ class VScaleTransition(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-scale-transition" target="_blank">here</a>
 
-    
+
     :param group: See description |VScaleTransition_vuetify_link|.
     :type boolean:
     :param hide_on_leave: Hides the leaving element (no exit animation)
@@ -10380,9 +10383,9 @@ class VScaleTransition(AbstractElement):
     :type string:
     :param origin: See description |VScaleTransition_vuetify_link|.
     :type string:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-scale-transition", children, **kwargs)
         self._attr_names += [
@@ -10395,7 +10398,7 @@ class VScaleTransition(AbstractElement):
 
 
 class VScrollXTransition(AbstractElement):
-    
+
     """
     Vuetify's VScrollXTransition component. See more info and examples |VScrollXTransition_vuetify_link|.
 
@@ -10403,7 +10406,7 @@ class VScrollXTransition(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-scroll-x-transition" target="_blank">here</a>
 
-    
+
     :param group: See description |VScrollXTransition_vuetify_link|.
     :type boolean:
     :param hide_on_leave: Hides the leaving element (no exit animation)
@@ -10414,9 +10417,9 @@ class VScrollXTransition(AbstractElement):
     :type string:
     :param origin: See description |VScrollXTransition_vuetify_link|.
     :type string:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-scroll-x-transition", children, **kwargs)
         self._attr_names += [
@@ -10429,7 +10432,7 @@ class VScrollXTransition(AbstractElement):
 
 
 class VScrollXReverseTransition(AbstractElement):
-    
+
     """
     Vuetify's VScrollXReverseTransition component. See more info and examples |VScrollXReverseTransition_vuetify_link|.
 
@@ -10437,7 +10440,7 @@ class VScrollXReverseTransition(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-scroll-x-reverse-transition" target="_blank">here</a>
 
-    
+
     :param group: See description |VScrollXReverseTransition_vuetify_link|.
     :type boolean:
     :param hide_on_leave: Hides the leaving element (no exit animation)
@@ -10448,9 +10451,9 @@ class VScrollXReverseTransition(AbstractElement):
     :type string:
     :param origin: See description |VScrollXReverseTransition_vuetify_link|.
     :type string:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-scroll-x-reverse-transition", children, **kwargs)
         self._attr_names += [
@@ -10463,7 +10466,7 @@ class VScrollXReverseTransition(AbstractElement):
 
 
 class VScrollYTransition(AbstractElement):
-    
+
     """
     Vuetify's VScrollYTransition component. See more info and examples |VScrollYTransition_vuetify_link|.
 
@@ -10471,7 +10474,7 @@ class VScrollYTransition(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-scroll-y-transition" target="_blank">here</a>
 
-    
+
     :param group: See description |VScrollYTransition_vuetify_link|.
     :type boolean:
     :param hide_on_leave: Hides the leaving element (no exit animation)
@@ -10482,9 +10485,9 @@ class VScrollYTransition(AbstractElement):
     :type string:
     :param origin: See description |VScrollYTransition_vuetify_link|.
     :type string:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-scroll-y-transition", children, **kwargs)
         self._attr_names += [
@@ -10497,7 +10500,7 @@ class VScrollYTransition(AbstractElement):
 
 
 class VScrollYReverseTransition(AbstractElement):
-    
+
     """
     Vuetify's VScrollYReverseTransition component. See more info and examples |VScrollYReverseTransition_vuetify_link|.
 
@@ -10505,7 +10508,7 @@ class VScrollYReverseTransition(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-scroll-y-reverse-transition" target="_blank">here</a>
 
-    
+
     :param group: See description |VScrollYReverseTransition_vuetify_link|.
     :type boolean:
     :param hide_on_leave: Hides the leaving element (no exit animation)
@@ -10516,9 +10519,9 @@ class VScrollYReverseTransition(AbstractElement):
     :type string:
     :param origin: See description |VScrollYReverseTransition_vuetify_link|.
     :type string:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-scroll-y-reverse-transition", children, **kwargs)
         self._attr_names += [
@@ -10531,7 +10534,7 @@ class VScrollYReverseTransition(AbstractElement):
 
 
 class VSlideXTransition(AbstractElement):
-    
+
     """
     Vuetify's VSlideXTransition component. See more info and examples |VSlideXTransition_vuetify_link|.
 
@@ -10539,7 +10542,7 @@ class VSlideXTransition(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-slide-x-transition" target="_blank">here</a>
 
-    
+
     :param group: See description |VSlideXTransition_vuetify_link|.
     :type boolean:
     :param hide_on_leave: Hides the leaving element (no exit animation)
@@ -10550,9 +10553,9 @@ class VSlideXTransition(AbstractElement):
     :type string:
     :param origin: See description |VSlideXTransition_vuetify_link|.
     :type string:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-slide-x-transition", children, **kwargs)
         self._attr_names += [
@@ -10565,7 +10568,7 @@ class VSlideXTransition(AbstractElement):
 
 
 class VSlideXReverseTransition(AbstractElement):
-    
+
     """
     Vuetify's VSlideXReverseTransition component. See more info and examples |VSlideXReverseTransition_vuetify_link|.
 
@@ -10573,7 +10576,7 @@ class VSlideXReverseTransition(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-slide-x-reverse-transition" target="_blank">here</a>
 
-    
+
     :param group: See description |VSlideXReverseTransition_vuetify_link|.
     :type boolean:
     :param hide_on_leave: Hides the leaving element (no exit animation)
@@ -10584,9 +10587,9 @@ class VSlideXReverseTransition(AbstractElement):
     :type string:
     :param origin: See description |VSlideXReverseTransition_vuetify_link|.
     :type string:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-slide-x-reverse-transition", children, **kwargs)
         self._attr_names += [
@@ -10599,7 +10602,7 @@ class VSlideXReverseTransition(AbstractElement):
 
 
 class VSlideYTransition(AbstractElement):
-    
+
     """
     Vuetify's VSlideYTransition component. See more info and examples |VSlideYTransition_vuetify_link|.
 
@@ -10607,7 +10610,7 @@ class VSlideYTransition(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-slide-y-transition" target="_blank">here</a>
 
-    
+
     :param group: See description |VSlideYTransition_vuetify_link|.
     :type boolean:
     :param hide_on_leave: Hides the leaving element (no exit animation)
@@ -10618,9 +10621,9 @@ class VSlideYTransition(AbstractElement):
     :type string:
     :param origin: See description |VSlideYTransition_vuetify_link|.
     :type string:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-slide-y-transition", children, **kwargs)
         self._attr_names += [
@@ -10633,7 +10636,7 @@ class VSlideYTransition(AbstractElement):
 
 
 class VSlideYReverseTransition(AbstractElement):
-    
+
     """
     Vuetify's VSlideYReverseTransition component. See more info and examples |VSlideYReverseTransition_vuetify_link|.
 
@@ -10641,7 +10644,7 @@ class VSlideYReverseTransition(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-slide-y-reverse-transition" target="_blank">here</a>
 
-    
+
     :param group: See description |VSlideYReverseTransition_vuetify_link|.
     :type boolean:
     :param hide_on_leave: Hides the leaving element (no exit animation)
@@ -10652,9 +10655,9 @@ class VSlideYReverseTransition(AbstractElement):
     :type string:
     :param origin: See description |VSlideYReverseTransition_vuetify_link|.
     :type string:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-slide-y-reverse-transition", children, **kwargs)
         self._attr_names += [
@@ -10667,7 +10670,7 @@ class VSlideYReverseTransition(AbstractElement):
 
 
 class VExpandTransition(AbstractElement):
-    
+
     """
     Vuetify's VExpandTransition component. See more info and examples |VExpandTransition_vuetify_link|.
 
@@ -10675,12 +10678,12 @@ class VExpandTransition(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-expand-transition" target="_blank">here</a>
 
-    
+
     :param mode: See description |VExpandTransition_vuetify_link|.
     :type string:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-expand-transition", children, **kwargs)
         self._attr_names += [
@@ -10689,7 +10692,7 @@ class VExpandTransition(AbstractElement):
 
 
 class VExpandXTransition(AbstractElement):
-    
+
     """
     Vuetify's VExpandXTransition component. See more info and examples |VExpandXTransition_vuetify_link|.
 
@@ -10697,15 +10700,14 @@ class VExpandXTransition(AbstractElement):
 
         <a href="https://vuetifyjs.com/api/v-expand-x-transition" target="_blank">here</a>
 
-    
+
     :param mode: See description |VExpandXTransition_vuetify_link|.
     :type string:
-    
+
     """
-    
+
     def __init__(self, children=None, **kwargs):
         super().__init__("v-expand-x-transition", children, **kwargs)
         self._attr_names += [
             "mode",
         ]
-

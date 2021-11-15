@@ -157,7 +157,9 @@ renderWindowInteractor.SetRenderWindow(renderWindow)
 renderWindowInteractor.GetInteractorStyle().SetCurrentStyleToTrackballCamera()
 
 reader = vtkXMLUnstructuredGridReader()
-reader.SetFileName(os.path.join(CURRENT_DIRECTORY, "../../../Tutorial/data/disk_out_ref.vtu"))
+reader.SetFileName(
+    os.path.join(CURRENT_DIRECTORY, "../../../Tutorial/data/disk_out_ref.vtu")
+)
 reader.Update()
 dataset = reader.GetOutput()
 

@@ -1,4 +1,3 @@
-from trame import start
 from trame.layouts import FullScreenPage
 from trame.html import vtk, vuetify
 
@@ -67,9 +66,11 @@ layout.children += [
     )
 ]
 
+layout.on_ready = update_view
+
 # -----------------------------------------------------------------------------
 # Main
 # -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    start(layout, on_ready=update_view)
+    layout.start()

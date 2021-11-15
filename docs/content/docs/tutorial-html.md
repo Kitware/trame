@@ -60,7 +60,7 @@ In both the previous statements `v_model` and `suffix`, we defined and initializ
 First, we need to import two more functions from Trame, `get_state` and `update_state`.
 
 ```python
-from trame import start, get_state, update_state
+from trame import get_state, update_state
 ```
 
 From here, we have two capabilities

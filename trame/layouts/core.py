@@ -10,6 +10,7 @@ LOGO_PATH = os.path.abspath(
     os.path.join(os.path.dirname(__file__), "../html/assets/logo.svg")
 )
 
+
 class AbstractLayout:
     def __init__(self, _root_elem, name, favicon=None, on_ready=None):
         self.name = name
@@ -101,6 +102,7 @@ class AbstractLayout:
         tr.validate_key_names()
 
         _app.run_server(port=port)
+
 
 class FullScreenPage(AbstractLayout):
     """

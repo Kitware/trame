@@ -1,3 +1,10 @@
+## [1.4.9](https://github.com/kitware/trame/compare/v1.4.8...v1.4.9) (2021-11-15)
+
+
+### Bug Fixes
+
+* **vuetify:** Improve performances for large dataframes ([23bebbc](https://github.com/kitware/trame/commit/23bebbcc407f3d9368c2f708164145a16d3b6559))
+
 ## [1.4.8](https://github.com/kitware/trame/compare/v1.4.7...v1.4.8) (2021-11-12)
 
 

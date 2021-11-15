@@ -131,6 +131,7 @@ layout.content.children += [
 ```python
 if __name__ == "__main__":
     layout.start()
+```
 
 **Running the Application**
 

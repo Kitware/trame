@@ -260,7 +260,7 @@ visualization = [
         id="selection",
         actor=("{ visibility: !!selection }",),
         property=(
-            "{ color: [0.99,0.13,0.37], representation: 0, pointSize: 5 * pixel_ratio}",
+            "{ color: [0.99,0.13,0.37], representation: 0, pointSize: Math.round(5 * pixel_ratio)}",
         ),
     ),
     vtk.VtkGeometryRepresentation(

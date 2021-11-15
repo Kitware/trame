@@ -1,7 +1,7 @@
 trame.html.deckgl
 =========================
 
-You can find more information about using deck.gl with Trame |module_link|.
+You can find more information about using deck.gl with trame |module_link|.
 
 .. |module_link| raw:: html
 

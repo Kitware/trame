@@ -1,7 +1,7 @@
 trame.html.markdown
 ===========================
 
-You can find more information about using Markdown with Trame |module_link|.
+You can find more information about using Markdown with trame |module_link|.
 
 .. |module_link| raw:: html
 

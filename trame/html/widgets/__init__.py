@@ -79,7 +79,7 @@ class ListBrowser(AbstractElement):
     """
     A component that list items that be used for browsing directories or simple item picking
 
-    :param list: List stored in Trame state
+    :param list: List stored in state
     :param filter: Function to filter list
     :param path_icon:
     :param path_selected_icon:

@@ -1,8 +1,8 @@
 # VTK FEA
 
-This example is a translation from a `dash-vtk` code described in that [repository](https://github.com/shkiefer/dash_vtk_unstructured) using Trame.
+This example is a translation from a `dash-vtk` code described in that [repository](https://github.com/shkiefer/dash_vtk_unstructured) using trame.
 
-In Trame we are exposing 3 approaches:
+In trame we are exposing 3 approaches:
 - client view: 
   This application simulate what dash-vtk is doing by defining the 3D scene in plain HTML structure.
 - remote/local view: 

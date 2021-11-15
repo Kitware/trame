@@ -487,7 +487,7 @@ def contour_card():
 # GUI
 # -----------------------------------------------------------------------------
 
-layout = SinglePageWithDrawer("Trame Viewer", on_ready=html_view.update)
+layout = SinglePageWithDrawer("MultiFilter", on_ready=html_view.update)
 layout.title.set_text("Viewer")
 
 toggle_buttons = [

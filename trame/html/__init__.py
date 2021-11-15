@@ -34,7 +34,7 @@ HTML_CTX = ElementContextManager()
 
 class AbstractElement:
     """
-    A Vue component which can integrate with the rest of Trame
+    A Vue component which can integrate with the rest of trame
 
     See Vue docs |vue_doc_link| for more info
 
@@ -218,7 +218,7 @@ class AbstractElement:
                     and not isinstance(value, (tuple, list))
                 ):
                     print(
-                        f'Warning: A Vue directive is evaluating your expression and Trame would expect a tuple instead of a plain type. <{self._elem_name} {js_key}="{value}" ... />'
+                        f'Warning: A Vue directive is evaluating your expression and trame would expect a tuple instead of a plain type. <{self._elem_name} {js_key}="{value}" ... />'
                     )
 
                 if isinstance(value, (tuple, list)):
@@ -380,7 +380,7 @@ class AbstractElement:
 
 class Element(AbstractElement):
     """
-    Any html element you would like to use in Trame
+    Any html element you would like to use in trame
 
     :param _elem_name: The name of the element, like 'div' for a ``<div/>`` element
     :type _elem_name: str

@@ -207,7 +207,7 @@ class {name}(AbstractElement):
 def init_argparse():
     parser = argparse.ArgumentParser(
         usage="%(prog)s [OPTION] [FILE]",
-        description="Generate vuetify module for Trame",
+        description="Generate vuetify module for trame",
     )
     parser.add_argument("-i", "--input", required=True)
     parser.add_argument("-o", "--output")

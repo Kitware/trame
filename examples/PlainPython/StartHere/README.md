@@ -1,5 +1,5 @@
 # Starting Examples
-These should illustrate the most important concepts of Trame.
+These should illustrate the most important concepts of trame.
 
 # Example 1 - Reading shared state
 The buttons here trigger changes in the shared state, and UI responds.

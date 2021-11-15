@@ -53,7 +53,7 @@ def get_app_instance():
     if APP:
         return APP
 
-    create_app("Trame Created Application")
+    create_app("Application")
     return APP
 
 
@@ -131,7 +131,7 @@ def create_app(name):
 
 def start(layout=None, name=None, favicon=None, on_ready=None, port=None, debug=False):
     """
-    Start the Trame web server for your application
+    Start the web server for your application
 
     :param layout: UI content that should be used for your application
     :type layout: None | str | trame.layouts.*
@@ -540,7 +540,7 @@ def main():
     """
     _app = get_app_instance()
     parser = _app.cli_parser
-    parser.add_argument("script", help="The Trame script to run")
+    parser.add_argument("script", help="The script to run")
     parser.add_argument(
         "--dev", help="Allow to dynamically reload server", action="store_true"
     )

@@ -1,15 +1,15 @@
-## Contributing to Trame
+## Contributing to trame
 
-First off, thank you for considering contributing to Trame. It’s people like you that make Trame such a great tool.
+First off, thank you for considering contributing to trame. It’s people like you that make trame such a great tool.
 
 ## Support
-For help and support in using Trame, please visit our forum [here](https://discourse.paraview.org)
+For help and support in using trame, please visit our forum [here](https://discourse.paraview.org)
 
 ## Issues, bugs, and feature requests
 Open a new issues [here](https://github.com/Kitware/trame/issues/new/choose) to bring something to our attention.
 
 ## Development
-We recommend this workflow when working on Trame
+We recommend this workflow when working on trame
 
 1. Fork and clone this repository (instructions [here](https://help.github.com/articles/fork-a-repo/))
 
@@ -20,7 +20,7 @@ python3 -m venv .venv
 source .venv/bin/activate
 ```
 
-3. `pip` install Trame in "editable mode." This will let python respond to any changes you make to Trame itself.
+3. `pip` install trame in "editable mode." This will let python respond to any changes you make to trame itself.
 ```sh
 pip install -e .
 ```

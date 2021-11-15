@@ -1,7 +1,7 @@
 trame.html.vega
 =======================
 
-You can find more information about using Vega with Trame |module_link|.
+You can find more information about using Vega with trame |module_link|.
 
 .. |module_link| raw:: html
 

@@ -9,9 +9,9 @@ module.exports = {
   api: ['../trame'],
   examples: [],
   config: {
-    title: 'Trame',
-    subtitle: '"Trame the core of your next Web Application"',
-    description: '"Trame a solution for building interactive applications using a Web front-end"',
+    title: 'trame',
+    subtitle: '"trame the core of your next Web Application"',
+    description: '"trame a solution for building interactive applications using a Web front-end"',
     author: 'Kitware Inc.',
     timezone: 'UTC',
     url: 'https://kitware.github.io/trame',

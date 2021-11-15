@@ -228,7 +228,7 @@ class VtkShareDataset(AbstractElement):
         self._attr_names += ["port", "name"]
 
 
-class VtkSyncView(AbstractElement):
+class VtkLocalView(AbstractElement):
     def __init__(self, view, ref="view", **kwargs):
         super().__init__("vtk-sync-view", **kwargs)
         self.__scene_id = f"scene_{ref}"
@@ -248,10 +248,6 @@ class VtkSyncView(AbstractElement):
     def reset_camera(self):
         _app = get_app_instance()
         _app.update(ref=self.__ref, method="resetCamera")
-
-
-class VtkLocalView(VtkSyncView):
-    pass
 
 
 class VtkView(AbstractElement):

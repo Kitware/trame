@@ -16,6 +16,27 @@
   </url>
   
   <url>
+    <loc>https://kitware.github.io/trame/docs/concepts.html</loc>
+    
+    <lastmod>2021-11-15</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/getting_started.html</loc>
+    
+    <lastmod>2021-11-15</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/howdoi-cli.html</loc>
+    
+    <lastmod>2021-11-15</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://kitware.github.io/trame/docs/howdoi-download.html</loc>
     
     <lastmod>2021-11-15</lastmod>
@@ -93,14 +114,14 @@
   </url>
   
   <url>
-    <loc>https://kitware.github.io/trame/docs/module-vtk.html</loc>
+    <loc>https://kitware.github.io/trame/docs/module-vega.html</loc>
     
     <lastmod>2021-11-15</lastmod>
     
   </url>
   
   <url>
-    <loc>https://kitware.github.io/trame/docs/module-vega.html</loc>
+    <loc>https://kitware.github.io/trame/docs/module-vtk.html</loc>
     
     <lastmod>2021-11-15</lastmod>
     
@@ -185,27 +206,6 @@
   
   <url>
     <loc>https://kitware.github.io/trame/docs/api.html</loc>
-    
-    <lastmod>2021-11-15</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/concepts.html</loc>
-    
-    <lastmod>2021-11-15</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/getting_started.html</loc>
-    
-    <lastmod>2021-11-15</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/howdoi-cli.html</loc>
     
     <lastmod>2021-11-15</lastmod>
     

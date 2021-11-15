@@ -1,9 +1,19 @@
 # ParaView
 
-ParaView comes with its Python which might be missing some dependencies for your usage.
-You can add more Python package into your ParaView by create a virtual environment (not the venv one but [the original](https://virtualenv.pypa.io/en/latest/)) and activate it inside your application.
+## Download ParaView
 
-**First** you need to setup your ParaView add-on python environment in which we will only install `trame` but you could add any other of your Python libraries that are not included in the ParaView bundle.
+ParaView can be downloaded from [here](https://www.paraview.org/paraview-downloads/download.php).
+
+## Virtual Environment
+
+ParaView comes with its own Python, which may be missing some dependencies for the desired usage.
+We can add more Python packages into ParaView by create a virtual environment (not the venv one but [the original](https://virtualenv.pypa.io/en/latest/) one) and activate it inside your application.
+
+```python
+pip3 install virtualenv
+```
+
+**First**, we need to setup the ParaView add-on python environment, which we will only install ***trame***, but we could add any other Python libraries that are not included in the ParaView bundle.
 
 ```bash
 virtualenv -p python3.9 pv-lib
@@ -13,12 +23,12 @@ deactivate
 ```
 
 **Note:**
- - You can not use your virtual environment with a `vtk` as your `vtk` library will conflict with the one inside Paraview.
- - Since ParaView include vtk, any VTK example can be run with ParaView assuming you have the proper code to handle the virtual-env loading to get `trame` inside your Python script.
+ - We can not use our virtual environment with a `vtk` as our `vtk` library will conflict with the one inside Paraview.
+ - Since ParaView includes `vtk`, any VTK example can be run with ParaView assuming the proper code is used to handle the virtual-env loading to get ***trame*** inside our Python script.
 
-## Making trame available in ParaView
+## Making ***trame*** available in ParaView
 
-Inside your script at the very top of your script you will need to add the following set of lines
+At the very top of our scripts, we need to add the following lines of code to set up the virtual environment:
 
 ```python
 import sys
@@ -29,23 +39,24 @@ if "--virtual-env" in sys.argv:
     exec(open(virtualEnv).read(), {"__file__": virtualEnv})
 ```
 
-After that you should be able to import `trame` and start using it assuming you run your application with the `--virtual-env /path/to/virtual-env/with/trame` argument.
+After that we can import ***trame*** and start using it (assuming we run our application with the `--virtual-env /path/to/virtual-env/with/trame` argument).
 
-The command line below illustrate how a SimpleCone example can be run on a Mac where ParaView 5.10 has been installed.
+## Running an example
+
+The command line below illustrate how a SimpleCone example can be run on a **Mac** computer where ParaView 5.10 has been installed.
 
 ```bash
-/Applications/ParaView-5.10.0-RC1.app/Contents/bin/pvpython ./examples/ParaView/SimpleCone/RemoteRendering.py --virtual-env ./py-lib
+/Applications/ParaView-5.10.0-RC1.app/Contents/bin/pvpython \
+          ./examples/ParaView/SimpleCone/RemoteRendering.py \
+                                              --virtual-env \
+                                              ./pv-lib
 ```
 
-![Simple Cone](https://kitware.github.io/trame/examples/pvSimpleCone-Remote.jpg)
+## Understanding this ParaView example
 
-## Understanding ParaView example
+ParaView use proxies which abstracts the VTK object handling so they can be easily distributed for very large datasets.
 
-ParaView use proxies which abstract vtk object handling so they can be easily distributed for handling very large datasets.
-
-For simplified usage, ParaView provide a `simple` package that let you create and interact with those proxies in a easier manner.
-
-The SimpleCone example is extremely basic but provide the core concepts needed to understand what ParaView is doing under the cover.
+For simplified usage, ParaView provides a `simple` package that lets us ***simply*** create and interact with these proxies. The `SimpleCone.py` example provides the core concepts needed to understand how to work with ParaView.
 
 
 ```python
@@ -56,7 +67,7 @@ representation = simple.Show(cone) # Create a representation in a view (if no vi
 view = simple.Render()             # Ask to compute image of active view and return the corresponding view
 ```
 
-With those 3 simple lines we created a full pipeline with a view. Now we can use our trame magic to show that view to the client.
+With these three lines, we create a full pipeline and a view. Now, we can use ***trame*** to show that view in the client. 
 
 ```python
 from trame.html import vuetify, paraview
@@ -75,9 +86,22 @@ with layout.content:
     )
 ```
 
-Now we can start adding some UI to control some of the parameters that we want to edit dynamically. Let's add a slider to control the resolution of the cone.
+The rest of the code looks very similar to the VTK Hello ***trame*** example, but instead of importing the `vtk` module of ***trame***
 
-Let's create the method to react when `resolution` is changed by the ui. In ParaView proxies, object parameters are simple properties that can be get or set in a transparent manner. At that point we just need to edit `cone.Resolution` and update the view to reflect the change we just made.
+```python
+from trame.html import vuetify, vtk
+```
+
+we import the `paraview` module
+
+```python
+from trame.html import vuetify, paraview
+```
+
+## GUI
+
+Now we can start adding some UI to control some of the parameters that we want to interact with dynamically.
+Let's add a slider to control the resolution of the cone. We need to create a method to react when the `resolution` is changed by the slider. In ParaView proxies, object parameters are simple properties that can be get or set in a transparent manner. At this point, we simply need to update the `cone.Resolution` and update the view to see the change.
 
 ```python
 @change("resolution")
@@ -86,7 +110,7 @@ def update_cone(resolution, **kwargs):
     html_view.update()
 ```
 
-Now we can add the UI with that slider
+Now, we can extend the UI with a slider on the `layout.toolbar`
 
 ```python
 DEFAULT_RESOLUTION = 6
@@ -102,7 +126,11 @@ with layout.toolbar:
     )
 ```
 
-And with those few set of lines we have a 3D cone on which we can adjust the resolution using ParaView. To learn more about ParaView scripting, you should look into ParaView trace which let you convert your UI interaction into actual Python code that can then be reused in your application.
+With these few lines, we have created a 3D cone, which we can adjust the resolution all leveraging ParaView.
+
+To learn more about ParaView scripting, you should look into ParaView trace which let you convert your UI interaction into actual Python code that can then be reused in your application.
+
+
 
 ## Advanced example
 

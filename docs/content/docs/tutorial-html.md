@@ -1,12 +1,12 @@
 # HTML 
 
-trame leverages Vuetify as its primary UI Component Library for defining HTML graphics user interfaces (GUI). [Vuetify](https://vuetifyjs.com/en/introduction/why-vuetify/#what-is-vuetify3f) is a mature, efficient, and expansive framework for good-looking web applications with the same simple state management system as trame. trame makes Vuetify available in your Python with minimal overhead. 
+***trame*** leverages Vuetify as its primary UI Component Library for defining HTML graphics user interfaces (GUI). [Vuetify](https://vuetifyjs.com/en/introduction/why-vuetify/#what-is-vuetify3f) is a mature, efficient, and expansive framework for good-looking web applications with the same simple state management system as ***trame***. ***trame*** makes Vuetify available in your Python with minimal overhead. 
 
 [![Vuetify WebSite](../images/module-vuetify.jpg)](https://vuetifyjs.com/en/)
 
 ## Using Veutify
 
-We expose all Vuetify components. As an example, let's look at how we would make a simple text box. This is taken from Vuetify's excellent [examples and documentation](https://vuetifyjs.com/en/components/text-fields/), which we recommend you consult while writing frontends with trame. 
+We expose all Vuetify components. As an example, let's look at how we would make a simple text box. This is taken from Vuetify's excellent [examples and documentation](https://vuetifyjs.com/en/components/text-fields/), which we recommend you consult while writing frontends with ***trame***. 
 
 ```javascript
 // Somewhere in javascript
@@ -23,7 +23,7 @@ Here we have a vuetify text field (`v-text-field`). In Vue, the `v-model` is a d
 
 We've included, optionally, a `label` and a `suffix` for the text box. The `label` is a static string or title, and the `suffix` could be a static string, but the "`:`" in `:suffix` means we will look up and use the contents of a variable `currentSuffix`. This variable could change to 'kg' if our user prefers the metric system.
 
-Looking through the Vuetify documentation, we see a large number of wonderful user interface (UI) components. trame exposes Vuetify from within Python. Access to Vuetify is provided through trame using the following import.
+Looking through the Vuetify documentation, we see a large number of wonderful user interface (UI) components. ***trame*** exposes Vuetify from within Python. Access to Vuetify is provided through ***trame*** using the following import.
 
 ```python
 from trame.html import vuetify
@@ -43,7 +43,7 @@ Exposing Vuetify in Python was accomplished by making a few syntax changes.
 
 5. For events, HTML uses the `@` like `@click="runMethod"` to set the function to call upon a click event and double quotes on the String name of the function to run. In our Python version of Vuetify, we ignore the `@` and use the reference to the function instead of a the String name of the function call like `vuetify.VBtn(click=runMethod)`.
 
-Given these rules, we can recreate the JavaScript/HTML text field example in trame as follows.
+Given these rules, we can recreate the JavaScript/HTML text field example in ***trame*** as follows.
 
 ```python
 field = VTextField(
@@ -57,7 +57,7 @@ field = VTextField(
 
 In both the previous statements `v_model` and `suffix`, we defined and initialized state variables. These variables are available from both the client and server side. 
 
-First, we need to import two more functions from trame, `get_state` and `update_state`.
+First, we need to import two more functions from ***trame***, `get_state` and `update_state`.
 
 ```python
 from trame import get_state, update_state
@@ -95,15 +95,19 @@ In the `increment_weight` function, we use the `get_state` function to access th
 
 ## GUI
 
-Let's modify the Hello trame app to add some GUI elements!
+Let's modify the Hello ***trame*** application to add some GUI elements!
+
+<p style="text-align:center;"><img src="../images/tutorial-light.jpg" alt="Light Mode" style="width: 45%; height: 45%"><img src="../images/tutorial-dark.jpg" alt="Dark Mode" style="width: 45%; height: 45%"></p>
 
 So with the `SinglePage` layout, we could add UI elements to either the `toolbar`, `content`, or the `footer`. We'll limit ourself to the `toolbar`, but the proceedure is still the same. Let us add to the right side of the `toolbar` a switch to toggle between light and dark mode of the application and a button to reset the view after panning and zooming.
+
+<p style="text-align:center;"><img src="../images/tutorial-buttons.jpg" alt="Light Mode" style="width: 25%; height: 25%"></p>
 
 - The VSpacer Vuetify component pushes the extra space on the left side of the component. 
 
 - The VSwitch component toggles between two different states. In this case, we will update a Vuetify variable vuetify.theme.dark. The hide_details attribute creates a smaller, tighter switch.
 
-- The VBtn component is a button. We decorate the button with a VIcon component where the argument is a String identifying the [Material Design Icons](https://materialdesignicons.com/) instead of text in this case. The VBtn icon attribute provides proper sizing and padding for the icon. Finally, the click attribute tells the application what method to call when the button is pressed. In this case, we use an internal trame function, `$refs.view.resetCamera()`. 
+- The VBtn component is a button. We decorate the button with a VIcon component where the argument is a String identifying the [Material Design Icons](https://materialdesignicons.com/) instead of text in this case. The VBtn icon attribute provides proper sizing and padding for the icon. Finally, the click attribute tells the application what method to call when the button is pressed. In this case, we use an internal ***trame*** function, `$refs.view.resetCamera()`. 
 
 **Note**: A ref (reference) is made by `vtk.VtkLocalView(renderWindow)` or `vtk.VtkRemoteView(renderWindow)`. By default, `ref="view"`. If you would like to change this or add additional views, the use `vtk.VtkLocalView(renderWindow, ref="newViewName")`.
 
@@ -123,6 +127,14 @@ layout.toolbar.children += [
     ),
 ]
 ```
+**Running the Application**
+
+```bash
+cd examples/Tutorial/HTML
+python ./app.py --port 1234
+```
+
+Open a browser to `http://localhost:1234/`
 
 ## `with` Construct
 
@@ -157,15 +169,26 @@ with layout.content:
 
 We think it easy to see that utilizing the `with` construct is much more Pythonic and creates clean readable code, but use either coding style according to your preferences.
 
+**Running the Application**
+
+```bash
+cd examples/Tutorial/HTML
+python ./app-with.py --port 1234
+```
+
 ## Callbacks
 
-We realley want to enable our GUI to interact with our visualization (or application, in general). For example, we want to adjust the `resolution` (number of line segments) that approximates circle used in defining the cone. 
+We really want to enable our GUI to interact with our visualization (or application, in general). For example, we want to adjust the `resolution` (number of line segments) that approximates circle used in defining the cone. 
+
+<p style="text-align:center;"><img src="../images/tutorial-callbacks.jpg" alt="Callbacks" style="width: 75%; height: 75%"></p>
 
 By default, the `resolution` is 6, defined in the Globals section. 
 
 ```python
 DEFAULT_RESOLUTION = 6
 ```
+
+<p style="text-align:center;"><img src="../images/tutorial-callbacks-gui.jpg" alt="Callbacks GUI" style="width: 25%; height: 25%"></p>
 
 Let's add a `VSlider` for adjusting the resolution, a `VBtn` with `VIcon` to reset the resolution to the default value, and a vertical `VDivider` to separate our visualization GUI from the application GUI. The following is added after the `VSpacer` component at the beginning of the `with` `toolbar` *flow*.
 
@@ -213,3 +236,10 @@ def reset_resolution():
 **Note**: If you plan to pass arguments to the `trigger` function, then you would use the decorator.
 
 Both of these functions should be included in the Functions or Callbacks section of the code.
+
+**Running the Application**
+
+```bash
+cd examples/Tutorial/HTML
+python ./app-callbacks.py --port 1234
+```

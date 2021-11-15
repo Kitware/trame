@@ -89,7 +89,8 @@ layout.state = {
     "selectData": None,
     "tooltip": "",
     "coneVisibility": False,
-    # Meshed
+    "pixel_ratio": 1,
+    # Meshes
     "f1Visible": True,
 }
 
@@ -144,7 +145,7 @@ def update_selection(selectData, **kwargs):
 
 
 @tr.change("pickData")
-def update_tooltip(pickData, **kwargs):
+def update_tooltip(pickData, pixel_ratio, **kwargs):
     tr.update_state("tooltip", "")
     tr.update_state("tooltipStyle", {"display": "none"})
     tr.update_state("coneVisibility", False)
@@ -196,8 +197,8 @@ def update_tooltip(pickData, **kwargs):
                     "tooltipStyle",
                     {
                         "position": "absolute",
-                        "left": f"{x + 10}px",
-                        "bottom": f"{y + 10}px",
+                        "left": f"{(x / pixel_ratio )+ 10}px",
+                        "bottom": f"{(y / pixel_ratio ) + 10}px",
                         "zIndex": 10,
                         "pointerEvents": "none",
                     },

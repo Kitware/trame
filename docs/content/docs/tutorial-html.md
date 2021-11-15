@@ -1,12 +1,12 @@
-# HTML 
+# HTML
 
-***trame*** leverages Vuetify as its primary UI Component Library for defining HTML graphics user interfaces (GUI). [Vuetify](https://vuetifyjs.com/en/introduction/why-vuetify/#what-is-vuetify3f) is a mature, efficient, and expansive framework for good-looking web applications with the same simple state management system as ***trame***. ***trame*** makes Vuetify available in your Python with minimal overhead. 
+***trame*** leverages Vuetify as its primary UI Component Library for defining HTML graphics user interfaces (GUI). [Vuetify](https://vuetifyjs.com/en/introduction/why-vuetify/#what-is-vuetify3f) is a mature, efficient, and expansive framework for good-looking web applications with the same simple state management system as ***trame***. ***trame*** makes Vuetify available in your Python with minimal overhead.
 
 [![Vuetify WebSite](../images/module-vuetify.jpg)](https://vuetifyjs.com/en/)
 
-## Using Veutify
+## Using Vuetify
 
-We expose all Vuetify components. As an example, let's look at how we would make a simple text box. This is taken from Vuetify's excellent [examples and documentation](https://vuetifyjs.com/en/components/text-fields/), which we recommend you consult while writing frontends with ***trame***. 
+We expose all Vuetify components. As an example, let's look at how we would make a simple text box. This is taken from Vuetify's excellent [examples and documentation](https://vuetifyjs.com/en/components/text-fields/), which we recommend you consult while writing frontends with ***trame***.
 
 ```javascript
 // Somewhere in javascript
@@ -19,7 +19,7 @@ const myWeight = 28.0;
 ```
 <img src="../images/vuetify-example.gif" />
 
-Here we have a vuetify text field (`v-text-field`). In Vue, the `v-model` is a directive that provides two-way data binding between an input and form data or between two components. The variable `myWeight` is bound by the `v-model` attribute, so the shared state can read from it (shown in the GUI form) and write to it (input to the form stored as the variable contents). 
+Here we have a vuetify text field (`v-text-field`). In Vue, the `v-model` is a directive that provides two-way data binding between an input and form data or between two components. The variable `myWeight` is bound by the `v-model` attribute, so the shared state can read from it (shown in the GUI form) and write to it (input to the form stored as the variable contents).
 
 We've included, optionally, a `label` and a `suffix` for the text box. The `label` is a static string or title, and the `suffix` could be a static string, but the "`:`" in `:suffix` means we will look up and use the contents of a variable `currentSuffix`. This variable could change to 'kg' if our user prefers the metric system.
 
@@ -47,15 +47,15 @@ Given these rules, we can recreate the JavaScript/HTML text field example in ***
 
 ```python
 field = VTextField(
-    label="Weight", 
-    v_model=("myWeight",28), 
+    label="Weight",
+    v_model=("myWeight",28),
     suffix=("currentSuffix","lbs"),
 )
 ```
 
 ## State
 
-In both the previous statements `v_model` and `suffix`, we defined and initialized state variables. These variables are available from both the client and server side. 
+In both the previous statements `v_model` and `suffix`, we defined and initialized state variables. These variables are available from both the client and server side.
 
 First, we need to import two more functions from ***trame***, `get_state` and `update_state`.
 
@@ -103,11 +103,11 @@ So with the `SinglePage` layout, we could add UI elements to either the `toolbar
 
 <p style="text-align:center;"><img src="../images/tutorial-buttons.jpg" alt="Light Mode" style="width: 25%; height: 25%"></p>
 
-- The VSpacer Vuetify component pushes the extra space on the left side of the component. 
+- The VSpacer Vuetify component pushes the extra space on the left side of the component.
 
 - The VSwitch component toggles between two different states. In this case, we will update a Vuetify variable vuetify.theme.dark. The hide_details attribute creates a smaller, tighter switch.
 
-- The VBtn component is a button. We decorate the button with a VIcon component where the argument is a String identifying the [Material Design Icons](https://materialdesignicons.com/) instead of text in this case. The VBtn icon attribute provides proper sizing and padding for the icon. Finally, the click attribute tells the application what method to call when the button is pressed. In this case, we use an internal ***trame*** function, `$refs.view.resetCamera()`. 
+- The VBtn component is a button. We decorate the button with a VIcon component where the argument is a String identifying the [Material Design Icons](https://materialdesignicons.com/) instead of text in this case. The VBtn icon attribute provides proper sizing and padding for the icon. Finally, the click attribute tells the application what method to call when the button is pressed. In this case, we use an internal ***trame*** function, `$refs.view.resetCamera()`.
 
 **Note**: A ref (reference) is made by `vtk.VtkLocalView(renderWindow)` or `vtk.VtkRemoteView(renderWindow)`. By default, `ref="view"`. If you would like to change this or add additional views, the use `vtk.VtkLocalView(renderWindow, ref="newViewName")`.
 
@@ -178,11 +178,11 @@ python ./app-with.py --port 1234
 
 ## Callbacks
 
-We really want to enable our GUI to interact with our visualization (or application, in general). For example, we want to adjust the `resolution` (number of line segments) that approximates circle used in defining the cone. 
+We really want to enable our GUI to interact with our visualization (or application, in general). For example, we want to adjust the `resolution` (number of line segments) that approximates circle used in defining the cone.
 
 <p style="text-align:center;"><img src="../images/tutorial-callbacks.jpg" alt="Callbacks" style="width: 75%; height: 75%"></p>
 
-By default, the `resolution` is 6, defined in the Globals section. 
+By default, the `resolution` is 6, defined in the Globals section.
 
 ```python
 DEFAULT_RESOLUTION = 6
@@ -210,7 +210,7 @@ Let's add a `VSlider` for adjusting the resolution, a `VBtn` with `VIcon` to res
             "mdi-restore"
         )
     vuetify.VDivider(
-        vertical=True, 
+        vertical=True,
         classes="mx-2"
     )
 ```
@@ -226,7 +226,7 @@ def update_resolution(resolution, **kwargs):
 
 There is no need to get or update the `resolution` state variable. This update is carried out on the client-side by the v_model. We simply update the `cone_source` appropriately and update the view with the previously defined `update_view` function.
 
-The `VBtn` resets the the resolution when pressed by calling the `reset_resolution` function. This is a `trigger` event, where `v_models` are `change` events. Since, we use the function reference here, there is no need to use a `@trigger("...")` decorator here. It is created by default behind the scene. 
+The `VBtn` resets the the resolution when pressed by calling the `reset_resolution` function. This is a `trigger` event, where `v_models` are `change` events. Since, we use the function reference here, there is no need to use a `@trigger("...")` decorator here. It is created by default behind the scene.
 
 ```python
 def reset_resolution():

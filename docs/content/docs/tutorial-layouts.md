@@ -1,14 +1,16 @@
 # Layouts
 
-To simplify creation of the graphical user interface (GUI) for the web application, ***trame*** defines layouts such as `FullScreenPage`, `SinglePage`, and `SinglePageWithDrawer`. 
+To simplify creation of the graphical user interface (GUI) for the web application, ***trame*** defines layouts such as `FullScreenPage`, `SinglePage`, and `SinglePageWithDrawer`.
 
 All core layouts start with a `VApp` (Vuetifies `v-app`) component. The `VApp` is **REQUIRED** for all applications. It is the mount point for other Vuetify components and functionality and ensures that it propagates the default application variant (dark/light) to children components while ensuring proper cross-browser support for certain click events in browsers like Safari. `VApp` should only be rendered within your application **ONCE**.
 
 More on Vuetify in the next chapter of the tutorial.
 
-Each of these layouts can be utilized by importing, instantiating, and adding via the `start` function.
+Each of these layouts can be utilized by importing, instantiating, and serving it via its `start` function.
 
 ## `FullScreenPage`
+
+If you want to experiement with it you can edit `02_layouts/app_cone.py` which was the latest cone example we built using the `SinglePage` layout.
 
 The `FullScreenPage` layout starts with VApp and exposes the children array where one could add in other desired HTML elements (Vuetify UI Components).
 
@@ -20,12 +22,12 @@ The `FullScreenPage` layout starts with VApp and exposes the children array wher
 from trame.layouts import FullScreenPage
 ```
 
-**Second**, we instantiate the `layout` object, create the `vtk.VtkLocalView` component, and add it directly to the `VApp`'s `children` using a Vuetify `VContainer` with arguments descripted in the [VTK]() chapter.
+**Second**, we instantiate the `layout` object, create the `vtk.VtkLocalView` component, and add it directly to the `VApp`'s `children` using a Vuetify `VContainer` with arguments descripted in the [VTK](tutorial-vtk.html) chapter.
 
 ```python
-layout = FullScreenPage("Hello trame", on_ready=update_view))
-
 html_view = vtk.VtkLocalView(renderWindow)
+
+layout = FullScreenPage("Hello trame", on_ready=html_view.update))
 
 layout.children += [
     vuetify.VContainer(
@@ -48,8 +50,9 @@ The `FullScreenPage` is really a blank canvas to add your desired Vuetify compon
 **Running the Application**
 
 ```bash
-cd examples/Tutorial/HTML
-python ./FullScreenPage-app.py --port 1234
+python 02_layouts/app_cone.py --port 1234
+# or
+python 02_layouts/solution_FullScreenPage.py --port 1234
 ```
 
 ## `SinglePage`
@@ -69,10 +72,10 @@ from trame.layouts import SinglePage
 **Second**, we instantiate the `layout` object, maybe change the title, create the `vtk.VtkLocalView` component, and add it to the `content` component's `children` using a Vuetify `VContainer` with arguments descripted in the [VTK]() chapter.
 
 ```python
-layout = SinglePage("Hello trame", on_ready=update_view)
-layout.title.set_text("Hello trame")
-
 html_view = vtk.VtkLocalView(renderWindow)
+
+layout = SinglePage("Hello trame", on_ready=html_view.update)
+layout.title.set_text("Hello trame")
 
 layout.content.children += [
     vuetify.VContainer(
@@ -93,8 +96,9 @@ if __name__ == "__main__":
 **Running the Application**
 
 ```bash
-cd examples/Tutorial/HTML
-python ./SinglePage-app.py --port 1234
+python 02_layouts/app_cone.py --port 1234
+# or
+python 02_layouts/solution_SinglePage.py --port 1234
 ```
 
 ## `SinglePageWithDrawer`
@@ -112,10 +116,11 @@ from trame.layouts import SinglePageWithDrawer
 **Second**, we instantiate the `layout` object with access to everything within the `SinglePage` layout.
 
 ```python
-layout = SinglePageWithDrawer("Hello trame", on_ready=update_view)
-layout.title.set_text("Hello trame")
-
 html_view = vtk.VtkLocalView(renderWindow)
+
+
+layout = SinglePageWithDrawer("Hello trame", on_ready=html_view.update)
+layout.title.set_text("Hello trame")
 
 layout.content.children += [
     vuetify.VContainer(
@@ -136,6 +141,7 @@ if __name__ == "__main__":
 **Running the Application**
 
 ```bash
-cd examples/Tutorial/HTML
-python ./SinglePageWithDrawer-app.py --port 1234
+python 02_layouts/app_cone.py --port 1234
+# or
+python 02_layouts/solution_SinglePageWithDrawer.py --port 1234
 ```

@@ -49,11 +49,12 @@
 <meta property="og:description" content="ParaViewDownload ParaViewParaView can be downloaded from here. Virtual EnvironmentParaView comes with its own Python, which may be missing some dependencies for the desired usage.We can add more Pytho">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://kitware.github.io/trame/examples/pvSimpleCone-Remote.jpg">
+<meta property="og:image" content="https://kitware.github.io/trame/images/tutorial-paraview-trace.jpg">
 <meta property="og:image" content="https://kitware.github.io/trame/examples/StateViewer-rock.jpg">
 <meta property="og:image" content="https://kitware.github.io/trame/examples/StateViewer-asteroid.jpg">
 <meta property="og:image" content="https://kitware.github.io/trame/examples/StateViewer-medical.jpg">
-<meta property="article:published_time" content="2021-11-15T19:46:27.237Z">
-<meta property="article:modified_time" content="2021-11-15T19:46:27.237Z">
+<meta property="article:published_time" content="2021-11-15T20:30:47.336Z">
+<meta property="article:modified_time" content="2021-11-15T20:30:47.336Z">
 <meta property="article:author" content="Kitware Inc.">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://kitware.github.io/trame/examples/pvSimpleCone-Remote.jpg">
@@ -149,39 +150,53 @@
 
 <p>With these few lines, we have created a 3D cone, which we can adjust the resolution all leveraging ParaView.</p>
 <p>To learn more about ParaView scripting, you should look into ParaView trace which let you convert your UI interaction into actual Python code that can then be reused in your application.</p>
-<h2 id="Advanced-example" class="article-heading"><a href="#Advanced-example" class="headerlink" title="Advanced example"></a>Advanced example<a class="article-anchor" href="#Advanced-example" aria-hidden="true"></a></h2><p>With the basics in place, we can go further by using some built-in feature of ParaView like saving and loading a state file. State files are a convinient way for capturing all the setting that were used to generate a visualization with Paraview.</p>
-<p>Let’s analyse the example in <code>./examples/ParaView/StateViewer/app.py</code>.</p>
-<p><img src="https://kitware.github.io/trame/examples/StateViewer-rock.jpg" alt="Simple Cone"></p>
-<p>The core of the example is as follow which setup the UI and do only one action at startup time.</p>
+<center>
+<img src="../images/tutorial-paraview-trace.jpg" width="75%">
+</center>
+
+<h2 id="Advanced-example" class="article-heading"><a href="#Advanced-example" class="headerlink" title="Advanced example"></a>Advanced example<a class="article-anchor" href="#Advanced-example" aria-hidden="true"></a></h2><p>With the basics in place, we can now dive further in by using some built-in features of ParaView, such as saving and loading a state file. State files are a convinient way of capturing all the settings that were used to generate a visualization with Paraview.</p>
+<p><img src="https://kitware.github.io/trame/examples/StateViewer-rock.jpg" alt="Rock Core"></p>
+<p>Let’s analyse the example in <code>./examples/ParaView/StateViewer/app.py</code>. The <em><strong>trame</strong></em> core of the example is as follows</p>
+<p><strong>Script Header</strong></p>
+<p>Only the <code>import trame as tr</code> is new and will be used and explained later.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="string">&quot;--virtual-env&quot;</span> <span class="keyword">in</span> sys.argv:</span><br><span class="line">    virtualEnvPath = sys.argv[sys.argv.index(<span class="string">&quot;--virtual-env&quot;</span>) + <span class="number">1</span>]</span><br><span class="line">    virtualEnv = virtualEnvPath + <span class="string">&quot;/bin/activate_this.py&quot;</span></span><br><span class="line">    <span class="built_in">exec</span>(<span class="built_in">open</span>(virtualEnv).read(), &#123;<span class="string">&quot;__file__&quot;</span>: virtualEnv&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> trame <span class="keyword">as</span> tr</span><br><span class="line"><span class="keyword">from</span> trame.html <span class="keyword">import</span> vuetify, paraview</span><br><span class="line"><span class="keyword">from</span> trame.layouts <span class="keyword">import</span> SinglePage</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> paraview <span class="keyword">import</span> simple</span><br></pre></td></tr></table></figure>
+
+<p><strong>Script Core</strong></p>
+<p>The rest of the script we’ve seen before, but we are missing the details of the <code>load_data</code> function.</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">load_data</span>():</span></span><br><span class="line">    <span class="keyword">pass</span> <span class="comment"># I&#x27;ll explain later</span></span><br><span class="line"></span><br><span class="line">layout = SinglePage(<span class="string">&quot;State Viewer&quot;</span>, on_ready=load_data)</span><br><span class="line">layout.logo.click = <span class="string">&quot;$refs.view.resetCamera()&quot;</span></span><br><span class="line">layout.title.set_text(<span class="string">&quot;ParaView State Viewer&quot;</span>)</span><br><span class="line">layout.content.add_child(vuetify.VContainer(fluid=<span class="literal">True</span>, classes=<span class="string">&quot;pa-0 fill-height&quot;</span>))</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    layout.start()</span><br></pre></td></tr></table></figure>
 
-<p>Let’s focus on what we want to add into that <code>load_data()</code> function.</p>
+<p><strong><code>load_data</code></strong></p>
+<p>The <code>load_data()</code> function requires us to code the follow</p>
 <ol>
-<li>Add and process a <code>--data</code> argument with the path to the file to load</li>
+<li>Process a <code>--data</code> argument that contains the path to the file to load</li>
 <li>Load the provided file path as state file.</li>
-<li>Create a view element connected to the view defined in the state</li>
+<li>Create a view element and connect it to the view defined in the state</li>
 <li>Add that view element into the content of our UI</li>
 </ol>
+<p>** Process CLI argument <code>--data</code>**</p>
 <p>The (1) is achieved with the following set of lines. More information on CLI are available <a href="https://kitware.github.io/trame/docs/howdoi-cli.html">here</a>.</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">parser = trame.get_cli_parser()</span><br><span class="line">parser.add_argument(<span class="string">&quot;--data&quot;</span>, <span class="built_in">help</span>=<span class="string">&quot;Path to state file&quot;</span>, dest=<span class="string">&quot;data&quot;</span>)</span><br><span class="line">args, _ = parser.parse_known_args()</span><br><span class="line"></span><br><span class="line">full_path = os.path.abspath(args.data)</span><br><span class="line">working_directory = os.path.dirname(full_path)</span><br></pre></td></tr></table></figure>
 
-<p>To achieve (2) with ParaView the following set of lines are needed. ParaView trace should be able to remove most of the magic by using the UI and looking at the corresponding Python code.</p>
+<p><strong>Load the state file</strong></p>
+<p>To achieve (2) with ParaView the following set of lines are needed. ParaView trace should be able to explain the magic using the UI and looking at the corresponding Python code.</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">simple.LoadState(</span><br><span class="line">    full_path,</span><br><span class="line">    data_directory=working_directory,</span><br><span class="line">    restrict_to_data_directory=<span class="literal">True</span>,</span><br><span class="line">)</span><br><span class="line">view = simple.GetActiveView()</span><br><span class="line">view.MakeRenderWindowInteractor(<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
 
-<p>Then (3) is done like before by doing the following.</p>
+<p><strong>Create and Connect a view element</strong></p>
+<p>Then (3) is similarly as before for VTK.</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">html_view = paraview.VtkRemoteView(view)</span><br></pre></td></tr></table></figure>
 
-<p>Finally for (4) we need to update the layout the same way we were doing it in VTK when switching from Remote to Local.</p>
+<p><strong>Add view element to UI</strong></p>
+<p>Finally (4) is achieved with the following set of lines, the same way it was achieved with VTK in <em><strong>trame</strong></em> when switching from remote to local rendering.</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">layout.content.children[<span class="number">0</span>].add_child(html_view)</span><br><span class="line">layout.flush_content()</span><br></pre></td></tr></table></figure>
 
-<p>And that’s it. You now have a ParaView <code>trame</code> application that let you reproduce complex visualization in a web context.</p>
+<p>That’s it. You now have a ParaView <code>trame</code> application that let you reproduce complex visualization in a web context.</p>
 <center>
 <img src="https://kitware.github.io/trame/examples/StateViewer-asteroid.jpg" width="49%">
 <img src="https://kitware.github.io/trame/examples/StateViewer-medical.jpg" width="49%">
 </center>
               </div>
               <footer class="article-footer">
-                <time class="article-footer-updated" datetime="2021-11-15T19:46:27.237Z" itemprop="dateModified">Last updated: 2021-11-15</time>
+                <time class="article-footer-updated" datetime="2021-11-15T20:30:47.336Z" itemprop="dateModified">Last updated: 2021-11-15</time>
                 <a href="tutorial-example.html" class="article-footer-prev" title="Example"><i class="fa fa-chevron-left"></i><span>Prev</span></a><a href="module-vuetify.html" class="article-footer-next" title="vuetify"><span>Next</span><i class="fa fa-chevron-right"></i></a>
               </footer>
               

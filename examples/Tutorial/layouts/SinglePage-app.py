@@ -54,8 +54,8 @@ def update_view(**kwargs):
 # GUI
 # -----------------------------------------------------------------------------
 
-layout = SinglePage("Hello Trame")
-layout.title.set_text("Hello Trame")
+layout = SinglePage("Hello trame")
+layout.title.set_text("Hello trame")
 
 html_view = vtk.VtkLocalView(renderWindow)
 

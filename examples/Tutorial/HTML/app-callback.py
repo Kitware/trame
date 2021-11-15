@@ -71,8 +71,8 @@ def reset_resolution():
 # GUI
 # -----------------------------------------------------------------------------
 
-layout = SinglePage("Hello Trame", on_ready=update_view)
-layout.title.set_text("Hello Trame")
+layout = SinglePage("Hello trame", on_ready=update_view)
+layout.title.set_text("Hello trame")
 
 with layout.toolbar:
     vuetify.VSpacer()

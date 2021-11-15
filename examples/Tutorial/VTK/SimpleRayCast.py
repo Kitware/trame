@@ -102,8 +102,8 @@ ren1.ResetCamera()
 # Web Application setup
 # -----------------------------------------------------------------------------
 
-layout = SinglePage("Hello Trame")
-layout.title.set_text("Hello Trame")
+layout = SinglePage("Hello trame")
+layout.title.set_text("Hello trame")
 
 # html_view = vtk.VtkRemoteView(renWin)
 html_view = vtk.VtkLocalView(renWin)

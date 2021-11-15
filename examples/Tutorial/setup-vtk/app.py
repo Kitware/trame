@@ -4,8 +4,8 @@ from trame.layouts import SinglePage
 # GUI
 # -----------------------------------------------------------------------------
 
-layout = SinglePage("Hello Trame")
-layout.title.set_text("Hello Trame")
+layout = SinglePage("Hello trame")
+layout.title.set_text("Hello trame")
 
 # -----------------------------------------------------------------------------
 # Main

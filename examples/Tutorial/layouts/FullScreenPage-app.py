@@ -54,7 +54,7 @@ def update_view(**kwargs):
 # GUI
 # -----------------------------------------------------------------------------
 
-layout = FullScreenPage("Hello Trame")
+layout = FullScreenPage("Hello trame")
 
 html_view = vtk.VtkLocalView(renderWindow)
 

@@ -12,7 +12,7 @@ Start with the initial *setup-vtk* `app.py`.
 from trame.html import vtk, vuetify
 ```
 
-This provides us access to trame's helper functions for vtk and vuetify.
+This provides us access to ***trame***'s helper functions for vtk and vuetify.
 
 **Next**, we will need to import the required objects from vtk. We will visualize a simple cone in this example so we will need `vtkConeSource`.
 
@@ -52,7 +52,9 @@ import vtkmodules.vtkRenderingOpenGL2 #noqa
 
 ## VTK Pipeline
 
-As promised, to add visualization to your trame application you simply write VTK pipelines in Python.
+As promised, to add visualization to your ***trame*** application you simply write VTK pipelines in Python.
+
+<p style="text-align:center;"><img src="../images/tutorial-cone.jpg" alt="Cone VTK Pipeline" style="width: 75%; height: 75%"></p>
 
 There are a number of ways to learn VTK:
 
@@ -102,7 +104,7 @@ renderer.ResetCamera()
 renderWindow.Render()
 ```
 
-The VTK specific imports and pipelines defined for a `trame` application are precisely the specific imports and pipelines required for a Python VTK script.
+The VTK specific imports and pipelines defined for a ***trame*** application are precisely the specific imports and pipelines required for a Python VTK script.
 
 ## Local and Remote Rendering
 
@@ -199,13 +201,13 @@ Open a browser to `http://localhost:1234/`
 
 ## Other VTK Examples
 
-Now you can take most of the code examples at [VTK Examples](https://kitware.github.io/vtk-examples/site/Python) and port them to trame.
+Now you can take most of the code examples at [VTK Examples](https://kitware.github.io/vtk-examples/site/Python) and port them to ***trame***.
 
-Checkout [Carotid.py]().
+<p style="text-align:center;"><img src="../images/tutorial-carotid.jpg" alt="Carotid Flow VTK Example" style="width: 75%; height: 75%"></p>
 
 **Imports**
 
-We are going to read a file. So we will want to import the `os` module and set the current directory. Starting with our Hello trame cone application, we add
+We are going to read a file. So we will want to import the `os` module and set the current directory. Starting with our Hello ***trame*** cone application, we add
 
 ```python
 import os

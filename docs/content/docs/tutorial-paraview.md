@@ -37,6 +37,8 @@ The command line below illustrate how a SimpleCone example can be run on a Mac w
 /Applications/ParaView-5.10.0-RC1.app/Contents/bin/pvpython ./examples/ParaView/SimpleCone/RemoteRendering.py --virtual-env ./py-lib
 ```
 
+![Simple Cone](https://kitware.github.io/trame/examples/pvSimpleCone-Remote.jpg)
+
 ## Understanding ParaView example
 
 ParaView use proxies which abstract vtk object handling so they can be easily distributed for handling very large datasets.
@@ -73,8 +75,7 @@ with layout.content:
     )
 ```
 
-Now we can start adding some UI to control some of the parameters that we want to edit dynamically.
-Let's add a slider to control the resolution of the cone.
+Now we can start adding some UI to control some of the parameters that we want to edit dynamically. Let's add a slider to control the resolution of the cone.
 
 Let's create the method to react when `resolution` is changed by the ui. In ParaView proxies, object parameters are simple properties that can be get or set in a transparent manner. At that point we just need to edit `cone.Resolution` and update the view to reflect the change we just made.
 
@@ -101,14 +102,15 @@ with layout.toolbar:
     )
 ```
 
-And with those few set of lines we have a 3D cone on which we can adjust the resolution using ParaView.
-To learn more about ParaView scripting, you should look into ParaView trace which let you convert your UI interaction into actual Python code that can then be reused in your application.
+And with those few set of lines we have a 3D cone on which we can adjust the resolution using ParaView. To learn more about ParaView scripting, you should look into ParaView trace which let you convert your UI interaction into actual Python code that can then be reused in your application.
 
 ## Advanced example
 
 With the basics in place, we can go further by using some built-in feature of ParaView like saving and loading a state file. State files are a convinient way for capturing all the setting that were used to generate a visualization with Paraview.
 
 Let's analyse the example in `./examples/ParaView/StateViewer/app.py`.
+
+![Simple Cone](https://kitware.github.io/trame/examples/StateViewer-rock.jpg)
 
 The core of the example is as follow which setup the UI and do only one action at startup time.
 
@@ -131,8 +133,7 @@ Let's focus on what we want to add into that `load_data()` function.
 3. Create a view element connected to the view defined in the state
 4. Add that view element into the content of our UI
 
-The (1) is achieved with the following set of lines.
-More information on CLI are available [here](https://kitware.github.io/trame/docs/howdoi-cli.html).
+The (1) is achieved with the following set of lines. More information on CLI are available [here](https://kitware.github.io/trame/docs/howdoi-cli.html).
 
 ```python
 parser = trame.get_cli_parser()
@@ -143,8 +144,7 @@ full_path = os.path.abspath(args.data)
 working_directory = os.path.dirname(full_path)
 ```
 
-To achieve (2) with ParaView the following set of lines are needed.
-ParaView trace should be able to remove most of the magic by using the UI and looking at the corresponding Python code.
+To achieve (2) with ParaView the following set of lines are needed. ParaView trace should be able to remove most of the magic by using the UI and looking at the corresponding Python code.
 
 
 ```python
@@ -171,3 +171,8 @@ layout.flush_content()
 ```
 
 And that's it. You now have a ParaView `trame` application that let you reproduce complex visualization in a web context.
+
+<center>
+<img src="https://kitware.github.io/trame/examples/StateViewer-asteroid.jpg" width="49%" />
+<img src="https://kitware.github.io/trame/examples/StateViewer-medical.jpg" width="49%" />
+</center>

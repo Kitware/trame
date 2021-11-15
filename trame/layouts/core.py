@@ -10,34 +10,19 @@ LOGO_PATH = os.path.abspath(
     os.path.join(os.path.dirname(__file__), "../html/assets/logo.svg")
 )
 
-
-class FullScreenPage:
-    """
-    A layout that takes the whole screen.
-
-    :param name: Text for this page's browser tab (required)
-    :type name: str
-    :param favicon: Filename of image for this page's browser tab
-    :type favicon: str
-    :param on_ready: Function to run on startup
-    :type on_ready: function
-
-    >>> FullScreenPage("Simple Page").start()
-    """
-
-    def __init__(self, name, favicon=None, on_ready=None):
+class AbstractLayout:
+    def __init__(self, _root_elem, name, favicon=None, on_ready=None):
         self.name = name
         self.favicon = None
         self.triggers = Triggers("_js_trame_triggers")
         if os.path.exists(LOGO_PATH):
             self.favicon = read_file_as_base64_url(LOGO_PATH)
         self.on_ready = on_ready
-        self._app = vuetify.VApp(id="app")
-        self.children = self._app.children
-        self._current_root = self._app
+        self.children = _root_elem.children
+        self._current_root = _root_elem
 
         # Always add triggers
-        self._app.children += [self.triggers]
+        self.children += [self.triggers]
 
         if favicon:
             file_path = os.path.join(tr.base_directory(), favicon)
@@ -62,45 +47,31 @@ class FullScreenPage:
     @property
     def html(self):
         """
-        String of the html this layout has built up.
+        Compute corresponding layout String which represent the html part.
         """
         return self.root.html
 
     @property
     def state(self):
         """
-        App state as a dictionary. Setting updates instead of overwriting.
+        Return App state as a dictionary or extend it when setting.
+        This is a safe way to build the state incrementaly.
+
+        >>> layout.state = { "a": 1, "b": 2 }
+        >>> print(layout.state)
+        ... {"a": 1, "b": 2}
+        >>> layout.state = { "c": 3, "d": 4 }
+        >>> print(layout.state)
+        ... {"a": 1, "b": 2, "c": 3, "d": 4}
+
         """
         return tr.get_app_instance().state
 
     @state.setter
     def state(self, value):
-        app = tr.get_app_instance()
+        _app = tr.get_app_instance()
         for (k, v) in value.items():
-            app.set(k, v)
-
-    def get_state_values(self, *names):
-        """
-        Query the app state for particular names. Returns whole state dict if no names given.
-
-        :params names: Which values to get from state.
-        :type names: list[str] | None
-
-        >>> full_state = get_state()
-        >>> full_state.get("greeting")
-        "Hello"
-
-        >>> greeting, name  = get_state("greeting", "name")
-        >>> f'{greeting}, {name}!'
-        "Hello, trame!"
-
-        >>> greeting, = get_state("greeting")
-        >>> greeting
-        "Hello"
-
-
-        """
-        return tr.get_state(*names)
+            _app.set(k, v)
 
     def flush_content(self):
         """Push new content to client"""
@@ -109,7 +80,7 @@ class FullScreenPage:
 
     def start(self, port=None, debug=False):
         """
-        Run the application server.
+        Start the application server.
 
         :param port: Which port to run the server on
         :param debug: Whether to enable debugging tools. Defaults to False.
@@ -131,10 +102,27 @@ class FullScreenPage:
 
         _app.run_server(port=port)
 
+class FullScreenPage(AbstractLayout):
+    """
+    A layout that takes the whole screen.
+
+    :param name: Text for this page's browser tab (required)
+    :type name: str
+    :param favicon: Filename of image for this page's browser tab
+    :type favicon: str
+    :param on_ready: Function to run on startup
+    :type on_ready: function
+
+    >>> FullScreenPage("Simple Page").start()
+    """
+
+    def __init__(self, name, favicon=None, on_ready=None):
+        super().__init__(vuetify.VApp(id="app"), name, favicon, on_ready)
+
 
 class SinglePage(FullScreenPage):
     """
-    A layout that takes the whole screen, adding a |layout_vuetify_link| for a header and a footer.
+    A layout that takes the whole screen, adding a |layout_vuetify_link| for a `toolbar`, a VMain as `content` and a VFooter as a `footer`.
 
     .. |layout_vuetify_link| raw:: html
 
@@ -143,7 +131,22 @@ class SinglePage(FullScreenPage):
     :param name: Text for this page's browser tab (required)
     :type name: str
 
-    >>> SinglePage("Page with header / app bar").start()
+    >>> layout = SinglePage("Page with header / app bar")
+
+    The toolbar starts with 2 children, a `logo` and a `title` which are accessible at
+    the root of the layout object.
+
+    >>> layout.toolbar.children += ["More stuff to the toolbar"]
+    >>> layout.logo.children = [VIcon("mdi-menu")]
+    >>> layout.title.set_text("My Super App")
+
+    Then we have `content` and `footer`. Content is by default empty but the footer
+    has the default trame information regarding its versions and feature feedback
+    on when the server is busy with a spining progress.
+
+    You can quickly hide the footer by calling the following.
+
+    >>> layout.footer.hide()
     """
 
     def __init__(self, name, favicon=None, on_ready=None):
@@ -188,25 +191,14 @@ class SinglePage(FullScreenPage):
                     classes="mx-2",
                 ),
                 '<a href="https://www.kitware.com/" class="grey--text lighten-1--text text-caption text-decoration-none" target="_blank">© 2021 Kitware Inc.</a>',
-                # vuetify.VProgressLinear(
-                #     active=("busy",),
-                #     indeterminate=True,
-                #     absolute=True,
-                #     bottom=True,
-                #     striped=True,
-                #     background_opacity=1,
-                #     color="#01549b",
-                #     background_color="#04a94d",
-                #     height=4,
-                # ),
             ],
         )
-        self._app.children += [self.toolbar, self.content, self.footer]
+        self.children += [self.toolbar, self.content, self.footer]
 
 
 class SinglePageWithDrawer(SinglePage):
     """
-    A layout that takes the whole screen, adding a |layout_vuetify_link| for a header, a drawer, and a footer.
+    A layout that takes the whole screen, adding a |layout_vuetify_link| for a toolbar, a content, a drawer, and a footer.
 
     :param name: Text for this page's browser tab (required)
     :type name: str
@@ -238,5 +230,5 @@ class SinglePageWithDrawer(SinglePage):
             width=width,
         )
         self.toolbar.clipped_left = True
-        self._app.children += [self.drawer]
+        self.children += [self.drawer]
         self.logo.click = f"{show_drawer_name} = !{show_drawer_name}"

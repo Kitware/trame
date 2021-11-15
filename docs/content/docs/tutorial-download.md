@@ -13,10 +13,11 @@ $ tree .
     ├── 00_setup
     │   └── app.py
     ├── 01_vtk
-    │   ├── CarotidFlow.py
-    │   ├── README.md
-    │   ├── SimpleRayCast.py
-    │   └── app.py
+    │   ├── app_cone.py
+    │   ├── app_flow.py
+    │   ├── solution_cone.py
+    │   ├── solution_flow.py
+    │   └── solution_ray_cast.py
     ├── 02_layouts
     │   ├── FullScreenPage-app.py
     │   ├── SinglePage-app.py

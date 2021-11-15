@@ -7,9 +7,9 @@ We walk you through the basics of ***trame*** and end up creating a simple but f
 It is easiest to work on the tutorial from within the ***trame-tutorial*** repository. The tutorial are broken down into the following ordered sections:
 
 1. [Download](./tutorial-download.html)
-2. [Setup for VTK](./tutorial-setup-vtk.html)
+2. [Setup](./tutorial-setup-vtk.html)
 3. [VTK](./tutorial-vtk.html)
 4. [Layouts](./tutorial-layouts.html)
 5. [HTML](./tutorial-html.html)
-6. [Example Application](./tutorial-example.html)
+6. [Application](./tutorial-example.html)
 7. [ParaView](./tutorial-paraview.html)

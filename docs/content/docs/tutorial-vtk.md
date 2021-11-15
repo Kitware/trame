@@ -4,7 +4,7 @@ So we want to start adding VTK visualizations to our application.
 
 ## VTK Imports
 
-Start with the initial *setup-vtk* `app.py`.
+Start editing the file in `01_vtk/app_cone.py` which has the same content as `00_setup/app.py`.
 
 **First**, what we need to add is an import for `vtk` and `vuetify` from `trame.html`.
 
@@ -34,15 +34,15 @@ from vtkmodules.vtkRenderingCore import (
 )
 ```
 
-**Finally**, we need to import the required modules for the interacter factory and remote rendering factory.
+**Finally**, we need to import the required modules for the interactor and rendering.
 
-`vtkInteractorStyleSwitch` is required for interacter factory initialization.
+`vtkInteractorStyleSwitch` is required for the interactor initialization.
 
 ```python
 from vtkmodules.vtkInteractionStyle import vtkInteractorStyleSwitch #noqa
 ```
 
-The `vtkRenderingOpenGL2` module is required for remote rendering factory initialization. It is not necessary for local rendering, but you'll want to include it so that you can seamlessly switch between *local* and *remote* rendering.
+The `vtkRenderingOpenGL2` module is required for the rendering initialization. It is not necessary for local rendering, but you'll want to include it so that you can seamlessly switch between *local* and *remote* rendering.
 
 ```python
 import vtkmodules.vtkRenderingOpenGL2 #noqa
@@ -79,10 +79,9 @@ renderWindow.AddRenderer(renderer)
 renderWindowInteractor = vtkRenderWindowInteractor()
 renderWindowInteractor.SetRenderWindow(renderWindow)
 renderWindowInteractor.GetInteractorStyle().SetCurrentStyleToTrackballCamera()
-renderWindowInteractor.EnableRenderOff()
 ```
 
-We create the interactor, connect it to the `renderWindow`, set the interaction style, and disable the interactor from calling the `renderWindow` `Render` function.
+We create the interactor, connect it to the `renderWindow` and set the interaction style.
 
 **Third**, we create the desired visualization. This process requires the creation of an object, a mapper, and an actor.
 
@@ -94,14 +93,13 @@ actor = vtkActor()
 actor.SetMapper(mapper)
 ```
 
-The instantiated `vtkConeSource` is our graphics object, and we want to map that object to polydata creating a `vtkPolyDataMapper`. We must digitally create a connection from the cone to the mapper by setting the input connection. We then create an actor and connect the mapper to the actor.
+The instantiated `vtkConeSource` is our mesh source that will produce a polydata. Then we want to map it to a graphical representation by creating a `vtkPolyDataMapper`. We must digitally create a connection from the cone to the mapper by setting the input connection. We then create an actor and connect the mapper to the actor.
 
 **Finally**, we add all the pipelines (actors) to the `renderer`, reset the camera, and render.
 
 ```python
 renderer.AddActor(actor)
 renderer.ResetCamera()
-renderWindow.Render()
 ```
 
 The VTK specific imports and pipelines defined for a ***trame*** application are precisely the specific imports and pipelines required for a Python VTK script.
@@ -114,7 +112,7 @@ Why do we care about *local* and *remote* rendering? Well each method of renderi
 
 *Advantages*
 
-- The server doesn't need a graphics processing unit (GPU). Systems with GPUs are expensive to purchase and expensive to rent (Cloud). These costs are pushed to the end-points on end-users.
+- The server doesn't need a graphics processing unit (GPU). Systems with GPUs are expensive to purchase and expensive to rent (cloud). These costs are pushed to the end-points on end-users.
 - The frames per second rendering is higher. Advancements in the browser's access to local GPU resources implies that the performance is nearly as good as available to a desktop application.
 
 *Disadvantages*
@@ -169,29 +167,21 @@ More information on [vuetify](https://vuetifyjs.com/en/introduction/why-vuetify/
 
 ## Update and Start
 
-Once the client and server are ready, we need to update the view (`html_view`).
+Once the client and server are ready, we need to update the view (`html_view`) by calling  `html_view.update()`.
 
-**First**, one needs to provide a function to do this as follows
-
-```python
-def update_view(**kwargs):
-    html_view.update()
-```
-
-**Finally**, we revist the `layout` to provide the `on_ready` variable, which takes a function to call when the server and client are ready. So we modify our layout constructor call to look like
+To do it, we revist the `layout` to provide the `on_ready` variable, which takes a function to call when the server and client are ready. So we modify our layout constructor call to look like
 
 ```python
-layout = SinglePage("Hello trame", on_ready=update_view)
+layout = SinglePage("Hello trame", on_ready=html_view.update)
 ```
 
 ## Running the Application
 
 ```bash
-cd examples/Tutorial/VTK
-python ./app.py --port 1234
+python ./01_vtk/app_cone.py --port 1234
 ```
 
-Open a browser to `http://localhost:1234/`
+Your browser should open automatically to `http://localhost:1234/`
 
 ## Interaction
 
@@ -203,7 +193,9 @@ Open a browser to `http://localhost:1234/`
 
 Now you can take most of the code examples at [VTK Examples](https://kitware.github.io/vtk-examples/site/Python) and port them to ***trame***.
 
-<p style="text-align:center;"><img src="../images/tutorial-carotid.jpg" alt="Carotid Flow VTK Example" style="width: 75%; height: 75%"></p>
+<a href="https://kitware.github.io/vtk-examples/site/Python/VisualizationAlgorithms/CarotidFlowGlyphs/"><p style="text-align:center;"><img src="../images/tutorial-carotid.jpg" alt="Carotid Flow VTK Example" style="width: 75%; height: 75%"></p></a>
+
+We are going to implement [CarotidFlowGlyphs](https://kitware.github.io/vtk-examples/site/Python/VisualizationAlgorithms/CarotidFlowGlyphs/) by editing the file in `01_vtk/app_flow.py.py` which start from our cone rendering example solution.
 
 **Imports**
 
@@ -215,7 +207,7 @@ import os
 CURRENT_DIRECTORY = os.path.abspath(os.path.dirname(__file__))
 ```
 
-We replaced the imports for our cone VTK pipeline on line 5
+We replaced the imports for our cone VTK pipeline
 
 ```python
 from vtkmodules.vtkFiltersSources import vtkConeSource
@@ -259,7 +251,7 @@ We read the data using the `vtkStructuredPointsReader` and the full file path, p
 # Read the Data
 
 reader = vtkStructuredPointsReader()
-reader.SetFileName(os.path.join(CURRENT_DIRECTORY, "../data/carotid.vtk")
+reader.SetFileName(os.path.join(CURRENT_DIRECTORY, "../data/carotid.vtk"))
 ```
 
 ```python
@@ -353,8 +345,13 @@ Our pipelines are the same pipelines used in [VTK Examples](https://kitware.gith
 **Running the Application**
 
 ```bash
-cd examples/Tutorial/VTK
-python ./Carotid.py --port 1234
+python ./01_vtk/app_flow.py --port 1234
 ```
 
-Open a browser to `http://localhost:1234/`
+Your browser should open automatically to `http://localhost:1234/`
+
+## Ray Casting example
+
+If you want on your own time you can try to implement the Volume Rendering example [Simple Ray Cast](https://kitware.github.io/vtk-examples/site/Python/VolumeRendering/SimpleRayCast/) using **trame**.
+
+The solution of that example is available under `01_vtk/solution_ray_cast.py`.

@@ -52,6 +52,8 @@ The command line below illustrate how a SimpleCone example can be run on a **Mac
                                               ./pv-lib
 ```
 
+![Simple Cone](https://kitware.github.io/trame/examples/pvSimpleCone-Remote.jpg)
+
 ## Understanding this ParaView example
 
 ParaView use proxies which abstracts the VTK object handling so they can be easily distributed for very large datasets.

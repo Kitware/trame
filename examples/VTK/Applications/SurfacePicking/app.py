@@ -259,7 +259,9 @@ visualization = [
         vtk.VtkMesh("selection", state=("selection", None)),
         id="selection",
         actor=("{ visibility: !!selection }",),
-        property=("{ color: [0.99,0.13,0.37], representation: 0, pointSize: 5 }",),
+        property=(
+            "{ color: [0.99,0.13,0.37], representation: 0, pointSize: 5 * pixel_ratio}",
+        ),
     ),
     vtk.VtkGeometryRepresentation(
         vtk.VtkMesh("frustrum", state=("frustrum", None)),

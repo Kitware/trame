@@ -2,7 +2,7 @@
 
 The Visualization Toolkit processes images and creates 3D computer graphics. For more Python Vtk examples, see [here](https://kitware.github.io/vtk-examples/site/Python/).
 
-VTK integration in Trame allows you to create rich visualization and data processing applications by leveraging the Python wrapping of the VTK library. Several components are available so you can leverage VTK either for its data processing and/or rendering. Trame lets you choose if you want to leverage Remote Rendering or if the client should do the rendering by leveraging vtk.js under the hood.
+VTK integration in trame allows you to create rich visualization and data processing applications by leveraging the Python wrapping of the VTK library. Several components are available so you can leverage VTK either for its data processing and/or rendering. trame lets you choose if you want to leverage Remote Rendering or if the client should do the rendering by leveraging vtk.js under the hood.
 
 [![VTK Examples](/trame/images/module-vtk.jpg)](https://kitware.github.io/vtk-examples/site/Python/)
 
@@ -179,7 +179,7 @@ Constructing a VtkRemoteLocalView will set several variables, prefixed by a name
 | viewMode | `local`or `remote` to control which View is displayed to the user |
 
 
-Constructing a VtkRemoteLocalView will also set several Trame triggers.
+Constructing a VtkRemoteLocalView will also set several trame triggers.
 
 | Trigger          | Description                                                                |
 | ---------------- | -------------------------------------------------------------------------- |

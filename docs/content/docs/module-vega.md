@@ -8,7 +8,7 @@ Vega works well with Altair. Altair’s API is simple, friendly and consistent. 
 
 ## How to use it?
 
-The best and easiest way to create charts for [Vega](https://vega.github.io/vega/) is to use [Altair](https://altair-viz.github.io/index.html). And with Trame, the `Altair` chart can be passed directly to the component. The code snippet below illustrate such usage.
+The best and easiest way to create charts for [Vega](https://vega.github.io/vega/) is to use [Altair](https://altair-viz.github.io/index.html). And with trame, the `Altair` chart can be passed directly to the component. The code snippet below illustrate such usage.
 
 ```python
 from vuetify.html import vega

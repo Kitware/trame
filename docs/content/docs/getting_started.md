@@ -1,18 +1,18 @@
-# How to use Trame
+# How to use trame
 
-Trame aims to streamline creation of graphical interfaces for interactive data manipulation and visualization with a very compact and simple API.
-This document tries to capture the core API and concepts behind trame so you can use it when you get started but also as a reference once you get more familiar with Trame.
+trame aims to streamline creation of graphical interfaces for interactive data manipulation and visualization with a very compact and simple API.
+This document tries to capture the core API and concepts behind trame so you can use it when you get started but also as a reference once you get more familiar with trame.
 
 ## Core concept
 
-Trame allow you to easily share variables between the UI components and your Python application.
+trame allow you to easily share variables between the UI components and your Python application.
 But on top of that shared state, functions and methods can be triggered from either side.
 For example, you can link a Python function to be called when a button in the UI is clicked.
-This document will focus on how you can leverage those two functionalities inside your application using Trame.
+This document will focus on how you can leverage those two functionalities inside your application using trame.
 
 ## Shared state
 
-Trame mainly focuses on the Python side, therefore the variables that we aim to use across our application will be defined from Python.
+trame mainly focuses on the Python side, therefore the variables that we aim to use across our application will be defined from Python.
 The following sections will illustate the various way you can affect the shared state.
 
 ### UI element with a dynamic variable
@@ -81,7 +81,7 @@ async def update_time():
 
 ## Method calls
 
-When building a client/server application you will need to be able to trigger methods on both side and Trame has some easy ways to do that.
+When building a client/server application you will need to be able to trigger methods on both side and trame has some easy ways to do that.
 
 ### Bind method to a button click
 
@@ -160,7 +160,7 @@ vuetify.VSlider(
 
 ## Command line arguments
 
-Since a Trame application is a real application, as opposed to a service that aims to serve many concurrent users, you may want to provide some information to your application when you start it like which ML model you want to load or the file/directory that you would like to explore or process.
+Since a trame application is a real application, as opposed to a service that aims to serve many concurrent users, you may want to provide some information to your application when you start it like which ML model you want to load or the file/directory that you would like to explore or process.
 This can be achieved by adding CLI parameters using [ArgParse](https://docs.python.org/3/library/argparse.html), like in the following example.
 
 ```python
@@ -174,7 +174,7 @@ print(args.data)
 
 ## Starting the application
 
-Trame provides a `start()` function which will actually start your application.
+trame provides a `start()` function which will actually start your application.
 Usually we put the following section in your main script.
 
 ```python

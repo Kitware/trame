@@ -1,6 +1,6 @@
 # How do I download a file
 
-Sometimes a user has to download a file from the server so the client can save it to its drive. In Trame we rely on the shared state to achieve that file exchange.
+Sometimes a user has to download a file from the server so the client can save it to its drive. In trame we rely on the shared state to achieve that file exchange.
 
 ## Code
 

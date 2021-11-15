@@ -1,6 +1,6 @@
 # How do I present a dataframe
 
-This example illustrates how to display tabular data from pandas in Trame. 
+This example illustrates how to display tabular data from pandas in trame.
 In the example below we use [vuetify.VDataTable](https://vuetifyjs.com/en/components/data-tables/), which has features like sorting, searching, pagination, content-editing, and row selection.
 
 ## Code

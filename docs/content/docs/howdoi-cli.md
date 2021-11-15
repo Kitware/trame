@@ -1,6 +1,6 @@
 # How do I use CLI arguments?
 
-Trame uses Python's [`argparse`](https://docs.python.org/3/library/argparse.html) for CLI argument handling.
+trame uses Python's [`argparse`](https://docs.python.org/3/library/argparse.html) for CLI argument handling.
 
 ## Code
 

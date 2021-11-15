@@ -6,7 +6,7 @@ Vuetify is a UI Library with beautifully handcrafted Material Components. No des
 
 ## How to use it?
 
-Trame wraps Vuetify as it's primary UI Component Library. The [Vuetify website](https://vuetifyjs.com/en/) is very well made for exploring components and understanding components' parameters and controls, while a reference to our wrapper API is available [here](https://trame.readthedocs.io/en/latest/trame.html.vuetify.html).
+trame wraps Vuetify as it's primary UI Component Library. The [Vuetify website](https://vuetifyjs.com/en/) is very well made for exploring components and understanding components' parameters and controls, while a reference to our wrapper API is available [here](https://trame.readthedocs.io/en/latest/trame.html.vuetify.html).
 
 The way trame translate Vue templates into plain Python code is by doing the following.
 
@@ -61,14 +61,14 @@ Vuetify is the core of any widgets structure we use inside our examples.
 
 <!--
 ## Evaluating properties
-Trame evaluates properties if they are wrapped in a tuple.
+trame evaluates properties if they are wrapped in a tuple.
 ```python
 from trame.html import vuetify
 
 # This sets the label to "myLabel"
 vuetify.VTextField(label="myLabel")
 
-# This evaluates "myLabel" in Trame's Shared State for a value to set
+# This evaluates "myLabel" in trame's Shared State for a value to set
 vuetify.VTextField(label=("myLabel",))
 
 # This evaluates "myLabel", which was initially set to "Initial Label"

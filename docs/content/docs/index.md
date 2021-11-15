@@ -1,12 +1,12 @@
-![Trame](/trame/images/trame-concept.jpg)
+![trame](/trame/images/trame-concept.jpg)
 
-The Trame package provides a set of core functionality for designing your Python application with a Web UI.
-Trame is at heart a `shared state` that lets you bind UI elements to Python methods by allowing your code to react when the underlying data is changing.
+The trame package provides a set of core functionality for designing your Python application with a Web UI.
+trame is at heart a `shared state` that lets you bind UI elements to Python methods by allowing your code to react when the underlying data is changing.
 On top of that `shared state` concept, you can simply bind `Python methods` to UI events such as a click. The binding of functions is done by defining triggers which tends to be done for you when using the `trame.html.*` modules.
 
 ## How to use it
 
-Trame really aims to be simple and to enable anyone to create a GUI to a Python based application.
+trame really aims to be simple and to enable anyone to create a GUI to a Python based application.
 The fact that the UI is web based should not matter for the user, I guess this could be seen as a add-on bonus in case you want to use your application remotely across the internet. But trame can definitely be levarged for local use cases too.
 
 The anatomy of a trame application could be seen as follows:

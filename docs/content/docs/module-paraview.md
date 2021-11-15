@@ -2,7 +2,7 @@
 
 ParaView is based on the Visualization Toolkit to process images and create 3D computer graphics. To learn more about ParaView and see how it can be user via Python, see its [User Guide](https://docs.paraview.org/en/latest/).
 
-ParaView integration in Trame allow you to create reach visualization and data processing applications by leveraging the Python infrastructure of ParaView. Several components are available so you can leverage ParaView either for its data processing and/or rendering. Trame lets you choose whether you want to leverage Remote Rendering or whether the client should do the rendering by leveraging vtk.js under the hood.
+ParaView integration in trame allow you to create reach visualization and data processing applications by leveraging the Python infrastructure of ParaView. Several components are available so you can leverage ParaView either for its data processing and/or rendering. trame lets you choose whether you want to leverage Remote Rendering or whether the client should do the rendering by leveraging vtk.js under the hood.
 
 [![ParaView Guide](/trame/images/module-paraview.jpg)](https://docs.paraview.org/en/latest/)
 
@@ -174,7 +174,7 @@ Constructing a VtkRemoteLocalView will set several variables, prefixed by a name
 | viewMode | `local`or `remote` to control which View is displayed to the user |
 
 
-Constructing a VtkRemoteLocalView will also set several Trame triggers.
+Constructing a VtkRemoteLocalView will also set several trame triggers.
 
 | Trigger          | Description                                                                |
 | ---------------- | -------------------------------------------------------------------------- |

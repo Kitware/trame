@@ -41,15 +41,15 @@
   <!-- RSS -->
   <link rel="alternate" href="/trame/atom.xml" title="Trame" type="application/atom+xml">
   <!-- Open Graph -->
-  <meta name="description" content="Your Trame ApplicationLet’s say you are building a data intensive application. You have a python codebase organizing your workflows and processing, and now you’d like to add a user interface. Trame pr">
+  <meta name="description" content="Your trame ApplicationLet’s say you are building a data intensive application. You have a python codebase organizing your workflows and processing, and now you’d like to add a user interface. trame pr">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Trame">
 <meta property="og:url" content="https://kitware.github.io/trame/docs/concepts.html">
 <meta property="og:site_name" content="Trame">
-<meta property="og:description" content="Your Trame ApplicationLet’s say you are building a data intensive application. You have a python codebase organizing your workflows and processing, and now you’d like to add a user interface. Trame pr">
+<meta property="og:description" content="Your trame ApplicationLet’s say you are building a data intensive application. You have a python codebase organizing your workflows and processing, and now you’d like to add a user interface. trame pr">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-11-15T18:48:45.111Z">
-<meta property="article:modified_time" content="2021-11-15T18:48:45.111Z">
+<meta property="article:published_time" content="2021-11-15T19:08:09.033Z">
+<meta property="article:modified_time" content="2021-11-15T19:08:09.033Z">
 <meta property="article:author" content="Kitware Inc.">
 <meta name="twitter:card" content="summary">
   <!-- Google Analytics -->
@@ -75,7 +75,7 @@
       <a href="/trame/" id="logo">Trame</a>
     </h1>
     <nav id="main-nav">
-      <a href="/trame/" class="main-nav-link">trame</a><a href="/trame/docs/" class="main-nav-link">Documentation</a><a target="_blank" rel="noopener" href="https://github.com/Kitware/trame/discussions" class="main-nav-link">Discussions</a><a target="_blank" rel="noopener" href="https://github.com/Kitware/trame/issues" class="main-nav-link">Issues</a>
+      <a href="/trame/" class="main-nav-link">trame</a><a href="/trame/docs/" class="main-nav-link">Documentation</a><a target="_blank" rel="noopener" href="https://github.com/Kitware/trame/discussions" class="main-nav-link">Discussions</a><a target="_blank" rel="noopener" href="https://github.com/Kitware/trame/issues" class="main-nav-link">Issues</a><a target="_blank" rel="noopener" href="https://www.kitware.com/contact-us/" class="main-nav-link">Contact Us</a>
       <a target="_blank" rel="noopener" href="https://github.com/kitware/trame" class="main-nav-link"><i class="fa fa-github-alt"></i></a>
       <div id="search-input-wrap">
         <div id="search-input-icon">
@@ -103,15 +103,15 @@
                 <h1 class="article-title" itemprop="name"></h1>
               </header>
               <div class="article-content" itemprop="articleBody">
-                <h1 id="Your-Trame-Application" class="article-heading"><a href="#Your-Trame-Application" class="headerlink" title="Your Trame Application"></a>Your Trame Application<a class="article-anchor" href="#Your-Trame-Application" aria-hidden="true"></a></h1><p>Let’s say you are building a data intensive application. You have a python codebase organizing your workflows and processing, and now you’d like to add a user interface. Trame provides your app with straightforward state management and engaging user interfaces through Shared State and Reactive UI Components.</p>
-<h2 id="Shared-State" class="article-heading"><a href="#Shared-State" class="headerlink" title="Shared State"></a>Shared State<a class="article-anchor" href="#Shared-State" aria-hidden="true"></a></h2><p>Trame integrates your application’s browser interface with its server backend through a Shared State of key-value pairs. These keys will hold any inputs from the user that you’d like to set as parameters for your processing. They may then hold the results of your computation so that they can be displayed to the user. And they enable modules like Trame’s vtk component add interactive 3d visuals to your interface. </p>
-<p>When your interface or your server updates one of the keys in the Shared State, the state is efficiently synchronized on both the server and the client. In cases where changes are difficult to notice, such as changing a value deep in a nested dictionary, Trame provides methods to mark the data dirty and force a synchronization.</p>
-<h2 id="Reactive-UI-Components" class="article-heading"><a href="#Reactive-UI-Components" class="headerlink" title="Reactive UI Components"></a>Reactive UI Components<a class="article-anchor" href="#Reactive-UI-Components" aria-hidden="true"></a></h2><p>When the Shared State is updated, This results in updates to your interface as well, thanks to the reactivity of the provided UI components. Under the hood, Trame uses Vue and its reactivity to reflect updates in values of the Shared State.</p>
-<p>This reactivity goes the other way too. Trame provides decorators for python functions so they can be called whenever a value is updated, or when triggered by a button.</p>
+                <h1 id="Your-trame-Application" class="article-heading"><a href="#Your-trame-Application" class="headerlink" title="Your trame Application"></a>Your trame Application<a class="article-anchor" href="#Your-trame-Application" aria-hidden="true"></a></h1><p>Let’s say you are building a data intensive application. You have a python codebase organizing your workflows and processing, and now you’d like to add a user interface. trame provides your app with straightforward state management and engaging user interfaces through Shared State and Reactive UI Components.</p>
+<h2 id="Shared-State" class="article-heading"><a href="#Shared-State" class="headerlink" title="Shared State"></a>Shared State<a class="article-anchor" href="#Shared-State" aria-hidden="true"></a></h2><p>trame integrates your application’s browser interface with its server backend through a Shared State of key-value pairs. These keys will hold any inputs from the user that you’d like to set as parameters for your processing. They may then hold the results of your computation so that they can be displayed to the user. And they enable modules like trame’s vtk component add interactive 3d visuals to your interface.</p>
+<p>When your interface or your server updates one of the keys in the Shared State, the state is efficiently synchronized on both the server and the client. In cases where changes are difficult to notice, such as changing a value deep in a nested dictionary, trame provides methods to mark the data dirty and force a synchronization.</p>
+<h2 id="Reactive-UI-Components" class="article-heading"><a href="#Reactive-UI-Components" class="headerlink" title="Reactive UI Components"></a>Reactive UI Components<a class="article-anchor" href="#Reactive-UI-Components" aria-hidden="true"></a></h2><p>When the Shared State is updated, This results in updates to your interface as well, thanks to the reactivity of the provided UI components. Under the hood, trame uses Vue and its reactivity to reflect updates in values of the Shared State.</p>
+<p>This reactivity goes the other way too. trame provides decorators for python functions so they can be called whenever a value is updated, or when triggered by a button.</p>
 
               </div>
               <footer class="article-footer">
-                <time class="article-footer-updated" datetime="2021-11-15T18:48:45.111Z" itemprop="dateModified">Last updated: 2021-11-15</time>
+                <time class="article-footer-updated" datetime="2021-11-15T19:08:09.033Z" itemprop="dateModified">Last updated: 2021-11-15</time>
                 <a href="index.html" class="article-footer-next" title="Introduction"><span>Next</span><i class="fa fa-chevron-right"></i></a>
               </footer>
               
@@ -120,7 +120,7 @@
           <aside id="article-toc" role="navigation">
             <div id="article-toc-inner">
               <strong class="sidebar-title">Contents</strong>
-              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Your-Trame-Application"><span class="toc-text">Your Trame Application</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Shared-State"><span class="toc-text">Shared State</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reactive-UI-Components"><span class="toc-text">Reactive UI Components</span></a></li></ol></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Your-trame-Application"><span class="toc-text">Your trame Application</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Shared-State"><span class="toc-text">Shared State</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reactive-UI-Components"><span class="toc-text">Reactive UI Components</span></a></li></ol></li></ol>
               <a href="#" id="article-toc-top">Back to Top</a>
             </div>
           </aside>
@@ -163,7 +163,7 @@
   <nav id="mobile-nav">
   <div id="mobile-nav-inner">
     <ul id="mobile-nav-list">
-      <a href="/trame/" class="mobile-nav-link">trame</a><a href="/trame/docs/" class="mobile-nav-link">Documentation</a><a target="_blank" rel="noopener" href="https://github.com/Kitware/trame/discussions" class="mobile-nav-link">Discussions</a><a target="_blank" rel="noopener" href="https://github.com/Kitware/trame/issues" class="mobile-nav-link">Issues</a>
+      <a href="/trame/" class="mobile-nav-link">trame</a><a href="/trame/docs/" class="mobile-nav-link">Documentation</a><a target="_blank" rel="noopener" href="https://github.com/Kitware/trame/discussions" class="mobile-nav-link">Discussions</a><a target="_blank" rel="noopener" href="https://github.com/Kitware/trame/issues" class="mobile-nav-link">Issues</a><a target="_blank" rel="noopener" href="https://www.kitware.com/contact-us/" class="mobile-nav-link">Contact Us</a>
       <li class="mobile-nav-item">
         <a href="https://github.com/kitware/trame" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
       </li>

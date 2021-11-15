@@ -19,7 +19,7 @@ sys.path.insert(0, os.path.join(this_dir, "/../../../trame"))
 
 # -- Project information -----------------------------------------------------
 
-project = "Trame"
+project = "trame"
 copyright = "2021, Kitware Inc."
 author = "Kitware Inc."
 

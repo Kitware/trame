@@ -1,1 +1,6 @@
-from trame.layouts.core import SinglePage, FullScreenPage, SinglePageWithDrawer
+from trame.layouts.core import (
+    AbstractLayout,
+    FullScreenPage,
+    SinglePage,
+    SinglePageWithDrawer,
+)

@@ -77,16 +77,8 @@ layout = SinglePage("F1 Probing")
 layout.title.set_text("F1 Probing")
 layout.state = {
     # Fields available
-    "field": "solid",
-    "fields": [
-        {"value": "solid", "text": "Solid color"},
-        {"value": "p", "text": "Pressure"},
-        {"value": "U", "text": "Velocity"},
-    ],
     "fieldParameters": fieldParameters,
-    "colorMap": "erdc_rainbow_bright",
     # picking controls
-    "pickingMode": "hover",
     "modes": [
         {"value": "hover", "icon": "mdi-magnify"},
         {"value": "click", "icon": "mdi-cursor-default-click-outline"},
@@ -96,18 +88,13 @@ layout.state = {
     "pickData": None,
     "selectData": None,
     "tooltip": "",
-    "tooltipStyle": {"display": "none"},
-    "cone": {},
     "coneVisibility": False,
     # Meshed
-    "f1": vtk_mesh(f1_mesh, point_arrays=["p", "U"]),
     "f1Visible": True,
-    "selection": None,
-    "frustrum": None,
-    # View interactions
-    "interactorSettings": VIEW_INTERACT,
 }
 
+# Let the server know the browser pixel ratio
+layout.triggers.add("mounted", "pixel_ratio = window.devicePixelRatio")
 
 # -----------------------------------------------------------------------------
 # Callbacks
@@ -219,19 +206,26 @@ def update_tooltip(pickData, **kwargs):
 
 with layout.toolbar:
     vuetify.VSpacer()
-    with vuetify.VBtnToggle(v_model=("pickingMode", []), dense=True):
+    with vuetify.VBtnToggle(v_model=("pickingMode", "hover"), dense=True):
         with vuetify.VBtn(value=("item.value",), v_for="item, idx in modes"):
             vuetify.VIcon("{{item.icon}}")
     vuetify.VSelect(
-        v_model=("field",),
-        items=("fields",),
+        v_model=("field", "solid"),
+        items=(
+            "fields",
+            [
+                {"value": "solid", "text": "Solid color"},
+                {"value": "p", "text": "Pressure"},
+                {"value": "U", "text": "Velocity"},
+            ],
+        ),
         classes="ml-8",
         dense=True,
         hide_details=True,
         style="max-width: 140px",
     )
     vuetify.VSelect(
-        v_model=("colorMap"),
+        v_model=("colorMap", "erdc_rainbow_bright"),
         items=("''|vtkColorPresetItems",),
         classes="ml-8",
         dense=True,
@@ -250,7 +244,7 @@ with layout.toolbar:
 
 visualization = [
     vtk.VtkGeometryRepresentation(
-        vtk.VtkMesh("f1", state=("f1",)),
+        vtk.VtkMesh("f1", dataset=f1_mesh, point_arrays=["p", "U"]),
         id="f1",
         v_if="f1",
         color_map_preset=("colorMap",),
@@ -261,20 +255,20 @@ visualization = [
         ),
     ),
     vtk.VtkGeometryRepresentation(
-        vtk.VtkMesh("selection", state=("selection",)),
+        vtk.VtkMesh("selection", state=("selection", None)),
         id="selection",
         actor=("{ visibility: !!selection }",),
         property=("{ color: [0.99,0.13,0.37], representation: 0, pointSize: 5 }",),
     ),
     vtk.VtkGeometryRepresentation(
-        vtk.VtkMesh("frustrum", state=("frustrum",)),
+        vtk.VtkMesh("frustrum", state=("frustrum", None)),
         id="frustrum",
         actor=("{ visibility: !!frustrum }",),
     ),
     vtk.VtkGeometryRepresentation(
         vtk.VtkAlgorithm(
             vtk_class="vtkConeSource",
-            state=("cone",),
+            state=("cone", {}),
         ),
         id="pointer",
         property=("{ color: [1, 0, 0]}",),

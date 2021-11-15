@@ -1,6 +1,6 @@
 # Layouts
 
-To simplify creation of the graphical user interface (GUI) for the web application, trame defines layouts such as `FullScreenPage`, `SinglePage`, and `SinglePageWithDrawer`. 
+To simplify creation of the graphical user interface (GUI) for the web application, ***trame*** defines layouts such as `FullScreenPage`, `SinglePage`, and `SinglePageWithDrawer`. 
 
 All core layouts start with a `VApp` (Vuetifies `v-app`) component. The `VApp` is **REQUIRED** for all applications. It is the mount point for other Vuetify components and functionality and ensures that it propagates the default application variant (dark/light) to children components while ensuring proper cross-browser support for certain click events in browsers like Safari. `VApp` should only be rendered within your application **ONCE**.
 
@@ -11,6 +11,8 @@ Each of these layouts can be utilized by importing, instantiating, and adding vi
 ## `FullScreenPage`
 
 The `FullScreenPage` layout starts with VApp and exposes the children array where one could add in other desired HTML elements (Vuetify UI Components).
+
+<p style="text-align:center;"><img src="../images/tutorial-fullscreenpage.jpg" alt="FullScreenPage Layout" style="width: 75%; height: 75%"></p>
 
 **First**, add the import to `FullScreenPage`.
 
@@ -43,11 +45,20 @@ if __name__ == "__main__":
 
 The `FullScreenPage` is really a blank canvas to add your desired Vuetify components.
 
+**Running the Application**
+
+```bash
+cd examples/Tutorial/HTML
+python ./FullScreenPage-app.py --port 1234
+```
+
 ## `SinglePage`
 
 The `SinglePage` extends the `FullScreenPage` with a few predifined components such as *logo*, *title*, *toolbar*, *content*, and *footer*.
 
-The *logo* and *title* sit on the left-hand side of the *toolbar* and customized as necessary. The logo accepts an 32x32 image or an VIcon such as those found at [Material Design Icons](https://materialdesignicons.com/). The *toolbar* itself exposes its *children* array where one can add components as needed. The *footer* can be hidden, but currently has trame branding and the progress bar. The *content* has a *children* array to which you may add your desired Vuetify components.
+<p style="text-align:center;"><img src="../images/tutorial-singlepage.jpg" alt="SinglePage Layout" style="width: 75%; height: 75%"></p>
+
+The *logo* and *title* sit on the left-hand side of the *toolbar* and customized as necessary. The logo accepts an 32x32 image or an VIcon such as those found at [Material Design Icons](https://materialdesignicons.com/). The *toolbar* itself exposes its *children* array where one can add components as needed. The *footer* can be hidden, but currently has ***trame*** branding and the progress bar. The *content* has a *children* array to which you may add your desired Vuetify components.
 
 **First**, we import the `SinglePage` class.
 
@@ -79,9 +90,18 @@ if __name__ == "__main__":
     layout.start()
 ```
 
+**Running the Application**
+
+```bash
+cd examples/Tutorial/HTML
+python ./SinglePage-app.py --port 1234
+```
+
 ## `SinglePageWithDrawer`
 
 The `SinglePageWithDrawer` extends the `SinglePage` with a *drawer*. You can show and hide the *drawer* by clicking on the application *logo* on the *toolbar*. The *drawer* has a *children* array to which you may add necessary Vuetify components.
+
+<p style="text-align:center;"><img src="../images/tutorial-singlepagewithdrawer.jpg" alt="SinglePageWithDrawer Layout" style="width: 75%; height: 75%"></p>
 
 **First**, we import the `SinglePageWithDrawer` class.
 
@@ -111,3 +131,10 @@ layout.content.children += [
 ```python
 if __name__ == "__main__":
     layout.start()
+
+**Running the Application**
+
+```bash
+cd examples/Tutorial/HTML
+python ./SinglePageWithDrawer-app.py --port 1234
+```

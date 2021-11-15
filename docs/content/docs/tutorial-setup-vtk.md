@@ -1,24 +1,23 @@
 ## Setup environment for VTK
 
-***trame*** requires Python 3.6+
+***trame*** requires Python 3.6+ but since ParaView 5.10 is bundling Python 3.9 we should use Python 3.9 for our environment.
 
 ```bash
-python3 -m venv .venv
+python3.9 -m venv .venv
 source ./.venv/bin/activate
 python -m pip install --upgrade pip
-pip install -r ./examples/Tutorial/setup-vtk/requirements.txt
+pip install "trame"
+pip install "vtk>=9.1.0"
 ```
 
 **Notes**:
  - `venv` was added in Python 3.3.
- - The command lines above assume you are inside the cloned ***trame*** repository
  - On mac with Arm architecture, VTK is only available on Python 3.9
 
 ## Running the application
 
-```
-cd examples/Tutorial/setup-vtk
-python ./app.py --port 1234
+```bash
+python ./00_setup/app.py --port 1234
 ```
 
 Your browser should open to `http://localhost:1234/`
@@ -33,7 +32,7 @@ Your browser should open to `http://localhost:1234/`
 
 We start by importing the basic building blocks for our client-server application.
 
-```
+```python
 from trame.layouts import SinglePage
 ```
 
@@ -41,14 +40,14 @@ from ***trame***'s `layouts`, we import a skeleton for a single page client appl
 
 Next, we define the graphical user interface (GUI) using a bare minimum of options. We instantiate a `SinglePage` GUI setting the browser tab title as "Hello trame", and then set the GUI `title` text to hold `"Hello trame"`.
 
-```
+```python
 layout = SinglePage("Hello trame")
 layout.title.set_text("Hello trame")
 ```
 
 Finally, we start the Web server using
 
-```
+```python
 if __name__ == "__main__":
     layout.start()
 ```
@@ -58,8 +57,14 @@ if __name__ == "__main__":
 **Running the Application**
 
 ```bash
-cd examples/Tutorial/setup-vtk
-python ./app.py --port 1234
+$ python ./00_setup/app.py --port 1234
+
+ App running at:
+ - Local:   http://localhost:1234/
+ - Network: http://192.168.1.34:1234/
+
+Note that for multi-users you need to use and configure a launcher.
+And to prevent your browser from opening, add '--server' to your command line.
 ```
 
-Open a browser to `http://localhost:1234/`
+Your browser should open automatically to `http://localhost:1234/`

@@ -54,13 +54,13 @@ class AbstractElement:
     :type name: str
     :param children: The children nested within this element
     :type children:  str | list[trame.html.*] | trame.html.* | None
-    :param __properties: Add more attributes to this element
-    :param __events: Add more events to this element
+    :param __properties: Provide more attribute names that should be handle
+    :param __events: Provide more event names that should be handle
 
     Html attributes - See |mdn_doc_link| for more info
 
     :param id: See |mdn_doc_link| for more info
-    :param classes: See |mdn_doc_link| for more info
+    :param classes: Match the HTML `class` attribute. See |mdn_doc_link| for more info
     :param style: See |mdn_doc_link| for more info
 
     Vue attributes - See |vue_doc_link| for more info
@@ -177,14 +177,24 @@ class AbstractElement:
 
     def ttsSensitive(self):
         """
-        Set this element to be reactive to a global timestamp
+        Calling this function on an element will make it fully recreate itself
+        every time the layout update. Internally it is managed by adding a `key=`
+        attribute which use a layout timestamp.
+
+        This is especially useful for component that manage other elements outside
+        of themself like VSelect in Vuetify.
         """
         self._attributes["__tts"] = f':key="`w{self._id}-${{tts}}`"'
         return self
 
     def attrs(self, *names):
         """
-        The HTML attributes of this instance
+        Calling this function will process the provided attribute names and
+        configure its internal so the macthing HTML string could easily be
+        generated later on.
+
+        :param names: The names attribute to process
+        :type names: *str
         """
         _app = get_app_instance()
         for _name in names:
@@ -235,7 +245,12 @@ class AbstractElement:
 
     def events(self, *names):
         """
-        All events this instance might listen to
+        Calling this function will process the provided event names and
+        configure its internal so the macthing HTML string could easily be
+        generated later on.
+
+        :param names: The names events to process
+        :type names: *str
         """
         _app = get_app_instance()
         for _name in names:
@@ -288,19 +303,26 @@ class AbstractElement:
 
     def hide(self):
         """
-        Hide element while keeping it in the DOM
+        Hide element while keeping it in the DOM. (display: none)
         """
         self._attributes["__style"] = 'style="display: none"'
 
     def add_child(self, child):
         """
         Add a component to this component's children
+
+        :param child: The component to add as a child
+        :type child: str | AbstractElement
         """
         self._children.append(child)
 
     def add_children(self, children):
         """
-        Add components to this component's children
+        Add components to this component's children.
+        The provided children is expected to be a list.
+
+        :param children: The list of components to add to the children
+        :type children: list
         """
         self._children += children
 
@@ -324,7 +346,7 @@ class AbstractElement:
     @property
     def html(self):
         """
-        A string representation of the HTML component
+        Return a string representation of the HTML component
         """
         # Build attributes
         self.attrs(*self._attr_names)
@@ -372,7 +394,7 @@ class Element(AbstractElement):
 
 class Div(AbstractElement):
     """
-    The standard html content division element
+    The standard html content div element
 
     :param children: The children nested within this element
     :type children:  str | list[trame.html.*] | trame.html.* | None
@@ -493,9 +515,9 @@ class Template(AbstractElement):
 
 class StateUpdate(AbstractElement):
     """
-    Component to display part of the state
+    Component to react when a state entry change so an event can be triggered
 
-    :param name: Which part of the state to display
+    :param name: Which part of the state to listen to
     :type name: str
 
     Events
@@ -520,6 +542,9 @@ class Triggers(AbstractElement):
     :type ref: str
     :param triggers: Mapping from names of triggers to expressions or methods in JS which they will call
     :type triggers: dict[str, str]
+
+    >>> triggers = trame.html.Triggers(ref="all_triggers", triggers={ "reset_camera": "$refs.view.resetCamera()" })
+
     """
 
     def __init__(self, ref, triggers={}, **kwargs):
@@ -537,6 +562,11 @@ class Triggers(AbstractElement):
         :type name: str
         :param call: JS method or expression to call when triggered
         :type call: str
+
+        >>> triggers.add("created", "console.log('UI is created')")
+        >>> triggers.add("mounted", "console.log('UI is mounted')")
+        >>> triggers.add("beforeDestroy", "console.log('UI is going away')")
+
         """
         self._attributes[f"_{name}"] = f'@{name}="{call}"'
 
@@ -547,6 +577,9 @@ class Triggers(AbstractElement):
         :param name: Reference for this JS method or expression trigger
         :type name: str
         :param args: Parameters passed to JS method
+
+        >>> triggers.call("reset_camera")
+
         """
         _app = get_app_instance()
         _app.update(ref=self._ref, method="emit", args=[name, *args])

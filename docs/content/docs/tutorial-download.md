@@ -1,10 +1,10 @@
-## Download trame
+## Download ***trame***
 
 ```
 git clone https://github.com/Kitware/trame.git
 ```
 
-There is now a directory called trame with the following file structure:
+There is now a directory called ***trame*** with the following file structure:
 
 ```
 ├── docs

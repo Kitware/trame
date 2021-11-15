@@ -36,6 +36,7 @@ def load_data():
         restrict_to_data_directory=True,
     )
     view = simple.GetActiveView()
+    view.MakeRenderWindowInteractor(True)
 
     # HTML
     html_view = paraview.VtkRemoteView(view)

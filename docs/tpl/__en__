@@ -31,6 +31,7 @@ sidebar:
     t_layouts: Layouts
     t_html: HTML
     t_example: Example
+    t_pv: ParaView
     modules: Html Modules
     m_vuetify: vuetify
     m_altair: altair

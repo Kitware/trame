@@ -11,6 +11,7 @@ docs:
     t_layouts: tutorial-layouts.html
     t_html: tutorial-html.html
     t_example: tutorial-example.html
+    t_pv: tutorial-paraview.html
   modules:
     m_vuetify: module-vuetify.html
     m_vega: module-vega.html

@@ -1,4 +1,4 @@
-# ParaView and Trame
+# ParaView and trame
 
 ParaView comes with its Python which might be missing some dependencies for your usage.
 You can add more Python package into your ParaView by create a virtual environment (not the venv one but [the original](https://virtualenv.pypa.io/en/latest/)) and activate it inside your application.

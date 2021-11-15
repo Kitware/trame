@@ -39,7 +39,7 @@ def update_reset_resolution():
 
 html_view = paraview.VtkRemoteView(view, ref="view")
 
-layout = SinglePage("VTK Remote rendering", on_ready=update_cone)
+layout = SinglePage("ParaView cone", on_ready=update_cone)
 layout.logo.click = "$refs.view.resetCamera()"
 layout.title.set_text("Cone Application")
 

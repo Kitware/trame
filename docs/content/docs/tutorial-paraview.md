@@ -190,7 +190,7 @@ The `load_data()` function requires us to code the follow
 3. Create a view element and connect it to the view defined in the state
 4. Add that view element into the content of our UI
 
-** Process CLI argument `--data`**
+**Process CLI argument `--data`**
 
 The (1) is achieved with the following set of lines. More information on CLI are available [here](https://kitware.github.io/trame/docs/howdoi-cli.html).
 

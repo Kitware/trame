@@ -1,3 +1,10 @@
+## [1.4.10](https://github.com/kitware/trame/compare/v1.4.9...v1.4.10) (2021-11-15)
+
+
+### Bug Fixes
+
+* **StateChange:** Improve StateUpdate name ([514abe1](https://github.com/kitware/trame/commit/514abe19317dafb363fa204d118061d6ee249e61))
+
 ## [1.4.9](https://github.com/kitware/trame/compare/v1.4.8...v1.4.9) (2021-11-15)
 
 

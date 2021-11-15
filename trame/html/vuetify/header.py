@@ -1,6 +1,13 @@
 from trame import get_app_instance
 from trame.html import AbstractElement, Template
 
+try:
+    import numpy as np
+    from numbers import Number
+except:
+    # dataframe_to_grid won't work
+    pass
+
 # Make sure used module is available
 _app = get_app_instance()
 if "vuetify" not in _app.vue_use:
@@ -22,9 +29,6 @@ type_mapper = {
 
 
 def cast_to_serializable(value):
-    import numpy as np
-    from numbers import Number
-
     isoformat = getattr(value, "isoformat", None)
     if (isoformat) and callable(isoformat):
         return isoformat()

@@ -513,7 +513,7 @@ class Template(AbstractElement):
                 self._attr_names.append((f"v_slot_{safe_name}", f"v-slot:{slot_name}"))
 
 
-class StateUpdate(AbstractElement):
+class StateChange(AbstractElement):
     """
     Component to react when a state entry change so an event can be triggered
 

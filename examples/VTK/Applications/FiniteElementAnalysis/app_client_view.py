@@ -11,7 +11,7 @@ from vtkmodules.util import vtkConstants
 
 from trame import change, update_state, get_cli_parser
 from trame.layouts import SinglePage
-from trame.html import vuetify, vtk, StateUpdate
+from trame.html import vuetify, vtk, StateChange
 
 # -----------------------------------------------------------------------------
 # Constants
@@ -311,7 +311,7 @@ with layout.toolbar:
         indeterminate=True, absolute=True, bottom=True, active=("busy",)
     )
 
-    StateUpdate("mesh", change="$refs.view.resetCamera()")
+    StateChange("mesh", change="$refs.view.resetCamera()")
 
 # Content ----------------------------------------
 layout.content.children += [

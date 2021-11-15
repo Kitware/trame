@@ -1,6 +1,6 @@
 import trame as tr
 from trame.layouts import SinglePage
-from trame.html import vtk, vuetify, StateUpdate
+from trame.html import vtk, vuetify, StateChange
 
 from vtkmodules.vtkIOXML import vtkXMLPolyDataReader
 from vtkmodules.web.utils import mesh as vtk_mesh
@@ -109,7 +109,7 @@ with layout.toolbar:
     vuetify.VProgressLinear(
         indeterminate=True, absolute=True, bottom=True, active=("busy",)
     )
-    StateUpdate(name="meshes", change="$refs.view.resetCamera()")
+    StateChange(name="meshes", change="$refs.view.resetCamera()")
 
 
 with layout.content:

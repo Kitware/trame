@@ -1,6 +1,6 @@
 # VTK
 
-The Visualization Toolkit processes images and creates 3D computer graphics. For more Python Vtk examples, see [here](https://kitware.github.io/vtk-examples/site/Python/).
+The Visualization Toolkit processes images and creates 3D computer graphics. For more Python VTK examples, see [here](https://kitware.github.io/vtk-examples/site/Python/).
 
 VTK integration in trame allows you to create rich visualization and data processing applications by leveraging the Python wrapping of the VTK library. Several components are available so you can leverage VTK either for its data processing and/or rendering. trame lets you choose if you want to leverage Remote Rendering or if the client should do the rendering by leveraging vtk.js under the hood.
 

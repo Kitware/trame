@@ -11,18 +11,12 @@ We will create a more complete example application that will show how to use sev
 5. Develop the [callbacks](#callbacks-id) for the GUI components
 6. [Start](#start-id) the application
 
+We will start by editing `04_application/app.py` which contain the basic structure of a **trame** app with the VTK rendering code base. 
+
 <a id="imports-id"></a>
 ## Imports
 
-**First**, we are going to read an example file. Thus, we import the `os` module and set the current directory. Starting with our Hello ***trame*** cone application, we add
-
-```python
-import os
-
-CURRENT_DIRECTORY = os.path.abspath(os.path.dirname(__file__))
-```
-
-**Next**, our ***trame*** imports have also changed. Thus, we will replace
+**First**, our ***trame*** imports have also changed. Thus, we will replace
 
 ```python
 from trame.layouts import SinglePage
@@ -38,13 +32,7 @@ from trame.html import vtk, vuetify, widgets
 
 We are creating a single page application with a drawer (`trame.layouts`), and we want to use one of ***trame***'s predefined widgets (`trame.html`) for displaying and interacting with visualization pipelines.
 
-**Finally**, our VTK pipelines are fairly straight forward, but not available as one of the vtk examples. We replaced the import for our cone VTK pipeline
-
-```python
-from vtkmodules.vtkFiltersSources import vtkConeSource
-```
-
-with imports for multiple VTK objects
+**Finally**, our VTK pipelines are fairly straight forward, but not available as one of the vtk examples. We will add the import for our VTK objects.
 
 ```python
 from vtkmodules.vtkCommonDataModel import vtkDataObject

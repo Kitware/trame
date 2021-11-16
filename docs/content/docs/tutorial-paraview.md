@@ -7,7 +7,7 @@ ParaView 5.10+ can be downloaded from [here](https://www.paraview.org/download).
 ## Virtual Environment
 
 ParaView comes with its own Python, which may be missing some dependencies for the desired usage.
-We can add more Python packages into ParaView by create a virtual environment and activate it inside your application by importing our helper module [venv.py](https://github.com/Kitware/trame-tutorial/blob/master/05_paraview/venv.py).
+We can add more Python packages into ParaView by create a virtual environment and activate it inside your application by importing our helper module [venv.py](https://github.com/Kitware/trame/blob/master/examples/ParaView/venv.py).
 
 
 **First**, we need to setup the ParaView add-on python environment, which we will only install ***trame***, but we could add any other Python libraries that are not included in the ParaView bundle.
@@ -27,13 +27,13 @@ deactivate
 ## Making ***trame*** available in ParaView
 
 At the very top of our scripts, we need to import our helper script so the `--venv path/to/venv` can be processed.
-The file `[venv.py](https://github.com/Kitware/trame-tutorial/blob/master/05_paraview/venv.py)` needs to be next to your application so it can be found when you import it.
+The file `[venv.py](https://github.com/Kitware/trame/blob/master/examples/ParaView/venv.py)` needs to be next to your application so it can be found when you import it.
 
 ```python
 import venv
 ```
 
-After that we can import ***trame*** and start using it (assuming we run our application with the `--venv /path/to/virtual-env/with/trame` argument).
+After that we can import ***trame*** and start using it (assuming we run our application with the `--venv /path/to/venv/with/trame` argument).
 
 ## Running an example
 

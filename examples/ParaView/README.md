@@ -1,7 +1,7 @@
 # ParaView and trame
 
 ParaView comes with its own Python, which may be missing some dependencies for the desired usage.
-We can add more Python packages into ParaView by create a virtual environment and activate it inside your application by importing our helper module [venv.py](https://github.com/Kitware/trame-tutorial/blob/master/05_paraview/venv.py).
+We can add more Python packages into ParaView by create a virtual environment and activate it inside your application by importing our helper module [venv.py](https://github.com/Kitware/trame/blob/master/examples/ParaView/venv.py).
 
 
 ## venv for ParaView

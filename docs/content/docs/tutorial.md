@@ -11,5 +11,5 @@ It is easiest to work on the tutorial from within the ***trame-tutorial*** repos
 3. [VTK](./tutorial-vtk.html)
 4. [Layouts](./tutorial-layouts.html)
 5. [HTML](./tutorial-html.html)
-6. [Application](./tutorial-example.html)
+6. [Application](./tutorial-application.html)
 7. [ParaView](./tutorial-paraview.html)

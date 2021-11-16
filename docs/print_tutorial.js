@@ -1,19 +1,17 @@
 const { chromium } = require('playwright');
 const path = require('path');
 
-const pages = ['', '-download', '-example', '-html', '-layouts', '-paraview', '-setup-vtk'];
+// const pages = ['', '-download', '-example', '-html', '-layouts', '-paraview', '-setup-vtk'];
+const pages = ['-html']
 
-const style = `
-`;
+// const host = "http://kitware.github.io";
+const host = "http://localhost:4000";
 
 (async () => {
   const browser = await chromium.launch()
   for (const pageName of pages) {
     const page = await browser.newPage()
-    //const filename = `build-tmp/public/docs/tutorial${pageName}.html`
-    // await page.goto(`file:${path.join(__dirname, filename)}`)
-    const url = `http://kitware.github.io/trame/docs/tutorial${pageName}.html`
-    await page.addStyleTag({content: style})
+    const url = `${host}/trame/docs/tutorial${pageName}.html`
     await page.goto(url)
     await page.pdf({ path: path.join(__dirname, (pageName.replace(/^-/, '') || 'trame') + ".pdf") })
   }

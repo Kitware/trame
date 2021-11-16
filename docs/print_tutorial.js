@@ -1,11 +1,11 @@
 const { chromium } = require('playwright');
 const path = require('path');
 
-// const pages = ['', '-download', '-example', '-html', '-layouts', '-paraview', '-setup-vtk'];
-const pages = ['-html']
+const pages = ['', '-download', '-example', '-setup-vtk', '-vtk', '-layouts', '-html', '-application', '-paraview'];
+// const pages = ['-html']
 
-// const host = "http://kitware.github.io";
-const host = "http://localhost:4000";
+const host = "http://kitware.github.io";
+// const host = "http://localhost:4000";
 
 (async () => {
   const browser = await chromium.launch()

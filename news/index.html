@@ -125,15 +125,18 @@
   </div>
   <style>
     @media print {
-      @page { margin: 0; }
       body { margin: 1.6cm; }
     
       aside {display: None;}
     
-      footer {display: None}
+      footer {display: None;}
     
-      nav {display: None}
+      nav {display: None;}
     
+      h2 { page-break-before: always;}
+    	
+      h1 > a {display: None;}
+      h2 > a {display: None;}
     }
 
   </style>

@@ -1,3 +1,10 @@
+## [1.4.12](https://github.com/kitware/trame/compare/v1.4.11...v1.4.12) (2021-11-16)
+
+
+### Bug Fixes
+
+* **python:** try to fix long_description ([8cbeebe](https://github.com/kitware/trame/commit/8cbeebe0d2937ff72f51fd4ee8f685f580682c82))
+
 ## [1.4.11](https://github.com/kitware/trame/compare/v1.4.10...v1.4.11) (2021-11-16)
 
 

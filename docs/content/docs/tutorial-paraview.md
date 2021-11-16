@@ -2,7 +2,7 @@
 
 ## Download ParaView
 
-ParaView can be downloaded from [here](https://www.paraview.org/paraview-downloads/download.php).
+ParaView 5.10+ can be downloaded from [here](https://www.paraview.org/download).
 
 ## Virtual Environment
 
@@ -47,9 +47,8 @@ The command line below illustrate how a SimpleCone example can be run on a **Mac
 
 ```bash
 /Applications/ParaView-5.10.0-RC1.app/Contents/bin/pvpython \
-          ./examples/ParaView/SimpleCone/RemoteRendering.py \
-                                              --virtual-env \
-                                              ./pv-lib
+    ./05_paraview/SimpleCone.py  \
+    --virtual-env ./pv-lib
 ```
 
 ![Simple Cone](https://kitware.github.io/trame/examples/pvSimpleCone-Remote.jpg)
@@ -69,7 +68,7 @@ representation = simple.Show(cone) # Create a representation in a view (if no vi
 view = simple.Render()             # Ask to compute image of active view and return the corresponding view
 ```
 
-With these three lines, we create a full pipeline and a view. Now, we can use ***trame*** to show that view in the client. 
+With these three lines, we create a full pipeline and a view. Now, we can use ***trame*** to show that view in the client.
 
 ```python
 from trame.html import vuetify, paraview
@@ -142,11 +141,9 @@ With the basics in place, we can now dive further in by using some built-in feat
 
 ![Rock Core](https://kitware.github.io/trame/examples/StateViewer-rock.jpg)
 
-Let's analyse the example in `./examples/ParaView/StateViewer/app.py`. The ***trame*** core of the example is as follows
+Let's analyse the example in `./05_paraview/StateLoader.py`. The ***trame*** core of the example is as follows
 
 **Script Header**
-
-Only the `import trame as tr` is new and will be used and explained later.
 
 ```python
 import os
@@ -157,7 +154,7 @@ if "--virtual-env" in sys.argv:
     virtualEnv = virtualEnvPath + "/bin/activate_this.py"
     exec(open(virtualEnv).read(), {"__file__": virtualEnv})
 
-import trame as tr
+import trame
 from trame.html import vuetify, paraview
 from trame.layouts import SinglePage
 
@@ -186,7 +183,7 @@ if __name__ == "__main__":
 The `load_data()` function requires us to code the follow
 
 1. Process a `--data` argument that contains the path to the file to load
-2. Load the provided file path as state file.
+2. Load the provided file path as a state file.
 3. Create a view element and connect it to the view defined in the state
 4. Add that view element into the content of our UI
 
@@ -227,7 +224,7 @@ html_view = paraview.VtkRemoteView(view)
 ```
 
 **Add view element to UI**
-    
+
 Finally (4) is achieved with the following set of lines, the same way it was achieved with VTK in ***trame*** when switching from remote to local rendering.
 
 ```python
@@ -241,3 +238,20 @@ That's it. You now have a ParaView `trame` application that let you reproduce co
 <img src="https://kitware.github.io/trame/examples/StateViewer-asteroid.jpg" width="49%" />
 <img src="https://kitware.github.io/trame/examples/StateViewer-medical.jpg" width="49%" />
 </center>
+
+
+## Running the StateLoader
+
+```bash
+/Applications/ParaView-5.10.0-RC1.app/Contents/bin/pvpython \
+    ./05_paraview/StateLoader.py  \
+    --virtual-env ./pv-lib \
+    --data ./data/pv-state-diskout.pvsm
+# or
+/Applications/ParaView-5.10.0-RC1.app/Contents/bin/pvpython \
+    ./05_paraview/StateLoader.py  \
+    --virtual-env ./pv-lib \
+    --data ./data/pv-state.pvsm
+```
+
+Your browser should open automatically to `http://localhost:1234/`

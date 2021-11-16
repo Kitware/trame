@@ -50,8 +50,8 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://kitware.github.io/trame/images/tutorial-cone.jpg">
 <meta property="og:image" content="https://kitware.github.io/trame/images/tutorial-carotid.jpg">
-<meta property="article:published_time" content="2021-11-16T21:51:09.377Z">
-<meta property="article:modified_time" content="2021-11-16T21:51:09.377Z">
+<meta property="article:published_time" content="2021-11-16T23:18:52.012Z">
+<meta property="article:modified_time" content="2021-11-16T23:18:52.012Z">
 <meta property="article:author" content="Kitware Inc.">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://kitware.github.io/trame/images/tutorial-cone.jpg">
@@ -127,6 +127,8 @@
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> vtkmodules.vtkRenderingOpenGL2 <span class="comment">#noqa</span></span><br></pre></td></tr></table></figure>
 
 <p><strong>Note</strong>: <code>#noqa</code> tells the linter to ignore checking this problematic line.</p>
+<div class="print-break"> 
+
 <h2 id="VTK-Pipeline" class="article-heading"><a href="#VTK-Pipeline" class="headerlink" title="VTK Pipeline"></a>VTK Pipeline<a class="article-anchor" href="#VTK-Pipeline" aria-hidden="true"></a></h2><p>As promised, to add visualization to your <em><strong>trame</strong></em> application you simply write VTK pipelines in Python.</p>
 <p style="text-align:center;"><img src="../images/tutorial-cone.jpg" alt="Cone VTK Pipeline" style="width: 75%; height: 75%"></p>
 
@@ -190,6 +192,8 @@
 
 <p>We add a <strong>Vuetify</strong> component to the Web application. In this case, a <code>VContainer</code>. The arguments include: fluid (to get full width container), classes (CSS stylings), and children components (the local or remote view).</p>
 <p>More information on <a target="_blank" rel="noopener" href="https://vuetifyjs.com/en/introduction/why-vuetify/">vuetify</a>.</p>
+<div class="print-break"> 
+
 <h2 id="Update-and-Start" class="article-heading"><a href="#Update-and-Start" class="headerlink" title="Update and Start"></a>Update and Start<a class="article-anchor" href="#Update-and-Start" aria-hidden="true"></a></h2><p>Once the client and server are ready, we need to update the view (<code>html_view</code>) by calling  <code>html_view.update()</code>.</p>
 <p>To do it, we revist the <code>layout</code> to provide the <code>on_ready</code> variable, which takes a function to call when the server and client are ready. So we modify our layout constructor call to look like</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">layout = SinglePage(<span class="string">&quot;Hello trame&quot;</span>, on_ready=html_view.update)</span><br></pre></td></tr></table></figure>
@@ -202,6 +206,8 @@
 <li>Zoom: Hold down mouse + control key and move up (out) and down (in)</li>
 <li>Pan: Hold down the mouse + option key and move</li>
 </ul>
+<div class="print-break"> 
+
 <h2 id="Other-VTK-Examples" class="article-heading"><a href="#Other-VTK-Examples" class="headerlink" title="Other VTK Examples"></a>Other VTK Examples<a class="article-anchor" href="#Other-VTK-Examples" aria-hidden="true"></a></h2><p>Now you can take most of the code examples at <a href="https://kitware.github.io/vtk-examples/site/Python">VTK Examples</a> and port them to <em><strong>trame</strong></em>.</p>
 <p><a href="https://kitware.github.io/vtk-examples/site/Python/VisualizationAlgorithms/CarotidFlowGlyphs/"><p style="text-align:center;"><img src="../images/tutorial-carotid.jpg" alt="Carotid Flow VTK Example" style="width: 75%; height: 75%"></p></a></p>
 <p>We are going to implement <a href="https://kitware.github.io/vtk-examples/site/Python/VisualizationAlgorithms/CarotidFlowGlyphs/">CarotidFlowGlyphs</a> by editing the file in <code>01_vtk/app_flow.py.py</code> which start from our cone rendering example solution.</p>
@@ -240,10 +246,10 @@
 <p>Your browser should open automatically to <code>http://localhost:1234/</code></p>
 <h2 id="Ray-Casting-example" class="article-heading"><a href="#Ray-Casting-example" class="headerlink" title="Ray Casting example"></a>Ray Casting example<a class="article-anchor" href="#Ray-Casting-example" aria-hidden="true"></a></h2><p>If you want on your own time you can try to implement the Volume Rendering example <a href="https://kitware.github.io/vtk-examples/site/Python/VolumeRendering/SimpleRayCast/">Simple Ray Cast</a> using <strong>trame</strong>.</p>
 <p>The solution of that example is available under <code>01_vtk/solution_ray_cast.py</code>.</p>
-
+</div></div></div>
               </div>
               <footer class="article-footer">
-                <time class="article-footer-updated" datetime="2021-11-16T21:51:09.377Z" itemprop="dateModified">Last updated: 2021-11-16</time>
+                <time class="article-footer-updated" datetime="2021-11-16T23:18:52.012Z" itemprop="dateModified">Last updated: 2021-11-16</time>
                 <a href="tutorial-setup-vtk.html" class="article-footer-prev" title="Setup for VTK"><i class="fa fa-chevron-left"></i><span>Prev</span></a><a href="tutorial-layouts.html" class="article-footer-next" title="Layouts"><span>Next</span><i class="fa fa-chevron-right"></i></a>
               </footer>
               
@@ -285,10 +291,16 @@
     
       nav {display: None;}
     
-      h2 { page-break-before: always;}
+      div.print-break { page-break-before: always;}
     	
       h1 > a {display: None;}
       h2 > a {display: None;}
+      h3 > a {display: None;}
+      h4 > a {display: None;}
+      h5 > a {display: None;}
+      h6 > a {display: None;}
+
+      a:empty {font-size: 0px;}
     }
 
   </style>

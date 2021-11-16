@@ -95,21 +95,22 @@ In the `increment_weight` function, we use the `get_state` function to access th
 
 ## GUI
 
-Let's modify the Hello ***trame*** application to add some GUI elements!
+Let's modify the Hello ***trame*** application to add some GUI elements by starting editing the file `03_html/app_cone.py`.
 
 <p style="text-align:center;"><img src="../images/tutorial-light.jpg" alt="Light Mode" style="width: 45%; height: 45%"><img src="../images/tutorial-dark.jpg" alt="Dark Mode" style="width: 45%; height: 45%"></p>
 
-So with the `SinglePage` layout, we could add UI elements to either the `toolbar`, `content`, or the `footer`. We'll limit ourself to the `toolbar`, but the proceedure is still the same. Let us add to the right side of the `toolbar` a switch to toggle between light and dark mode of the application and a button to reset the view after panning and zooming.
+So with the `SinglePage` layout, we could add UI elements to either the `toolbar`, `content`, or the `footer`. We'll limit ourself to the `toolbar`, but the proceedure is still the same. Let us add to the right side of the `toolbar` a switch to toggle between light and dark mode of the application and a button to reset the view after panning and/or zooming.
 
 <p style="text-align:center;"><img src="../images/tutorial-buttons.jpg" alt="Light Mode" style="width: 25%; height: 25%"></p>
 
 - The VSpacer Vuetify component pushes the extra space on the left side of the component.
 
-- The VSwitch component toggles between two different states. In this case, we will update a Vuetify variable vuetify.theme.dark. The hide_details attribute creates a smaller, tighter switch.
+- The VSwitch component toggles between two different states. In this case, we will update a Vuetify variable `$vuetify.theme.dark`. The hide_details and dense attribute creates a smaller, tighter switch.
 
 - The VBtn component is a button. We decorate the button with a VIcon component where the argument is a String identifying the [Material Design Icons](https://materialdesignicons.com/) instead of text in this case. The VBtn icon attribute provides proper sizing and padding for the icon. Finally, the click attribute tells the application what method to call when the button is pressed. In this case, we use an internal ***trame*** function, `$refs.view.resetCamera()`.
 
-**Note**: A ref (reference) is made by `vtk.VtkLocalView(renderWindow)` or `vtk.VtkRemoteView(renderWindow)`. By default, `ref="view"`. If you would like to change this or add additional views, the use `vtk.VtkLocalView(renderWindow, ref="newViewName")`.
+**Note**:
+- A ref (reference) is made by `vtk.VtkLocalView(renderWindow)` or `vtk.VtkRemoteView(renderWindow)`. By default, `ref="view"`. If you would like to change its name or add additional views, one can use `vtk.VtkLocalView(renderWindow, ref="newViewName")`.
 
 We add all the Vuetify components in a *flow* from left to right, top to bottom to the `layout.toolbar.children` array.
 
@@ -119,6 +120,7 @@ layout.toolbar.children += [
     vuetify.VSwitch(
         v_model="$vuetify.theme.dark",
         hide_details=True,
+        dense=True,
     ),
     vuetify.VBtn(
         vuetify.VIcon("mdi-crop-free"),
@@ -130,11 +132,12 @@ layout.toolbar.children += [
 **Running the Application**
 
 ```bash
-cd examples/Tutorial/HTML
-python ./app.py --port 1234
+python 03_html/app_cone.py --port 1234
+# or
+python 03_html/solution_buttons_a.py --port 1234
 ```
 
-Open a browser to `http://localhost:1234/`
+Your browser should open automatically to `http://localhost:1234/`
 
 ## `with` Construct
 
@@ -146,14 +149,10 @@ with layout.toolbar:
     vuetify.VSwitch(
         v_model="$vuetify.theme.dark",
         hide_details=True,
+        dense=True,
     )
-    with vuetify.VBtn(
-        icon=True,
-        click="$refs.view.resetCamera()",
-    ):
-        vuetify.VIcon(
-            "mdi-crop-free"
-        )
+    with vuetify.VBtn(icon=True, click="$refs.view.resetCamera()"):
+        vuetify.VIcon("mdi-crop-free")
 ```
 
 In addition, the `content` can be modified to add a `VContainer` component as follows.
@@ -167,13 +166,18 @@ with layout.content:
     )
 ```
 
-We think it easy to see that utilizing the `with` construct is much more Pythonic and creates clean readable code, but use either coding style according to your preferences.
+We think it's easy to see that utilizing the `with` construct is much more Pythonic and creates clean readable code, but use either coding style according to your preferences.
+
+
+**Note**:
+- When using `with` instantiating any `trame.html.AbstractElement` will add it to the children of the element of the with.
 
 **Running the Application**
 
 ```bash
-cd examples/Tutorial/HTML
-python ./app-with.py --port 1234
+python 03_html/app_cone.py --port 1234
+# or
+python 03_html/solution_buttons_b.py --port 1234
 ```
 
 ## Callbacks
@@ -193,6 +197,8 @@ DEFAULT_RESOLUTION = 6
 Let's add a `VSlider` for adjusting the resolution, a `VBtn` with `VIcon` to reset the resolution to the default value, and a vertical `VDivider` to separate our visualization GUI from the application GUI. The following is added after the `VSpacer` component at the beginning of the `with` `toolbar` *flow*.
 
 ```python
+with layout.toolbar:
+    vuetify.VSpacer()
     vuetify.VSlider(
         v_model=("resolution", DEFAULT_RESOLUTION),
         min=3,
@@ -202,17 +208,17 @@ Let's add a `VSlider` for adjusting the resolution, a `VBtn` with `VIcon` to res
         dense=True,
         style="max-width: 300px",
     )
-    with vuetify.VBtn(
-        icon=True,
-        click=reset_resolution,
-    ):
-        vuetify.VIcon(
-            "mdi-restore"
-        )
-    vuetify.VDivider(
-        vertical=True,
-        classes="mx-2"
+    with vuetify.VBtn(icon=True, click=reset_resolution):
+        vuetify.VIcon("mdi-restore")
+    vuetify.VDivider(vertical=True, classes="mx-2")
+
+    vuetify.VSwitch(
+        v_model="$vuetify.theme.dark",
+        hide_details=True,
+        dense=True,
     )
+    with vuetify.VBtn(icon=True, click="$refs.view.resetCamera()"):
+        vuetify.VIcon("mdi-crop-free")
 ```
 
 The `VSlider` creates `resolution` as a state variable and is initialized to the default resolution. When interacting with the slider, the code will call a function decorated with `@change("resolution")`.
@@ -221,10 +227,10 @@ The `VSlider` creates `resolution` as a state variable and is initialized to the
 @change("resolution")
 def update_resolution(resolution, **kwargs):
     cone_source.SetResolution(resolution)
-    update_view()
+    html_view.update()
 ```
 
-There is no need to get or update the `resolution` state variable. This update is carried out on the client-side by the v_model. We simply update the `cone_source` appropriately and update the view with the previously defined `update_view` function.
+There is no need to get or update the `resolution` state variable. This update is carried out on the client-side by the v_model. We simply update the `cone_source` appropriately and update the view.
 
 The `VBtn` resets the the resolution when pressed by calling the `reset_resolution` function. This is a `trigger` event, where `v_models` are `change` events. Since, we use the function reference here, there is no need to use a `@trigger("...")` decorator here. It is created by default behind the scene.
 
@@ -233,13 +239,16 @@ def reset_resolution():
     update_state("resolution", DEFAULT_RESOLUTION)
 ```
 
-**Note**: If you plan to pass arguments to the `trigger` function, then you would use the decorator.
+**Note**:
+- If you plan to pass arguments to the `trigger` function, then you would use the decorator.
+- In this case because we listen to `resolution` change, the call to `update_state("resolution", ...)` will also trigger the change callback. That is the reason why we do not need to update the view or the cone source resolution in `reset_resolution()`.
 
 Both of these functions should be included in the Functions or Callbacks section of the code.
 
 **Running the Application**
 
 ```bash
-cd examples/Tutorial/HTML
-python ./app-callbacks.py --port 1234
+python 03_html/app_cone.py --port 1234
+# or
+python 03_html/solution_final.py --port 1234
 ```

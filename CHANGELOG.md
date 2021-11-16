@@ -1,3 +1,10 @@
+## [1.4.13](https://github.com/kitware/trame/compare/v1.4.12...v1.4.13) (2021-11-16)
+
+
+### Bug Fixes
+
+* **pypi:** Add readme to pypi ([b497077](https://github.com/kitware/trame/commit/b4970771119aeeae26f51c9ae59e3f6d70e07729))
+
 ## [1.4.12](https://github.com/kitware/trame/compare/v1.4.11...v1.4.12) (2021-11-16)
 
 

@@ -28,6 +28,8 @@ Your browser should open to `http://localhost:1234/`
  - The default port is 8080, but since this is very common we will use 1234 for our Tutorial.
  - If you are running this on a remote machine, you may have to set the host to 0.0.0.0 to allow any external connection. (`python ./app.py --port 1234 --host 0.0.0.0`)
 
+<div class="print-break" />
+
 ## Annotation of Hello ***trame*** Application
 
 We start by importing the basic building blocks for our client-server application.

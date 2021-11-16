@@ -8,6 +8,8 @@ More on Vuetify in the next chapter of the tutorial.
 
 Each of these layouts can be utilized by importing, instantiating, and serving it via its `start` function.
 
+<div class="print-break" /> 
+
 ## `FullScreenPage`
 
 If you want to experiement with it you can edit `02_layouts/app_cone.py` which was the latest cone example we built using the `SinglePage` layout.
@@ -55,6 +57,8 @@ python 02_layouts/app_cone.py --port 1234
 python 02_layouts/solution_FullScreenPage.py --port 1234
 ```
 
+<div class="print-break" /> 
+
 ## `SinglePage`
 
 The `SinglePage` extends the `FullScreenPage` with a few predifined components such as *logo*, *title*, *toolbar*, *content*, and *footer*.
@@ -100,6 +104,8 @@ python 02_layouts/app_cone.py --port 1234
 # or
 python 02_layouts/solution_SinglePage.py --port 1234
 ```
+
+<div class="print-break" /> 
 
 ## `SinglePageWithDrawer`
 

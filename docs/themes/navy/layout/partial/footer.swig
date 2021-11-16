@@ -18,10 +18,16 @@
     
       nav {display: None;}
     
-      h2 { page-break-before: always;}
+      div.print-break { page-break-before: always;}
     	
       h1 > a {display: None;}
       h2 > a {display: None;}
+      h3 > a {display: None;}
+      h4 > a {display: None;}
+      h5 > a {display: None;}
+      h6 > a {display: None;}
+
+      a:empty {font-size: 0px;}
     }
 
   </style>

@@ -4,6 +4,8 @@
 
 [![Vuetify WebSite](../images/module-vuetify.jpg)](https://vuetifyjs.com/en/)
 
+<div class="print-break" /> 
+
 ## Using Vuetify
 
 We expose all Vuetify components. As an example, let's look at how we would make a simple text box. This is taken from Vuetify's excellent [examples and documentation](https://vuetifyjs.com/en/components/text-fields/), which we recommend you consult while writing frontends with ***trame***.
@@ -53,6 +55,8 @@ field = VTextField(
 )
 ```
 
+<div class="print-break" /> 
+
 ## State
 
 In both the previous statements `v_model` and `suffix`, we defined and initialized state variables. These variables are available from both the client and server side.
@@ -92,6 +96,8 @@ def set_imperial():
 ```
 
 In the `increment_weight` function, we use the `get_state` function to access the `"myWeight"` value. Notice that get_state returns a list, so the comma in `w,` is necessary. We then increment the weight. Finally, we update the state variable with the `update_state` function.
+
+<div class="print-break" /> 
 
 ## GUI
 
@@ -139,6 +145,8 @@ python 03_html/solution_buttons_a.py --port 1234
 
 Your browser should open automatically to `http://localhost:1234/`
 
+<div class="print-break" /> 
+
 ## `with` Construct
 
 The Python `with` construct can be used in our Vuetify GUI creation to make the code cleaner and much more readable. You use the `with` construct to add components to a component. The `toolbar` is a component, so we can add the `VSpacer`, `VSwitch`, and `VBtn`. The `VBtn` is a component that we want to decorate with a `VIcon` component, so we use the with construct with the `VBtn` to accomplish this effect.
@@ -179,6 +187,8 @@ python 03_html/app_cone.py --port 1234
 # or
 python 03_html/solution_buttons_b.py --port 1234
 ```
+
+<div class="print-break" /> 
 
 ## Callbacks
 

@@ -50,6 +50,8 @@ import vtkmodules.vtkRenderingOpenGL2 #noqa
 
 **Note**: `#noqa` tells the linter to ignore checking this problematic line.
 
+<div class="print-break" /> 
+
 ## VTK Pipeline
 
 As promised, to add visualization to your ***trame*** application you simply write VTK pipelines in Python.
@@ -165,6 +167,8 @@ We add a **Vuetify** component to the Web application. In this case, a `VContain
 
 More information on [vuetify](https://vuetifyjs.com/en/introduction/why-vuetify/).
 
+<div class="print-break" /> 
+
 ## Update and Start
 
 Once the client and server are ready, we need to update the view (`html_view`) by calling  `html_view.update()`.
@@ -188,6 +192,8 @@ Your browser should open automatically to `http://localhost:1234/`
 - Rotate: Hold down the mouse and move
 - Zoom: Hold down mouse + control key and move up (out) and down (in)
 - Pan: Hold down the mouse + option key and move
+
+<div class="print-break" /> 
 
 ## Other VTK Examples
 

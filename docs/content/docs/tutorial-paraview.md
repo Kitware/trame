@@ -258,6 +258,6 @@ Your browser should open automatically to `http://localhost:1234/`
 
 
 <center>
-<img src="https://kitware.github.io/trame/examples/PVStateViewer-diskout.jpg" width="49%" />
-<img src="https://kitware.github.io/trame/examples/StateViewer-diskout.jpg" width="49%" />
+<img src="https://kitware.github.io/trame/examples/PVStateViewer-diskout.jpg" height="200px" />
+<img src="https://kitware.github.io/trame/examples/StateViewer-diskout.jpg" height="200px" />
 </center>

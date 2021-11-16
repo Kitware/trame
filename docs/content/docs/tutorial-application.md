@@ -1,4 +1,4 @@
-# Example 
+# Application 
 
 ![Example Application](../images/tutorial-example.jpg)
 

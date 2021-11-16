@@ -1,12 +1,4 @@
-# Try handle virtual env if provided
-import os
-import sys
-
-if "--virtual-env" in sys.argv:
-    virtualEnvPath = sys.argv[sys.argv.index("--virtual-env") + 1]
-    virtualEnv = virtualEnvPath + "/bin/activate_this.py"
-    exec(open(virtualEnv).read(), {"__file__": virtualEnv})
-
+import venv
 import trame as tr
 from trame.html import vuetify, paraview
 from trame.layouts import SinglePage

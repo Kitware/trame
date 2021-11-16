@@ -7,18 +7,16 @@ ParaView 5.10+ can be downloaded from [here](https://www.paraview.org/download).
 ## Virtual Environment
 
 ParaView comes with its own Python, which may be missing some dependencies for the desired usage.
-We can add more Python packages into ParaView by create a virtual environment (not the venv one but [the original](https://virtualenv.pypa.io/en/latest/) one) and activate it inside your application.
+We can add more Python packages into ParaView by create a virtual environment and activate it inside your application by importing our helper module [venv.py](https://github.com/Kitware/trame-tutorial/blob/master/05_paraview/venv.py).
 
-```python
-pip3 install virtualenv
-```
 
 **First**, we need to setup the ParaView add-on python environment, which we will only install ***trame***, but we could add any other Python libraries that are not included in the ParaView bundle.
 
 ```bash
-virtualenv -p python3.9 pv-lib
-source ./pv-lib/bin/activate
-pip install trame
+python3.9 -m venv .pvenv
+source ./.pvenv/bin/activate
+python -m pip install --upgrade pip
+pip install "trame"
 deactivate
 ```
 
@@ -28,18 +26,14 @@ deactivate
 
 ## Making ***trame*** available in ParaView
 
-At the very top of our scripts, we need to add the following lines of code to set up the virtual environment:
+At the very top of our scripts, we need to import our helper script so the `--venv path/to/venv` can be processed.
+The file `[venv.py](https://github.com/Kitware/trame-tutorial/blob/master/05_paraview/venv.py)` needs to be next to your application so it can be found when you import it.
 
 ```python
-import sys
-
-if "--virtual-env" in sys.argv:
-    virtualEnvPath = sys.argv[sys.argv.index("--virtual-env") + 1]
-    virtualEnv = virtualEnvPath + "/bin/activate_this.py"
-    exec(open(virtualEnv).read(), {"__file__": virtualEnv})
+import venv
 ```
 
-After that we can import ***trame*** and start using it (assuming we run our application with the `--virtual-env /path/to/virtual-env/with/trame` argument).
+After that we can import ***trame*** and start using it (assuming we run our application with the `--venv /path/to/virtual-env/with/trame` argument).
 
 ## Running an example
 
@@ -48,7 +42,7 @@ The command line below illustrate how a SimpleCone example can be run on a **Mac
 ```bash
 /Applications/ParaView-5.10.0-RC1.app/Contents/bin/pvpython \
     ./05_paraview/SimpleCone.py  \
-    --virtual-env ./pv-lib
+    --venv .pvenv
 ```
 
 ![Simple Cone](https://kitware.github.io/trame/examples/pvSimpleCone-Remote.jpg)
@@ -146,14 +140,9 @@ Let's analyse the example in `./05_paraview/StateLoader.py`. The ***trame*** cor
 **Script Header**
 
 ```python
+import venv
+
 import os
-import sys
-
-if "--virtual-env" in sys.argv:
-    virtualEnvPath = sys.argv[sys.argv.index("--virtual-env") + 1]
-    virtualEnv = virtualEnvPath + "/bin/activate_this.py"
-    exec(open(virtualEnv).read(), {"__file__": virtualEnv})
-
 import trame
 from trame.html import vuetify, paraview
 from trame.layouts import SinglePage
@@ -245,12 +234,12 @@ That's it. You now have a ParaView `trame` application that let you reproduce co
 ```bash
 /Applications/ParaView-5.10.0-RC1.app/Contents/bin/pvpython \
     ./05_paraview/StateLoader.py  \
-    --virtual-env ./pv-lib \
+    --venv .pvenv \
     --data ./data/pv-state-diskout.pvsm
 # or
 /Applications/ParaView-5.10.0-RC1.app/Contents/bin/pvpython \
     ./05_paraview/StateLoader.py  \
-    --virtual-env ./pv-lib \
+    --venv .pvenv \
     --data ./data/pv-state.pvsm
 ```
 

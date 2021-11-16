@@ -10,6 +10,7 @@ There is now a directory called ***trame-tutorial*** with the following file str
 $ tree .
 .
 └── trame-tutorial
+    ├── README.md
     ├── 00_setup
     │   └── app.py
     ├── 01_vtk
@@ -19,28 +20,29 @@ $ tree .
     │   ├── solution_flow.py
     │   └── solution_ray_cast.py
     ├── 02_layouts
-    │   ├── FullScreenPage-app.py
-    │   ├── SinglePage-app.py
-    │   └── SinglePageWithDrawer-app.py
+    │   ├── app_cone.py
+    │   ├── solution_FullScreenPage.py
+    │   ├── solution_SinglePage.py
+    │   └── solution_SinglePageWithDrawer.py
     ├── 03_html
-    │   ├── app-callback.py
-    │   ├── app-with.py
-    │   └── app.py
+    │   ├── app_cone.py
+    │   ├── solution_buttons_a.py
+    │   ├── solution_buttons_b.py
+    │   └── solution_final.py
     ├── 04_application
-    │   ├── __pycache__
-    │   │   └── app.cpython-39.pyc
-    │   └── app.py
+    │   ├── app.py
+    │   └── solution.py
     ├── 05_paraview
     │   ├── SimpleCone.py
     │   └── StateLoader.py
-    ├── README.md
     └── data
         ├── carotid.vtk
         ├── disk_out_ref.vtu
         ├── ironProt.vtk
+        ├── pv-state-diskout.pvsm
         └── pv-state.pvsm
 
-9 directories, 21 files
+8 directories, 24 files
 ```
 
 In the following steps of the tutorial we will assume to be inside the `trame-tutorial` root directory.

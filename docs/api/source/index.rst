@@ -16,4 +16,4 @@ All classes are listed in the :ref:`genindex`.
    trame.html
    trame.layouts
 
-.. include:: ../../../pypi_readme.rst
+.. include:: ../../../README.rst

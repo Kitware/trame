@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/kitware/trame/compare/v1.4.13...v1.5.0) (2021-11-17)
+
+
+### Features
+
+* **sc21:** Release for SC21 ([8a5a65e](https://github.com/kitware/trame/commit/8a5a65ed1c2510198066e12ee131b07cef9fbea9))
+
 ## [1.4.13](https://github.com/kitware/trame/compare/v1.4.12...v1.4.13) (2021-11-16)
 
 

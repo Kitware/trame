@@ -13,10 +13,8 @@ We will create a more complete example application that will show how to use sev
 
 We will start by editing `04_application/app.py` which contain the basic structure of a **trame** app with the VTK rendering code base.
 
-<a id="imports-id"></a>
-
 <div class="print-break" /> 
-
+<a id="imports-id"></a>
 
 ## Imports
 
@@ -57,6 +55,8 @@ reader = vtkXMLUnstructuredGridReader()
 reader.SetFileName(os.path.join(CURRENT_DIRECTORY, "../data/disk_out_ref.vtu"))
 reader.Update()
 ```
+
+<div class="print-break" /> 
 **Second**, we determine the available data arrays and build an array of dictionaries, `dataset_arrays` that contains the array name, value or id, range, and type (point or cell data). We also define the default array and the default minimum and maximum of the default array.
 
 ```python
@@ -94,7 +94,6 @@ mesh_mapper.SetInputConnection(reader.GetOutputPort())
 mesh_actor = vtkActor()
 mesh_actor.SetMapper(mesh_mapper)
 renderer.AddActor(mesh_actor)
-
 ```
 
 We want to be able to change the mesh representation, so we get a handle on the `mesh_actor` property and set the representation to surface, set the default point size, and turn off edge visibility.
@@ -119,6 +118,7 @@ mesh_lut.Build()
 
 We finally want to be able to change the array or field to color by, so we get a handle on the mesh's mapper and set the array to color by and the range of the array to the defaults, tell the mapper to use the appropriate scalar mode for the array, turn on the scalar visibility, and tell the mapper to use the scalar range assigned to the lookup table.
 
+<div class="print-break" /> 
 ```python
 # Mesh: Color by default array
 mesh_mapper.SelectColorArray(default_array.get("text"))
@@ -316,8 +316,6 @@ The `resetCamera` button and the `dark` checkbox are as they were in previous ex
 The `local_vs_remote` checkbox is used to switch between the *local* and *remote* rendering, and leverages the [`local_vs_remote` callback](#toolbar_callbacks_local_vs_remote-id). The `cube_axes_visibility` checkbox is used to turn on and off the cube axes, and leverages the [`cube_axes_visibility` callback](#toolbar_callbacks_cube_axes_visibility-id).
 
 <a id="gui_drawer-id"></a>
-
-<div class="print-break" /> 
 
 ### Drawer GUI
 
@@ -648,8 +646,6 @@ The [`update_contour_opacity`](#drawer_callbacks_update_contour_opacity-id) call
 
 <a id="contour_components-id"></a>
 
-<div class="print-break" /> 
-
 #### Contour Components
 
 <a id="gui_contour_by-id"></a>
@@ -676,8 +672,6 @@ The [`update_contour_by`](#drawer_callbacks_update_contour_by-id) callback is us
 
 <a id="gui_contour_value-id"></a>
 
-<div class="print-break" /> 
-
 ##### Contour Value GUI
 
 We created a slider for the contour value. The `VSlider` component is used to create a slider. The `v_model` uses the state variable `contour_value` initialized to mid-point of the selected contour by array. The `min` is set to minimum of the contour by array and the `max` is set to maximum of the contour by array. The `step` is set to 0.01 times the range of the contour by array.
@@ -701,8 +695,6 @@ We created a slider for the contour value. The `VSlider` component is used to cr
 The [`update_contour_value`](#drawer_callbacks_update_contour_value-id) callback is used to update the value of the contour.
 
 <a id="callbacks-id"></a>
-
-<div class="print-break" /> 
 
 ## Callbacks
 

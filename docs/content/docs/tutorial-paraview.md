@@ -81,6 +81,8 @@ with layout.content:
     )
 ```
 
+<div class="print-break" /> 
+
 The rest of the code looks very similar to the VTK Hello ***trame*** example, but instead of importing the `vtk` module of ***trame***
 
 ```python
@@ -129,6 +131,8 @@ To learn more about ParaView scripting, you should look into ParaView trace whic
 <img src="../images/tutorial-paraview-trace.jpg" width="75%" />
 </center>
 
+<div class="print-break" /> 
+
 ## Advanced example
 
 With the basics in place, we can now dive further in by using some built-in features of ParaView, such as saving and loading a state file. State files are a convinient way of capturing all the settings that were used to generate a visualization with Paraview.
@@ -166,6 +170,8 @@ layout.content.add_child(vuetify.VContainer(fluid=True, classes="pa-0 fill-heigh
 if __name__ == "__main__":
     layout.start()
 ```
+
+<div class="print-break" /> 
 
 **`load_data`**
 
@@ -228,6 +234,7 @@ That's it. You now have a ParaView `trame` application that let you reproduce co
 <img src="https://kitware.github.io/trame/examples/StateViewer-medical.jpg" width="49%" />
 </center>
 
+<div class="print-break" /> 
 
 ## Running the StateLoader
 

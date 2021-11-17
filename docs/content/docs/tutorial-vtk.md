@@ -167,8 +167,6 @@ We add a **Vuetify** component to the Web application. In this case, a `VContain
 
 More information on [vuetify](https://vuetifyjs.com/en/introduction/why-vuetify/).
 
-<div class="print-break" /> 
-
 ## Update and Start
 
 Once the client and server are ready, we need to update the view (`html_view`) by calling  `html_view.update()`.
@@ -193,8 +191,6 @@ Your browser should open automatically to `http://localhost:1234/`
 - Zoom: Hold down mouse + control key and move up (out) and down (in)
 - Pan: Hold down the mouse + option key and move
 
-<div class="print-break" /> 
-
 ## Other VTK Examples
 
 Now you can take most of the code examples at [VTK Examples](https://kitware.github.io/vtk-examples/site/Python) and port them to ***trame***.
@@ -202,6 +198,8 @@ Now you can take most of the code examples at [VTK Examples](https://kitware.git
 <a href="https://kitware.github.io/vtk-examples/site/Python/VisualizationAlgorithms/CarotidFlowGlyphs/"><p style="text-align:center;"><img src="../images/tutorial-carotid.jpg" alt="Carotid Flow VTK Example" style="width: 75%; height: 75%"></p></a>
 
 We are going to implement [CarotidFlowGlyphs](https://kitware.github.io/vtk-examples/site/Python/VisualizationAlgorithms/CarotidFlowGlyphs/) by editing the file in `01_vtk/app_flow.py.py` which start from our cone rendering example solution.
+
+<div class="print-break" /> 
 
 **Imports**
 
@@ -260,9 +258,10 @@ reader = vtkStructuredPointsReader()
 reader.SetFileName(os.path.join(CURRENT_DIRECTORY, "../data/carotid.vtk"))
 ```
 
+<div class="print-break" /> 
+
 ```python
 # Glyphs
-
 threshold = vtkThresholdPoints()
 threshold.SetInputConnection(reader.GetOutputPort())
 threshold.ThresholdByUpper(200)
@@ -300,7 +299,6 @@ vectorActor = vtkActor()
 vectorActor.SetMapper(vectorMapper)
 
 # Contours
-
 iso = vtkContourFilter()
 iso.SetInputConnection(reader.GetOutputPort())
 iso.SetValue(0, 175)
@@ -315,7 +313,6 @@ isoActor.GetProperty().SetRepresentationToWireframe()
 isoActor.GetProperty().SetOpacity(0.25)
 
 # Outline
-
 colors = vtkNamedColors()
 
 outline = vtkOutlineFilter()

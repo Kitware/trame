@@ -13,11 +13,13 @@ trame: simple, powerful, innovative
 
 With **trame**, create stunning, interactive web applications compactly and intuitively.
 
-.. image:: https://kitware.github.io/trame/examples/CarotidFlow.jpg
+|image_1| |image_2| |image_2|
+
+.. |image_1| image:: https://kitware.github.io/trame/examples/CarotidFlow.jpg
   :width: 30%
-.. image:: https://kitware.github.io/trame/examples/UberPickupsNYC.jpg
+.. |image_2| image:: https://kitware.github.io/trame/examples/UberPickupsNYC.jpg
   :width: 30%
-.. image:: https://kitware.github.io/trame/examples/FiniteElementAnalysis.jpg
+.. |image_3| image:: https://kitware.github.io/trame/examples/FiniteElementAnalysis.jpg
   :width: 30%
 
 3D Visualization
@@ -33,7 +35,7 @@ Rich Features
 
 **trame** leverages existing libraries and tools such as Vuetify, Altair, Vega, deck.gl, VTK, ParaView, and more, to create vivid content for visual analytics applications.
 
-Problem Focused 
+Problem Focused
 ---------------
 
 By relying simply on Python and HTML, **trame** focuses on one's data and associated analysis and visualizations while hiding the complications of web development.

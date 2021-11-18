@@ -13,7 +13,7 @@ trame: simple, powerful, innovative
 
 With **trame**, create stunning, interactive web applications compactly and intuitively.
 
-|image_1| |image_2| |image_2|
+|image_1| |image_2| |image_3|
 
 .. |image_1| image:: https://kitware.github.io/trame/examples/CarotidFlow.jpg
   :width: 30%

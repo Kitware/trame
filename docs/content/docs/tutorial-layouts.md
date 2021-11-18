@@ -8,7 +8,7 @@ More on Vuetify in the next chapter of the tutorial.
 
 Each of these layouts can be utilized by importing, instantiating, and serving it via its `start` function.
 
-<div class="print-break" /> 
+<div class="print-break"></div>
 
 ## `FullScreenPage`
 
@@ -57,7 +57,7 @@ python 02_layouts/app_cone.py --port 1234
 python 02_layouts/solution_FullScreenPage.py --port 1234
 ```
 
-<div class="print-break" /> 
+<div class="print-break"></div>
 
 ## `SinglePage`
 
@@ -105,7 +105,7 @@ python 02_layouts/app_cone.py --port 1234
 python 02_layouts/solution_SinglePage.py --port 1234
 ```
 
-<div class="print-break" /> 
+<div class="print-break"></div>
 
 ## `SinglePageWithDrawer`
 

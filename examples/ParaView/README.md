@@ -19,5 +19,13 @@ deactivate
 /Application/ParaView-5.10.app/Content/bin/pvpython ./app.py --venv .pvenv
 ```
 
+Or using PV_VENV environmnent variable
+
+```bash
+export PV_VENV=$PWD/.pvenv
+/Application/ParaView-5.10.app/Content/bin/pvpython ./app.py
+```
+
 **Note**:
- - venv.py must be either next to your app.py or available inside your Python runtime.
+ - venv handling was introduced in ParaView 5.10-RC2 under `from paraview.web import venv`
+ - Otherwise you can use our local version of venv.py if not available for your app

@@ -13,7 +13,7 @@ We will create a more complete example application that will show how to use sev
 
 We will start by editing `04_application/app.py` which contain the basic structure of a **trame** app with the VTK rendering code base.
 
-<div class="print-break" /> 
+<div class="print-break"></div>
 <a id="imports-id"></a>
 
 ## Imports
@@ -45,6 +45,7 @@ from vtkmodules.vtkRenderingAnnotation import vtkCubeAxesActor
 to create a three-dimensional (3D) mesh, a contour, and a cube axes legend to outline the computational domain.
 
 <a id="vtk_pipeline-id"></a>
+
 ## VTK Pipelines
 
 **First**, we read the data using the `vtkXMLUnstructuredGridReader` and the full file path, provided by adding `CURRENT_DIRECTORY` to the beginning of the relative file path.
@@ -56,7 +57,8 @@ reader.SetFileName(os.path.join(CURRENT_DIRECTORY, "../data/disk_out_ref.vtu"))
 reader.Update()
 ```
 
-<div class="print-break" /> 
+<div class="print-break"></div>
+
 **Second**, we determine the available data arrays and build an array of dictionaries, `dataset_arrays` that contains the array name, value or id, range, and type (point or cell data). We also define the default array and the default minimum and maximum of the default array.
 
 ```python
@@ -118,7 +120,8 @@ mesh_lut.Build()
 
 We finally want to be able to change the array or field to color by, so we get a handle on the mesh's mapper and set the array to color by and the range of the array to the defaults, tell the mapper to use the appropriate scalar mode for the array, turn on the scalar visibility, and tell the mapper to use the scalar range assigned to the lookup table.
 
-<div class="print-break" /> 
+<div class="print-break"></div>
+
 ```python
 # Mesh: Color by default array
 mesh_mapper.SelectColorArray(default_array.get("text"))
@@ -207,9 +210,8 @@ cube_axes.SetFlyModeToOuterEdges()
 renderer.ResetCamera()
 ```
 
+<div class="print-break"></div>
 <a id="trame_view-id"></a>
-
-<div class="print-break" /> 
 
 ## ***trame*** Views
 
@@ -224,6 +226,7 @@ html_view = local_view
 **Note**: The `interactive_ratio` implies the desired image reduction fraction to enhance the frames per second during interaction. Here we set it to 1, which means the image will not be reduced.
 
 <a id="gui-id"></a>
+
 ## GUI
 
 We are creating a single page application with a drawer using `SinglePageWithDrawer`. By defauklt we get a title, toolbar, drawer, and a content section. So we instantiate a `SinglePageWithDrawer` with the `title` of "Viewer" and `on_ready` argument equal to `html_view.update`, which updates the three-dimensional visualization.
@@ -259,9 +262,8 @@ with layout.content:
     )
 ```
 
+<div class="print-break"></div>
 <a id="gui_toolbar-id"></a>
-
-<div class="print-break" /> 
 
 ### Toolbar GUI
 
@@ -343,6 +345,7 @@ with layout.drawer as drawer:
 ```
 
 <a id="pipeline_widget-id"></a>
+
 #### Pipeline Widget
 
 <p style="text-align:center;"><img src="../images/tutorial-pipeline-widget.jpg" alt="Pipeline Widget" style="width: 25%; height: 25%"></p>
@@ -364,9 +367,8 @@ def pipeline_widget():
     )
 ```
 
+<div class="print-break"></div>
 <a id="default_ui_card-id"></a>
-
-<div class="print-break" /> 
 
 #### Default `ui_card`
 
@@ -389,6 +391,7 @@ def ui_card(title, ui_name):
 ```
 
 <a id="mesh_card-id"></a>
+
 #### `mesh_card`
 
 <p style="text-align:center;"><img src="../images/tutorial-mesh-card.jpg" alt="Mesh Card" style="width: 25%; height: 25%"></p>
@@ -417,9 +420,8 @@ def mesh_card():
 
 Since these are defaul pipeline elements, we will cover these items together with the contour_card individual components [below](#default_components-id).
 
+<div class="print-break"></div>
 <a id="contour_card-id"></a>
-
-<div class="print-break" /> 
 
 #### `contour_card`
 
@@ -458,13 +460,13 @@ For simplicity, we will cover these items the contour individual components [bel
 **Note**: `*` denotes essentially duplicate code\components from the `mesh_card`.
 
 <a id="default_components-id"></a>
+
 #### Default Components
 
 The default components of a pipeline include the [representation](#gui_representation-id) selection, the [color by](#gui_color_by-id) selection, the [color map](#gui_color_map-id) selection, and the [opacity](#gui_opacity-id) slider.
 
+<div class="print-break"></div>
 <a id="gui_representation-id"></a>
-
-<div class="print-break" /> 
 
 ##### Representation GUI
 
@@ -516,9 +518,8 @@ The dropdown menu for the representation type for the contour pipeline is simila
 
 The [`update_contour_representation`](#drawer_callbacks_update_contour_representation-id) callback is used to update the representation of the contour.
 
+<div class="print-break"></div>
 <a id="gui_color_by-id"></a>
-
-<div class="print-break" /> 
 
 ##### Color By GUI
 
@@ -552,10 +553,8 @@ The dropdown menu for the color by of the contour pipeline is similar to the mes
 
 The [`update_contour_representation`](#drawer_callbacks_update_contour_color_by_name-id) callback is used to update the color by array of the contour.
 
+<div class="print-break"></div>
 <a id="gui_color_map-id"></a>
-
-<div class="print-break" /> 
-
 
 ##### Color Map GUI
 
@@ -607,9 +606,8 @@ The dropdown menu for the color map of the contour pipeline is similar to the me
 
 The [`update_contour_color_preset`](#drawer_callbacks_update_contour_color_preset-id) callback is used to update the color map of the contour.
 
+<div class="print-break"></div>
 <a id="gui_opacity-id"></a>
-
-<div class="print-break" /> 
 
 ##### Opacity GUI
 
@@ -649,6 +647,7 @@ The [`update_contour_opacity`](#drawer_callbacks_update_contour_opacity-id) call
 #### Contour Components
 
 <a id="gui_contour_by-id"></a>
+
 ##### Contour By GUI
 
 <p style="text-align:center;"><img src="../images/tutorial-gui-contour-by.jpg" alt="Contour By Selection" style="width: 25%; height: 25%"></p>
@@ -699,11 +698,13 @@ The [`update_contour_value`](#drawer_callbacks_update_contour_value-id) callback
 ## Callbacks
 
 <a id="toolbar_callbacks-id"></a>
+
 ### Toolbar Callbacks
 
 The first toolbar callback is the `cube_axes_visibility` callback, which is used to turn on and off the cube axes. The `update_cube_axes_visibility` function is found by the @change decorator for `cube_axes_visibility`. Then we simply set the `cube_axes` actor's `Visibility` property to the value of `cube_axes_visibility`, and update the view.
 
 <a id="toolbar_callbacks_cube_axes_visibility-id"></a>
+
 ```python
 @change("cube_axes_visibility")
 def update_cube_axes_visibility(cube_axes_visibility, **kwargs):
@@ -714,6 +715,7 @@ def update_cube_axes_visibility(cube_axes_visibility, **kwargs):
 The second toolbar callback is the `local_vs_remote` callback, which is used to switch between the local and remote visualization. The `update_local_vs_remote` function is found by the @change decorator for `local_vs_remote`. Then we simply switch between the `local_view` and `remote_view` to the appropriate view. The complicated part is updating the layout by changing out the view in the `layout.content`. The child at `children[0]` is the `VContainer` and the second `children[0]` is the location of the `html_view` in the containers children. Finally, we update the view either shipping geometry (*local* rendering) or an image (*remote* rendering) to the client.
 
 <a id="toolbar_callbacks_local_vs_remote-id"></a>
+
 ```python
 @change("local_vs_remote")
 def update_local_vs_remote(local_vs_remote, **kwargs):
@@ -732,9 +734,8 @@ def update_local_vs_remote(local_vs_remote, **kwargs):
     html_view.update()
 ```
 
+<div class="print-break"></div>
 <a id="drawer_callbacks-id"></a>
-
-<div class="print-break" /> 
 
 ### Drawer Callbacks
 
@@ -746,11 +747,13 @@ def update_local_vs_remote(local_vs_remote, **kwargs):
    6. [Contour Components Callbacks](#contour_components-id)
 
 <a id="drawer_pipeline_widget_callbacks-id"></a>
+
 #### Pipeline Widget Callbacks
 
 When a pipeline is selected in the pipeline widget, we want to update the pipeline card to show in the drawer. Using the default `actives_change` function of ***trame*** pipeline widget, we simply update `layout.state` element `active_ui` to display the pipeline card of the selected pipeline.
 
 <a id="drawer_callbacks_actives_change-id"></a>
+
 ```python
 # Selection Change
 def actives_change(ids):
@@ -766,6 +769,7 @@ def actives_change(ids):
 When a pipeline visibility is toggled in the pipeline widget, we want to update the view to add or remove the toggled pipeline. Using the default `visibility_change` function of ***trame*** pipeline widget, we update the visibility of the appropriate pipeline `actor` using `actor.SetVisibility` function with the visibility accessed from the `event["visible"]` dictionary element.
 
 <a id="drawer_callbacks_visibility_change-id"></a>
+
 ```python
 # Visibility Change
 def visibility_change(event):
@@ -780,13 +784,13 @@ def visibility_change(event):
 ```
 
 <a id="representation_callbacks-id"></a>
+
 #### Representation Callbacks
 
 The `update_representation` function updates the `representation` property of an `actor` to the value of `mode`.
 
 <a id="drawer_callbacks_update_representation-id"></a>
-
-<div class="print-break" /> 
+<div class="print-break"></div>
 
 ```python
 # Representation Callbacks
@@ -813,6 +817,7 @@ def update_representation(actor, mode):
 The `update_mesh_representation` function is found by the @change decorator for `mesh_representation`. We simply call the `update_representation` function with the `mesh_actor` and the `mesh_representation` state, and then update the view.
 
 <a id="drawer_callbacks_update_mesh_representation-id"></a>
+
 ```python
 @change("mesh_representation")
 def update_mesh_representation(mesh_representation, **kwargs):
@@ -823,6 +828,7 @@ def update_mesh_representation(mesh_representation, **kwargs):
 Likewise, the `update_contour_representation` function is found by the @change decorator for `contour_representation`. We simply call the `update_representation` function with the `mesh_actor` and the `contour_representation` state, and then update the view.
 
 <a id="drawer_callbacks_update_contour_representation-id"></a>
+
 ```python
 @change("contour_representation")
 def update_contour_representation(contour_representation, **kwargs):
@@ -831,14 +837,14 @@ def update_contour_representation(contour_representation, **kwargs):
 ```
 
 <a id="color_by_callbacks-id"></a>
-
-<div class="print-break" /> 
+<div class="print-break"></div>
 
 #### Color By Callbacks
 
 The `color_by_array` function updates the `SelectColorArray` of the `mapper` of an `actor` to the value of `array`. These operations are the same as the ones we used setting up the initial pipeline, so we will not go through the individual commands again here.
 
 <a id="drawer_callbacks_color_by_array-id"></a>
+
 ```python
 # Color By Callbacks
 def color_by_array(actor, array):
@@ -857,6 +863,7 @@ def color_by_array(actor, array):
 The `update_mesh_color_by_name` function is found by the @change decorator for `mesh_color_array_idx`. We simply call the `color_by_array` function with the `mesh_actor` and the `array`, and then update the view. The `array` is set using the `mesh_color_array_idx` state on the `dataset_arrays` array of dictionaries.
 
 <a id="drawer_callbacks_update_mesh_representation-id"></a>
+
 ```python
 @change("mesh_color_array_idx")
 def update_mesh_color_by_name(mesh_color_array_idx, **kwargs):
@@ -868,6 +875,7 @@ def update_mesh_color_by_name(mesh_color_array_idx, **kwargs):
 Likewise, the `update_contour_color_by_name` function is found by the @change decorator for `contour_color_array_idx`. We simply call the `color_by_array` function with the `contour_actor` and the `array`, and then update the view. The `array` is set using the `contour_color_array_idx` state on the `dataset_arrays` array of dictionaries.
 
 <a id="drawer_callbacks_update_contour_color_by_name-id"></a>
+
 ```python
 @change("contour_color_array_idx")
 def update_contour_color_by_name(contour_color_array_idx, **kwargs):
@@ -877,11 +885,13 @@ def update_contour_color_by_name(contour_color_array_idx, **kwargs):
 ```
 
 <a id="colormap_callbacks-id"></a>
+
 #### Color Map Callbacks
 
 The `use_preset` function updates the `lut`, lookup table,  hue, saturation, and value range for the `preset`. We need the `actor` to get the `lut`, and the `preset` to determine the `hue`, `saturation`, and `value_range`.
 
 <a id="drawer_callbacks_use_preset-id"></a>
+
 ```python
 # Color Map Callbacks
 def use_preset(actor, preset):
@@ -908,6 +918,7 @@ def use_preset(actor, preset):
 The `update_mesh_color_preset` function is found by the @change decorator for `mesh_color_preset`. We simply call the `use_preset` function with the `mesh_actor` and the `mesh_color_preset` state, and then update the view.
 
 <a id="drawer_callbacks_update_mesh_color_preset-id"></a>
+
 ```python
 @change("mesh_color_preset")
 def update_mesh_color_preset(mesh_color_preset, **kwargs):
@@ -918,6 +929,7 @@ def update_mesh_color_preset(mesh_color_preset, **kwargs):
 The `update_contour_color_preset` function is found by the @change decorator for `contour_color_preset`. We simply call the `use_preset` function with the `contour_actor` and the `contour_color_preset` state, and then update the view.
 
 <a id="drawer_callbacks_update_contour_color_preset-id"></a>
+
 ```python
 @change("contour_color_preset")
 def update_contour_color_preset(contour_color_preset, **kwargs):
@@ -927,12 +939,12 @@ def update_contour_color_preset(contour_color_preset, **kwargs):
 
 <a id="opacity_callbacks-id"></a>
 
-
 #### Opacity Callbacks
 
 The `update_mesh_opacity` function is found by the @change decorator for `mesh_opacity`. We simply use a `mesh_actor` property and the `mesh_opacity` state to `SetOpacity`, and then update the view.
 
 <a id="drawer_callbacks_update_mesh_opacity-id"></a>
+
 ```python
 # Opacity Callbacks
 @change("mesh_opacity")
@@ -944,6 +956,7 @@ def update_mesh_opacity(mesh_opacity, **kwargs):
 The `update_contour_opacity` function is found by the @change decorator for `contour_opacity`. We simply use a `contour_actor` property and the `contour_opacity` state to `SetOpacity`, and then update the view.
 
 <a id="drawer_callbacks_update_contour_opacity-id"></a>
+
 ```python
 @change("contour_opacity")
 def update_contour_opacity(contour_opacity, **kwargs):
@@ -953,12 +966,12 @@ def update_contour_opacity(contour_opacity, **kwargs):
 
 <a id="contour_callbacks-id"></a>
 
-
 #### Contour Callbacks
 
 The `update_contour_by` function updates the `SetInputArrayToProcess` of the `contour` filter to the value of `array`. These operations are the same as the ones we used setting up the initial pipeline, so we will not go through the individual commands again here.
 
 <a id="drawer_callbacks_update_contour_by-id"></a>
+
 ```python
 # Contour Callbacks
 @change("contour_by_array_idx")
@@ -985,6 +998,7 @@ the `update_contour_by` function is found by the @change decorator for `contour_
 The `update_contour_value` function is found by the @change decorator for `contour_value`. We simply use a `contour` filter property and the `contour_value` state to `SetValue`, and then update the view.
 
 <a id="drawer_callbacks_update_contour_value-id"></a>
+
 ```python
 @change("contour_value")
 def update_contour_value(contour_value, **kwargs):

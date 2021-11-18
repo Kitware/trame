@@ -4,7 +4,7 @@
 
 [![Vuetify WebSite](../images/module-vuetify.jpg)](https://vuetifyjs.com/en/)
 
-<div class="print-break" /> 
+<div class="print-break"></div>
 
 ## Using Vuetify
 
@@ -55,7 +55,7 @@ field = VTextField(
 )
 ```
 
-<div class="print-break" /> 
+<div class="print-break"></div>
 
 ## State
 
@@ -97,7 +97,7 @@ def set_imperial():
 
 In the `increment_weight` function, we use the `get_state` function to access the `"myWeight"` value. Notice that get_state returns a list, so the comma in `w,` is necessary. We then increment the weight. Finally, we update the state variable with the `update_state` function.
 
-<div class="print-break" /> 
+<div class="print-break"></div>
 
 ## GUI
 
@@ -145,7 +145,7 @@ python 03_html/solution_buttons_a.py --port 1234
 
 Your browser should open automatically to `http://localhost:1234/`
 
-<div class="print-break" /> 
+<div class="print-break"></div>
 
 ## `with` Construct
 
@@ -188,7 +188,7 @@ python 03_html/app_cone.py --port 1234
 python 03_html/solution_buttons_b.py --port 1234
 ```
 
-<div class="print-break" /> 
+<div class="print-break"></div>
 
 ## Callbacks
 

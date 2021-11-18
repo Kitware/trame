@@ -11,6 +11,8 @@ $ tree .
 .
 └── trame-tutorial
     ├── README.md
+    ├── presentation.pdf
+    ├── trame-tutorial.pdf
     ├── 00_setup
     │   └── app.py
     ├── 01_vtk
@@ -42,7 +44,7 @@ $ tree .
         ├── pv-state-diskout.pvsm
         └── pv-state.pvsm
 
-8 directories, 24 files
+8 directories, 26 files
 ```
 
 In the following steps of the tutorial we will assume to be inside the `trame-tutorial` root directory.

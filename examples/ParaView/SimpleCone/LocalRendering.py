@@ -1,4 +1,4 @@
-import venv
+from paraview.web import venv # Available in PV 5.10-RC2+
 
 from trame import update_state, change
 from trame.html import vuetify, paraview

@@ -1,6 +1,8 @@
-import venv
+from paraview.web import venv # Available in PV 5.10-RC2+
+
+import os
 import trame as tr
-from trame.html import vuetify, paraview
+from trame.html import vuetify, paraview, VTKLoading
 from trame.layouts import SinglePage
 
 from paraview import simple
@@ -9,13 +11,11 @@ from paraview import simple
 # ParaView code
 # -----------------------------------------------------------------------------
 
+parser = tr.get_cli_parser()
 layout = None
 
-
-def load_data():
+def load_data(**kwargs):
     # CLI
-    parser = tr.get_cli_parser()
-    parser.add_argument("--data", help="Path to state file", dest="data")
     args, _ = parser.parse_known_args()
 
     full_path = os.path.abspath(args.data)
@@ -29,12 +29,12 @@ def load_data():
     )
     view = simple.GetActiveView()
     view.MakeRenderWindowInteractor(True)
+    simple.Render(view)
 
     # HTML
     html_view = paraview.VtkRemoteView(view)
-    layout.content.children[0].add_child(html_view)
+    layout.content.children[0].children[0] = html_view
     layout.flush_content()
-
 
 # -----------------------------------------------------------------------------
 # GUI
@@ -43,11 +43,12 @@ def load_data():
 layout = SinglePage("State Viewer", on_ready=load_data)
 layout.logo.click = "$refs.view.resetCamera()"
 layout.title.set_text("ParaView State Viewer")
-layout.content.add_child(vuetify.VContainer(fluid=True, classes="pa-0 fill-height"))
+layout.content.add_child(vuetify.VContainer(VTKLoading("Loading state"), fluid=True, classes="pa-0 fill-height"))
 
 # -----------------------------------------------------------------------------
 # Main
 # -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
+    parser.add_argument("--data", help="Path to state file", dest="data")
     layout.start()

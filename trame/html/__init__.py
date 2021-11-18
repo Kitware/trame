@@ -583,3 +583,16 @@ class Triggers(AbstractElement):
         """
         _app = get_app_instance()
         _app.update(ref=self._ref, method="emit", args=[name, *args])
+
+
+class VTKLoading(AbstractElement):
+    """
+    Component to show the 3 spinning partial circles using the ParaView Red/Green/Yellow colors.
+
+    :param message: Message to put below the spinning circles
+    :type message: str
+    """
+
+    def __init__(self, message="", **kwargs):
+        super().__init__("vtk-loading", message=message, **kwargs)
+        self._attr_names += ["message"]

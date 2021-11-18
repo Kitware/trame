@@ -7,7 +7,7 @@ ParaView 5.10+ can be downloaded from [here](https://www.paraview.org/download).
 ## Virtual Environment
 
 ParaView comes with its own Python, which may be missing some dependencies for the desired usage.
-We can add more Python packages into ParaView by create a virtual environment and activate it inside your application by importing our helper module [venv.py](https://github.com/Kitware/trame/blob/master/examples/ParaView/venv.py).
+We can add more Python packages into ParaView by create a virtual environment and activate it inside your application using that import line `from paraview.web import venv` or by using our [local version](https://github.com/Kitware/trame/blob/master/examples/ParaView/venv.py) and importing it.
 
 
 **First**, we need to setup the ParaView add-on python environment, which we will only install ***trame***, but we could add any other Python libraries that are not included in the ParaView bundle.
@@ -27,10 +27,9 @@ deactivate
 ## Making ***trame*** available in ParaView
 
 At the very top of our scripts, we need to import our helper script so the `--venv path/to/venv` can be processed.
-The file `[venv.py](https://github.com/Kitware/trame/blob/master/examples/ParaView/venv.py)` needs to be next to your application so it can be found when you import it.
 
 ```python
-import venv
+from paraview.web import venv
 ```
 
 After that we can import ***trame*** and start using it (assuming we run our application with the `--venv /path/to/venv/with/trame` argument).
@@ -81,7 +80,7 @@ with layout.content:
     )
 ```
 
-<div class="print-break" /> 
+<div class="print-break"></div>
 
 The rest of the code looks very similar to the VTK Hello ***trame*** example, but instead of importing the `vtk` module of ***trame***
 
@@ -131,7 +130,7 @@ To learn more about ParaView scripting, you should look into ParaView trace whic
 <img src="../images/tutorial-paraview-trace.jpg" width="75%" />
 </center>
 
-<div class="print-break" /> 
+<div class="print-break"></div>
 
 ## Advanced example
 
@@ -171,7 +170,7 @@ if __name__ == "__main__":
     layout.start()
 ```
 
-<div class="print-break" /> 
+<div class="print-break"></div>
 
 **`load_data`**
 
@@ -234,7 +233,7 @@ That's it. You now have a ParaView `trame` application that let you reproduce co
 <img src="https://kitware.github.io/trame/examples/StateViewer-medical.jpg" width="49%" />
 </center>
 
-<div class="print-break" /> 
+<div class="print-break"></div>
 
 ## Running the StateLoader
 

@@ -50,7 +50,7 @@ import vtkmodules.vtkRenderingOpenGL2 #noqa
 
 **Note**: `#noqa` tells the linter to ignore checking this problematic line.
 
-<div class="print-break" /> 
+<div class="print-break"></div>
 
 ## VTK Pipeline
 
@@ -199,7 +199,7 @@ Now you can take most of the code examples at [VTK Examples](https://kitware.git
 
 We are going to implement [CarotidFlowGlyphs](https://kitware.github.io/vtk-examples/site/Python/VisualizationAlgorithms/CarotidFlowGlyphs/) by editing the file in `01_vtk/app_flow.py.py` which start from our cone rendering example solution.
 
-<div class="print-break" /> 
+<div class="print-break"></div>
 
 **Imports**
 
@@ -258,7 +258,7 @@ reader = vtkStructuredPointsReader()
 reader.SetFileName(os.path.join(CURRENT_DIRECTORY, "../data/carotid.vtk"))
 ```
 
-<div class="print-break" /> 
+<div class="print-break"></div>
 
 ```python
 # Glyphs

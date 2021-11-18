@@ -1,4 +1,4 @@
-import venv
+from paraview.web import venv # Available in PV 5.10-RC2+
 import os
 
 from trame import update_state, change, get_state

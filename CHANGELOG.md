@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/kitware/trame/compare/v1.5.0...v1.5.1) (2021-11-18)
+
+
+### Bug Fixes
+
+* **VTKLoading:** Add missing available html component ([a88b4f8](https://github.com/kitware/trame/commit/a88b4f8be2fccbed40d779a315a93a4b9ae4330b))
+
 # [1.5.0](https://github.com/kitware/trame/compare/v1.4.13...v1.5.0) (2021-11-17)
 
 

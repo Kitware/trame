@@ -50,8 +50,8 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://kitware.github.io/trame/images/tutorial-cone.jpg">
 <meta property="og:image" content="https://kitware.github.io/trame/images/tutorial-carotid.jpg">
-<meta property="article:published_time" content="2021-11-17T22:12:02.984Z">
-<meta property="article:modified_time" content="2021-11-17T22:12:02.984Z">
+<meta property="article:published_time" content="2021-11-18T18:34:25.423Z">
+<meta property="article:modified_time" content="2021-11-18T18:34:25.423Z">
 <meta property="article:author" content="Kitware Inc.">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://kitware.github.io/trame/images/tutorial-cone.jpg">
@@ -127,7 +127,7 @@
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> vtkmodules.vtkRenderingOpenGL2 <span class="comment">#noqa</span></span><br></pre></td></tr></table></figure>
 
 <p><strong>Note</strong>: <code>#noqa</code> tells the linter to ignore checking this problematic line.</p>
-<div class="print-break"> 
+<div class="print-break"></div>
 
 <h2 id="VTK-Pipeline" class="article-heading"><a href="#VTK-Pipeline" class="headerlink" title="VTK Pipeline"></a>VTK Pipeline<a class="article-anchor" href="#VTK-Pipeline" aria-hidden="true"></a></h2><p>As promised, to add visualization to your <em><strong>trame</strong></em> application you simply write VTK pipelines in Python.</p>
 <p style="text-align:center;"><img src="../images/tutorial-cone.jpg" alt="Cone VTK Pipeline" style="width: 75%; height: 75%"></p>
@@ -207,7 +207,7 @@
 <h2 id="Other-VTK-Examples" class="article-heading"><a href="#Other-VTK-Examples" class="headerlink" title="Other VTK Examples"></a>Other VTK Examples<a class="article-anchor" href="#Other-VTK-Examples" aria-hidden="true"></a></h2><p>Now you can take most of the code examples at <a href="https://kitware.github.io/vtk-examples/site/Python">VTK Examples</a> and port them to <em><strong>trame</strong></em>.</p>
 <p><a href="https://kitware.github.io/vtk-examples/site/Python/VisualizationAlgorithms/CarotidFlowGlyphs/"><p style="text-align:center;"><img src="../images/tutorial-carotid.jpg" alt="Carotid Flow VTK Example" style="width: 75%; height: 75%"></p></a></p>
 <p>We are going to implement <a href="https://kitware.github.io/vtk-examples/site/Python/VisualizationAlgorithms/CarotidFlowGlyphs/">CarotidFlowGlyphs</a> by editing the file in <code>01_vtk/app_flow.py.py</code> which start from our cone rendering example solution.</p>
-<div class="print-break"> 
+<div class="print-break"></div>
 
 <p><strong>Imports</strong></p>
 <p>We are going to read a file. So we will want to import the <code>os</code> module and set the current directory. Starting with our Hello <em><strong>trame</strong></em> cone application, we add</p>
@@ -228,7 +228,7 @@
 <p>We read the data using the <code>vtkStructuredPointsReader</code> and the full file path, provided by adding <code>CURRENT_DIRECTORY</code> to the beginning of the relative file path.</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Read the Data</span></span><br><span class="line"></span><br><span class="line">reader = vtkStructuredPointsReader()</span><br><span class="line">reader.SetFileName(os.path.join(CURRENT_DIRECTORY, <span class="string">&quot;../data/carotid.vtk&quot;</span>))</span><br></pre></td></tr></table></figure>
 
-<div class="print-break"> 
+<div class="print-break"></div>
 
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Glyphs</span></span><br><span class="line">threshold = vtkThresholdPoints()</span><br><span class="line">threshold.SetInputConnection(reader.GetOutputPort())</span><br><span class="line">threshold.ThresholdByUpper(<span class="number">200</span>)</span><br><span class="line"></span><br><span class="line">mask = vtkMaskPoints()</span><br><span class="line">mask.SetInputConnection(threshold.GetOutputPort())</span><br><span class="line">mask.SetOnRatio(<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">cone = vtkConeSource()</span><br><span class="line">cone.SetResolution(<span class="number">11</span>)</span><br><span class="line">cone.SetHeight(<span class="number">1</span>)</span><br><span class="line">cone.SetRadius(<span class="number">0.25</span>)</span><br><span class="line"></span><br><span class="line">cones = vtkGlyph3D()</span><br><span class="line">cones.SetInputConnection(mask.GetOutputPort())</span><br><span class="line">cones.SetSourceConnection(cone.GetOutputPort())</span><br><span class="line">cones.SetScaleFactor(<span class="number">0.4</span>)</span><br><span class="line">cones.SetScaleModeToScaleByVector()</span><br><span class="line"></span><br><span class="line">lut = vtkLookupTable()</span><br><span class="line">lut.SetHueRange(<span class="number">.667</span>, <span class="number">0.0</span>)</span><br><span class="line">lut.Build()</span><br><span class="line"></span><br><span class="line">scalarRange = [<span class="number">0</span>] * <span class="number">2</span></span><br><span class="line">cones.Update()</span><br><span class="line">scalarRange[<span class="number">0</span>] = cones.GetOutput().GetPointData().GetScalars().GetRange()[<span class="number">0</span>]</span><br><span class="line">scalarRange[<span class="number">1</span>] = cones.GetOutput().GetPointData().GetScalars().GetRange()[<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">vectorMapper = vtkPolyDataMapper()</span><br><span class="line">vectorMapper.SetInputConnection(cones.GetOutputPort())</span><br><span class="line">vectorMapper.SetScalarRange(scalarRange[<span class="number">0</span>], scalarRange[<span class="number">1</span>])</span><br><span class="line">vectorMapper.SetLookupTable(lut)</span><br><span class="line"></span><br><span class="line">vectorActor = vtkActor()</span><br><span class="line">vectorActor.SetMapper(vectorMapper)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Contours</span></span><br><span class="line">iso = vtkContourFilter()</span><br><span class="line">iso.SetInputConnection(reader.GetOutputPort())</span><br><span class="line">iso.SetValue(<span class="number">0</span>, <span class="number">175</span>)</span><br><span class="line"></span><br><span class="line">isoMapper = vtkPolyDataMapper()</span><br><span class="line">isoMapper.SetInputConnection(iso.GetOutputPort())</span><br><span class="line">isoMapper.ScalarVisibilityOff()</span><br><span class="line"></span><br><span class="line">isoActor = vtkActor()</span><br><span class="line">isoActor.SetMapper(isoMapper)</span><br><span class="line">isoActor.GetProperty().SetRepresentationToWireframe()</span><br><span class="line">isoActor.GetProperty().SetOpacity(<span class="number">0.25</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Outline</span></span><br><span class="line">colors = vtkNamedColors()</span><br><span class="line"></span><br><span class="line">outline = vtkOutlineFilter()</span><br><span class="line">outline.SetInputConnection(reader.GetOutputPort())</span><br><span class="line"></span><br><span class="line">outlineMapper = vtkPolyDataMapper()</span><br><span class="line">outlineMapper.SetInputConnection(outline.GetOutputPort())</span><br><span class="line"></span><br><span class="line">outlineActor = vtkActor()</span><br><span class="line">outlineActor.SetMapper(outlineMapper)</span><br><span class="line">outlineActor.GetProperty().SetColor(colors.GetColor3d(<span class="string">&quot;White&quot;</span>))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
@@ -246,10 +246,10 @@
 <p>Your browser should open automatically to <code>http://localhost:1234/</code></p>
 <h2 id="Ray-Casting-example" class="article-heading"><a href="#Ray-Casting-example" class="headerlink" title="Ray Casting example"></a>Ray Casting example<a class="article-anchor" href="#Ray-Casting-example" aria-hidden="true"></a></h2><p>If you want on your own time you can try to implement the Volume Rendering example <a href="https://kitware.github.io/vtk-examples/site/Python/VolumeRendering/SimpleRayCast/">Simple Ray Cast</a> using <strong>trame</strong>.</p>
 <p>The solution of that example is available under <code>01_vtk/solution_ray_cast.py</code>.</p>
-</div></div></div>
+
               </div>
               <footer class="article-footer">
-                <time class="article-footer-updated" datetime="2021-11-17T22:12:02.984Z" itemprop="dateModified">Last updated: 2021-11-17</time>
+                <time class="article-footer-updated" datetime="2021-11-18T18:34:25.423Z" itemprop="dateModified">Last updated: 2021-11-18</time>
                 <a href="tutorial-setup-vtk.html" class="article-footer-prev" title="Setup for VTK"><i class="fa fa-chevron-left"></i><span>Prev</span></a><a href="tutorial-layouts.html" class="article-footer-next" title="Layouts"><span>Next</span><i class="fa fa-chevron-right"></i></a>
               </footer>
               

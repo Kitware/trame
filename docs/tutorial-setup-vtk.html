@@ -49,8 +49,8 @@
 <meta property="og:description" content="Setup environment for VTKtrame requires Python 3.6+ but since ParaView 5.10 is bundling Python 3.9 we should use Python 3.9 for our environment. python3.9 -m venv .venvsource .&#x2F;.venv&#x2F;bin&#x2F;activatepytho">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://kitware.github.io/trame/images/tutorial-hello-trame.jpg">
-<meta property="article:published_time" content="2021-11-17T22:12:02.984Z">
-<meta property="article:modified_time" content="2021-11-17T22:12:02.984Z">
+<meta property="article:published_time" content="2021-11-18T18:34:25.423Z">
+<meta property="article:modified_time" content="2021-11-18T18:34:25.423Z">
 <meta property="article:author" content="Kitware Inc.">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://kitware.github.io/trame/images/tutorial-hello-trame.jpg">
@@ -123,7 +123,7 @@
 <li>The default port is 8080, but since this is very common we will use 1234 for our Tutorial.</li>
 <li>If you are running this on a remote machine, you may have to set the host to 0.0.0.0 to allow any external connection. (<code>python ./app.py --port 1234 --host 0.0.0.0</code>)</li>
 </ul>
-<div class="print-break">
+<div class="print-break"></div>
 
 <h2 id="Annotation-of-Hello-trame-Application" class="article-heading"><a href="#Annotation-of-Hello-trame-Application" class="headerlink" title="Annotation of Hello trame Application"></a>Annotation of Hello <em><strong>trame</strong></em> Application<a class="article-anchor" href="#Annotation-of-Hello-trame-Application" aria-hidden="true"></a></h2><p>We start by importing the basic building blocks for our client-server application.</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> trame.layouts <span class="keyword">import</span> SinglePage</span><br></pre></td></tr></table></figure>
@@ -140,10 +140,10 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ python ./00_setup/app.py --port 1234</span><br><span class="line"></span><br><span class="line"> App running at:</span><br><span class="line"> - Local:   http://localhost:1234/</span><br><span class="line"> - Network: http://192.168.1.34:1234/</span><br><span class="line"></span><br><span class="line">Note that <span class="keyword">for</span> multi-users you need to use and configure a launcher.</span><br><span class="line">And to prevent your browser from opening, add <span class="string">&#x27;--server&#x27;</span> to your <span class="built_in">command</span> line.</span><br></pre></td></tr></table></figure>
 
 <p>Your browser should open automatically to <code>http://localhost:1234/</code></p>
-</div>
+
               </div>
               <footer class="article-footer">
-                <time class="article-footer-updated" datetime="2021-11-17T22:12:02.984Z" itemprop="dateModified">Last updated: 2021-11-17</time>
+                <time class="article-footer-updated" datetime="2021-11-18T18:34:25.423Z" itemprop="dateModified">Last updated: 2021-11-18</time>
                 <a href="tutorial-download.html" class="article-footer-prev" title="Download"><i class="fa fa-chevron-left"></i><span>Prev</span></a><a href="tutorial-vtk.html" class="article-footer-next" title="VTK"><span>Next</span><i class="fa fa-chevron-right"></i></a>
               </footer>
               

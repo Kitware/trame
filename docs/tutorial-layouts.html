@@ -51,8 +51,8 @@
 <meta property="og:image" content="https://kitware.github.io/trame/images/tutorial-fullscreenpage.jpg">
 <meta property="og:image" content="https://kitware.github.io/trame/images/tutorial-singlepage.jpg">
 <meta property="og:image" content="https://kitware.github.io/trame/images/tutorial-singlepagewithdrawer.jpg">
-<meta property="article:published_time" content="2021-11-17T22:12:02.984Z">
-<meta property="article:modified_time" content="2021-11-17T22:12:02.984Z">
+<meta property="article:published_time" content="2021-11-18T18:34:25.419Z">
+<meta property="article:modified_time" content="2021-11-18T18:34:25.419Z">
 <meta property="article:author" content="Kitware Inc.">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://kitware.github.io/trame/images/tutorial-fullscreenpage.jpg">
@@ -111,7 +111,7 @@
 <p>All core layouts start with a <code>VApp</code> (Vuetifies <code>v-app</code>) component. The <code>VApp</code> is <strong>REQUIRED</strong> for all applications. It is the mount point for other Vuetify components and functionality and ensures that it propagates the default application variant (dark/light) to children components while ensuring proper cross-browser support for certain click events in browsers like Safari. <code>VApp</code> should only be rendered within your application <strong>ONCE</strong>.</p>
 <p>More on Vuetify in the next chapter of the tutorial.</p>
 <p>Each of these layouts can be utilized by importing, instantiating, and serving it via its <code>start</code> function.</p>
-<div class="print-break"> 
+<div class="print-break"></div>
 
 <h2 id="FullScreenPage" class="article-heading"><a href="#FullScreenPage" class="headerlink" title="FullScreenPage"></a><code>FullScreenPage</code><a class="article-anchor" href="#FullScreenPage" aria-hidden="true"></a></h2><p>If you want to experiement with it you can edit <code>02_layouts/app_cone.py</code> which was the latest cone example we built using the <code>SinglePage</code> layout.</p>
 <p>The <code>FullScreenPage</code> layout starts with VApp and exposes the children array where one could add in other desired HTML elements (Vuetify UI Components).</p>
@@ -130,7 +130,7 @@
 <p><strong>Running the Application</strong></p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python 02_layouts/app_cone.py --port 1234</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">python 02_layouts/solution_FullScreenPage.py --port 1234</span><br></pre></td></tr></table></figure>
 
-<div class="print-break"> 
+<div class="print-break"></div>
 
 <h2 id="SinglePage" class="article-heading"><a href="#SinglePage" class="headerlink" title="SinglePage"></a><code>SinglePage</code><a class="article-anchor" href="#SinglePage" aria-hidden="true"></a></h2><p>The <code>SinglePage</code> extends the <code>FullScreenPage</code> with a few predifined components such as <em>logo</em>, <em>title</em>, <em>toolbar</em>, <em>content</em>, and <em>footer</em>.</p>
 <p style="text-align:center;"><img src="../images/tutorial-singlepage.jpg" alt="SinglePage Layout" style="width: 75%; height: 75%"></p>
@@ -148,7 +148,7 @@
 <p><strong>Running the Application</strong></p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python 02_layouts/app_cone.py --port 1234</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">python 02_layouts/solution_SinglePage.py --port 1234</span><br></pre></td></tr></table></figure>
 
-<div class="print-break"> 
+<div class="print-break"></div>
 
 <h2 id="SinglePageWithDrawer" class="article-heading"><a href="#SinglePageWithDrawer" class="headerlink" title="SinglePageWithDrawer"></a><code>SinglePageWithDrawer</code><a class="article-anchor" href="#SinglePageWithDrawer" aria-hidden="true"></a></h2><p>The <code>SinglePageWithDrawer</code> extends the <code>SinglePage</code> with a <em>drawer</em>. You can show and hide the <em>drawer</em> by clicking on the application <em>logo</em> on the <em>toolbar</em>. The <em>drawer</em> has a <em>children</em> array to which you may add necessary Vuetify components.</p>
 <p style="text-align:center;"><img src="../images/tutorial-singlepagewithdrawer.jpg" alt="SinglePageWithDrawer Layout" style="width: 75%; height: 75%"></p>
@@ -164,10 +164,10 @@
 
 <p><strong>Running the Application</strong></p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python 02_layouts/app_cone.py --port 1234</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">python 02_layouts/solution_SinglePageWithDrawer.py --port 1234</span><br></pre></td></tr></table></figure>
-</div></div></div>
+
               </div>
               <footer class="article-footer">
-                <time class="article-footer-updated" datetime="2021-11-17T22:12:02.984Z" itemprop="dateModified">Last updated: 2021-11-17</time>
+                <time class="article-footer-updated" datetime="2021-11-18T18:34:25.419Z" itemprop="dateModified">Last updated: 2021-11-18</time>
                 <a href="tutorial-vtk.html" class="article-footer-prev" title="VTK"><i class="fa fa-chevron-left"></i><span>Prev</span></a><a href="tutorial-html.html" class="article-footer-next" title="HTML"><span>Next</span><i class="fa fa-chevron-right"></i></a>
               </footer>
               

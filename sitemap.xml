@@ -16,48 +16,6 @@
   </url>
   
   <url>
-    <loc>https://kitware.github.io/trame/docs/tutorial-application.html</loc>
-    
-    <lastmod>2021-11-22</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/tutorial-download.html</loc>
-    
-    <lastmod>2021-11-22</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/tutorial-html.html</loc>
-    
-    <lastmod>2021-11-22</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/tutorial-layouts.html</loc>
-    
-    <lastmod>2021-11-22</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/tutorial-paraview.html</loc>
-    
-    <lastmod>2021-11-22</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/tutorial-setup-vtk.html</loc>
-    
-    <lastmod>2021-11-22</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://kitware.github.io/trame/docs/tutorial-vtk.html</loc>
     
     <lastmod>2021-11-22</lastmod>
@@ -206,6 +164,48 @@
   
   <url>
     <loc>https://kitware.github.io/trame/docs/module-widgets.html</loc>
+    
+    <lastmod>2021-11-22</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/tutorial-application.html</loc>
+    
+    <lastmod>2021-11-22</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/tutorial-download.html</loc>
+    
+    <lastmod>2021-11-22</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/tutorial-html.html</loc>
+    
+    <lastmod>2021-11-22</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/tutorial-layouts.html</loc>
+    
+    <lastmod>2021-11-22</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/tutorial-paraview.html</loc>
+    
+    <lastmod>2021-11-22</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/tutorial-setup-vtk.html</loc>
     
     <lastmod>2021-11-22</lastmod>
     

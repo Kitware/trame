@@ -109,11 +109,18 @@ class AbstractElement:
             "ref",
             ("classes", "class"),
             "style",
-            "v_model",
-            "v_if",
-            "v_show",
-            "v_for",
             ("key", ":key"),
+            # default vue.js directives
+            "v_text",
+            "v_html",
+            "v_show",
+            "v_if",
+            "v_else",
+            "v_else_if",
+            "v_for",
+            "v_model",
+            "v_pre",
+            "v_once",
         ]
         self._event_names += [
             "click",

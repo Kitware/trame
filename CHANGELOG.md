@@ -1,3 +1,11 @@
+## [1.5.3](https://github.com/kitware/trame/compare/v1.5.2...v1.5.3) (2021-11-22)
+
+
+### Bug Fixes
+
+* **vue:** Add vue directive to AbstractElement ([b49c1d4](https://github.com/kitware/trame/commit/b49c1d46bdf3b5489bdad150273fb96166d643b5))
+* **xai:** Use proper python attributes ([f6f6a41](https://github.com/kitware/trame/commit/f6f6a41d8fc6af31d6645257871954207e60180e))
+
 ## [1.5.2](https://github.com/kitware/trame/compare/v1.5.1...v1.5.2) (2021-11-22)
 
 

@@ -13,9 +13,9 @@ class XaiHeatMap(AbstractElement):
         self._attr_names += [
             "heatmap",
             "shape",
-            "colorMode",
-            "colorRange",
-            "colorPreset",
+            "color_mode",
+            "color_range",
+            "color_preset",
         ]
         self._event_names += [
             "hover",
@@ -28,23 +28,23 @@ class XaiImage(AbstractElement):
         super().__init__("xai-image", children, **kwargs)
         self._attr_names += [
             "src",
-            "maxHeight",
-            "maxWidth",
+            "max_height",
+            "max_width",
             "width",
             "colors",
             "areas",
-            "areaKey",
-            "areaStyle",
-            "areaSelected",
-            "areaSelectedOpacity",
-            "areaOpacity",
+            "area_key",
+            "area_style",
+            "area_selected",
+            "area_selected_opacity",
+            "area_opacity",
             "heatmaps",
-            "heatmapOpacity",
-            "heatmapColorPreset",
-            "heatmapColorRange",
-            "heatmapActive",
-            "heatmapColorMode",
+            "heatmap_opacity",
+            "heatmap_color_preset",
+            "heatmap_color_range",
+            "heatmap_active",
+            "heatmap_color_mode",
         ]
         self._event_names += [
-            ("area_selection_change", "areaSelectionChange"),
+            "area_selection_change",
         ]

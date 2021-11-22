@@ -1,3 +1,10 @@
+## [1.5.2](https://github.com/kitware/trame/compare/v1.5.1...v1.5.2) (2021-11-22)
+
+
+### Bug Fixes
+
+* **XAI:** Add xai widgets ([c9c358a](https://github.com/kitware/trame/commit/c9c358a2c2cd91d21631c8e05dcd962e94353afb))
+
 ## [1.5.1](https://github.com/kitware/trame/compare/v1.5.0...v1.5.1) (2021-11-18)
 
 

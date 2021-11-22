@@ -474,6 +474,7 @@ class Input(AbstractElement):
             "list",
             "autocomplete",
         ]
+        self._event_names += ["change", "input"]
 
 
 class Template(AbstractElement):

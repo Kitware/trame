@@ -46,6 +46,8 @@ class XaiImage(AbstractElement):
             "heatmap_color_mode",
         ]
         self._event_names += [
-            "area_selection_change",
-            "color_range",
+            ("area_selection_change", "areaSelectionChange"),
+            ("color_range", "colorRange"),
+            "hover",
+            "enter",
         ]

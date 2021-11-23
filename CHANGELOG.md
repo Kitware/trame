@@ -1,3 +1,10 @@
+## [1.5.5](https://github.com/kitware/trame/compare/v1.5.4...v1.5.5) (2021-11-23)
+
+
+### Bug Fixes
+
+* **xai:** properly expose events ([ca45df7](https://github.com/kitware/trame/commit/ca45df738b8e3995adde59881fbe45285e2c1ef8))
+
 ## [1.5.4](https://github.com/kitware/trame/compare/v1.5.3...v1.5.4) (2021-11-23)
 
 

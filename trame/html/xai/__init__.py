@@ -47,4 +47,5 @@ class XaiImage(AbstractElement):
         ]
         self._event_names += [
             "area_selection_change",
+            "color_range",
         ]

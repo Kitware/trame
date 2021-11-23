@@ -1,3 +1,10 @@
+## [1.5.4](https://github.com/kitware/trame/compare/v1.5.3...v1.5.4) (2021-11-23)
+
+
+### Bug Fixes
+
+* **xai:** Register new event ([7b78c04](https://github.com/kitware/trame/commit/7b78c044c61e5df0416f69f3be569bf8cdcfa517))
+
 ## [1.5.3](https://github.com/kitware/trame/compare/v1.5.2...v1.5.3) (2021-11-22)
 
 

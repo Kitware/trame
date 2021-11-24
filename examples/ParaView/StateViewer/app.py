@@ -1,4 +1,4 @@
-from paraview.web import venv # Available in PV 5.10-RC2+
+from paraview.web import venv  # Available in PV 5.10-RC2+
 
 import os
 import trame as tr
@@ -13,6 +13,7 @@ from paraview import simple
 
 parser = tr.get_cli_parser()
 layout = None
+
 
 def load_data(**kwargs):
     # CLI
@@ -36,6 +37,7 @@ def load_data(**kwargs):
     layout.content.children[0].children[0] = html_view
     layout.flush_content()
 
+
 # -----------------------------------------------------------------------------
 # GUI
 # -----------------------------------------------------------------------------
@@ -43,7 +45,11 @@ def load_data(**kwargs):
 layout = SinglePage("State Viewer", on_ready=load_data)
 layout.logo.click = "$refs.view.resetCamera()"
 layout.title.set_text("ParaView State Viewer")
-layout.content.add_child(vuetify.VContainer(VTKLoading("Loading state"), fluid=True, classes="pa-0 fill-height"))
+layout.content.add_child(
+    vuetify.VContainer(
+        VTKLoading("Loading state"), fluid=True, classes="pa-0 fill-height"
+    )
+)
 
 # -----------------------------------------------------------------------------
 # Main

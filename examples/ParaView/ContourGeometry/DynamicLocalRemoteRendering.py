@@ -1,4 +1,4 @@
-from paraview.web import venv # Available in PV 5.10-RC2+
+from paraview.web import venv  # Available in PV 5.10-RC2+
 
 import os
 

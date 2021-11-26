@@ -16,8 +16,8 @@
         "CellArrayStatus": ["Max. Pl. Strain", "Von Mises Stress", "Element id"]
     },    
     "fields": [
-        { "text": "Max. Pl. Strain", "value":"Max. Pl. Strain", "location": "CELLS", "range": [0.0001, 0.05] },
-        { "text": "Von Mises Stress", "value":"Von Mises Stress", "location": "CELLS" , "range": [50, 500]},
-        { "text": "Element id", "value":"Element id", "location": "CELLS" , "range": [2000000, 4000000] }
+        { "text": "Max. Pl. Strain", "value": 0, "location": "CELLS", "range": [0.0001, 0.05] },
+        { "text": "Von Mises Stress", "value": 1, "location": "CELLS" , "range": [50, 500]},
+        { "text": "Element id", "value": 2, "location": "CELLS" , "range": [2000000, 4000000] }
     ]
 }

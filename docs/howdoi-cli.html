@@ -48,8 +48,8 @@
 <meta property="og:site_name" content="trame">
 <meta property="og:description" content="How do I use CLI arguments?trame uses Python’s argparse for CLI argument handling. Codefrom trame import get_cli_parserparser &#x3D; get_cli_parser()parser.add_argument(&quot;-o&quot;, &quot;--output&quot;">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-11-26T16:29:36.976Z">
-<meta property="article:modified_time" content="2021-11-26T16:29:36.976Z">
+<meta property="article:published_time" content="2021-12-01T16:52:42.123Z">
+<meta property="article:modified_time" content="2021-12-01T16:52:42.123Z">
 <meta property="article:author" content="Kitware Inc.">
 <meta name="twitter:card" content="summary">
   <!-- Google Analytics -->
@@ -104,7 +104,7 @@
               </header>
               <div class="article-content" itemprop="articleBody">
                 <h1 id="How-do-I-use-CLI-arguments" class="article-heading"><a href="#How-do-I-use-CLI-arguments" class="headerlink" title="How do I use CLI arguments?"></a>How do I use CLI arguments?<a class="article-anchor" href="#How-do-I-use-CLI-arguments" aria-hidden="true"></a></h1><p>trame uses Python’s <a target="_blank" rel="noopener" href="https://docs.python.org/3/library/argparse.html"><code>argparse</code></a> for CLI argument handling.</p>
-<h2 id="Code" class="article-heading"><a href="#Code" class="headerlink" title="Code"></a>Code<a class="article-anchor" href="#Code" aria-hidden="true"></a></h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> trame <span class="keyword">import</span> get_cli_parser</span><br><span class="line"></span><br><span class="line">parser = get_cli_parser()</span><br><span class="line">parser.add_argument(<span class="string">&quot;-o&quot;</span>, <span class="string">&quot;--output&quot;</span>, <span class="built_in">help</span>=<span class="string">&quot;Working directory&quot;</span>)</span><br><span class="line">args = parser.parse_known_args()</span><br><span class="line"><span class="built_in">print</span>(args.output)</span><br></pre></td></tr></table></figure>
+<h2 id="Code" class="article-heading"><a href="#Code" class="headerlink" title="Code"></a>Code<a class="article-anchor" href="#Code" aria-hidden="true"></a></h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> trame <span class="keyword">import</span> get_cli_parser</span><br><span class="line"></span><br><span class="line">parser = get_cli_parser()</span><br><span class="line">parser.add_argument(<span class="string">&quot;-o&quot;</span>, <span class="string">&quot;--output&quot;</span>, <span class="built_in">help</span>=<span class="string">&quot;Working directory&quot;</span>)</span><br><span class="line">args, others = parser.parse_known_args()</span><br><span class="line"><span class="built_in">print</span>(args.output)</span><br></pre></td></tr></table></figure>
 
 <h2 id="Example" class="article-heading"><a href="#Example" class="headerlink" title="Example"></a>Example<a class="article-anchor" href="#Example" aria-hidden="true"></a></h2><ul>
 <li><a target="_blank" rel="noopener" href="https://github.com/Kitware/trame/blob/master/examples/howdoi/cli.py">Code above</a></li>
@@ -113,7 +113,7 @@
 
               </div>
               <footer class="article-footer">
-                <time class="article-footer-updated" datetime="2021-11-26T16:29:36.976Z" itemprop="dateModified">Last updated: 2021-11-26</time>
+                <time class="article-footer-updated" datetime="2021-12-01T16:52:42.123Z" itemprop="dateModified">Last updated: 2021-12-01</time>
                 <a href="howdoi-download.html" class="article-footer-prev" title="Download a file"><i class="fa fa-chevron-left"></i><span>Prev</span></a>
               </footer>
               

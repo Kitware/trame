@@ -9,7 +9,7 @@ from trame import get_cli_parser
 
 parser = get_cli_parser()
 parser.add_argument("-o", "--output", help="Working directory")
-args = parser.parse_known_args()
+args, others = parser.parse_known_args()
 print(args.output)
 ```
 

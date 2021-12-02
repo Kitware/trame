@@ -68,68 +68,68 @@ def dataframe_to_grid(dataframe, options={}):
 
 
 slot_names = [
-    "day-label",
-    "group.header",
-    "expanded-item",
-    "item.data-table-expand",
-    "group.summary",
-    "body.append",
-    "foot",
-    "no-results",
-    "badge",
-    "category",
-    "placeholder",
-    "icon",
-    "body",
-    "selection",
-    "progress",
-    "day-month",
-    "actions",
-    "group",
-    "header.<name>",
-    "label",
-    "append-outer",
-    "page-text",
-    "day-label-header",
     "counter",
-    "extension",
-    "close",
-    "prepend-item",
-    "img",
-    "loader",
-    "footer.page-text",
-    "day-header",
-    "prepend",
-    "prev",
-    "item",
-    "interval",
-    "item.data-table-select",
-    "default",
-    "divider",
-    "no-data",
-    "footer",
-    "top",
-    "thumb-label",
-    "opposite",
-    "append-item",
-    "body.prepend",
-    "appendIcon",
-    "prepend-inner",
-    "loading",
-    "header.data-table-select",
-    "activator",
     "day-body",
-    "header",
-    "event",
-    "item.<name>",
-    "message",
-    "footer.prepend",
-    "prependIcon",
-    "next",
+    "body",
+    "placeholder",
+    "divider",
     "input",
+    "item",
+    "thumb-label",
+    "item.data-table-expand",
+    "prepend",
+    "append-outer",
+    "day-month",
+    "footer",
+    "footer.prepend",
+    "badge",
+    "loading",
+    "prev",
+    "header.<name>",
+    "group",
+    "close",
+    "group.header",
+    "group.summary",
+    "foot",
+    "progress",
     "append",
+    "message",
+    "expanded-item",
+    "no-data",
+    "default",
+    "loader",
+    "item.<name>",
+    "header",
+    "day-header",
+    "event",
+    "prependIcon",
+    "interval",
+    "img",
+    "appendIcon",
+    "header.data-table-select",
+    "footer.page-text",
     "day",
+    "day-label-header",
+    "selection",
+    "append-item",
+    "day-label",
+    "next",
+    "body.append",
+    "opposite",
+    "prepend-item",
+    "category",
     "action",
+    "extension",
+    "prepend-inner",
+    "body.prepend",
+    "actions",
+    "label",
+    "activator",
+    "no-results",
+    "item.data-table-select",
+    "top",
+    "page-text",
+    "icon",
 ]
 Template.slot_names.update(slot_names)
 
@@ -513,6 +513,8 @@ class VAutocomplete(AbstractElement):
     :type boolean:
     :param hide_selected: Do not display in the select menu items that are already selected
     :type boolean:
+    :param hide_spin_buttons: Hides spin buttons on the input when type is set to `number`.
+    :type boolean:
     :param hint: Hint text
     :type string:
     :param id: Sets the DOM id on the component
@@ -649,6 +651,7 @@ class VAutocomplete(AbstractElement):
             "hide_details",
             "hide_no_data",
             "hide_selected",
+            "hide_spin_buttons",
             "hint",
             "id",
             "item_color",
@@ -1235,11 +1238,16 @@ class VBreadcrumbsDivider(AbstractElement):
         <a href="https://vuetifyjs.com/api/v-breadcrumbs-divider" target="_blank">here</a>
 
 
+    :param tag: Specify a custom tag used on the root element.
+    :type string:
 
     """
 
     def __init__(self, children=None, **kwargs):
         super().__init__("v-breadcrumbs-divider", children, **kwargs)
+        self._attr_names += [
+            "tag",
+        ]
 
 
 class VBtn(AbstractElement):
@@ -1453,6 +1461,8 @@ class VBtnToggle(AbstractElement):
     :type boolean:
     :param value: The designated model value for the component.
     :type any:
+    :param value_comparator: Apply a custom value comparator function
+    :type function:
 
     Events
 
@@ -1478,6 +1488,7 @@ class VBtnToggle(AbstractElement):
             "tag",
             "tile",
             "value",
+            "value_comparator",  # JS functions unimplemented
         ]
         self._event_names += [
             "change",
@@ -1602,71 +1613,71 @@ class VCalendar(AbstractElement):
     Events
 
     :param change: The range of days displayed on the calendar changed. This is triggered on initialization. The event passed is an object with start and end date objects.
-    :param click_date: The click event on the day of the month link. The event passed is the day & time object.
-    :param click_day: The click event on a day. The event passed is the day object.
-    :param click_day_category: The click event on a day in the `category` view. The event passed is the day object.
+    :param click_date: The click event on the day of the month link. The event passed is the day & time object. Native mouse event is passed as a second argument.
+    :param click_day: The click event on a day. The event passed is the day object. Native mouse event is passed as a second argument.
+    :param click_day_category: The click event on a day in the `category` view. The event passed is the day object. Native mouse event is passed as a second argument.
     :param click_event: The click event on a specific event. The event passed is the day & time object.
-    :param click_interval: The click event at a specific interval label in the `day` view. The event passed is the day & time object.
-    :param click_more: The click event on the `X more` button on views with too many events in a day.
-    :param click_time: The click event at a specific time in the `day` view. The event passed is the day & time object.
-    :param click_time_category: The click event at a specific time in the `category` view. The event passed is the day & time object.
-    :param contextmenu_date: The right-click event on the day of the month link. The event passed is the day & time object.
-    :param contextmenu_day: The right-click event on a day. The event passed is the day object.
-    :param contextmenu_day_category: The right-click event on a day in the `category` view. The event passed is the day object.
+    :param click_interval: The click event at a specific interval label in the `day` view. The event passed is the day & time object. Native mouse event is passed as a second argument.
+    :param click_more: The click event on the `X more` button on views with too many events in a day. Native mouse event is passed as a second argument.
+    :param click_time: The click event at a specific time in the `day` view. The event passed is the day & time object. Native mouse event is passed as a second argument.
+    :param click_time_category: The click event at a specific time in the `category` view. The event passed is the day & time object. Native mouse event is passed as a second argument.
+    :param contextmenu_date: The right-click event on the day of the month link. The event passed is the day & time object. Native mouse event is passed as a second argument.
+    :param contextmenu_day: The right-click event on a day. The event passed is the day object. Native mouse event is passed as a second argument.
+    :param contextmenu_day_category: The right-click event on a day in the `category` view. The event passed is the day object. Native mouse event is passed as a second argument.
     :param contextmenu_event: The right-click event on an event. The event passed is the day & time object.
-    :param contextmenu_interval: The right-click event at a specific interval label in the `day` view. The event passed is the day & time object.
-    :param contextmenu_time: The right-click event at a specific time in the `day` view. The event passed is the day & time object.
-    :param contextmenu_time_category: The right-click event at a specific time in the `category` view. The event passed is the day & time object.
+    :param contextmenu_interval: The right-click event at a specific interval label in the `day` view. The event passed is the day & time object. Native mouse event is passed as a second argument.
+    :param contextmenu_time: The right-click event at a specific time in the `day` view. The event passed is the day & time object. Native mouse event is passed as a second argument.
+    :param contextmenu_time_category: The right-click event at a specific time in the `category` view. The event passed is the day & time object. Native mouse event is passed as a second argument.
     :param input: An alias to the `click:date` event used to support v-model.
-    :param mousedown_day: The mousedown event on a day. The event passed is the day object.
-    :param mousedown_day_category: The mousedown event on a day in the `category` view. The event passed is the day object.
+    :param mousedown_day: The mousedown event on a day. The event passed is the day object. Native mouse event is passed as a second argument.
+    :param mousedown_day_category: The mousedown event on a day in the `category` view. The event passed is the day object. Native mouse event is passed as a second argument.
     :param mousedown_event: The mousedown event on an event. The event passed is the day & time object.
-    :param mousedown_interval: The mousedown event at a specific interval label in the `day` view. The event passed is the day & time object.
-    :param mousedown_time: The mousedown event at a specific time in the `day` view. The event passed is the day & time object.
-    :param mousedown_time_category: The mousedown event at a specific time in the `category` view. The event passed is the day & time object.
-    :param mouseenter_day: The mouseenter event on a day. The event passed is the day object.
-    :param mouseenter_day_category: The mouseenter event on a day in the `category` view. The event passed is the day object.
+    :param mousedown_interval: The mousedown event at a specific interval label in the `day` view. The event passed is the day & time object. Native mouse event is passed as a second argument.
+    :param mousedown_time: The mousedown event at a specific time in the `day` view. The event passed is the day & time object. Native mouse event is passed as a second argument.
+    :param mousedown_time_category: The mousedown event at a specific time in the `category` view. The event passed is the day & time object. Native mouse event is passed as a second argument.
+    :param mouseenter_day: The mouseenter event on a day. The event passed is the day object. Native mouse event is passed as a second argument.
+    :param mouseenter_day_category: The mouseenter event on a day in the `category` view. The event passed is the day object. Native mouse event is passed as a second argument.
     :param mouseenter_event: The mouseenter event on an event. The event passed is the day & time object.
-    :param mouseenter_interval: The mouseenter event at a specific interval label in the `day` view. The event passed is the day & time object.
-    :param mouseenter_time: The mouseenter event at a specific time in the `day` view. The event passed is the day & time object.
-    :param mouseenter_time_category: The mouseenter event at a specific time in the `category` view. The event passed is the day & time object.
-    :param mouseleave_day: The mouseleave event on a day. The event passed is the day object.
-    :param mouseleave_day_category: The mouseleave event on a day in the `category` view. The event passed is the day object.
+    :param mouseenter_interval: The mouseenter event at a specific interval label in the `day` view. The event passed is the day & time object. Native mouse event is passed as a second argument.
+    :param mouseenter_time: The mouseenter event at a specific time in the `day` view. The event passed is the day & time object. Native mouse event is passed as a second argument.
+    :param mouseenter_time_category: The mouseenter event at a specific time in the `category` view. The event passed is the day & time object. Native mouse event is passed as a second argument.
+    :param mouseleave_day: The mouseleave event on a day. The event passed is the day object. Native mouse event is passed as a second argument.
+    :param mouseleave_day_category: The mouseleave event on a day in the `category` view. The event passed is the day object. Native mouse event is passed as a second argument.
     :param mouseleave_event: The mouseleave event on an event. The event passed is the day & time object.
-    :param mouseleave_interval: The mouseleave event at a specific interval label in the `day` view. The event passed is the day & time object.
-    :param mouseleave_time: The mouseleave event at a specific time in the `day` view. The event passed is the day & time object.
-    :param mouseleave_time_category: The mouseleave event at a specific time in the `category` view. The event passed is the day & time object.
-    :param mousemove_day: The mousemove event on a day. The event passed is the day object.
-    :param mousemove_day_category: The mousemove event on a day in the `category` view. The event passed is the day object.
+    :param mouseleave_interval: The mouseleave event at a specific interval label in the `day` view. The event passed is the day & time object. Native mouse event is passed as a second argument.
+    :param mouseleave_time: The mouseleave event at a specific time in the `day` view. The event passed is the day & time object. Native mouse event is passed as a second argument.
+    :param mouseleave_time_category: The mouseleave event at a specific time in the `category` view. The event passed is the day & time object. Native mouse event is passed as a second argument.
+    :param mousemove_day: The mousemove event on a day. The event passed is the day object. Native mouse event is passed as a second argument.
+    :param mousemove_day_category: The mousemove event on a day in the `category` view. The event passed is the day object. Native mouse event is passed as a second argument.
     :param mousemove_event: The mousemove event on an event. The event passed is the day & time object.
-    :param mousemove_interval: The mousemove event at a specific interval label in the `day` view. The event passed is the day & time object.
-    :param mousemove_time: The mousemove event at a specific time in the `day` view. The event passed is the day & time object.
-    :param mousemove_time_category: The mousemove event at a specific time in the `category` view. The event passed is the day & time object.
-    :param mouseup_day: The mouseup event on a day. The event passed is the day object.
-    :param mouseup_day_category: The mouseup event on a day in the `category` view. The event passed is the day object.
+    :param mousemove_interval: The mousemove event at a specific interval label in the `day` view. The event passed is the day & time object. Native mouse event is passed as a second argument.
+    :param mousemove_time: The mousemove event at a specific time in the `day` view. The event passed is the day & time object. Native mouse event is passed as a second argument.
+    :param mousemove_time_category: The mousemove event at a specific time in the `category` view. The event passed is the day & time object. Native mouse event is passed as a second argument.
+    :param mouseup_day: The mouseup event on a day. The event passed is the day object. Native mouse event is passed as a second argument.
+    :param mouseup_day_category: The mouseup event on a day in the `category` view. The event passed is the day object. Native mouse event is passed as a second argument.
     :param mouseup_event: The mouseup event on an event. The event passed is the day & time object.
-    :param mouseup_interval: The mouseup event at a specific interval label in the `day` view. The event passed is the day & time object.
-    :param mouseup_time: The mouseup event at a specific time in the `day` view. The event passed is the day & time object.
-    :param mouseup_time_category: The mouseup event at a specific time in the `category` view. The event passed is the day & time object.
+    :param mouseup_interval: The mouseup event at a specific interval label in the `day` view. The event passed is the day & time object. Native mouse event is passed as a second argument.
+    :param mouseup_time: The mouseup event at a specific time in the `day` view. The event passed is the day & time object. Native mouse event is passed as a second argument.
+    :param mouseup_time_category: The mouseup event at a specific time in the `category` view. The event passed is the day & time object. Native mouse event is passed as a second argument.
     :param moved: One of the functions `next`, `prev`, and `move` was called. The event passed is the day object calculated for the movement.
-    :param touchend_day: The touchend event on a day. The event passed is the day object.
-    :param touchend_day_category: The touchend event on a day in the `category` view. The event passed is the day object.
+    :param touchend_day: The touchend event on a day. The event passed is the day object. Native mouse event is passed as a second argument.
+    :param touchend_day_category: The touchend event on a day in the `category` view. The event passed is the day object. Native mouse event is passed as a second argument.
     :param touchend_event: The touchend event on am view. The event passed is the day & time object.
-    :param touchend_interval: The touchend event at a specific interval label in the `day` view. The event passed is the day & time object.
-    :param touchend_time: The touchend event at a specific time in the `day` view. The event passed is the day & time object.
-    :param touchend_time_category: The touchend event at a specific time in the `category` view. The event passed is the day & time object.
-    :param touchmove_day: The touchmove event on a day. The event passed is the day object.
-    :param touchmove_day_category: The touchmove event on a day in the `category` view. The event passed is the day object.
+    :param touchend_interval: The touchend event at a specific interval label in the `day` view. The event passed is the day & time object. Native mouse event is passed as a second argument.
+    :param touchend_time: The touchend event at a specific time in the `day` view. The event passed is the day & time object. Native mouse event is passed as a second argument.
+    :param touchend_time_category: The touchend event at a specific time in the `category` view. The event passed is the day & time object. Native mouse event is passed as a second argument.
+    :param touchmove_day: The touchmove event on a day. The event passed is the day object. Native mouse event is passed as a second argument.
+    :param touchmove_day_category: The touchmove event on a day in the `category` view. The event passed is the day object. Native mouse event is passed as a second argument.
     :param touchmove_event: The touchmove event on an `event` view. The event passed is the day & time object.
-    :param touchmove_interval: The touchmove event at a specific interval label in the `day` view. The event passed is the day & time object.
-    :param touchmove_time: The touchmove event at a specific time in the `day` view. The event passed is the day & time object.
-    :param touchmove_time_category: The touchmove event at a specific time in the `category` view. The event passed is the day & time object.
-    :param touchstart_day: The touchstart event on a day. The event passed is the day object.
-    :param touchstart_day_category: The touchstart event on a day in the `category` view. The event passed is the day object.
+    :param touchmove_interval: The touchmove event at a specific interval label in the `day` view. The event passed is the day & time object. Native mouse event is passed as a second argument.
+    :param touchmove_time: The touchmove event at a specific time in the `day` view. The event passed is the day & time object. Native mouse event is passed as a second argument.
+    :param touchmove_time_category: The touchmove event at a specific time in the `category` view. The event passed is the day & time object. Native mouse event is passed as a second argument.
+    :param touchstart_day: The touchstart event on a day. The event passed is the day object. Native mouse event is passed as a second argument.
+    :param touchstart_day_category: The touchstart event on a day in the `category` view. The event passed is the day object. Native mouse event is passed as a second argument.
     :param touchstart_event: The touchstart event on an event` view. The event passed is the day & time object.
-    :param touchstart_interval: The touchstart event at a specific interval label in the `day` view. The event passed is the day & time object.
-    :param touchstart_time: The touchstart event at a specific time in the `day` view. The event passed is the day & time object.
-    :param touchstart_time_category: The touchstart event at a specific time in the `category` view. The event passed is the day & time object.
+    :param touchstart_interval: The touchstart event at a specific interval label in the `day` view. The event passed is the day & time object. Native mouse event is passed as a second argument.
+    :param touchstart_time: The touchstart event at a specific time in the `day` view. The event passed is the day & time object. Native mouse event is passed as a second argument.
+    :param touchstart_time_category: The touchstart event at a specific time in the `category` view. The event passed is the day & time object Native mouse event is passed as a second argument..
     """
 
     def __init__(self, children=None, **kwargs):
@@ -2163,11 +2174,16 @@ class VCardActions(AbstractElement):
         <a href="https://vuetifyjs.com/api/v-card-actions" target="_blank">here</a>
 
 
+    :param tag: Specify a custom tag used on the root element.
+    :type string:
 
     """
 
     def __init__(self, children=None, **kwargs):
         super().__init__("v-card-actions", children, **kwargs)
+        self._attr_names += [
+            "tag",
+        ]
 
 
 class VCardSubtitle(AbstractElement):
@@ -2180,11 +2196,16 @@ class VCardSubtitle(AbstractElement):
         <a href="https://vuetifyjs.com/api/v-card-subtitle" target="_blank">here</a>
 
 
+    :param tag: Specify a custom tag used on the root element.
+    :type string:
 
     """
 
     def __init__(self, children=None, **kwargs):
         super().__init__("v-card-subtitle", children, **kwargs)
+        self._attr_names += [
+            "tag",
+        ]
 
 
 class VCardText(AbstractElement):
@@ -2197,11 +2218,16 @@ class VCardText(AbstractElement):
         <a href="https://vuetifyjs.com/api/v-card-text" target="_blank">here</a>
 
 
+    :param tag: Specify a custom tag used on the root element.
+    :type string:
 
     """
 
     def __init__(self, children=None, **kwargs):
         super().__init__("v-card-text", children, **kwargs)
+        self._attr_names += [
+            "tag",
+        ]
 
 
 class VCardTitle(AbstractElement):
@@ -2214,11 +2240,16 @@ class VCardTitle(AbstractElement):
         <a href="https://vuetifyjs.com/api/v-card-title" target="_blank">here</a>
 
 
+    :param tag: Specify a custom tag used on the root element.
+    :type string:
 
     """
 
     def __init__(self, children=None, **kwargs):
         super().__init__("v-card-title", children, **kwargs)
+        self._attr_names += [
+            "tag",
+        ]
 
 
 class VCarousel(AbstractElement):
@@ -2279,6 +2310,8 @@ class VCarousel(AbstractElement):
     :type boolean:
     :param value: The designated model value for the component.
     :type any:
+    :param value_comparator: Apply a custom value comparator function
+    :type function:
     :param vertical: Uses a vertical transition when changing windows.
     :type boolean:
     :param vertical_delimiters: Displays carousel delimiters vertically.
@@ -2316,6 +2349,7 @@ class VCarousel(AbstractElement):
             "touch",
             "touchless",
             "value",
+            "value_comparator",  # JS functions unimplemented
             "vertical",
             "vertical_delimiters",
         ]
@@ -2429,6 +2463,8 @@ class VCheckbox(AbstractElement):
     :type any:
     :param hide_details: Hides hint and validation errors. When set to `auto` messages will be rendered only if there's a message (hint, error message, counter value etc) to display
     :type ['boolean', 'string']:
+    :param hide_spin_buttons: Hides spin buttons on the input when type is set to `number`.
+    :type boolean:
     :param hint: Hint text
     :type string:
     :param id: Sets the DOM id on the component
@@ -2497,6 +2533,7 @@ class VCheckbox(AbstractElement):
             "error_messages",
             "false_value",
             "hide_details",
+            "hide_spin_buttons",
             "hint",
             "id",
             "indeterminate",
@@ -2759,6 +2796,8 @@ class VChipGroup(AbstractElement):
     :type string:
     :param value: The designated model value for the component.
     :type any:
+    :param value_comparator: Apply a custom value comparator function
+    :type function:
 
     Events
 
@@ -2783,6 +2822,7 @@ class VChipGroup(AbstractElement):
             "show_arrows",
             "tag",
             "value",
+            "value_comparator",  # JS functions unimplemented
         ]
         self._event_names += [
             "change",
@@ -2965,6 +3005,8 @@ class VCombobox(AbstractElement):
     :type boolean:
     :param hide_selected: Do not display in the select menu items that are already selected
     :type boolean:
+    :param hide_spin_buttons: Hides spin buttons on the input when type is set to `number`.
+    :type boolean:
     :param hint: Hint text
     :type string:
     :param id: Sets the DOM id on the component
@@ -3102,6 +3144,7 @@ class VCombobox(AbstractElement):
             "hide_details",
             "hide_no_data",
             "hide_selected",
+            "hide_spin_buttons",
             "hint",
             "id",
             "item_color",
@@ -3248,23 +3291,23 @@ class VDataIterator(AbstractElement):
 
     Events
 
-    :param current_items:
+    :param current_items: Emits the items provided via the **items** prop, every time the internal **computedItems** is changed.
     :param input: Array of selected items
     :param item_expanded: Event emitted when an item is expanded or closed
     :param item_selected: Event emitted when an item is selected or deselected
-    :param page_count:
-    :param pagination:
-    :param toggle_select_all:
+    :param page_count: Emits when the **pageCount** property of the **pagination** prop is updated
+    :param pagination: Emits when something changed to the `pagination` which can be provided via the `pagination` prop
+    :param toggle_select_all: Emits when the `select-all` checkbox in table header is clicked. This checkbox is enabled by the **show-select** prop
     :param update_expanded: The `.sync` event for `expanded` prop
-    :param update_group_by:
-    :param update_group_desc:
-    :param update_items_per_page:
-    :param update_multi_sort:
-    :param update_must_sort:
-    :param update_options:
-    :param update_page:
-    :param update_sort_by:
-    :param update_sort_desc:
+    :param update_group_by: Emits when the **group-by** property of the **options** property is updated
+    :param update_group_desc: Emits when the **group-desc** property of the **options** prop is updated
+    :param update_items_per_page: Emits when the **items-per-page** property of the **options** prop is updated
+    :param update_multi_sort: Emits when the **multi-sort** property of the **options** prop is updated
+    :param update_must_sort: Emits when the **must-sort** property of the **options** prop is updated
+    :param update_options: Emits when one of the **options** properties is updated
+    :param update_page: Emits when the **page** property of the **options** prop is updated
+    :param update_sort_by: Emits when the **sort-by** property of the **options** prop is updated
+    :param update_sort_desc: Emits when the **sort-desc** property of the **options** prop is updated
     """
 
     def __init__(self, children=None, **kwargs):
@@ -3480,7 +3523,7 @@ class VDataTable(AbstractElement):
     :type string:
     :param options:
     :type DataOptions:
-    :param page:
+    :param page: The current displayed page number (1-indexed)
     :type number:
     :param search: Text input used to filter items
     :type string:
@@ -3509,24 +3552,24 @@ class VDataTable(AbstractElement):
 
     :param click_row: Emits when a table row is clicked. This event provides 2 arguments: the first is the item data that was clicked and the second is the other related data provided by the `item` slot. **NOTE:** will not emit when table rows are defined through a slot such as `item` or `body`.
     :param contextmenu_row: Emits when a table row is right-clicked. The item for the row is included. **NOTE:** will not emit when table rows are defined through a slot such as `item` or `body`.
-    :param current_items:
+    :param current_items: Emits the items provided via the **items** prop, every time the internal **computedItems** is changed.
     :param dblclick_row: Emits when a table row is double-clicked. The item for the row is included. **NOTE:** will not emit when table rows are defined through a slot such as `item` or `body`.
     :param input: Array of selected items
     :param item_expanded: Event emitted when an item is expanded or closed
     :param item_selected: Event emitted when an item is selected or deselected
-    :param page_count:
-    :param pagination:
-    :param toggle_select_all:
+    :param page_count: Emits when the **pageCount** property of the **pagination** prop is updated
+    :param pagination: Emits when something changed to the `pagination` which can be provided via the `pagination` prop
+    :param toggle_select_all: Emits when the `select-all` checkbox in table header is clicked. This checkbox is enabled by the **show-select** prop
     :param update_expanded: The `.sync` event for `expanded` prop
-    :param update_group_by:
-    :param update_group_desc:
-    :param update_items_per_page:
-    :param update_multi_sort:
-    :param update_must_sort:
-    :param update_options:
-    :param update_page:
-    :param update_sort_by:
-    :param update_sort_desc:
+    :param update_group_by: Emits when the **group-by** property of the **options** property is updated
+    :param update_group_desc: Emits when the **group-desc** property of the **options** prop is updated
+    :param update_items_per_page: Emits when the **items-per-page** property of the **options** prop is updated
+    :param update_multi_sort: Emits when the **multi-sort** property of the **options** prop is updated
+    :param update_must_sort: Emits when the **must-sort** property of the **options** prop is updated
+    :param update_options: Emits when one of the **options** properties is updated
+    :param update_page: Emits when the **page** property of the **options** prop is updated
+    :param update_sort_by: Emits when the **sort-by** property of the **options** prop is updated
+    :param update_sort_desc: Emits when the **sort-desc** property of the **options** prop is updated
     """
 
     def __init__(self, children=None, **kwargs):
@@ -4190,6 +4233,8 @@ class VExpansionPanels(AbstractElement):
     :type boolean:
     :param value: Controls the opened/closed state of content in the expansion-panel. Corresponds to a zero-based index of the currently opened content. If the `multiple` prop (previously `expand` in 1.5.x) is used then it is an array of numbers where each entry corresponds to the index of the opened content.  The index order is not relevant.
     :type any:
+    :param value_comparator: Apply a custom value comparator function
+    :type function:
 
     """
 
@@ -4213,6 +4258,7 @@ class VExpansionPanels(AbstractElement):
             "tag",
             "tile",
             "value",
+            "value_comparator",  # JS functions unimplemented
         ]
 
 
@@ -4371,6 +4417,8 @@ class VFileInput(AbstractElement):
     :type ['boolean', 'string']:
     :param hide_input: Display the icon only without the input (file names)
     :type boolean:
+    :param hide_spin_buttons: Hides spin buttons on the input when type is set to `number`.
+    :type boolean:
     :param hint: Hint text
     :type string:
     :param id: Sets the DOM id on the component
@@ -4476,6 +4524,7 @@ class VFileInput(AbstractElement):
             "height",
             "hide_details",
             "hide_input",
+            "hide_spin_buttons",
             "hint",
             "id",
             "label",
@@ -4825,11 +4874,16 @@ class VSpacer(AbstractElement):
         <a href="https://vuetifyjs.com/api/v-spacer" target="_blank">here</a>
 
 
+    :param tag: Specify a custom tag used on the root element.
+    :type string:
 
     """
 
     def __init__(self, children=None, **kwargs):
         super().__init__("v-spacer", children, **kwargs)
+        self._attr_names += [
+            "tag",
+        ]
 
 
 class VLayout(AbstractElement):
@@ -5327,6 +5381,8 @@ class VInput(AbstractElement):
     :type ['number', 'string']:
     :param hide_details: Hides hint and validation errors. When set to `auto` messages will be rendered only if there's a message (hint, error message, counter value etc) to display
     :type ['boolean', 'string']:
+    :param hide_spin_buttons: Hides spin buttons on the input when type is set to `number`.
+    :type boolean:
     :param hint: Hint text
     :type string:
     :param id: Sets the DOM id on the component
@@ -5378,6 +5434,7 @@ class VInput(AbstractElement):
             "error_messages",
             "height",
             "hide_details",
+            "hide_spin_buttons",
             "hint",
             "id",
             "label",
@@ -5457,6 +5514,8 @@ class VItemGroup(AbstractElement):
     :type string:
     :param value: The designated model value for the component.
     :type any:
+    :param value_comparator: Apply a custom value comparator function
+    :type function:
 
     Events
 
@@ -5474,6 +5533,7 @@ class VItemGroup(AbstractElement):
             "multiple",
             "tag",
             "value",
+            "value_comparator",  # JS functions unimplemented
         ]
         self._event_names += [
             "change",
@@ -5539,11 +5599,16 @@ class VListItemActionText(AbstractElement):
         <a href="https://vuetifyjs.com/api/v-list-item-action-text" target="_blank">here</a>
 
 
+    :param tag: Specify a custom tag used on the root element.
+    :type string:
 
     """
 
     def __init__(self, children=None, **kwargs):
         super().__init__("v-list-item-action-text", children, **kwargs)
+        self._attr_names += [
+            "tag",
+        ]
 
 
 class VListItemContent(AbstractElement):
@@ -5556,11 +5621,16 @@ class VListItemContent(AbstractElement):
         <a href="https://vuetifyjs.com/api/v-list-item-content" target="_blank">here</a>
 
 
+    :param tag: Specify a custom tag used on the root element.
+    :type string:
 
     """
 
     def __init__(self, children=None, **kwargs):
         super().__init__("v-list-item-content", children, **kwargs)
+        self._attr_names += [
+            "tag",
+        ]
 
 
 class VListItemTitle(AbstractElement):
@@ -5573,11 +5643,16 @@ class VListItemTitle(AbstractElement):
         <a href="https://vuetifyjs.com/api/v-list-item-title" target="_blank">here</a>
 
 
+    :param tag: Specify a custom tag used on the root element.
+    :type string:
 
     """
 
     def __init__(self, children=None, **kwargs):
         super().__init__("v-list-item-title", children, **kwargs)
+        self._attr_names += [
+            "tag",
+        ]
 
 
 class VListItemSubtitle(AbstractElement):
@@ -5590,11 +5665,16 @@ class VListItemSubtitle(AbstractElement):
         <a href="https://vuetifyjs.com/api/v-list-item-subtitle" target="_blank">here</a>
 
 
+    :param tag: Specify a custom tag used on the root element.
+    :type string:
 
     """
 
     def __init__(self, children=None, **kwargs):
         super().__init__("v-list-item-subtitle", children, **kwargs)
+        self._attr_names += [
+            "tag",
+        ]
 
 
 class VList(AbstractElement):
@@ -5958,6 +6038,8 @@ class VListItemGroup(AbstractElement):
     :type string:
     :param value: Sets the active list-item inside the list-group
     :type any:
+    :param value_comparator: Apply a custom value comparator function
+    :type function:
 
     Events
 
@@ -5976,6 +6058,7 @@ class VListItemGroup(AbstractElement):
             "multiple",
             "tag",
             "value",
+            "value_comparator",  # JS functions unimplemented
         ]
         self._event_names += [
             "change",
@@ -6041,8 +6124,6 @@ class VMenu(AbstractElement):
     :param disabled: Disables the menu
     :type boolean:
     :param eager: Will force the components content to render on mounted. This is useful if you have content that will not be rendered in the DOM that you want crawled for SEO.
-    :type boolean:
-    :param fixed: Applies **position: fixed** to the component.
     :type boolean:
     :param internal_activator: Detaches the menu content inside of the component as opposed to the document.
     :type boolean:
@@ -6125,7 +6206,6 @@ class VMenu(AbstractElement):
             "disable_keys",
             "disabled",
             "eager",
-            "fixed",
             "internal_activator",
             "left",
             "light",
@@ -6274,6 +6354,62 @@ class VNavigationDrawer(AbstractElement):
         ]
 
 
+class VOtpInput(AbstractElement):
+
+    """
+    Vuetify's VOtpInput component. See more info and examples |VOtpInput_vuetify_link|.
+
+    .. |VOtpInput_vuetify_link| raw:: html
+
+        <a href="https://vuetifyjs.com/api/v-otp-input" target="_blank">here</a>
+
+
+    :param dark: See description |VOtpInput_vuetify_link|.
+    :type boolean:
+    :param disabled: Disable the input
+    :type boolean:
+    :param hide_spin_buttons: Hides spin buttons on the input when type is set to `number`.
+    :type boolean:
+    :param id: Sets the DOM id on the component
+    :type string:
+    :param length: The OTP field's length
+    :type ['number', 'string']:
+    :param plain: Outlined style applied by default to the input, set to `true` to apply plain style
+    :type boolean:
+    :param readonly: Puts input in readonly state
+    :type boolean:
+    :param type: Supported types: `text`, `password`, `number`
+    :type string:
+    :param value: The input's value
+    :type any:
+
+    Events
+
+    :param change: Emitted when the input is changed by user interaction
+    :param finish: Emitted when the input is filled completely and cursor is blurred
+    :param input: The updated bound model
+    """
+
+    def __init__(self, children=None, **kwargs):
+        super().__init__("v-otp-input", children, **kwargs)
+        self._attr_names += [
+            "dark",
+            "disabled",
+            "hide_spin_buttons",
+            "id",
+            "length",
+            "plain",
+            "readonly",
+            "type",
+            "value",
+        ]
+        self._event_names += [
+            "change",
+            "finish",
+            "input",
+        ]
+
+
 class VOverflowBtn(AbstractElement):
 
     """
@@ -6347,6 +6483,8 @@ class VOverflowBtn(AbstractElement):
     :param hide_no_data: Hides the menu when there are no options to show.  Useful for preventing the menu from opening before results are fetched asynchronously.  Also has the effect of opening the menu when the `items` array changes if not already open.
     :type boolean:
     :param hide_selected: Do not display in the select menu items that are already selected
+    :type boolean:
+    :param hide_spin_buttons: Hides spin buttons on the input when type is set to `number`.
     :type boolean:
     :param hint: Hint text
     :type string:
@@ -6487,6 +6625,7 @@ class VOverflowBtn(AbstractElement):
             "hide_details",
             "hide_no_data",
             "hide_selected",
+            "hide_spin_buttons",
             "hint",
             "id",
             "item_color",
@@ -6914,6 +7053,8 @@ class VRadioGroup(AbstractElement):
     :type ['string', 'array']:
     :param hide_details: Hides hint and validation errors. When set to `auto` messages will be rendered only if there's a message (hint, error message, counter value etc) to display
     :type ['boolean', 'string']:
+    :param hide_spin_buttons: Hides spin buttons on the input when type is set to `number`.
+    :type boolean:
     :param hint: Hint text
     :type string:
     :param id: Sets the DOM id on the component
@@ -6977,6 +7118,7 @@ class VRadioGroup(AbstractElement):
             "error_count",
             "error_messages",
             "hide_details",
+            "hide_spin_buttons",
             "hint",
             "id",
             "label",
@@ -7113,6 +7255,8 @@ class VRangeSlider(AbstractElement):
     :type ['number', 'string']:
     :param hide_details: Hides hint and validation errors. When set to `auto` messages will be rendered only if there's a message (hint, error message, counter value etc) to display
     :type ['boolean', 'string']:
+    :param hide_spin_buttons: Hides spin buttons on the input when type is set to `number`.
+    :type boolean:
     :param hint: Hint text
     :type string:
     :param id: Sets the DOM id on the component
@@ -7195,6 +7339,7 @@ class VRangeSlider(AbstractElement):
             "error_messages",
             "height",
             "hide_details",
+            "hide_spin_buttons",
             "hint",
             "id",
             "inverse_label",
@@ -7439,6 +7584,8 @@ class VSelect(AbstractElement):
     :type ['boolean', 'string']:
     :param hide_selected: Do not display in the select menu items that are already selected
     :type boolean:
+    :param hide_spin_buttons: Hides spin buttons on the input when type is set to `number`.
+    :type boolean:
     :param hint: Hint text
     :type string:
     :param id: Sets the DOM id on the component
@@ -7568,6 +7715,7 @@ class VSelect(AbstractElement):
             "height",
             "hide_details",
             "hide_selected",
+            "hide_spin_buttons",
             "hint",
             "id",
             "item_color",
@@ -7725,6 +7873,8 @@ class VSlider(AbstractElement):
     :type ['number', 'string']:
     :param hide_details: Hides hint and validation errors. When set to `auto` messages will be rendered only if there's a message (hint, error message, counter value etc) to display
     :type ['boolean', 'string']:
+    :param hide_spin_buttons: Hides spin buttons on the input when type is set to `number`.
+    :type boolean:
     :param hint: Hint text
     :type string:
     :param id: Sets the DOM id on the component
@@ -7807,6 +7957,7 @@ class VSlider(AbstractElement):
             "error_messages",
             "height",
             "hide_details",
+            "hide_spin_buttons",
             "hint",
             "id",
             "inverse_label",
@@ -7886,6 +8037,8 @@ class VSlideGroup(AbstractElement):
     :type string:
     :param value: The designated model value for the component.
     :type any:
+    :param value_comparator: Apply a custom value comparator function
+    :type function:
 
     Events
 
@@ -7910,6 +8063,7 @@ class VSlideGroup(AbstractElement):
             "show_arrows",
             "tag",
             "value",
+            "value_comparator",  # JS functions unimplemented
         ]
         self._event_names += [
             "change",
@@ -8349,11 +8503,16 @@ class VStepperHeader(AbstractElement):
         <a href="https://vuetifyjs.com/api/v-stepper-header" target="_blank">here</a>
 
 
+    :param tag: Specify a custom tag used on the root element.
+    :type string:
 
     """
 
     def __init__(self, children=None, **kwargs):
         super().__init__("v-stepper-header", children, **kwargs)
+        self._attr_names += [
+            "tag",
+        ]
 
 
 class VStepperItems(AbstractElement):
@@ -8366,11 +8525,16 @@ class VStepperItems(AbstractElement):
         <a href="https://vuetifyjs.com/api/v-stepper-items" target="_blank">here</a>
 
 
+    :param tag: Specify a custom tag used on the root element.
+    :type string:
 
     """
 
     def __init__(self, children=None, **kwargs):
         super().__init__("v-stepper-items", children, **kwargs)
+        self._attr_names += [
+            "tag",
+        ]
 
 
 class VSubheader(AbstractElement):
@@ -8435,6 +8599,8 @@ class VSwitch(AbstractElement):
     :type boolean:
     :param hide_details: Hides hint and validation errors. When set to `auto` messages will be rendered only if there's a message (hint, error message, counter value etc) to display
     :type ['boolean', 'string']:
+    :param hide_spin_buttons: Hides spin buttons on the input when type is set to `number`.
+    :type boolean:
     :param hint: Hint text
     :type string:
     :param id: Sets the DOM id on the component
@@ -8499,6 +8665,7 @@ class VSwitch(AbstractElement):
             "false_value",
             "flat",
             "hide_details",
+            "hide_spin_buttons",
             "hint",
             "id",
             "input_value",
@@ -8829,6 +8996,8 @@ class VTabsItems(AbstractElement):
     :type boolean:
     :param value: The designated model value for the component.
     :type any:
+    :param value_comparator: Apply a custom value comparator function
+    :type function:
     :param vertical: Uses a vertical transition when changing windows.
     :type boolean:
 
@@ -8856,6 +9025,7 @@ class VTabsItems(AbstractElement):
             "touch",
             "touchless",
             "value",
+            "value_comparator",  # JS functions unimplemented
             "vertical",
         ]
         self._event_names += [
@@ -8937,6 +9107,8 @@ class VTextarea(AbstractElement):
     :type ['number', 'string']:
     :param hide_details: Hides hint and validation errors. When set to `auto` messages will be rendered only if there's a message (hint, error message, counter value etc) to display
     :type ['boolean', 'string']:
+    :param hide_spin_buttons: Hides spin buttons on the input when type is set to `number`.
+    :type boolean:
     :param hint: Hint text
     :type string:
     :param id: Sets the DOM id on the component
@@ -9039,6 +9211,7 @@ class VTextarea(AbstractElement):
             "full_width",
             "height",
             "hide_details",
+            "hide_spin_buttons",
             "hint",
             "id",
             "label",
@@ -9139,6 +9312,8 @@ class VTextField(AbstractElement):
     :type ['number', 'string']:
     :param hide_details: Hides hint and validation errors. When set to `auto` messages will be rendered only if there's a message (hint, error message, counter value etc) to display
     :type ['boolean', 'string']:
+    :param hide_spin_buttons: Hides spin buttons on the input when type is set to `number`.
+    :type boolean:
     :param hint: Hint text
     :type string:
     :param id: Sets the DOM id on the component
@@ -9234,6 +9409,7 @@ class VTextField(AbstractElement):
             "full_width",
             "height",
             "hide_details",
+            "hide_spin_buttons",
             "hint",
             "id",
             "label",
@@ -9603,11 +9779,16 @@ class VToolbarItems(AbstractElement):
         <a href="https://vuetifyjs.com/api/v-toolbar-items" target="_blank">here</a>
 
 
+    :param tag: Specify a custom tag used on the root element.
+    :type string:
 
     """
 
     def __init__(self, children=None, **kwargs):
         super().__init__("v-toolbar-items", children, **kwargs)
+        self._attr_names += [
+            "tag",
+        ]
 
 
 class VToolbarTitle(AbstractElement):
@@ -9620,11 +9801,16 @@ class VToolbarTitle(AbstractElement):
         <a href="https://vuetifyjs.com/api/v-toolbar-title" target="_blank">here</a>
 
 
+    :param tag: Specify a custom tag used on the root element.
+    :type string:
 
     """
 
     def __init__(self, children=None, **kwargs):
         super().__init__("v-toolbar-title", children, **kwargs)
+        self._attr_names += [
+            "tag",
+        ]
 
 
 class VTooltip(AbstractElement):
@@ -9656,8 +9842,6 @@ class VTooltip(AbstractElement):
     :param disabled: Disables the tooltip
     :type boolean:
     :param eager: Will force the components content to render on mounted. This is useful if you have content that will not be rendered in the DOM that you want crawled for SEO.
-    :type boolean:
-    :param fixed: Applies **position: fixed** to the component.
     :type boolean:
     :param internal_activator: Designates whether to use an internal activator
     :type boolean:
@@ -9719,7 +9903,6 @@ class VTooltip(AbstractElement):
             "content_class",
             "disabled",
             "eager",
-            "fixed",
             "internal_activator",
             "left",
             "max_width",
@@ -9766,6 +9949,10 @@ class VTreeview(AbstractElement):
     :param dark: See description |VTreeview_vuetify_link|.
     :type boolean:
     :param dense: Decreases the height of the items
+    :type boolean:
+    :param disable_per_node: Prevents disabling children nodes
+    :type boolean:
+    :param disabled: Disables selection for all nodes
     :type boolean:
     :param expand_icon: Icon used to indicate that a node can be expanded
     :type string:
@@ -9838,6 +10025,8 @@ class VTreeview(AbstractElement):
             "color",
             "dark",
             "dense",
+            "disable_per_node",
+            "disabled",
             "expand_icon",
             "filter",  # JS functions unimplemented
             "hoverable",
@@ -9955,6 +10144,8 @@ class VWindow(AbstractElement):
     :type boolean:
     :param value: The designated model value for the component.
     :type any:
+    :param value_comparator: Apply a custom value comparator function
+    :type function:
     :param vertical: Uses a vertical transition when changing windows.
     :type boolean:
 
@@ -9979,6 +10170,7 @@ class VWindow(AbstractElement):
             "touch",
             "touchless",
             "value",
+            "value_comparator",  # JS functions unimplemented
             "vertical",
         ]
         self._event_names += [

@@ -1,3 +1,10 @@
+## [1.5.6](https://github.com/kitware/trame/compare/v1.5.5...v1.5.6) (2021-12-02)
+
+
+### Bug Fixes
+
+* **vuetify:** update to 2.6.1 ([5c397fa](https://github.com/kitware/trame/commit/5c397fafeac538dfe33fa20b6317dba60d2cea62))
+
 ## [1.5.5](https://github.com/kitware/trame/compare/v1.5.4...v1.5.5) (2021-11-23)
 
 

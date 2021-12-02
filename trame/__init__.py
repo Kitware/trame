@@ -470,16 +470,21 @@ def print_server_info(_fn=None):
         local_url = f"http://{args.host}:{args.port}/"
 
         import socket
+            
+        try:
+            host_name = socket.gethostname()
+            host_ip = socket.gethostbyname(host_name)
 
-        host_name = socket.gethostname()
-        host_ip = socket.gethostbyname(host_name)
+            print()
+            print(" App running at:")
+            print(f" - Local:   {local_url}")
+            print(f" - Network: http://{host_ip}:{args.port}/")
+            print()
+            print("Note that for multi-users you need to use and configure a launcher.")
 
-        print()
-        print(" App running at:")
-        print(f" - Local:   {local_url}")
-        print(f" - Network: http://{host_ip}:{args.port}/")
-        print()
-        print("Note that for multi-users you need to use and configure a launcher.")
+        except socket.gaierror: 
+            pass
+
 
         if _fn:
             try:

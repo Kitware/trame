@@ -479,12 +479,12 @@ def print_server_info(_fn=None):
             print(" App running at:")
             print(f" - Local:   {local_url}")
             print(f" - Network: http://{host_ip}:{args.port}/")
-            print()
-            print("Note that for multi-users you need to use and configure a launcher.")
 
         except socket.gaierror: 
             pass
 
+        print()
+        print("Note that for multi-users you need to use and configure a launcher.")
 
         if _fn:
             try:

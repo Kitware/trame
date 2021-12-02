@@ -1,3 +1,10 @@
+## [1.5.7](https://github.com/kitware/trame/compare/v1.5.6...v1.5.7) (2021-12-02)
+
+
+### Bug Fixes
+
+* **cli:** Fail silently when get host fails ([9458b6d](https://github.com/kitware/trame/commit/9458b6deaa9c8464da0dc2135ab896f3b7ba7e36))
+
 ## [1.5.6](https://github.com/kitware/trame/compare/v1.5.5...v1.5.6) (2021-12-02)
 
 

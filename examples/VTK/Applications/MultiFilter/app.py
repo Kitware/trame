@@ -39,34 +39,19 @@ CURRENT_DIRECTORY = os.path.abspath(os.path.dirname(__file__))
 # -----------------------------------------------------------------------------
 
 
-class Representation(Enum):
+class Representation:
     Points = 0
     Wireframe = 1
     Surface = 2
     SurfaceWithEdges = 3
 
 
-REPRESENTATIONS = [
-    {"text": "Points", "value": 0},
-    {"text": "Wireframe", "value": 1},
-    {"text": "Surface", "value": 2},
-    {"text": "SurfaceWithEdges", "value": 3},
-]
-
-
-class LUT(Enum):
+class LookupTable:
     Rainbow = 0
     Inverted_Rainbow = 1
     Greyscale = 2
     Inverted_Greyscale = 3
 
-
-COLOR_MAPS = [
-    {"text": "Rainbow", "value": 0},
-    {"text": "Inv Rainbow", "value": 1},
-    {"text": "Greyscale", "value": 2},
-    {"text": "Inv Greyscale", "value": 3},
-]
 
 # -----------------------------------------------------------------------------
 # VTK helpers
@@ -83,20 +68,19 @@ def create_representation(input):
 
 def use_preset(actor, preset):
     lut = actor.GetMapper().GetLookupTable()
-    lut_preset = LUT(preset)
-    if lut_preset == LUT.Rainbow:
+    if preset == LookupTable.Rainbow:
         lut.SetHueRange(0.666, 0.0)
         lut.SetSaturationRange(1.0, 1.0)
         lut.SetValueRange(1.0, 1.0)
-    elif lut_preset == LUT.Inverted_Rainbow:
+    elif preset == LookupTable.Inverted_Rainbow:
         lut.SetHueRange(0.0, 0.666)
         lut.SetSaturationRange(1.0, 1.0)
         lut.SetValueRange(1.0, 1.0)
-    elif lut_preset == LUT.Greyscale:
+    elif preset == LookupTable.Greyscale:
         lut.SetHueRange(0.0, 0.0)
         lut.SetSaturationRange(0.0, 0.0)
         lut.SetValueRange(0.0, 1.0)
-    elif lut_preset == LUT.Inverted_Greyscale:
+    elif preset == LookupTable.Inverted_Greyscale:
         lut.SetHueRange(0.0, 0.666)
         lut.SetSaturationRange(0.0, 0.0)
         lut.SetValueRange(1.0, 0.0)
@@ -115,20 +99,19 @@ def color_by_array(actor, array):
 
 def update_representation(actor, mode):
     property = actor.GetProperty()
-    rep = Representation(mode)
-    if rep == Representation.Points:
+    if mode == Representation.Points:
         property.SetRepresentationToPoints()
         property.SetPointSize(5)
         property.EdgeVisibilityOff()
-    elif rep == Representation.Wireframe:
+    elif mode == Representation.Wireframe:
         property.SetRepresentationToWireframe()
         property.SetPointSize(1)
         property.EdgeVisibilityOff()
-    elif rep == Representation.Surface:
+    elif mode == Representation.Surface:
         property.SetRepresentationToSurface()
         property.SetPointSize(1)
         property.EdgeVisibilityOff()
-    elif rep == Representation.SurfaceWithEdges:
+    elif mode == Representation.SurfaceWithEdges:
         property.SetRepresentationToSurface()
         property.SetPointSize(1)
         property.EdgeVisibilityOn()
@@ -157,9 +140,7 @@ renderWindowInteractor.SetRenderWindow(renderWindow)
 renderWindowInteractor.GetInteractorStyle().SetCurrentStyleToTrackballCamera()
 
 reader = vtkXMLUnstructuredGridReader()
-reader.SetFileName(
-    os.path.join(CURRENT_DIRECTORY, "../../../Tutorial/data/disk_out_ref.vtu")
-)
+reader.SetFileName(os.path.join(CURRENT_DIRECTORY, "../../../data/disk_out_ref.vtu"))
 reader.Update()
 dataset = reader.GetOutput()
 
@@ -187,7 +168,7 @@ default_array = dataset_arrays[0]
 # Mesh
 mesh_actor = create_representation(reader)
 update_representation(mesh_actor, Representation.Surface)
-use_preset(mesh_actor, LUT.Rainbow)
+use_preset(mesh_actor, LookupTable.Rainbow)
 color_by_array(mesh_actor, default_array)
 renderer.AddActor(mesh_actor)
 
@@ -197,8 +178,8 @@ pipeline_server = {
         "actor": mesh_actor,
         "ui": "mesh",
         "shared": {
-            "representation": Representation.Surface.value,
-            "color_preset": LUT.Rainbow.value,
+            "representation": Representation.Surface,
+            "color_preset": LookupTable.Rainbow,
             "color_array_idx": 0,
             "contour_by_array_idx": 0,
             "opacity": 1.0,
@@ -226,7 +207,7 @@ for i in range(4):
     contour_actor = create_representation(contour)
     contour_min, contour_max = array.get("range")
     update_representation(contour_actor, Representation.Surface)
-    use_preset(contour_actor, LUT.Rainbow)
+    use_preset(contour_actor, LookupTable.Rainbow)
     color_by_array(contour_actor, array)
     renderer.AddActor(contour_actor)
 
@@ -237,8 +218,8 @@ for i in range(4):
         "ui": "contour",
         "filter": contour,
         "shared": {
-            "representation": Representation.Surface.value,
-            "color_preset": LUT.Rainbow.value,
+            "representation": Representation.Surface,
+            "color_preset": LookupTable.Rainbow,
             "color_array_idx": i,
             "opacity": 1.0,
             # contour add-on
@@ -435,10 +416,18 @@ def ui_card(title, ui_name):
     return content
 
 
-def ui_common(rep=Representation.Surface.value, lut=LUT.Rainbow.value, opacity=1):
+def ui_common(rep=Representation.Surface, lut=LookupTable.Rainbow, opacity=1):
     vuetify.VSelect(
         v_model=("representation", rep),
-        items=("representations", REPRESENTATIONS),
+        items=(
+            "representations",
+            [
+                {"text": "Points", "value": 0},
+                {"text": "Wireframe", "value": 1},
+                {"text": "Surface", "value": 2},
+                {"text": "SurfaceWithEdges", "value": 3},
+            ],
+        ),
         label="Representation",
         **select_style,
     )
@@ -449,7 +438,15 @@ def ui_common(rep=Representation.Surface.value, lut=LUT.Rainbow.value, opacity=1
             vuetify.VSelect(
                 label="Colormap",
                 v_model=("color_preset", lut),
-                items=("colormaps", COLOR_MAPS),
+                items=(
+                    "colormaps",
+                    [
+                        {"text": "Rainbow", "value": 0},
+                        {"text": "Inv Rainbow", "value": 1},
+                        {"text": "Greyscale", "value": 2},
+                        {"text": "Inv Greyscale", "value": 3},
+                    ],
+                ),
                 **select_style,
             )
     vuetify.VSlider(

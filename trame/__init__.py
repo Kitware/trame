@@ -183,6 +183,15 @@ def start(layout=None, name=None, favicon=None, on_ready=None, port=None, debug=
     app.run_server(port=port)
 
 
+def stop():
+    app = get_app_instance()
+    app.stop_server()
+
+
+def port():
+    app = get_app_instance()
+    return app.server_port
+
 # -----------------------------------------------------------------------------
 # App state management
 # -----------------------------------------------------------------------------
@@ -468,19 +477,21 @@ def print_server_info(_fn=None):
         parser = get_cli_parser()
         args = parser.parse_known_args()[0]
         local_url = f"http://{args.host}:{args.port}/"
+        app = get_app_instance()
+        real_port = app.server_port
 
         import socket
-            
+
         try:
             host_name = socket.gethostname()
             host_ip = socket.gethostbyname(host_name)
 
             print()
-            print(" App running at:")
+            print("App running at:")
             print(f" - Local:   {local_url}")
-            print(f" - Network: http://{host_ip}:{args.port}/")
+            print(f" - Network: http://{host_ip}:{real_port}/")
 
-        except socket.gaierror: 
+        except socket.gaierror:
             pass
 
         print()

@@ -2,6 +2,7 @@ from genericpath import exists
 import os
 from pywebvue.utils import read_file_as_base64_url
 from trame.html import Span, vuetify, Triggers
+from trame.utils import AppServerThread, compose_callbacks
 
 import pywebvue
 import trame as tr
@@ -102,6 +103,47 @@ class AbstractLayout:
         tr.validate_key_names()
 
         _app.run_server(port=port)
+
+    def start_thread(self, port=None, print_server_info=False, on_server_listening=None, **kwargs):
+        _app = tr.get_app_instance()
+        _app.name = self.name
+        _app.layout = self.html
+
+        if self.favicon:
+            _app.favicon = self.favicon
+
+        if print_server_info:
+            _app.on_ready = tr.print_server_info(compose_callbacks(self.on_ready, on_server_listening))
+        else:
+            _app.on_ready = compose_callbacks(self.on_ready, on_server_listening)
+
+        # Dev validation
+        tr.validate_key_names()
+        server_thread = AppServerThread(_app, port, **kwargs)
+        server_thread.start()
+        return server_thread
+
+    def start_desktop_window(self, **kwargs):
+        import webview
+        from queue import Queue
+
+        wait_for_server = Queue()
+        server = self.start_thread(port=0, on_server_listening=lambda: wait_for_server.put(server.port))
+        port = wait_for_server.get(block=True)
+
+        web_window = webview.create_window(
+            title=self.name,
+            url=f"http://localhost:{port}/",
+            **kwargs,
+        )
+
+        def on_closing():
+            web_window.destroy()
+            server.stop()
+
+        web_window.closing += on_closing
+        webview.start()
+        server.join()
 
 
 class FullScreenPage(AbstractLayout):

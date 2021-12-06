@@ -1,6 +1,7 @@
 import asyncio
 from threading import Thread, current_thread
 
+
 class AppServerThread(Thread):
     def __init__(self, app, port=None, **kwargs):
         Thread.__init__(self, **kwargs)
@@ -32,4 +33,5 @@ def compose_callbacks(*args):
                 _fn(**kwargs)
             except TypeError:
                 _fn()
+
     return __fn

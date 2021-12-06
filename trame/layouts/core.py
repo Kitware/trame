@@ -104,7 +104,9 @@ class AbstractLayout:
 
         _app.run_server(port=port)
 
-    def start_thread(self, port=None, print_server_info=False, on_server_listening=None, **kwargs):
+    def start_thread(
+        self, port=None, print_server_info=False, on_server_listening=None, **kwargs
+    ):
         _app = tr.get_app_instance()
         _app.name = self.name
         _app.layout = self.html
@@ -113,7 +115,9 @@ class AbstractLayout:
             _app.favicon = self.favicon
 
         if print_server_info:
-            _app.on_ready = tr.print_server_info(compose_callbacks(self.on_ready, on_server_listening))
+            _app.on_ready = tr.print_server_info(
+                compose_callbacks(self.on_ready, on_server_listening)
+            )
         else:
             _app.on_ready = compose_callbacks(self.on_ready, on_server_listening)
 
@@ -124,11 +128,19 @@ class AbstractLayout:
         return server_thread
 
     def start_desktop_window(self, **kwargs):
-        import webview
+        try:
+            import webview
+        except:
+            print("trame.start_desktop_window() require pywebview==3.4")
+            return
+
         from queue import Queue
 
         wait_for_server = Queue()
-        server = self.start_thread(port=0, on_server_listening=lambda: wait_for_server.put(server.port))
+        server = self.start_thread(
+            port=0,
+            on_server_listening=lambda: wait_for_server.put(server.port),
+        )
         port = wait_for_server.get(block=True)
 
         web_window = webview.create_window(

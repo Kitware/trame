@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/kitware/trame/compare/v1.5.7...v1.6.0) (2021-12-06)
+
+
+### Features
+
+* **desktop:** add helper to start as desktop app ([22d4b11](https://github.com/kitware/trame/commit/22d4b112af65466d4dd0ca966e28a2353e6fa71c))
+
 ## [1.5.7](https://github.com/kitware/trame/compare/v1.5.6...v1.5.7) (2021-12-02)
 
 

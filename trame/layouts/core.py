@@ -1,8 +1,9 @@
+import asyncio
 from genericpath import exists
 import os
 from pywebvue.utils import read_file_as_base64_url
 from trame.html import Span, vuetify, Triggers
-from trame.utils import AppServerThread, compose_callbacks
+from trame.utils import ClientWindowProcess, AppServerThread, compose_callbacks
 
 import pywebvue
 import trame as tr
@@ -127,35 +128,44 @@ class AbstractLayout:
         server_thread.start()
         return server_thread
 
-    def start_desktop_window(self, **kwargs):
-        try:
-            import webview
-        except:
-            print("trame.start_desktop_window() require pywebview==3.4")
-            return
+    def start_desktop_window(self, on_msg=None, **kwargs):
+        from multiprocessing import Queue
 
-        from queue import Queue
+        _msg_queue = Queue()
 
-        wait_for_server = Queue()
-        server = self.start_thread(
-            port=0,
-            on_server_listening=lambda: wait_for_server.put(server.port),
-        )
-        port = wait_for_server.get(block=True)
+        _app = tr.get_app_instance()
+        _app.name = self.name
+        _app.layout = self.html
 
-        web_window = webview.create_window(
-            title=self.name,
-            url=f"http://localhost:{port}/",
-            **kwargs,
-        )
+        async def process_msg():
+            keep_processing = True
+            while keep_processing:
+                await asyncio.sleep(0.5)
+                if not _msg_queue.empty():
+                    msg = _msg_queue.get_nowait()
+                    if on_msg:
+                        on_msg(msg)
+                    if msg == "closing":
+                        keep_processing = False
+                        _app.stop_server()
 
-        def on_closing():
-            web_window.destroy()
-            server.stop()
+        asyncio.get_event_loop().create_task(process_msg())
 
-        web_window.closing += on_closing
-        webview.start()
-        server.join()
+        if self.favicon:
+            _app.favicon = self.favicon
+
+        def start_client(**_):
+            client_process = ClientWindowProcess(
+                title=_app.name, port=_app.server_port, msg_queue=_msg_queue, **kwargs
+            )
+            client_process.start()
+
+        _app.on_ready = compose_callbacks(self.on_ready, start_client)
+
+        # Dev validation
+        tr.validate_key_names()
+
+        _app.run_server(port=0)
 
 
 class FullScreenPage(AbstractLayout):

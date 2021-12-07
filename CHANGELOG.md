@@ -1,3 +1,10 @@
+## [1.6.1](https://github.com/kitware/trame/compare/v1.6.0...v1.6.1) (2021-12-07)
+
+
+### Bug Fixes
+
+* **webview:** replace server thread by client process ([12ccb1d](https://github.com/kitware/trame/commit/12ccb1df39b0edb752b930835ef20c2b5338f00d))
+
 # [1.6.0](https://github.com/kitware/trame/compare/v1.5.7...v1.6.0) (2021-12-06)
 
 

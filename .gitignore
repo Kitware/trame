@@ -8,3 +8,5 @@ node_modules
 dist
 .venv
 *.pyc
+.eggs
+.pvenv

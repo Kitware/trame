@@ -1,4 +1,7 @@
-from LocalRendering import layout
+# from LocalRendering import layout
+from RemoteRendering import layout
+
+# from ClientView import layout
 
 
 def main():

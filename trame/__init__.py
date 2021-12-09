@@ -1,20 +1,17 @@
-import os
-import sys
 import inspect
+import os
 
-from pywebvue import App
-
-from trame.utils.version import get_version
+from trame.app import (
+    activate_app, create_app, deactivate_app, get_app_instance
+)
+from trame.state import get_state, update_state
+from trame.utils import get_version, log_js_error
 
 __version__ = get_version()
 
 
 NEXT_TRIGGER_ID = 0
 TRIGGER_MAP = {}
-NEXT_APP_ID = 0
-APPS = {}
-APP_STACK = []
-APP = None
 
 BASE_DIRECTORY = None
 
@@ -31,97 +28,6 @@ def base_directory():
     else:
         BASE_DIRECTORY = os.path.abspath(os.path.dirname(module.__file__))
     return BASE_DIRECTORY
-
-
-def _log_js_error(message):
-    print(f" > JS error | {message}")
-
-
-# -----------------------------------------------------------------------------
-# App management
-# -----------------------------------------------------------------------------
-
-
-def get_app_instance():
-    """
-    Return the current active PyWebVue App instance or
-    create one if none were available yet
-
-    (This method is meant for advanced users and should not be needed for most)
-    """
-    global APP
-    if APP:
-        return APP
-
-    create_app("Application")
-    return APP
-
-
-# -----------------------------------------------------------------------------
-
-
-def activate_app(app_id):
-    """
-    When multiple application instances are use this method allows you to toggle
-    which app should be current based on the app_id.
-
-    (This method is meant for advanced users and should not be needed for most)
-    """
-    global APP_STACK, APPS, APP
-    if app_id in APPS:
-        APP_STACK.append(app_id)
-        APP = APPS[app_id]
-        return True
-
-    return False
-
-
-# -----------------------------------------------------------------------------
-
-
-def deactivate_app():
-    """
-    When multiple application instances are used, this method allows you to activate
-    the previously activated app by deactivating the current one.
-
-    (This method is meant for advanced users and should not be needed for most)
-    """
-    global APP_STACK, APPS, APP
-    if len(APP_STACK):
-        app_ip = APP_STACK.pop()
-        APP = None
-        if len(APP_STACK):
-            activate_app(APP_STACK[-1])
-        return app_ip
-
-
-# -----------------------------------------------------------------------------
-
-
-def create_app(name):
-    """
-    This will create a PyWebVue application instance,
-    activate it, and return its app_id for you to
-    desactivate or reactivate it later.
-
-    (This method is meant for advanced users and should not be needed for most)
-    """
-    global NEXT_APP_ID, APPS
-    NEXT_APP_ID += 1
-    _app_id = f"trame_app_{NEXT_APP_ID}"
-    _app = App(name)
-
-    # Default app initialization
-    _app.trigger("js_error")(_log_js_error)
-    _app.cli_parser.add_argument(
-        "--server",
-        help="Prevent your browser from opening at startup",
-        action="store_true",
-    )
-
-    APPS[_app_id] = _app
-    activate_app(_app_id)
-    return _app_id
 
 
 # -----------------------------------------------------------------------------
@@ -196,84 +102,6 @@ def port():
 # -----------------------------------------------------------------------------
 # App state management
 # -----------------------------------------------------------------------------
-
-
-def update_state(key, value=None, force=False):
-    """
-    Updating the current application state that is shared with the Web UI
-
-    :param key: The key for the value we wish to update
-    :type key: str
-    :param value: The new value
-    :type value: Any
-    :param force: Set to True when you want to force push a new or same value to the client.
-    :type force: bool
-
-    >>> update_state("workload_finished",  True)
-
-    update_state() may not detect a change if the same reference is passed
-    even if its content has change. You have the option to let the system
-    know that you want to force the update.
-
-    >>> a = { "x": 1 }
-    >>> update_state("a", a)
-    >>> a["x"] = 2
-    >>> update_state("a", a, force=True)
-
-    Sometime you may want to update a set of variables at once without
-    triggering any @change callback. To do so, just provide a dictionary.
-    Even if no @change is called, the client will receive the updated
-    modified change.
-
-    >>> change_set = { "a": 1, "b": 2 }
-    >>> update_state(change_set)
-
-    """
-    _app = get_app_instance()
-    if isinstance(key, dict):
-        _app.state.update(key)
-        _app.flush_state(*list(key.keys()))
-        return key
-    else:
-        _app.set(key, value, force)
-    return value
-
-
-# -----------------------------------------------------------------------------
-
-
-def get_state(*names):
-    """
-    Return the list of values of the given state keys or the full state
-    dictionary if no key names were provided.
-
-    :param names: List of names of state values to retreive
-    :type names: list[str]
-    :rtype: List[Any] | dict[str, Any]
-    :returns: Either a list of values matching the given state property names or the full state dict
-
-    >>> greeting, name  = get_state("greeting", "name")
-    >>> f'{greeting}, {name}!'
-    "Hello, Trame!"
-
-    >>> greeting, = get_state("greeting")
-    >>> greeting
-    "Hello"
-
-    >>> full_state = get_state()
-    >>> full_state.get("greeting")
-    "Hello"
-
-    """
-    _app = get_app_instance()
-
-    if len(names):
-        results = []
-        for name in names:
-            results.append(_app.get(name))
-        return results
-
-    return _app.state
 
 
 def update_layout(layout):
@@ -578,7 +406,7 @@ def main():
 
         # Keep sys trame ones
         _app._triggers["server_reload"] = reload
-        _app._triggers["js_error"] = _log_js_error
+        _app._triggers["js_error"] = log_js_error
 
         spec = importlib.util.spec_from_file_location("app", args.script)
         app = importlib.util.module_from_spec(spec)

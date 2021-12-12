@@ -13,3 +13,5 @@ It is easiest to work on the tutorial from within the ***trame-tutorial*** repos
 5. [HTML](./tutorial-html.html)
 6. [Application](./tutorial-application.html)
 7. [ParaView](./tutorial-paraview.html)
+
+If you want, you can follow along [the video on __Web Visualization__](https://vimeo.com/651667960) recorded during  SuperComputing conference in 2021. The first 45 minutes go over the various technologies and solutions while the rest focus on trame and its tutorial.

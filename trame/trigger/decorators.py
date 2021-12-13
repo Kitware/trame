@@ -3,8 +3,8 @@ import trame as tr
 
 def trigger(name):
     """
-    @trigger decorator allows you to register a function as a trigger with a
-             given name.
+    The @trigger decorator allows you to register a function as a trigger with a
+    given name.
 
     Parameters
     ----------

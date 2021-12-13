@@ -14,24 +14,27 @@ from trame.utils import (
 __version__ = get_version()
 
 __all__ = [
-    "__version__",
-    "change",
-    "flush_state",
-    "get_app_instance",
-    "get_cli_parser",
-    "get_state",
-    "get_version",
-    "is_dirty",
-    "is_dirty_all",
-    "log_js_error",
-    "main",
-    "port",
-    "print_server_info",
+    # Order these how we want them to show up in the docs
     "start",
     "stop",
-    "trigger",
-    "trigger_key",
-    "update_layout",
+    "port",
     "update_state",
+    "get_state",
+    "update_layout",
+    "get_cli_parser",
+    "flush_state",
+    "is_dirty",
+    "is_dirty_all",
+    "change",
+    "trigger",
+
+    # These are not exposed in the docs
+    "__version__",
+    "get_app_instance",
+    "get_version",
+    "log_js_error",
+    "main",
+    "print_server_info",
+    "trigger_key",
     "validate_key_names",
 ]

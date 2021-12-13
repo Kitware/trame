@@ -1,5 +1,5 @@
+from .core import trigger_key
 from .decorators import trigger
-from .trigger import trigger_key
 
 __all__ = [
     "trigger",

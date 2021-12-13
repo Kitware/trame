@@ -1,5 +1,4 @@
 import asyncio
-from genericpath import exists
 import os
 from pywebvue.utils import read_file_as_base64_url
 from trame.html import Span, vuetify, Triggers
@@ -298,3 +297,18 @@ class SinglePageWithDrawer(SinglePage):
         self.toolbar.clipped_left = True
         self.children += [self.drawer]
         self.logo.click = f"{show_drawer_name} = !{show_drawer_name}"
+
+
+def update_layout(layout):
+    """
+    Flush layout to the client
+
+    :param layout: UI content for your application
+    :type layout: str | trame.layouts.*
+
+    >>> layout.title.set_text("Workload finished!")
+    >>> update_layout(layout)
+
+    """
+    _app = tr.get_app_instance()
+    _app.layout = layout if isinstance(layout, str) else layout.html

@@ -129,3 +129,34 @@ def is_dirty_all(*args):
     """
     _app = get_app_instance()
     return _app.is_dirty_all(*args)
+
+
+class State:
+    """This static class provides pythonic access to the state
+
+    For instance, these getters are the same:
+
+    >>> field, = get_state("field")
+    >>> field = state.field
+
+    As are these setters:
+
+    >>> update_state("field", value)
+    >>> state.field = value
+
+    ``get_state()`` should be used instead if more than one argument is to be
+    passed, and ``update_state()`` should be used instead to specify additional
+    arguments (e.g. ``force=True``).
+
+    An instance of this static class can be imported via
+
+    >>> from trame import state
+    """
+    @staticmethod
+    def __getattr__(name):
+        value, = get_state(name)
+        return value
+
+    @staticmethod
+    def __setattr__(name, value):
+        update_state(name, value)

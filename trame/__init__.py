@@ -3,7 +3,7 @@ from trame.dev import main
 from trame.layouts import update_layout
 from trame.server import port, start, stop
 from trame.state import (
-    change, flush_state, get_state, is_dirty, is_dirty_all, update_state
+    change, flush_state, get_state, is_dirty, is_dirty_all, State, update_state
 )
 from trame.trigger import trigger, trigger_key
 from trame.utils import (
@@ -13,11 +13,17 @@ from trame.utils import (
 
 __version__ = get_version()
 
+# Create an instance of the static State class so it may be
+# accessed via `from trame import state`
+state = State()
+
 __all__ = [
     # Order these how we want them to show up in the docs
     "start",
     "stop",
     "port",
+    "State",
+    "state",
     "update_state",
     "get_state",
     "update_layout",

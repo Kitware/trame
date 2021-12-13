@@ -32,8 +32,8 @@ def get_app_instance():
 
 def activate_app(app_id):
     """
-    When multiple application instances are use this method allows you to toggle
-    which app should be current based on the app_id.
+    When multiple application instances are use this method allows you to
+    toggle which app should be current based on the app_id.
 
     (This method is meant for advanced users and should not be needed for most)
     """
@@ -51,8 +51,8 @@ def activate_app(app_id):
 
 def deactivate_app():
     """
-    When multiple application instances are used, this method allows you to activate
-    the previously activated app by deactivating the current one.
+    When multiple application instances are used, this method allows you to
+    activate the previously activated app by deactivating the current one.
 
     (This method is meant for advanced users and should not be needed for most)
     """
@@ -92,3 +92,25 @@ def create_app(name):
     APPS[_app_id] = _app
     activate_app(_app_id)
     return _app_id
+
+
+def enable_module(module):
+    """
+    Load a PyWebVue module
+
+    :param module: The module to load
+    """
+    _app = get_app_instance()
+    _app.enable_module(module)
+
+
+def js_call(ref=None, method=None, args=[]):
+    """Python call method on JS element"""
+    _app = get_app_instance()
+    _app.update(ref=ref, method=method, args=args)
+
+
+def js_property(ref=None, property=None, value=None):
+    """Python update property on JS element"""
+    _app = get_app_instance()
+    _app.update(ref=ref, property=property, value=value)

@@ -48,7 +48,7 @@ class ClientWindowProcess(Process):
     def run(self):
         try:
             import webview
-        except:
+        except ImportError:
             print("trame.start_desktop_window() require pywebview==3.4")
             return
 

@@ -77,3 +77,55 @@ def get_state(*names):
         return results
 
     return _app.state
+
+
+def flush_state(*args):
+    """
+    Force push selected keys of the server state to the client
+
+    :param args: Which keys to flush
+    :type args: list[str]
+
+    >>> flush_state('myNestedDict')
+    """
+    _app = get_app_instance()
+    return _app.flush_state(*args)
+
+
+def is_dirty(*args):
+    """
+    Check if a set of keys in an @change have been modified
+
+    :param args: Which keys to check for modification
+    :type args: list[str]
+    :return: True if any of the keys in `args` are modified
+
+    >>> @change('sound_settings', 'picture_settings')
+    ... def show_changed_settings(sound_settings, picture_settings, **kwargs):
+    ...     if is_dirty('sound_settings'):
+    ...         print(sound_settings)
+    ...     if is_dirty('picture_settings'):
+    ...         print(picture_settings)
+
+    """
+    _app = get_app_instance()
+    return _app.is_dirty(*args)
+
+
+def is_dirty_all(*args):
+    """
+    See whether all keys in an @change have been modified
+
+    :param args: Which keys to check for modification
+    :type args: list[str]
+    :return: True if all of the keys in `args` are modified
+
+    >>> @change('sound_settings', 'picture_settings')
+    ... def save_changed_settings(sound_settings, picture_settings, **kwargs):
+    ...     if is_dirty_all('sound_settings', 'picture_settings'):
+    ...         print("Cannot save both sound and picture settings at once")
+    ...         raise
+
+    """
+    _app = get_app_instance()
+    return _app.is_dirty_all(*args)

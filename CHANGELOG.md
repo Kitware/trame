@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/kitware/trame/compare/v1.6.1...v1.7.0) (2021-12-13)
+
+
+### Features
+
+* **state:** add class for pythonic state access ([23c4316](https://github.com/kitware/trame/commit/23c4316e91bedd8c5912dd7350b879ad89c4cab7))
+
 ## [1.6.1](https://github.com/kitware/trame/compare/v1.6.0...v1.6.1) (2021-12-07)
 
 

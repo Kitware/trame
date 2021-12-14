@@ -17,6 +17,7 @@ class Simput(AbstractElement):
         <a href="https://github.com/Kitware/py-simput" target="_blank">here</a>
 
     :param ui_manager: See simput docs |simput_link| for more info
+    :param domains_manager: See simput docs |simput_link| for more info
     :param prefix: Constructing a Simput component will set several variables, optionally prefixed by a namespace
     :type prefix:  str | None
     :param children: The children nested within this element
@@ -25,12 +26,16 @@ class Simput(AbstractElement):
     >>> layout.root = simput.Simput(ui_manager, prefix="myForm")
     """
 
-    def __init__(self, ui_manager, prefix=None, children=None, **kwargs):
+    def __init__(
+        self, ui_manager, domains_manager=None, prefix=None, children=None, **kwargs
+    ):
         super().__init__("Simput", children, **kwargs)
         ns = f"simput_{self._id}"
         if prefix:
             ns = prefix
-        self._simput_helper = SimPut.create_helper(ui_manager, namespace=ns)
+        self._simput_helper = SimPut.create_helper(
+            ui_manager, domains_manager, namespace=ns
+        )
         self._attributes["wsClient"] = ':wsClient="wsClient"'
         self._attributes["namespace"] = f'namespace="{ns}"'
 

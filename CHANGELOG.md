@@ -1,3 +1,10 @@
+## [1.7.1](https://github.com/kitware/trame/compare/v1.7.0...v1.7.1) (2021-12-14)
+
+
+### Bug Fixes
+
+* **simput:** Enable domain managers ([3af5697](https://github.com/kitware/trame/commit/3af5697fa65e07c3e5f373d03d16f07f1b5241a4))
+
 # [1.7.0](https://github.com/kitware/trame/compare/v1.6.1...v1.7.0) (2021-12-13)
 
 

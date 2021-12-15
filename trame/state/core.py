@@ -1,4 +1,5 @@
 from trame import get_app_instance
+from trame.utils import is_dunder
 
 
 def update_state(key, value=None, force=False):
@@ -154,7 +155,7 @@ class State:
     """
     @staticmethod
     def __getattr__(name):
-        if name[:2] == name[-2:] == "__":
+        if is_dunder(name):
             # Forward dunder calls to object
             return getattr(object, name)
 

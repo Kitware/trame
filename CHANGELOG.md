@@ -1,3 +1,11 @@
+# [1.8.0](https://github.com/kitware/trame/compare/v1.7.1...v1.8.0) (2021-12-15)
+
+
+### Features
+
+* **Controller:** add Controller class for function proxies ([63c6a17](https://github.com/kitware/trame/commit/63c6a17a2a0e32d3e31695cd2afde5c4a3bec7a6))
+* **is_dunder:** add util function to check for dunder name ([82a33d9](https://github.com/kitware/trame/commit/82a33d9a151ee1df26cdcd5ea2338b1adc1de698))
+
 ## [1.7.1](https://github.com/kitware/trame/compare/v1.7.0...v1.7.1) (2021-12-14)
 
 

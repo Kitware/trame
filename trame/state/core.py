@@ -154,6 +154,10 @@ class State:
     """
     @staticmethod
     def __getattr__(name):
+        if name[:2] == name[-2:] == "__":
+            # Forward dunder calls to object
+            return getattr(object, name)
+
         value, = get_state(name)
         return value
 

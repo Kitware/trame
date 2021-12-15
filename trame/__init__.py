@@ -13,16 +13,33 @@ from trame.utils import (
 
 __version__ = get_version()
 
-# Create an instance of the static State class so it may be
-# accessed via `from trame import state`
 state = State()
+"""This object provides pythonic access to the state
+
+For instance, these getters are the same:
+
+>>> field, = get_state("field")
+>>> field = state.field
+
+As are these setters:
+
+>>> update_state("field", value)
+>>> state.field = value
+
+``get_state()`` should be used instead if more than one argument is to be
+passed, and ``update_state()`` should be used instead to specify additional
+arguments (e.g. ``force=True``).
+
+This object may be imported via
+
+>>> from trame import state
+"""
 
 __all__ = [
     # Order these how we want them to show up in the docs
     "start",
     "stop",
     "port",
-    "State",
     "state",
     "update_state",
     "get_state",

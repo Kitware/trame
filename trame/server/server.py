@@ -1,6 +1,6 @@
 import os
 
-from trame import get_app_instance
+from trame.app import get_app_instance
 from trame.utils import base_directory, print_server_info, validate_key_names
 
 

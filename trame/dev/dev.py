@@ -16,7 +16,8 @@ def main():
     This functionality is in Alpha but we aim to improve it based on
     needs and feedback from the community.
     """
-    from trame import get_app_instance, log_js_error
+    from trame.app import get_app_instance
+    from trame.utils import log_js_error
 
     _app = get_app_instance()
     parser = _app.cli_parser

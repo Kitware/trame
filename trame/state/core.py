@@ -1,4 +1,4 @@
-from trame import get_app_instance
+from trame.app import get_app_instance
 from trame.utils import is_dunder
 
 

@@ -67,17 +67,17 @@ class AbstractLayout:
         ... {"a": 1, "b": 2, "c": 3, "d": 4}
 
         """
-        return tr.get_app_instance().state
+        return tr.app.get_app_instance().state
 
     @state.setter
     def state(self, value):
-        _app = tr.get_app_instance()
+        _app = tr.app.get_app_instance()
         for (k, v) in value.items():
             _app.set(k, v)
 
     def flush_content(self):
         """Push new content to client"""
-        _app = tr.get_app_instance()
+        _app = tr.app.get_app_instance()
         _app.layout = self.html
 
     def start(self, port=None, debug=False):
@@ -88,26 +88,26 @@ class AbstractLayout:
         :param debug: Whether to enable debugging tools. Defaults to False.
         :type debug: bool
         """
-        _app = tr.get_app_instance()
+        _app = tr.app.get_app_instance()
 
         _app.name = self.name
         _app.layout = self.html
-        _app.on_ready = tr.print_server_info()
+        _app.on_ready = tr.utils.print_server_info()
 
         if self.favicon:
             _app.favicon = self.favicon
         if self.on_ready:
-            _app.on_ready = tr.print_server_info(self.on_ready)
+            _app.on_ready = tr.utils.print_server_info(self.on_ready)
 
         # Dev validation
-        tr.validate_key_names()
+        tr.utils.validate_key_names()
 
         _app.run_server(port=port)
 
     def start_thread(
         self, port=None, print_server_info=False, on_server_listening=None, **kwargs
     ):
-        _app = tr.get_app_instance()
+        _app = tr.app.get_app_instance()
         _app.name = self.name
         _app.layout = self.html
 
@@ -115,14 +115,14 @@ class AbstractLayout:
             _app.favicon = self.favicon
 
         if print_server_info:
-            _app.on_ready = tr.print_server_info(
+            _app.on_ready = tr.utils.print_server_info(
                 compose_callbacks(self.on_ready, on_server_listening)
             )
         else:
             _app.on_ready = compose_callbacks(self.on_ready, on_server_listening)
 
         # Dev validation
-        tr.validate_key_names()
+        tr.utils.validate_key_names()
         server_thread = AppServerThread(_app, port, **kwargs)
         server_thread.start()
         return server_thread
@@ -132,7 +132,7 @@ class AbstractLayout:
 
         _msg_queue = Queue()
 
-        _app = tr.get_app_instance()
+        _app = tr.app.get_app_instance()
         _app.name = self.name
         _app.layout = self.html
 
@@ -162,7 +162,7 @@ class AbstractLayout:
         _app.on_ready = compose_callbacks(self.on_ready, start_client)
 
         # Dev validation
-        tr.validate_key_names()
+        tr.utils.validate_key_names()
 
         _app.run_server(port=0)
 
@@ -310,5 +310,5 @@ def update_layout(layout):
     >>> update_layout(layout)
 
     """
-    _app = tr.get_app_instance()
+    _app = tr.app.get_app_instance()
     _app.layout = layout if isinstance(layout, str) else layout.html

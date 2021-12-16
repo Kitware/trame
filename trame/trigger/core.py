@@ -28,7 +28,7 @@ def trigger_key(_fn):
     TRIGGER_MAP[_fn] = key
 
     # Register function trigger
-    _app = tr.get_app_instance()
+    _app = tr.app.get_app_instance()
     _app.trigger(key)(_fn)
 
     return key

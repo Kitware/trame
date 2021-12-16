@@ -18,5 +18,5 @@ def trigger(name):
     ...     print("The blue button was clicked")
 
     """
-    _app = tr.get_app_instance()
+    _app = tr.app.get_app_instance()
     return _app.trigger(name)

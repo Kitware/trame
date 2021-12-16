@@ -7,7 +7,7 @@ def log_js_error(message):
 
 def print_server_info(_fn=None):
     """Provide network info so clients can connect to the started server"""
-    from trame import get_app_instance
+    from trame.app import get_app_instance
 
     def ready(**kwargs):
         parser = get_cli_parser()
@@ -55,7 +55,7 @@ def print_server_info(_fn=None):
 
 def validate_key_names():
     """Warn user when invalid key names have been used"""
-    from trame import get_app_instance
+    from trame.app import get_app_instance
 
     _app = get_app_instance()
     errors = []

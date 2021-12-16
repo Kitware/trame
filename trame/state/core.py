@@ -149,6 +149,12 @@ class State:
     passed, and ``update_state()`` should be used instead to specify additional
     arguments (e.g. ``force=True``).
 
+    The state may also be accessed and updated similar to dictionaries:
+
+    >>> value = state["field"]
+    >>> state["field"] = value
+    >>> state.update({"field": value})
+
     An instance of this static class can be imported via
 
     >>> from trame import state
@@ -164,4 +170,25 @@ class State:
 
     @staticmethod
     def __setattr__(name, value):
+        # Do not allow pre-existing attributes, such as update(), to be
+        # re-defined.
+        if name in State.__dict__:
+            msg = (
+                f"'{name}' is a special attribute on State that cannot be "
+                "re-assigned"
+            )
+            raise Exception(msg)
+
         update_state(name, value)
+
+    @staticmethod
+    def __getitem__(name):
+        return State.__getattr__(name)
+
+    @staticmethod
+    def __setitem__(name, value):
+        State.__setattr__(name, value)
+
+    @staticmethod
+    def update(d):
+        return update_state(d)

@@ -30,6 +30,12 @@ As are these setters:
 passed, and ``update_state()`` should be used instead to specify additional
 arguments (e.g. ``force=True``).
 
+The state may also be accessed and updated similar to dictionaries:
+
+>>> value = state["field"]
+>>> state["field"] = value
+>>> state.update({"field": value})
+
 This object may be imported via
 
 >>> from trame import state

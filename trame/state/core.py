@@ -165,3 +165,11 @@ class State:
     @staticmethod
     def __setattr__(name, value):
         update_state(name, value)
+
+    @staticmethod
+    def __getitem__(name):
+        return State.__getattr__(name)
+
+    @staticmethod
+    def __setitem__(name, value):
+        State.__setattr__(name, value)

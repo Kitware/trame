@@ -57,20 +57,30 @@ callbacks when conditions in the application change.
 
 __all__ = [
     # Order these how we want them to show up in the docs
+
+    # Server-related
     "start",
     "stop",
     "port",
+
+    # State-related
     "state",
     "update_state",
     "get_state",
-    "update_layout",
-    "get_cli_parser",
     "flush_state",
     "is_dirty",
     "is_dirty_all",
     "change",
+
+    # Trigger-related
     "trigger",
     "controller",
+
+    # Layout-related
+    "update_layout",
+
+    # CLI-related
+    "get_cli_parser",
 
     # These are not exposed in the docs
     "__version__",

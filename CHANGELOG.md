@@ -1,3 +1,11 @@
+# [1.9.0](https://github.com/kitware/trame/compare/v1.8.0...v1.9.0) (2021-12-16)
+
+
+### Features
+
+* **State:** add __setitem__ and __getitem__ ([d6afdcd](https://github.com/kitware/trame/commit/d6afdcd864aa29e96b133e93cd62dd8ac987d692))
+* **State:** add update() method ([55a997e](https://github.com/kitware/trame/commit/55a997e8bc1d0b0790f224f6ea96e78e962de586))
+
 # [1.8.0](https://github.com/kitware/trame/compare/v1.7.1...v1.8.0) (2021-12-15)
 
 

@@ -4,6 +4,7 @@ from enum import Enum
 from trame import change, update_state
 from trame.layouts import SinglePageWithDrawer
 from trame.html import vtk, vuetify, widgets
+from trame.state.core import get_state
 
 from vtkmodules.vtkCommonDataModel import (
     vtkDataObject,
@@ -246,9 +247,23 @@ renderer.ResetCamera()
 # Functions
 # -----------------------------------------------------------------------------
 
-local_view = vtk.VtkLocalView(renderWindow)
-remote_view = vtk.VtkRemoteView(renderWindow, interactive_ratio=(1,))
-html_view = local_view
+html_view = vtk.VtkRemoteLocalView(
+    renderWindow,
+    namespace="view",
+    mode=("viewMode", "local"),
+    interactive_ratio=1,
+)
+
+
+def update_view():
+    (is_local,) = get_state("local_vs_remote")
+    if is_local:
+        html_view.update_geometry()
+    else:
+        html_view.update_image()
+
+
+html_view.update = update_view
 
 
 @change("cube_axes_visibility")
@@ -259,19 +274,7 @@ def update_cube_axes_visibility(cube_axes_visibility, **kwargs):
 
 @change("local_vs_remote")
 def update_local_vs_remote(local_vs_remote, **kwargs):
-    # Switch html_view
-    global html_view
-    if local_vs_remote:
-        html_view = local_view
-    else:
-        html_view = remote_view
-
-    # Update layout
-    layout.content.children[0].children[0] = html_view
-    layout.flush_content()
-
-    # Update View data
-    html_view.update()
+    update_state("viewMode", "local" if local_vs_remote else "remote")
 
 
 @change("representation")

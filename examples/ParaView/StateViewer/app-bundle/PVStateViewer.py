@@ -22,6 +22,7 @@ from paraview import simple
 
 layout = None
 
+
 def load_data(full_path):
     full_path = os.path.abspath(full_path)
     working_directory = os.path.dirname(full_path)
@@ -59,9 +60,11 @@ layout.content.add_child(
 # Main
 # -----------------------------------------------------------------------------
 
+
 def process_msg(msg):
     if msg[0] == "file_dialog":
         load_data(msg[1][0])
+
 
 if __name__ == "__main__":
     layout.start_desktop_window(
@@ -71,6 +74,6 @@ if __name__ == "__main__":
         file_dialog={
             "dialog_type": webview.OPEN_DIALOG,
             "allow_multiple": False,
-            "file_types": ('ParaView State File (*.pvsm)', 'All files (*.*)'),
-        }
+            "file_types": ("ParaView State File (*.pvsm)", "All files (*.*)"),
+        },
     )

@@ -20,15 +20,6 @@
   </url>
   
   <url>
-    <loc>https://kitware.github.io/trame/docs/index.html</loc>
-    
-    <lastmod>2021-12-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://kitware.github.io/trame/docs/module-deckgl.html</loc>
     
     <lastmod>2021-12-17</lastmod>
@@ -264,6 +255,15 @@
   
   <url>
     <loc>https://kitware.github.io/trame/docs/howdoi-upload.html</loc>
+    
+    <lastmod>2021-12-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/index.html</loc>
     
     <lastmod>2021-12-17</lastmod>
     

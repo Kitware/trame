@@ -128,7 +128,7 @@ def on_event(event):
 # GUI
 # -----------------------------------------------------------------------------
 
-layout = SinglePage("Git Tree", on_ready=pipeline_changed)
+layout = SinglePage("Git Tree")
 layout.title.set_text("Git Tree")
 
 with layout.content:

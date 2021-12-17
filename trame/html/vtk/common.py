@@ -179,39 +179,41 @@ class VtkRemoteLocalView(AbstractElement):
     ... )
     """
 
-    def __init__(self, view, **kwargs):
+    def __init__(self, view, enable_rendering=True, **kwargs):
         super().__init__("vtk-remote-local-view", **kwargs)
+        self.__app = get_app_instance()
         __ns = kwargs.get("namespace", "view")
         self.__mode_key = f"{__ns}Mode"
         self.__scene_id = f"{__ns}Scene"
         self.__ref = kwargs.get("ref", __ns)
+        self.__rendering = enable_rendering
 
         # !!! HACK !!!
-        # Allow user to configure view mode by providing (, local/remote)
-        __rmode = (
-            kwargs.get("mode")
-            if kwargs.get("mode") in ["local", "remote"]
-            else "remote"
-        )
-        __mode_arg = kwargs.get("mode", (f"{__ns}Mode",))
-        if __mode_arg and isinstance(__mode_arg, (tuple, list)) and len(__mode_arg) > 1:
-            __rmode = __mode_arg[1]
-            self._attributes["mode"] = f':mode="{__mode_arg[0]}"'
-        elif __mode_arg and isinstance(__mode_arg, (tuple, list)):
-            self._attributes["mode"] = f':mode="{__mode_arg[0]}"'
-        elif __mode_arg and isinstance(__mode_arg, str):
-            self._attributes["mode"] = f'mode="{__mode_arg}"'
+        # Allow user to configure view mode by providing (..., local/remote) and or "local/remote"
+        __mode_expression = kwargs.get("mode", self.__mode_key)
+        __mode_start = "remote"
+        if isinstance(__mode_expression, (tuple, list)):
+            if len(__mode_expression == 2):
+                __mode_expression, __mode_start = __mode_expression
+            else:
+                __mode_expression = __mode_expression[0]
+        elif __mode_expression in ["local", "remote"]:
+            __mode_start = __mode_expression
+            __mode_expression = self.__mode_key
+
+        self._attributes["mode"] = f':mode="{__mode_expression}"'
         # !!! HACK !!!
 
-        self.__app = get_app_instance()
         self.__view_id = MODULE.id(view)
         self.__view = view
-        self.__wrapped_view = MODULE.view(view, __ns, mode=__rmode)
+        self.__wrapped_view = MODULE.view(view, name=__ns, mode=__mode_start)
 
+        # Provide mandatory attributes
         self._attributes["wsClient"] = ':wsClient="wsClient"'
         self._attributes["ref"] = f'ref="{self.__ref}"'
         self._attributes["view_id"] = f'id="{self.__view_id}"'
         self._attributes["view_state"] = f':viewState="{self.__scene_id}"'
+        self._attributes["namespace"] = f'namespace="{__ns}"'
 
         self._attr_names += [
             # "mode", # <--- Managed by hand above
@@ -219,7 +221,6 @@ class VtkRemoteLocalView(AbstractElement):
             "interactive_ratio",
             "interactor_events",
             "interactor_settings",
-            "namespace",
         ]
         self._event_names += kwargs.get("interactor_events", [])
 
@@ -242,9 +243,10 @@ class VtkRemoteLocalView(AbstractElement):
         self.__app.set(self.__mode_key, "remote" if remote else "local")
 
     def update(self):
-        self.update_image()
-        if self.__app.get(self.__mode_key) == "local":
-            self.update_geometry()
+        # need to do both to keep things in sync
+        if self.__rendering:
+            self.update_image()
+        self.update_geometry()
 
     def reset_camera(self):
         self.__app.update(ref=self.__ref, method="resetCamera")

@@ -33,6 +33,15 @@ class Controller:
         return self._func_dict[name].__call__
 
     def __setattr__(self, name, func):
+        # Do not allow pre-existing attributes, such as `trigger`, to be
+        # re-defined.
+        if name in self.__dict__ or name in Controller.__dict__:
+            msg = (
+                f"'{name}' is a special attribute on Controller that cannot "
+                "be re-assigned"
+            )
+            raise Exception(msg)
+
         if name in self._func_dict:
             self._func_dict[name].func = func
         else:

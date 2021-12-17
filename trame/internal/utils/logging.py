@@ -46,7 +46,7 @@ def print_server_info(_fn=None):
 
             loop = asyncio.get_event_loop()
             loop.call_later(0.1, lambda: webbrowser.open(local_url))
-            print("And to prevent your browser from opening,"
+            print("And to prevent your browser from opening, "
                   "add '--server' to your command line.")
         print()
 

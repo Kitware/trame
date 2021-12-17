@@ -1,5 +1,7 @@
-from trame import get_app_instance
-from trame.utils import is_dunder
+from trame.internal.app import get_app_instance
+from trame.internal.utils import is_dunder
+
+from .decorators import change
 
 
 def update_state(key, value=None, force=False):
@@ -165,8 +167,7 @@ class State:
             # Forward dunder calls to object
             return getattr(object, name)
 
-        value, = get_state(name)
-        return value
+        return State.__getitem__(name)
 
     @staticmethod
     def __setattr__(name, value):
@@ -179,16 +180,24 @@ class State:
             )
             raise Exception(msg)
 
-        update_state(name, value)
+        State.__setitem__(name, value)
 
     @staticmethod
     def __getitem__(name):
-        return State.__getattr__(name)
+        value, = get_state(name)
+        return value
 
     @staticmethod
     def __setitem__(name, value):
-        State.__setattr__(name, value)
+        update_state(name, value)
 
     @staticmethod
     def update(d):
         return update_state(d)
+
+    @staticmethod
+    def flush(*args):
+        return flush_state(*args)
+
+    # Allow the change decorator to be accessed via @state.change
+    change = staticmethod(change)

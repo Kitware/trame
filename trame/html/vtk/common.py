@@ -1,4 +1,4 @@
-from trame import get_app_instance
+from trame.internal.app import get_app_instance
 from trame.html import AbstractElement
 
 MODULE = None

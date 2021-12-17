@@ -1,4 +1,4 @@
-import trame as tr
+import trame.internal as tri
 
 
 def trigger(name):
@@ -18,5 +18,5 @@ def trigger(name):
     ...     print("The blue button was clicked")
 
     """
-    _app = tr.get_app_instance()
+    _app = tri.get_app_instance()
     return _app.trigger(name)

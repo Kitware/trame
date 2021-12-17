@@ -1,4 +1,4 @@
-import trame as tr
+import trame.internal as tri
 
 NEXT_TRIGGER_ID = 0
 TRIGGER_MAP = {}
@@ -28,7 +28,7 @@ def trigger_key(_fn):
     TRIGGER_MAP[_fn] = key
 
     # Register function trigger
-    _app = tr.get_app_instance()
+    _app = tri.get_app_instance()
     _app.trigger(key)(_fn)
 
     return key

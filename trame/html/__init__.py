@@ -1,6 +1,6 @@
 import types
 
-import trame as tr
+import trame.internal as tri
 
 
 def str_key_prefix(txt):
@@ -204,7 +204,7 @@ class AbstractElement:
         :param names: The names attribute to process
         :type names: *str
         """
-        _app = tr.get_app_instance()
+        _app = tri.get_app_instance()
         for _name in names:
             js_key = None
             name = _name
@@ -260,7 +260,7 @@ class AbstractElement:
         :param names: The names events to process
         :type names: *str
         """
-        _app = tr.get_app_instance()
+        _app = tri.get_app_instance()
         for _name in names:
             js_key = None
             name = _name
@@ -279,12 +279,12 @@ class AbstractElement:
                 if isinstance(value, str):
                     self._attributes[name] = f'{js_key}="{value}"'
                 elif isinstance(value, (types.FunctionType, types.MethodType)):
-                    trigger_name = tr.trigger_key(value)
+                    trigger_name = tri.trigger_key(value)
                     self._attributes[name] = f"{js_key}=\"trigger('{trigger_name}')\""
                 elif isinstance(value, tuple):
                     trigger_name = value[0]
                     if isinstance(trigger_name, (types.FunctionType, types.MethodType)):
-                        trigger_name = tr.trigger_key(trigger_name)
+                        trigger_name = tri.trigger_key(trigger_name)
                     if len(value) == 1:
                         self._attributes[
                             name
@@ -590,7 +590,7 @@ class Triggers(AbstractElement):
         >>> triggers.call("reset_camera")
 
         """
-        _app = tr.get_app_instance()
+        _app = tri.get_app_instance()
         _app.update(ref=self._ref, method="emit", args=[name, *args])
 
 

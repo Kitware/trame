@@ -1,7 +1,9 @@
 import os
 
-from trame import get_app_instance
-from trame.utils import base_directory, print_server_info, validate_key_names
+from trame.internal.app import get_app_instance
+from trame.internal.utils import (
+    base_directory, print_server_info, validate_key_names
+)
 
 
 def start(layout=None, name=None, favicon=None, on_ready=None, port=None, debug=False):

@@ -167,8 +167,7 @@ class State:
             # Forward dunder calls to object
             return getattr(object, name)
 
-        value, = get_state(name)
-        return value
+        return State.__getitem__(name)
 
     @staticmethod
     def __setattr__(name, value):
@@ -181,15 +180,16 @@ class State:
             )
             raise Exception(msg)
 
-        update_state(name, value)
+        State.__setitem__(name, value)
 
     @staticmethod
     def __getitem__(name):
-        return State.__getattr__(name)
+        value, = get_state(name)
+        return value
 
     @staticmethod
     def __setitem__(name, value):
-        State.__setattr__(name, value)
+        update_state(name, value)
 
     @staticmethod
     def update(d):

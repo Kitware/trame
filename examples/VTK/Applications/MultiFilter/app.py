@@ -1,7 +1,7 @@
 import os
 from enum import Enum
 
-from trame import change, get_state, update_state
+from trame import state
 from trame.layouts import SinglePageWithDrawer
 from trame.html import vtk, vuetify, widgets
 
@@ -255,28 +255,25 @@ html_view = vtk.VtkRemoteLocalView(
 
 
 def update_view():
-    (is_local,) = get_state("local_vs_remote")
-    if is_local:
+    html_view.update_image()
+    if state.local_vs_remote:
         html_view.update_geometry()
-    else:
-        html_view.update_image()
-
 
 html_view.update = update_view
 
 
-@change("cube_axes_visibility")
+@state.change("cube_axes_visibility")
 def update_cube_axes_visibility(cube_axes_visibility, **kwargs):
     cube_axes.SetVisibility(cube_axes_visibility)
     html_view.update()
 
 
-@change("local_vs_remote")
+@state.change("local_vs_remote")
 def update_local_vs_remote(local_vs_remote, **kwargs):
-    update_state("viewMode", "local" if local_vs_remote else "remote")
+    state.viewMode = "local" if local_vs_remote else "remote"
 
 
-@change("representation")
+@state.change("representation")
 def update_active_representation(active_id, representation, **kwargs):
     active_item = pipeline_server.get(active_id)
     if not active_item:
@@ -287,7 +284,7 @@ def update_active_representation(active_id, representation, **kwargs):
     html_view.update()
 
 
-@change("color_array_idx")
+@state.change("color_array_idx")
 def update_active_color_by_name(active_id, color_array_idx, **kwargs):
     array = dataset_arrays[color_array_idx]
     active_item = pipeline_server.get(active_id)
@@ -299,7 +296,7 @@ def update_active_color_by_name(active_id, color_array_idx, **kwargs):
     html_view.update()
 
 
-@change("color_preset")
+@state.change("color_preset")
 def update_active_color_preset(active_id, color_preset, **kwargs):
     active_item = pipeline_server.get(active_id)
     if not active_item:
@@ -310,7 +307,7 @@ def update_active_color_preset(active_id, color_preset, **kwargs):
     html_view.update()
 
 
-@change("opacity")
+@state.change("opacity")
 def update_active_opacity(active_id, opacity, **kwargs):
     active_item = pipeline_server.get(active_id)
     if not active_item:
@@ -321,7 +318,7 @@ def update_active_opacity(active_id, opacity, **kwargs):
     html_view.update()
 
 
-@change("contour_by_array_idx")
+@state.change("contour_by_array_idx")
 def update_contour_by(active_id, contour_by_array_idx, **kwargs):
     active_item = pipeline_server.get(active_id)
     if not active_item:
@@ -337,12 +334,12 @@ def update_contour_by(active_id, contour_by_array_idx, **kwargs):
     active_item["shared"]["contour_max"] = contour_max
     active_item["shared"]["contour_step"] = contour_step
     active_item["shared"]["contour_value"] = contour_value
-    update_state(active_item["shared"])  # let client know about contour edited params
+    state.update(active_item["shared"])  # let client know about contour edited params
 
     html_view.update()
 
 
-@change("contour_value")
+@state.change("contour_value")
 def update_contour_value(active_id, contour_value, **kwargs):
     active_item = pipeline_server.get(active_id)
     if not active_item:
@@ -357,10 +354,11 @@ def update_contour_value(active_id, contour_value, **kwargs):
 
 # Called by pipeline when selection change
 def actives_change(ids):
-    _id = update_state("active_id", ids[0])
+    _id = ids[0]
     selected_pipeline = pipeline_server[_id]
-    update_state("active_ui", selected_pipeline.get("ui"))
-    update_state(selected_pipeline.get("shared"))
+    state.active_id = _id
+    state.active_ui = selected_pipeline.get("ui")
+    state.update(selected_pipeline.get("shared"))
 
 
 # Called by pipeline when visibility change
@@ -373,7 +371,7 @@ def visibility_change(event):
     for item in pipeline_client:
         if item.get("id") == _id:
             item["visible"] = _visibility
-    update_state("pipeline", pipeline_client, force=True)
+    state.flush("pipeline")
 
     html_view.update()
 

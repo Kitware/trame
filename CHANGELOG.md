@@ -1,3 +1,11 @@
+## [1.10.2](https://github.com/kitware/trame/compare/v1.10.1...v1.10.2) (2021-12-17)
+
+
+### Bug Fixes
+
+* **html.vtk:** VtkRemoteLocalView mode handling ([e2f47ce](https://github.com/kitware/trame/commit/e2f47ce177f0c934be1f9fd3ff54bcf7919f8a44))
+* **html.widgets:** GitTree add new args ([cb2dfdf](https://github.com/kitware/trame/commit/cb2dfdf981f5f77ac0b65a8f99c6ed28db8e65be))
+
 ## [1.10.1](https://github.com/kitware/trame/compare/v1.10.0...v1.10.1) (2021-12-17)
 
 

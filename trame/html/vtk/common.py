@@ -193,7 +193,7 @@ class VtkRemoteLocalView(AbstractElement):
         __mode_expression = kwargs.get("mode", self.__mode_key)
         __mode_start = "remote"
         if isinstance(__mode_expression, (tuple, list)):
-            if len(__mode_expression == 2):
+            if len(__mode_expression) == 2:
                 __mode_expression, __mode_start = __mode_expression
             else:
                 __mode_expression = __mode_expression[0]

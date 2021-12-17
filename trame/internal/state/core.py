@@ -195,5 +195,9 @@ class State:
     def update(d):
         return update_state(d)
 
+    @staticmethod
+    def flush(*args):
+        return flush_state(*args)
+
     # Allow the change decorator to be accessed via @state.change
     change = staticmethod(change)

@@ -1,4 +1,5 @@
 from trame.internal.utils import is_dunder
+from .decorators import trigger
 
 
 class Controller:
@@ -36,6 +37,9 @@ class Controller:
             self._func_dict[name].func = func
         else:
             self._func_dict[name] = ControllerFunction(name, func)
+
+    # Allow the trigger decorator to be accessed via @controller.trigger
+    trigger = staticmethod(trigger)
 
 
 class ControllerFunction:

@@ -124,11 +124,14 @@ class GitTree(AbstractElement):
     :param not_visible_circle_fill_color:
     :param text_color:
     :param text_weight:
+    :param action_map:
+    :param action_size:
 
     Events
 
     :param actives_change:
     :param visibility_change:
+    :param action:
 
     """
 
@@ -153,8 +156,11 @@ class GitTree(AbstractElement):
             "not_visible_circle_fill_color",
             "text_color",
             "text_weight",
+            "action_map",
+            "action_size",
         ]
         self._event_names += [
             ("actives_change", "activesChange"),
             ("visibility_change", "visibilityChange"),
+            "action",
         ]

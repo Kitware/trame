@@ -1,3 +1,17 @@
+# [1.10.0](https://github.com/kitware/trame/compare/v1.9.0...v1.10.0) (2021-12-17)
+
+
+### Bug Fixes
+
+* **Controller:** guard against name re-assignments ([939f3fd](https://github.com/kitware/trame/commit/939f3fd4d263e0659db5b7051482c1e80d7b5f60))
+
+
+### Features
+
+* **change:** add [@state](https://github.com/state).change decorator ([d3a3085](https://github.com/kitware/trame/commit/d3a30852120c0a0aa39a60a7022a20ab1fc1fb7e))
+* **flush:** add state.flush() method ([c4fe2ad](https://github.com/kitware/trame/commit/c4fe2ad1ebc36178df5533eda8eb3c3d44a60c04))
+* **trigger:** add [@controller](https://github.com/controller).trigger ([c6c9524](https://github.com/kitware/trame/commit/c6c9524aff042c32beb611254ea1d2c961024477))
+
 # [1.9.0](https://github.com/kitware/trame/compare/v1.8.0...v1.9.0) (2021-12-16)
 
 

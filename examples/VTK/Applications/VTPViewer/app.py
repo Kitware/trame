@@ -1,4 +1,4 @@
-from trame import change, state
+from trame import state
 from trame.layouts import SinglePage
 from trame.html import vtk, vuetify, StateChange
 
@@ -10,7 +10,7 @@ from vtkmodules.web.utils import mesh as vtk_mesh
 # -----------------------------------------------------------------------------
 
 
-@change("files")
+@state.change("files")
 def load_client_files(files, **kwargs):
     field = "solid"
     fields = {

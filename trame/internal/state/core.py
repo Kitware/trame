@@ -1,6 +1,8 @@
 from trame.internal.app import get_app_instance
 from trame.internal.utils import is_dunder
 
+from .decorators import change
+
 
 def update_state(key, value=None, force=False):
     """
@@ -192,3 +194,6 @@ class State:
     @staticmethod
     def update(d):
         return update_state(d)
+
+    # Allow the change decorator to be accessed via @state.change
+    change = staticmethod(change)

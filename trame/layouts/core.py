@@ -2,10 +2,10 @@ import asyncio
 import os
 from pywebvue.utils import read_file_as_base64_url
 from trame.html import Span, vuetify, Triggers
-from trame.utils import ClientWindowProcess, AppServerThread, compose_callbacks
 
 import pywebvue
 import trame as tr
+import trame.internal as tri
 
 LOGO_PATH = os.path.abspath(
     os.path.join(os.path.dirname(__file__), "../html/assets/logo.svg")
@@ -27,7 +27,7 @@ class AbstractLayout:
         self.children += [self.triggers]
 
         if favicon:
-            file_path = os.path.join(tr.base_directory(), favicon)
+            file_path = os.path.join(tri.base_directory(), favicon)
             if os.path.exists(file_path):
                 self.favicon = file_path
             else:
@@ -67,17 +67,17 @@ class AbstractLayout:
         ... {"a": 1, "b": 2, "c": 3, "d": 4}
 
         """
-        return tr.app.get_app_instance().state
+        return tri.get_app_instance().state
 
     @state.setter
     def state(self, value):
-        _app = tr.app.get_app_instance()
+        _app = tri.get_app_instance()
         for (k, v) in value.items():
             _app.set(k, v)
 
     def flush_content(self):
         """Push new content to client"""
-        _app = tr.app.get_app_instance()
+        _app = tri.get_app_instance()
         _app.layout = self.html
 
     def start(self, port=None, debug=False):
@@ -88,26 +88,26 @@ class AbstractLayout:
         :param debug: Whether to enable debugging tools. Defaults to False.
         :type debug: bool
         """
-        _app = tr.app.get_app_instance()
+        _app = tri.get_app_instance()
 
         _app.name = self.name
         _app.layout = self.html
-        _app.on_ready = tr.utils.print_server_info()
+        _app.on_ready = tri.print_server_info()
 
         if self.favicon:
             _app.favicon = self.favicon
         if self.on_ready:
-            _app.on_ready = tr.utils.print_server_info(self.on_ready)
+            _app.on_ready = tri.print_server_info(self.on_ready)
 
         # Dev validation
-        tr.utils.validate_key_names()
+        tri.validate_key_names()
 
         _app.run_server(port=port)
 
     def start_thread(
         self, port=None, print_server_info=False, on_server_listening=None, **kwargs
     ):
-        _app = tr.app.get_app_instance()
+        _app = tri.get_app_instance()
         _app.name = self.name
         _app.layout = self.html
 
@@ -115,15 +115,15 @@ class AbstractLayout:
             _app.favicon = self.favicon
 
         if print_server_info:
-            _app.on_ready = tr.utils.print_server_info(
-                compose_callbacks(self.on_ready, on_server_listening)
+            _app.on_ready = tri.print_server_info(
+                tri.compose_callbacks(self.on_ready, on_server_listening)
             )
         else:
             _app.on_ready = compose_callbacks(self.on_ready, on_server_listening)
 
         # Dev validation
-        tr.utils.validate_key_names()
-        server_thread = AppServerThread(_app, port, **kwargs)
+        tri.validate_key_names()
+        server_thread = tri.AppServerThread(_app, port, **kwargs)
         server_thread.start()
         return server_thread
 
@@ -132,7 +132,7 @@ class AbstractLayout:
 
         _msg_queue = Queue()
 
-        _app = tr.app.get_app_instance()
+        _app = tri.get_app_instance()
         _app.name = self.name
         _app.layout = self.html
 
@@ -154,7 +154,7 @@ class AbstractLayout:
             _app.favicon = self.favicon
 
         def start_client(**_):
-            client_process = ClientWindowProcess(
+            client_process = tri.ClientWindowProcess(
                 title=_app.name, port=_app.server_port, msg_queue=_msg_queue, **kwargs
             )
             client_process.start()
@@ -162,7 +162,7 @@ class AbstractLayout:
         _app.on_ready = compose_callbacks(self.on_ready, start_client)
 
         # Dev validation
-        tr.utils.validate_key_names()
+        tri.validate_key_names()
 
         _app.run_server(port=0)
 
@@ -226,7 +226,7 @@ class SinglePage(FullScreenPage):
         else:
             self.logo = vuetify.VIcon("mdi-menu", classes="mr-4")
 
-        args = tr.get_cli_parser().parse_known_args()[0]
+        args = tri.get_cli_parser().parse_known_args()[0]
         dev = args.dev if hasattr(args, "dev") else False
 
         self.title = Span("trame app", classes="title")
@@ -310,5 +310,5 @@ def update_layout(layout):
     >>> update_layout(layout)
 
     """
-    _app = tr.app.get_app_instance()
+    _app = tri.get_app_instance()
     _app.layout = layout if isinstance(layout, str) else layout.html

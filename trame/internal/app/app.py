@@ -1,6 +1,6 @@
 from pywebvue import App
 
-from trame.utils import log_js_error
+from trame.internal.utils import log_js_error
 
 
 NEXT_APP_ID = 0

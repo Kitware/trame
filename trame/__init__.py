@@ -1,10 +1,8 @@
-from trame.layouts import update_layout
-from trame.server import port, start, stop
-from trame.state import (
-    change, flush_state, get_state, is_dirty, is_dirty_all, State, update_state
+from trame.internal import (
+  change, Controller, flush_state, get_cli_parser, get_state, get_version,
+  is_dirty, is_dirty_all, port, start, State, stop, trigger, update_state
 )
-from trame.trigger import Controller, trigger
-from trame.utils import get_cli_parser, get_version
+from trame.layouts import update_layout
 
 __version__ = get_version()
 

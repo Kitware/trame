@@ -1,10 +1,9 @@
 import os
 from enum import Enum
 
-from trame import change, update_state
+from trame import change, get_state, update_state
 from trame.layouts import SinglePageWithDrawer
 from trame.html import vtk, vuetify, widgets
-from trame.state.core import get_state
 
 from vtkmodules.vtkCommonDataModel import (
     vtkDataObject,

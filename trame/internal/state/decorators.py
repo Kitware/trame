@@ -1,4 +1,4 @@
-from trame.app import get_app_instance
+from trame.internal.app import get_app_instance
 
 
 def change(*_args, **_kwargs):

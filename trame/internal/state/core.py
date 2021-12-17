@@ -1,5 +1,5 @@
-from trame.app import get_app_instance
-from trame.utils import is_dunder
+from trame.internal.app import get_app_instance
+from trame.internal.utils import is_dunder
 
 
 def update_state(key, value=None, force=False):

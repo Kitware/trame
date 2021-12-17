@@ -1,4 +1,4 @@
-from trame.utils import is_dunder
+from trame.internal.utils import is_dunder
 
 
 class Controller:

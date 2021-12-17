@@ -248,19 +248,9 @@ renderer.ResetCamera()
 
 html_view = vtk.VtkRemoteLocalView(
     renderWindow,
-    namespace="view",
-    mode=("viewMode", "local"),
+    mode="local", # start as local
     interactive_ratio=1,
 )
-
-
-def update_view():
-    html_view.update_image()
-    if state.local_vs_remote:
-        html_view.update_geometry()
-
-html_view.update = update_view
-
 
 @state.change("cube_axes_visibility")
 def update_cube_axes_visibility(cube_axes_visibility, **kwargs):
@@ -504,7 +494,7 @@ with layout.toolbar:
             classes="mx-1",
             **compact_style,
         )
-    with vuetify.VBtn(icon=True, click="$refs.view.resetCamera()"):
+    with vuetify.VBtn(icon=True, click=html_view.reset_camera):
         vuetify.VIcon("mdi-crop-free")
 
 with layout.drawer as drawer:

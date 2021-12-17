@@ -1,3 +1,11 @@
+## [1.10.1](https://github.com/kitware/trame/compare/v1.10.0...v1.10.1) (2021-12-17)
+
+
+### Bug Fixes
+
+* **html/vtk:** add missing helper methods ([6135c26](https://github.com/kitware/trame/commit/6135c2644b4d6775c99a43cac4c3a0518f2beee2))
+* **VtkRemoteLocalView:** Improve API for simpler usage ([6f0f4cb](https://github.com/kitware/trame/commit/6f0f4cb87cd73e69dc54d90bb9b0b141946ab710))
+
 # [1.10.0](https://github.com/kitware/trame/compare/v1.9.0...v1.10.0) (2021-12-17)
 
 

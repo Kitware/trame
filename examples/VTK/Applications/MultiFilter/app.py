@@ -1,5 +1,4 @@
 import os
-from enum import Enum
 
 from trame import state
 from trame.layouts import SinglePageWithDrawer
@@ -248,9 +247,10 @@ renderer.ResetCamera()
 
 html_view = vtk.VtkRemoteLocalView(
     renderWindow,
-    mode="local", # start as local
+    mode="local",  # start as local
     interactive_ratio=1,
 )
+
 
 @state.change("cube_axes_visibility")
 def update_cube_axes_visibility(cube_axes_visibility, **kwargs):

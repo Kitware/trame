@@ -1,5 +1,5 @@
 import os
-from trame import change, update_state, get_state
+from trame import state
 from trame.layouts import SinglePageWithDrawer
 from trame.html import simput, vuetify
 
@@ -19,7 +19,7 @@ pxm.load_model(yaml_file=os.path.join(BASE_DIR, "model/model.yaml"))
 ui_manager.load_ui(xml_file=os.path.join(BASE_DIR, "model/layout.xml"))
 
 
-@change("lang")
+@state.change("lang")
 def update_lang(lang, **kwargs):
     file_path = os.path.join(BASE_DIR, f"model/lang/{lang}.yaml")
     ui_manager.load_language(yaml_file=file_path)
@@ -27,19 +27,18 @@ def update_lang(lang, **kwargs):
 
 def update_list():
     ids = list(map(lambda p: p.id, pxm.get_instances_of_type("Person")))
-    update_state("person_ids", ids)
+    state.person_ids = ids
 
 
 def create_person():
     person = pxm.create("Person")
-    update_state("active_id", person.id)
+    state.active_id = person.id
     update_list()
 
 
 def delete_person():
-    (id_to_delete,) = get_state("active_id")
-    pxm.delete(id_to_delete)
-    update_state("active_id", None)
+    pxm.delete(state.active_id)
+    state.active_id = None
     update_list()
 
 
@@ -66,8 +65,8 @@ compact_styles = {
     "dense": True,
 }
 
-layout.toolbar.children += [
-    vuetify.VSpacer(),
+with layout.toolbar:
+    vuetify.VSpacer()
     vuetify.VSelect(
         v_model=("lang", "en"),
         items=(
@@ -78,88 +77,64 @@ layout.toolbar.children += [
             ],
         ),
         **compact_styles,
-    ),
+    )
     vuetify.VSwitch(
         classes="mx-2",
         v_model="abAutoApply",
         label="Apply",
         **compact_styles,
-    ),
-    vuetify.VBtn(
+    )
+    with vuetify.VBtn(
         **btn_styles,
         disabled=["!abChangeSet"],
         click=html_simput.apply,
-        children=[
-            vuetify.VBadge(
-                content=["abChangeSet"],
-                offset_x=8,
-                offset_y=8,
-                value=["abChangeSet"],
-                children=[vuetify.VIcon("mdi-database-import")],
-            )
-        ],
-    ),
-    vuetify.VBtn(
+    ):
+        with vuetify.VBadge(
+            content=["abChangeSet"],
+            offset_x=8,
+            offset_y=8,
+            value=["abChangeSet"],
+        ):
+            vuetify.VIcon("mdi-database-import")
+
+    with vuetify.VBtn(
         **btn_styles,
         disabled=["!abChangeSet"],
         click=html_simput.reset,
-        children=[vuetify.VIcon("mdi-undo-variant")],
-    ),
-    vuetify.VDivider(vertical=True, classes="mx-2"),
-    vuetify.VBtn(
-        **btn_styles,
-        disabled=["!active_id"],
-        click=delete_person,
-        children=[vuetify.VIcon("mdi-minus")],
-    ),
-    vuetify.VBtn(
-        **btn_styles,
-        click=create_person,
-        children=[vuetify.VIcon("mdi-plus")],
-    ),
-]
-layout.drawer.children += [
-    vuetify.VList(
-        **compact_styles,
-        children=[
-            vuetify.VListItemGroup(
-                v_model="active_id",
-                color="primary",
-                children=[
-                    vuetify.VListItem(
-                        v_for="(id, i) in person_ids",
-                        key="i",
-                        value=["id"],
-                        children=[
-                            vuetify.VListItemContent(
-                                vuetify.VListItemTitle(
-                                    simput.SimputItem(
-                                        "{{FirstName}} {{LastName}}",
-                                        itemId="id",
-                                        no_ui=True,
-                                        extract=["FirstName", "LastName"],
-                                    )
-                                )
-                            )
-                        ],
-                    )
-                ],
-            )
-        ],
-    )
-]
-layout.content.children += [
-    vuetify.VContainer(
-        fluid=True,
-        children=[
-            simput.SimputItem(itemId="active_id"),
-        ],
-    )
-]
+    ):
+        vuetify.VIcon("mdi-undo-variant")
 
-layout.state = {
-    "active_id": None,
-}
+    vuetify.VDivider(vertical=True, classes="mx-2")
+    with vuetify.VBtn(
+        **btn_styles,
+        disabled=("!active_id",),
+        click=delete_person,
+    ):
+        vuetify.VIcon("mdi-minus")
+
+    with vuetify.VBtn(click=create_person, **btn_styles):
+        vuetify.VIcon("mdi-plus")
+
+with layout.drawer:
+    with vuetify.VList(**compact_styles):
+        with vuetify.VListItemGroup(v_model="active_id", color="primary"):
+            with vuetify.VListItem(
+                v_for="(id, i) in person_ids",
+                key="i",
+                value=["id"],
+            ):
+                with vuetify.VListItemContent():
+                    with vuetify.VListItemTitle():
+                        simput.SimputItem(
+                            "{{FirstName}} {{LastName}}",
+                            itemId="id",
+                            no_ui=True,
+                            extract=["FirstName", "LastName"],
+                        )
+
+with layout.content:
+    with vuetify.VContainer(fluid=True):
+        simput.SimputItem(itemId=("active_id", None))
 
 # -----------------------------------------------------------------------------
 # Main

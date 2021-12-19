@@ -1,40 +1,28 @@
-from trame import update_state, get_state
+from trame import state
 from trame.layouts import SinglePage
-from trame.html.vuetify import VBtn, VTextField
-from trame.html import Div
+from trame.html import Div, vuetify
 
 
 # Model
 initial_number = 5
 
-
 # Updates
 def increment():
-    (number,) = get_state("myNumber")
-    update_state("myNumber", number + 1)
+    state.myNumber += 1
 
 
 def decrement():
-    (number,) = get_state("myNumber")
-    update_state("myNumber", number - 1)
-
-
-# Views
-controls = [
-    VBtn("Increment", click=increment),
-    VTextField(v_model=("myNumber", initial_number), readonly=True),
-    VBtn("Decrement", click=decrement),
-]
+    state.myNumber -= 1
 
 
 layout = SinglePage("Counter")
 layout.title.set_text("Simple Counter Demo")
-layout.content.children += [
-    Div(
-        controls,
-        classes="ma-8",
-    )
-]
+
+with layout.content:
+    with Div(classes="ma-8"):
+        vuetify.VBtn("Increment", click=increment)
+        vuetify.VTextField(v_model=("myNumber", initial_number), readonly=True)
+        vuetify.VBtn("Decrement", click=decrement)
 
 
 if __name__ == "__main__":

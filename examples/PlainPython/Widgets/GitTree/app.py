@@ -6,7 +6,7 @@ from trame.internal.app import get_app_instance
 BASE = os.path.abspath(os.path.dirname(__file__))
 
 from trame.layouts import SinglePage
-from trame.html import vuetify, widgets
+from trame.html import widgets
 from trame import state
 
 

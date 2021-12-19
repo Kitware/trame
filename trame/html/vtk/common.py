@@ -285,6 +285,7 @@ class VtkRemoteView(AbstractElement):
 
     def __init__(self, view, ref="view", **kwargs):
         super().__init__("vtk-remote-view", **kwargs)
+        self.__app = get_app_instance()
         self.__view = view
         self.__ref = ref
         self._attributes["wsClient"] = ':wsClient="wsClient"'

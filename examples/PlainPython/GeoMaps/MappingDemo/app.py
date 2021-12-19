@@ -2,7 +2,7 @@ import pydeck as pdk
 import pandas as pd
 import os
 
-from trame import change, update_state
+from trame import state
 from trame.layouts import SinglePage
 from trame.html import vuetify, deckgl
 
@@ -93,7 +93,7 @@ ALL_LAYERS = {
 }
 
 
-@change("activeLayers")
+@state.change("activeLayers")
 def update_map(activeLayers, **kwargs):
     selected_layers = [
         layer for layer_name, layer in ALL_LAYERS.items() if layer_name in activeLayers
@@ -113,7 +113,7 @@ def update_map(activeLayers, **kwargs):
         )
         deckMap.update(deck)
     else:
-        update_state("error", "Please choose at least one layer above.")
+        state.error = "Please choose at least one layer above."
 
 
 # -----------------------------------------------------------------------------
@@ -122,8 +122,9 @@ def update_map(activeLayers, **kwargs):
 
 layout = SinglePage("Deck + Mapbox Demo", on_ready=update_map)
 layout.title.set_text("Deck + Mapbox Demo")
-layout.content.children += [
-    deckMap,
+
+with layout.content as content:
+    content.add_child(deckMap)
     vuetify.VSelect(
         style="position: absolute; top: 10px; left: 25px; width: 600px;",
         items=("layerNames", defaultLayers),
@@ -132,9 +133,7 @@ layout.content.children += [
         hide_details=True,
         multiple=True,
         chips=True,
-    ),
-]
-
+    )
 
 # -----------------------------------------------------------------------------
 # Start server

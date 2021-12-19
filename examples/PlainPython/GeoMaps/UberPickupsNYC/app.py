@@ -6,7 +6,7 @@ import numpy as np
 import altair as alt
 import pydeck as pdk
 
-from trame import change, update_state
+from trame import state
 from trame.layouts import SinglePage
 from trame.html import Div, vuetify, deckgl, vega
 
@@ -48,7 +48,6 @@ def load_data(nrows):
 data = load_data(100000)
 
 # CREATING FUNCTION FOR MAPS
-
 map_list = [
     {
         "id": "nyc",
@@ -109,15 +108,12 @@ def updateMap(data, lat, lon, zoom, mapRef, **kwarg):
         ],
     )
     mapRef.update(deck)
-    update_state(f'{kwarg["id"]}Title', kwarg["title"])
+    state[f'{kwarg["id"]}Title'] = kwarg["title"]
 
 
-@change("pickupHour")
+@state.change("pickupHour")
 def updateData(pickupHour, **kwargs):
-    update_state(
-        "chartTitle",
-        f"All New York City from {pickupHour}:00 and {pickupHour + 1}:00",
-    )
+    state.chartTitle = f"All New York City from {pickupHour}:00 and {pickupHour + 1}:00"
 
     # FILTERING DATA BY HOUR SELECTED
     filtered_data = data[data[DATE_TIME].dt.hour == pickupHour]
@@ -157,54 +153,43 @@ def updateData(pickupHour, **kwargs):
 layout = SinglePage("NYC Uber Ridesharing Data", on_ready=updateData)
 layout.title.set_text("NYC Uber Ridesharing Data")
 
-mapRow = vuetify.VRow(
-    [
-        vuetify.VCol([Div("{{jfkTitle}}", classes="text-h5"), jfkMap], cols=4),
-        vuetify.VCol([Div("{{lgaTitle}}", classes="text-h5"), lgaMap], cols=4),
-        vuetify.VCol([Div("{{nwkTitle}}", classes="text-h5"), nwkMap], cols=4),
-    ]
-)
-
-mapLayout = vuetify.VRow(
-    children=[
-        vuetify.VCol(
-            cols=4,
-            children=[Div(dynamicTitle, classes="text-h5"), nycMap],
-        ),
-        vuetify.VCol(
-            cols=8,
-            children=[mapRow],
-        ),
-    ]
-)
-
-layout.content.children += [
-    vuetify.VContainer(
-        fluid="true",
-        children=[
-            Div(
-                """Examining how Uber pickups vary over time in New York City's
+with layout.content:
+    with vuetify.VContainer(fluid="true") as container:
+        Div(
+            """Examining how Uber pickups vary over time in New York City's
                 and at its major regional airports.
                 By sliding the slider on the left you can view different slices
                 of time and explore different transportation trends.""",
-                classes="text-body-1",
-            ),
-            vuetify.VSlider(
-                v_model=("pickupHour", 0),
-                classes="mt-4",
-                label="Select hour of pickup",
-                min=0,
-                max=23,
-                thumb_label=True,
-            ),
-            mapLayout,
-            Div(
-                classes="text-center mt-6",
-                children=[hourBreakdownChart],
-            ),
-        ],
-    )
-]
+            classes="text-body-1",
+        )
+        vuetify.VSlider(
+            v_model=("pickupHour", 0),
+            classes="mt-4",
+            label="Select hour of pickup",
+            min=0,
+            max=23,
+            thumb_label=True,
+        )
+
+        with vuetify.VRow():
+            with vuetify.VCol(cols=4) as col:
+                Div(dynamicTitle, classes="text-h5")
+                col.add_child(nycMap)
+            with vuetify.VCol(cols=8) as col:
+                with vuetify.VRow():
+                    for title, map in [
+                        ("{{jfkTitle}}", jfkMap),
+                        ("{{lgaTitle}}", lgaMap),
+                        ("{{nwkTitle}}", nwkMap),
+                    ]:
+                        with vuetify.VCol(cols=4) as m_col:
+                            Div(title, classes="text-h5")
+                            m_col.add_child(map)
+
+        Div(
+            classes="text-center mt-6",
+            children=[hourBreakdownChart],
+        )
 
 
 # -----------------------------------------------------------------------------

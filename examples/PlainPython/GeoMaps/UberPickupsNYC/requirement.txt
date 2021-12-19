@@ -1,5 +1,0 @@
-pandas
-numpy
-altair
-pydeck
-trame

@@ -2,7 +2,7 @@
 # More examples available at https://altair-viz.github.io/gallery/
 # -----------------------------------------------------------------------------
 
-import trame as tr
+from trame import change
 import altair as alt
 from vega_datasets import data
 
@@ -130,7 +130,7 @@ def StreamGraph():
 # -----------------------------------------------------------------------------
 
 
-@tr.change("active")
+@change("active")
 def update_chart(active="ScatterMatrix", **kwargs):
     globals()[active]()
 

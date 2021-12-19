@@ -1,5 +1,5 @@
 import asyncio
-from trame import get_state, update_state, flush_state
+from trame import state
 from trame.layouts import SinglePage
 from trame.html import vuetify
 
@@ -7,26 +7,32 @@ coundown_init = 10
 
 # Timer to dynamically change shared state "countdown"
 async def start_countdown():
-    while True:
-        try:  # catch int()
-            await asyncio.sleep(1)
-            (countdown,) = get_state("countdown")
-            countdown = int(countdown)
-            if countdown < 0:
-                break
-            update_state("countdown", countdown - 1)
-            flush_state("countdown")
-        except:
-            pass
+    try:
+        state.countdown = int(state.countdown)
+    except:
+        state.countdown = coundown_init
 
+    while state.countdown > 0:
+        await asyncio.sleep(0.5)
+        state.countdown -= 1
+        state.flush("countdown")
 
-text = vuetify.VTextField(v_model=("countdown", coundown_init), classes="ma-8")
-button = vuetify.VBtn("Start countdown", click=start_countdown)
 
 layout = SinglePage("Coundown")
 layout.title.set_text("Countdown")
-layout.toolbar.children += [vuetify.VSpacer(), button]
-layout.content.children += [text]
+
+with layout.toolbar:
+    vuetify.VSpacer()
+    vuetify.VBtn(
+        "Start countdown",
+        click=start_countdown,
+    )
+
+with layout.content:
+    vuetify.VTextField(
+        v_model=("countdown", coundown_init),
+        classes="ma-8",
+    )
 
 if __name__ == "__main__":
     layout.start()

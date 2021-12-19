@@ -9,13 +9,12 @@ tree = [
     {"id": "4", "parent": "2", "visible": 1, "name": "Slice 2"},
 ]
 
-git_tree = widgets.GitTree(
-    sources=("tree", tree),
-    actives=("selection", selection),
-)
-
 layout = FullScreenPage("Git Tree")
-layout.children += [git_tree]
+with layout:
+    widgets.GitTree(
+        sources=("tree", tree),
+        actives=("selection", selection),
+    )
 
 if __name__ == "__main__":
     layout.start()

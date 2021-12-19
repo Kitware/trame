@@ -2,14 +2,17 @@ import os
 from collections import defaultdict
 
 from trame.internal.app import get_app_instance
+
 BASE = os.path.abspath(os.path.dirname(__file__))
 
 from trame.layouts import SinglePage
 from trame.html import vuetify, widgets
 from trame import state
 
+
 class PipelineManager:
-    DEFAULT_NODE = { "name": "undefined", "visible": 0, "collapsed": 0 }
+    DEFAULT_NODE = {"name": "undefined", "visible": 0, "collapsed": 0}
+
     def __init__(self, state, name):
         self._state = state
         self._name = name
@@ -38,7 +41,6 @@ class PipelineManager:
         result = self._add_children([], "0")
         self._state[self._name] = result
         return result
-
 
     def add_node(self, parent="0", **item_keys):
         _id = f"{self._next_id}"
@@ -84,21 +86,38 @@ class PipelineManager:
     def get_node(self, _id):
         return self._nodes.get(f"{_id}")
 
+
 pipeline = PipelineManager(state, "git_tree")
 
-id_root = pipeline.add_node(name="root", visible=0, color="#9C27B0", actions=["test", "delete"])
-id_a = pipeline.add_node(parent=id_root, name="a", visible=1, color="#42A5F5", actions=["collapsable", "delete"] )
-id_b = pipeline.add_node(parent=id_root, name="b", visible=1, color="#00ACC1", actions=["collapsable"])
-id_aa = pipeline.add_node(parent=id_a, name="aa", visible=1, color="#2962FF", actions=["test", "delete"])
+id_root = pipeline.add_node(
+    name="root", visible=0, color="#9C27B0", actions=["test", "delete"]
+)
+id_a = pipeline.add_node(
+    parent=id_root,
+    name="a",
+    visible=1,
+    color="#42A5F5",
+    actions=["collapsable", "delete"],
+)
+id_b = pipeline.add_node(
+    parent=id_root, name="b", visible=1, color="#00ACC1", actions=["collapsable"]
+)
+id_aa = pipeline.add_node(
+    parent=id_a, name="aa", visible=1, color="#2962FF", actions=["test", "delete"]
+)
 id_aaa = pipeline.add_node(parent=id_aa, name="aaa", visible=1, color="black")
-id_ba = pipeline.add_node(parent=id_b, name="ba", visible=1, color="#004D40", actions=["collapsable"])
-id_bb = pipeline.add_node(parent=id_b, name="bb", visible=1, color="#80CBC4", actions=["collapsable"])
+id_ba = pipeline.add_node(
+    parent=id_b, name="ba", visible=1, color="#004D40", actions=["collapsable"]
+)
+id_bb = pipeline.add_node(
+    parent=id_b, name="bb", visible=1, color="#80CBC4", actions=["collapsable"]
+)
 id_bba = pipeline.add_node(parent=id_bb, name="bba", visible=1, color="#00838F")
 id_bbb = pipeline.add_node(parent=id_bb, name="bbb", visible=1, color="#4DB6AC")
 
 pipeline.update()
 
-app = get_app_instance() # need cleanup
+app = get_app_instance()  # need cleanup
 ICONS = {
     "test": app.url(os.path.join(BASE, "icons/abacus.svg")),
     "delete": app.url(os.path.join(BASE, "icons/trash-can-outline.svg")),
@@ -114,6 +133,7 @@ ICONS = {
 # def pipeline_changed(git_tree, **kwargs):
 #     print(git_tree)
 
+
 def on_action(event):
     print("on_action", event)
     _id = event.get("id")
@@ -121,8 +141,10 @@ def on_action(event):
     if _action.startswith("collap"):
         print(pipeline.toggle_collapsed(_id))
 
+
 def on_event(event):
     print(event)
+
 
 # -----------------------------------------------------------------------------
 # GUI

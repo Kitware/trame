@@ -1,4 +1,4 @@
-from trame import update_state, change
+from trame import state
 from trame.html import vuetify, vtk
 from trame.layouts import SinglePage
 
@@ -40,14 +40,14 @@ renderer.ResetCamera()
 renderWindow.Render()
 
 
-@change("resolution")
+@state.change("resolution")
 def update_cone(resolution=DEFAULT_RESOLUTION, **kwargs):
     cone_source.SetResolution(resolution)
     html_view.update()
 
 
 def update_reset_resolution():
-    update_state("resolution", DEFAULT_RESOLUTION)
+    state.resolution = DEFAULT_RESOLUTION
 
 
 # -----------------------------------------------------------------------------
@@ -57,7 +57,7 @@ def update_reset_resolution():
 html_view = vtk.VtkRemoteView(renderWindow, ref="view")
 
 layout = SinglePage("VTK Remote rendering", on_ready=update_cone)
-layout.logo.click = "$refs.view.resetCamera()"
+layout.logo.click = html_view.reset_camera
 layout.title.set_text("Cone Application")
 
 with layout.toolbar:

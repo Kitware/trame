@@ -1,6 +1,6 @@
 import os
 
-import trame as tr
+from trame import state
 from trame.html import vuetify, vtk
 from trame.layouts import SinglePage
 
@@ -40,7 +40,7 @@ contour.SetComputeScalars(0)
 # Extract data range => Update store/state
 data_range = reader.GetOutput().GetPointData().GetScalars().GetRange()
 contour_value = 0.5 * (data_range[0] + data_range[1])
-tr.update_state("data_range", data_range)
+state.data_range = data_range
 
 # Configure contour with valid values
 contour.SetNumberOfContours(1)
@@ -68,7 +68,7 @@ renderWindow.Render()
 # -----------------------------------------------------------------------------
 
 
-@tr.change("contour_value", "interactive")
+@state.change("contour_value", "interactive")
 def update_contour(contour_value, interactive, force=False, **kwargs):
     if interactive or force:
         contour.SetValue(0, contour_value)
@@ -76,8 +76,11 @@ def update_contour(contour_value, interactive, force=False, **kwargs):
 
 
 def commit_changes():
-    cv, i = tr.get_state("contour_value", "interactive")
-    update_contour(force=True, contour_value=cv, interactive=i)
+    update_contour(
+        contour_value=state.contour_value,
+        interactive=state.interactive,
+        force=True,
+    )
 
 
 # -----------------------------------------------------------------------------

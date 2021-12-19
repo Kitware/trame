@@ -1,6 +1,6 @@
 import os
 
-import trame as tr
+from trame import change
 from trame.html import vuetify, vtk
 from trame.layouts import SinglePage
 
@@ -40,7 +40,7 @@ contour.SetValue(0, contour_value)
 # -----------------------------------------------------------------------------
 
 
-@tr.change("contour_value")
+@change("contour_value")
 def update_contour(contour_value, **kwargs):
     contour.SetValue(0, contour_value)
     html_polydata.update()
@@ -53,7 +53,6 @@ html_polydata = vtk.VtkPolyData("contour", dataset=contour)
 
 layout = SinglePage("VTK contour - Remote/Local rendering", on_ready=update_contour)
 layout.title.set_text("Contour Application - Local rendering")
-layout.logo.click = "$refs.view.resetCamera()"
 
 layout.state = {
     "data_range": data_range,
@@ -87,7 +86,8 @@ with layout.toolbar:
 
 with layout.content:
     with vuetify.VContainer(fluid=True, classes="pa-0 fill-height"):
-        with vtk.VtkView():
+        with vtk.VtkView() as view:
+            layout.logo.click = view.reset_camera
             vtk.VtkGeometryRepresentation([html_polydata])
 
 # -----------------------------------------------------------------------------

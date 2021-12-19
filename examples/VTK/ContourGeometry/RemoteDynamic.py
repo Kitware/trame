@@ -1,6 +1,6 @@
 import os
 
-import trame as tr
+from trame import state
 from trame.html import vuetify, vtk
 from trame.layouts import SinglePage
 
@@ -73,14 +73,14 @@ def get_html_view(remote_view):
     return html_local_view
 
 
-@tr.change("contour_value", "interactive")
+@state.change("contour_value", "interactive")
 def update_contour(contour_value, interactive, remote_view, force=False, **kwargs):
     if interactive or force:
         contour.SetValue(0, contour_value)
         get_html_view(remote_view).update()
 
 
-@tr.change("remote_view")
+@state.change("remote_view")
 def update_view_type(remote_view, **kwargs):
     elem = get_html_view(remote_view)
     html_view_container.children[0] = elem
@@ -89,8 +89,12 @@ def update_view_type(remote_view, **kwargs):
 
 
 def commit_changes():
-    cv, i, rv = tr.get_state("contour_value", "interactive", "remote_view")
-    update_contour(force=True, contour_value=cv, interactive=i, remote_view=rv)
+    update_contour(
+        contour_value=state.contour_value,
+        interactive=state.interactive,
+        remote_view=state.remote_view,
+        force=True,
+    )
 
 
 # -----------------------------------------------------------------------------
@@ -154,7 +158,7 @@ with layout.toolbar:
         active=("busy",),
     )
 
-layout.content.children += [html_view_container]
+layout.content.add_child(html_view_container)
 
 # -----------------------------------------------------------------------------
 # Main

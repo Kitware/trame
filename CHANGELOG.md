@@ -1,3 +1,10 @@
+## [1.10.3](https://github.com/kitware/trame/compare/v1.10.2...v1.10.3) (2021-12-19)
+
+
+### Bug Fixes
+
+* **VtkRemoteView:** fix reset_camera method ([8eb5327](https://github.com/kitware/trame/commit/8eb53275f06310895e502d8a213501319a0dd912))
+
 ## [1.10.2](https://github.com/kitware/trame/compare/v1.10.1...v1.10.2) (2021-12-17)
 
 

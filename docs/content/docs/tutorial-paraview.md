@@ -100,7 +100,7 @@ Now we can start adding some UI to control some of the parameters that we want t
 Let's add a slider to control the resolution of the cone. We need to create a method to react when the `resolution` is changed by the slider. In ParaView proxies, object parameters are simple properties that can be get or set in a transparent manner. At this point, we simply need to update the `cone.Resolution` and update the view to see the change.
 
 ```python
-@change("resolution")
+@state.change("resolution")
 def update_cone(resolution, **kwargs):
     cone.Resolution = resolution
     html_view.update()

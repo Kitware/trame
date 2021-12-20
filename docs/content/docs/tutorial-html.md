@@ -61,41 +61,34 @@ field = VTextField(
 
 In both the previous statements `v_model` and `suffix`, we defined and initialized state variables. These variables are available from both the client and server side.
 
-First, we need to import two more functions from ***trame***, `get_state` and `update_state`.
+First, we need to import the `state` instance from ***trame*** to simplify its manipulation.
 
 ```python
-from trame import get_state, update_state
+from trame import state
 ```
 
-From here, we have two capabilities
+From here, we have a couple options to read and update the state
 
-- `get_state` - returns the value of a given state variable.
-- `update_state` - intializes, if not previously defined, or updates a state variable.
+- `state.field` - returns the value of a given state variable (__field__).
+- `state.field = 5` - update or set the __field__ variable to the value `5`.
+- `state.update({ "field": 5, ... })` - update several variables at once
 
 Let's look at an example leveraging the previously defined text field.
 
 ```python
 def increment_weight():
-    w, = get_state("myWeight")
-    w += 1
-    update_state("myWeight", w)
+    state.myWeight += 1
 
 def set_metric():
-    w,s = get_state("myWeight","currentSuffix")
-    w = 0.453592 * w
-    s = "kg"
-    update_state("myWeight", w)
-    update_state("currentSuffix", s)
+    state.myWeight = 0.453592 * state.myWeight
+    state.currentSuffix = "kg"
 
 def set_imperial():
-    w,s = get_state("myWeight","currentSuffix")
-    w = 2.20462 * w
-    s = "lb"
-    update_state("myWeight", w)
-    update_state("currentSuffix", s)
+    state["myWeight"] *= 2.20462
+    state["currentSuffix"] = "lb"
 ```
 
-In the `increment_weight` function, we use the `get_state` function to access the `"myWeight"` value. Notice that get_state returns a list, so the comma in `w,` is necessary. We then increment the weight. Finally, we update the state variable with the `update_state` function.
+In the `increment_weight` function, we use addition assignment for `state.myWeight` to read and update the value of `myWeight` in a single statement. The remaining functions illustrate similar actions but using different syntax for reading and updating a given variable.
 
 <div class="print-break"></div>
 
@@ -231,10 +224,10 @@ with layout.toolbar:
         vuetify.VIcon("mdi-crop-free")
 ```
 
-The `VSlider` creates `resolution` as a state variable and is initialized to the default resolution. When interacting with the slider, the code will call a function decorated with `@change("resolution")`.
+The `VSlider` creates `resolution` as a state variable and is initialized to the default resolution. When interacting with the slider, the code will call a function decorated with `@state.change("resolution")`.
 
 ```python
-@change("resolution")
+@state.change("resolution")
 def update_resolution(resolution, **kwargs):
     cone_source.SetResolution(resolution)
     html_view.update()
@@ -246,12 +239,12 @@ The `VBtn` resets the the resolution when pressed by calling the `reset_resoluti
 
 ```python
 def reset_resolution():
-    update_state("resolution", DEFAULT_RESOLUTION)
+    state.resolution = DEFAULT_RESOLUTION
 ```
 
 **Note**:
 - If you plan to pass arguments to the `trigger` function, then you would use the decorator.
-- In this case because we listen to `resolution` change, the call to `update_state("resolution", ...)` will also trigger the change callback. That is the reason why we do not need to update the view or the cone source resolution in `reset_resolution()`.
+- In this case because we listen to `resolution` change, the call to `state.resolution = ...` will also trigger the change callback. That is the reason why we do not need to update the view or the cone source resolution in `reset_resolution()`.
 
 Both of these functions should be included in the Functions or Callbacks section of the code.
 

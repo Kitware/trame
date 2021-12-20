@@ -323,7 +323,7 @@ The `local_vs_remote` checkbox is used to switch between the *local* and *remote
 
 <p style="text-align:center;"><img src="../images/tutorial-drawer.jpg" alt="Example Application Drawer" style="width: 25%; height: 25%"></p>
 
-We want to create a drawer with the ***trame*** pipeline widget, a horizontal divider, and pipeline cards. The pipeline cards are shown corresponding to the sected pipeline in the ***trame*** pipeline widget. We need create state for the active pipeline card, so we add this to the layouts state.
+We want to create a drawer with the ***trame*** pipeline widget, a horizontal divider, and pipeline cards. The pipeline cards are shown corresponding to the selected pipeline in the ***trame*** pipeline widget. We need create state for the active pipeline card, so we add this to the shared state that can be updated from the layout directly.
 
 ```python
 # State use to track active ui card
@@ -701,23 +701,23 @@ The [`update_contour_value`](#drawer_callbacks_update_contour_value-id) callback
 
 ### Toolbar Callbacks
 
-The first toolbar callback is the `cube_axes_visibility` callback, which is used to turn on and off the cube axes. The `update_cube_axes_visibility` function is found by the @change decorator for `cube_axes_visibility`. Then we simply set the `cube_axes` actor's `Visibility` property to the value of `cube_axes_visibility`, and update the view.
+The first toolbar callback is the `cube_axes_visibility` callback, which is used to turn on and off the cube axes. The `update_cube_axes_visibility` function is found by the @state.change decorator for `cube_axes_visibility`. Then we simply set the `cube_axes` actor's `Visibility` property to the value of `cube_axes_visibility`, and update the view.
 
 <a id="toolbar_callbacks_cube_axes_visibility-id"></a>
 
 ```python
-@change("cube_axes_visibility")
+@state.change("cube_axes_visibility")
 def update_cube_axes_visibility(cube_axes_visibility, **kwargs):
     cube_axes.SetVisibility(cube_axes_visibility)
     html_view.update()
 ```
 
-The second toolbar callback is the `local_vs_remote` callback, which is used to switch between the local and remote visualization. The `update_local_vs_remote` function is found by the @change decorator for `local_vs_remote`. Then we simply switch between the `local_view` and `remote_view` to the appropriate view. The complicated part is updating the layout by changing out the view in the `layout.content`. The child at `children[0]` is the `VContainer` and the second `children[0]` is the location of the `html_view` in the containers children. Finally, we update the view either shipping geometry (*local* rendering) or an image (*remote* rendering) to the client.
+The second toolbar callback is the `local_vs_remote` callback, which is used to switch between the local and remote visualization. The `update_local_vs_remote` function is found by the @state.change decorator for `local_vs_remote`. Then we simply switch between the `local_view` and `remote_view` to the appropriate view. The complicated part is updating the layout by changing out the view in the `layout.content`. The child at `children[0]` is the `VContainer` and the second `children[0]` is the location of the `html_view` in the containers children. Finally, we update the view either shipping geometry (*local* rendering) or an image (*remote* rendering) to the client.
 
 <a id="toolbar_callbacks_local_vs_remote-id"></a>
 
 ```python
-@change("local_vs_remote")
+@state.change("local_vs_remote")
 def update_local_vs_remote(local_vs_remote, **kwargs):
     # Switch html_view
     global html_view
@@ -750,7 +750,7 @@ def update_local_vs_remote(local_vs_remote, **kwargs):
 
 #### Pipeline Widget Callbacks
 
-When a pipeline is selected in the pipeline widget, we want to update the pipeline card to show in the drawer. Using the default `actives_change` function of ***trame*** pipeline widget, we simply update `layout.state` element `active_ui` to display the pipeline card of the selected pipeline.
+When a pipeline is selected in the pipeline widget, we want to update the pipeline card to show in the drawer. Using the default `actives_change` function of ***trame*** pipeline widget, we simply update the `state` element `active_ui` to display the pipeline card of the selected pipeline.
 
 <a id="drawer_callbacks_actives_change-id"></a>
 
@@ -759,11 +759,11 @@ When a pipeline is selected in the pipeline widget, we want to update the pipeli
 def actives_change(ids):
     _id = ids[0]
     if _id == "1":  # Mesh
-        update_state("active_ui", "mesh")
+        state.active_ui = "mesh"
     elif _id == "2":  # Contour
-        update_state("active_ui", "contour")
+        state.active_ui = "contour"
     else:
-        update_state("active_ui", "nothing")
+        state.active_ui = "nothing"
 ```
 
 When a pipeline visibility is toggled in the pipeline widget, we want to update the view to add or remove the toggled pipeline. Using the default `visibility_change` function of ***trame*** pipeline widget, we update the visibility of the appropriate pipeline `actor` using `actor.SetVisibility` function with the visibility accessed from the `event["visible"]` dictionary element.
@@ -814,23 +814,23 @@ def update_representation(actor, mode):
         property.EdgeVisibilityOn()
 ```
 
-The `update_mesh_representation` function is found by the @change decorator for `mesh_representation`. We simply call the `update_representation` function with the `mesh_actor` and the `mesh_representation` state, and then update the view.
+The `update_mesh_representation` function is found by the @state.change decorator for `mesh_representation`. We simply call the `update_representation` function with the `mesh_actor` and the `mesh_representation` state, and then update the view.
 
 <a id="drawer_callbacks_update_mesh_representation-id"></a>
 
 ```python
-@change("mesh_representation")
+@state.change("mesh_representation")
 def update_mesh_representation(mesh_representation, **kwargs):
     update_representation(mesh_actor, mesh_representation)
     html_view.update()
 ```
 
-Likewise, the `update_contour_representation` function is found by the @change decorator for `contour_representation`. We simply call the `update_representation` function with the `mesh_actor` and the `contour_representation` state, and then update the view.
+Likewise, the `update_contour_representation` function is found by the @state.change decorator for `contour_representation`. We simply call the `update_representation` function with the `mesh_actor` and the `contour_representation` state, and then update the view.
 
 <a id="drawer_callbacks_update_contour_representation-id"></a>
 
 ```python
-@change("contour_representation")
+@state.change("contour_representation")
 def update_contour_representation(contour_representation, **kwargs):
     update_representation(contour_actor, contour_representation)
     html_view.update()
@@ -860,24 +860,24 @@ def color_by_array(actor, array):
     mapper.SetUseLookupTableScalarRange(True)
 ```
 
-The `update_mesh_color_by_name` function is found by the @change decorator for `mesh_color_array_idx`. We simply call the `color_by_array` function with the `mesh_actor` and the `array`, and then update the view. The `array` is set using the `mesh_color_array_idx` state on the `dataset_arrays` array of dictionaries.
+The `update_mesh_color_by_name` function is found by the @state.change decorator for `mesh_color_array_idx`. We simply call the `color_by_array` function with the `mesh_actor` and the `array`, and then update the view. The `array` is set using the `mesh_color_array_idx` state on the `dataset_arrays` array of dictionaries.
 
 <a id="drawer_callbacks_update_mesh_representation-id"></a>
 
 ```python
-@change("mesh_color_array_idx")
+@state.change("mesh_color_array_idx")
 def update_mesh_color_by_name(mesh_color_array_idx, **kwargs):
     array = dataset_arrays[mesh_color_array_idx]
     color_by_array(mesh_actor, array)
     html_view.update()
 ```
 
-Likewise, the `update_contour_color_by_name` function is found by the @change decorator for `contour_color_array_idx`. We simply call the `color_by_array` function with the `contour_actor` and the `array`, and then update the view. The `array` is set using the `contour_color_array_idx` state on the `dataset_arrays` array of dictionaries.
+Likewise, the `update_contour_color_by_name` function is found by the @state.change decorator for `contour_color_array_idx`. We simply call the `color_by_array` function with the `contour_actor` and the `array`, and then update the view. The `array` is set using the `contour_color_array_idx` state on the `dataset_arrays` array of dictionaries.
 
 <a id="drawer_callbacks_update_contour_color_by_name-id"></a>
 
 ```python
-@change("contour_color_array_idx")
+@state.change("contour_color_array_idx")
 def update_contour_color_by_name(contour_color_array_idx, **kwargs):
     array = dataset_arrays[contour_color_array_idx]
     color_by_array(contour_actor, array)
@@ -915,23 +915,23 @@ def use_preset(actor, preset):
     lut.Build()
 ```
 
-The `update_mesh_color_preset` function is found by the @change decorator for `mesh_color_preset`. We simply call the `use_preset` function with the `mesh_actor` and the `mesh_color_preset` state, and then update the view.
+The `update_mesh_color_preset` function is found by the @state.change decorator for `mesh_color_preset`. We simply call the `use_preset` function with the `mesh_actor` and the `mesh_color_preset` state, and then update the view.
 
 <a id="drawer_callbacks_update_mesh_color_preset-id"></a>
 
 ```python
-@change("mesh_color_preset")
+@state.change("mesh_color_preset")
 def update_mesh_color_preset(mesh_color_preset, **kwargs):
     use_preset(mesh_actor, mesh_color_preset)
     html_view.update()
 ```
 
-The `update_contour_color_preset` function is found by the @change decorator for `contour_color_preset`. We simply call the `use_preset` function with the `contour_actor` and the `contour_color_preset` state, and then update the view.
+The `update_contour_color_preset` function is found by the @state.change decorator for `contour_color_preset`. We simply call the `use_preset` function with the `contour_actor` and the `contour_color_preset` state, and then update the view.
 
 <a id="drawer_callbacks_update_contour_color_preset-id"></a>
 
 ```python
-@change("contour_color_preset")
+@state.change("contour_color_preset")
 def update_contour_color_preset(contour_color_preset, **kwargs):
     use_preset(contour_actor, contour_color_preset)
     html_view.update()
@@ -941,24 +941,24 @@ def update_contour_color_preset(contour_color_preset, **kwargs):
 
 #### Opacity Callbacks
 
-The `update_mesh_opacity` function is found by the @change decorator for `mesh_opacity`. We simply use a `mesh_actor` property and the `mesh_opacity` state to `SetOpacity`, and then update the view.
+The `update_mesh_opacity` function is found by the @state.change decorator for `mesh_opacity`. We simply use a `mesh_actor` property and the `mesh_opacity` state to `SetOpacity`, and then update the view.
 
 <a id="drawer_callbacks_update_mesh_opacity-id"></a>
 
 ```python
 # Opacity Callbacks
-@change("mesh_opacity")
+@state.change("mesh_opacity")
 def update_mesh_opacity(mesh_opacity, **kwargs):
     mesh_actor.GetProperty().SetOpacity(mesh_opacity)
     html_view.update()
 ```
 
-The `update_contour_opacity` function is found by the @change decorator for `contour_opacity`. We simply use a `contour_actor` property and the `contour_opacity` state to `SetOpacity`, and then update the view.
+The `update_contour_opacity` function is found by the @state.change decorator for `contour_opacity`. We simply use a `contour_actor` property and the `contour_opacity` state to `SetOpacity`, and then update the view.
 
 <a id="drawer_callbacks_update_contour_opacity-id"></a>
 
 ```python
-@change("contour_opacity")
+@state.change("contour_opacity")
 def update_contour_opacity(contour_opacity, **kwargs):
     contour_actor.GetProperty().SetOpacity(contour_opacity)
     html_view.update()
@@ -974,7 +974,7 @@ The `update_contour_by` function updates the `SetInputArrayToProcess` of the `co
 
 ```python
 # Contour Callbacks
-@change("contour_by_array_idx")
+@state.change("contour_by_array_idx")
 def update_contour_by(contour_by_array_idx, **kwargs):
     array = dataset_arrays[contour_by_array_idx]
     contour_min, contour_max = array.get("range")
@@ -984,23 +984,23 @@ def update_contour_by(contour_by_array_idx, **kwargs):
     contour.SetValue(0, contour_value)
 
     # Update UI
-    update_state("contour_min", contour_min)
-    update_state("contour_max", contour_max)
-    update_state("contour_value", contour_value)
-    update_state("contour_step", contour_step)
+    state.contour_min = contour_min
+    state.contour_max = contour_max
+    state.contour_value = contour_value
+    state.contour_step = contour_step
 
     # Update View
     html_view.update()
 ```
 
-the `update_contour_by` function is found by the @change decorator for `contour_by_array_idx`. We simply use the `contour` filter and the `array`, and then update the view. The `array` is set using the `contour_by_array_idx` state on the `dataset_arrays` array of dictionaries.
+the `update_contour_by` function is found by the @state.change decorator for `contour_by_array_idx`. We simply use the `contour` filter and the `array`, and then update the view. The `array` is set using the `contour_by_array_idx` state on the `dataset_arrays` array of dictionaries.
 
-The `update_contour_value` function is found by the @change decorator for `contour_value`. We simply use a `contour` filter property and the `contour_value` state to `SetValue`, and then update the view.
+The `update_contour_value` function is found by the @state.change decorator for `contour_value`. We simply use a `contour` filter property and the `contour_value` state to `SetValue`, and then update the view.
 
 <a id="drawer_callbacks_update_contour_value-id"></a>
 
 ```python
-@change("contour_value")
+@state.change("contour_value")
 def update_contour_value(contour_value, **kwargs):
     contour.SetValue(0, float(contour_value))
     html_view.update()

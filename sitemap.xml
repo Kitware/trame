@@ -20,6 +20,15 @@
   </url>
   
   <url>
+    <loc>https://kitware.github.io/trame/docs/tutorial-html.html</loc>
+    
+    <lastmod>2021-12-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://kitware.github.io/trame/docs/tutorial-layouts.html</loc>
     
     <lastmod>2021-12-20</lastmod>
@@ -255,15 +264,6 @@
   
   <url>
     <loc>https://kitware.github.io/trame/docs/tutorial-download.html</loc>
-    
-    <lastmod>2021-12-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/tutorial-html.html</loc>
     
     <lastmod>2021-12-20</lastmod>
     

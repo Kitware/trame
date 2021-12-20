@@ -1,6 +1,5 @@
-from trame import update_state, get_state, change, get_cli_parser
-from trame.html import Div
-from trame.html import vuetify, vtk
+from trame import state, get_cli_parser
+from trame.html import Div, vuetify, vtk
 from trame.layouts import SinglePage
 
 from vtkContourGeneratorFromZarr import vtkContourGeneratorFromZarr
@@ -55,33 +54,31 @@ renderWindow.Render()
 # Callbacks
 # -----------------------------------------------------------------------------
 
-update_state("points", 0)
-update_state("cells", 0)
-update_state("level", DEFAULT_LEVEL)
+state.points = 0
+state.cells = 0
+state.level = DEFAULT_LEVEL
 
 
-@change("level")
+@state.change("level")
 def update_skin(level=DEFAULT_LEVEL, **kwargs):
     nb_points, nb_cells = skin_generator.contourForLevel(level)
-    update_state("points", nb_points)
-    update_state("cells", nb_cells)
+    state.points = nb_points
+    state.cells = nb_cells
     html_view.update()
 
 
 def update_reset_level():
-    update_state("level", DEFAULT_LEVEL)
+    state.level = DEFAULT_LEVEL
 
 
 def increase_level():
-    (current_level,) = get_state("level")
-    if current_level < MAX_LEVEL:
-        update_state("level", current_level + 1)
+    if state.level < MAX_LEVEL:
+        state.level += 1
 
 
 def decrease_level():
-    (current_level,) = get_state("level")
-    if 1 < current_level:
-        update_state("level", current_level - 1)
+    if 1 < state.level:
+        state.level -= 1
 
 
 # -----------------------------------------------------------------------------

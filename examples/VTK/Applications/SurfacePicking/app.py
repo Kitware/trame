@@ -1,6 +1,6 @@
 import os
 
-import trame as tr
+from trame import state
 from trame.layouts import SinglePage
 from trame.html import vtk, vuetify, Element
 
@@ -45,9 +45,7 @@ reader = vtkXMLPolyDataReader()
 reader.SetFileName(f1_vtp)
 reader.Update()
 f1_mesh = reader.GetOutput()
-tr.update_state(
-    "f1",
-)
+state.f1 = None
 
 # Extract fieldParameters
 fieldParameters = {"solid": {"range": [0, 1]}}
@@ -102,24 +100,30 @@ layout.triggers.add("mounted", "pixel_ratio = window.devicePixelRatio")
 # -----------------------------------------------------------------------------
 
 
-@tr.change("pickingMode")
+@state.change("pickingMode")
 def update_picking_mode(pickingMode, **kwargs):
     mode = pickingMode
     if mode is None:
-        tr.update_state("tooltip", "")
-        tr.update_state("tooltipStyle", {"display": "none"})
-        tr.update_state("coneVisibility", False)
-        tr.update_state("interactorSettings", VIEW_INTERACT)
-    else:
-        tr.update_state(
-            "interactorSettings", VIEW_SELECT if mode == "select" else VIEW_INTERACT
+        state.update(
+            {
+                "tooltip": "",
+                "tooltipStyle": {"display": "none"},
+                "coneVisibility": False,
+                "interactorSettings": VIEW_INTERACT,
+            }
         )
-        tr.update_state("frustrum", None)
-        tr.update_state("selection", None)
-        tr.update_state("selectData", None)
+    else:
+        state.interactorSettings = VIEW_SELECT if mode == "select" else VIEW_INTERACT
+        state.update(
+            {
+                "frustrum": None,
+                "selection": None,
+                "selectData": None,
+            }
+        )
 
 
-@tr.change("selectData")
+@state.change("selectData")
 def update_selection(selectData, **kwargs):
     if selectData is None:
         return
@@ -134,24 +138,23 @@ def update_selection(selectData, **kwargs):
     extract.ShowBoundsOn()
     extract.PreserveTopologyOff()
     extract.Update()
-    tr.update_state("frustrum", vtk_mesh(extract.GetOutput()))
+    state.frustrum = vtk_mesh(extract.GetOutput())
     extract.ShowBoundsOff()
     extract.PreserveTopologyOn()
     threshold.Update()
-    tr.update_state("selection", vtk_mesh(threshold.GetOutput()))
+    state.selection = vtk_mesh(threshold.GetOutput())
+    state.selectData = None
+    state.pickingMode = None
 
-    tr.update_state("selectData", None)
-    tr.update_state("pickingMode", None)
 
-
-@tr.change("pickData")
+@state.change("pickData")
 def update_tooltip(pickData, pixel_ratio, **kwargs):
-    tr.update_state("tooltip", "")
-    tr.update_state("tooltipStyle", {"display": "none"})
-    tr.update_state("coneVisibility", False)
+    state.tooltip = ""
+    state.tooltipStyle = {"display": "none"}
+    state.coneVisibility = False
     data = pickData
 
-    if tr.is_dirty("pickData") and data and data["representationId"] == "f1":
+    if state.is_dirty("pickData") and data and data["representationId"] == "f1":
         xyx = data["worldPosition"]
         idx = f1_mesh.FindPoint(xyx)
         if idx > -1:
@@ -190,19 +193,16 @@ def update_tooltip(pickData, pixel_ratio, **kwargs):
 
             if len(messages):
                 x, y, z = data["displayPosition"]
-                tr.update_state("coneVisibility", True)
-                tr.update_state("tooltip", "\n".join(messages))
-                tr.update_state("cone", cone_state)
-                tr.update_state(
-                    "tooltipStyle",
-                    {
-                        "position": "absolute",
-                        "left": f"{(x / pixel_ratio )+ 10}px",
-                        "bottom": f"{(y / pixel_ratio ) + 10}px",
-                        "zIndex": 10,
-                        "pointerEvents": "none",
-                    },
-                )
+                state.coneVisibility = True
+                state.tooltip = "\n".join(messages)
+                state.cone = cone_state
+                state.tooltipStyle = {
+                    "position": "absolute",
+                    "left": f"{(x / pixel_ratio )+ 10}px",
+                    "bottom": f"{(y / pixel_ratio ) + 10}px",
+                    "zIndex": 10,
+                    "pointerEvents": "none",
+                }
 
 
 with layout.toolbar:
@@ -294,9 +294,9 @@ with layout.content:
             ref="view",
             picking_modes=("[pickingMode]",),
             interactor_settings=("interactorSettings", VIEW_INTERACT),
-            click="set('pickData', $event)",
-            hover="set('pickData', $event)",
-            select="set('selectData', $event)",
+            click="pickData = $event",
+            hover="pickData = $event",
+            select="selectData = $event",
         )
 # -----------------------------------------------------------------------------
 # CLI

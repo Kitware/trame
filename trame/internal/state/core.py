@@ -157,6 +157,12 @@ class State:
     >>> state["field"] = value
     >>> state.update({"field": value})
 
+    When state update happen outside the main loop, or if a variable get modified
+    internally without a reference change, you can force a flush of a set of variables
+    to the client.
+
+    >>> state.flush("field", "field1")
+
     An instance of this static class can be imported via
 
     >>> from trame import state
@@ -198,6 +204,14 @@ class State:
     @staticmethod
     def flush(*args):
         return flush_state(*args)
+
+    @staticmethod
+    def is_dirty(*args):
+        return is_dirty(*args)
+
+    @staticmethod
+    def is_dirty_all(*args):
+        return is_dirty_all(*args)
 
     # Allow the change decorator to be accessed via @state.change
     change = staticmethod(change)

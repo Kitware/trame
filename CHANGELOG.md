@@ -1,3 +1,10 @@
+## [1.10.4](https://github.com/kitware/trame/compare/v1.10.3...v1.10.4) (2021-12-20)
+
+
+### Bug Fixes
+
+* **state:** Add is_dirty* method to state ([5a71da7](https://github.com/kitware/trame/commit/5a71da7eb3e0969e9de9d1cbc5c7ee47d115a29d))
+
 ## [1.10.3](https://github.com/kitware/trame/compare/v1.10.2...v1.10.3) (2021-12-19)
 
 

@@ -1,7 +1,7 @@
 from paraview.web import venv  # Available in PV 5.10-RC2+
 import os
 
-from trame import update_state, change, get_state
+from trame import state
 from trame.html import vuetify, paraview
 from trame.layouts import SinglePage
 
@@ -28,8 +28,8 @@ array = reader.GetPointDataInformation().GetArray(0)
 data_name = array.GetName()
 data_range = array.GetRange()
 contour_value = 0.5 * (data_range[0] + data_range[1])
-update_state("data_range", data_range)
-update_state("contour_value", contour_value)
+state.data_range = data_range
+state.contour_value = contour_value
 
 contour.ContourBy = ["POINTS", data_name]
 contour.Isosurfaces = [contour_value]
@@ -49,7 +49,7 @@ view.CenterOfRotation = view.CameraFocalPoint
 # -----------------------------------------------------------------------------
 
 
-@change("contour_value", "interactive")
+@state.change("contour_value", "interactive")
 def update_contour(contour_value, interactive, force=False, **kwargs):
     if interactive or force:
         contour.Isosurfaces = [contour_value]
@@ -57,8 +57,11 @@ def update_contour(contour_value, interactive, force=False, **kwargs):
 
 
 def commit_changes():
-    cv, i = get_state("contour_value", "interactive")
-    update_contour(force=True, contour_value=cv, interactive=i)
+    update_contour(
+        contour_value=state.contour_value,
+        interactive=state.contour_value,
+        force=True,
+    )
 
 
 # -----------------------------------------------------------------------------
@@ -70,7 +73,7 @@ layout = SinglePage(
     "ParaView contour - Remote/Local rendering", on_ready=html_view.update
 )
 layout.title.set_text("Contour Application - Remote rendering")
-layout.logo.click = "$refs.view.resetCamera()"
+layout.logo.click = html_view.reset_camera
 
 with layout.toolbar:
     vuetify.VSpacer()

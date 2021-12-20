@@ -9,7 +9,7 @@ from vtkmodules.vtkFiltersCore import vtkThreshold
 from vtkmodules.numpy_interface.dataset_adapter import numpyTovtkDataArray as np2da
 from vtkmodules.util import vtkConstants
 
-from trame import change, update_state, get_cli_parser
+from trame import state, get_cli_parser
 from trame.layouts import SinglePage
 from trame.html import vuetify, vtk, StateChange
 
@@ -77,9 +77,9 @@ html_view = vtk.VtkView(
 )
 
 
-@change("nodes_file", "elems_file", "field_file")
+@state.change("nodes_file", "elems_file", "field_file")
 def update_grid(nodes_file, elems_file, field_file, **kwargs):
-    update_state("picking_modes", [])
+    state.picking_modes = []
     if not nodes_file:
         return
 
@@ -191,14 +191,14 @@ def update_grid(nodes_file, elems_file, field_file, **kwargs):
         # assign data to grid with the name 'my_array'
         vtk_array = np2da(np_val, name=field_to_keep)
         vtk_grid.GetCellData().SetScalars(vtk_array)
-        update_state("full_range", vtk_array.GetRange())
-        update_state("threshold_range", list(vtk_array.GetRange()))
-        update_state("picking_modes", ["hover"])
+        state.full_range = vtk_array.GetRange()
+        state.threshold_range = list(vtk_array.GetRange())
+        state.picking_modes = ["hover"]
 
     html_mesh.update()
 
 
-@change("threshold_range")
+@state.change("threshold_range")
 def update_filter(threshold_range, **kwargs):
     vtk_filter.SetLowerThreshold(threshold_range[0])
     vtk_filter.SetUpperThreshold(threshold_range[1])
@@ -206,17 +206,21 @@ def update_filter(threshold_range, **kwargs):
 
 
 def reset():
-    update_state("mesh", None)
-    update_state("threshold", None)
-    update_state("nodes_file", None)
-    update_state("elems_file", None)
-    update_state("field_file", None)
+    state.update(
+        {
+            "mesh": None,
+            "threshold": None,
+            "nodes_file": None,
+            "elems_file": None,
+            "field_file": None,
+        }
+    )
 
 
-@change("pick_data")
+@state.change("pick_data")
 def update_tooltip(pick_data, pixel_ratio, **kwargs):
-    update_state("tooltip", "")
-    update_state("tooltip_style", {"display": "none"})
+    state.tooltip = ""
+    state.tooltip_style = {"display": "none"}
     data = pick_data
 
     if data:
@@ -234,17 +238,14 @@ def update_tooltip(pick_data, pixel_ratio, **kwargs):
 
             if len(messages):
                 x, y, z = data["displayPosition"]
-                update_state("tooltip", messages[0])
-                update_state(
-                    "tooltip_style",
-                    {
-                        "position": "absolute",
-                        "left": f"{(x / pixel_ratio) + 10}px",
-                        "bottom": f"{(y / pixel_ratio) + 10}px",
-                        "zIndex": 10,
-                        "pointerEvents": "none",
-                    },
-                )
+                state.tooltip = messages[0]
+                state.tooltip_style = {
+                    "position": "absolute",
+                    "left": f"{(x / pixel_ratio) + 10}px",
+                    "bottom": f"{(y / pixel_ratio) + 10}px",
+                    "zIndex": 10,
+                    "pointerEvents": "none",
+                }
 
 
 # -----------------------------------------------------------------------------
@@ -356,9 +357,9 @@ if args.data:
 
     vtk_array = vtu.GetCellData().GetScalars()
     full_min, full_max = vtk_array.GetRange()
-    update_state("full_range", [full_min, full_max])
-    update_state("threshold_range", [full_min, full_max])
-    update_state("picking_modes", ["hover"])
+    state.full_range = [full_min, full_max]
+    state.threshold_range = [full_min, full_max]
+    state.picking_modes = ["hover"]
     html_mesh.update()
     html_threshold.update()
 

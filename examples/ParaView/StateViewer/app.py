@@ -1,7 +1,7 @@
 from paraview.web import venv  # Available in PV 5.10-RC2+
 
 import os
-import trame as tr
+from trame import get_cli_parser
 from trame.html import vuetify, paraview, VTKLoading
 from trame.layouts import SinglePage
 
@@ -11,7 +11,7 @@ from paraview import simple
 # ParaView code
 # -----------------------------------------------------------------------------
 
-parser = tr.get_cli_parser()
+parser = get_cli_parser()
 layout = None
 
 

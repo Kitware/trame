@@ -3,7 +3,7 @@ import os
 import json
 import asyncio
 
-from trame import get_cli_parser, flush_state, update_state, change, get_state
+from trame import get_cli_parser, state
 from trame.html import vuetify, paraview
 from trame.layouts import SinglePage
 
@@ -45,9 +45,9 @@ def load_data(**kwargs):
     time_values = list(time_keeper.TimestepValues)
 
     update_color_by(0, fields, "remote")
-    update_state("time_value", time_values[0])
-    update_state("times", len(time_values) - 1)
-    update_state("fields", fields)
+    state.time_value = time_values[0]
+    state.times = len(time_values) - 1
+    state.fields = fields
 
     simple.ResetCamera()
     view.CenterOfRotation = view.CameraFocalPoint
@@ -70,7 +70,7 @@ view = simple.Render()
 # -----------------------------------------------------------------------------
 
 
-@change("active_array")
+@state.change("active_array")
 def update_color_by(active_array, fields, viewMode="remote", **kwargs):
     array = fields[active_array]
     simple.ColorBy(representation, (array.get("location"), array.get("text")))
@@ -84,43 +84,41 @@ def update_color_by(active_array, fields, viewMode="remote", **kwargs):
     update_view(viewMode)
 
 
-@change("time")
+@state.change("time")
 def update_time(time, viewMode, **kwargs):
     # print("update_time", time)
     if time >= len(time_values):
         time = 0
-        update_state("time", time)
+        state.time = time
     time_value = time_values[time]
     time_keeper.Time = time_value
-    update_state("time_value", time_value)
+    state.time_value = time_value
     update_view(viewMode)
 
 
-@change("play")
+@state.change("play")
 def update_play(play, **kwargs):
     loop = asyncio.get_event_loop()
     loop.create_task(animate())
 
 
-@change("viewMode")
+@state.change("viewMode")
 def update_view(viewMode, flush=True, **kwargs):
     html_view.update_image()
     if viewMode == "local":
         html_view.update_geometry()
         if flush:
             # can only flush once protocol is initialized (publish)
-            flush_state("viewScene")
+            state.flush("viewScene")
 
 
 async def animate():
     keep_going = True
     while keep_going:
-        keep_going, time, viewMode = get_state("play", "time", "viewMode")
-        time += 1
-        if keep_going:
-            update_state("time", time)
-            update_time(time, viewMode)
-            flush_state("time", "time_value")
+        if state.play:
+            state.time += 1
+            update_time(state.time, state.viewMode)
+            state.flush("time", "time_value")
         await asyncio.sleep(0.1)
 
 
@@ -131,7 +129,7 @@ html_view = paraview.VtkRemoteLocalView(view, namespace="view")
 
 layout = SinglePage("ParaView", on_ready=load_data)
 layout.title.set_text("Time")
-layout.logo.click = "$refs.view.resetCamera()"
+layout.logo.click = html_view.reset_camera
 
 with layout.toolbar:
     vuetify.VSpacer()

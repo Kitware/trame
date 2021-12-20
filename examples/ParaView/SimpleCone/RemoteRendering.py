@@ -1,6 +1,6 @@
 from paraview.web import venv  # Available in PV 5.10-RC2+
 
-from trame import update_state, change
+from trame import state
 from trame.html import vuetify, paraview
 from trame.layouts import SinglePage
 
@@ -17,14 +17,14 @@ representation = simple.Show(cone)
 view = simple.Render()
 
 
-@change("resolution")
+@state.change("resolution")
 def update_cone(resolution, **kwargs):
     cone.Resolution = resolution
     html_view.update()
 
 
 def update_reset_resolution():
-    update_state("resolution", DEFAULT_RESOLUTION)
+    state.resolution = DEFAULT_RESOLUTION
 
 
 # -----------------------------------------------------------------------------
@@ -34,7 +34,7 @@ def update_reset_resolution():
 html_view = paraview.VtkRemoteView(view, ref="view")
 
 layout = SinglePage("ParaView cone", on_ready=update_cone)
-layout.logo.click = "$refs.view.resetCamera()"
+layout.logo.click = html_view.reset_camera
 layout.title.set_text("Cone Application")
 
 with layout.toolbar:

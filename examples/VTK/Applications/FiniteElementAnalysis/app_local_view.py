@@ -21,7 +21,7 @@ from vtkmodules.vtkRenderingCore import (
     vtkRenderWindowInteractor,
 )
 
-from trame import change, update_state, get_state, get_cli_parser
+from trame import state, get_cli_parser
 from trame.layouts import SinglePage
 from trame.html import vuetify, vtk
 
@@ -66,7 +66,7 @@ renderer.AddActor(mesh_actor)
 html_view = vtk.VtkLocalView(renderWindow)
 
 
-@change("nodes_file", "elems_file", "field_file")
+@state.change("nodes_file", "elems_file", "field_file")
 def update_grid(nodes_file, elems_file, field_file, **kwargs):
     if not nodes_file:
         return
@@ -159,7 +159,7 @@ def update_grid(nodes_file, elems_file, field_file, **kwargs):
     vtk_grid.SetCells(
         np2da(cell_types, array_type=vtkConstants.VTK_UNSIGNED_CHAR), vtk_cells
     )
-    update_state("mesh_status", 1)
+    state.mesh_status = 1
 
     # Add field if any
     if field_file:
@@ -181,10 +181,10 @@ def update_grid(nodes_file, elems_file, field_file, **kwargs):
         vtk_array = np2da(np_val, name=field_to_keep)
         vtk_grid.GetCellData().SetScalars(vtk_array)
         full_min, full_max = vtk_array.GetRange()
-        update_state("full_min", full_min)
-        update_state("full_max", full_max)
-        update_state("threshold_range", list(vtk_array.GetRange()))
-        update_state("mesh_status", 2)
+        state.full_min = full_min
+        state.full_max = full_max
+        state.threshold_range = list(vtk_array.GetRange())
+        state.mesh_status = 2
 
         # Color handling in plain VTK
         filter_mapper.SetScalarRange(full_min, full_max)
@@ -193,7 +193,7 @@ def update_grid(nodes_file, elems_file, field_file, **kwargs):
     html_view.update()
 
 
-@change("threshold_range")
+@state.change("threshold_range")
 def update_filter(threshold_range, **kwargs):
     filter_mapper.SetScalarRange(
         threshold_range
@@ -203,14 +203,14 @@ def update_filter(threshold_range, **kwargs):
     html_view.update()
 
 
-@change("mesh_status")
+@state.change("mesh_status")
 def update_mesh_representations():
     # defaults
     color = [1, 1, 1]
     representation = 2
     opacity = 1
 
-    if get_state("mesh_status")[0] == 2:
+    if state.mesh_status == 2:
         color = [0.3, 0.3, 0.3]
         representation = 1
         opacity = 0.2
@@ -223,10 +223,14 @@ def update_mesh_representations():
 
 
 def reset():
-    update_state("nodes_file", None)
-    update_state("elems_file", None)
-    update_state("field_file", None)
-    update_state("mesh_status", 0)
+    state.update(
+        {
+            "nodes_file": None,
+            "elems_file": None,
+            "field_file": None,
+            "mesh_status": 0,
+        }
+    )
 
 
 # -----------------------------------------------------------------------------
@@ -326,10 +330,10 @@ if args.data:
 
     vtk_array = vtu.GetCellData().GetScalars()
     full_min, full_max = vtk_array.GetRange()
-    update_state("full_min", full_min)
-    update_state("full_max", full_max)
-    update_state("threshold_range", [full_min, full_max])
-    update_state("mesh_status", 2)
+    state.full_min = full_min
+    state.full_max = full_max
+    state.threshold_range = [full_min, full_max]
+    state.mesh_status = 2
     update_mesh_representations()
 
 # -----------------------------------------------------------------------------

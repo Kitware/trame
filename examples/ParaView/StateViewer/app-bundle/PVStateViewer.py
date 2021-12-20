@@ -10,7 +10,6 @@ from paraview.web import venv  # Available in PV 5.10-RC2+
 
 import os
 import webview
-import trame as tr
 from trame.html import vuetify, paraview, VTKLoading
 from trame.layouts import SinglePage
 

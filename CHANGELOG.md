@@ -1,3 +1,10 @@
+# [1.11.0](https://github.com/kitware/trame/compare/v1.10.4...v1.11.0) (2021-12-25)
+
+
+### Features
+
+* **plotly:** Expose plotly component from pywebvue==2.6 ([a42bd22](https://github.com/kitware/trame/commit/a42bd22e03893cb82cc0c24f9284ff69feeb6fea))
+
 ## [1.10.4](https://github.com/kitware/trame/compare/v1.10.3...v1.10.4) (2021-12-20)
 
 

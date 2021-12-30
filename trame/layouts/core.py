@@ -1,7 +1,8 @@
 import asyncio
 import os
+from contextlib import contextmanager
 from pywebvue.utils import read_file_as_base64_url
-from trame.html import Span, vuetify, Triggers
+from trame.html import AbstractElement, Span, vuetify, Triggers
 
 import pywebvue
 import trame as tr
@@ -87,6 +88,17 @@ class AbstractLayout:
         if self.favicon:
             _app.favicon = self.favicon
 
+        # Evaluate html for added routes
+        for route in _app.routes:
+            component = route.get("component", None)
+            if component is None:
+                continue
+            template = component.get("template", None)
+            if template is None:
+                continue
+            if isinstance(template, AbstractElement):
+                route["component"]["template"] = template.html
+
     def start(self, port=None, debug=False):
         """
         Start the application server.
@@ -164,6 +176,27 @@ class AbstractLayout:
         tri.validate_key_names()
 
         _app.run_server(port=0)
+
+    def add_route(self, name, path, template):
+        _app = tri.get_app_instance()
+        # TODO: Check if route already exists?
+        _app.routes.append(
+            {
+                "name": name,
+                "path": path,
+                "component": {
+                    "template": template,
+                },
+            }
+        )
+
+    @contextmanager
+    def with_route(self, name, path, root):
+        try:
+            with root:
+                yield
+        finally:
+            self.add_route(name, path, root)
 
 
 class FullScreenPage(AbstractLayout):

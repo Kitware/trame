@@ -1,3 +1,10 @@
+# [1.12.0](https://github.com/kitware/trame/compare/v1.11.0...v1.12.0) (2022-01-03)
+
+
+### Features
+
+* **matplotlib:** Add support for matplotlib figure ([dac282a](https://github.com/kitware/trame/commit/dac282a2e884bcdfe92a5219e300972acbce94e7))
+
 # [1.11.0](https://github.com/kitware/trame/compare/v1.10.4...v1.11.0) (2021-12-25)
 
 

@@ -161,7 +161,7 @@ with layout.toolbar:
 # Why does this work
 vega_component = vega.VegaEmbed(name="myChart", style="width: 100%;")
 with layout.content:
-    vuetify.VContainer(vega_component, classes="text-center")
+    vuetify.VContainer(vega_component, fluid=True, classes="text-center")
 
 # -----------------------------------------------------------------------------
 # Start server

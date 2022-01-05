@@ -32,7 +32,7 @@ class Figure(AbstractElement):
         self._attributes["spec"] = f':spec="{_name}"'
         if figure is not None:
             self.update(figure)
-        elif not state[self._key]:
+        else:
             # Make sure we create a state entry
             state[self._key] = None
 

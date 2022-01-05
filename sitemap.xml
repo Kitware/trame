@@ -20,33 +20,6 @@
   </url>
   
   <url>
-    <loc>https://kitware.github.io/trame/docs/tutorial-vtk.html</loc>
-    
-    <lastmod>2022-01-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/tutorial.html</loc>
-    
-    <lastmod>2022-01-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/vuetify-decoder.html</loc>
-    
-    <lastmod>2022-01-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://kitware.github.io/trame/docs/api.html</loc>
     
     <lastmod>2022-01-05</lastmod>
@@ -264,6 +237,33 @@
   
   <url>
     <loc>https://kitware.github.io/trame/docs/tutorial-setup-vtk.html</loc>
+    
+    <lastmod>2022-01-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/tutorial-vtk.html</loc>
+    
+    <lastmod>2022-01-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/tutorial.html</loc>
+    
+    <lastmod>2022-01-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/vuetify-decoder.html</loc>
     
     <lastmod>2022-01-05</lastmod>
     

@@ -142,11 +142,11 @@ example_charts = [
     {"text": "StreamGraph", "value": "StreamGraph"},
 ]
 
-layout = SinglePage("Altair Plotting Demo", on_ready=update_chart)
-layout.title.set_text("Altair Chart examples")
+layout = SinglePage("Altair charts", on_ready=update_chart)
+layout.title.set_text("trame ❤️ altair charts")
 
 # Overwrite icon
-layout.toolbar.children[0] = vuetify.VIcon("mdi-chart-donut-variant", classes="mr-2")
+# layout.toolbar.children[0] = vuetify.VIcon("mdi-chart-donut-variant", classes="mr-2")
 
 with layout.toolbar:
     vuetify.VSpacer()
@@ -155,7 +155,6 @@ with layout.toolbar:
         items=("examples", example_charts),
         dense=True,
         hide_details=True,
-        style="max-width: 240px;",
     )
 
 

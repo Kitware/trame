@@ -57,7 +57,8 @@ PLOTS = {
 
 
 html_plot = None
-layout = SinglePage("Plotly demo")
+layout = SinglePage("Plotly")
+layout.title.set_text("trame ❤️ plotly")
 
 with layout.toolbar:
     vuetify.VSpacer()
@@ -69,8 +70,11 @@ with layout.toolbar:
     )
 
 with layout.content:
-    with vuetify.VContainer(classes="fluid fill-height"):
-        html_plot = plotly.Plotly("demo", display_mode_bar=True)
+    with vuetify.VContainer(fluid=True):
+        with vuetify.VRow(dense=True):
+            vuetify.VSpacer()
+            html_plot = plotly.Plotly("demo", display_mode_bar=True)
+            vuetify.VSpacer()
 
 
 @state.change("active_plot")

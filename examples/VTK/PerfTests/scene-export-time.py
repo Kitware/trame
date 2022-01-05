@@ -49,15 +49,15 @@ actor.GetProperty().SetEdgeColor(1, 1, 1)
 
 # -----------------------------------------------------------------------------
 
+
 @state.change("resolution")
 def update_resolution(resolution=DEFAULT_RESOLUTION, **kwargs):
     source.SetWholeExtent(
-        -resolution, resolution,
-        -resolution, resolution,
-        -resolution, resolution
+        -resolution, resolution, -resolution, resolution, -resolution, resolution
     )
     html_view.reset_camera()
     html_view.update()
+
 
 # -----------------------------------------------------------------------------
 # GUI
@@ -83,10 +83,7 @@ with layout.toolbar as tb:
         dense=True,
         style="max-width: 300px",
     )
-    vuetify.VBtn(
-        "Update",
-        click=html_view.update
-    )
+    vuetify.VBtn("Update", click=html_view.update)
 
 with layout.content:
     vuetify.VContainer(

@@ -1,3 +1,10 @@
+## [1.12.1](https://github.com/kitware/trame/compare/v1.12.0...v1.12.1) (2022-01-05)
+
+
+### Bug Fixes
+
+* **matplotlib:** Fix Figure() constructor ([9668e44](https://github.com/kitware/trame/commit/9668e44cb71a5d87fcec95d38dbb3c27d7218d1c))
+
 # [1.12.0](https://github.com/kitware/trame/compare/v1.11.0...v1.12.0) (2022-01-03)
 
 

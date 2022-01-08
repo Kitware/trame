@@ -36,9 +36,9 @@ Let's pretend we want to monitor the value of `slider_value` within our Python a
 The code below illustate how we can annotate a function so it can be called when a value of our shared state is modified.
 
 ```python
-from trame import change
+from trame import state
 
-@change("slider_value")
+@state.change("slider_value")
 def slider_value_change(slider_value, **kwargs):
   print(f"Slider is changing slider_value to {slider_value}")
 ```
@@ -51,32 +51,28 @@ Within our Python application it is possible that we would like to read and even
 The code below provides a function that will read the current value and update its content.
 
 ```python
-from trame import update_state, get_state
+from trame import state
 
 def random_update():
-  current_value, = get_state("slider_value") # read a set of variables
-
-  current_value += 1
-  if current_value > 15:
-    current_value = 2
-
-  update_state("slider_value", current_value) # update variable with new content
+  state.slider_value += 1
+  if state.slider_value > 15:
+    state.slider_value = 2
 ```
 
 ### Forcing state exchange
 
-Sometimes, the variable inside your shared state is an actual object with nested structure. While the state on the Python side always keeps the same reference to that object, you are manually editing its content and you want to flush its content so the client can see your changes. In that use case we have a `flush_state()` method that can be called with the list of variable names that should be pushed. This is also useful in some async contexts to control when pieces of the state should be pushed to the other side. The code below provides a usage example.
+Sometimes, the variable inside your shared state is an actual object with nested structure. While the state on the Python side always keeps the same reference to that object, you are manually editing its content and you want to flush its content so the client can see your changes. In that use case we have a `flush()` method that can be called with the list of variable names that should be pushed. This is also useful in some async contexts to control when pieces of the state should be pushed to the other side. The code below provides a usage example.
 
 ```python
 import asyncio
-from trame import flush_state, update_state
+from trame import state
 import time
 
 async def update_time():
   while True:
     await asyncio.sleep(1)
-    update_state("time", time.time())
-    flush_state("time")
+    state.time = time.time()
+    state.flush("time")
 ```
 
 ## Method calls
@@ -89,16 +85,14 @@ The example below re-uses the function we had defined before but now we bind it 
 
 ```python
 from trame.html import vuetify
-from trame import update_state, get_state
+from trame import state
 
 def random_update():
-  current_value, = get_state("slider_value") # read a set of variables
+  state.slider_value += 1
 
-  current_value += 1
-  if current_value > 15:
-    current_value = 2
+  if state.slider_value > 15:
+    state.slider_value = 2
 
-  update_state("slider_value", current_value) # update variable with new content
 
 change_btn = vuetify.VBtn(
   "Change slider_value",
@@ -144,10 +138,10 @@ Below are various ways that you can translate what you see on a Vue component in
 vuetify.VBtn(outlined=True)
 
 # Bind method to event
-# <v-btn @click="doSomething">
-def doSomething():
+# <v-btn @click="do_something">
+def do_something():
   pass
-vuetify.VBtn(click=doSomething)
+vuetify.VBtn(click=do_something)
 
 # Dash handling (v-model => v_model)
 # <v-slider v-model="slider_value" min="0" max="100" />
@@ -174,26 +168,23 @@ print(args.data)
 
 ## Starting the application
 
-trame provides a `start()` function which will actually start your application.
+trame layouts provides a `start()` method which will actually start your application.
 Usually we put the following section in your main script.
 
 ```python
 if __name__ == "__main__":
-    start(layout)
+    layout.start())
 ```
 
 The full API is listed below
 
 ```python
-def start(layout=None, name=None, favicon=None, on_ready=None, port=None):
+def start(name=None, favicon=None, on_ready=None, port=None):
     """
     Start web server for serving your application
 
     Parameters
     ----------
-    layout  : None or str or trame.layouts.*
-        UI content that should be used for your application.
-        If None a ./template.html will be used as content.
     name    : None or str
         "Title" that you can see in your tab browser.
         This will be filled automatically if a trame.layouts.* layout was provided.

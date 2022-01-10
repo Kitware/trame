@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 from trame import state, controller as ctrl
 from trame.layouts import SinglePage
-from trame.html import vuetify, matplotlib
+from trame.html import vuetify, observer, matplotlib
 
 
 # -----------------------------------------------------------------------------
@@ -12,8 +12,22 @@ from trame.html import vuetify, matplotlib
 # -----------------------------------------------------------------------------
 
 
+def figure_size():
+    if state.figure_size is None:
+        return {}
+
+    dpi = state.figure_size.get("dpi")
+    rect = state.figure_size.get("size")
+    w_inch = rect.get("width") / dpi
+    h_inch = (rect.get("height") - 10) / dpi
+    return {
+        "figsize": (w_inch, h_inch),
+        "dpi": dpi,
+    }
+
+
 def FirstDemo():
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(**figure_size())
     np.random.seed(0)
     ax.plot(
         np.random.normal(size=100), np.random.normal(size=100), "or", ms=10, alpha=0.3
@@ -34,7 +48,7 @@ def FirstDemo():
 
 
 def MultiLines():
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(**figure_size())
     x = np.linspace(0, 10, 1000)
     for offset in np.linspace(0, 3, 7):
         ax.plot(x, 0.9 * np.sin(x - offset), lw=5, alpha=0.4)
@@ -49,7 +63,7 @@ def MultiLines():
 
 
 def DotsandPoints():
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(**figure_size())
     ax.plot(
         np.random.rand(20),
         "-o",
@@ -80,7 +94,7 @@ def MovingWindowAverage():
     kernel = np.ones(25) / 25.0
     x_smooth = np.convolve(x + dx, kernel, mode="same")
 
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(**figure_size())
     ax.plot(t, x + dx, linestyle="", marker="o", color="black", markersize=3, alpha=0.3)
     ax.plot(t, x_smooth, "-k", lw=3)
     ax.plot(t, x, "--k", lw=3, color="blue")
@@ -92,7 +106,7 @@ def MovingWindowAverage():
 
 
 def Subplots():
-    fig = plt.figure(figsize=(8, 6))
+    fig = plt.figure(**figure_size())
     fig.subplots_adjust(hspace=0.3)
 
     np.random.seed(0)
@@ -112,7 +126,7 @@ def Subplots():
 # -----------------------------------------------------------------------------
 
 
-@state.change("active_figure")
+@state.change("active_figure", "figure_size")
 def update_chart(active_figure, **kwargs):
     ctrl.update_figure(globals()[active_figure]())
 
@@ -143,12 +157,11 @@ with layout.toolbar:
     )
 
 with layout.content:
-    with vuetify.VContainer(fluid=True):
-        with vuetify.VRow(dense=True):
-            vuetify.VSpacer()
+    # __properties=[("v_resize", "v-resize:quiet")]
+    with vuetify.VContainer(fluid=True, classes="fill-height pa-0 ma-0"):
+        with observer.SizeObserver("figure_size"):
             html_figure = matplotlib.Figure("figure_0")
             ctrl.update_figure = html_figure.update
-            vuetify.VSpacer()
 
 # -----------------------------------------------------------------------------
 # Main

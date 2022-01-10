@@ -1,3 +1,10 @@
+## [1.12.2](https://github.com/kitware/trame/compare/v1.12.1...v1.12.2) (2022-01-10)
+
+
+### Bug Fixes
+
+* **observer:** add size observer ([09c0d4e](https://github.com/kitware/trame/commit/09c0d4e6795cbe0b6d4d0bc90c6bcc4faee64a5f))
+
 ## [1.12.1](https://github.com/kitware/trame/compare/v1.12.0...v1.12.1) (2022-01-05)
 
 

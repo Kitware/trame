@@ -119,7 +119,7 @@ class AbstractLayout:
                 tri.compose_callbacks(self.on_ready, on_server_listening)
             )
         else:
-            _app.on_ready = compose_callbacks(self.on_ready, on_server_listening)
+            _app.on_ready = tri.compose_callbacks(self.on_ready, on_server_listening)
 
         # Dev validation
         tri.validate_key_names()
@@ -159,7 +159,7 @@ class AbstractLayout:
             )
             client_process.start()
 
-        _app.on_ready = compose_callbacks(self.on_ready, start_client)
+        _app.on_ready = tri.compose_callbacks(self.on_ready, start_client)
 
         # Dev validation
         tri.validate_key_names()

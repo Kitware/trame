@@ -1,3 +1,10 @@
+## [1.12.3](https://github.com/kitware/trame/compare/v1.12.2...v1.12.3) (2022-01-10)
+
+
+### Bug Fixes
+
+* **on_ready:** Fix invalid call ([9d07c9a](https://github.com/kitware/trame/commit/9d07c9ab06d724f2478fe4f8e457113f67c39be8))
+
 ## [1.12.2](https://github.com/kitware/trame/compare/v1.12.1...v1.12.2) (2022-01-10)
 
 

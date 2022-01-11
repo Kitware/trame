@@ -3,6 +3,7 @@ docs:
     overview: index.html
     start: getting_started.html
     api: api.html
+    cheatsheet: cheatsheet.html
   tutorial:
     t_overview: tutorial.html
     t_download: tutorial-download.html

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>trame</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://kitware.github.io/trame/docs/cheatsheet.html">
+  <!-- Alternative links -->
+  
+    
+      <link rel="alternative" hreflang="en" href="https://kitware.github.io/trame/docs/cheatsheet.html">
+    
+  
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/trame/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/trame/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/trame/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/trame/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/trame/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/trame/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/trame/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/trame/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/trame/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/trame/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/trame/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/trame/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/trame/icon/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/trame/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  
+<link rel="stylesheet" href="/trame/css/navy.css">
+
+  <!-- endbuild -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/trame/atom.xml" title="trame" type="application/atom+xml">
+  <!-- Open Graph -->
+  <meta name="description" content="CheatsheetThe working application below manage to capture the fundamentals of trame in less than 45 lines.In that sense, it could be seen as a cheatsheet on how to use trame as it is mostly self expla">
+<meta property="og:type" content="website">
+<meta property="og:title" content="trame">
+<meta property="og:url" content="https://kitware.github.io/trame/docs/cheatsheet.html">
+<meta property="og:site_name" content="trame">
+<meta property="og:description" content="CheatsheetThe working application below manage to capture the fundamentals of trame in less than 45 lines.In that sense, it could be seen as a cheatsheet on how to use trame as it is mostly self expla">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://kitware.github.io/trame/images/trame-cheatsheet-app.jpg">
+<meta property="og:image" content="https://kitware.github.io/trame/images/trame-cheatsheet-output.jpg">
+<meta property="article:published_time" content="2022-01-11T20:19:21.697Z">
+<meta property="article:modified_time" content="2022-01-11T20:19:21.697Z">
+<meta property="article:author" content="Kitware Inc.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://kitware.github.io/trame/images/trame-cheatsheet-app.jpg">
+  <!-- Google Analytics -->
+  
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-H4W9XHTJ7X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-H4W9XHTJ7X');
+</script>
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/trame/" id="logo">trame</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="/trame/" class="main-nav-link">trame</a><a href="/trame/docs/" class="main-nav-link">Documentation</a><a target="_blank" rel="noopener" href="https://github.com/Kitware/trame/discussions" class="main-nav-link">Discussions</a><a target="_blank" rel="noopener" href="https://github.com/Kitware/trame/issues" class="main-nav-link">Issues</a><a target="_blank" rel="noopener" href="https://www.kitware.com/contact-us/" class="main-nav-link">Contact Us</a>
+      <a target="_blank" rel="noopener" href="https://github.com/kitware/trame" class="main-nav-link"><i class="fa fa-github-alt"></i></a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <input type="search" id="search-input" placeholder="Search...">
+      </div>
+    </nav>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div id="content" class="wrapper">
+    <div id="content-inner">
+      <article class="article-container" itemscope itemtype="http://schema.org/Article">
+        <div class="article-inner">
+          <div class="article">
+            <div class="inner">
+              <header class="article-header">
+                <h1 class="article-title" itemprop="name"></h1>
+              </header>
+              <div class="article-content" itemprop="articleBody">
+                <h1 id="Cheatsheet" class="article-heading"><a href="#Cheatsheet" class="headerlink" title="Cheatsheet"></a>Cheatsheet<a class="article-anchor" href="#Cheatsheet" aria-hidden="true"></a></h1><p>The working application below manage to capture the fundamentals of <strong>trame</strong> in less than 45 lines.<br>In that sense, it could be seen as a cheatsheet on how to use <strong>trame</strong> as it is mostly self explanatory.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> trame <span class="keyword">import</span> state, controller <span class="keyword">as</span> ctrl <span class="comment"># state + controller</span></span><br><span class="line"><span class="keyword">from</span> trame.layouts <span class="keyword">import</span> SinglePage        <span class="comment"># UI layout</span></span><br><span class="line"><span class="keyword">from</span> trame.html <span class="keyword">import</span> vuetify, vtk         <span class="comment"># UI components</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Reset resolution variable to 6</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">reset_resolution</span>():</span>          </span><br><span class="line">    state.resolution = <span class="number">6</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># When resolution change, execute fn</span></span><br><span class="line"><span class="meta">@state.change(<span class="params"><span class="string">&quot;resolution&quot;</span></span>)      </span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">resolution_change</span>(<span class="params">resolution, **kwargs</span>):</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Slider updating resolution to <span class="subst">&#123;resolution&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Initialize application layout/ui</span></span><br><span class="line">layout = SinglePage(<span class="string">&quot;VTK.js&quot;</span>)    </span><br><span class="line"></span><br><span class="line"><span class="comment"># Toolbar customization (add-on)</span></span><br><span class="line"><span class="keyword">with</span> layout.toolbar <span class="keyword">as</span> toolbar:  </span><br><span class="line">    toolbar.dense = <span class="literal">True</span>            <span class="comment"># Update toolbar attribute</span></span><br><span class="line">    vuetify.VSpacer()               <span class="comment"># Push things to the right</span></span><br><span class="line">    vuetify.VSlider(                <span class="comment"># Add slider</span></span><br><span class="line">        v_model=(<span class="string">&quot;resolution&quot;</span>, <span class="number">6</span>),     <span class="comment"># bind variable with an initial value of 6</span></span><br><span class="line">        <span class="built_in">min</span>=<span class="number">3</span>, <span class="built_in">max</span>=<span class="number">60</span>,                 <span class="comment"># slider range</span></span><br><span class="line">        dense=<span class="literal">True</span>, hide_details=<span class="literal">True</span>, <span class="comment"># presentation setup</span></span><br><span class="line">    )</span><br><span class="line">    <span class="comment"># Bind methods to 2 icon buttons</span></span><br><span class="line">    <span class="keyword">with</span> vuetify.VBtn(icon=<span class="literal">True</span>, click=ctrl.reset_camera):</span><br><span class="line">        vuetify.VIcon(<span class="string">&quot;mdi-crop-free&quot;</span>)</span><br><span class="line">    <span class="keyword">with</span> vuetify.VBtn(icon=<span class="literal">True</span>, click=reset_resolution):</span><br><span class="line">        vuetify.VIcon(<span class="string">&quot;mdi-undo&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Content setup</span></span><br><span class="line"><span class="keyword">with</span> layout.content:             </span><br><span class="line">    <span class="keyword">with</span> vuetify.VContainer(fluid=<span class="literal">True</span>, classes=<span class="string">&quot;pa-0 fill-height&quot;</span>):</span><br><span class="line">        <span class="keyword">with</span> vtk.VtkView() <span class="keyword">as</span> vtk_view:               <span class="comment"># vtk.js view for local rendering</span></span><br><span class="line">            ctrl.reset_camera = vtk_view.reset_camera <span class="comment"># Bind method to controller</span></span><br><span class="line">            <span class="keyword">with</span> vtk.VtkGeometryRepresentation():     <span class="comment"># Add representation to vtk.js view</span></span><br><span class="line">                vtk.VtkAlgorithm(                     <span class="comment"># Add ConeSource to representation</span></span><br><span class="line">                    vtkClass=<span class="string">&quot;vtkConeSource&quot;</span>,           <span class="comment"># Set attribute value with no JS eval</span></span><br><span class="line">                    state=(<span class="string">&quot;&#123; resolution &#125;&quot;</span>,)           <span class="comment"># Set attribute value with JS eval</span></span><br><span class="line">                )</span><br><span class="line"></span><br><span class="line"><span class="comment"># Start application</span></span><br><span class="line">layout.start()               </span><br></pre></td></tr></table></figure>
+
+<h2 id="Result" class="article-heading"><a href="#Result" class="headerlink" title="Result"></a>Result<a class="article-anchor" href="#Result" aria-hidden="true"></a></h2><p style="text-align:center;display: flex;align-items: center;">
+    <img src="/trame/images/trame-cheatsheet-app.jpg" alt="Application" style="width: 45%; height: 45%">
+    <img src="/trame/images/trame-cheatsheet-output.jpg" alt="Output" style="width: 45%; height: 45%">
+</p>
+
+<h2 id="Things-to-understand" class="article-heading"><a href="#Things-to-understand" class="headerlink" title="Things to understand"></a>Things to understand<a class="article-anchor" href="#Things-to-understand" aria-hidden="true"></a></h2><h3 id="State" class="article-heading"><a href="#State" class="headerlink" title="State"></a>State<a class="article-anchor" href="#State" aria-hidden="true"></a></h3><p>Read variable from shared state</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">value = state.var_name</span><br><span class="line">value = state[<span class="string">&quot;var_name&quot;</span>]</span><br></pre></td></tr></table></figure>
+
+<p>Write variable to the shared state</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">state.var_name = value</span><br><span class="line">state[<span class="string">&quot;var_name&quot;</span>] = value</span><br></pre></td></tr></table></figure>
+
+<p>Write several variables at once in the shared state</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">state.update(&#123;</span><br><span class="line">    <span class="string">&quot;var_name&quot;</span>: value,</span><br><span class="line">    <span class="string">&quot;var_name_2&quot;</span>: value,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>Bind a method/function to a state variable change</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">@state.change(<span class="params"><span class="string">&quot;var_name&quot;</span></span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">change_detected</span>(<span class="params">var_name, **kwargs</span>):</span></span><br><span class="line">    <span class="comment"># Called with full state as kwargs when &quot;var_name&quot;</span></span><br><span class="line">    <span class="comment"># gets modified regardless if it is coming from Python or UI</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;New var_name value is <span class="subst">&#123;var_name&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@state.change(<span class="params"><span class="string">&quot;var_name&quot;</span>, <span class="string">&quot;var_name_1&quot;</span></span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">change_detected</span>(<span class="params">**kwargs</span>):</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Either var_name or var_name_1 is modified&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>Initialise a variable from the UI definition with an initial value.<br>Use a tuple to define the value of a given attribute where the first entry is a string with the variable name and the second entry is its initial value.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">vuetify.VTextField(v_model=(<span class="string">&quot;var_name&quot;</span>, <span class="string">&quot;initial value&quot;</span>))</span><br><span class="line">vuetify.VSlider(v_model=(<span class="string">&quot;resolution&quot;</span>, <span class="number">6</span>), <span class="built_in">min</span>=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<p>Provide a JavaScript expression as attribute. We still provide a tuple but with no initial value.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">vuetify.VTextField(value=(<span class="string">&quot;&#x27;Hello&#x27; + var_name&quot;</span>, ))</span><br></pre></td></tr></table></figure>
+
+<h3 id="Method-binding" class="article-heading"><a href="#Method-binding" class="headerlink" title="Method binding"></a>Method binding<a class="article-anchor" href="#Method-binding" aria-hidden="true"></a></h3><p>Method can be passed to events attribute of your UI elements. By default, the function will be called with no arguments.</p>
+<p>If you want to control its arguments you can use a tuple where the second entry represents the <strong>args</strong> and the third represents the <strong>kwargs</strong>. If you only want to provide args without kwargs, just provide a tuple with 2 entries. <strong>$event</strong> is a reserved name to reprensent the event object.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">vuetify.VBtn(<span class="string">&quot;Click me&quot;</span>, click=ctrl.do_something))</span><br><span class="line">vuetify.VBtn(<span class="string">&quot;Click me&quot;</span>, click=(ctrl.do_something, <span class="string">&quot;[&#x27;hello&#x27;, $event]&quot;</span>))</span><br><span class="line">vuetify.VBtn(<span class="string">&quot;Click me&quot;</span>, click=(ctrl.do_something, <span class="string">&quot;[index, $event]&quot;</span>, <span class="string">&quot;&#123; a: 12 &#125;&quot;</span>))</span><br></pre></td></tr></table></figure>
+
+<h3 id="Controller" class="article-heading"><a href="#Controller" class="headerlink" title="Controller"></a>Controller<a class="article-anchor" href="#Controller" aria-hidden="true"></a></h3><p>The controller from trame is just a dynamic container for methods or functions that can be get or set in either order.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">vuetify.VBtn(<span class="string">&quot;Click me&quot;</span>, click=ctrl.do_something)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fn</span>():</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">ctrl.do_something = fn</span><br></pre></td></tr></table></figure>
+
+<h2 id="Conclusion" class="article-heading"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion<a class="article-anchor" href="#Conclusion" aria-hidden="true"></a></h2><p>The remaining part to learn is all the components available for displaying other 3D graphics, charts, maps and more. But right now you’ve learn the fundamentals on how trame works which should let you build your application simply. For more details, please refer to the <a href="https://kitware.github.io/trame/docs/tutorial.html">tutorial</a> or <a target="_blank" rel="noopener" href="https://trame.readthedocs.io/en/latest/index.html">API</a>.</p>
+<p>Trame is a powerful framework for building any kind of application in plain Python. From prototypes to professional applications, trame offers an innovative approach for “write once and run anywhere” by allowing your app to migrate from your desktop to a cloud service.</p>
+
+              </div>
+              <footer class="article-footer">
+                <time class="article-footer-updated" datetime="2022-01-11T20:19:21.697Z" itemprop="dateModified">Last updated: 2022-01-11</time>
+                <a href="api.html" class="article-footer-prev" title="API"><i class="fa fa-chevron-left"></i><span>Prev</span></a><a href="tutorial.html" class="article-footer-next" title="Overview"><span>Next</span><i class="fa fa-chevron-right"></i></a>
+              </footer>
+              
+            </div>
+          </div>
+          <aside id="article-toc" role="navigation">
+            <div id="article-toc-inner">
+              <strong class="sidebar-title">Contents</strong>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Cheatsheet"><span class="toc-text">Cheatsheet</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Result"><span class="toc-text">Result</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Things-to-understand"><span class="toc-text">Things to understand</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#State"><span class="toc-text">State</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Method-binding"><span class="toc-text">Method binding</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Controller"><span class="toc-text">Controller</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-text">Conclusion</span></a></li></ol></li></ol>
+              <a href="#" id="article-toc-top">Back to Top</a>
+            </div>
+          </aside>
+        </div>
+      </article>
+      <aside id="sidebar" role="navigation">
+  <div class="inner"><strong class="sidebar-title">Getting Started</strong><a href="index.html" class="sidebar-link">Introduction</a><a href="getting_started.html" class="sidebar-link">How to start</a><a href="api.html" class="sidebar-link">API</a><a href="cheatsheet.html" class="sidebar-link current">Cheatsheet</a><strong class="sidebar-title">Tutorial</strong><a href="tutorial.html" class="sidebar-link">Overview</a><a href="tutorial-download.html" class="sidebar-link">Download</a><a href="tutorial-setup-vtk.html" class="sidebar-link">Setup for VTK</a><a href="tutorial-vtk.html" class="sidebar-link">VTK</a><a href="tutorial-layouts.html" class="sidebar-link">Layouts</a><a href="tutorial-html.html" class="sidebar-link">HTML</a><a href="tutorial-application.html" class="sidebar-link">Application</a><a href="tutorial-paraview.html" class="sidebar-link">ParaView</a><strong class="sidebar-title">Html Modules</strong><a href="module-vuetify.html" class="sidebar-link">vuetify</a><a href="module-vega.html" class="sidebar-link">vega</a><a href="module-markdown.html" class="sidebar-link">markdown</a><a href="module-widgets.html" class="sidebar-link">widgets</a><a href="module-vtk.html" class="sidebar-link">vtk</a><a href="module-paraview.html" class="sidebar-link">paraview</a><a href="module-deckgl.html" class="sidebar-link">deckgl</a><strong class="sidebar-title">How do I...</strong><a href="howdoi-static.html" class="sidebar-link">Display static content</a><a href="howdoi-dynamic.html" class="sidebar-link">Display dynamic content</a><a href="howdoi-interactive.html" class="sidebar-link">Display interactive UI</a><a href="howdoi-table.html" class="sidebar-link">Display a dataframe</a><a href="howdoi-upload.html" class="sidebar-link">Upload a file</a><a href="howdoi-download.html" class="sidebar-link">Download a file</a><a href="howdoi-cli.html" class="sidebar-link">Use CLI arguments</a></div>
+</aside>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2022 <a href="https://www.kitware.com/" target="_blank">Kitware Inc.</a>
+    </div>
+
+    <div id="footer-links">
+      <a href="https://github.com/kitware/trame" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+    </div>
+  </div>
+  <style>
+    @media print {
+      body { margin: 1.6cm; }
+    
+      aside {display: None;}
+    
+      footer {display: None;}
+    
+      nav {display: None;}
+    
+      div.print-break { page-break-before: always;}
+    	
+      h1 > a {display: None;}
+      h2 > a {display: None;}
+      h3 > a {display: None;}
+      h4 > a {display: None;}
+      h5 > a {display: None;}
+      h6 > a {display: None;}
+
+      a:empty {font-size: 0px;}
+    }
+
+  </style>
+  <!--
+    <a
+      style="position: fixed; background: #00529b; color: white; top: 0; right: 0; height: 70px"
+      target="_blank" rel="noopener" href="https://www.kitware.com/careers"
+    >
+      <div style="position: relative; text-align: center;">
+        <div
+          style="margin-top: 5px; background: url(https://www.cmake.org/wp-content/uploads/2018/09/jobs_icon.png) no-repeat; background-size: 100%; width: 50px; height: 40px; margin: 5px auto 0;"
+        ></div>
+        <span style="padding: 5px 10px">Kitware is Hiring</span>
+      </div>
+    </a>
+  -->
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="/trame/" class="mobile-nav-link">trame</a><a href="/trame/docs/" class="mobile-nav-link">Documentation</a><a target="_blank" rel="noopener" href="https://github.com/Kitware/trame/discussions" class="mobile-nav-link">Discussions</a><a target="_blank" rel="noopener" href="https://github.com/Kitware/trame/issues" class="mobile-nav-link">Issues</a><a target="_blank" rel="noopener" href="https://www.kitware.com/contact-us/" class="mobile-nav-link">Contact Us</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/kitware/trame" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+      <strong class="mobile-nav-title">Getting Started</strong><a href="index.html" class="mobile-nav-link">Introduction</a><a href="getting_started.html" class="mobile-nav-link">How to start</a><a href="api.html" class="mobile-nav-link">API</a><a href="cheatsheet.html" class="mobile-nav-link current">Cheatsheet</a><strong class="mobile-nav-title">Tutorial</strong><a href="tutorial.html" class="mobile-nav-link">Overview</a><a href="tutorial-download.html" class="mobile-nav-link">Download</a><a href="tutorial-setup-vtk.html" class="mobile-nav-link">Setup for VTK</a><a href="tutorial-vtk.html" class="mobile-nav-link">VTK</a><a href="tutorial-layouts.html" class="mobile-nav-link">Layouts</a><a href="tutorial-html.html" class="mobile-nav-link">HTML</a><a href="tutorial-application.html" class="mobile-nav-link">Application</a><a href="tutorial-paraview.html" class="mobile-nav-link">ParaView</a><strong class="mobile-nav-title">Html Modules</strong><a href="module-vuetify.html" class="mobile-nav-link">vuetify</a><a href="module-vega.html" class="mobile-nav-link">vega</a><a href="module-markdown.html" class="mobile-nav-link">markdown</a><a href="module-widgets.html" class="mobile-nav-link">widgets</a><a href="module-vtk.html" class="mobile-nav-link">vtk</a><a href="module-paraview.html" class="mobile-nav-link">paraview</a><a href="module-deckgl.html" class="mobile-nav-link">deckgl</a><strong class="mobile-nav-title">How do I...</strong><a href="howdoi-static.html" class="mobile-nav-link">Display static content</a><a href="howdoi-dynamic.html" class="mobile-nav-link">Display dynamic content</a><a href="howdoi-interactive.html" class="mobile-nav-link">Display interactive UI</a><a href="howdoi-table.html" class="mobile-nav-link">Display a dataframe</a><a href="howdoi-upload.html" class="mobile-nav-link">Upload a file</a><a href="howdoi-download.html" class="mobile-nav-link">Download a file</a><a href="howdoi-cli.html" class="mobile-nav-link">Use CLI arguments</a>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>English</span></span>
+    <select id="mobile-lang-select" data-canonical="docs/cheatsheet.html">
+      
+        <option value="en" selected>English</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+
+<script src="/trame/js/lang_select.js"></script>
+
+
+<script src="/trame/js/toc.js"></script>
+
+
+<script src="/trame/js/mobile_nav.js"></script>
+
+<!-- endbuild -->
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+
+
+</body>
+</html>

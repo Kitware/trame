@@ -1,3 +1,10 @@
+## [1.12.5](https://github.com/kitware/trame/compare/v1.12.4...v1.12.5) (2022-01-12)
+
+
+### Bug Fixes
+
+* **charts:** unify api across libraries ([a6892ce](https://github.com/kitware/trame/commit/a6892cecc56d578ccb4f263c8349d718af034e3d))
+
 ## [1.12.4](https://github.com/kitware/trame/compare/v1.12.3...v1.12.4) (2022-01-12)
 
 

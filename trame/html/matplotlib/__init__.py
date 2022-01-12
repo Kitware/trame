@@ -31,11 +31,16 @@ class Figure(AbstractElement):
         self._key = _name
         self._attributes["name"] = f'name="{_name}"'
         self._attributes["spec"] = f':spec="{_name}"'
+        self._figure = figure
         if figure is not None:
             self.update(figure)
         else:
             # Make sure we create a state entry
             state[self._key] = None
 
-    def update(self, figure):
-        state[self._key] = safe_serialization(mpld3.fig_to_dict(figure))
+    def update(self, figure=None):
+        if figure:
+            self._figure = figure
+
+        if self._figure:
+            state[self._key] = safe_serialization(mpld3.fig_to_dict(self._figure))

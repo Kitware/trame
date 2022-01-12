@@ -39,7 +39,7 @@ class Plotly(AbstractElement):
     Create a Plotly figure element
     """
 
-    def __init__(self, _name, **kwargs):
+    def __init__(self, _name, figure=None, **kwargs):
         super().__init__(
             "Plotly",
             data=(f"{_name}_figure.data",),
@@ -47,6 +47,7 @@ class Plotly(AbstractElement):
             **kwargs,
         )
         self.__figure_key = f"{_name}_figure"
+        self.__figure_data = figure
         state[self.__figure_key] = {"data": [], "layout": {}}
         self._attr_names += [
             "data",
@@ -67,6 +68,14 @@ class Plotly(AbstractElement):
             "responsive",
             ("double_click_delay", "doubleClickDelay"),
         ]
+        self.update()
 
-    def update(self, plotly_fig):
-        state[self.__figure_key] = safe_figure(plotly_fig.to_plotly_json())
+    def update(self, plotly_fig=None):
+        if plotly_fig:
+            self.__figure_data = plotly_fig
+
+        if self.__figure_data:
+            state[self.__figure_key] = safe_figure(self.__figure_data.to_plotly_json())
+
+class Figure(Plotly):
+    pass

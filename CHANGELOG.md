@@ -1,3 +1,10 @@
+## [1.12.4](https://github.com/kitware/trame/compare/v1.12.3...v1.12.4) (2022-01-12)
+
+
+### Bug Fixes
+
+* **numpy:** matplotlib serialization ([b613ed3](https://github.com/kitware/trame/commit/b613ed3df31e1bb39df6dd743b0df217202fd934))
+
 ## [1.12.3](https://github.com/kitware/trame/compare/v1.12.2...v1.12.3) (2022-01-10)
 
 

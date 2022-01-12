@@ -20,6 +20,15 @@
   </url>
   
   <url>
+    <loc>https://kitware.github.io/trame/docs/api.html</loc>
+    
+    <lastmod>2022-01-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://kitware.github.io/trame/docs/cheatsheet.html</loc>
     
     <lastmod>2022-01-12</lastmod>
@@ -264,15 +273,6 @@
   
   <url>
     <loc>https://kitware.github.io/trame/docs/vuetify-decoder.html</loc>
-    
-    <lastmod>2022-01-12</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/api.html</loc>
     
     <lastmod>2022-01-12</lastmod>
     

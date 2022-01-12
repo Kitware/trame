@@ -3,6 +3,7 @@ from trame import state
 
 from trame.html import AbstractElement
 from trame.internal.app import get_app_instance
+from trame.internal.utils.numpy import safe_serialization
 
 # Only available 2.7.0+
 from pywebvue.modules import Matplotlib as module
@@ -37,4 +38,4 @@ class Figure(AbstractElement):
             state[self._key] = None
 
     def update(self, figure):
-        state[self._key] = mpld3.fig_to_dict(figure)
+        state[self._key] = safe_serialization(mpld3.fig_to_dict(figure))

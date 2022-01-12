@@ -16,10 +16,12 @@ def figure_size():
     if state.figure_size is None:
         return {}
 
+    pixel_ratio = state.figure_size.get("pixelRatio")
     dpi = state.figure_size.get("dpi")
     rect = state.figure_size.get("size")
-    w_inch = rect.get("width") / dpi
-    h_inch = (rect.get("height") - 10) / dpi
+    w_inch = rect.get("width") / dpi / pixel_ratio
+    h_inch = rect.get("height") / dpi / pixel_ratio
+
     return {
         "figsize": (w_inch, h_inch),
         "dpi": dpi,
@@ -160,7 +162,7 @@ with layout.content:
     # __properties=[("v_resize", "v-resize:quiet")]
     with vuetify.VContainer(fluid=True, classes="fill-height pa-0 ma-0"):
         with observer.SizeObserver("figure_size"):
-            html_figure = matplotlib.Figure("figure_0")
+            html_figure = matplotlib.Figure("figure_0", style="position: absolute")
             ctrl.update_figure = html_figure.update
 
 # -----------------------------------------------------------------------------

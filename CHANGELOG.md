@@ -1,3 +1,10 @@
+## [1.12.6](https://github.com/kitware/trame/compare/v1.12.5...v1.12.6) (2022-01-16)
+
+
+### Bug Fixes
+
+* **plotly:** Expose events ([77124d8](https://github.com/kitware/trame/commit/77124d8a26edab13dd602357ee06563483e43142))
+
 ## [1.12.5](https://github.com/kitware/trame/compare/v1.12.4...v1.12.5) (2022-01-12)
 
 

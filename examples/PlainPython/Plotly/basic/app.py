@@ -55,6 +55,9 @@ PLOTS = {
     "Scatter": scatter,
 }
 
+def on_event(type, e):
+    print(type, e)
+
 
 html_plot = None
 layout = SinglePage("Plotly")
@@ -73,7 +76,14 @@ with layout.content:
     with vuetify.VContainer(fluid=True):
         with vuetify.VRow(dense=True):
             vuetify.VSpacer()
-            html_plot = plotly.Plotly("demo", display_mode_bar=True)
+            html_plot = plotly.Plotly(
+                "demo",
+                display_mode_bar=("true",),
+                selected=(on_event, "['selected', VuePlotly.safe($event)]"),
+                # hover=(on_event, "['hover', VuePlotly.safe($event)]"),
+                # selecting=(on_event, "['selecting', $event]"),
+                # unhover=(on_event, "['unhover', $event]"),
+            )
             vuetify.VSpacer()
 
 

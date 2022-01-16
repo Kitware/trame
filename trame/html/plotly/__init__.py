@@ -68,6 +68,35 @@ class Plotly(AbstractElement):
             "responsive",
             ("double_click_delay", "doubleClickDelay"),
         ]
+        self._event_names += [
+            ("after_export", "afterexport"),
+            ("after_plot", "afterplot"),
+            ("animated", "animated"),
+            ("animating_frame", "animatingframe"),
+            ("animation_interrupted", "animationinterrupted"),
+            ("auto_size", "autosize"),
+            ("before_export", "beforeexport"),
+            ("button_clicked", "buttonclicked"),
+            ("click", "click"),
+            ("click_annotation", "clickannotation"),
+            ("deselect", "deselect"),
+            ("double_click", "doubleclick"),
+            ("framework", "framework"),
+            ("hover", "hover"),
+            ("legend_click", "legendclick"),
+            ("legend_double_click", "legenddoubleclick"),
+            ("relayout", "relayout"),
+            ("restyle", "restyle"),
+            ("redraw", "redraw"),
+            ("selected", "selected"),
+            ("selecting", "selecting"),
+            ("slider_change", "sliderchange"),
+            ("slider_end", "sliderend"),
+            ("slider_start", "sliderstart"),
+            ("transitioning", "transitioning"),
+            ("transition_interrupted", "transitioninterrupted"),
+            ("unhover", "unhover"),
+        ]
         self.update()
 
     def update(self, plotly_fig=None):

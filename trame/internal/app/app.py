@@ -83,9 +83,16 @@ def create_app(name):
 
     # Default app initialization
     _app.trigger("js_error")(log_js_error)
-    _app.cli_parser.add_argument(
+
+    parser = _app.cli_parser
+    parser.add_argument(
         "--server",
         help="Prevent your browser from opening at startup",
+        action="store_true",
+    )
+    parser.add_argument(
+        "--dev",
+        help="Allow dynamically reloading the server",
         action="store_true",
     )
 

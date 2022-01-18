@@ -1,5 +1,5 @@
 from .app import activate_app, create_app, deactivate_app, get_app_instance
-from .dev import main
+from .dev import main, setup_dev
 from .server import port, start, stop
 from .state import (
     change, flush_state, get_state, is_dirty, is_dirty_all, State, update_state

@@ -126,6 +126,7 @@ def update_interactor(vtk_selection, **kwargs):
     if vtk_selection:
         print("+++ Switch to selection")
         rw_interactor.SetInteractorStyle(interactor_selection)
+        interactor_selection.StartSelect()
     else:
         print("+++ Switch to trackball")
         rw_interactor.SetInteractorStyle(interactor_trackball)

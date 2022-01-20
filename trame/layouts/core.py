@@ -80,15 +80,24 @@ class AbstractLayout:
         _app = tri.get_app_instance()
         _app.layout = self.html
 
-    def start(self, port=None, debug=False):
+    def start(self, port=None, debug=None):
         """
         Start the application server.
 
         :param port: Which port to run the server on
-        :param debug: Whether to enable debugging tools. Defaults to False.
-        :type debug: bool
+        :param debug: Whether to enable debugging tools. Defaults to
+                      None, in which case it is set to True if the --dev
+                      flag was passed as a command line argument.
+        :type debug: bool or None
         """
         _app = tri.get_app_instance()
+
+        if debug is None:
+            parser = _app.cli_parser
+            args, _unknown = parser.parse_known_args()
+            debug = args.dev
+
+        _app._debug = debug
 
         _app.name = self.name
         _app.layout = self.html

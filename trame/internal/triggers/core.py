@@ -19,15 +19,15 @@ def trigger_key(_fn):
     """
     # Return precomputed key
     global TRIGGER_MAP, NEXT_TRIGGER_ID
-    if _fn in TRIGGER_MAP:
-        return TRIGGER_MAP[_fn]
+    if _fn not in TRIGGER_MAP:
+        # Compute unique trigger key
+        NEXT_TRIGGER_ID += 1
+        TRIGGER_MAP[_fn] = f"trigger_{NEXT_TRIGGER_ID}"
 
-    # Compute unique trigger key
-    NEXT_TRIGGER_ID += 1
-    key = f"trigger_{NEXT_TRIGGER_ID}"
-    TRIGGER_MAP[_fn] = key
+    key = TRIGGER_MAP[_fn]
 
     # Register function trigger
+    # This happens every time in case a reload occurred
     _app = tri.get_app_instance()
     _app.trigger(key)(_fn)
 

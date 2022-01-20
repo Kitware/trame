@@ -1,3 +1,15 @@
+# [1.13.0](https://github.com/kitware/trame/compare/v1.12.6...v1.13.0) (2022-01-20)
+
+
+### Bug Fixes
+
+* **trigger_key:** register triggers every time ([a12ba29](https://github.com/kitware/trame/commit/a12ba291e1213554b10500e7db1e9d51ba1a597c))
+
+
+### Features
+
+* **setup_dev:** add setup_dev() function for reloading trame applications ([3ae003f](https://github.com/kitware/trame/commit/3ae003f032cc935d6e29670834933da5d493db6c))
+
 ## [1.12.6](https://github.com/kitware/trame/compare/v1.12.5...v1.12.6) (2022-01-16)
 
 

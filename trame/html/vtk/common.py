@@ -222,8 +222,12 @@ class VtkRemoteLocalView(AbstractElement):
             "interactive_ratio",
             "interactor_events",
             "interactor_settings",
+            ("box_selection", "boxSelection"),
         ]
         self._event_names += kwargs.get("interactor_events", [])
+        self._event_names += [
+            ("box_selection_change", "BoxSelection"),
+        ]
 
     def update_geometry(self):
         """
@@ -276,6 +280,9 @@ class VtkRemoteView(AbstractElement):
     ...     ['EndAnimation'],
     ...   ),
     ...   EndAnimation=end,       # Bind method to the enabled event
+    ...
+    ...   box_selection=True,     # toggle selection box rendering
+    ...   box_selection_change=fn # Bind method to get rect selection
     ... )
     """
 
@@ -299,8 +306,12 @@ class VtkRemoteView(AbstractElement):
             "interactive_quality",
             "interactive_ratio",
             "interactor_events",
+            ("box_selection", "boxSelection"),
         ]
         self._event_names += kwargs.get("interactor_events", [])
+        self._event_names += [
+            ("box_selection_change", "BoxSelection"),
+        ]
 
     def update(self):
         """
@@ -333,7 +344,10 @@ class VtkLocalView(AbstractElement):
     ...     "events",
     ...     ['EndAnimation'],
     ...    ),
-    ...    EndAnimation=end,       # Bind method to the enabled event
+    ...   EndAnimation=end,       # Bind method to the enabled event
+    ...
+    ...   box_selection=True,     # toggle selection box rendering
+    ...   box_selection_change=fn # Bind method to get rect selection
     ... )
     """
 
@@ -345,8 +359,16 @@ class VtkLocalView(AbstractElement):
         self._attributes["ref"] = f'ref="{ref}"'
         self._attributes["wsClient"] = ':wsClient="wsClient"'
         self._attributes["view_state"] = f':viewState="{self.__scene_id}"'
-        self._attr_names += ["interactor_events", "interactor_settings", "context_name"]
+        self._attr_names += [
+            "interactor_events",
+            "interactor_settings",
+            "context_name",
+            ("box_selection", "boxSelection"),
+        ]
         self._event_names += kwargs.get("interactor_events", [])
+        self._event_names += [
+            ("box_selection_change", "BoxSelection"),
+        ]
         self.update()
 
     def update(self):

@@ -162,6 +162,8 @@ def on_chart_selection(selected_point_idxs):
     # Update 3D view
     ctrl.update_view()
 
+def on_box_selection_change(selection):
+    print("on_box_selection_change", selection)
 
 # -----------------------------------------------------------------------------
 # Settings
@@ -223,7 +225,18 @@ with layout.content:
     with vuetify.VContainer(fluid=True, classes="fill-height pa-0 ma-0"):
         with vuetify.VRow(dense=True, style="height: 100%;"):
             with vuetify.VCol(classes="pa-0", style="border-right: 1px solid #ccc; position: relative;"):
-                html_view = vtk.VtkRemoteView(render_window, **VTK_VIEW_SETTINGS)
+                html_view = vtk.VtkRemoteView(
+                    render_window,
+                    box_selection=("vtk_selection",),
+                    box_selection_change=(on_box_selection_change, "[$event]"),
+                    **VTK_VIEW_SETTINGS,
+                )
+                # html_view = vtk.VtkLocalView(
+                #     render_window,
+                #     box_selection=("vtk_selection",),
+                #     box_selection_change=(on_box_selection_change, "[$event]"),
+                #     **VTK_VIEW_SETTINGS,
+                # )
                 ctrl.update_view = html_view.update
                 vuetify.VCheckbox(
                     small=True,

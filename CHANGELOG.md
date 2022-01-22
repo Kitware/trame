@@ -1,3 +1,10 @@
+## [1.13.1](https://github.com/kitware/trame/compare/v1.13.0...v1.13.1) (2022-01-22)
+
+
+### Bug Fixes
+
+* **BoxSelection:** Update API to expose VTK/BoxSelection props ([f035df0](https://github.com/kitware/trame/commit/f035df0ac25286eb65eacad29261f8c9ea01a819))
+
 # [1.13.0](https://github.com/kitware/trame/compare/v1.12.6...v1.13.0) (2022-01-20)
 
 

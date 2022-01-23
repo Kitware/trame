@@ -13,19 +13,24 @@ from trame.html import Div, vuetify, plotly, vtk, observer
 # VTK imports
 from vtkmodules.vtkIOXML import vtkXMLUnstructuredGridReader
 from vtkmodules.numpy_interface import dataset_adapter as dsa
-from vtkmodules.vtkCommonDataModel import vtkSelection, vtkSelectionNode
+from vtkmodules.vtkCommonDataModel import vtkSelection, vtkSelectionNode, vtkDataObject
 from vtkmodules.vtkCommonCore import vtkIdTypeArray
 from vtkmodules.vtkFiltersExtraction import vtkExtractSelection
+from vtkmodules.vtkFiltersGeometry import vtkGeometryFilter
 from vtkmodules.vtkRenderingCore import (
     vtkActor,
     vtkDataSetMapper,
     vtkRenderer,
     vtkRenderWindow,
     vtkRenderWindowInteractor,
+    vtkHardwareSelector,
+    vtkRenderedAreaPicker
 )
 
 from vtkmodules.vtkInteractionStyle import vtkInteractorStyleRubberBandPick, vtkInteractorStyleSwitch  # noqa
 import vtkmodules.vtkRenderingOpenGL2  # noqa
+
+from vtkmodules.vtkInteractionStyle import vtkInteractorStyleRubberBandPick
 
 # -----------------------------------------------------------------------------
 # Data file information
@@ -54,9 +59,15 @@ rw_interactor.GetInteractorStyle().SetCurrentStyleToTrackballCamera()
 
 interactor_trackball = rw_interactor.GetInteractorStyle()
 interactor_selection = vtkInteractorStyleRubberBandPick()
+area_picker = vtkRenderedAreaPicker()
+rw_interactor.SetPicker(area_picker)
+
+surface_filter = vtkGeometryFilter()
+surface_filter.SetInputConnection(reader.GetOutputPort())
+surface_filter.SetPassThroughPointIds(True)
 
 mapper = vtkDataSetMapper()
-mapper.SetInputConnection(reader.GetOutputPort())
+mapper.SetInputConnection(surface_filter.GetOutputPort())
 actor = vtkActor()
 actor.GetProperty().SetOpacity(0.5)
 actor.SetMapper(mapper)
@@ -74,6 +85,10 @@ selection_actor.SetVisibility(0)
 renderer.AddActor(actor)
 renderer.AddActor(selection_actor)
 renderer.ResetCamera()
+
+selector = vtkHardwareSelector()
+selector.SetRenderer(renderer)
+selector.SetFieldAssociation(vtkDataObject.FIELD_ASSOCIATION_POINTS)
 
 # vtkDataSet to DataFrame
 py_ds = dsa.WrapDataObject(dataset)
@@ -122,13 +137,10 @@ def update_figure(**kwargs):
 
 @state.change("vtk_selection")
 def update_interactor(vtk_selection, **kwargs):
-    print("update_interactor", vtk_selection)
     if vtk_selection:
-        print("+++ Switch to selection")
         rw_interactor.SetInteractorStyle(interactor_selection)
         interactor_selection.StartSelect()
     else:
-        print("+++ Switch to trackball")
         rw_interactor.SetInteractorStyle(interactor_trackball)
 
 # -----------------------------------------------------------------------------
@@ -163,7 +175,30 @@ def on_chart_selection(selected_point_idxs):
     ctrl.update_view()
 
 def on_box_selection_change(selection):
-    print("on_box_selection_change", selection)
+    global SELECTED_IDX
+
+    actor.GetProperty().SetOpacity(1)
+    selector.SetArea(int(renderer.GetPickX1()), int(renderer.GetPickY1()),
+                     int(renderer.GetPickX2()), int(renderer.GetPickY2()))
+    s = selector.Select()
+    n = s.GetNode(0)
+    ids = dsa.vtkDataArrayToVTKArray(n.GetSelectionData().GetArray("SelectedIds"))
+    surface = dsa.WrapDataObject(surface_filter.GetOutput())
+    SELECTED_IDX = surface.PointData['vtkOriginalPointIds'][ids].tolist()
+
+    selection_extract.SetInputConnection(surface_filter.GetOutputPort())
+    selection_extract.SetInputDataObject(1, s)
+    selection_extract.Update()
+    selection_actor.SetVisibility(1)
+
+    actor.GetProperty().SetOpacity(0.5)
+
+    # Update scatter plot with selection
+    update_figure()
+
+    # Update 3D view
+    ctrl.update_view()
+
 
 # -----------------------------------------------------------------------------
 # Settings

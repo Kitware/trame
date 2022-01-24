@@ -8,5 +8,5 @@ from .triggers import Controller, trigger, trigger_key
 from .utils import (
     AppServerThread, base_directory, ClientWindowProcess, compose_callbacks,
     get_cli_parser, get_version, is_dunder, log_js_error, print_server_info,
-    validate_key_names
+    validate_key_names, RemoteFile
 )

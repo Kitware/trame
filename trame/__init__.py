@@ -1,7 +1,7 @@
 from trame.internal import (
   change, Controller, flush_state, get_cli_parser, get_state, get_version,
   is_dirty, is_dirty_all, port, setup_dev, start, State, stop, trigger,
-  update_state
+  update_state, RemoteFile
 )
 from trame.layouts import update_layout
 
@@ -83,6 +83,9 @@ __all__ = [
 
     # Dev-related
     "setup_dev",
+
+    # Utils/helpers
+    "RemoteFile",
 
     # These are not exposed in the docs
     "__version__",

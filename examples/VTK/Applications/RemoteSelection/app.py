@@ -6,7 +6,7 @@ import plotly.graph_objects as go
 import plotly.express as px
 
 # Trame imports
-from trame import state, controller as ctrl
+from trame import RemoteFile, state, controller as ctrl
 from trame.layouts import SinglePage
 from trame.html import Div, vuetify, plotly, vtk, observer
 
@@ -36,15 +36,18 @@ from vtkmodules.vtkInteractionStyle import vtkInteractorStyleRubberBandPick
 # Data file information
 # -----------------------------------------------------------------------------
 
-BASE_DIR = os.path.dirname(__file__)
-FILE_PATH = os.path.abspath(os.path.join(BASE_DIR, "../../../data/disk_out_ref.vtu"))
+dataset_file = RemoteFile(
+    "./data/disk_out_ref.vtu",
+    "https://github.com/Kitware/trame/raw/master/examples/data/disk_out_ref.vtu",
+    __file__
+)
 
 # -----------------------------------------------------------------------------
 # VTK
 # -----------------------------------------------------------------------------
 
 reader = vtkXMLUnstructuredGridReader()
-reader.SetFileName(FILE_PATH)
+reader.SetFileName(dataset_file.path)
 reader.Update()
 dataset = reader.GetOutput()
 
@@ -198,6 +201,9 @@ def on_box_selection_change(selection):
 
     # Update 3D view
     ctrl.update_view()
+
+    # disable selection mode
+    state.vtk_selection = False
 
 
 # -----------------------------------------------------------------------------

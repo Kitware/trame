@@ -1,3 +1,10 @@
+## [1.13.2](https://github.com/kitware/trame/compare/v1.13.1...v1.13.2) (2022-01-24)
+
+
+### Bug Fixes
+
+* **RemoteFile:** add helper class for examples ([d92a0cb](https://github.com/kitware/trame/commit/d92a0cbd157a4c0ef7f28da816da5ddbf81d95a4))
+
 ## [1.13.1](https://github.com/kitware/trame/compare/v1.13.0...v1.13.1) (2022-01-22)
 
 

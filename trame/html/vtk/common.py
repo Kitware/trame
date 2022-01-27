@@ -219,6 +219,7 @@ class VtkRemoteLocalView(AbstractElement):
         self._attr_names += [
             # "mode", # <--- Managed by hand above
             "context_name",
+            "interactive_quality",
             "interactive_ratio",
             "interactor_events",
             "interactor_settings",

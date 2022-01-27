@@ -1,3 +1,10 @@
+## [1.13.3](https://github.com/kitware/trame/compare/v1.13.2...v1.13.3) (2022-01-27)
+
+
+### Bug Fixes
+
+* **VTK:** Add missing attribute ([6083cf9](https://github.com/kitware/trame/commit/6083cf9b22c4c6fd3eed0b80eef3342ff531e38d))
+
 ## [1.13.2](https://github.com/kitware/trame/compare/v1.13.1...v1.13.2) (2022-01-24)
 
 

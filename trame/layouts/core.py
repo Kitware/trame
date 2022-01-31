@@ -80,6 +80,13 @@ class AbstractLayout:
         _app = tri.get_app_instance()
         _app.layout = self.html
 
+    def _init_app(self, _app):
+        _app.name = self.name
+        _app.layout = self.html
+
+        if self.favicon:
+            _app.favicon = self.favicon
+
     def start(self, port=None, debug=False):
         """
         Start the application server.
@@ -90,14 +97,12 @@ class AbstractLayout:
         """
         _app = tri.get_app_instance()
 
-        _app.name = self.name
-        _app.layout = self.html
-        _app.on_ready = tri.print_server_info()
+        self._init_app(_app)
 
-        if self.favicon:
-            _app.favicon = self.favicon
         if self.on_ready:
             _app.on_ready = tri.print_server_info(self.on_ready)
+        else:
+            _app.on_ready = tri.print_server_info()
 
         # Dev validation
         tri.validate_key_names()
@@ -108,11 +113,8 @@ class AbstractLayout:
         self, port=None, print_server_info=False, on_server_listening=None, **kwargs
     ):
         _app = tri.get_app_instance()
-        _app.name = self.name
-        _app.layout = self.html
-
-        if self.favicon:
-            _app.favicon = self.favicon
+        
+        self._init_app(_app)
 
         if print_server_info:
             _app.on_ready = tri.print_server_info(
@@ -133,8 +135,8 @@ class AbstractLayout:
         _msg_queue = Queue()
 
         _app = tri.get_app_instance()
-        _app.name = self.name
-        _app.layout = self.html
+        
+        self._init_app(_app)
 
         async def process_msg():
             keep_processing = True
@@ -149,9 +151,6 @@ class AbstractLayout:
                         _app.stop_server()
 
         asyncio.get_event_loop().create_task(process_msg())
-
-        if self.favicon:
-            _app.favicon = self.favicon
 
         def start_client(**_):
             client_process = tri.ClientWindowProcess(

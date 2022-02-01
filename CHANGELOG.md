@@ -1,3 +1,10 @@
+## [1.14.1](https://github.com/kitware/trame/compare/v1.14.0...v1.14.1) (2022-02-01)
+
+
+### Bug Fixes
+
+* **VtkView:** Expose reset_camera at render time ([424fcbd](https://github.com/kitware/trame/commit/424fcbd713df914f5b0e399f1e58f0d4f3df1838))
+
 # [1.14.0](https://github.com/kitware/trame/compare/v1.13.4...v1.14.0) (2022-02-01)
 
 

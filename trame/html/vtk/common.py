@@ -1,3 +1,4 @@
+from trame import state
 from trame.internal.app import get_app_instance
 from trame.html import AbstractElement
 
@@ -186,8 +187,10 @@ class VtkRemoteLocalView(AbstractElement):
         __ns = kwargs.get("namespace", "view")
         self.__mode_key = f"{__ns}Mode"
         self.__scene_id = f"{__ns}Scene"
+        self.__view_key_id = f"{__ns}Id"
         self.__ref = kwargs.get("ref", __ns)
         self.__rendering = enable_rendering
+        self.__namespace = __ns
 
         # !!! HACK !!!
         # Allow user to configure view mode by providing (..., local/remote) and or "local/remote"
@@ -205,14 +208,14 @@ class VtkRemoteLocalView(AbstractElement):
         self._attributes["mode"] = f':mode="{__mode_expression}"'
         # !!! HACK !!!
 
-        self.__view_id = MODULE.id(view)
+        state[self.__view_key_id] = MODULE.id(view)
         self.__view = view
         self.__wrapped_view = MODULE.view(view, name=__ns, mode=__mode_start)
 
         # Provide mandatory attributes
         self._attributes["wsClient"] = ':wsClient="wsClient"'
         self._attributes["ref"] = f'ref="{self.__ref}"'
-        self._attributes["view_id"] = f'id="{self.__view_id}"'
+        self._attributes["view_id"] = f':id="{self.__view_key_id}"'
         self._attributes["view_state"] = f':viewState="{self.__scene_id}"'
         self._attributes["namespace"] = f'namespace="{__ns}"'
 
@@ -254,8 +257,19 @@ class VtkRemoteLocalView(AbstractElement):
             self.update_image()
         self.update_geometry()
 
+    def replace_view(self, new_view):
+        state[self.__view_key_id] = MODULE.id(new_view)
+        _mode = state[self.__mode_key]
+        self.__view = new_view
+        self.__wrapped_view = MODULE.view(new_view, name=self.__namespace, mode=_mode, force_replace=True)
+        self.update()
+        self.resize()
+
     def reset_camera(self):
         self.__app.update(ref=self.__ref, method="resetCamera")
+
+    def resize(self):
+        self.__app.update(ref=self.__ref, method="resize")
 
     @property
     def view(self):
@@ -299,9 +313,11 @@ class VtkRemoteView(AbstractElement):
         self.__app = get_app_instance()
         self.__view = view
         self.__ref = ref
+        self.__view_key_id = f"{ref}Id"
+        state[self.__view_key_id] = MODULE.id(view)
         self._attributes["wsClient"] = ':wsClient="wsClient"'
         self._attributes["ref"] = f'ref="{ref}"'
-        self._attributes["view_id"] = f'id="{MODULE.id(view)}"'
+        self._attributes["view_id"] = f':id="{self.__view_key_id}"'
         self._attr_names += [
             "enable_picking",
             "interactive_quality",
@@ -323,6 +339,14 @@ class VtkRemoteView(AbstractElement):
     def reset_camera(self):
         self.__app.update(ref=self.__ref, method="resetCamera")
 
+    def replace_view(self, new_view):
+        self.__view = new_view
+        state[self.__view_key_id] = MODULE.id(new_view)
+        self.update()
+        self.resize()
+
+    def resize(self):
+        self.__app.update(ref=self.__ref, method="resize")
 
 class VtkShareDataset(AbstractElement):
     def __init__(self, children=None, **kwargs):
@@ -385,6 +409,14 @@ class VtkLocalView(AbstractElement):
         """
         _app = get_app_instance()
         _app.update(ref=self.__ref, method="resetCamera")
+
+    def replace_view(self, new_view):
+        self.__view = new_view
+        self.__app.update(ref=self.__ref, method="setSynchronizedViewId", args=f"[{MODULE.id(new_view)}]")
+        self.update()
+
+    def resize(self):
+        self.__app.update(ref=self.__ref, method="resize")
 
 
 class VtkView(AbstractElement):

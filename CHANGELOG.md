@@ -1,3 +1,11 @@
+# [1.14.0](https://github.com/kitware/trame/compare/v1.13.4...v1.14.0) (2022-02-01)
+
+
+### Features
+
+* **router:** Add example for routing ([7f4b776](https://github.com/kitware/trame/commit/7f4b7761baa8e99aa4940a80f39ee8fa842da8c4))
+* **router:** Implement helpers for adding routes ([a9410fb](https://github.com/kitware/trame/commit/a9410fb6d750803464a704f3850a33203189a706))
+
 ## [1.13.4](https://github.com/kitware/trame/compare/v1.13.3...v1.13.4) (2022-02-01)
 
 

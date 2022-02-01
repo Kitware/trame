@@ -99,17 +99,26 @@ class AbstractLayout:
             if isinstance(template, AbstractElement):
                 route["component"]["template"] = template.html
 
-    def start(self, port=None, debug=False):
+    def start(self, port=None, debug=None):
         """
         Start the application server.
 
         :param port: Which port to run the server on
-        :param debug: Whether to enable debugging tools. Defaults to False.
-        :type debug: bool
+        :param debug: Whether to enable debugging tools. Defaults to
+                      None, in which case it is set to True if the --dev
+                      flag was passed as a command line argument.
+        :type debug: bool or None
         """
         _app = tri.get_app_instance()
 
         self._init_app(_app)
+  
+        if debug is None:
+            parser = _app.cli_parser
+            args, _unknown = parser.parse_known_args()
+            debug = args.dev
+
+        _app._debug = debug
 
         if self.on_ready:
             _app.on_ready = tri.print_server_info(self.on_ready)
@@ -133,7 +142,7 @@ class AbstractLayout:
                 tri.compose_callbacks(self.on_ready, on_server_listening)
             )
         else:
-            _app.on_ready = compose_callbacks(self.on_ready, on_server_listening)
+            _app.on_ready = tri.compose_callbacks(self.on_ready, on_server_listening)
 
         # Dev validation
         tri.validate_key_names()
@@ -170,7 +179,7 @@ class AbstractLayout:
             )
             client_process.start()
 
-        _app.on_ready = compose_callbacks(self.on_ready, start_client)
+        _app.on_ready = tri.compose_callbacks(self.on_ready, start_client)
 
         # Dev validation
         tri.validate_key_names()

@@ -1,3 +1,4 @@
+from trame import state
 from trame.internal.app import get_app_instance
 from trame.html import AbstractElement
 
@@ -27,11 +28,13 @@ class VegaEmbed(AbstractElement):
         """
         return chart.to_dict()
 
-    def __init__(self, chart=None, name=None, **kwargs):
+    def __init__(self, name=None, chart=None, **kwargs):
         super().__init__("VegaEmbed", **kwargs)
         self._chart = chart
         self._name = name or f"chart_{self._id}"
         self._attributes["spec"] = f':spec="{self._name}"'
+        state[self._name] = None
+        self.update()
 
     def update(self, chart=None):
         """

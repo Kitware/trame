@@ -1,3 +1,4 @@
+from trame import state
 from trame.internal.app import get_app_instance
 from trame.html import AbstractElement
 
@@ -165,8 +166,9 @@ class VtkRemoteLocalView(AbstractElement):
     The VtkRemoteLocalView component is a blend of VtkLocalView and VtkRemoteView where the user can choose dynamically which mode they want to be in. When instantiating a VtkRemoteLocalView several variables and triggers will be created for you to more easily control your view.
 
     >>> rl_view = vtk.VtkRemoteLocalView(
-    ...   view=...,                # Instance of vtkRenderWindow (required)
-    ...
+    ...   view=...,                # Instance of the view (required)
+    ...                            # - VTK: vtkRenderWindow
+    ...                            # - Paraview: viewProxy
     ...   # Just VtkRemoteLocalView params
     ...   namespace=...,           # Prefix for variables and triggers. See below. (required)
     ...   mode="local",            # Decide between local or remote. See below.
@@ -185,8 +187,10 @@ class VtkRemoteLocalView(AbstractElement):
         __ns = kwargs.get("namespace", "view")
         self.__mode_key = f"{__ns}Mode"
         self.__scene_id = f"{__ns}Scene"
+        self.__view_key_id = f"{__ns}Id"
         self.__ref = kwargs.get("ref", __ns)
         self.__rendering = enable_rendering
+        self.__namespace = __ns
 
         # !!! HACK !!!
         # Allow user to configure view mode by providing (..., local/remote) and or "local/remote"
@@ -204,25 +208,30 @@ class VtkRemoteLocalView(AbstractElement):
         self._attributes["mode"] = f':mode="{__mode_expression}"'
         # !!! HACK !!!
 
-        self.__view_id = MODULE.id(view)
+        state[self.__view_key_id] = MODULE.id(view)
         self.__view = view
         self.__wrapped_view = MODULE.view(view, name=__ns, mode=__mode_start)
 
         # Provide mandatory attributes
         self._attributes["wsClient"] = ':wsClient="wsClient"'
         self._attributes["ref"] = f'ref="{self.__ref}"'
-        self._attributes["view_id"] = f'id="{self.__view_id}"'
+        self._attributes["view_id"] = f':id="{self.__view_key_id}"'
         self._attributes["view_state"] = f':viewState="{self.__scene_id}"'
         self._attributes["namespace"] = f'namespace="{__ns}"'
 
         self._attr_names += [
             # "mode", # <--- Managed by hand above
             "context_name",
+            "interactive_quality",
             "interactive_ratio",
             "interactor_events",
             "interactor_settings",
+            ("box_selection", "boxSelection"),
         ]
         self._event_names += kwargs.get("interactor_events", [])
+        self._event_names += [
+            ("box_selection_change", "BoxSelection"),
+        ]
 
     def update_geometry(self):
         """
@@ -248,8 +257,19 @@ class VtkRemoteLocalView(AbstractElement):
             self.update_image()
         self.update_geometry()
 
+    def replace_view(self, new_view):
+        state[self.__view_key_id] = MODULE.id(new_view)
+        _mode = state[self.__mode_key]
+        self.__view = new_view
+        self.__wrapped_view = MODULE.view(new_view, name=self.__namespace, mode=_mode, force_replace=True)
+        self.update()
+        self.resize()
+
     def reset_camera(self):
         self.__app.update(ref=self.__ref, method="resetCamera")
+
+    def resize(self):
+        self.__app.update(ref=self.__ref, method="resize")
 
     @property
     def view(self):
@@ -264,7 +284,9 @@ class VtkRemoteView(AbstractElement):
     The VtkRemoteView component relies on the server for rendering by sending images to the client by binding your vtkRenderWindow to it. This component gives you control over the image size and quality to reduce latency while interacting.
 
     >>> remote_view = vtk.vtkRemoteView(
-    ...   view=...,               # Instance of vtkRenderWindow (required)
+    ...   view=...,               # Instance of the view (required)
+    ...                           # - VTK: vtkRenderWindow
+    ...                           # - Paraview: viewProxy
     ...   ref=...,                # Identifier for this component
     ...   interactive_quality=60, # [0, 100] 0 for fastest render, 100 for best quality
     ...   interactive_ratio=...,  # [0.1, 1] Image size scale factor while interacting
@@ -273,6 +295,9 @@ class VtkRemoteView(AbstractElement):
     ...     ['EndAnimation'],
     ...   ),
     ...   EndAnimation=end,       # Bind method to the enabled event
+    ...
+    ...   box_selection=True,     # toggle selection box rendering
+    ...   box_selection_change=fn # Bind method to get rect selection
     ... )
     """
 
@@ -288,16 +313,22 @@ class VtkRemoteView(AbstractElement):
         self.__app = get_app_instance()
         self.__view = view
         self.__ref = ref
+        self.__view_key_id = f"{ref}Id"
+        state[self.__view_key_id] = MODULE.id(view)
         self._attributes["wsClient"] = ':wsClient="wsClient"'
         self._attributes["ref"] = f'ref="{ref}"'
-        self._attributes["view_id"] = f'id="{MODULE.id(view)}"'
+        self._attributes["view_id"] = f':id="{self.__view_key_id}"'
         self._attr_names += [
             "enable_picking",
             "interactive_quality",
             "interactive_ratio",
             "interactor_events",
+            ("box_selection", "boxSelection"),
         ]
         self._event_names += kwargs.get("interactor_events", [])
+        self._event_names += [
+            ("box_selection_change", "BoxSelection"),
+        ]
 
     def update(self):
         """
@@ -308,6 +339,14 @@ class VtkRemoteView(AbstractElement):
     def reset_camera(self):
         self.__app.update(ref=self.__ref, method="resetCamera")
 
+    def replace_view(self, new_view):
+        self.__view = new_view
+        state[self.__view_key_id] = MODULE.id(new_view)
+        self.update()
+        self.resize()
+
+    def resize(self):
+        self.__app.update(ref=self.__ref, method="resize")
 
 class VtkShareDataset(AbstractElement):
     def __init__(self, children=None, **kwargs):
@@ -320,16 +359,21 @@ class VtkLocalView(AbstractElement):
         The VtkLocalView component relies on the server for defining the vtkRenderWindow but then only the geometry is exchanged with the client. The server does not need a GPU as no rendering is happening on the server. The vtkRenderWindow is only used to retrieve the scene data and parameters (coloring by, representations, ...). By relying on the same vtkRenderWindow, you can easily switch from a ``VtkRemoteView`` to a ``VtkLocalView`` or vice-versa. This component gives you controls on how you want to map mouse interaction with the camera. The default setting mimic default VTK interactor style so you will rarely have to override to the ``interactor_settings``.
 
     >>> local_view = vtk.VtkLocalView(
-    >>>   view=...,                # Instance of vtkRenderWindow (required)
-    >>>   ref=...,                 # Identifier for this component
-    >>>   context_name=...,        # Namespace for geometry cache
-    >>>   interactor_settings=..., # Options for camera controls. See below.
-    >>>   interactor_events=(      # Enable vtk.js interactor events for method binding
-    >>>     "events",
-    >>>     ['EndAnimation'],
-    >>>    ),
-    >>>    EndAnimation=end,       # Bind method to the enabled event
-    >>> )
+    ...   view=...,                # Instance of the view (required)
+    ...                            # - VTK: vtkRenderWindow
+    ...                            # - Paraview: viewProxy
+    ...   ref=...,                 # Identifier for this component
+    ...   context_name=...,        # Namespace for geometry cache
+    ...   interactor_settings=..., # Options for camera controls. See below.
+    ...   interactor_events=(      # Enable vtk.js interactor events for method binding
+    ...     "events",
+    ...     ['EndAnimation'],
+    ...    ),
+    ...   EndAnimation=end,       # Bind method to the enabled event
+    ...
+    ...   box_selection=True,     # toggle selection box rendering
+    ...   box_selection_change=fn # Bind method to get rect selection
+    ... )
     """
 
     def __init__(self, view, ref="view", **kwargs):
@@ -340,8 +384,16 @@ class VtkLocalView(AbstractElement):
         self._attributes["ref"] = f'ref="{ref}"'
         self._attributes["wsClient"] = ':wsClient="wsClient"'
         self._attributes["view_state"] = f':viewState="{self.__scene_id}"'
-        self._attr_names += ["interactor_events", "interactor_settings", "context_name"]
+        self._attr_names += [
+            "interactor_events",
+            "interactor_settings",
+            "context_name",
+            ("box_selection", "boxSelection"),
+        ]
         self._event_names += kwargs.get("interactor_events", [])
+        self._event_names += [
+            ("box_selection_change", "BoxSelection"),
+        ]
         self.update()
 
     def update(self):
@@ -357,6 +409,14 @@ class VtkLocalView(AbstractElement):
         """
         _app = get_app_instance()
         _app.update(ref=self.__ref, method="resetCamera")
+
+    def replace_view(self, new_view):
+        self.__view = new_view
+        self.__app.update(ref=self.__ref, method="setSynchronizedViewId", args=f"[{MODULE.id(new_view)}]")
+        self.update()
+
+    def resize(self):
+        self.__app.update(ref=self.__ref, method="resize")
 
 
 class VtkView(AbstractElement):

@@ -1,3 +1,92 @@
+## [1.13.4](https://github.com/kitware/trame/compare/v1.13.3...v1.13.4) (2022-02-01)
+
+
+### Bug Fixes
+
+* **RemoteLocalView:** Add api to allow view replacement ([a071d80](https://github.com/kitware/trame/commit/a071d80cea3f4539c95aa0882c9ae69163c2e627))
+
+## [1.13.3](https://github.com/kitware/trame/compare/v1.13.2...v1.13.3) (2022-01-27)
+
+
+### Bug Fixes
+
+* **VTK:** Add missing attribute ([6083cf9](https://github.com/kitware/trame/commit/6083cf9b22c4c6fd3eed0b80eef3342ff531e38d))
+
+## [1.13.2](https://github.com/kitware/trame/compare/v1.13.1...v1.13.2) (2022-01-24)
+
+
+### Bug Fixes
+
+* **RemoteFile:** add helper class for examples ([d92a0cb](https://github.com/kitware/trame/commit/d92a0cbd157a4c0ef7f28da816da5ddbf81d95a4))
+
+## [1.13.1](https://github.com/kitware/trame/compare/v1.13.0...v1.13.1) (2022-01-22)
+
+
+### Bug Fixes
+
+* **BoxSelection:** Update API to expose VTK/BoxSelection props ([f035df0](https://github.com/kitware/trame/commit/f035df0ac25286eb65eacad29261f8c9ea01a819))
+
+# [1.13.0](https://github.com/kitware/trame/compare/v1.12.6...v1.13.0) (2022-01-20)
+
+
+### Bug Fixes
+
+* **trigger_key:** register triggers every time ([a12ba29](https://github.com/kitware/trame/commit/a12ba291e1213554b10500e7db1e9d51ba1a597c))
+
+
+### Features
+
+* **setup_dev:** add setup_dev() function for reloading trame applications ([3ae003f](https://github.com/kitware/trame/commit/3ae003f032cc935d6e29670834933da5d493db6c))
+
+## [1.12.6](https://github.com/kitware/trame/compare/v1.12.5...v1.12.6) (2022-01-16)
+
+
+### Bug Fixes
+
+* **plotly:** Expose events ([77124d8](https://github.com/kitware/trame/commit/77124d8a26edab13dd602357ee06563483e43142))
+
+## [1.12.5](https://github.com/kitware/trame/compare/v1.12.4...v1.12.5) (2022-01-12)
+
+
+### Bug Fixes
+
+* **charts:** unify api across libraries ([a6892ce](https://github.com/kitware/trame/commit/a6892cecc56d578ccb4f263c8349d718af034e3d))
+
+## [1.12.4](https://github.com/kitware/trame/compare/v1.12.3...v1.12.4) (2022-01-12)
+
+
+### Bug Fixes
+
+* **numpy:** matplotlib serialization ([b613ed3](https://github.com/kitware/trame/commit/b613ed3df31e1bb39df6dd743b0df217202fd934))
+
+## [1.12.3](https://github.com/kitware/trame/compare/v1.12.2...v1.12.3) (2022-01-10)
+
+
+### Bug Fixes
+
+* **on_ready:** Fix invalid call ([9d07c9a](https://github.com/kitware/trame/commit/9d07c9ab06d724f2478fe4f8e457113f67c39be8))
+
+## [1.12.2](https://github.com/kitware/trame/compare/v1.12.1...v1.12.2) (2022-01-10)
+
+
+### Bug Fixes
+
+* **observer:** add size observer ([09c0d4e](https://github.com/kitware/trame/commit/09c0d4e6795cbe0b6d4d0bc90c6bcc4faee64a5f))
+
+## [1.12.1](https://github.com/kitware/trame/compare/v1.12.0...v1.12.1) (2022-01-05)
+
+
+### Bug Fixes
+
+* **matplotlib:** Fix Figure() constructor ([9668e44](https://github.com/kitware/trame/commit/9668e44cb71a5d87fcec95d38dbb3c27d7218d1c))
+
+# [1.12.0](https://github.com/kitware/trame/compare/v1.11.0...v1.12.0) (2022-01-03)
+
+
+### Features
+
+* **matplotlib:** Add support for matplotlib figure ([dac282a](https://github.com/kitware/trame/commit/dac282a2e884bcdfe92a5219e300972acbce94e7))
+
 # [1.11.0](https://github.com/kitware/trame/compare/v1.10.4...v1.11.0) (2021-12-25)
 
 

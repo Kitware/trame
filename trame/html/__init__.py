@@ -86,10 +86,10 @@ class AbstractElement:
 
     _next_id = 1
 
-    def __init__(self, name, children=None, **kwargs):
+    def __init__(self, _elem_name, children=None, **kwargs):
         AbstractElement._next_id += 1
         self._id = AbstractElement._next_id
-        self._elem_name = name
+        self._elem_name = _elem_name
         self._allowed_keys = set()
         self._attr_names = kwargs.get("__properties", [])
         self._event_names = kwargs.get("__events", [])

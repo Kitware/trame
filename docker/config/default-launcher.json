@@ -1,0 +1,24 @@
+{
+  "configuration": {
+    "host": "0.0.0.0",
+    "port": 9000,
+    "endpoint": "paraview",
+    "log_dir": "/deploy/server/logs/launcher",
+    "proxy_file": "/opt/trame/proxy-mapping.txt",
+    "sessionURL": "ws://USE_HOST/proxy?sessionId=${id}&path=ws",
+    "timeout": 25,
+    "sanitize": {},
+    "fields": []
+  },
+  "resources": [
+    {
+      "host": "0.0.0.0",
+      "port_range": [
+        9001,
+        9500
+      ]
+    }
+  ],
+  "properties": {},
+  "apps": {}
+}

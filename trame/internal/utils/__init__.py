@@ -5,6 +5,7 @@ from .filesystem import base_directory
 from .logging import log_js_error, print_server_info, validate_key_names
 from .string import is_dunder
 from .version import get_version
+from .remote_data import RemoteFile
 
 
 __all__ = [
@@ -18,4 +19,5 @@ __all__ = [
     "log_js_error",
     "print_server_info",
     "validate_key_names",
+    "RemoteFile",
 ]

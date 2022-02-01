@@ -233,17 +233,17 @@ class VtkRemoteLocalView(AbstractElement):
             ("box_selection_change", "BoxSelection"),
         ]
 
-    def update_geometry(self):
+    def update_geometry(self, reset_camera=False):
         """
         Force update to geometry
         """
-        self.__app.set(self.__scene_id, MODULE.scene(self.__view))
+        self.__app.set(self.__scene_id, MODULE.scene(self.__view, reset_camera))
 
-    def update_image(self):
+    def update_image(self, reset_camera=False):
         """
         Force update to image
         """
-        MODULE.push_image(self.__view)
+        MODULE.push_image(self.__view, reset_camera)
 
     def set_local_rendering(self, local=True):
         self.__app.set(self.__mode_key, "local" if local else "remote")
@@ -251,11 +251,11 @@ class VtkRemoteLocalView(AbstractElement):
     def set_remote_rendering(self, remote=True):
         self.__app.set(self.__mode_key, "remote" if remote else "local")
 
-    def update(self):
+    def update(self, reset_camera=False):
         # need to do both to keep things in sync
         if self.__rendering:
-            self.update_image()
-        self.update_geometry()
+            self.update_image(reset_camera)
+        self.update_geometry(reset_camera)
 
     def replace_view(self, new_view):
         state[self.__view_key_id] = MODULE.id(new_view)

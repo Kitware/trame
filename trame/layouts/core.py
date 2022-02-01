@@ -1,7 +1,8 @@
 import asyncio
 import os
+from contextlib import contextmanager
 from pywebvue.utils import read_file_as_base64_url
-from trame.html import Span, vuetify, Triggers
+from trame.html import AbstractElement, Span, vuetify, Triggers
 
 import pywebvue
 import trame as tr
@@ -80,6 +81,24 @@ class AbstractLayout:
         _app = tri.get_app_instance()
         _app.layout = self.html
 
+    def _init_app(self, _app):
+        _app.name = self.name
+        _app.layout = self.html
+
+        if self.favicon:
+            _app.favicon = self.favicon
+
+        # Evaluate html for added routes
+        for route in _app.routes:
+            component = route.get("component", None)
+            if component is None:
+                continue
+            template = component.get("template", None)
+            if template is None:
+                continue
+            if isinstance(template, AbstractElement):
+                route["component"]["template"] = template.html
+
     def start(self, port=None, debug=None):
         """
         Start the application server.
@@ -92,6 +111,8 @@ class AbstractLayout:
         """
         _app = tri.get_app_instance()
 
+        self._init_app(_app)
+  
         if debug is None:
             parser = _app.cli_parser
             args, _unknown = parser.parse_known_args()
@@ -99,14 +120,10 @@ class AbstractLayout:
 
         _app._debug = debug
 
-        _app.name = self.name
-        _app.layout = self.html
-        _app.on_ready = tri.print_server_info()
-
-        if self.favicon:
-            _app.favicon = self.favicon
         if self.on_ready:
             _app.on_ready = tri.print_server_info(self.on_ready)
+        else:
+            _app.on_ready = tri.print_server_info()
 
         # Dev validation
         tri.validate_key_names()
@@ -117,11 +134,8 @@ class AbstractLayout:
         self, port=None, print_server_info=False, on_server_listening=None, **kwargs
     ):
         _app = tri.get_app_instance()
-        _app.name = self.name
-        _app.layout = self.html
-
-        if self.favicon:
-            _app.favicon = self.favicon
+        
+        self._init_app(_app)
 
         if print_server_info:
             _app.on_ready = tri.print_server_info(
@@ -142,8 +156,8 @@ class AbstractLayout:
         _msg_queue = Queue()
 
         _app = tri.get_app_instance()
-        _app.name = self.name
-        _app.layout = self.html
+        
+        self._init_app(_app)
 
         async def process_msg():
             keep_processing = True
@@ -159,9 +173,6 @@ class AbstractLayout:
 
         asyncio.get_event_loop().create_task(process_msg())
 
-        if self.favicon:
-            _app.favicon = self.favicon
-
         def start_client(**_):
             client_process = tri.ClientWindowProcess(
                 title=_app.name, port=_app.server_port, msg_queue=_msg_queue, **kwargs
@@ -174,6 +185,27 @@ class AbstractLayout:
         tri.validate_key_names()
 
         _app.run_server(port=0)
+
+    def add_route(self, name, path, template):
+        _app = tri.get_app_instance()
+        # TODO: Check if route already exists?
+        _app.routes.append(
+            {
+                "name": name,
+                "path": path,
+                "component": {
+                    "template": template,
+                },
+            }
+        )
+
+    @contextmanager
+    def with_route(self, name, path, root):
+        try:
+            with root:
+                yield
+        finally:
+            self.add_route(name, path, root)
 
 
 class FullScreenPage(AbstractLayout):

@@ -1,3 +1,10 @@
+## [1.13.4](https://github.com/kitware/trame/compare/v1.13.3...v1.13.4) (2022-02-01)
+
+
+### Bug Fixes
+
+* **RemoteLocalView:** Add api to allow view replacement ([a071d80](https://github.com/kitware/trame/commit/a071d80cea3f4539c95aa0882c9ae69163c2e627))
+
 ## [1.13.3](https://github.com/kitware/trame/compare/v1.13.2...v1.13.3) (2022-01-27)
 
 

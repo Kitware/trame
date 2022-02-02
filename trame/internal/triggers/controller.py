@@ -16,9 +16,19 @@ class Controller:
     >>> ctrl.hello_func = lambda: print("Hello again!")
     >>> f()
     Hello again!
+
+    >>> ctrl.on_data_change.add(lambda: print("Update pipeline!"))
+    >>> ctrl.on_data_change.add(lambda: print("Update view!"))
+    >>> ctrl.on_data_change.add(lambda: print("Wow that is pretty cool!"))
+    >>> ctrl.on_data_change()
+    "Update pipeline!"
+    "Wow that is pretty cool!"
+    "Update view!"
+    >>> ctrl.on_data_change.clear(set_only=True) # add, remove, discard, clear
     """
+
     def __init__(self):
-        super().__setattr__('_func_dict', {})
+        super().__setattr__("_func_dict", {})
 
     def __getattr__(self, name):
         if is_dunder(name):
@@ -27,10 +37,7 @@ class Controller:
         if name not in self._func_dict:
             self._func_dict[name] = ControllerFunction(name)
 
-        # The ControllerFunction object is callable, but we will return the
-        # __call__ method for greater compatibility in case a function is
-        # required.
-        return self._func_dict[name].__call__
+        return self._func_dict[name]
 
     def __setattr__(self, name, func):
         # Do not allow pre-existing attributes, such as `trigger`, to be
@@ -59,17 +66,38 @@ class ControllerFunction:
     internal function is undefined, a FunctionNotImplementedError is
     raised.
     """
+
     def __init__(self, name, func=None):
         # The name is needed to provide more helpful information upon
         # a FunctionNotImplementedError exception.
         self.name = name
         self.func = func
+        self.funcs = set()
 
     def __call__(self, *args, **kwargs):
-        if self.func is None:
+        if self.func is None and len(self.funcs) == 0:
             raise FunctionNotImplementedError(self.name)
 
-        return self.func(*args, **kwargs)
+        results = list(map(lambda f: f(*args, **kwargs), self.funcs))
+        if self.func is not None:
+            return self.func(*args, **kwargs)
+
+        return results
+
+    def add(self, func):
+        self.funcs.add(func)
+
+    def discard(self, func):
+        self.funcs.discard(func)
+
+    def remove(self, func):
+        self.funcs.remove(func)
+
+    def clear(self, set_only=False):
+        if not set_only:
+            self.func = None
+
+        self.funcs.clear()
 
 
 class FunctionNotImplementedError(Exception):

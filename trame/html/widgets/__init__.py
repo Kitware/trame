@@ -96,6 +96,7 @@ class ListBrowser(AbstractElement):
             "filter",
             "path",
             "list",
+            ("query", "filterQuery"),
         ]
 
 

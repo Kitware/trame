@@ -1,3 +1,10 @@
+## [1.14.2](https://github.com/kitware/trame/compare/v1.14.1...v1.14.2) (2022-02-02)
+
+
+### Bug Fixes
+
+* **ListBrowser:** add query attribute ([ed353d2](https://github.com/kitware/trame/commit/ed353d213f2f4e326de39e23839f7ad3d8304c9d))
+
 ## [1.14.1](https://github.com/kitware/trame/compare/v1.14.0...v1.14.1) (2022-02-01)
 
 

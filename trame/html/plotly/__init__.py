@@ -99,7 +99,7 @@ class Plotly(AbstractElement):
         ]
         self.update()
 
-    def update(self, plotly_fig=None):
+    def update(self, plotly_fig=None, **kwargs):
         if plotly_fig:
             self.__figure_data = plotly_fig
 

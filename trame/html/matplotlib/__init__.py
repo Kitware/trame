@@ -38,7 +38,7 @@ class Figure(AbstractElement):
             # Make sure we create a state entry
             state[self._key] = None
 
-    def update(self, figure=None):
+    def update(self, figure=None, **kwargs):
         if figure:
             self._figure = figure
 

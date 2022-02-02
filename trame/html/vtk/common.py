@@ -245,19 +245,19 @@ class VtkRemoteLocalView(AbstractElement):
         """
         MODULE.push_image(self.__view, reset_camera)
 
-    def set_local_rendering(self, local=True):
+    def set_local_rendering(self, local=True, **kwargs):
         self.__app.set(self.__mode_key, "local" if local else "remote")
 
-    def set_remote_rendering(self, remote=True):
+    def set_remote_rendering(self, remote=True, **kwargs):
         self.__app.set(self.__mode_key, "remote" if remote else "local")
 
-    def update(self, reset_camera=False):
+    def update(self, reset_camera=False, **kwargs):
         # need to do both to keep things in sync
         if self.__rendering:
             self.update_image(reset_camera)
         self.update_geometry(reset_camera)
 
-    def replace_view(self, new_view):
+    def replace_view(self, new_view, **kwargs):
         state[self.__view_key_id] = MODULE.id(new_view)
         _mode = state[self.__mode_key]
         self.__view = new_view
@@ -265,10 +265,10 @@ class VtkRemoteLocalView(AbstractElement):
         self.update()
         self.resize()
 
-    def reset_camera(self):
+    def reset_camera(self, **kwargs):
         self.__app.update(ref=self.__ref, method="resetCamera")
 
-    def resize(self):
+    def resize(self, **kwargs):
         self.__app.update(ref=self.__ref, method="resize")
 
     @property
@@ -330,22 +330,22 @@ class VtkRemoteView(AbstractElement):
             ("box_selection_change", "BoxSelection"),
         ]
 
-    def update(self):
+    def update(self, **kwargs):
         """
         Force image to be pushed to client
         """
         MODULE.push_image(self.__view)
 
-    def reset_camera(self):
+    def reset_camera(self, **kwargs):
         self.__app.update(ref=self.__ref, method="resetCamera")
 
-    def replace_view(self, new_view):
+    def replace_view(self, new_view, **kwargs):
         self.__view = new_view
         state[self.__view_key_id] = MODULE.id(new_view)
         self.update()
         self.resize()
 
-    def resize(self):
+    def resize(self, **kwargs):
         self.__app.update(ref=self.__ref, method="resize")
 
 class VtkShareDataset(AbstractElement):
@@ -396,26 +396,26 @@ class VtkLocalView(AbstractElement):
         ]
         self.update()
 
-    def update(self):
+    def update(self, **kwargs):
         """
         Force geometry to be pushed
         """
         _app = get_app_instance()
         _app.set(self.__scene_id, MODULE.scene(self.__view))
 
-    def reset_camera(self):
+    def reset_camera(self, **kwargs):
         """
         Move camera to center actors within the frame
         """
         _app = get_app_instance()
         _app.update(ref=self.__ref, method="resetCamera")
 
-    def replace_view(self, new_view):
+    def replace_view(self, new_view, **kwargs):
         self.__view = new_view
         self.__app.update(ref=self.__ref, method="setSynchronizedViewId", args=f"[{MODULE.id(new_view)}]")
         self.update()
 
-    def resize(self):
+    def resize(self, **kwargs):
         self.__app.update(ref=self.__ref, method="resize")
 
 
@@ -438,7 +438,7 @@ class VtkView(AbstractElement):
             "resize",
         ]
 
-    def reset_camera(self):
+    def reset_camera(self, **kwargs):
         """
         Move camera to center actors within the frame
         """

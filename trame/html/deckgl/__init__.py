@@ -39,7 +39,7 @@ class Deck(AbstractElement):
         self._attributes["jsonInput"] = f':jsonInput="{self._name}"'
         self.update(deck)
 
-    def update(self, deck=None):
+    def update(self, deck=None, **kwargs):
         """
         Change the deck this component displays
 

@@ -46,26 +46,26 @@ class Simput(AbstractElement):
         """
         return self._simput_helper
 
-    def apply(self):
+    def apply(self, **kwargs):
         """
         Flush modified properties so they can be pushed to their concrete objects
         """
         self._simput_helper.apply()
 
-    def reset(self):
+    def reset(self, **kwargs):
         """
         Unapply properties
         """
 
         self._simput_helper.reset()
 
-    def push(self, id=None, type=None):
+    def push(self, id=None, type=None, **kwargs):
         """
         Ask server to push data, ui, or constraints
         """
         self._simput_helper.push(id, type)
 
-    def update(self, change_set):
+    def update(self, change_set, **kwargs):
         """
         List of properties and value to update
 
@@ -77,7 +77,7 @@ class Simput(AbstractElement):
         """
         self._simput_helper.update(change_set)
 
-    def refresh(self, id=0, property=""):
+    def refresh(self, id=0, property="", **kwargs):
         self._simput_helper.refresh(id, property)
 
     @property

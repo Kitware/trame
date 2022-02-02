@@ -22,7 +22,7 @@ class VegaEmbed(AbstractElement):
     """
 
     @staticmethod
-    def altair_to_spec(chart):
+    def altair_to_spec(chart, **kwargs):
         """
         Serialize altair chart
         """
@@ -36,7 +36,7 @@ class VegaEmbed(AbstractElement):
         state[self._name] = None
         self.update()
 
-    def update(self, chart=None):
+    def update(self, chart=None, **kwargs):
         """
         Change which chart is displayed
 

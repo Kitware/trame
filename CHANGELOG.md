@@ -1,3 +1,15 @@
+# [1.15.0](https://github.com/kitware/trame/compare/v1.14.2...v1.15.0) (2022-02-02)
+
+
+### Bug Fixes
+
+* ****kwargs:** Make helper functions tolerant to unrelated kwargs ([d439579](https://github.com/kitware/trame/commit/d439579c7748f98ef3ece027fb200534fd3d5316))
+
+
+### Features
+
+* **Controller:** Allow multi registration ([c14f785](https://github.com/kitware/trame/commit/c14f785faa124e6df09c9cf573dd0756bf7eb880))
+
 ## [1.14.2](https://github.com/kitware/trame/compare/v1.14.1...v1.14.2) (2022-02-02)
 
 

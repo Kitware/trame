@@ -20,6 +20,69 @@
   </url>
   
   <url>
+    <loc>https://kitware.github.io/trame/docs/module-paraview.html</loc>
+    
+    <lastmod>2022-02-03</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/module-simput.html</loc>
+    
+    <lastmod>2022-02-03</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/module-vega.html</loc>
+    
+    <lastmod>2022-02-03</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/module-vtk.html</loc>
+    
+    <lastmod>2022-02-03</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/module-vuetify.html</loc>
+    
+    <lastmod>2022-02-03</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/module-widgets.html</loc>
+    
+    <lastmod>2022-02-03</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/tutorial-application.html</loc>
+    
+    <lastmod>2022-02-03</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://kitware.github.io/trame/docs/tutorial-download.html</loc>
     
     <lastmod>2022-02-03</lastmod>
@@ -210,69 +273,6 @@
   
   <url>
     <loc>https://kitware.github.io/trame/docs/module-markdown.html</loc>
-    
-    <lastmod>2022-02-03</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/module-paraview.html</loc>
-    
-    <lastmod>2022-02-03</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/module-simput.html</loc>
-    
-    <lastmod>2022-02-03</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/module-vega.html</loc>
-    
-    <lastmod>2022-02-03</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/module-vtk.html</loc>
-    
-    <lastmod>2022-02-03</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/module-vuetify.html</loc>
-    
-    <lastmod>2022-02-03</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/module-widgets.html</loc>
-    
-    <lastmod>2022-02-03</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/tutorial-application.html</loc>
     
     <lastmod>2022-02-03</lastmod>
     

@@ -1,4 +1,5 @@
 import types
+from trame.internal.triggers.controller import ControllerFunction
 
 import trame.internal as tri
 
@@ -278,12 +279,12 @@ class AbstractElement:
 
                 if isinstance(value, str):
                     self._attributes[name] = f'{js_key}="{value}"'
-                elif isinstance(value, (types.FunctionType, types.MethodType)):
+                elif isinstance(value, (types.FunctionType, types.MethodType, ControllerFunction)):
                     trigger_name = tri.trigger_key(value)
                     self._attributes[name] = f"{js_key}=\"trigger('{trigger_name}')\""
                 elif isinstance(value, tuple):
                     trigger_name = value[0]
-                    if isinstance(trigger_name, (types.FunctionType, types.MethodType)):
+                    if isinstance(trigger_name, (types.FunctionType, types.MethodType, ControllerFunction)):
                         trigger_name = tri.trigger_key(trigger_name)
                     if len(value) == 1:
                         self._attributes[

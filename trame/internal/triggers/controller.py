@@ -30,6 +30,12 @@ class Controller:
     def __init__(self):
         super().__setattr__("_func_dict", {})
 
+    def __getitem__(self, name):
+        return self.__getattr__(name)
+
+    def __setitem__(self, name, value):
+        self.__setattr__(name, value)
+
     def __getattr__(self, name):
         if is_dunder(name):
             return super().__getattr__(name)

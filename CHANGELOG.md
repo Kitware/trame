@@ -1,3 +1,10 @@
+## [1.15.1](https://github.com/kitware/trame/compare/v1.15.0...v1.15.1) (2022-02-03)
+
+
+### Bug Fixes
+
+* **controller:** Allow [name] lookup ([048ef60](https://github.com/kitware/trame/commit/048ef60860b36d3f2053df4e044a2470314df2b8))
+
 # [1.15.0](https://github.com/kitware/trame/compare/v1.14.2...v1.15.0) (2022-02-02)
 
 

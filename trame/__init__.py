@@ -1,7 +1,7 @@
 from trame.internal import (
   change, Controller, flush_state, get_cli_parser, get_state, get_version,
   is_dirty, is_dirty_all, port, setup_dev, start, State, stop, trigger,
-  update_state, RemoteFile
+  update_state, RemoteFile, Singleton
 )
 from trame.layouts import update_layout
 

@@ -6,7 +6,7 @@ from .logging import log_js_error, print_server_info, validate_key_names
 from .string import is_dunder
 from .version import get_version
 from .remote_data import RemoteFile
-
+from .singleton import Singleton
 
 __all__ = [
     "AppServerThread",
@@ -20,4 +20,5 @@ __all__ = [
     "print_server_info",
     "validate_key_names",
     "RemoteFile",
+    "Singleton",
 ]

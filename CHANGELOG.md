@@ -1,3 +1,10 @@
+## [1.15.2](https://github.com/kitware/trame/compare/v1.15.1...v1.15.2) (2022-02-04)
+
+
+### Bug Fixes
+
+* **Singleton:** Provide singleton decorator ([9f75334](https://github.com/kitware/trame/commit/9f7533407027416bdc8e6be9b8615b714dbe429f))
+
 ## [1.15.1](https://github.com/kitware/trame/compare/v1.15.0...v1.15.1) (2022-02-03)
 
 

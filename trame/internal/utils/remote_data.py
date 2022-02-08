@@ -3,9 +3,41 @@ from urllib.error import HTTPError
 from urllib.request import urlretrieve
 
 
-class RemoteFile:
-    def __init__(self, local_path=None, remote_url=None, local_base=None):
-        self._url = remote_url
+def download_file_from_google_drive(id, destination):
+    import requests
+
+    URL = "https://docs.google.com/uc?export=download"
+
+    session = requests.Session()
+    response = session.get(URL, params={"id": id}, stream=True)
+    token = get_confirm_token(response)
+
+    if token:
+        params = {"id": id, "confirm": token}
+        response = session.get(URL, params=params, stream=True)
+
+    save_response_content(response, destination)
+
+
+def get_confirm_token(response):
+    for key, value in response.cookies.items():
+        if key.startswith("download_warning"):
+            return value
+
+    return None
+
+
+def save_response_content(response, destination):
+    CHUNK_SIZE = 32768
+
+    with open(destination, "wb") as f:
+        for chunk in response.iter_content(CHUNK_SIZE):
+            if chunk:  # filter out keep-alive new chunks
+                f.write(chunk)
+
+
+class AbstractRemoteFile:
+    def __init__(self, local_path=None, local_base=None):
         # setup base path
         self._base = os.getcwd()
         if local_base is not None:
@@ -32,11 +64,7 @@ class RemoteFile:
         return os.path.exists(self._file_path)
 
     def fetch(self):
-        try:
-            print(f"Downloading:\n - {self._url}\n - to {self._file_path}")
-            urlretrieve(self._url, self._file_path)
-        except HTTPError as e:
-            print(RuntimeError(f"Failed to download {self._url}. {e.reason}"))
+        pass
 
     @property
     def path(self):
@@ -44,3 +72,29 @@ class RemoteFile:
             self.fetch()
 
         return self._file_path
+
+
+class GoogleDriveFile(AbstractRemoteFile):
+    def __init__(self, local_path=None, google_id=None, local_base=None):
+        super().__init__(local_path, local_base)
+        self._gid = google_id
+
+    def fetch(self):
+        try:
+            print(f"Downloading:\n - {self._gid}\n - to {self._file_path}")
+            download_file_from_google_drive(self._gid, self._file_path)
+        except HTTPError as e:
+            print(RuntimeError(f"Failed to download {self._gid}. {e.reason}"))
+
+
+class RemoteFile(AbstractRemoteFile):
+    def __init__(self, local_path=None, remote_url=None, local_base=None):
+        super().__init__(local_path, local_base)
+        self._url = remote_url
+
+    def fetch(self):
+        try:
+            print(f"Downloading:\n - {self._url}\n - to {self._file_path}")
+            urlretrieve(self._url, self._file_path)
+        except HTTPError as e:
+            print(RuntimeError(f"Failed to download {self._url}. {e.reason}"))

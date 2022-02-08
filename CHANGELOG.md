@@ -1,3 +1,10 @@
+## [1.15.3](https://github.com/kitware/trame/compare/v1.15.2...v1.15.3) (2022-02-08)
+
+
+### Bug Fixes
+
+* **GoogleDriveFile:** Add remote file helper for GDrive ([c6b41e0](https://github.com/kitware/trame/commit/c6b41e08a4caef9bf56b3a73f27ce5f95270d47d))
+
 ## [1.15.2](https://github.com/kitware/trame/compare/v1.15.1...v1.15.2) (2022-02-04)
 
 

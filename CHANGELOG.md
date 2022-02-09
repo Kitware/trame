@@ -1,3 +1,10 @@
+## [1.15.4](https://github.com/kitware/trame/compare/v1.15.3...v1.15.4) (2022-02-09)
+
+
+### Bug Fixes
+
+* **state.monitor:** Provide access to state context manager ([f7224df](https://github.com/kitware/trame/commit/f7224dfbd350b8d3d42c760c3e3b509151d91514))
+
 ## [1.15.3](https://github.com/kitware/trame/compare/v1.15.2...v1.15.3) (2022-02-08)
 
 

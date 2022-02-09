@@ -38,7 +38,10 @@ def update_state(key, value=None, force=False):
     _app = get_app_instance()
     if isinstance(key, dict):
         _app.state.update(key)
-        _app.flush_state(*list(key.keys()))
+        for k, v in key.items():
+            for change_handler in _app._change_handlers:
+                change_handler.modified(k, v)
+
         return key
     else:
         _app.set(key, value, force)
@@ -134,6 +137,10 @@ def is_dirty_all(*args):
     return _app.is_dirty_all(*args)
 
 
+def capture_changes(known_state={}):
+    _app = get_app_instance()
+    return _app.capture_changes(known_state)
+
 class State:
     """This static class provides pythonic access to the state
 
@@ -212,6 +219,10 @@ class State:
     @staticmethod
     def is_dirty_all(*args):
         return is_dirty_all(*args)
+
+    @staticmethod
+    def monitor(known_state={}):
+        return capture_changes(known_state)
 
     # Allow the change decorator to be accessed via @state.change
     change = staticmethod(change)

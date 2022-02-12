@@ -78,17 +78,36 @@ class ControllerFunction:
         # a FunctionNotImplementedError exception.
         self.name = name
         self.func = func
+        self._task = False
         self.funcs = set()
 
     def __call__(self, *args, **kwargs):
         if self.func is None and len(self.funcs) == 0:
             raise FunctionNotImplementedError(self.name)
 
-        results = list(map(lambda f: f(*args, **kwargs), self.funcs))
-        if self.func is not None:
-            return self.func(*args, **kwargs)
+        if self._task:
+            # TODO...
+            # - schedule a task to free current execution path
+            # - add task future to a monitor task (singleton) to consume 
+            #   and provide feedback in case of exception
+            return # no return for tasks...
+        else:
+            results = list(map(lambda f: f(*args, **kwargs), self.funcs))
+            if self.func is not None:
+                return self.func(*args, **kwargs)
 
-        return results
+            return results
+
+    @property
+    def task(self):
+        self._task = True
+        return self
+
+    @task.setter
+    def task(self, value):
+        self._task = True
+        self.func = value
+        return self
 
     def add(self, func):
         self.funcs.add(func)

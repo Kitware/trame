@@ -7,8 +7,12 @@ from .string import is_dunder
 from .version import get_version
 from .remote_data import RemoteFile, GoogleDriveFile
 from .singleton import Singleton
+from .assets import AssetManager
+from . import async_utils
 
 __all__ = [
+    "AssetManager",
+    "async_utils",
     "AppServerThread",
     "base_directory",
     "ClientWindowProcess",

@@ -1,7 +1,7 @@
 from trame.internal import (
   change, Controller, flush_state, get_cli_parser, get_state, get_version,
   is_dirty, is_dirty_all, port, setup_dev, start, State, stop, trigger,
-  update_state, RemoteFile, Singleton, GoogleDriveFile
+  update_state, RemoteFile, Singleton, GoogleDriveFile, AssetManager, async_utils
 )
 from trame.layouts import update_layout
 
@@ -87,6 +87,9 @@ __all__ = [
     # Utils/helpers
     "RemoteFile",
     "GoogleDriveFile",
+    "AssetManager",
+    "async_utils",
+    "Singleton",
 
     # These are not exposed in the docs
     "__version__",

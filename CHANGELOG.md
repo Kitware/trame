@@ -1,3 +1,10 @@
+# [1.16.0](https://github.com/kitware/trame/compare/v1.15.4...v1.16.0) (2022-02-17)
+
+
+### Features
+
+* **utils:** add async_utils + AssetManager ([20be933](https://github.com/kitware/trame/commit/20be93327bb7a836d51c9880de7a8787311a64ef))
+
 ## [1.15.4](https://github.com/kitware/trame/compare/v1.15.3...v1.15.4) (2022-02-09)
 
 

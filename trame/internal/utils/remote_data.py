@@ -6,10 +6,10 @@ from urllib.request import urlretrieve
 def download_file_from_google_drive(id, destination):
     import requests
 
-    URL = "https://docs.google.com/uc?export=download"
+    URL = "https://docs.google.com/uc"
 
     session = requests.Session()
-    response = session.get(URL, params={"id": id}, stream=True)
+    response = session.get(URL, params={"id": id, "confirm": "t", "export": "download"}, stream=True)
     token = get_confirm_token(response)
 
     if token:

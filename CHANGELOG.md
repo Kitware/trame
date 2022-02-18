@@ -1,3 +1,10 @@
+## [1.16.1](https://github.com/kitware/trame/compare/v1.16.0...v1.16.1) (2022-02-18)
+
+
+### Bug Fixes
+
+* **GoogleDriveFile:** add missing arg for auto download ([8bd2f09](https://github.com/kitware/trame/commit/8bd2f095d76bd5eaa36fae87f432b90cb6e1f532))
+
 # [1.16.0](https://github.com/kitware/trame/compare/v1.15.4...v1.16.0) (2022-02-17)
 
 

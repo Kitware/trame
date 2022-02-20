@@ -1,37 +1,13 @@
-from trame.internal.app import get_app_instance
 from trame import state
 from trame.html import AbstractElement
+from trame.internal.app import get_app_instance
+from trame.internal.utils.numpy import safe_serialization
 
 from pywebvue.modules import Plotly
 
 # Make sure used module is available
 _app = get_app_instance()
 _app.enable_module(Plotly)
-
-try:
-    import numpy as np
-except:
-    pass
-
-
-def safe_data(data):
-    """Replace numpy array to list()"""
-    result = []
-    for item in data:
-        for name in ["x", "y", "z"]:
-            if name in item and isinstance(item[name], (np.ndarray, np.generic)):
-                item[name] = item[name].tolist()
-
-        result.append(item)
-
-    return result
-
-
-def safe_figure(fig):
-    return {
-        "data": safe_data(fig["data"]),
-        "layout": fig["layout"],
-    }
 
 
 class Plotly(AbstractElement):
@@ -104,7 +80,10 @@ class Plotly(AbstractElement):
             self.__figure_data = plotly_fig
 
         if self.__figure_data:
-            state[self.__figure_key] = safe_figure(self.__figure_data.to_plotly_json())
+            state[self.__figure_key] = safe_serialization(
+                self.__figure_data.to_plotly_json()
+            )
+
 
 class Figure(Plotly):
     pass

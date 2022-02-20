@@ -53,6 +53,8 @@ Community
 * `Issues <https://github.com/Kitware/trame/issues>`_
 * `RoadMap <https://github.com/Kitware/trame/projects/1>`_
 * `Contact Us <https://www.kitware.com/contact-us/>`_
+* .. image:: https://zenodo.org/badge/410108340.svg
+    :target: https://zenodo.org/badge/latestdoi/410108340
 
 Enjoying trame?
 _______________

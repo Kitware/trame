@@ -1,0 +1,38 @@
+{
+    "description": "Trame let you weave various components and technologies into a Web Application solely written in Python", 
+    "license": "BSD-3-Clause", 
+    "title": "Kitware/trame: v1.16.2", 
+    "version": "v1.16.2", 
+    "upload_type": "software", 
+    "publication_date": "2022-02-20", 
+    "creators": [
+        {
+            "affiliation": "Kitware", 
+            "name": "Sebastien Jourdain"
+        }, 
+        {
+            "affiliation": "Kitware", 
+            "name": "Patrick Avery"
+        }, 
+        {
+            "affiliation": "Kitware", 
+            "name": "Patrick O'Leary"
+        }, 
+        {
+            "affiliation": "Kitware SAS", 
+            "name": "David Berger"
+        }, 
+        {
+            "affiliation": "Kitware", 
+            "name": "Caitlin Ross"
+        }
+    ], 
+    "access_right": "open", 
+    "related_identifiers": [
+        {
+            "scheme": "doi", 
+            "identifier": "10.5281/zenodo.6190184", 
+            "relation": "isVersionOf"
+        }
+    ]
+}

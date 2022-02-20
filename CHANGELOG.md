@@ -1,3 +1,10 @@
+## [1.16.2](https://github.com/kitware/trame/compare/v1.16.1...v1.16.2) (2022-02-20)
+
+
+### Bug Fixes
+
+* **plotly:** Use numpy serializer ([5f24153](https://github.com/kitware/trame/commit/5f24153bf873f9664b7fda5864a97a8eda0f25ef))
+
 ## [1.16.1](https://github.com/kitware/trame/compare/v1.16.0...v1.16.1) (2022-02-18)
 
 

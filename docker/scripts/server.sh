@@ -1,19 +1,13 @@
 #!/usr/bin/env bash
 
-venv_dir=/deploy/server/venv
-
-if [ ! -d $venv_dir ]
+if [ ! -d $TRAME_VENV ]
 then
   # We have access to PyYAML in the root python environment.
   # Convert the apps.yml file to json and put it in the right place.
   python /opt/trame/yaml_to_json.py /deploy/setup/apps.yml /opt/trame/apps.json
 
-  # Create and install the virtual environment
-  python -m venv $venv_dir
-  . $venv_dir/bin/activate
-
-  # Upgrade pip
-  pip install -U pip
+  # Create (and activate) the venv
+  . /opt/trame/create_venv.sh
 
   # Run the initialize script (if it exists)
   if [ -f /deploy/setup/initialize.sh ]
@@ -21,11 +15,8 @@ then
     . /deploy/setup/initialize.sh
   fi
 
-  # Install requirements (if it exists)
-  if [ -f /deploy/setup/requirements.txt ]
-  then
-    pip install -r /deploy/setup/requirements.txt
-  fi
+  # Install any specified requirements
+  . /opt/trame/install_requirements.sh
 
   # Generate launcher.json and the www directory
   python /opt/trame/generate_launcher_config.py
@@ -37,7 +28,7 @@ then
     cp -r /deploy/setup/www/* /deploy/server/www
   fi
 else
-  . $venv_dir/bin/activate
+  . /opt/trame/activate_venv.sh
 fi
 
 if [[ $TRAME_BUILD_ONLY == 1 ]]; then

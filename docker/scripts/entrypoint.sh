@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if [ ! -d /deploy ]
+if [ ! -d /deploy/server ] && [ ! -d /deploy/setup ]
 then
   echo "ERROR: The deploy directory must be mounted into the container at /deploy"
   exit 1

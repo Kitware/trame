@@ -1,7 +1,13 @@
 #!/usr/bin/env bash
 
-deploy_uid=$(stat -c '%u' /deploy)
-deploy_gid=$(stat -c '%g' /deploy)
+check_dir=/deploy/server
+if [ ! -d $check_dir ]
+then
+  check_dir=/deploy/setup
+fi
+
+deploy_uid=$(stat -c '%u' $check_dir)
+deploy_gid=$(stat -c '%g' $check_dir)
 
 trame_user_uid=$(id -u trame-user)
 trame_user_gid=$(id -g trame-user)

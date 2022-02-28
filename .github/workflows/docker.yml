@@ -56,7 +56,7 @@ jobs:
         with:
             context: docker
             file: docker/Dockerfile.common
-            build-args: BASE_IMAGE=nvidia/opengl:1.2-glvnd-runtime-ubuntu20.04
+            build-args: BASE_IMAGE=nvidia/opengl:1.2-glvnd-devel-ubuntu20.04
             push: true
             tags: localhost:5000/trame-common-glvnd
 

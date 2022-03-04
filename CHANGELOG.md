@@ -1,3 +1,10 @@
+## [1.16.3](https://github.com/kitware/trame/compare/v1.16.2...v1.16.3) (2022-03-04)
+
+
+### Bug Fixes
+
+* **www:** optinal python dep for --www generator ([c4b97aa](https://github.com/kitware/trame/commit/c4b97aab95a5750cce8382cdc9f2cd7f3d3c946c))
+
 ## [1.16.2](https://github.com/kitware/trame/compare/v1.16.1...v1.16.2) (2022-02-20)
 
 

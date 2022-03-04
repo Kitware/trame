@@ -1,7 +1,11 @@
 from trame import state
 from trame.html import AbstractElement
 from trame.internal.app import get_app_instance
-from trame.internal.utils.numpy import safe_serialization
+
+try:
+    from trame.internal.utils.numpy import safe_serialization
+except:
+     print("\nnumpy is missing, if you want your plotly figure to work install it\n   $ pip install numpy\n")
 
 from pywebvue.modules import Plotly
 

@@ -1,12 +1,17 @@
-import mpld3
 from trame import state
 
 from trame.html import AbstractElement
 from trame.internal.app import get_app_instance
-from trame.internal.utils.numpy import safe_serialization
 
 # Only available 2.7.0+
 from pywebvue.modules import Matplotlib as module
+
+try:
+    import mpld3
+    from trame.internal.utils.numpy import safe_serialization
+except:
+    print("\nmpld3 is missing, if you want your matplotlib figure to work install it\n   $ pip install mpld3\n")
+
 
 # Make sure used module is available
 _app = get_app_instance()

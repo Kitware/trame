@@ -1,0 +1,1 @@
+Initially reported at https://github.com/plotly/dash-vtk/issues/66

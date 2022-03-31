@@ -59,11 +59,14 @@ class Simput(AbstractElement):
 
         self._simput_helper.reset()
 
-    def push(self, id=None, type=None, **kwargs):
+    def push(self, id=None, type=None, domains=None, proxy=None, **kwargs):
         """
         Ask server to push data, ui, or constraints
         """
-        self._simput_helper.push(id, type)
+        if proxy is not None:
+            id = proxy
+            domains = proxy
+        self._simput_helper.push(id=id, type=type, domains=domains)
 
     def update(self, change_set, **kwargs):
         """

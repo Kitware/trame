@@ -1,3 +1,10 @@
+## [1.16.4](https://github.com/kitware/trame/compare/v1.16.3...v1.16.4) (2022-03-31)
+
+
+### Bug Fixes
+
+* **simput:** Expose full push API ([4dbb0e1](https://github.com/kitware/trame/commit/4dbb0e12e2451ceaead6359e180b59650d72c9a0))
+
 ## [1.16.3](https://github.com/kitware/trame/compare/v1.16.2...v1.16.3) (2022-03-04)
 
 

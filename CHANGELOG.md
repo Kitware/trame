@@ -1,3 +1,10 @@
+## [1.16.5](https://github.com/kitware/trame/compare/v1.16.4...v1.16.5) (2022-04-01)
+
+
+### Bug Fixes
+
+* **simput:** add query attribute ([6ce8de0](https://github.com/kitware/trame/commit/6ce8de0e6952146191848de9338418566ef50c64))
+
 ## [1.16.4](https://github.com/kitware/trame/compare/v1.16.3...v1.16.4) (2022-03-31)
 
 

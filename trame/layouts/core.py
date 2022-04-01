@@ -99,7 +99,7 @@ class AbstractLayout:
             if isinstance(template, AbstractElement):
                 route["component"]["template"] = template.html
 
-    def start(self, port=None, debug=None):
+    def start(self, port=None, debug=None, **kwargs):
         """
         Start the application server.
 
@@ -108,6 +108,13 @@ class AbstractLayout:
                       None, in which case it is set to True if the --dev
                       flag was passed as a command line argument.
         :type debug: bool or None
+        :param kwargs: arguments to forward to run_server()
+
+        Some of the kwargs that may be forwarded to run_server() include:
+
+            * exec_mode (str): "main" (default) or "task" for running in an
+                               environment that already has an event loop,
+                               such as a Jupyter notebook.
         """
         _app = tri.get_app_instance()
 
@@ -128,7 +135,7 @@ class AbstractLayout:
         # Dev validation
         tri.validate_key_names()
 
-        _app.run_server(port=port)
+        _app.run_server(port=port, **kwargs)
 
     def start_thread(
         self, port=None, print_server_info=False, on_server_listening=None, **kwargs

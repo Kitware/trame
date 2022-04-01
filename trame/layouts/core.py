@@ -112,7 +112,7 @@ class AbstractLayout:
         _app = tri.get_app_instance()
 
         self._init_app(_app)
-  
+
         if debug is None:
             parser = _app.cli_parser
             args, _unknown = parser.parse_known_args()
@@ -134,7 +134,7 @@ class AbstractLayout:
         self, port=None, print_server_info=False, on_server_listening=None, **kwargs
     ):
         _app = tri.get_app_instance()
-        
+
         self._init_app(_app)
 
         if print_server_info:
@@ -156,7 +156,7 @@ class AbstractLayout:
         _msg_queue = Queue()
 
         _app = tri.get_app_instance()
-        
+
         self._init_app(_app)
 
         async def process_msg():

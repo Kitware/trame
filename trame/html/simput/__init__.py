@@ -20,6 +20,8 @@ class Simput(AbstractElement):
     :param domains_manager: See simput docs |simput_link| for more info
     :param prefix: Constructing a Simput component will set several variables, optionally prefixed by a namespace
     :type prefix:  str | None
+    :param query: String filtering
+    :type query: str
     :param children: The children nested within this element
     :type children:  str | list[trame.html.*] | trame.html.* | None
 
@@ -38,6 +40,7 @@ class Simput(AbstractElement):
         )
         self._attributes["wsClient"] = ':wsClient="wsClient"'
         self._attributes["namespace"] = f'namespace="{ns}"'
+        self._attr_names += ["query"]
 
     @property
     def controller(self):

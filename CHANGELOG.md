@@ -1,3 +1,10 @@
+# [1.17.0](https://github.com/kitware/trame/compare/v1.16.5...v1.17.0) (2022-04-01)
+
+
+### Features
+
+* **layout:** add kwargs to AbstractLayout.start() ([8b539a8](https://github.com/kitware/trame/commit/8b539a84fce65f39c77475b5af395b78d2ff2454))
+
 ## [1.16.5](https://github.com/kitware/trame/compare/v1.16.4...v1.16.5) (2022-04-01)
 
 

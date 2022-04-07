@@ -55,6 +55,7 @@ PLOTS = {
     "Scatter": scatter,
 }
 
+
 def on_event(type, e):
     print(type, e)
 

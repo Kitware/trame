@@ -24,10 +24,13 @@ from vtkmodules.vtkRenderingCore import (
     vtkRenderWindow,
     vtkRenderWindowInteractor,
     vtkHardwareSelector,
-    vtkRenderedAreaPicker
+    vtkRenderedAreaPicker,
 )
 
-from vtkmodules.vtkInteractionStyle import vtkInteractorStyleRubberBandPick, vtkInteractorStyleSwitch  # noqa
+from vtkmodules.vtkInteractionStyle import (
+    vtkInteractorStyleRubberBandPick,
+    vtkInteractorStyleSwitch,
+)  # noqa
 import vtkmodules.vtkRenderingOpenGL2  # noqa
 
 from vtkmodules.vtkInteractionStyle import vtkInteractorStyleRubberBandPick
@@ -39,7 +42,7 @@ from vtkmodules.vtkInteractionStyle import vtkInteractorStyleRubberBandPick
 dataset_file = RemoteFile(
     "./data/disk_out_ref.vtu",
     "https://github.com/Kitware/trame/raw/master/examples/data/disk_out_ref.vtu",
-    __file__
+    __file__,
 )
 
 # -----------------------------------------------------------------------------
@@ -136,7 +139,9 @@ def update_figure(**kwargs):
     # Update chart
     ctrl.update_figure(fig)
 
+
 # -----------------------------------------------------------------------------
+
 
 @state.change("vtk_selection")
 def update_interactor(vtk_selection, **kwargs):
@@ -145,6 +150,7 @@ def update_interactor(vtk_selection, **kwargs):
         interactor_selection.StartSelect()
     else:
         rw_interactor.SetInteractorStyle(interactor_trackball)
+
 
 # -----------------------------------------------------------------------------
 
@@ -177,17 +183,22 @@ def on_chart_selection(selected_point_idxs):
     # Update 3D view
     ctrl.update_view()
 
+
 def on_box_selection_change(selection):
     global SELECTED_IDX
 
     actor.GetProperty().SetOpacity(1)
-    selector.SetArea(int(renderer.GetPickX1()), int(renderer.GetPickY1()),
-                     int(renderer.GetPickX2()), int(renderer.GetPickY2()))
+    selector.SetArea(
+        int(renderer.GetPickX1()),
+        int(renderer.GetPickY1()),
+        int(renderer.GetPickX2()),
+        int(renderer.GetPickY2()),
+    )
     s = selector.Select()
     n = s.GetNode(0)
     ids = dsa.vtkDataArrayToVTKArray(n.GetSelectionData().GetArray("SelectedIds"))
     surface = dsa.WrapDataObject(surface_filter.GetOutput())
-    SELECTED_IDX = surface.PointData['vtkOriginalPointIds'][ids].tolist()
+    SELECTED_IDX = surface.PointData["vtkOriginalPointIds"][ids].tolist()
 
     selection_extract.SetInputConnection(surface_filter.GetOutputPort())
     selection_extract.SetInputDataObject(1, s)
@@ -214,7 +225,7 @@ DROPDOWN_STYLES = {
     "dense": True,
     "hide_details": True,
     "classes": "px-2",
-    "style": "max-width: calc(25vw - 10px);"
+    "style": "max-width: calc(25vw - 10px);",
 }
 
 CHART_STYLE = {
@@ -265,7 +276,10 @@ with layout.toolbar as tb:
 with layout.content:
     with vuetify.VContainer(fluid=True, classes="fill-height pa-0 ma-0"):
         with vuetify.VRow(dense=True, style="height: 100%;"):
-            with vuetify.VCol(classes="pa-0", style="border-right: 1px solid #ccc; position: relative;"):
+            with vuetify.VCol(
+                classes="pa-0",
+                style="border-right: 1px solid #ccc; position: relative;",
+            ):
                 html_view = vtk.VtkRemoteView(
                     render_window,
                     box_selection=("vtk_selection",),

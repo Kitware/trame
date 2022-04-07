@@ -1,3 +1,10 @@
+## [1.18.2](https://github.com/kitware/trame/compare/v1.18.1...v1.18.2) (2022-04-07)
+
+
+### Bug Fixes
+
+* **env.paraview:** better handling of stdout/stderr ([813faaf](https://github.com/kitware/trame/commit/813faaf781253e41e1f5d94cba425f5f8d20add0))
+
 ## [1.18.1](https://github.com/kitware/trame/compare/v1.18.0...v1.18.1) (2022-04-07)
 
 

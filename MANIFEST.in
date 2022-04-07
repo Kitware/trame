@@ -1,1 +1,2 @@
+include trame/LICENSE
 graft trame/html/assets

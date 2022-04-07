@@ -1,3 +1,10 @@
+## [1.18.1](https://github.com/kitware/trame/compare/v1.18.0...v1.18.1) (2022-04-07)
+
+
+### Bug Fixes
+
+* **env.paraview:** Add support for mac ([1756acf](https://github.com/kitware/trame/commit/1756acfa7e46b2aa6a853c669eef519b70512a60))
+
 # [1.18.0](https://github.com/kitware/trame/compare/v1.17.0...v1.18.0) (2022-04-07)
 
 

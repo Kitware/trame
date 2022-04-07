@@ -92,32 +92,31 @@ def find_python_path(root_dir, search_paths_dict):
 
 
 def rerun(base_path, add_path_vars, remove_vars=[]):
-    print("-" * 80)
-    print("Re-excuting with following environment variables:")
     for name, paths in add_path_vars.items():
         resolved_paths = filter_existing_paths(base_path, paths)
         append_path_to_environ(name, resolved_paths)
-        print(f" - {name}={os.environ[name]}")
-    print("-" * 80)
 
     clear_environ_variables(*remove_vars)
-    rerun_with_new_environ()
+    rerun_with_new_environ(*list(add_path_vars.keys()))
 
 
-def rerun_with_new_environ():
+def rerun_with_new_environ(*var_to_print):
     if not os.environ.get("__IN_TRAME_RERUN") == "YES":
         env = os.environ.copy()
         env["__IN_TRAME_RERUN"] = "YES"
 
+        # Print env info
+        if len(var_to_print):
+            print("-" * 80)
+            print("Re-excuting with following environment variables:")
+            for name in var_to_print:
+                print(f" - {name}={env.get(name)}")
+            print("-" * 80)
+
         # Re-run the same command with the modified environment
         cmd = [sys.executable] + sys.argv
-        output = subprocess.run(cmd, capture_output=True, env=env)
-        print("stderr", output.stderr.decode())
-        print("stdout:", output.stdout.decode())
+        subprocess.run(cmd, stdout=sys.stdout, stderr=sys.stderr, env=env)
         sys.exit()
-    else:
-        env = os.environ
-        print(f"In trame re-run: {env['DYLD_LIBRARY_PATH']=} {env['PYTHONPATH']=}")
 
 
 def clear_environ_variables(*names):

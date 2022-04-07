@@ -1,3 +1,16 @@
+# [1.18.0](https://github.com/kitware/trame/compare/v1.17.0...v1.18.0) (2022-04-07)
+
+
+### Bug Fixes
+
+* **license:** package LICENSE file in trame directory ([1746504](https://github.com/kitware/trame/commit/174650431db3db6be46d58f8e811a5e82c811816))
+
+
+### Features
+
+* **paraview:** add paraview to sys.path when requested ([7438f44](https://github.com/kitware/trame/commit/7438f44fcb54954f7c30854bddc23dcb3a217d45))
+* **venv:** add trame.env.venv ([adf4f97](https://github.com/kitware/trame/commit/adf4f97eded5287caea0fec14173860a1dfaa3a7))
+
 # [1.17.0](https://github.com/kitware/trame/compare/v1.16.5...v1.17.0) (2022-04-01)
 
 

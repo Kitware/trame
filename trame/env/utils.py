@@ -2,6 +2,7 @@ import os
 import platform
 import site
 import sys
+import subprocess
 
 
 def find_env_setting(arg, env_var_name):
@@ -39,6 +40,33 @@ def prepend_python_path(root_dir, search_paths_dict):
     return True
 
 
+def append_path_to_environ(var_name, paths):
+    result_paths = []
+    current_var_value = os.environ.get(var_name, "")
+    sys_path_sepa = ";" if platform.system() == "Windows" else ":"
+
+    if len(current_var_value):
+        result_paths.append(current_var_value)
+
+    for path_entry in paths:
+        if path_entry not in current_var_value:
+            result_paths.append(path_entry)
+
+    if len(result_paths):
+        os.environ[var_name] = sys_path_sepa.join(result_paths)
+
+
+def filter_existing_paths(root_dir, paths_to_try):
+    found_paths = []
+
+    for path in paths_to_try:
+        full_path = os.path.join(root_dir, path)
+        if os.path.exists(full_path):
+            found_paths.append(full_path)
+
+    return found_paths
+
+
 def find_python_path(root_dir, search_paths_dict):
     # Returns the python path, or None if it was not found
 
@@ -50,17 +78,49 @@ def find_python_path(root_dir, search_paths_dict):
         raise Exception(f"Unhandled system: {platform.system()}")
 
     paths_to_try = search_paths_dict[platform.system()]()
-    found = False
-    for path in paths_to_try:
-        full_path = os.path.join(root_dir, path)
-        if os.path.exists(full_path):
-            found = True
-            break
+    found_paths = filter_existing_paths(root_dir, paths_to_try)
 
-    if not found:
+    if len(found_paths) != 1:
         paths_str = "\n".join(paths_to_try)
-        print("Warning: python library path could not be found in "
-              f"'{root_dir}'. Tried:\n{paths_str}\n")
+        print(
+            "Warning: python library path could not be found in "
+            f"'{root_dir}'. Tried:\n{paths_str}\n"
+        )
         return None
 
-    return full_path
+    return found_paths[0]
+
+
+def rerun(base_path, add_path_vars, remove_vars=[]):
+    print("-" * 80)
+    print("Re-excuting with following environment variables:")
+    for name, paths in add_path_vars.items():
+        resolved_paths = filter_existing_paths(base_path, paths)
+        append_path_to_environ(name, resolved_paths)
+        print(f" - {name}={os.environ[name]}")
+    print("-" * 80)
+
+    clear_environ_variables(*remove_vars)
+    rerun_with_new_environ()
+
+
+def rerun_with_new_environ():
+    if not os.environ.get("__IN_TRAME_RERUN") == "YES":
+        env = os.environ.copy()
+        env["__IN_TRAME_RERUN"] = "YES"
+
+        # Re-run the same command with the modified environment
+        cmd = [sys.executable] + sys.argv
+        output = subprocess.run(cmd, capture_output=True, env=env)
+        print("stderr", output.stderr.decode())
+        print("stdout:", output.stdout.decode())
+        sys.exit()
+    else:
+        env = os.environ
+        print(f"In trame re-run: {env['DYLD_LIBRARY_PATH']=} {env['PYTHONPATH']=}")
+
+
+def clear_environ_variables(*names):
+    for var in names:
+        if var in os.environ:
+            os.environ.pop(var)

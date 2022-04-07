@@ -12,11 +12,11 @@ To use: specify one of the following, and then import this file:
 import platform
 import sys
 
-from .utils import prepend_python_path, find_env_setting
+from . import utils
 
 PV_LOADED = False
 
-PV_HOME = find_env_setting("--paraview", "TRAME_PARAVIEW")
+PV_HOME = utils.find_env_setting("--paraview", "TRAME_PARAVIEW")
 
 if PV_HOME is None:
     msg = (
@@ -34,26 +34,22 @@ def linux_paths():
     return [f"lib/python{py_major}.{py_minor}/site-packages"]
 
 
-def mac_paths():
-    return ["Contents/Python"]
-
-
 def windows_paths():
     return ["bin/Lib/site-packages"]
 
 
 search_paths_dict = {
     "Linux": linux_paths,
-    "Darwin": mac_paths,
     "Windows": windows_paths,
 }
 
-if platform.system() == "Darwin":
-    # We haven't been able to successfully run this on the Mac yet. So warn
-    # the user that it might fail.
-    print("WARNING: prepending the ParaView environment on Mac has not been "
-          "demonstrated to work successfully. It will likely fail.")
-
-PV_LOADED = prepend_python_path(PV_HOME, search_paths_dict)
-if not PV_LOADED:
-    raise Exception(f"Failed to add paraview python libraries at {PV_HOME}")
+if PV_HOME and platform.system() == "Darwin":
+    env_paths = {
+        "PYTHONPATH": ["Contents/Python"],
+        "DYLD_LIBRARY_PATH": ["Contents/Libraries"],
+    }
+    utils.rerun(PV_HOME, env_paths, ["PV_VENV", "VTK_VENV"])
+else:
+    PV_LOADED = utils.prepend_python_path(PV_HOME, search_paths_dict)
+    if not PV_LOADED:
+        raise Exception(f"Failed to add paraview python libraries at {PV_HOME}")

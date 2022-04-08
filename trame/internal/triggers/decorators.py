@@ -1,4 +1,4 @@
-import trame.internal as tri
+from trame import internal as tri
 
 
 def trigger(name):

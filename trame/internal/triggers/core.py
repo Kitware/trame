@@ -1,4 +1,4 @@
-import trame.internal as tri
+from trame import internal as tri
 
 NEXT_TRIGGER_ID = 0
 TRIGGER_MAP = {}

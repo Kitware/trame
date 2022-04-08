@@ -1,3 +1,10 @@
+## [1.18.3](https://github.com/kitware/trame/compare/v1.18.2...v1.18.3) (2022-04-08)
+
+
+### Bug Fixes
+
+* **py3.6:** Fix compatibility with 3.6 ([02208e8](https://github.com/kitware/trame/commit/02208e891f8fc7b6ffe1b7459b0d712a622ef190))
+
 ## [1.18.2](https://github.com/kitware/trame/compare/v1.18.1...v1.18.2) (2022-04-07)
 
 

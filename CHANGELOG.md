@@ -1,3 +1,10 @@
+## [1.18.4](https://github.com/kitware/trame/compare/v1.18.3...v1.18.4) (2022-04-08)
+
+
+### Bug Fixes
+
+* **vtk:** use viewId instead of id ([ad23c4d](https://github.com/kitware/trame/commit/ad23c4d88884319c05391b7e195cd8bcc85f9738))
+
 ## [1.18.3](https://github.com/kitware/trame/compare/v1.18.2...v1.18.3) (2022-04-08)
 
 

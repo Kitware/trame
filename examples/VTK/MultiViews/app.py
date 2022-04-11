@@ -1,3 +1,5 @@
+import asyncio
+import enum
 from trame import state, controller as ctrl
 from trame.html import vuetify, vtk
 from trame.layouts import SinglePage
@@ -26,45 +28,48 @@ mapper = vtkPolyDataMapper()
 mapper.SetInputConnection(cone_source.GetOutputPort())
 
 # -----------------------------------------------------------------------------
-# View 1
+# Views
 # -----------------------------------------------------------------------------
 
-actor_1 = vtkActor()
-actor_1.SetMapper(mapper)
+NB_COLS = 3
 
-renderer_1 = vtkRenderer()
-renderer_1.SetBackground(0.5, 0, 0)
-render_window_1 = vtkRenderWindow()
-render_window_1.AddRenderer(renderer_1)
+render_windows = []
+html_views = []
 
-render_window_interactor_1 = vtkRenderWindowInteractor()
-render_window_interactor_1.SetRenderWindow(render_window_1)
-render_window_interactor_1.GetInteractorStyle().SetCurrentStyleToTrackballCamera()
+colors = [
+    (0.5, 0, 0),
+    (0, 0.5, 0),
+    (0, 0, 0.5),
+    (0.5, 0, 0.5),
+    (0.5, 0.5, 0),
+    (0, 0.5, 0.5),
+    (0.5, 0, 0),
+    (0, 0.5, 0),
+    (0, 0, 0.5),
+    (0.5, 0, 0.5),
+    (0.5, 0.5, 0),
+    (0, 0.5, 0.5),
+]
 
-renderer_1.AddActor(actor_1)
-renderer_1.ResetCamera()
-render_window_1.Render()
+# Build render windows
+for color in colors:
+    actor = vtkActor()
+    actor.SetMapper(mapper)
 
+    renderer = vtkRenderer()
+    renderer.SetBackground(*color)
+    render_window = vtkRenderWindow()
+    render_window.AddRenderer(renderer)
 
-# -----------------------------------------------------------------------------
-# View 2
-# -----------------------------------------------------------------------------
+    render_window_interactor = vtkRenderWindowInteractor()
+    render_window_interactor.SetRenderWindow(render_window)
+    render_window_interactor.GetInteractorStyle().SetCurrentStyleToTrackballCamera()
 
-actor_2 = vtkActor()
-actor_2.SetMapper(mapper)
+    renderer.AddActor(actor)
+    renderer.ResetCamera()
+    render_window.Render()
 
-renderer_2 = vtkRenderer()
-renderer_2.SetBackground(0, 0.5, 0)
-render_window_2 = vtkRenderWindow()
-render_window_2.AddRenderer(renderer_2)
-
-render_window_interactor_2 = vtkRenderWindowInteractor()
-render_window_interactor_2.SetRenderWindow(render_window_2)
-render_window_interactor_2.GetInteractorStyle().SetCurrentStyleToTrackballCamera()
-
-renderer_2.AddActor(actor_2)
-renderer_2.ResetCamera()
-render_window_2.Render()
+    render_windows.append(render_window)
 
 # -----------------------------------------------------------------------------
 
@@ -87,6 +92,12 @@ layout.title.set_text("Cone Application")
 
 with layout.toolbar:
     vuetify.VSpacer()
+    for i, c in enumerate(colors):
+        with vuetify.VBtn(x_small=True, icon=True, click=f"trigger('view{i}AnimateStart')", style=f"color: rgb({255*c[0]}, {255*c[1]}, {255*c[2]})"):
+            vuetify.VIcon("mdi-play")
+        with vuetify.VBtn(classes="mr-2", x_small=True, icon=True, click=f"trigger('view{i}AnimateStop')", style=f"color: rgb({255*c[0]}, {255*c[1]}, {255*c[2]})"):
+            vuetify.VIcon("mdi-stop")
+    vuetify.VSpacer()
     vuetify.VSlider(
         v_model=("resolution", DEFAULT_RESOLUTION),
         min=3,
@@ -100,18 +111,22 @@ with layout.toolbar:
     with vuetify.VBtn(icon=True, click=update_reset_resolution):
         vuetify.VIcon("mdi-undo-variant")
 
+
 with layout.content:
     with vuetify.VContainer(fluid=True, classes="pa-0 fill-height"):
-        with vuetify.VRow(classes="pa-0 ma-0 fill-height"):
-            with vuetify.VCol(cols=6, classes="pa-0 ma-0"):
-                view_1 = vtk.VtkRemoteView(render_window_1, ref="view1")
-                ctrl.update_views.add(view_1.update)
-                ctrl.reset_camera.add(view_1.reset_camera)
-
-            with vuetify.VCol(cols=6, classes="pa-0 ma-0"):
-                view_2 = vtk.VtkRemoteView(render_window_2, ref="view2")
-                ctrl.update_views.add(view_2.update)
-                ctrl.reset_camera.add(view_2.reset_camera)
+        container = None
+        for idx, render_window in enumerate(render_windows):
+            if idx % NB_COLS == 0:
+                container = vuetify.VRow(
+                    classes="pa-0 ma-0",
+                    style=f"height: {NB_COLS * 100 / len(render_windows)}%;",
+                )
+            with container:
+                with vuetify.VCol(classes="pa-0 ma-0"):
+                    view = vtk.VtkRemoteLocalView(render_window, namespace=f"view{idx}", mode="remote")
+                    html_views.append(view)
+                    ctrl.update_views.add(view.update)
+                    ctrl.reset_camera.add(view.reset_camera)
 
 # -----------------------------------------------------------------------------
 # Main

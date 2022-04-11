@@ -31,18 +31,12 @@ mapper.SetInputConnection(cone_source.GetOutputPort())
 # Views
 # -----------------------------------------------------------------------------
 
-NB_COLS = 3
+NB_COLS = 4
 
 render_windows = []
 html_views = []
 
-colors = [
-    (0.5, 0, 0),
-    (0, 0.5, 0),
-    (0, 0, 0.5),
-    (0.5, 0, 0.5),
-    (0.5, 0.5, 0),
-    (0, 0.5, 0.5),
+PALETTE = [
     (0.5, 0, 0),
     (0, 0.5, 0),
     (0, 0, 0.5),
@@ -50,6 +44,7 @@ colors = [
     (0.5, 0.5, 0),
     (0, 0.5, 0.5),
 ]
+colors = PALETTE + PALETTE
 
 # Build render windows
 for color in colors:
@@ -73,10 +68,12 @@ for color in colors:
 
 # -----------------------------------------------------------------------------
 
+
 @state.change("resolution")
 def update_cone(resolution=DEFAULT_RESOLUTION, **kwargs):
     cone_source.SetResolution(resolution)
     ctrl.update_views()
+
 
 def update_reset_resolution():
     state.resolution = DEFAULT_RESOLUTION
@@ -91,12 +88,6 @@ layout.logo.click = ctrl.reset_camera
 layout.title.set_text("Cone Application")
 
 with layout.toolbar:
-    vuetify.VSpacer()
-    for i, c in enumerate(colors):
-        with vuetify.VBtn(x_small=True, icon=True, click=f"trigger('view{i}AnimateStart')", style=f"color: rgb({255*c[0]}, {255*c[1]}, {255*c[2]})"):
-            vuetify.VIcon("mdi-play")
-        with vuetify.VBtn(classes="mr-2", x_small=True, icon=True, click=f"trigger('view{i}AnimateStop')", style=f"color: rgb({255*c[0]}, {255*c[1]}, {255*c[2]})"):
-            vuetify.VIcon("mdi-stop")
     vuetify.VSpacer()
     vuetify.VSlider(
         v_model=("resolution", DEFAULT_RESOLUTION),
@@ -123,7 +114,7 @@ with layout.content:
                 )
             with container:
                 with vuetify.VCol(classes="pa-0 ma-0"):
-                    view = vtk.VtkRemoteLocalView(render_window, namespace=f"view{idx}", mode="remote")
+                    view = vtk.VtkRemoteView(render_window, ref=f"view{idx}")
                     html_views.append(view)
                     ctrl.update_views.add(view.update)
                     ctrl.reset_camera.add(view.reset_camera)

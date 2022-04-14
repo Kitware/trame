@@ -115,6 +115,10 @@ class AbstractLayout:
             * exec_mode (str): "main" (default) or "task" for running in an
                                environment that already has an event loop,
                                such as a Jupyter notebook.
+
+        The kwargs will also be forwarded to print_server_info(), so that
+        the `server` kwarg may be used to indicate whether a new window
+        should be opened.
         """
         _app = tri.get_app_instance()
 
@@ -126,11 +130,7 @@ class AbstractLayout:
             debug = args.dev
 
         _app._debug = debug
-
-        if self.on_ready:
-            _app.on_ready = tri.print_server_info(self.on_ready)
-        else:
-            _app.on_ready = tri.print_server_info()
+        _app.on_ready = tri.print_server_info(self.on_ready, **kwargs)
 
         # Dev validation
         tri.validate_key_names()

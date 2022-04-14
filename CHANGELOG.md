@@ -1,3 +1,11 @@
+# [1.19.0](https://github.com/kitware/trame/compare/v1.18.4...v1.19.0) (2022-04-14)
+
+
+### Features
+
+* **jupyter:** add utility functions for running in jupyter ([f7f96ad](https://github.com/kitware/trame/commit/f7f96ad0748aa531f19baa5cda5d702927e1861d))
+* **server:** add python option to disable web browser opening ([614b378](https://github.com/kitware/trame/commit/614b3784d41f9a9f2e5ee663ab92279134c72bca))
+
 ## [1.18.4](https://github.com/kitware/trame/compare/v1.18.3...v1.18.4) (2022-04-08)
 
 

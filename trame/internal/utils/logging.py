@@ -5,7 +5,7 @@ def log_js_error(message):
     print(f" > JS error | {message}")
 
 
-def print_server_info(_fn=None):
+def print_server_info(_fn=None, server=None, **kwargs):
     """Provide network info so clients can connect to the started server"""
     from trame.internal.app import get_app_instance
 
@@ -40,7 +40,11 @@ def print_server_info(_fn=None):
             except TypeError:
                 _fn()
 
-        if not args.server:
+        nonlocal server
+        if server is None:
+            server = args.server
+
+        if not server:
             import webbrowser
             import asyncio
 

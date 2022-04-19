@@ -1,3 +1,10 @@
+## [1.19.1](https://github.com/kitware/trame/compare/v1.19.0...v1.19.1) (2022-04-19)
+
+
+### Bug Fixes
+
+* **logging:** hide print statements for task exec mode ([f193284](https://github.com/kitware/trame/commit/f193284985d7a5d2b0943afa39fc6381d24a4de1))
+
 # [1.19.0](https://github.com/kitware/trame/compare/v1.18.4...v1.19.0) (2022-04-14)
 
 

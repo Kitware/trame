@@ -5,7 +5,7 @@ def log_js_error(message):
     print(f" > JS error | {message}")
 
 
-def print_server_info(_fn=None, server=None, **kwargs):
+def print_server_info(_fn=None, server=None, exec_mode=None, **kwargs):
     """Provide network info so clients can connect to the started server"""
     from trame.internal.app import get_app_instance
 
@@ -18,21 +18,22 @@ def print_server_info(_fn=None, server=None, **kwargs):
 
         import socket
 
-        try:
-            host_name = socket.gethostname()
-            host_ip = socket.gethostbyname(host_name)
+        if exec_mode != "task":
+            try:
+                host_name = socket.gethostname()
+                host_ip = socket.gethostbyname(host_name)
+
+                print()
+                print("App running at:")
+                print(f" - Local:   {local_url}")
+                print(f" - Network: http://{host_ip}:{real_port}/")
+
+            except socket.gaierror:
+                pass
 
             print()
-            print("App running at:")
-            print(f" - Local:   {local_url}")
-            print(f" - Network: http://{host_ip}:{real_port}/")
-
-        except socket.gaierror:
-            pass
-
-        print()
-        print("Note that for multi-users you need to use and configure a",
-              "launcher.")
+            print("Note that for multi-users you need to use and configure a",
+                  "launcher.")
 
         if _fn:
             try:
@@ -44,15 +45,16 @@ def print_server_info(_fn=None, server=None, **kwargs):
         if server is None:
             server = args.server
 
-        if not server:
-            import webbrowser
-            import asyncio
+        if exec_mode != "task":
+            if not server:
+                import webbrowser
+                import asyncio
 
-            loop = asyncio.get_event_loop()
-            loop.call_later(0.1, lambda: webbrowser.open(local_url))
-            print("And to prevent your browser from opening, "
-                  "add '--server' to your command line.")
-        print()
+                loop = asyncio.get_event_loop()
+                loop.call_later(0.1, lambda: webbrowser.open(local_url))
+                print("And to prevent your browser from opening, "
+                      "add '--server' to your command line.")
+            print()
 
     return ready
 

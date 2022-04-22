@@ -213,7 +213,6 @@ class VtkRemoteLocalView(AbstractElement):
         self.__wrapped_view = MODULE.view(view, name=__ns, mode=__mode_start)
 
         # Provide mandatory attributes
-        self._attributes["wsClient"] = ':wsClient="wsClient"'
         self._attributes["ref"] = f'ref="{self.__ref}"'
         self._attributes["view_id"] = f':viewId="{self.__view_key_id}"'
         self._attributes["view_state"] = f':viewState="{self.__scene_id}"'
@@ -315,7 +314,6 @@ class VtkRemoteView(AbstractElement):
         self.__ref = ref
         self.__view_key_id = f"{ref}Id"
         state[self.__view_key_id] = MODULE.id(view)
-        self._attributes["wsClient"] = ':wsClient="wsClient"'
         self._attributes["ref"] = f'ref="{ref}"'
         self._attributes["view_id"] = f':viewId="{self.__view_key_id}"'
         self._attr_names += [
@@ -382,7 +380,6 @@ class VtkLocalView(AbstractElement):
         self.__view = view
         self.__ref = ref
         self._attributes["ref"] = f'ref="{ref}"'
-        self._attributes["wsClient"] = ':wsClient="wsClient"'
         self._attributes["view_state"] = f':viewState="{self.__scene_id}"'
         self._attr_names += [
             "interactor_events",

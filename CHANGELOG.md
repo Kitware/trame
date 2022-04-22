@@ -1,3 +1,10 @@
+## [1.19.2](https://github.com/kitware/trame/compare/v1.19.1...v1.19.2) (2022-04-22)
+
+
+### Bug Fixes
+
+* **wsClient:** Use trame inject for wsClient ([446e234](https://github.com/kitware/trame/commit/446e234a53aed7d04447000f8cc7c70b46ed94a4))
+
 ## [1.19.1](https://github.com/kitware/trame/compare/v1.19.0...v1.19.1) (2022-04-19)
 
 

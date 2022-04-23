@@ -1,3 +1,5 @@
+import multiprocessing
+
 from trame import state
 from trame.html import vuetify, vtk
 from trame.layouts import SinglePage
@@ -24,6 +26,7 @@ DEFAULT_RESOLUTION = 6
 renderer = vtkRenderer()
 renderWindow = vtkRenderWindow()
 renderWindow.AddRenderer(renderer)
+renderWindow.OffScreenRenderingOn()
 
 renderWindowInteractor = vtkRenderWindowInteractor()
 renderWindowInteractor.SetRenderWindow(renderWindow)
@@ -92,4 +95,9 @@ with layout.content:
 # -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
+    # Freeze support is needed particularly for Windows, to prevent infinite
+    # recursion when multiprocessing is used.
+    multiprocessing.freeze_support()
     layout.start()
+    # The layout can alternatively be started as a desktop window instead
+    # layout.start_desktop_window()

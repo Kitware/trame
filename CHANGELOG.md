@@ -1,3 +1,11 @@
+## [1.19.3](https://github.com/kitware/trame/compare/v1.19.2...v1.19.3) (2022-04-23)
+
+
+### Bug Fixes
+
+* **pywebview:** support newer versions and windows ([ce7f821](https://github.com/kitware/trame/commit/ce7f821bf3a2cac922d6f56ba9c047a4d73b0dfd))
+* **RemoteRendering.py:** hide render window and support multiprocessing on Windows ([cc68d52](https://github.com/kitware/trame/commit/cc68d52d0a7eae4ebcc7108e74dc7e60e978abfd))
+
 ## [1.19.2](https://github.com/kitware/trame/compare/v1.19.1...v1.19.2) (2022-04-22)
 
 

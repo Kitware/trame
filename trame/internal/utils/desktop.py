@@ -42,14 +42,14 @@ class ClientWindowProcess(Process):
         self._msg_queue.put(["file_dialog", result])
 
     def exit(self):
-        self._main_window.destroy()
+        # It does not appear that we need to destroy the window
         self._msg_queue.put("closing")
 
     def run(self):
         try:
             import webview
         except ImportError:
-            print("trame.start_desktop_window() require pywebview==3.4")
+            print("layout.start_desktop_window() requires pywebview>=3.4")
             return
 
         self._main_window = webview.create_window(
@@ -57,7 +57,12 @@ class ClientWindowProcess(Process):
             url=f"http://localhost:{self._port}/",
             **self._window_args,
         )
-        self._main_window.closing += self.exit
+        if hasattr(self._main_window, 'events'):
+            # Newer versions of pywebview (>=3.6) use window.events.closing
+            self._main_window.events.closing += self.exit
+        else:
+            # Older versions (around pywebview<=3.5) use window.closing
+            self._main_window.closing += self.exit
 
         if self._file_dialog:
             webview.start(func=self._open_file_dialog)

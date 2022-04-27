@@ -1,3 +1,10 @@
+## [1.19.4](https://github.com/kitware/trame/compare/v1.19.3...v1.19.4) (2022-04-27)
+
+
+### Bug Fixes
+
+* **vtkEvent:** properly handle vtk views events ([7d85420](https://github.com/kitware/trame/commit/7d85420098da6f559e4da075a03760ddd13c3a34))
+
 ## [1.19.3](https://github.com/kitware/trame/compare/v1.19.2...v1.19.3) (2022-04-23)
 
 

@@ -223,13 +223,48 @@ class VtkRemoteLocalView(AbstractElement):
             "context_name",
             "interactive_quality",
             "interactive_ratio",
-            "interactor_events",
+            ("interactor_events", "interactorEvents"),
             "interactor_settings",
             ("box_selection", "boxSelection"),
         ]
-        self._event_names += kwargs.get("interactor_events", [])
         self._event_names += [
             ("box_selection_change", "BoxSelection"),
+            "StartAnimation",
+            "Animation",
+            "EndAnimation",
+            "MouseEnter",
+            "MouseLeave",
+            "StartMouseMove",
+            "MouseMove",
+            "EndMouseMove",
+            "LeftButtonPress",
+            "LeftButtonRelease",
+            "MiddleButtonPress",
+            "MiddleButtonRelease",
+            "RightButtonPress",
+            "RightButtonRelease",
+            "KeyPress",
+            "KeyDown",
+            "KeyUp",
+            "StartMouseWheel",
+            "MouseWheel",
+            "EndMouseWheel",
+            "StartPinch",
+            "Pinch",
+            "EndPinch",
+            "StartPan",
+            "Pan",
+            "EndPan",
+            "StartRotate",
+            "Rotate",
+            "EndRotate",
+            "Button3D",
+            "Move3D",
+            "StartPointerLock",
+            "EndPointerLock",
+            "StartInteraction",
+            "Interaction",
+            "EndInteraction",
         ]
 
     def update_geometry(self, reset_camera=False):
@@ -260,7 +295,9 @@ class VtkRemoteLocalView(AbstractElement):
         state[self.__view_key_id] = MODULE.id(new_view)
         _mode = state[self.__mode_key]
         self.__view = new_view
-        self.__wrapped_view = MODULE.view(new_view, name=self.__namespace, mode=_mode, force_replace=True)
+        self.__wrapped_view = MODULE.view(
+            new_view, name=self.__namespace, mode=_mode, force_replace=True
+        )
         self.update()
         self.resize()
 
@@ -320,12 +357,47 @@ class VtkRemoteView(AbstractElement):
             "enable_picking",
             "interactive_quality",
             "interactive_ratio",
-            "interactor_events",
+            ("interactor_events", "interactorEvents"),
             ("box_selection", "boxSelection"),
         ]
-        self._event_names += kwargs.get("interactor_events", [])
         self._event_names += [
             ("box_selection_change", "BoxSelection"),
+            "StartAnimation",
+            "Animation",
+            "EndAnimation",
+            "MouseEnter",
+            "MouseLeave",
+            "StartMouseMove",
+            "MouseMove",
+            "EndMouseMove",
+            "LeftButtonPress",
+            "LeftButtonRelease",
+            "MiddleButtonPress",
+            "MiddleButtonRelease",
+            "RightButtonPress",
+            "RightButtonRelease",
+            "KeyPress",
+            "KeyDown",
+            "KeyUp",
+            "StartMouseWheel",
+            "MouseWheel",
+            "EndMouseWheel",
+            "StartPinch",
+            "Pinch",
+            "EndPinch",
+            "StartPan",
+            "Pan",
+            "EndPan",
+            "StartRotate",
+            "Rotate",
+            "EndRotate",
+            "Button3D",
+            "Move3D",
+            "StartPointerLock",
+            "EndPointerLock",
+            "StartInteraction",
+            "Interaction",
+            "EndInteraction",
         ]
 
     def update(self, **kwargs):
@@ -345,6 +417,7 @@ class VtkRemoteView(AbstractElement):
 
     def resize(self, **kwargs):
         self.__app.update(ref=self.__ref, method="resize")
+
 
 class VtkShareDataset(AbstractElement):
     def __init__(self, children=None, **kwargs):
@@ -382,14 +455,49 @@ class VtkLocalView(AbstractElement):
         self._attributes["ref"] = f'ref="{ref}"'
         self._attributes["view_state"] = f':viewState="{self.__scene_id}"'
         self._attr_names += [
-            "interactor_events",
+            ("interactor_events", "interactorEvents"),
             "interactor_settings",
             "context_name",
             ("box_selection", "boxSelection"),
         ]
-        self._event_names += kwargs.get("interactor_events", [])
         self._event_names += [
             ("box_selection_change", "BoxSelection"),
+            "StartAnimation",
+            "Animation",
+            "EndAnimation",
+            "MouseEnter",
+            "MouseLeave",
+            "StartMouseMove",
+            "MouseMove",
+            "EndMouseMove",
+            "LeftButtonPress",
+            "LeftButtonRelease",
+            "MiddleButtonPress",
+            "MiddleButtonRelease",
+            "RightButtonPress",
+            "RightButtonRelease",
+            "KeyPress",
+            "KeyDown",
+            "KeyUp",
+            "StartMouseWheel",
+            "MouseWheel",
+            "EndMouseWheel",
+            "StartPinch",
+            "Pinch",
+            "EndPinch",
+            "StartPan",
+            "Pan",
+            "EndPan",
+            "StartRotate",
+            "Rotate",
+            "EndRotate",
+            "Button3D",
+            "Move3D",
+            "StartPointerLock",
+            "EndPointerLock",
+            "StartInteraction",
+            "Interaction",
+            "EndInteraction",
         ]
         self.update()
 
@@ -409,7 +517,11 @@ class VtkLocalView(AbstractElement):
 
     def replace_view(self, new_view, **kwargs):
         self.__view = new_view
-        self.__app.update(ref=self.__ref, method="setSynchronizedViewId", args=f"[{MODULE.id(new_view)}]")
+        self.__app.update(
+            ref=self.__ref,
+            method="setSynchronizedViewId",
+            args=f"[{MODULE.id(new_view)}]",
+        )
         self.update()
 
     def resize(self, **kwargs):
@@ -424,6 +536,7 @@ class VtkView(AbstractElement):
         self._attr_names += [
             "background",
             "cube_axes_style",
+            ("interactor_events", "interactorEvents"),
             "interactor_settings",
             "picking_modes",
             "show_cube_axes",
@@ -433,6 +546,42 @@ class VtkView(AbstractElement):
             "click",
             "select",
             "resize",
+            "StartAnimation",
+            "Animation",
+            "EndAnimation",
+            "MouseEnter",
+            "MouseLeave",
+            "StartMouseMove",
+            "MouseMove",
+            "EndMouseMove",
+            "LeftButtonPress",
+            "LeftButtonRelease",
+            "MiddleButtonPress",
+            "MiddleButtonRelease",
+            "RightButtonPress",
+            "RightButtonRelease",
+            "KeyPress",
+            "KeyDown",
+            "KeyUp",
+            "StartMouseWheel",
+            "MouseWheel",
+            "EndMouseWheel",
+            "StartPinch",
+            "Pinch",
+            "EndPinch",
+            "StartPan",
+            "Pan",
+            "EndPan",
+            "StartRotate",
+            "Rotate",
+            "EndRotate",
+            "Button3D",
+            "Move3D",
+            "StartPointerLock",
+            "EndPointerLock",
+            "StartInteraction",
+            "Interaction",
+            "EndInteraction",
         ]
 
     def reset_camera(self, **kwargs):

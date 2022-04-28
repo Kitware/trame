@@ -15,6 +15,35 @@ def py2js_key(key):
     return key.replace("_", "-")
 
 
+def js2py_key(key):
+    return key.replace("-", "_")
+
+
+def build_attr_names(name_prefix, key_names, kwargs):
+    """Used to generate a list of attr_names with a common name_prefix."""
+    attr_names = []
+    for key_name in key_names:
+        safe_name_prefix = js2py_key(name_prefix)
+        safe_name = js2py_key(key_name).replace(".", "_")
+        if "<name>" in safe_name:
+            safe_header, safe_tail = safe_name.split("<name>")
+            header, tail = key_name.split("<name>")
+            for key in kwargs:
+                if key.startswith(header):
+                    dyna_name = key[len(header) : -len(tail)]
+                    attr_names.append(
+                        (
+                            f"{safe_name_prefix}_{safe_header}{dyna_name}{safe_tail}",
+                            f"{name_prefix}:{header}{dyna_name}{tail}",
+                        )
+                    )
+        else:
+            attr_names.append(
+                (f"{safe_name_prefix}_{safe_name}", f"{name_prefix}:{key_name}")
+            )
+    return attr_names
+
+
 class ElementContextManager:
     def __init__(self):
         self.element_stack = []
@@ -32,6 +61,36 @@ class ElementContextManager:
 
 
 HTML_CTX = ElementContextManager()
+
+key_names = [
+    "delete",
+    "down",
+    "enter",
+    "esc",
+    "left",
+    "right",
+    "space",
+    "tab",
+    "up",
+]
+v_on_names = [
+    "click.capture",
+    "click.once",
+    "click.prevent",
+    "click.prevent.self",
+    "click.self.prevent",
+    "click.self",
+    "click.stop.prevent",
+    "click.stop",
+    "click",
+    "scroll.passive",
+    "scroll",
+    "submit.prevent",
+    "submit",
+    *["keyup." + k for k in key_names],
+    *["keydown." + k for k in key_names],
+]
+v_bind_names = ["class", "style"]
 
 
 class AbstractElement:
@@ -72,6 +131,8 @@ class AbstractElement:
     :param v_if: See |vue_doc_link| for more info
     :param v_show: See |vue_doc_link| for more info
     :param v_for: See |vue_doc_link| for more info
+    :param v_on: See |vue_doc_link| for more info
+    :param v_bind: See |vue_doc_link| for more info
     :param key: See |vue_doc_link| for more info
 
     Events - See |mdn_event_link| for more info
@@ -113,17 +174,21 @@ class AbstractElement:
             "style",
             ("key", ":key"),
             # default vue.js directives
-            "v_text",
-            "v_html",
-            "v_show",
-            "v_if",
-            "v_else",
+            "v_bind",
             "v_else_if",
+            "v_else",
             "v_for",
+            "v_html",
+            "v_if",
             "v_model",
-            "v_pre",
+            "v_on",
             "v_once",
+            "v_pre",
+            "v_show",
+            "v_text",
         ]
+        self._attr_names += build_attr_names("v-on", v_on_names, kwargs)
+        self._attr_names += build_attr_names("v-bind", v_bind_names, kwargs)
         self._event_names += [
             "click",
             "mousedown",
@@ -505,22 +570,7 @@ class Template(AbstractElement):
     def __init__(self, children=None, **kwargs):
         super().__init__("template", children, **kwargs)
         self._attr_names += ["v_slot"]
-        for slot_name in Template.slot_names:
-            safe_name = slot_name.replace("-", "_").replace(".", "_")
-            if "<name>" in safe_name:
-                safe_header, safe_tail = safe_name.split("<name>")
-                header, tail = slot_name.split("<name>")
-                for key in kwargs:
-                    if key.startswith(header):
-                        dyna_name = key[len(header) : -len(tail)]
-                        self._attr_names.append(
-                            (
-                                f"v_slot_{safe_header}{dyna_name}{safe_tail}",
-                                f"v-slot:{header}{dyna_name}{tail}",
-                            )
-                        )
-            else:
-                self._attr_names.append((f"v_slot_{safe_name}", f"v-slot:{slot_name}"))
+        self._attr_names += build_attr_names("v-slot", Template.slot_names, kwargs)
 
 
 class StateChange(AbstractElement):

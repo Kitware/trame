@@ -1,3 +1,11 @@
+# [1.20.0](https://github.com/kitware/trame/compare/v1.19.4...v1.20.0) (2022-04-28)
+
+
+### Features
+
+* **AbstractElement:** Add v-on and v-bind to AbstractElement._attr_names ([b497dbd](https://github.com/kitware/trame/commit/b497dbd8d90f40a45b3c2844633c23f58aa9ab92))
+* **example:** Add menu example using v-bind and v-on ([7272fd4](https://github.com/kitware/trame/commit/7272fd4a9781ff3585153df2162e68f54b3c800f))
+
 ## [1.19.4](https://github.com/kitware/trame/compare/v1.19.3...v1.19.4) (2022-04-27)
 
 

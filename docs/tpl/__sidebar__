@@ -4,6 +4,9 @@ docs:
     start: getting_started.html
     api: api.html
     cheatsheet: cheatsheet.html
+  trame_v2:
+    intro: trame_v2_intro.html
+    migration: trame_v2_migration.html
   tutorial:
     t_overview: tutorial.html
     t_download: tutorial-download.html

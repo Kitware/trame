@@ -25,6 +25,9 @@ sidebar:
     concepts: Concepts
     api: API
     cheatsheet: Cheatsheet
+    trame_v2: Version 2
+    intro: Introduction
+    migration: From v1 to v2
     tutorial: Tutorial
     t_overview: Overview
     t_download: Download

@@ -1,4 +1,4 @@
-import os
+from pathlib import Path
 
 from trame import state
 from trame.layouts import SinglePage
@@ -32,14 +32,9 @@ VIEW_SELECT = [{"button": 1, "action": "Select"}]
 # VTK pipeline
 # -----------------------------------------------------------------------------
 
-
-data_directory = os.path.join(
-    os.path.dirname(
-        os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-    ),
-    "data",
-)
-f1_vtp = os.path.join(data_directory, "f1.vtp")
+data_directory = Path(__file__).parent.parent.parent.parent.with_name("data")
+f1_vtp = data_directory / "f1.vtp"
+print(f1_vtp)
 
 reader = vtkXMLPolyDataReader()
 reader.SetFileName(f1_vtp)

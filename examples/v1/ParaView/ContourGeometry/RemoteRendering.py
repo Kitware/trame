@@ -1,5 +1,6 @@
 from paraview.web import venv  # Available in PV 5.10-RC2+
-import os
+
+from pathlib import Path
 
 from trame import state
 from trame.html import vuetify, paraview
@@ -13,11 +14,8 @@ from paraview import simple
 
 simple.LoadDistributedPlugin("AcceleratedAlgorithms", remote=False, ns=globals())
 
-data_directory = os.path.join(
-    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
-    "data",
-)
-head_vti = os.path.join(data_directory, "head.vti")
+data_directory = Path(__file__).parent.parent.parent.with_name("data")
+head_vti = data_directory / "head.vti"
 
 reader = simple.XMLImageDataReader(FileName=[head_vti])
 # contour = simple.Contour(Input=reader) # Default filter    => no plugin but slow

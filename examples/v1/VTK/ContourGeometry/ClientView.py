@@ -1,4 +1,4 @@
-import os
+from pathlib import Path
 
 from trame import change
 from trame.html import vuetify, vtk
@@ -11,11 +11,8 @@ from vtkmodules.vtkFiltersCore import vtkContourFilter
 # VTK pipeline
 # -----------------------------------------------------------------------------
 
-data_directory = os.path.join(
-    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
-    "data",
-)
-head_vti = os.path.join(data_directory, "head.vti")
+data_directory = Path(__file__).parent.parent.parent.with_name("data")
+head_vti = data_directory / "head.vti"
 
 reader = vtkXMLImageDataReader()
 reader.SetFileName(head_vti)

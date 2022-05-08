@@ -5,8 +5,8 @@ from trame.layouts import SinglePage
 
 from vtkmodules.vtkIOXML import vtkXMLUnstructuredGridReader
 
-DATA_DIR = Path(Path(__file__).parent.parent.parent.parent, "data")
-MESH_PATH = str(Path(DATA_DIR, "mesh.vtu"))
+DATA_DIR = Path(__file__).parent.parent.parent.parent.with_name("data")
+MESH_PATH = DATA_DIR / "mesh.vtu"
 
 # -----------------------------------------------------------------------------
 # VTK pipeline

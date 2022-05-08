@@ -1,29 +1,23 @@
-# How do I present a dataframe
-
-This example illustrates how to display tabular data from pandas in trame.
-In the example below we use [vuetify.VDataTable](https://vuetifyjs.com/en/components/data-tables/), which has features like sorting, searching, pagination, content-editing, and row selection.
-
-## Code
-
-```python
-from trame.layouts import SinglePage
-from trame.html import vuetify
+from trame.app import get_server
+from trame.ui.vuetify import SinglePageLayout
+from trame.widgets import vuetify
 import json
 
 import pandas as pd
 import numpy as np
 
+server = get_server()
 
 # --------------------------------------------------------------------------------
 # Loading dataframe
 # --------------------------------------------------------------------------------
-table = json.loads(
+data = json.loads(
     """
 [{"name":"Frozen Yogurt","calories":200,"fat":6,"carbs":24,"protein":4,"iron":"1%"},{"name":"Ice cream sandwich","calories":200,"fat":9,"carbs":37,"protein":4.3,"iron":"1%"},{"name":"Eclair","calories":300,"fat":16,"carbs":23,"protein":6,"iron":"7%"},{"name":"Cupcake","calories":300,"fat":3.7,"carbs":67,"protein":4.3,"iron":"8%"},{"name":"Gingerbread","calories":400,"fat":16,"carbs":49,"protein":3.9,"iron":"16%"},{"name":"Jelly bean","calories":400,"fat":0,"carbs":94,"protein":0,"iron":"0%"},{"name":"Lollipop","calories":400,"fat":0.2,"carbs":98,"protein":0,"iron":"2%"},{"name":"Honeycomb","calories":400,"fat":3.2,"carbs":87,"protein":6.5,"iron":"45%"},{"name":"Donut","calories":500,"fat":25,"carbs":51,"protein":4.9,"iron":"22%"},{"name":"KitKat","calories":500,"fat":26,"carbs":65,"protein":7,"iron":"6%"}]
     """
 )
 
-frame = pd.DataFrame.from_dict(table)
+frame = pd.DataFrame.from_dict(data)
 
 # --------------------------------------------------------------------------------
 # Configure table columns and options
@@ -38,8 +32,8 @@ header_options = {
     "protein":  {"text": "Protein (g)"},
     "iron":     {"text": "Iron (%)"},
 }
-# fmt: on
 
+# fmt: on
 headers, rows = vuetify.dataframe_to_grid(frame, header_options)
 table = {
     "headers": ("headers", headers),
@@ -55,24 +49,20 @@ table = {
 # --------------------------------------------------------------------------------
 # GUI
 # --------------------------------------------------------------------------------
-layout = SinglePage("Vuetify table example")
-layout.title.set_text("Vuetify table example")
-with layout.toolbar:
-    vuetify.VSpacer()
-    vuetify.VTextField(
-        v_model=("query",),
-        placeholder="Search",
-        dense=True,
-        hide_details=True,
-    )
 
-with layout.content:
-    vuetify.VDataTable(**table)
+with SinglePageLayout(server) as layout:
+    layout.title.set_text("Vuetify table example")
+    with layout.toolbar:
+        vuetify.VSpacer()
+        vuetify.VTextField(
+            v_model=("query", ""),
+            placeholder="Search",
+            dense=True,
+            hide_details=True,
+        )
+
+    with layout.content:
+        vuetify.VDataTable(**table)
 
 if __name__ == "__main__":
-    layout.start()
-```
-## Example
-
-- [Code above](https://github.com/Kitware/trame/blob/master/examples/v1/howdoi/table.py)
-- [Advanced table](https://github.com/Kitware/trame/blob/master/examples/v1/PlainPython/Tables/app.py)
+    server.start()

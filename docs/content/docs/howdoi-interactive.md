@@ -33,4 +33,4 @@ controls = [
 
 ## Example
 
-- [Code above](https://github.com/Kitware/trame/blob/master/examples/howdoi/interactive.py)
+- [Code above](https://github.com/Kitware/trame/blob/master/examples/v1/howdoi/interactive.py)

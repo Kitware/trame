@@ -15,5 +15,5 @@ print(args.output)
 
 ## Example
 
-- [Code above](https://github.com/Kitware/trame/blob/master/examples/howdoi/cli.py)
-- [VTK/Applications/ZarrContourViewer](https://github.com/Kitware/trame/blob/master/examples/VTK/Applications/ZarrContourViewer/app.py#L25-L28) uses a `--data` argument to load a file from disk.
+- [Code above](https://github.com/Kitware/trame/blob/master/examples/v1/howdoi/cli.py)
+- [VTK/Applications/ZarrContourViewer](https://github.com/Kitware/trame/blob/master/examples/v1/VTK/Applications/ZarrContourViewer/app.py#L25-L28) uses a `--data` argument to load a file from disk.

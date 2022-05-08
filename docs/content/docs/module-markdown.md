@@ -36,4 +36,4 @@ trame relies on markdown-it-vue (see documentation [here](http://www.aqcoder.com
 ## Examples
 
 - [API](https://trame.readthedocs.io/en/latest/trame.html.markdown.html)
-- [PlainPython/Markdown](https://github.com/Kitware/trame/blob/master/examples/PlainPython/Markdown/Simple.py) reads Markdown files and displays them
+- [PlainPython/Markdown](https://github.com/Kitware/trame/blob/master/examples/v1/PlainPython/Markdown/Simple.py) reads Markdown files and displays them

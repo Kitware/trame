@@ -1,0 +1,102 @@
+----------- STATE: Server => Client -----------
+{
+  "trame__scripts": [
+    "__trame_vuetify/trame-vuetify.umd.min.js"
+  ],
+  "trame__styles": [
+    "__trame_vuetify/trame-vuetify.css"
+  ],
+  "trame__vue_use": [
+    "trame_vuetify"
+  ],
+  "trame__mousetrap": [],
+  "trame__client_only": [
+    "trame__busy"
+  ],
+  "trame__busy": 1,
+  "trame__favicon": null,
+  "trame__title": "Trame",
+  "trame__template_main": "<v-app id=\"app\">\n<v-file-input v-model=\"file_exchange\" />\n</v-app>",
+  "file_exchange": null
+}
+------------------------------------------------------------
+----------- INITIAL STATE -----------
+{
+  "name": "trame",
+  "state": {
+    "trame__scripts": [
+      "__trame_vuetify/trame-vuetify.umd.min.js"
+    ],
+    "trame__styles": [
+      "__trame_vuetify/trame-vuetify.css"
+    ],
+    "trame__vue_use": [
+      "trame_vuetify"
+    ],
+    "trame__mousetrap": [],
+    "trame__client_only": [
+      "trame__busy"
+    ],
+    "trame__busy": 1,
+    "trame__favicon": null,
+    "trame__title": "Trame",
+    "trame__template_main": "<v-app id=\"app\">\n<v-file-input v-model=\"file_exchange\" />\n</v-app>",
+    "file_exchange": null
+  }
+}
+------------------------------------------------------------
+----------- INITIAL STATE -----------
+{
+  "name": "trame",
+  "state": {
+    "trame__scripts": [
+      "__trame_vuetify/trame-vuetify.umd.min.js"
+    ],
+    "trame__styles": [
+      "__trame_vuetify/trame-vuetify.css"
+    ],
+    "trame__vue_use": [
+      "trame_vuetify"
+    ],
+    "trame__mousetrap": [],
+    "trame__client_only": [
+      "trame__busy"
+    ],
+    "trame__busy": 1,
+    "trame__favicon": null,
+    "trame__title": "Trame",
+    "trame__template_main": "<v-app id=\"app\">\n<v-file-input v-model=\"file_exchange\" />\n</v-app>",
+    "file_exchange": null
+  }
+}
+------------------------------------------------------------
+----------- STATE: Client => Server -----------
+[
+  {
+    "key": "file_exchange",
+    "value": {
+      "name": "my_file_name (1).csv",
+      "lastModified": 1651963919216,
+      "size": 25,
+      "type": "text/csv",
+      "content": "<class 'bytes'>",
+      "_filter": [
+        "content"
+      ]
+    }
+  }
+]
+------------------------------------------------------------
+----------- STATE: Server => Client -----------
+{
+  "file_exchange": {
+    "name": "my_file_name (1).csv",
+    "lastModified": 1651963919216,
+    "size": 25,
+    "type": "text/csv",
+    "_filter": [
+      "content"
+    ]
+  }
+}
+------------------------------------------------------------

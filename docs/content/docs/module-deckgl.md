@@ -2,7 +2,7 @@
 
 deck.gl is a WebGL-powered framework for visual exploratory data analysis of large datasets which has a Python layer available under [pydeck](https://pydeck.gl/).
 
-trame leverages pydeck (see documentation and examples [here](https://deckgl.readthedocs.io/en/latest/)) to build data layers which deck.gl then renders. Developers can make interactive data layers on top of base map providers like [Mapbox](https://github.com/Kitware/trame/blob/3cec4490d9a550d61e44dc1a4c1b059c66a2ce54/examples/PlainPython/GeoMaps/MappingDemo/app.py#L10).
+trame leverages pydeck (see documentation and examples [here](https://deckgl.readthedocs.io/en/latest/)) to build data layers which deck.gl then renders. Developers can make interactive data layers on top of base map providers like [Mapbox](https://github.com/Kitware/trame/blob/3cec4490d9a550d61e44dc1a4c1b059c66a2ce54/examples/v1/PlainPython/GeoMaps/MappingDemo/app.py#L10).
 
 [![deck gl](/trame/images/module-deckgl-pydeck.jpg)](https://deckgl.readthedocs.io/en/latest/)
 
@@ -44,5 +44,5 @@ deck_component2.update(deck2) # Make changes
 ## Examples
 
 - [API](https://trame.readthedocs.io/en/latest/trame.html.deckgl.html)
-- [GeoMaps/UberPickupsNYC](https://github.com/Kitware/trame/blob/master/examples/PlainPython/GeoMaps/UberPickupsNYC)
-- [GeoMaps/MappingDemo](https://github.com/Kitware/trame/blob/master/examples/PlainPython/GeoMaps/MappingDemo)
+- [GeoMaps/UberPickupsNYC](https://github.com/Kitware/trame/blob/master/examples/v1/PlainPython/GeoMaps/UberPickupsNYC)
+- [GeoMaps/MappingDemo](https://github.com/Kitware/trame/blob/master/examples/v1/PlainPython/GeoMaps/MappingDemo)

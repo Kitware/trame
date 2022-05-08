@@ -39,7 +39,7 @@ remote_view.update()  # Force image to be pushed to client
 
 ### Examples
 
-- [ParaView/SimpleCone/RemoteRendering](https://github.com/Kitware/trame/blob/master/examples/ParaView/SimpleCone/RemoteRendering.py)
+- [ParaView/SimpleCone/RemoteRendering](https://github.com/Kitware/trame/blob/master/examples/v1/ParaView/SimpleCone/RemoteRendering.py)
 
 
 ## VtkLocalView
@@ -134,7 +134,7 @@ And the action could be one of the following:
 
 ### Examples
 
-- [ParaView/SimpleCone/LocalRendering](https://github.com/Kitware/trame/blob/master/examples/ParaView/SimpleCone/LocalRendering.py)
+- [ParaView/SimpleCone/LocalRendering](https://github.com/Kitware/trame/blob/master/examples/v1/ParaView/SimpleCone/LocalRendering.py)
 
 ## VtkRemoteLocalView
 

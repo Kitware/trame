@@ -31,4 +31,4 @@ if __name__ == "__main__":
 ```
 ## Example
 
-- [Code above](https://github.com/Kitware/trame/blob/master/examples/howdoi/upload.py)
+- [Code above](https://github.com/Kitware/trame/blob/master/examples/v1/howdoi/upload.py)

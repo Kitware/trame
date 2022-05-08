@@ -9,7 +9,7 @@ A [VCard](https://vuetifyjs.com/en/components/cards/) container which floats abo
 <center>
   <figure>
     <img src="/trame/images/module-widgets-floatcard.gif" width="400px"/>
-    <figcaption> FloatCard example (source <a href="https://github.com/Kitware/trame/tree/master/examples/Modules/Widgets/FloatCard.py">here</a>)</figcaption>
+    <figcaption> FloatCard example (source <a href="https://github.com/Kitware/trame/tree/master/examples/v1/Widgets/FloatCard.py">here</a>)</figcaption>
   </figure>
 </center>
 
@@ -37,7 +37,7 @@ A component to present a Tree the same way Git does it (Like a subway map).
 <center>
   <figure>
     <img src="/trame/images/module-widgets-gittree.jpg" width="400px"/>
-    <figcaption> GitTree example (source <a href="https://github.com/Kitware/trame/tree/master/examples/Modules/Widgets/FloatCard.py">here</a>)</figcaption>
+    <figcaption> GitTree example (source <a href="https://github.com/Kitware/trame/tree/master/examples/v1/Widgets/FloatCard.py">here</a>)</figcaption>
   </figure>
 </center>
 

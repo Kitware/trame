@@ -7,7 +7,7 @@ ParaView 5.10+ can be downloaded from [here](https://www.paraview.org/download).
 ## Virtual Environment
 
 ParaView comes with its own Python, which may be missing some dependencies for the desired usage.
-We can add more Python packages into ParaView by create a virtual environment and activate it inside your application using that import line `from paraview.web import venv` or by using our [local version](https://github.com/Kitware/trame/blob/master/examples/ParaView/venv.py) and importing it.
+We can add more Python packages into ParaView by create a virtual environment and activate it inside your application using that import line `from paraview.web import venv` or by using our [local version](https://github.com/Kitware/trame/blob/master/examples/v1/ParaView/venv.py) and importing it.
 
 
 **First**, we need to setup the ParaView add-on python environment, which we will only install ***trame***, but we could add any other Python libraries that are not included in the ParaView bundle.

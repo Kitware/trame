@@ -39,9 +39,9 @@ remote_view.update()  # Force image to be pushed to client
 
 ### Examples
 
-- [VTK/SimpleCone/RemoteRendering](https://github.com/Kitware/trame/blob/master/examples/VTK/SimpleCone/RemoteRendering.py)
-- [VTK/ContourGeometry/RemoteRendering](https://github.com/Kitware/trame/blob/master/examples/VTK/ContourGeometry/RemoteRendering.py)
-- [VTK/Applications/ZarrContourViewer](https://github.com/Kitware/trame/blob/master/examples/VTK/Applications/ZarrContourViewer/app.py)
+- [VTK/SimpleCone/RemoteRendering](https://github.com/Kitware/trame/blob/master/examples/v1/VTK/SimpleCone/RemoteRendering.py)
+- [VTK/ContourGeometry/RemoteRendering](https://github.com/Kitware/trame/blob/master/examples/v1/VTK/ContourGeometry/RemoteRendering.py)
+- [VTK/Applications/ZarrContourViewer](https://github.com/Kitware/trame/blob/master/examples/v1/VTK/Applications/ZarrContourViewer/app.py)
 
 
 ## VtkLocalView
@@ -136,9 +136,9 @@ And the action could be one of the following:
 
 ### Examples
 
-- [VTK/SimpleCone/LocalRendering](https://github.com/Kitware/trame/blob/master/examples/VTK/SimpleCone/LocalRendering.py)
-- [VTK/ContourGeometry/LocalRendering](https://github.com/Kitware/trame/blob/master/examples/VTK/ContourGeometry/LocalRendering.py)
-- [Tutorial/VTK/CarotidFlow](https://github.com/Kitware/trame/blob/master/examples/Tutorial/VTK/CarotidFlow.py)
+- [VTK/SimpleCone/LocalRendering](https://github.com/Kitware/trame/blob/master/examples/v1/VTK/SimpleCone/LocalRendering.py)
+- [VTK/ContourGeometry/LocalRendering](https://github.com/Kitware/trame/blob/master/examples/v1/VTK/ContourGeometry/LocalRendering.py)
+- [Tutorial/VTK/CarotidFlow](https://github.com/Kitware/trame/blob/master/examples/v1/Tutorial/VTK/CarotidFlow.py)
 
 
 ## VtkRemoteLocalView
@@ -196,7 +196,7 @@ The mode is driven by the variable `{namespace}Mode` but can be provided when in
 ### Examples
 
 - [API](https://trame.readthedocs.io/en/latest/trame.html.vtk.html)
-- [VTK/ContourGeometry/DynamicLocalRemoteRendering](https://github.com/Kitware/trame/blob/f6594a02ed7e1ecc24058ffac527e010e8181e22/examples/VTK/ContourGeometry/DynamicLocalRemoteRendering.py)
+- [VTK/ContourGeometry/DynamicLocalRemoteRendering](https://github.com/Kitware/trame/blob/f6594a02ed7e1ecc24058ffac527e010e8181e22/examples/v1/VTK/ContourGeometry/DynamicLocalRemoteRendering.py)
 
 <!--
 # VtkAlgorithm

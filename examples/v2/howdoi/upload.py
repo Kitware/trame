@@ -15,7 +15,7 @@ with VAppLayout(server):
 def file_uploaded(file_exchange, **kwargs):
     if file_exchange is None:
         return
-    
+
     file_name = file_exchange.get("name")
     file_size = file_exchange.get("size")
     file_time = file_exchange.get("lastModified")

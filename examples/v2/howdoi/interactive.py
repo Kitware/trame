@@ -23,20 +23,21 @@ def validate_my_number(my_number, **kwargs):
     if isinstance(my_number, int):
         # Prevent infinit loop
         return
-    
+
     try:
         state.my_number = int(my_number)
     except:
         state.my_number = DEFAULT_VALUE
 
+
 with SinglePageLayout(server) as layout:
     layout.title.set_text("Simple Counter Demo")
-    
+
     with layout.toolbar:
         vuetify.VSpacer()
         vuetify.VBtn("-", click=decrement)
         vuetify.VBtn("+", click=increment)
-        
+
     with layout.content:
         with html.Div(classes="ma-8"):
             vuetify.VTextField(v_model=("my_number", DEFAULT_VALUE))

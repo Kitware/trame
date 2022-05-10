@@ -9,7 +9,7 @@ import plotly.express as px
 from trame.app import get_server
 from trame.assets.remote import HttpFile
 from trame.ui.vuetify import SinglePageLayout
-from trame.widgets import html, vuetify, plotly, vtk, trame
+from trame.widgets import vuetify, plotly, vtk, trame
 
 # VTK imports
 from vtkmodules.vtkIOXML import vtkXMLUnstructuredGridReader
@@ -127,13 +127,16 @@ SELECTED_IDX = []
 
 
 @state.change("figure_size", "scatter_x", "scatter_y")
-def update_figure(**kwargs):
+def update_figure(figure_size, scatter_x, scatter_y, **kwargs):
+    if figure_size is None:
+        return
+
     # Generate figure
-    bounds = state.figure_size.get("size", {})
+    bounds = figure_size.get("size", {})
     fig = px.scatter(
         DATAFRAME,
-        x=state.scatter_x,
-        y=state.scatter_y,
+        x=scatter_x,
+        y=scatter_y,
         width=bounds.get("width", 200),
         height=bounds.get("height", 200),
     )
@@ -190,7 +193,7 @@ def on_chart_selection(selected_point_idxs):
     selection_actor.SetVisibility(1)
 
     # Update 3D view
-    ctrl.update_view()
+    ctrl.view_update()
 
 
 def on_box_selection_change(selection):
@@ -220,7 +223,7 @@ def on_box_selection_change(selection):
     update_figure()
 
     # Update 3D view
-    ctrl.update_view()
+    ctrl.view_update()
 
     # disable selection mode
     state.vtk_selection = False
@@ -252,7 +255,7 @@ CHART_STYLE = {
             "hoverCompareCartesian",
         ],
     ),
-    "displaylogo": ("false",),
+    "display_logo": ("false",),
 }
 
 VTK_VIEW_SETTINGS = {
@@ -265,12 +268,11 @@ VTK_VIEW_SETTINGS = {
 # -----------------------------------------------------------------------------
 
 state.trame__title = "VTK selection"
-ctrl.on_server_ready.add(ctrl.update_view)
+ctrl.on_server_ready.add(ctrl.view_update)
 
-with SinglePageLayout(
-    server,
-) as layout:
+with SinglePageLayout(server) as layout:
     layout.title.set_text("VTK & plotly")
+    layout.icon.click = ctrl.view_reset_camera
 
     with layout.toolbar as tb:
         tb.dense = True
@@ -293,19 +295,20 @@ with SinglePageLayout(
                     classes="pa-0",
                     style="border-right: 1px solid #ccc; position: relative;",
                 ):
-                    html_view = vtk.VtkRemoteView(
+                    view = vtk.VtkRemoteView(
                         render_window,
                         box_selection=("vtk_selection",),
                         box_selection_change=(on_box_selection_change, "[$event]"),
                         **VTK_VIEW_SETTINGS,
                     )
-                    # html_view = vtk.VtkLocalView(
+                    # view = vtk.VtkLocalView(
                     #     render_window,
                     #     box_selection=("vtk_selection",),
                     #     box_selection_change=(on_box_selection_change, "[$event]"),
                     #     **VTK_VIEW_SETTINGS,
                     # )
-                    ctrl.update_view = html_view.update
+                    ctrl.view_update = view.update
+                    ctrl.view_reset_camera = view.reset_camera
                     vuetify.VCheckbox(
                         small=True,
                         on_icon="mdi-selection-drag",
@@ -317,7 +320,7 @@ with SinglePageLayout(
                     )
                 with vuetify.VCol(classes="pa-0"):
                     with trame.SizeObserver("figure_size"):
-                        html_plot = plotly.Plotly(
+                        html_plot = plotly.Figure(
                             "figure",
                             selected=(
                                 on_chart_selection,

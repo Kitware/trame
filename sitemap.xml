@@ -20,24 +20,6 @@
   </url>
   
   <url>
-    <loc>https://kitware.github.io/trame/docs/module-simput.html</loc>
-    
-    <lastmod>2022-05-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/module-vega.html</loc>
-    
-    <lastmod>2022-05-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://kitware.github.io/trame/docs/module-vtk.html</loc>
     
     <lastmod>2022-05-10</lastmod>
@@ -254,15 +236,6 @@
   </url>
   
   <url>
-    <loc>https://kitware.github.io/trame/docs/howdoi-upload.html</loc>
-    
-    <lastmod>2022-05-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://kitware.github.io/trame/docs/index.html</loc>
     
     <lastmod>2022-05-10</lastmod>
@@ -291,6 +264,33 @@
   
   <url>
     <loc>https://kitware.github.io/trame/docs/module-paraview.html</loc>
+    
+    <lastmod>2022-05-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/module-simput.html</loc>
+    
+    <lastmod>2022-05-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/howdoi-upload.html</loc>
+    
+    <lastmod>2022-05-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/module-vega.html</loc>
     
     <lastmod>2022-05-10</lastmod>
     

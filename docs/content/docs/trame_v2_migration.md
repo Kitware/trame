@@ -13,6 +13,11 @@ from trame.html import vuetify
 
 [...]
 
+tab_title = "Hello world"
+layout = SinglePage(tab_title, on_ready=_fn)
+
+[...]
+
 if __name__ == "__main__":
     layout.start()
 ```
@@ -26,6 +31,15 @@ from trame.widgets import vuetify
 
 server = get_server()
 state, controller = server.state, server.controller
+
+[...]
+
+tab_title = "Hello world"
+state.trame__title = tab_title
+ctrl.on_server_ready.add(_fn)
+
+with SinglePageLayout(server) as layout:
+    pass
 
 [...]
 
@@ -73,4 +87,89 @@ vuetify.VBtn(
 
 All the client helper functions are now nested under a `utils.*` namespace object to allow better extensibility and prevent possible state variables conflict.
 
-## 
+## Busy
+
+The state variable `busy` has been renamed to `trame__busy`.
+
+
+## StateChange => ClientStateChange
+
+Before
+
+```
+from trame.html import StateChange
+
+StateChange("var_name", change=fn_)
+```
+
+After
+
+```
+from trame.widgets.trame import ClientStateChange
+
+
+ClientStateChange(value="var_name", change=fn_)
+```
+
+## Triggers
+
+Before
+
+```
+layout.triggers.add("mounted", "pixel_ratio = window.devicePixelRatio")
+```
+
+After
+
+```
+with layout:
+    trame.ClientTriggers(
+        mounted="pixel_ratio = window.devicePixelRatio",
+        created=_fn,
+        ...
+    )
+```
+
+## Size Observer
+
+Before
+
+```
+from trame.html import observer
+
+observer.SizeObserver(...)
+```
+
+After
+
+```
+from trame.widgets import trame
+
+trame.SizeObserver(...)
+```
+
+## Remote files
+
+Before
+
+```
+from trame import RemoteFile
+
+dataset_file = RemoteFile(
+    "./data/disk_out_ref.vtu",
+    "https://github.com/Kitware/trame/raw/master/examples/data/disk_out_ref.vtu",
+    __file__,
+)
+```
+
+After
+
+```
+from trame.assets.remote import HttpFile
+
+dataset_file = HttpFile(
+    "./data/disk_out_ref.vtu",
+    "https://github.com/Kitware/trame/raw/master/examples/data/disk_out_ref.vtu",
+    __file__,
+)
+```

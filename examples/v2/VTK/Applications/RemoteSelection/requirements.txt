@@ -1,4 +1,4 @@
 plotly
 pandas
 vtk
-trame<2.0.0
+trame>=2.0.0

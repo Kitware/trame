@@ -1,2 +1,2 @@
 vtk>=9.1
-trame
+trame<2.0.0

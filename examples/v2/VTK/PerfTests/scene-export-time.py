@@ -60,11 +60,13 @@ actor.GetProperty().SetEdgeColor(1, 1, 1)
 
 # -----------------------------------------------------------------------------
 
+
 def update_view():
     t0 = time.time()
     ctrl.view_update()
     t1 = time.time()
     print(f"Server: Updated scene in {t1-t0:.3f}s")
+
 
 @state.change("resolution")
 def update_resolution(resolution=DEFAULT_RESOLUTION, **kwargs):
@@ -73,7 +75,8 @@ def update_resolution(resolution=DEFAULT_RESOLUTION, **kwargs):
     )
     ctrl.view_reset_camera()
     update_view()
-    
+
+
 # -----------------------------------------------------------------------------
 # GUI
 # -----------------------------------------------------------------------------

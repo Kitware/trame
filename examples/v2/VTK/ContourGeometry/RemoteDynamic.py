@@ -1,8 +1,8 @@
 from pathlib import Path
 
-from trame import state
-from trame.html import vuetify, vtk
-from trame.layouts import SinglePage
+from trame.app import get_server
+from trame.widgets import vuetify, vtk
+from trame.ui.vuetify import SinglePageLayout
 
 from vtkmodules.vtkIOXML import vtkXMLImageDataReader
 from vtkmodules.vtkFiltersCore import vtkContourFilter
@@ -17,6 +17,15 @@ from vtkmodules.vtkRenderingCore import (
 # VTK factory initialization
 from vtkmodules.vtkInteractionStyle import vtkInteractorStyleSwitch  # noqa
 import vtkmodules.vtkRenderingOpenGL2  # noqa
+
+# -----------------------------------------------------------------------------
+# Trame initialization
+# -----------------------------------------------------------------------------
+
+server = get_server()
+state, ctrl = server.state, server.controller
+
+state.trame__title = "VTK contour - Remote/Local rendering"
 
 # -----------------------------------------------------------------------------
 # VTK pipeline
@@ -59,6 +68,10 @@ renderer.AddActor(actor)
 renderer.ResetCamera()
 renderWindow.Render()
 
+
+# share state with client
+state.data_range = data_range
+
 # -----------------------------------------------------------------------------
 # Callbacks
 # -----------------------------------------------------------------------------
@@ -80,8 +93,10 @@ def update_contour(contour_value, interactive, remote_view, force=False, **kwarg
 @state.change("remote_view")
 def update_view_type(remote_view, **kwargs):
     elem = get_html_view(remote_view)
-    html_view_container.children[0] = elem
-    layout.flush_content()
+    with layout:
+        html_view_container.clear()
+        html_view_container.add_child(elem)
+        ctrl.view_reset_camera = elem.reset_camera
     commit_changes()
 
 
@@ -98,68 +113,65 @@ def commit_changes():
 # GUI
 # -----------------------------------------------------------------------------
 
-html_remote_view = vtk.VtkRemoteView(renderWindow)
-html_local_view = vtk.VtkLocalView(renderWindow)
+html_remote_view = vtk.VtkRemoteView(renderWindow, trame_app=server)
+html_local_view = vtk.VtkLocalView(renderWindow, trame_app=server)
 
-html_view_container = vuetify.VContainer(
-    fluid=True,
-    classes="pa-0 fill-height",
-    children=[html_local_view],  # start with SyncView
-)
 
-layout = SinglePage("VTK contour - Remote/Local rendering", on_ready=commit_changes)
-layout.title.set_text("Contour Application - Remote rendering")
-layout.logo.click = "$refs.view.resetCamera()"
+layout = SinglePageLayout(server)
 
-layout.state = {
-    "data_range": data_range,
-}
+with layout:
+    layout.title.set_text("Contour Application - Remote rendering")
+    layout.icon.click = ctrl.view_reset_camera
 
-with layout.toolbar:
-    vuetify.VSpacer()
-    vuetify.VSwitch(
-        v_model=("remote_view", False),
-        hide_details=True,
-        label="RemoteView",
-        classes="mx-2",
-    )
-    vuetify.VSwitch(
-        v_model=("interactive", False),
-        hide_details=True,
-        label="Update while dragging",
-        classes="mx-2",
-    )
-    vuetify.VSlider(
-        v_model=("contour_value", contour_value),
-        change=commit_changes,
-        min=("data_range[0]",),
-        max=("data_range[1]",),
-        hide_details=True,
-        dense=True,
-        style="max-width: 300px",
-    )
-    vuetify.VSwitch(
-        v_model="$vuetify.theme.dark",
-        hide_details=True,
-    )
-    with vuetify.VBtn(
-        icon=True,
-        click="$refs.view.resetCamera()",
-    ):
-        vuetify.VIcon("mdi-crop-free")
+    with layout.toolbar:
+        vuetify.VSpacer()
+        vuetify.VSwitch(
+            v_model=("remote_view", False),
+            hide_details=True,
+            label="RemoteView",
+            classes="mx-2",
+        )
+        vuetify.VSwitch(
+            v_model=("interactive", False),
+            hide_details=True,
+            label="Update while dragging",
+            classes="mx-2",
+        )
+        vuetify.VSlider(
+            v_model=("contour_value", contour_value),
+            change=commit_changes,
+            min=("data_range[0]",),
+            max=("data_range[1]",),
+            hide_details=True,
+            dense=True,
+            style="max-width: 300px",
+        )
+        vuetify.VSwitch(
+            v_model="$vuetify.theme.dark",
+            hide_details=True,
+        )
+        with vuetify.VBtn(
+            icon=True,
+            click=ctrl.view_reset_camera,
+        ):
+            vuetify.VIcon("mdi-crop-free")
 
-    vuetify.VProgressLinear(
-        indeterminate=True,
-        absolute=True,
-        bottom=True,
-        active=("busy",),
-    )
+        vuetify.VProgressLinear(
+            indeterminate=True,
+            absolute=True,
+            bottom=True,
+            active=("trame__busy",),
+        )
 
-layout.content.add_child(html_view_container)
+    with layout.content:
+        html_view_container = vuetify.VContainer(
+            fluid=True,
+            classes="pa-0 fill-height",
+        )
 
 # -----------------------------------------------------------------------------
 # Main
 # -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    layout.start()
+    server.start()

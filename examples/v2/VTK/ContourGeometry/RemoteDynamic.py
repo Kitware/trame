@@ -113,8 +113,8 @@ def commit_changes():
 # GUI
 # -----------------------------------------------------------------------------
 
-html_remote_view = vtk.VtkRemoteView(renderWindow, trame_app=server)
-html_local_view = vtk.VtkLocalView(renderWindow, trame_app=server)
+html_remote_view = vtk.VtkRemoteView(renderWindow, trame_server=server)
+html_local_view = vtk.VtkLocalView(renderWindow, trame_server=server)
 
 
 layout = SinglePageLayout(server)

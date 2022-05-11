@@ -2,7 +2,7 @@ When serving a trame application using apache/nginx or any other static file ser
 
 ```
 python \
-    -m trame.www \
+    -m trame.tools.www \
     --output /path/to/output/directory \
     vuetify vtk router ... # List all the trame-XXX you use within your trame application.
 ```

@@ -20,51 +20,6 @@
   </url>
   
   <url>
-    <loc>https://kitware.github.io/trame/docs/index.html</loc>
-    
-    <lastmod>2022-05-11</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/module-deckgl.html</loc>
-    
-    <lastmod>2022-05-11</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/module-markdown.html</loc>
-    
-    <lastmod>2022-05-11</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/module-paraview.html</loc>
-    
-    <lastmod>2022-05-11</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/module-simput.html</loc>
-    
-    <lastmod>2022-05-11</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://kitware.github.io/trame/docs/module-vega.html</loc>
     
     <lastmod>2022-05-11</lastmod>
@@ -227,7 +182,7 @@
   </url>
   
   <url>
-    <loc>https://kitware.github.io/trame/docs/getting_started.html</loc>
+    <loc>https://kitware.github.io/trame/docs/howdoi-cli.html</loc>
     
     <lastmod>2022-05-11</lastmod>
     
@@ -236,7 +191,7 @@
   </url>
   
   <url>
-    <loc>https://kitware.github.io/trame/docs/howdoi-cli.html</loc>
+    <loc>https://kitware.github.io/trame/docs/getting_started.html</loc>
     
     <lastmod>2022-05-11</lastmod>
     
@@ -272,15 +227,6 @@
   </url>
   
   <url>
-    <loc>https://kitware.github.io/trame/docs/howdoi-static.html</loc>
-    
-    <lastmod>2022-05-11</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://kitware.github.io/trame/docs/howdoi-table.html</loc>
     
     <lastmod>2022-05-11</lastmod>
@@ -290,7 +236,61 @@
   </url>
   
   <url>
+    <loc>https://kitware.github.io/trame/docs/howdoi-static.html</loc>
+    
+    <lastmod>2022-05-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://kitware.github.io/trame/docs/howdoi-upload.html</loc>
+    
+    <lastmod>2022-05-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/index.html</loc>
+    
+    <lastmod>2022-05-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/module-deckgl.html</loc>
+    
+    <lastmod>2022-05-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/module-markdown.html</loc>
+    
+    <lastmod>2022-05-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/module-paraview.html</loc>
+    
+    <lastmod>2022-05-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/module-simput.html</loc>
     
     <lastmod>2022-05-11</lastmod>
     

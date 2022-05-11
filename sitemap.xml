@@ -20,24 +20,6 @@
   </url>
   
   <url>
-    <loc>https://kitware.github.io/trame/docs/howdoi-interactive.html</loc>
-    
-    <lastmod>2022-05-11</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/howdoi-static.html</loc>
-    
-    <lastmod>2022-05-11</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://kitware.github.io/trame/docs/howdoi-table.html</loc>
     
     <lastmod>2022-05-11</lastmod>
@@ -291,6 +273,24 @@
   
   <url>
     <loc>https://kitware.github.io/trame/docs/howdoi-dynamic.html</loc>
+    
+    <lastmod>2022-05-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/howdoi-interactive.html</loc>
+    
+    <lastmod>2022-05-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/howdoi-static.html</loc>
     
     <lastmod>2022-05-11</lastmod>
     

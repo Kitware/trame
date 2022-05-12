@@ -4,14 +4,14 @@
     ],
     "reader_properties": {
         "ElementBlocks": ["block_1", "block_2"],
-        "NodeBlockFields": ["accl", "displ", "vel"],
+        "NodeBlockFields": ["ACCL", "DISPL", "VEL"],
         "ElementBlockFields": [],
         "NodeSets": [],
         "SideSets": []
     },    
     "fields": [
-        { "text": "accl", "value": 0, "location": "POINTS", "range": [60000, 201941280] },
-        { "text": "displ", "value": 1, "location": "POINTS" , "range": [2, 20]},
-        { "text": "vel", "value": 2, "location": "POINTS" , "range": [1500, 5000] }
+        { "text": "ACCL", "value": 0, "location": "POINTS", "range": [60000, 201941280] },
+        { "text": "DISPL", "value": 1, "location": "POINTS" , "range": [2, 20]},
+        { "text": "VEL", "value": 2, "location": "POINTS" , "range": [1500, 5000] }
     ]
 }

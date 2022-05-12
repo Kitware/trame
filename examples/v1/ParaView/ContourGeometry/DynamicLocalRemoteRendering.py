@@ -19,7 +19,7 @@ head_vti = data_directory / "head.vti"
 from paraview import simple
 
 simple.LoadDistributedPlugin("AcceleratedAlgorithms", remote=False, ns=globals())
-reader = simple.XMLImageDataReader(FileName=[head_vti])
+reader = simple.XMLImageDataReader(FileName=[str(head_vti)])
 # contour = simple.Contour(Input=reader) # Default filter    => no plugin but slow
 contour = FlyingEdges3D(Input=reader)  # Faster processing => make it interactive
 

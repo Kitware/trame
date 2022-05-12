@@ -1,21 +1,28 @@
-from paraview.web import venv  # Available in PV 5.10-RC2+
+import paraview.web.venv  # Available in PV 5.10-RC2+
 import os
 import json
 import asyncio
 
-from trame import get_cli_parser, state
-from trame.html import vuetify, paraview
-from trame.layouts import SinglePage
+from trame.app import get_server, asynchronous
+from trame.widgets import vuetify, paraview
+from trame.ui.vuetify import SinglePageLayout
 
 import paraview as pv
 from paraview import simple
 
+# -----------------------------------------------------------------------------
+# Trame setup
+# -----------------------------------------------------------------------------
+
+server = get_server()
+state, ctrl = server.state, server.controller
+
+# -----------------------------------------------------------------------------
+
 animation_scene = simple.GetAnimationScene()
 time_keeper = animation_scene.TimeKeeper
 
-parser = get_cli_parser()
 metadata = None
-layout = None
 time_values = []
 representation = None
 
@@ -23,7 +30,7 @@ representation = None
 def load_data(**kwargs):
     global time_values, representation
     # CLI
-    args, _ = parser.parse_known_args()
+    args, _ = server.cli.parse_known_args()
     full_path = os.path.abspath(args.data)
     base_path = os.path.dirname(full_path)
     files = []
@@ -51,8 +58,10 @@ def load_data(**kwargs):
 
     simple.ResetCamera()
     view.CenterOfRotation = view.CameraFocalPoint
-    update_view("local", flush=False)
+    update_view("local")
 
+
+ctrl.on_server_ready.add(load_data)
 
 # -----------------------------------------------------------------------------
 # ParaView pipeline
@@ -72,6 +81,9 @@ view = simple.Render()
 
 @state.change("active_array")
 def update_color_by(active_array, fields, viewMode="remote", **kwargs):
+    if len(fields) == 0:
+        return
+
     array = fields[active_array]
     simple.ColorBy(representation, (array.get("location"), array.get("text")))
     representation.RescaleTransferFunctionToDataRange(True, False)
@@ -86,7 +98,9 @@ def update_color_by(active_array, fields, viewMode="remote", **kwargs):
 
 @state.change("time")
 def update_time(time, viewMode, **kwargs):
-    # print("update_time", time)
+    if len(time_values) == 0:
+        return
+
     if time >= len(time_values):
         time = 0
         state.time = time
@@ -97,102 +111,96 @@ def update_time(time, viewMode, **kwargs):
 
 
 @state.change("play")
-def update_play(play, **kwargs):
-    loop = asyncio.get_event_loop()
-    loop.create_task(animate())
+@asynchronous.task
+async def update_play(**kwargs):
+    while state.play:
+        with state:
+            state.time += 1
+            update_time(state.time, state.viewMode)
+
+        await asyncio.sleep(0.1)
 
 
 @state.change("viewMode")
-def update_view(viewMode, flush=True, **kwargs):
-    html_view.update_image()
+def update_view(viewMode, **kwargs):
+    ctrl.view_update_image()
     if viewMode == "local":
-        html_view.update_geometry()
-        if flush:
-            # can only flush once protocol is initialized (publish)
-            state.flush("viewScene")
-
-
-async def animate():
-    keep_going = True
-    while keep_going:
-        if state.play:
-            state.time += 1
-            update_time(state.time, state.viewMode)
-            state.flush("time", "time_value")
-        await asyncio.sleep(0.1)
+        ctrl.view_update_geometry()
 
 
 # -----------------------------------------------------------------------------
 # GUI
 # -----------------------------------------------------------------------------
-html_view = paraview.VtkRemoteLocalView(view, namespace="view")
 
-layout = SinglePage("ParaView", on_ready=load_data)
-layout.title.set_text("Time")
-layout.logo.click = html_view.reset_camera
+state.trame__title = "ParaView"
 
-with layout.toolbar:
-    vuetify.VSpacer()
-    vuetify.VSelect(
-        v_model=("active_array", 0),
-        items=("fields", []),
-        style="max-width: 200px",
-        hide_details=True,
-        dense=True,
-    )
-    vuetify.VTextField(
-        v_model=("time_value", 0),
-        disabled=True,
-        hide_details=True,
-        dense=True,
-        style="max-width: 200px",
-        classes="mx-2",
-    )
-    vuetify.VSlider(
-        v_model=("time", 0),
-        min=0,
-        max=("times", 1),
-        hide_details=True,
-        dense=True,
-        style="max-width: 200px",
-    )
+with SinglePageLayout(server) as layout:
+    layout.title.set_text("Time")
+    layout.icon.click = ctrl.view_reset_camera
 
-    vuetify.VCheckbox(
-        v_model=("play", False),
-        off_icon="mdi-play",
-        on_icon="mdi-stop",
-        hide_details=True,
-        dense=True,
-        classes="mx-2",
-    )
+    with layout.toolbar:
+        vuetify.VSpacer()
+        vuetify.VSelect(
+            v_model=("active_array", 0),
+            items=("fields", []),
+            style="max-width: 200px",
+            hide_details=True,
+            dense=True,
+        )
+        vuetify.VTextField(
+            v_model=("time_value", 0),
+            disabled=True,
+            hide_details=True,
+            dense=True,
+            style="max-width: 200px",
+            classes="mx-2",
+        )
+        vuetify.VSlider(
+            v_model=("time", 0),
+            min=0,
+            max=("times", 1),
+            hide_details=True,
+            dense=True,
+            style="max-width: 200px",
+        )
 
-    with vuetify.VBtn(icon=True, click="$refs.view.resetCamera()"):
-        vuetify.VIcon("mdi-crop-free")
+        vuetify.VCheckbox(
+            v_model=("play", False),
+            off_icon="mdi-play",
+            on_icon="mdi-stop",
+            hide_details=True,
+            dense=True,
+            classes="mx-2",
+        )
 
-    vuetify.VCheckbox(
-        v_model=("viewMode", "remote"),
-        true_value="remote",
-        false_value="local",
-        off_icon="mdi-rotate-3d",
-        on_icon="mdi-video-image",
-        hide_details=True,
-        dense=True,
-        classes="mx-2",
-    )
+        with vuetify.VBtn(icon=True, click=ctrl.view_reset_camera):
+            vuetify.VIcon("mdi-crop-free")
 
-    vuetify.VProgressLinear(
-        indeterminate=True,
-        absolute=True,
-        bottom=True,
-        active=("busy",),
-    )
+        vuetify.VCheckbox(
+            v_model=("viewMode", "remote"),
+            true_value="remote",
+            false_value="local",
+            off_icon="mdi-rotate-3d",
+            on_icon="mdi-video-image",
+            hide_details=True,
+            dense=True,
+            classes="mx-2",
+        )
 
-with layout.content:
-    vuetify.VContainer(
-        fluid=True,
-        classes="pa-0 fill-height",
-        children=[html_view],
-    )
+        vuetify.VProgressLinear(
+            indeterminate=True,
+            absolute=True,
+            bottom=True,
+            active=("trame__busy",),
+        )
+
+    with layout.content:
+        with vuetify.VContainer(fluid=True, classes="pa-0 fill-height"):
+            html_view = paraview.VtkRemoteLocalView(view, namespace="view")
+            ctrl.view_update = html_view.update
+            ctrl.view_update_geometry = html_view.update_geometry
+            ctrl.view_update_image = html_view.update_image
+            ctrl.view_reset_camera = html_view.reset_camera
 
 
 # -----------------------------------------------------------------------------
@@ -200,5 +208,5 @@ with layout.content:
 # -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    parser.add_argument("--data", help="Path to state file", dest="data")
-    layout.start()
+    server.cli.add_argument("--data", help="Path to state file", dest="data")
+    server.start()

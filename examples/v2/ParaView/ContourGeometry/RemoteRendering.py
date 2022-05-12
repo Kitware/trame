@@ -1,12 +1,19 @@
-from paraview.web import venv  # Available in PV 5.10-RC2+
+import paraview.web.venv  # Available in PV 5.10-RC2+
 
 from pathlib import Path
 
-from trame import state
-from trame.html import vuetify, paraview
-from trame.layouts import SinglePage
+from trame.app import get_server
+from trame.widgets import vuetify, paraview
+from trame.ui.vuetify import SinglePageLayout
 
 from paraview import simple
+
+# -----------------------------------------------------------------------------
+# Trame setup
+# -----------------------------------------------------------------------------
+
+server = get_server()
+state, ctrl = server.state, server.controller
 
 # -----------------------------------------------------------------------------
 # ParaView pipeline
@@ -17,7 +24,7 @@ simple.LoadDistributedPlugin("AcceleratedAlgorithms", remote=False, ns=globals()
 data_directory = Path(__file__).parent.parent.parent.with_name("data")
 head_vti = data_directory / "head.vti"
 
-reader = simple.XMLImageDataReader(FileName=[head_vti])
+reader = simple.XMLImageDataReader(FileName=[str(head_vti)])
 # contour = simple.Contour(Input=reader) # Default filter    => no plugin but slow
 contour = FlyingEdges3D(Input=reader)  # Faster processing => make it interactive
 
@@ -65,56 +72,55 @@ def commit_changes():
 # -----------------------------------------------------------------------------
 # GUI
 # -----------------------------------------------------------------------------
-html_view = paraview.VtkRemoteView(view)
 
-layout = SinglePage(
-    "ParaView contour - Remote/Local rendering", on_ready=html_view.update
-)
-layout.title.set_text("Contour Application - Remote rendering")
-layout.logo.click = html_view.reset_camera
+state.trame__title = "ParaView contour - Remote rendering"
+ctrl.on_server_ready.add(ctrl.view_update)
 
-with layout.toolbar:
-    vuetify.VSpacer()
 
-    vuetify.VSwitch(
-        v_model=("interactive", False),
-        hide_details=True,
-        label="Update while dragging",
-    )
-    vuetify.VSlider(
-        v_model=("contour_value", contour_value),
-        change=commit_changes,
-        min=("data_range[0]",),
-        max=("data_range[1]",),
-        hide_details=True,
-        dense=True,
-        style="max-width: 300px",
-    )
-    vuetify.VSwitch(
-        v_model="$vuetify.theme.dark",
-        hide_details=True,
-    )
+with SinglePageLayout(server) as layout:
+    layout.title.set_text("Contour Application - Remote rendering")
+    layout.icon.click = ctrl.view_reset_camera
 
-    with vuetify.VBtn(icon=True, click="$refs.view.resetCamera()"):
-        vuetify.VIcon("mdi-crop-free")
+    with layout.toolbar:
+        vuetify.VSpacer()
+        vuetify.VSwitch(
+            v_model=("interactive", False),
+            hide_details=True,
+            label="Update while dragging",
+        )
+        vuetify.VSlider(
+            v_model=("contour_value", contour_value),
+            change=commit_changes,
+            min=("data_range[0]",),
+            max=("data_range[1]",),
+            hide_details=True,
+            dense=True,
+            style="max-width: 300px",
+        )
+        vuetify.VSwitch(
+            v_model="$vuetify.theme.dark",
+            hide_details=True,
+        )
 
-    vuetify.VProgressLinear(
-        indeterminate=True,
-        absolute=True,
-        bottom=True,
-        active=("busy",),
-    )
+        with vuetify.VBtn(icon=True, click="$refs.view.resetCamera()"):
+            vuetify.VIcon("mdi-crop-free")
 
-with layout.content:
-    vuetify.VContainer(
-        fluid=True,
-        classes="pa-0 fill-height",
-        children=[html_view],
-    )
+        vuetify.VProgressLinear(
+            indeterminate=True,
+            absolute=True,
+            bottom=True,
+            active=("trame__busy",),
+        )
+
+    with layout.content:
+        with vuetify.VContainer(fluid=True, classes="pa-0 fill-height"):
+            html_view = paraview.VtkRemoteView(view)
+            ctrl.view_update = html_view.update
+            ctrl.view_reset_camera = html_view.reset_camera
 
 # -----------------------------------------------------------------------------
 # Main
 # -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    layout.start()
+    server.start()

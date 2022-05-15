@@ -1,13 +1,23 @@
-import os
+from pathlib import Path
 from collections import defaultdict
 
-from trame.internal.app import get_app_instance
+from trame.app import get_server
+from trame.assets.local import LocalFileManager
+from trame.ui.vuetify import SinglePageLayout
+from trame.widgets import trame
 
-BASE = os.path.abspath(os.path.dirname(__file__))
+BASE = Path(__file__).parent
 
-from trame.layouts import SinglePage
-from trame.html import widgets
-from trame import state
+# -----------------------------------------------------------------------------
+# Trame setup
+# -----------------------------------------------------------------------------
+
+server = get_server()
+state, ctrl = server.state, server.controller
+
+# -----------------------------------------------------------------------------
+# Application
+# -----------------------------------------------------------------------------
 
 
 class PipelineManager:
@@ -117,13 +127,11 @@ id_bbb = pipeline.add_node(parent=id_bb, name="bbb", visible=1, color="#4DB6AC")
 
 pipeline.update()
 
-app = get_app_instance()  # need cleanup
-ICONS = {
-    "test": app.url(os.path.join(BASE, "icons/abacus.svg")),
-    "delete": app.url(os.path.join(BASE, "icons/trash-can-outline.svg")),
-    "collapsed": app.url(os.path.join(BASE, "icons/chevron-up.svg")),
-    "collapsable": app.url(os.path.join(BASE, "icons/chevron-down.svg")),
-}
+local_file_manager = LocalFileManager(__file__)
+local_file_manager.url("test", BASE / "icons/abacus.svg")
+local_file_manager.url("delete", BASE / "icons/trash-can-outline.svg")
+local_file_manager.url("collapsed", BASE / "icons/chevron-up.svg")
+local_file_manager.url("collapsable", BASE / "icons/chevron-down.svg")
 
 # -----------------------------------------------------------------------------
 # Callback
@@ -150,22 +158,22 @@ def on_event(event):
 # GUI
 # -----------------------------------------------------------------------------
 
-layout = SinglePage("Git Tree")
-layout.title.set_text("Git Tree")
+with SinglePageLayout(server) as layout:
+    layout.title.set_text("Git Tree")
 
-with layout.content:
-    widgets.GitTree(
-        sources=("git_tree",),
-        action_map=("icons", ICONS),
-        action_size=25,
-        action=(on_action, "[$event]"),
-        # visibility_change=(on_event, "[$event]"),
-        # actives_change=(on_event, "[$event]"),
-    )
+    with layout.content:
+        trame.GitTree(
+            sources=("git_tree",),
+            action_map=("icons", local_file_manager.assets),
+            action_size=25,
+            action=(on_action, "[$event]"),
+            # visibility_change=(on_event, "[$event]"),
+            # actives_change=(on_event, "[$event]"),
+        )
 
 # -----------------------------------------------------------------------------
 # Main
 # -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    layout.start()
+    server.start()

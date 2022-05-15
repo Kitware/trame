@@ -1,26 +1,32 @@
-from paraview.web import venv  # Available in PV 5.10-RC2+
+import paraview.web.venv
 
-import os
+from pathlib import Path
 
-from trame import state
-from trame.html import vuetify, paraview
-from trame.layouts import SinglePage
+from trame.app import get_server
+from trame.widgets import vuetify, paraview
+from trame.ui.vuetify import SinglePageLayout
 
-from paraview import simple
+# -----------------------------------------------------------------------------
+# Trame setup
+# -----------------------------------------------------------------------------
+
+server = get_server()
+state, ctrl = server.state, server.controller
+
+# -----------------------------------------------------------------------------
+# Data file
+# -----------------------------------------------------------------------------
+
+data_directory = Path(__file__).parent.parent.parent.with_name("data")
+head_vti = data_directory / "head.vti"
 
 # -----------------------------------------------------------------------------
 # ParaView pipeline
 # -----------------------------------------------------------------------------
+from paraview import simple
 
 simple.LoadDistributedPlugin("AcceleratedAlgorithms", remote=False, ns=globals())
-
-data_directory = os.path.join(
-    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
-    "data",
-)
-head_vti = os.path.join(data_directory, "head.vti")
-
-reader = simple.XMLImageDataReader(FileName=[head_vti])
+reader = simple.XMLImageDataReader(FileName=[str(head_vti)])
 # contour = simple.Contour(Input=reader) # Default filter    => no plugin but slow
 contour = FlyingEdges3D(Input=reader)  # Faster processing => make it interactive
 
@@ -59,18 +65,6 @@ def update_contour(contour_value, **kwargs):
 # -----------------------------------------------------------------------------
 # GUI
 # -----------------------------------------------------------------------------
-html_view = paraview.VtkRemoteLocalView(
-    view,
-    namespace="demo",
-    # second arg is to force the view to start in "local" mode
-    mode=("override === 'auto' ? demoMode : override", "local"),
-)
-
-layout = SinglePage(
-    "ParaView contour - Remote/Local rendering", on_ready=html_view.update
-)
-layout.title.set_text("Contour Application - Remote rendering")
-layout.logo.click = html_view.reset_camera
 
 modes = (
     ("auto", "mdi-autorenew"),
@@ -78,54 +72,65 @@ modes = (
     ("remote", "mdi-image"),
 )
 
-with layout.toolbar:
-    vuetify.VSpacer()
+state.trame__title = "ParaView contour - Remote/Local rendering"
+ctrl.on_server_ready.add(ctrl.view_update)
 
-    with vuetify.VBtnToggle(
-        v_model=("override", "auto"),
-        dense=True,
-        mandatory=True,
-    ):
-        for entry in modes:
-            with vuetify.VBtn(value=entry[0]):
-                vuetify.VIcon(entry[1])
+with SinglePageLayout(server) as layout:
+    layout.title.set_text("Contour Application - Remote rendering")
+    layout.icon.click = ctrl.view_reset_camera
 
-    vuetify.VSpacer()
-    vuetify.VSlider(
-        v_model="contour_value",
-        min=("data_range[0]",),
-        max=("data_range[1]",),
-        hide_details=True,
-        dense=True,
-        style="max-width: 300px",
-        start="trigger('demoAnimateStart')",
-        end="trigger('demoAnimateStop')",
-    )
-    vuetify.VSwitch(
-        v_model="$vuetify.theme.dark",
-        hide_details=True,
-    )
+    with layout.toolbar:
+        vuetify.VSpacer()
 
-    with vuetify.VBtn(icon=True, click=html_view.reset_camera):
-        vuetify.VIcon("mdi-crop-free")
+        with vuetify.VBtnToggle(
+            v_model=("override", "auto"),
+            dense=True,
+            mandatory=True,
+        ):
+            for entry in modes:
+                with vuetify.VBtn(value=entry[0]):
+                    vuetify.VIcon(entry[1])
 
-    vuetify.VProgressLinear(
-        indeterminate=True,
-        absolute=True,
-        bottom=True,
-        active=("busy",),
-    )
+        vuetify.VSpacer()
+        vuetify.VSlider(
+            v_model="contour_value",
+            min=("data_range[0]",),
+            max=("data_range[1]",),
+            hide_details=True,
+            dense=True,
+            style="max-width: 300px",
+            start="trigger('demoAnimateStart')",
+            end="trigger('demoAnimateStop')",
+        )
+        vuetify.VSwitch(
+            v_model="$vuetify.theme.dark",
+            hide_details=True,
+        )
 
-with layout.content:
-    vuetify.VContainer(
-        fluid=True,
-        classes="pa-0 fill-height",
-        children=[html_view],
-    )
+        with vuetify.VBtn(icon=True, click=ctrl.view_reset_camera):
+            vuetify.VIcon("mdi-crop-free")
+
+        vuetify.VProgressLinear(
+            indeterminate=True,
+            absolute=True,
+            bottom=True,
+            active=("trame__busy",),
+        )
+
+    with layout.content:
+        with vuetify.VContainer(fluid=True, classes="pa-0 fill-height"):
+            html_view = paraview.VtkRemoteLocalView(
+                view,
+                namespace="demo",
+                # second arg is to force the view to start in "local" mode
+                mode=("override === 'auto' ? demoMode : override", "local"),
+            )
+            ctrl.view_update = html_view.update
+            ctrl.view_reset_camera = html_view.reset_camera
 
 # -----------------------------------------------------------------------------
 # Main
 # -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    layout.start()
+    server.start()

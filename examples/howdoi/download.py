@@ -1,22 +1,21 @@
-from trame.layouts import FullScreenPage
-from trame.html import vuetify
+from trame.app import get_server
+from trame.ui.vuetify import VAppLayout
+from trame.widgets import vuetify
 
-layout = FullScreenPage("File upload")
-layout.children += [
+server = get_server()
+
+with VAppLayout(server):
     vuetify.VBtn(
         "Download",
-        click="download('my_file_name.csv', file_content, 'text/csv')",
+        click="utils.download('my_file_name.csv', file_content, 'text/csv')",
     )
-]
 
-layout.state = {
-    "file_content": """
-a,b,c
+server.state.file_content = """a,b,c
 1,2,3
 4,5,6
 7,8,9
-    """,
-}
+"""
+
 
 if __name__ == "__main__":
-    layout.start()
+    server.start()

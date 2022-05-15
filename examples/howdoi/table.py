@@ -1,10 +1,12 @@
-from trame.layouts import SinglePage
-from trame.html import vuetify
+from trame.app import get_server
+from trame.ui.vuetify import SinglePageLayout
+from trame.widgets import vuetify
 import json
 
 import pandas as pd
 import numpy as np
 
+server = get_server()
 
 # --------------------------------------------------------------------------------
 # Loading dataframe
@@ -30,8 +32,8 @@ header_options = {
     "protein":  {"text": "Protein (g)"},
     "iron":     {"text": "Iron (%)"},
 }
-# fmt: on
 
+# fmt: on
 headers, rows = vuetify.dataframe_to_grid(frame, header_options)
 table = {
     "headers": ("headers", headers),
@@ -47,19 +49,20 @@ table = {
 # --------------------------------------------------------------------------------
 # GUI
 # --------------------------------------------------------------------------------
-layout = SinglePage("Vuetify table example")
-layout.title.set_text("Vuetify table example")
-with layout.toolbar:
-    vuetify.VSpacer()
-    vuetify.VTextField(
-        v_model=("query",),
-        placeholder="Search",
-        dense=True,
-        hide_details=True,
-    )
 
-with layout.content:
-    vuetify.VDataTable(**table)
+with SinglePageLayout(server) as layout:
+    layout.title.set_text("Vuetify table example")
+    with layout.toolbar:
+        vuetify.VSpacer()
+        vuetify.VTextField(
+            v_model=("query", ""),
+            placeholder="Search",
+            dense=True,
+            hide_details=True,
+        )
+
+    with layout.content:
+        vuetify.VDataTable(**table)
 
 if __name__ == "__main__":
-    layout.start()
+    server.start()

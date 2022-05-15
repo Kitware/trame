@@ -1,64 +1,75 @@
-from trame.layouts import SinglePageWithDrawer
-from trame.html import Template, vuetify, router
+from trame.app import get_server
+from trame.ui.vuetify import SinglePageWithDrawerLayout
+from trame.ui.router import RouterViewLayout
+from trame.widgets import vuetify, router
 
-layout = SinglePageWithDrawer("Multi-Page demo")
-layout.title.set_text("Multi-Page demo")
+# -----------------------------------------------------------------------------
+# Trame setup
+# -----------------------------------------------------------------------------
 
-# There are two ways to register a route
-home_template = vuetify.VCard()
-with home_template:
-    vuetify.VCardTitle("This is home")
+server = get_server()
+state, ctrl = server.state, server.controller
 
-foo_template = vuetify.VCard()
-with foo_template:
-    vuetify.VCardTitle("This is foo")
-    with vuetify.VCardText():
-        vuetify.VBtn("Take me back", click="$router.back()")
+# -----------------------------------------------------------------------------
+# GUI
+# -----------------------------------------------------------------------------
 
-# You can add a route with add_route
-layout.add_route("home", "/", home_template)
-layout.add_route("foo", "/foo", foo_template)
+# Home route
+with RouterViewLayout(server, "/"):
+    with vuetify.VCard():
+        vuetify.VCardTitle("This is home")
 
-# or use the contextmanager 'with_route'
-with layout.with_route("bar", "/bar/:id", vuetify.VCard()):
-    vuetify.VCardTitle("This is bar with ID '{{ $route.params.id }}'")
+# Foo route
+with RouterViewLayout(server, "/foo"):
+    with vuetify.VCard():
+        vuetify.VCardTitle("This is foo")
+        with vuetify.VCardText():
+            vuetify.VBtn("Take me back", click="$router.back()")
 
-# add <router-view />
-with layout.content:
-    with vuetify.VContainer():
-        router.RouterView()
+# Bar/id
+with RouterViewLayout(server, "/bar/:id"):
+    with vuetify.VCard():
+        vuetify.VCardTitle("This is bar with ID '{{ $route.params.id }}'")
 
-# add router buttons to the drawer
-with layout.drawer:
-    with vuetify.VList(shaped=True, v_model=("selectedRoute", 0)):
-        vuetify.VSubheader("Routes")
+# Main page content
+with SinglePageWithDrawerLayout(server) as layout:
+    layout.title.set_text("Multi-Page demo")
 
-        with vuetify.VListItem(to="/"):
-            with vuetify.VListItemIcon():
-                vuetify.VIcon("mdi-home")
-            with vuetify.VListItemContent():
-                vuetify.VListItemTitle("Home")
+    with layout.content:
+        with vuetify.VContainer():
+            router.RouterView()
 
-        with vuetify.VListItem(to="/foo"):
-            with vuetify.VListItemIcon():
-                vuetify.VIcon("mdi-food")
-            with vuetify.VListItemContent():
-                vuetify.VListItemTitle("Foo")
+    # add router buttons to the drawer
+    with layout.drawer:
+        with vuetify.VList(shaped=True, v_model=("selectedRoute", 0)):
+            vuetify.VSubheader("Routes")
 
-        with vuetify.VListGroup(value=("true",), sub_group=True):
-            with Template(v_slot_activator=True):
-                vuetify.VListItemTitle("Bars")
-            with vuetify.VListItemContent():
-                with vuetify.VListItem(v_for="id in [1,2,3]", to=("'/bar/' + id",)):
-                    with vuetify.VListItemIcon():
-                        vuetify.VIcon("mdi-peanut-outline")
-                    with vuetify.VListItemContent():
-                        vuetify.VListItemTitle("Bar")
-                        vuetify.VListItemSubtitle("ID '{{id}}'")
+            with vuetify.VListItem(to="/"):
+                with vuetify.VListItemIcon():
+                    vuetify.VIcon("mdi-home")
+                with vuetify.VListItemContent():
+                    vuetify.VListItemTitle("Home")
+
+            with vuetify.VListItem(to="/foo"):
+                with vuetify.VListItemIcon():
+                    vuetify.VIcon("mdi-food")
+                with vuetify.VListItemContent():
+                    vuetify.VListItemTitle("Foo")
+
+            with vuetify.VListGroup(value=("true",), sub_group=True):
+                with vuetify.Template(v_slot_activator=True):
+                    vuetify.VListItemTitle("Bars")
+                with vuetify.VListItemContent():
+                    with vuetify.VListItem(v_for="id in [1,2,3]", to=("'/bar/' + id",)):
+                        with vuetify.VListItemIcon():
+                            vuetify.VIcon("mdi-peanut-outline")
+                        with vuetify.VListItemContent():
+                            vuetify.VListItemTitle("Bar")
+                            vuetify.VListItemSubtitle("ID '{{id}}'")
 
 # -----------------------------------------------------------------------------
 # Main
 # -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    layout.start()
+    server.start()

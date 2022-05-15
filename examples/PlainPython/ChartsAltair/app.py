@@ -2,13 +2,19 @@
 # More examples available at https://altair-viz.github.io/gallery/
 # -----------------------------------------------------------------------------
 
-from trame import change
 import altair as alt
 from vega_datasets import data
 
-from trame.layouts import SinglePage
-from trame.html import vuetify, Div, vega
+from trame.app import get_server
+from trame.ui.vuetify import SinglePageLayout
+from trame.widgets import vuetify, vega
 
+# -----------------------------------------------------------------------------
+# Trame setup
+# -----------------------------------------------------------------------------
+
+server = get_server()
+state, ctrl = server.state, server.controller
 
 # -----------------------------------------------------------------------------
 # Chart examples
@@ -36,7 +42,7 @@ def ScatterMatrix():
     )
 
     # Push chart to client
-    vega_component.update(chart)
+    ctrl.vega_update(chart)
 
 
 # -----------------------------------------------------------------------------
@@ -67,7 +73,7 @@ def USIncomeByState():
     )
 
     # Push chart to client
-    vega_component.update(chart)
+    ctrl.vega_update(chart)
 
 
 # -----------------------------------------------------------------------------
@@ -100,7 +106,7 @@ def StackedDensityEstimates():
         .properties(width=400, height=100)
     )
 
-    vega_component.update(chart)
+    ctrl.vega_update(chart)
 
 
 def StreamGraph():
@@ -122,18 +128,22 @@ def StreamGraph():
         .interactive()
     )
 
-    vega_component.update(chart)
+    ctrl.vega_update(chart)
 
 
 # -----------------------------------------------------------------------------
-# Interface
+# Callbacks
 # -----------------------------------------------------------------------------
 
 
-@change("active")
+@state.change("active")
 def update_chart(active="ScatterMatrix", **kwargs):
     globals()[active]()
 
+
+# -----------------------------------------------------------------------------
+# GUI
+# -----------------------------------------------------------------------------
 
 example_charts = [
     {"text": "Scatter Matrix", "value": "ScatterMatrix"},
@@ -142,30 +152,28 @@ example_charts = [
     {"text": "StreamGraph", "value": "StreamGraph"},
 ]
 
-layout = SinglePage("Altair charts", on_ready=update_chart)
-layout.title.set_text("trame ❤️ altair charts")
+state.trame__title = "Altair charts"
 
-# Overwrite icon
-# layout.toolbar.children[0] = vuetify.VIcon("mdi-chart-donut-variant", classes="mr-2")
+with SinglePageLayout(server) as layout:
+    layout.title.set_text("trame ❤️ altair charts")
 
-with layout.toolbar:
-    vuetify.VSpacer()
-    vuetify.VSelect(
-        v_model=("active", "ScatterMatrix"),
-        items=("examples", example_charts),
-        dense=True,
-        hide_details=True,
-    )
+    with layout.toolbar:
+        vuetify.VSpacer()
+        vuetify.VSelect(
+            v_model=("active", "ScatterMatrix"),
+            items=("examples", example_charts),
+            dense=True,
+            hide_details=True,
+        )
 
-
-# Why does this work
-vega_component = vega.VegaEmbed("myChart", style="width: 100%;")
-with layout.content:
-    vuetify.VContainer(vega_component, fluid=True, classes="text-center")
+    with layout.content:
+        with vuetify.VContainer(fluid=True, classes="text-center"):
+            fig = vega.Figure(style="width: 100%;")
+            ctrl.vega_update = fig.update
 
 # -----------------------------------------------------------------------------
 # Start server
 # -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    layout.start()
+    server.start()

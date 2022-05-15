@@ -1,9 +1,20 @@
 import plotly.graph_objects as go
 import plotly.express as px
 
-from trame import state
-from trame.layouts import SinglePage
-from trame.html import vuetify, plotly
+from trame.app import get_server
+from trame.ui.vuetify import SinglePageLayout
+from trame.widgets import vuetify, plotly
+
+# -----------------------------------------------------------------------------
+# Trame setup
+# -----------------------------------------------------------------------------
+
+server = get_server()
+state, ctrl = server.state, server.controller
+
+# -----------------------------------------------------------------------------
+# Charts
+# -----------------------------------------------------------------------------
 
 
 def contour_plot():
@@ -60,43 +71,52 @@ def on_event(type, e):
     print(type, e)
 
 
-html_plot = None
-layout = SinglePage("Plotly")
-layout.title.set_text("trame ❤️ plotly")
-
-with layout.toolbar:
-    vuetify.VSpacer()
-    vuetify.VSelect(
-        v_model=("active_plot", "Contour"),
-        items=("plots", list(PLOTS.keys())),
-        hide_details=True,
-        dense=True,
-    )
-
-with layout.content:
-    with vuetify.VContainer(fluid=True):
-        with vuetify.VRow(dense=True):
-            vuetify.VSpacer()
-            html_plot = plotly.Plotly(
-                "demo",
-                display_mode_bar=("true",),
-                selected=(on_event, "['selected', VuePlotly.safe($event)]"),
-                # hover=(on_event, "['hover', VuePlotly.safe($event)]"),
-                # selecting=(on_event, "['selecting', $event]"),
-                # unhover=(on_event, "['unhover', $event]"),
-            )
-            vuetify.VSpacer()
+# -----------------------------------------------------------------------------
+# Callbacks
+# -----------------------------------------------------------------------------
 
 
 @state.change("active_plot")
 def update_plot(active_plot, **kwargs):
-    html_plot.update(PLOTS[active_plot]())
+    ctrl.figure_update(PLOTS[active_plot]())
 
+
+# -----------------------------------------------------------------------------
+# GUI
+# -----------------------------------------------------------------------------
+
+state.trame__title = "Plotly"
+
+with SinglePageLayout(server) as layout:
+    layout.title.set_text("trame ❤️ plotly")
+
+    with layout.toolbar:
+        vuetify.VSpacer()
+        vuetify.VSelect(
+            v_model=("active_plot", "Contour"),
+            items=("plots", list(PLOTS.keys())),
+            hide_details=True,
+            dense=True,
+        )
+
+    with layout.content:
+        with vuetify.VContainer(fluid=True):
+            with vuetify.VRow(dense=True):
+                vuetify.VSpacer()
+                figure = plotly.Figure(
+                    display_logo=False,
+                    display_mode_bar="true",
+                    # selected=(on_event, "['selected', utils.safe($event)]"),
+                    # hover=(on_event, "['hover', utils.safe($event)]"),
+                    # selecting=(on_event, "['selecting', $event]"),
+                    # unhover=(on_event, "['unhover', $event]"),
+                )
+                ctrl.figure_update = figure.update
+                vuetify.VSpacer()
 
 # -----------------------------------------------------------------------------
 # Main
 # -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    update_plot("Contour")
-    layout.start()
+    server.start()

@@ -2,12 +2,23 @@ import plotly.graph_objects as go
 import plotly.figure_factory as ff
 from plotly.subplots import make_subplots
 
-from trame import state, controller as ctrl
-from trame.layouts import SinglePage
-from trame.html import vuetify, plotly, observer
+from trame.app import get_server
+from trame.ui.vuetify import SinglePageLayout
+from trame.widgets import vuetify, plotly, trame
 
 import numpy as np
 import pandas as pd
+
+# -----------------------------------------------------------------------------
+# Trame setup
+# -----------------------------------------------------------------------------
+
+server = get_server()
+state, ctrl = server.state, server.controller
+
+# -----------------------------------------------------------------------------
+# Charts handling
+# -----------------------------------------------------------------------------
 
 contour_raw_data = pd.read_json(
     "https://raw.githubusercontent.com/plotly/datasets/master/contour_data.json"
@@ -136,8 +147,8 @@ def create_streamline_fig(width=100, height=100, **kwargs):
     x = np.linspace(-3, 3, 100)
     y = np.linspace(-3, 3, 100)
     Y, X = np.meshgrid(x, y)
-    u = -1 - X ** 2 + Y
-    v = 1 + X - Y ** 2
+    u = -1 - X**2 + Y
+    v = 1 + X - Y**2
 
     # Create streamline figure
     fig = ff.create_streamline(
@@ -190,64 +201,81 @@ def create_contour_fig(width=100, height=100, **kwargs):
     return fig
 
 
+# -----------------------------------------------------------------------------
+# Callbacks
+# -----------------------------------------------------------------------------
+
+
 @state.change("contour_size")
 def update_contour_size(contour_size, **kwargs):
+    if contour_size is None:
+        return
+
     ctrl.update_contour(create_contour_fig(**contour_size.get("size")))
 
 
 @state.change("stream_size")
 def update_stream_size(stream_size, **kwargs):
+    if stream_size is None:
+        return
+
     ctrl.update_stream(create_streamline_fig(**stream_size.get("size")))
 
 
 @state.change("polar_size")
 def update_polar_size(polar_size, **kwargs):
+    if polar_size is None:
+        return
+
     ctrl.update_polar(create_polar_fig(**polar_size.get("size")))
 
 
 @state.change("ternary_size")
 def update_stream_size(ternary_size, **kwargs):
+    if ternary_size is None:
+        return
+
     ctrl.update_ternary(create_ternary_fig(**ternary_size.get("size")))
 
 
-layout = SinglePage("Charts")
-layout.title.set_text("Many charts")
+# -----------------------------------------------------------------------------
+# GUI
+# -----------------------------------------------------------------------------
 
-with layout.content:
-    with vuetify.VContainer(fluid=True, classes="fill-height"):
-        with vuetify.VRow():
-            with vuetify.VCol():
-                with observer.SizeObserver("polar_size"):
-                    ctrl.update_polar = plotly.Plotly(
-                        "polar",
-                        figure=create_polar_fig(),
-                        display_mode_bar=("false",),
-                    ).update
-            with vuetify.VCol():
-                with observer.SizeObserver("ternary_size"):
-                    ctrl.update_ternary = plotly.Plotly(
-                        "ternary",
-                        figure=create_ternary_fig(),
-                        display_mode_bar=("false",),
-                    ).update
-        with vuetify.VRow(style="min-height: 300px;"):
-            with vuetify.VCol():
-                with observer.SizeObserver("contour_size"):
-                    ctrl.update_contour = plotly.Plotly(
-                        "contour",
-                        figure=create_contour_fig(),
-                        display_mode_bar=("false",),
-                    ).update
-            with vuetify.VCol():
-                with observer.SizeObserver("stream_size"):
-                    ctrl.update_stream = plotly.Plotly(
-                        "stream",
-                        figure=create_streamline_fig(),
-                        display_mode_bar=("false",),
-                    ).update
+
+state.trame__title = "Charts"
+
+with SinglePageLayout(server) as layout:
+    layout.title.set_text("Many charts")
+
+    with layout.content:
+        with vuetify.VContainer(fluid=True, classes="fill-height"):
+            with vuetify.VRow():
+                with vuetify.VCol():
+                    with trame.SizeObserver("polar_size"):
+                        ctrl.update_polar = plotly.Figure(
+                            display_mode_bar=("false",),
+                        ).update
+                with vuetify.VCol():
+                    with trame.SizeObserver("ternary_size"):
+                        ctrl.update_ternary = plotly.Figure(
+                            display_mode_bar=("false",),
+                        ).update
+            with vuetify.VRow(style="min-height: 300px;"):
+                with vuetify.VCol():
+                    with trame.SizeObserver("contour_size"):
+                        ctrl.update_contour = plotly.Figure(
+                            display_mode_bar=("false",),
+                        ).update
+                with vuetify.VCol():
+                    with trame.SizeObserver("stream_size"):
+                        ctrl.update_stream = plotly.Figure(
+                            display_mode_bar=("false",),
+                        ).update
+
 # -----------------------------------------------------------------------------
 # Main
 # -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    layout.start()
+    server.start()

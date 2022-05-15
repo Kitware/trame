@@ -1,2 +1,3 @@
 plotly
 pandas
+trame>=2.0.0

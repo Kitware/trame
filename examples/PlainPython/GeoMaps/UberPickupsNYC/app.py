@@ -6,27 +6,16 @@ import numpy as np
 import altair as alt
 import pydeck as pdk
 
-from trame import state
-from trame.layouts import SinglePage
-from trame.html import Div, vuetify, deckgl, vega
+from trame.app import get_server
+from trame.ui.vuetify import SinglePageLayout
+from trame.widgets import html, vuetify, deckgl, vega
 
 # -----------------------------------------------------------------------------
-# GUI Components
+# Trame setup
 # -----------------------------------------------------------------------------
-dynamicTitle = "{{nycTitle}} from {{pickupHour}}:00 and {{pickupHour + 1}}:00"
 
-hourBreakdownChart = vega.VegaEmbed(style="width: 100%")
-
-mapProps = {
-    "classes": "elevation-5",
-    "mapboxApiKey": os.environ["MAPBOX_API_KEY"],
-    "style": "height: 50vh;",
-}
-
-nycMap = deckgl.Deck(**mapProps)
-jfkMap = deckgl.Deck(**mapProps)
-lgaMap = deckgl.Deck(**mapProps)
-nwkMap = deckgl.Deck(**mapProps)
+server = get_server()
+state, ctrl = server.state, server.controller
 
 # -----------------------------------------------------------------------------
 # LOADING DATA
@@ -55,7 +44,6 @@ map_list = [
         "lat": np.average(data["lat"]),
         "lon": np.average(data["lon"]),
         "zoom": 11,
-        "mapRef": nycMap,
     },
     {
         "id": "lga",
@@ -63,7 +51,6 @@ map_list = [
         "lat": 40.7900,
         "lon": -73.8700,
         "zoom": 12,
-        "mapRef": lgaMap,
     },
     {
         "id": "jfk",
@@ -71,7 +58,6 @@ map_list = [
         "lat": 40.6650,
         "lon": -73.7821,
         "zoom": 11,
-        "mapRef": jfkMap,
     },
     {
         "id": "nwk",
@@ -79,12 +65,11 @@ map_list = [
         "lat": 40.7090,
         "lon": -74.1805,
         "zoom": 11,
-        "mapRef": nwkMap,
     },
 ]
 
 
-def updateMap(data, lat, lon, zoom, mapRef, **kwarg):
+def updateMap(data, id, lat, lon, zoom, **kwarg):
     deck = pdk.Deck(
         map_provider="mapbox",
         map_style="mapbox://styles/mapbox/light-v9",
@@ -107,8 +92,8 @@ def updateMap(data, lat, lon, zoom, mapRef, **kwarg):
             ),
         ],
     )
-    mapRef.update(deck)
-    state[f'{kwarg["id"]}Title'] = kwarg["title"]
+    ctrl[f"{id}_update"](deck)
+    state[f"{id}Title"] = kwarg["title"]
 
 
 @state.change("pickupHour")
@@ -132,7 +117,7 @@ def updateData(pickupHour, **kwargs):
     chart_data = pd.DataFrame({"minute": range(60), "pickups": hist})
 
     # LAYING OUT THE HISTOGRAM SECTION
-    hourBreakdownChart.update(
+    ctrl.hour_breakdown_update(
         alt.Chart(chart_data)
         .mark_area(
             interpolate="step-after",
@@ -150,46 +135,53 @@ def updateData(pickupHour, **kwargs):
 # -----------------------------------------------------------------------------
 # GUI Layout
 # -----------------------------------------------------------------------------
-layout = SinglePage("NYC Uber Ridesharing Data", on_ready=updateData)
-layout.title.set_text("NYC Uber Ridesharing Data")
 
-with layout.content:
-    with vuetify.VContainer(fluid="true") as container:
-        Div(
-            """Examining how Uber pickups vary over time in New York City's
-                and at its major regional airports.
-                By sliding the slider on the left you can view different slices
-                of time and explore different transportation trends.""",
-            classes="text-body-1",
-        )
-        vuetify.VSlider(
-            v_model=("pickupHour", 0),
-            classes="mt-4",
-            label="Select hour of pickup",
-            min=0,
-            max=23,
-            thumb_label=True,
-        )
+dynamicTitle = "{{nycTitle}} from {{pickupHour}}:00 and {{pickupHour + 1}}:00"
 
-        with vuetify.VRow():
-            with vuetify.VCol(cols=4) as col:
-                Div(dynamicTitle, classes="text-h5")
-                col.add_child(nycMap)
-            with vuetify.VCol(cols=8) as col:
-                with vuetify.VRow():
-                    for title, map in [
-                        ("{{jfkTitle}}", jfkMap),
-                        ("{{lgaTitle}}", lgaMap),
-                        ("{{nwkTitle}}", nwkMap),
-                    ]:
-                        with vuetify.VCol(cols=4) as m_col:
-                            Div(title, classes="text-h5")
-                            m_col.add_child(map)
+mapProps = {
+    "classes": "elevation-5",
+    "mapboxApiKey": os.environ["MAPBOX_API_KEY"],
+    "style": "height: 50vh;",
+}
 
-        Div(
-            classes="text-center mt-6",
-            children=[hourBreakdownChart],
-        )
+with SinglePageLayout(server) as layout:
+    layout.title.set_text("NYC Uber Ridesharing Data")
+
+    with layout.content:
+        with vuetify.VContainer(fluid="true") as container:
+            html.Div(
+                """Examining how Uber pickups vary over time in New York City's
+                    and at its major regional airports.
+                    By sliding the slider on the left you can view different slices
+                    of time and explore different transportation trends.""",
+                classes="text-body-1",
+            )
+            vuetify.VSlider(
+                v_model=("pickupHour", 0),
+                classes="mt-4",
+                label="Select hour of pickup",
+                min=0,
+                max=23,
+                thumb_label=True,
+            )
+
+            with vuetify.VRow():
+                with vuetify.VCol(cols=4):
+                    html.Div(dynamicTitle, classes="text-h5")
+                    ctrl.nyc_update = deckgl.Deck(**mapProps).update
+                with vuetify.VCol(cols=8) as col:
+                    with vuetify.VRow():
+                        for title, name in [
+                            ("{{jfkTitle}}", "jfk"),
+                            ("{{lgaTitle}}", "lga"),
+                            ("{{nwkTitle}}", "nwk"),
+                        ]:
+                            with vuetify.VCol(cols=4):
+                                html.Div(title, classes="text-h5")
+                                ctrl[f"{name}_update"] = deckgl.Deck(**mapProps).update
+
+            with html.Div(classes="text-center mt-6"):
+                ctrl.hour_breakdown_update = vega.Figure(style="width: 100%").update
 
 
 # -----------------------------------------------------------------------------
@@ -197,4 +189,4 @@ with layout.content:
 # -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    layout.start()
+    server.start()

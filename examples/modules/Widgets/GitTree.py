@@ -1,5 +1,6 @@
-from trame.layouts import FullScreenPage
-from trame.html import widgets
+from trame.app import get_server
+from trame.ui.vuetify import VAppLayout
+from trame.widgets import trame
 
 selection = ["2"]
 tree = [
@@ -8,13 +9,13 @@ tree = [
     {"id": "3", "parent": "1", "visible": 1, "name": "Slice"},
     {"id": "4", "parent": "2", "visible": 1, "name": "Slice 2"},
 ]
+server = get_server()
 
-layout = FullScreenPage("Git Tree")
-with layout:
-    widgets.GitTree(
+with VAppLayout(server):
+    trame.GitTree(
         sources=("tree", tree),
         actives=("selection", selection),
     )
 
 if __name__ == "__main__":
-    layout.start()
+    server.start()

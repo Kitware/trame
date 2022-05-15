@@ -1,4 +1,7 @@
-from trame.layouts import FullScreenPage
+from trame.app import get_server
+from trame.ui.vuetify import VAppLayout
+
+server = get_server()
 
 html = """
 <h3>Welcome to trame...</h3>
@@ -8,8 +11,8 @@ html = """
 </div>
 """
 
-layout = FullScreenPage("Hello")
-layout.children += [html]
+with VAppLayout(server) as layout:
+    layout.root.add_child(html)
 
 if __name__ == "__main__":
-    layout.start()
+    server.start()

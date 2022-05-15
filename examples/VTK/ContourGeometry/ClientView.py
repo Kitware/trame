@@ -1,21 +1,27 @@
-import os
+from pathlib import Path
 
-from trame import change
-from trame.html import vuetify, vtk
-from trame.layouts import SinglePage
+from trame.app import get_server
+from trame.widgets import vuetify, vtk
+from trame.ui.vuetify import SinglePageLayout
 
 from vtkmodules.vtkIOXML import vtkXMLImageDataReader
 from vtkmodules.vtkFiltersCore import vtkContourFilter
 
 # -----------------------------------------------------------------------------
+# Trame initialization
+# -----------------------------------------------------------------------------
+
+server = get_server()
+state, ctrl = server.state, server.controller
+
+state.trame__title = "VTK contour - Remote/Local rendering"
+
+# -----------------------------------------------------------------------------
 # VTK pipeline
 # -----------------------------------------------------------------------------
 
-data_directory = os.path.join(
-    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
-    "data",
-)
-head_vti = os.path.join(data_directory, "head.vti")
+data_directory = Path(__file__).parent.parent.with_name("data")
+head_vti = data_directory / "head.vti"
 
 reader = vtkXMLImageDataReader()
 reader.SetFileName(head_vti)
@@ -34,65 +40,64 @@ contour_value = 0.5 * (data_range[0] + data_range[1])
 contour.SetNumberOfContours(1)
 contour.SetValue(0, contour_value)
 
+# Share with client
+state.data_range = data_range
 
 # -----------------------------------------------------------------------------
 # Callbacks
 # -----------------------------------------------------------------------------
 
 
-@change("contour_value")
+@state.change("contour_value")
 def update_contour(contour_value, **kwargs):
     contour.SetValue(0, contour_value)
-    html_polydata.update()
+    ctrl.ds_update()
 
 
 # -----------------------------------------------------------------------------
 # GUI
 # -----------------------------------------------------------------------------
-html_polydata = vtk.VtkPolyData("contour", dataset=contour)
 
-layout = SinglePage("VTK contour - Remote/Local rendering", on_ready=update_contour)
-layout.title.set_text("Contour Application - Local rendering")
+with SinglePageLayout(server) as layout:
+    layout.title.set_text("Contour Application - Local rendering")
 
-layout.state = {
-    "data_range": data_range,
-}
+    with layout.toolbar:
+        vuetify.VSpacer()
+        vuetify.VSlider(
+            value=("contour_value", contour_value),
+            min=("data_range[0]",),
+            max=("data_range[1]",),
+            hide_details=True,
+            dense=True,
+            style="max-width: 300px",
+            change="contour_value = Number($event)",
+        )
+        vuetify.VSwitch(
+            v_model="$vuetify.theme.dark",
+            hide_details=True,
+        )
 
-with layout.toolbar:
-    vuetify.VSpacer()
-    vuetify.VSlider(
-        value=("contour_value", contour_value),
-        min=("data_range[0]",),
-        max=("data_range[1]",),
-        hide_details=True,
-        dense=True,
-        style="max-width: 300px",
-        change="contour_value = Number($event)",
-    )
-    vuetify.VSwitch(
-        v_model="$vuetify.theme.dark",
-        hide_details=True,
-    )
+        with vuetify.VBtn(icon=True, click="$refs.view.resetCamera()"):
+            vuetify.VIcon("mdi-crop-free")
 
-    with vuetify.VBtn(icon=True, click="$refs.view.resetCamera()"):
-        vuetify.VIcon("mdi-crop-free")
+        vuetify.VProgressLinear(
+            indeterminate=True,
+            absolute=True,
+            bottom=True,
+            active=("trame__busy",),
+        )
 
-    vuetify.VProgressLinear(
-        indeterminate=True,
-        absolute=True,
-        bottom=True,
-        active=("busy",),
-    )
-
-with layout.content:
-    with vuetify.VContainer(fluid=True, classes="pa-0 fill-height"):
-        with vtk.VtkView() as view:
-            layout.logo.click = view.reset_camera
-            vtk.VtkGeometryRepresentation([html_polydata])
+    with layout.content:
+        with vuetify.VContainer(fluid=True, classes="pa-0 fill-height"):
+            with vtk.VtkView() as view:
+                layout.icon.click = view.reset_camera
+                with vtk.VtkGeometryRepresentation():
+                    polydata = vtk.VtkPolyData("contour", dataset=contour)
+                    ctrl.ds_update = polydata.update
 
 # -----------------------------------------------------------------------------
 # Main
 # -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    layout.start()
+    server.start()

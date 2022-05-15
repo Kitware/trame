@@ -1,14 +1,17 @@
-from trame.layouts import SinglePage
-from trame.html import widgets
+from trame.app import get_server
+from trame.ui.vuetify import SinglePageLayout
+from trame.widgets import trame
 
-layout = SinglePage("FloatCard Demo")
-layout.title.set_text("FloatCard Demo")
+server = get_server()
 
-with layout.content:
-    widgets.FloatCard(
-        "Drag the handle to move me anywhere",
-        classes="pa-8",
-    )
+with SinglePageLayout(server) as layout:
+    layout.title.set_text("FloatCard Demo")
+
+    with layout.content:
+        trame.FloatCard(
+            "Drag the handle to move me anywhere",
+            classes="pa-8",
+        )
 
 if __name__ == "__main__":
-    layout.start()
+    server.start()

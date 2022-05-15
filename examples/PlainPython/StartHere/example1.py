@@ -1,7 +1,15 @@
-from trame import state
-from trame.layouts import SinglePage
-from trame.html import Div, vuetify
+from trame.app import get_server
+from trame.ui.vuetify import SinglePageLayout
+from trame.widgets import html, vuetify
 
+# -----------------------------------------------------------------------------
+# Trame setup
+# -----------------------------------------------------------------------------
+
+server = get_server()
+state, ctrl = server.state, server.controller
+
+# -----------------------------------------------------------------------------
 
 # Model
 initial_number = 5
@@ -15,15 +23,19 @@ def decrement():
     state.myNumber -= 1
 
 
-layout = SinglePage("Counter")
-layout.title.set_text("Simple Counter Demo")
+# -----------------------------------------------------------------------------
+# GUI
+# -----------------------------------------------------------------------------
+state.trame__title = "Counter"
+with SinglePageLayout(server) as layout:
+    layout.title.set_text("Simple Counter Demo")
 
-with layout.content:
-    with Div(classes="ma-8"):
-        vuetify.VBtn("Increment", click=increment)
-        vuetify.VTextField(v_model=("myNumber", initial_number), readonly=True)
-        vuetify.VBtn("Decrement", click=decrement)
+    with layout.content:
+        with html.Div(classes="ma-8"):
+            vuetify.VBtn("Increment", click=increment)
+            vuetify.VTextField(v_model=("myNumber", initial_number), readonly=True)
+            vuetify.VBtn("Decrement", click=decrement)
 
 
 if __name__ == "__main__":
-    layout.start()
+    server.start()

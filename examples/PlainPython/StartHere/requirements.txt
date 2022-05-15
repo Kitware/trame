@@ -1,1 +1,1 @@
-trame
+trame>=2.0.0

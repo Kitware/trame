@@ -2,10 +2,16 @@ import pydeck as pdk
 import pandas as pd
 import os
 
-from trame import state
-from trame.layouts import SinglePage
-from trame.html import vuetify, deckgl
+from trame.app import get_server
+from trame.ui.vuetify import SinglePageLayout
+from trame.widgets import vuetify, deckgl
 
+# -----------------------------------------------------------------------------
+# Trame setup
+# -----------------------------------------------------------------------------
+
+server = get_server()
+state, ctrl = server.state, server.controller
 
 # -----------------------------------------------------------------------------
 # Getting a Mapbox API key
@@ -25,12 +31,6 @@ from trame.html import vuetify, deckgl
 # Deck.gl / MapBox
 # Expect MAPBOX_API_KEY environment variable
 # -----------------------------------------------------------------------------
-
-deckMap = deckgl.Deck(
-    mapboxApiKey=os.environ["MAPBOX_API_KEY"],
-    style="width: 100vw;",
-    classes="fill-height",
-)
 
 defaultLayers = [
     "Bike Rentals",
@@ -92,6 +92,10 @@ ALL_LAYERS = {
     ),
 }
 
+# -----------------------------------------------------------------------------
+# Callbacks
+# -----------------------------------------------------------------------------
+
 
 @state.change("activeLayers")
 def update_map(activeLayers, **kwargs):
@@ -111,7 +115,7 @@ def update_map(activeLayers, **kwargs):
             },
             layers=selected_layers,
         )
-        deckMap.update(deck)
+        ctrl.deck_update(deck)
     else:
         state.error = "Please choose at least one layer above."
 
@@ -120,24 +124,30 @@ def update_map(activeLayers, **kwargs):
 # GUI Layout
 # -----------------------------------------------------------------------------
 
-layout = SinglePage("Deck + Mapbox Demo", on_ready=update_map)
-layout.title.set_text("Deck + Mapbox Demo")
+state.trame__title = "Deck + Mapbox Demo"
+with SinglePageLayout(server) as layout:
+    layout.title.set_text("Deck + Mapbox Demo")
 
-with layout.content as content:
-    content.add_child(deckMap)
-    vuetify.VSelect(
-        style="position: absolute; top: 10px; left: 25px; width: 600px;",
-        items=("layerNames", defaultLayers),
-        v_model=("activeLayers", defaultLayers),
-        dense=True,
-        hide_details=True,
-        multiple=True,
-        chips=True,
-    )
+    with layout.content:
+        deckMap = deckgl.Deck(
+            mapbox_api_key=os.environ["MAPBOX_API_KEY"],
+            style="width: 100vw;",
+            classes="fill-height",
+        )
+        ctrl.deck_update = deckMap.update
+        vuetify.VSelect(
+            style="position: absolute; top: 10px; left: 25px; width: 600px;",
+            items=("layerNames", defaultLayers),
+            v_model=("activeLayers", defaultLayers),
+            dense=True,
+            hide_details=True,
+            multiple=True,
+            chips=True,
+        )
 
 # -----------------------------------------------------------------------------
 # Start server
 # -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    layout.start()
+    server.start()

@@ -1,10 +1,16 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-from trame import state, controller as ctrl
-from trame.layouts import SinglePage
-from trame.html import vuetify, observer, matplotlib
+from trame.app import get_server
+from trame.ui.vuetify import SinglePageLayout
+from trame.widgets import vuetify, trame, matplotlib
 
+# -----------------------------------------------------------------------------
+# Trame setup
+# -----------------------------------------------------------------------------
+
+server = get_server()
+state, ctrl = server.state, server.controller
 
 # -----------------------------------------------------------------------------
 # Chart examples from:
@@ -16,11 +22,10 @@ def figure_size():
     if state.figure_size is None:
         return {}
 
-    pixel_ratio = state.figure_size.get("pixelRatio")
     dpi = state.figure_size.get("dpi")
     rect = state.figure_size.get("size")
-    w_inch = rect.get("width") / dpi / pixel_ratio
-    h_inch = rect.get("height") / dpi / pixel_ratio
+    w_inch = rect.get("width") / dpi
+    h_inch = rect.get("height") / dpi
 
     return {
         "figsize": (w_inch, h_inch),
@@ -137,38 +142,38 @@ def update_chart(active_figure, **kwargs):
 # UI
 # -----------------------------------------------------------------------------
 
-layout = SinglePage("Matplotly")
-layout.title.set_text("trame ❤️ matplotlib")
+state.trame__title = "Matplotly"
 
-with layout.toolbar:
-    vuetify.VSpacer()
-    vuetify.VSelect(
-        v_model=("active_figure", "FirstDemo"),
-        items=(
-            "figures",
-            [
-                {"text": "First Demo", "value": "FirstDemo"},
-                {"text": "Multi Lines", "value": "MultiLines"},
-                {"text": "Dots and Points", "value": "DotsandPoints"},
-                {"text": "Moving Window Average", "value": "MovingWindowAverage"},
-                {"text": "Subplots", "value": "Subplots"},
-            ],
-        ),
-        hide_details=True,
-        dense=True,
-    )
+with SinglePageLayout(server) as layout:
+    layout.title.set_text("trame ❤️ matplotlib")
 
-with layout.content:
-    # __properties=[("v_resize", "v-resize:quiet")]
-    with vuetify.VContainer(fluid=True, classes="fill-height pa-0 ma-0"):
-        with observer.SizeObserver("figure_size"):
-            html_figure = matplotlib.Figure("figure_0", style="position: absolute")
-            ctrl.update_figure = html_figure.update
+    with layout.toolbar:
+        vuetify.VSpacer()
+        vuetify.VSelect(
+            v_model=("active_figure", "FirstDemo"),
+            items=(
+                "figures",
+                [
+                    {"text": "First Demo", "value": "FirstDemo"},
+                    {"text": "Multi Lines", "value": "MultiLines"},
+                    {"text": "Dots and Points", "value": "DotsandPoints"},
+                    {"text": "Moving Window Average", "value": "MovingWindowAverage"},
+                    {"text": "Subplots", "value": "Subplots"},
+                ],
+            ),
+            hide_details=True,
+            dense=True,
+        )
+
+    with layout.content:
+        with vuetify.VContainer(fluid=True, classes="fill-height pa-0 ma-0"):
+            with trame.SizeObserver("figure_size"):
+                html_figure = matplotlib.Figure(style="position: absolute")
+                ctrl.update_figure = html_figure.update
 
 # -----------------------------------------------------------------------------
 # Main
 # -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    update_chart("FirstDemo")
-    layout.start()
+    server.start()

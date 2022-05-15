@@ -1,2 +1,2 @@
-mpld3
+trame-matplotlib
 numpy

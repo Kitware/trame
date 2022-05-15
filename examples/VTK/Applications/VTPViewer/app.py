@@ -1,9 +1,16 @@
-from trame import state
-from trame.layouts import SinglePage
-from trame.html import vtk, vuetify, StateChange
+from trame.app import get_server
+from trame.ui.vuetify import SinglePageLayout
+from trame.widgets import vtk, vuetify, trame
 
 from vtkmodules.vtkIOXML import vtkXMLPolyDataReader
 from vtkmodules.web.utils import mesh as vtk_mesh
+
+# -----------------------------------------------------------------------------
+# Trame setup
+# -----------------------------------------------------------------------------
+
+server = get_server()
+state, ctrl = server.state, server.controller
 
 # -----------------------------------------------------------------------------
 # Callbacks
@@ -12,6 +19,9 @@ from vtkmodules.web.utils import mesh as vtk_mesh
 
 @state.change("files")
 def load_client_files(files, **kwargs):
+    if files is None or len(files) == 0:
+        return
+
     field = "solid"
     fields = {
         "solid": {"value": "solid", "text": "Solid color", "range": [0, 1]},
@@ -79,53 +89,56 @@ def load_client_files(files, **kwargs):
 # Web App setup
 # -----------------------------------------------------------------------------
 
+state.trame__title = "File loading"
 state.fields = []
 state.meshes = []
 
-layout = SinglePage("File loading")
-layout.title.set_text("File Loader")
-with layout.toolbar:
-    vuetify.VSpacer()
-    vuetify.VSelect(
-        v_model=("field", "solid"),
-        items=("Object.values(fields)",),
-        hide_details=True,
-        dense=True,
-        style="max-width: 200px;",
-        classes="mr-4",
-    )
-    vuetify.VFileInput(
-        multiple=True,
-        show_size=True,
-        small_chips=True,
-        truncate_length=25,
-        v_model=("files", None),
-        dense=True,
-        hide_details=True,
-        style="max-width: 300px;",
-        accept=".vtp",
-        __properties=["accept"],
-    )
-    vuetify.VProgressLinear(
-        indeterminate=True, absolute=True, bottom=True, active=("busy",)
-    )
-    StateChange(name="meshes", change="$refs.view.resetCamera()")
+with SinglePageLayout(server) as layout:
+    layout.title.set_text("File Loader")
+    with layout.toolbar:
+        vuetify.VSpacer()
+        vuetify.VSelect(
+            v_model=("field", "solid"),
+            items=("Object.values(fields)",),
+            hide_details=True,
+            dense=True,
+            style="max-width: 200px;",
+            classes="mr-4",
+        )
+        vuetify.VFileInput(
+            multiple=True,
+            show_size=True,
+            small_chips=True,
+            truncate_length=25,
+            v_model=("files", None),
+            dense=True,
+            hide_details=True,
+            style="max-width: 300px;",
+            accept=".vtp",
+            __properties=["accept"],
+        )
+        vuetify.VProgressLinear(
+            indeterminate=True, absolute=True, bottom=True, active=("trame__busy",)
+        )
+        trame.ClientStateChange(name="meshes", change=ctrl.view_reset_camera)
 
-
-with layout.content:
-    with vuetify.VContainer(
-        fluid=True, classes="pa-0 fill-height", style="position: relative;"
-    ):
-        with vtk.VtkView(ref="view"):
-            with vtk.VtkGeometryRepresentation(
-                v_for="mesh, idx in meshes",
-                key=("idx",),
-                color_data_range=("fields[field] && fields[field].range || [0, 1]",),
-                mapper=(
-                    "{ colorByArrayName: field, scalarMode: fields[field] && fields[field].scalarMode || 3, interpolateScalarsBeforeMapping: true, scalarVisibility: field !== 'solid' }",
-                ),
-            ):
-                vtk.VtkMesh("myMesh", state=("mesh",))
+    with layout.content:
+        with vuetify.VContainer(
+            fluid=True, classes="pa-0 fill-height", style="position: relative;"
+        ):
+            with vtk.VtkView(ref="view") as view:
+                ctrl.view_reset_camera = view.reset_camera
+                with vtk.VtkGeometryRepresentation(
+                    v_for="mesh, idx in meshes",
+                    key=("idx",),
+                    color_data_range=(
+                        "fields[field] && fields[field].range || [0, 1]",
+                    ),
+                    mapper=(
+                        "{ colorByArrayName: field, scalarMode: fields[field] && fields[field].scalarMode || 3, interpolateScalarsBeforeMapping: true, scalarVisibility: field !== 'solid' }",
+                    ),
+                ):
+                    vtk.VtkMesh("myMesh", state=("mesh",))
 
 
 # -----------------------------------------------------------------------------
@@ -133,4 +146,4 @@ with layout.content:
 # -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    layout.start()
+    server.start()

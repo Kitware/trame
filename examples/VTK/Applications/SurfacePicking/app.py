@@ -1,13 +1,20 @@
-import os
+from pathlib import Path
 
-from trame import state
-from trame.layouts import SinglePage
-from trame.html import vtk, vuetify, Element
+from trame.app import get_server
+from trame.ui.vuetify import SinglePageLayout
+from trame.widgets import vtk, vuetify, html, trame
 
 from vtkmodules.web.utils import mesh as vtk_mesh
 from vtkmodules.vtkIOXML import vtkXMLPolyDataReader
 from vtkmodules.vtkFiltersGeneral import vtkExtractSelectedFrustum
 from vtkmodules.vtkFiltersCore import vtkThreshold
+
+# -----------------------------------------------------------------------------
+# Trame
+# -----------------------------------------------------------------------------
+
+server = get_server()
+state, ctrl = server.state, server.controller
 
 # -----------------------------------------------------------------------------
 # Constants
@@ -32,14 +39,9 @@ VIEW_SELECT = [{"button": 1, "action": "Select"}]
 # VTK pipeline
 # -----------------------------------------------------------------------------
 
-
-data_directory = os.path.join(
-    os.path.dirname(
-        os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-    ),
-    "data",
-)
-f1_vtp = os.path.join(data_directory, "f1.vtp")
+data_directory = Path(__file__).parent.parent.parent.with_name("data")
+f1_vtp = data_directory / "f1.vtp"
+print(f1_vtp)
 
 reader = vtkXMLPolyDataReader()
 reader.SetFileName(f1_vtp)
@@ -71,29 +73,27 @@ threshold.SetInputArrayToProcess(0, 0, 0, 1, "vtkInsidedness")  # 1 => cell
 # Web App setup
 # -----------------------------------------------------------------------------
 
-layout = SinglePage("F1 Probing")
-layout.title.set_text("F1 Probing")
-layout.state = {
-    # Fields available
-    "fieldParameters": fieldParameters,
-    # picking controls
-    "modes": [
-        {"value": "hover", "icon": "mdi-magnify"},
-        {"value": "click", "icon": "mdi-cursor-default-click-outline"},
-        {"value": "select", "icon": "mdi-select-drag"},
-    ],
-    # Picking feedback
-    "pickData": None,
-    "selectData": None,
-    "tooltip": "",
-    "coneVisibility": False,
-    "pixel_ratio": 1,
-    # Meshes
-    "f1Visible": True,
-}
-
-# Let the server know the browser pixel ratio
-layout.triggers.add("mounted", "pixel_ratio = window.devicePixelRatio")
+state.trame__title = "F1 Probing"
+state.update(
+    {
+        # Fields available
+        "fieldParameters": fieldParameters,
+        # picking controls
+        "modes": [
+            {"value": "hover", "icon": "mdi-magnify"},
+            {"value": "click", "icon": "mdi-cursor-default-click-outline"},
+            {"value": "select", "icon": "mdi-select-drag"},
+        ],
+        # Picking feedback
+        "pickData": None,
+        "selectData": None,
+        "tooltip": "",
+        "coneVisibility": False,
+        "pixel_ratio": 1,
+        # Meshes
+        "f1Visible": True,
+    }
+)
 
 # -----------------------------------------------------------------------------
 # Callbacks
@@ -154,7 +154,7 @@ def update_tooltip(pickData, pixel_ratio, **kwargs):
     state.coneVisibility = False
     data = pickData
 
-    if state.is_dirty("pickData") and data and data["representationId"] == "f1":
+    if data and data["representationId"] == "f1":
         xyx = data["worldPosition"]
         idx = f1_mesh.FindPoint(xyx)
         if idx > -1:
@@ -205,102 +205,102 @@ def update_tooltip(pickData, pixel_ratio, **kwargs):
                 }
 
 
-with layout.toolbar:
-    vuetify.VSpacer()
-    with vuetify.VBtnToggle(v_model=("pickingMode", "hover"), dense=True):
-        with vuetify.VBtn(value=("item.value",), v_for="item, idx in modes"):
-            vuetify.VIcon("{{item.icon}}")
-    vuetify.VSelect(
-        v_model=("field", "solid"),
-        items=(
-            "fields",
-            [
-                {"value": "solid", "text": "Solid color"},
-                {"value": "p", "text": "Pressure"},
-                {"value": "U", "text": "Velocity"},
-            ],
-        ),
-        classes="ml-8",
-        dense=True,
-        hide_details=True,
-        style="max-width: 140px",
-    )
-    vuetify.VSelect(
-        v_model=("colorMap", "erdc_rainbow_bright"),
-        items=("''|vtkColorPresetItems",),
-        classes="ml-8",
-        dense=True,
-        hide_details=True,
-        style="max-width: 200px",
-    )
-    vuetify.VSpacer()
-    with vuetify.VBtn(icon=True, click="f1Visible = !f1Visible"):
-        vuetify.VIcon("mdi-eye-outline", v_if="f1Visible")
-        vuetify.VIcon("mdi-eye-off-outline", v_if="!f1Visible")
-    with vuetify.VBtn(icon=True, click="$refs.view.resetCamera()"):
-        vuetify.VIcon("mdi-crop-free")
-    vuetify.VProgressLinear(
-        indeterminate=True, absolute=True, bottom=True, active=("busy",)
-    )
+with SinglePageLayout(server) as layout:
+    layout.title.set_text("F1 Probing")
+    # Let the server know the browser pixel ratio
+    trame.ClientTriggers(mounted="pixel_ratio = window.devicePixelRatio")
 
-visualization = [
-    vtk.VtkGeometryRepresentation(
-        vtk.VtkMesh("f1", dataset=f1_mesh, point_arrays=["p", "U"]),
-        id="f1",
-        v_if="f1",
-        color_map_preset=("colorMap",),
-        color_data_range=("fieldParameters[field].range",),
-        actor=("{ visibility: f1Visible }",),
-        mapper=(
-            "{ colorByArrayName: field, scalarMode: 3, interpolateScalarsBeforeMapping: true, scalarVisibility: field !== 'solid' }",
-        ),
-    ),
-    vtk.VtkGeometryRepresentation(
-        vtk.VtkMesh("selection", state=("selection", None)),
-        id="selection",
-        actor=("{ visibility: !!selection }",),
-        property=(
-            "{ color: [0.99,0.13,0.37], representation: 0, pointSize: Math.round(5 * pixel_ratio)}",
-        ),
-    ),
-    vtk.VtkGeometryRepresentation(
-        vtk.VtkMesh("frustrum", state=("frustrum", None)),
-        id="frustrum",
-        actor=("{ visibility: !!frustrum }",),
-    ),
-    vtk.VtkGeometryRepresentation(
-        vtk.VtkAlgorithm(
-            vtk_class="vtkConeSource",
-            state=("cone", {}),
-        ),
-        id="pointer",
-        property=("{ color: [1, 0, 0]}",),
-        actor=("{ visibility: coneVisibility }",),
-    ),
-]
-
-
-with layout.content:
-    with vuetify.VContainer(
-        fluid=True, classes="pa-0 fill-height", style="position: relative;"
-    ):
-        with vuetify.VCard(
-            style=("tooltipStyle", {"display": "none"}), elevation=2, outlined=True
-        ):
-            with vuetify.VCardText():
-                Element("pre", "{{ tooltip }}")
-        vtk.VtkView(
-            visualization,
-            ref="view",
-            picking_modes=("[pickingMode]",),
-            interactor_settings=("interactorSettings", VIEW_INTERACT),
-            click="pickData = $event",
-            hover="pickData = $event",
-            select="selectData = $event",
+    with layout.toolbar:
+        vuetify.VSpacer()
+        with vuetify.VBtnToggle(v_model=("pickingMode", "hover"), dense=True):
+            with vuetify.VBtn(value=("item.value",), v_for="item, idx in modes"):
+                vuetify.VIcon("{{item.icon}}")
+        vuetify.VSelect(
+            v_model=("field", "solid"),
+            items=(
+                "fields",
+                [
+                    {"value": "solid", "text": "Solid color"},
+                    {"value": "p", "text": "Pressure"},
+                    {"value": "U", "text": "Velocity"},
+                ],
+            ),
+            classes="ml-8",
+            dense=True,
+            hide_details=True,
+            style="max-width: 140px",
         )
+        vuetify.VSelect(
+            v_model=("colorMap", "erdc_rainbow_bright"),
+            items=("''|vtkColorPresetItems",),
+            classes="ml-8",
+            dense=True,
+            hide_details=True,
+            style="max-width: 200px",
+        )
+        vuetify.VSpacer()
+        with vuetify.VBtn(icon=True, click="f1Visible = !f1Visible"):
+            vuetify.VIcon("mdi-eye-outline", v_if="f1Visible")
+            vuetify.VIcon("mdi-eye-off-outline", v_if="!f1Visible")
+        with vuetify.VBtn(icon=True, click="$refs.view.resetCamera()"):
+            vuetify.VIcon("mdi-crop-free")
+        vuetify.VProgressLinear(
+            indeterminate=True, absolute=True, bottom=True, active=("trame__busy",)
+        )
+
+    with layout.content:
+        with vuetify.VContainer(
+            fluid=True, classes="pa-0 fill-height", style="position: relative;"
+        ):
+            with vuetify.VCard(
+                style=("tooltipStyle", {"display": "none"}), elevation=2, outlined=True
+            ):
+                with vuetify.VCardText():
+                    html.Pre("{{ tooltip }}")
+            with vtk.VtkView(
+                ref="view",
+                picking_modes=("[pickingMode]",),
+                interactor_settings=("interactorSettings", VIEW_INTERACT),
+                click="pickData = $event",
+                hover="pickData = $event",
+                select="selectData = $event",
+            ):
+                with vtk.VtkGeometryRepresentation(
+                    id="f1",
+                    v_if="f1",
+                    color_map_preset=("colorMap",),
+                    color_data_range=("fieldParameters[field].range",),
+                    actor=("{ visibility: f1Visible }",),
+                    mapper=(
+                        "{ colorByArrayName: field, scalarMode: 3, interpolateScalarsBeforeMapping: true, scalarVisibility: field !== 'solid' }",
+                    ),
+                ):
+                    vtk.VtkMesh("f1", dataset=f1_mesh, point_arrays=["p", "U"])
+                with vtk.VtkGeometryRepresentation(
+                    id="selection",
+                    actor=("{ visibility: !!selection }",),
+                    property=(
+                        "{ color: [0.99,0.13,0.37], representation: 0, pointSize: Math.round(5 * pixel_ratio)}",
+                    ),
+                ):
+                    vtk.VtkMesh("selection", state=("selection", None))
+                with vtk.VtkGeometryRepresentation(
+                    id="frustrum",
+                    actor=("{ visibility: !!frustrum }",),
+                ):
+                    vtk.VtkMesh("frustrum", state=("frustrum", None))
+                with vtk.VtkGeometryRepresentation(
+                    id="pointer",
+                    property=("{ color: [1, 0, 0]}",),
+                    actor=("{ visibility: coneVisibility }",),
+                ):
+                    vtk.VtkAlgorithm(
+                        vtk_class="vtkConeSource",
+                        state=("cone", {}),
+                    )
 # -----------------------------------------------------------------------------
 # CLI
 # -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    layout.start()
+    server.start()

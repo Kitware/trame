@@ -1,4 +1,4 @@
-trame
+trame>=2.0.0
 altair
 pandas
 numpy

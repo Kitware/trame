@@ -1,13 +1,19 @@
-from trame.layouts import SinglePage
-from trame.html import vuetify, vega
+from trame.app import get_server
+from trame.ui.vuetify import SinglePageLayout
+from trame.widgets import vuetify, vega
+
 from itertools import cycle
-import json
 
 import altair as alt
 import pandas as pd
 import numpy as np
-import trame as tr
 
+# -----------------------------------------------------------------------------
+# Trame setup
+# -----------------------------------------------------------------------------
+
+server = get_server()
+state, ctrl = server.state, server.controller
 
 # --------------------------------------------------------------------------------
 # Making dataframe
@@ -76,7 +82,7 @@ table = {
 # --------------------------------------------------------------------------------
 
 
-@tr.change("selection")
+@state.change("selection")
 def selection_change(selection=[], **kwargs):
 
     global DATA_FRAME
@@ -109,29 +115,34 @@ def selection_change(selection=[], **kwargs):
         )
     ).properties(width="container", height=100)
 
-    chart_component.update(chart)
+    ctrl.fig_update(chart)
 
 
 # --------------------------------------------------------------------------------
 # GUI
 # --------------------------------------------------------------------------------
 
-layout = SinglePage("Vuetify table example", on_ready=selection_change)
-layout.title.set_text("Vuetify table example")
-with layout.toolbar:
-    vuetify.VSpacer()
-    vuetify.VTextField(
-        v_model=("query",),
-        placeholder="Search",
-        dense=True,
-        hide_details=True,
-        prepend_icon="mdi-magnify",
-    )
+with SinglePageLayout(server) as layout:
+    layout.title.set_text("Vuetify table example")
+    with layout.toolbar:
+        vuetify.VSpacer()
+        vuetify.VTextField(
+            v_model=("query",),
+            placeholder="Search",
+            dense=True,
+            hide_details=True,
+            prepend_icon="mdi-magnify",
+        )
 
-chart_component = vega.VegaEmbed(name="myChart", classes="ma-2", style="width: 100%;")
-with layout.content:
-    vuetify.VRow(chart_component, classes="justify-center ma-6")
-    vuetify.VDataTable(**table)
+    with layout.content:
+        with vuetify.VRow(classes="justify-center ma-6"):
+            fig = vega.Figure(classes="ma-2", style="width: 100%;")
+            ctrl.fig_update = fig.update
+        vuetify.VDataTable(**table)
+
+# -----------------------------------------------------------------------------
+# Start server
+# -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    layout.start()
+    server.start()

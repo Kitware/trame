@@ -9,9 +9,9 @@ from vtkmodules.vtkFiltersCore import vtkThreshold
 from vtkmodules.numpy_interface.dataset_adapter import numpyTovtkDataArray as np2da
 from vtkmodules.util import vtkConstants
 
-from trame import state, get_cli_parser
-from trame.layouts import SinglePage
-from trame.html import vuetify, vtk, StateChange
+from trame.app import get_server
+from trame.ui.vuetify import SinglePageLayout
+from trame.widgets import vuetify, vtk, trame
 
 # -----------------------------------------------------------------------------
 # Constants
@@ -28,6 +28,13 @@ VIEW_INTERACT = [
 ]
 
 # -----------------------------------------------------------------------------
+# Trame setup
+# -----------------------------------------------------------------------------
+
+server = get_server()
+state, ctrl = server.state, server.controller
+
+# -----------------------------------------------------------------------------
 # VTK pipeline
 # -----------------------------------------------------------------------------
 
@@ -36,45 +43,6 @@ vtk_grid = vtkUnstructuredGrid()
 vtk_filter = vtkThreshold()
 vtk_filter.SetInputData(vtk_grid)
 field_to_keep = "my_array"
-
-html_mesh = vtk.VtkMesh(
-    "mesh",
-    dataset=vtk_grid,
-)
-html_threshold = vtk.VtkMesh(
-    "threshold",
-    dataset=vtk_filter,
-    field_to_keep=field_to_keep,
-)
-html_view = vtk.VtkView(
-    ref="view",
-    background=("[0.8, 0.8, 0.8]",),
-    hover="pick_data = $event",
-    picking_modes=("picking_modes", []),
-    interactor_settings=("interactor_settings", VIEW_INTERACT),
-    children=[
-        vtk.VtkGeometryRepresentation(
-            v_if=("mesh",),
-            property=(
-                """{
-                    representation: threshold ? 1 : 2,
-                    color: threshold ? [0.3, 0.3, 0.3] : [1, 1, 1],
-                    opacity: threshold ? 0.2 : 1
-                    }""",
-            ),
-            children=[
-                html_mesh,
-            ],
-        ),
-        vtk.VtkGeometryRepresentation(
-            v_if=("threshold",),
-            color_data_range=("full_range", [0, 1]),
-            children=[
-                html_threshold,
-            ],
-        ),
-    ],
-)
 
 
 @state.change("nodes_file", "elems_file", "field_file")
@@ -195,14 +163,14 @@ def update_grid(nodes_file, elems_file, field_file, **kwargs):
         state.threshold_range = list(vtk_array.GetRange())
         state.picking_modes = ["hover"]
 
-    html_mesh.update()
+    ctrl.mesh_update()
 
 
 @state.change("threshold_range")
 def update_filter(threshold_range, **kwargs):
     vtk_filter.SetLowerThreshold(threshold_range[0])
     vtk_filter.SetUpperThreshold(threshold_range[1])
-    html_threshold.update()
+    ctrl.threshold_update()
 
 
 def reset():
@@ -252,13 +220,6 @@ def update_tooltip(pick_data, pixel_ratio, **kwargs):
 # Web App setup
 # -----------------------------------------------------------------------------
 
-layout = SinglePage("FEA - Mesh viewer")
-layout.title.set_text("Mesh Viewer")
-layout.logo.click = reset
-
-# Let the server know the browser pixel ratio
-layout.triggers.add("mounted", "pixel_ratio = window.devicePixelRatio")
-
 file_style = {
     "dense": True,
     "hide_details": True,
@@ -269,81 +230,119 @@ file_style = {
     "accept": ".txt",
 }
 
-# Toolbar ----------------------------------------
-with layout.toolbar:
-    vuetify.VSpacer()
-    vuetify.VRangeSlider(
-        thumb_size=16,
-        thumb_label=True,
-        label="Threshold",
-        v_if=("threshold",),
-        v_model=("threshold_range", [0, 1]),
-        min=("full_range[0]",),
-        max=("full_range[1]",),
-        dense=True,
-        hide_details=True,
-        style="max-width: 400px",
-    )
-    vuetify.VFileInput(
-        v_show=("!mesh",),
-        prepend_icon="mdi-vector-triangle",
-        v_model=("nodes_file", None),
-        placeholder="Nodes",
-        **file_style,
-    )
-    vuetify.VFileInput(
-        v_show=("!mesh",),
-        prepend_icon="mdi-dots-triangle",
-        v_model=("elems_file", None),
-        placeholder="Elements",
-        **file_style,
-    )
-    vuetify.VFileInput(
-        v_show=("!threshold",),
-        prepend_icon="mdi-gradient",
-        v_model=("field_file", None),
-        placeholder="Field",
-        **file_style,
-    )
-    with vuetify.VBtn(v_if=("mesh",), icon=True, click="$refs.view.resetCamera()"):
-        vuetify.VIcon("mdi-crop-free")
+state.trame__title = "FEA - Mesh viewer"
 
-    vuetify.VProgressLinear(
-        indeterminate=True, absolute=True, bottom=True, active=("busy",)
-    )
+with SinglePageLayout(server) as layout:
+    layout.title.set_text("Mesh Viewer")
+    layout.icon.click = reset
 
-    StateChange("mesh", change="$refs.view.resetCamera()")
+    # Let the server know the browser pixel ratio
+    trame.ClientTriggers(mounted="pixel_ratio = window.devicePixelRatio")
 
-# Content ----------------------------------------
-layout.content.children += [
-    vuetify.VContainer(
-        fluid=True,
-        classes="pa-0 fill-height",
-        style="position: relative",
-        children=[
-            html_view,
-            vuetify.VCard(
-                vuetify.VCardText("<pre>{{ tooltip }}</pre>"),
+    # Toolbar ----------------------------------------
+    with layout.toolbar:
+        vuetify.VSpacer()
+        vuetify.VRangeSlider(
+            thumb_size=16,
+            thumb_label=True,
+            label="Threshold",
+            v_if=("threshold",),
+            v_model=("threshold_range", [0, 1]),
+            min=("full_range[0]",),
+            max=("full_range[1]",),
+            dense=True,
+            hide_details=True,
+            style="max-width: 400px",
+        )
+        vuetify.VFileInput(
+            v_show=("!mesh",),
+            prepend_icon="mdi-vector-triangle",
+            v_model=("nodes_file", None),
+            placeholder="Nodes",
+            **file_style,
+        )
+        vuetify.VFileInput(
+            v_show=("!mesh",),
+            prepend_icon="mdi-dots-triangle",
+            v_model=("elems_file", None),
+            placeholder="Elements",
+            **file_style,
+        )
+        vuetify.VFileInput(
+            v_show=("!threshold",),
+            prepend_icon="mdi-gradient",
+            v_model=("field_file", None),
+            placeholder="Field",
+            **file_style,
+        )
+        with vuetify.VBtn(v_if=("mesh",), icon=True, click=ctrl.view_reset_camera):
+            vuetify.VIcon("mdi-crop-free")
+
+        vuetify.VProgressLinear(
+            indeterminate=True, absolute=True, bottom=True, active=("trame__busy",)
+        )
+
+        trame.ClientStateChange(value="mesh", change=ctrl.view_reset_camera)
+
+    # Content ----------------------------------------
+    with layout.content:
+        with vuetify.VContainer(
+            fluid=True,
+            classes="pa-0 fill-height",
+            style="position: relative",
+        ):
+            with vtk.VtkView(
+                ref="view",
+                background=("[0.8, 0.8, 0.8]",),
+                hover="pick_data = $event",
+                picking_modes=("picking_modes", []),
+                interactor_settings=("interactor_settings", VIEW_INTERACT),
+            ) as view:
+                ctrl.view_update = view.update
+                ctrl.view_reset_camera = view.reset_camera
+                with vtk.VtkGeometryRepresentation(
+                    v_if=("mesh",),
+                    property=(
+                        """{
+                            representation: threshold ? 1 : 2,
+                            color: threshold ? [0.3, 0.3, 0.3] : [1, 1, 1],
+                            opacity: threshold ? 0.2 : 1
+                            }""",
+                    ),
+                ):
+                    mesh = vtk.VtkMesh("mesh", dataset=vtk_grid)
+                    ctrl.mesh_update = mesh.update
+
+                with vtk.VtkGeometryRepresentation(
+                    v_if=("threshold",),
+                    color_data_range=("full_range", [0, 1]),
+                ):
+                    threshold = vtk.VtkMesh(
+                        "threshold", dataset=vtk_filter, field_to_keep=field_to_keep
+                    )
+                    ctrl.threshold_update = threshold.update
+            with vuetify.VCard(
                 style=("tooltip_style", {"display": "none"}),
                 elevation=2,
                 outlined=True,
-            ),
-        ],
-    )
-]
+            ):
+                vuetify.VCardText("<pre>{{ tooltip }}</pre>"),
+
 
 # Variables not defined within HTML but used
-layout.state = {
-    "pixel_ratio": 1,
-    "pick_data": None,
-    "tooltip": "",
-}
+state.update(
+    {
+        "pixel_ratio": 1,
+        "pick_data": None,
+        "tooltip": "",
+    }
+)
 
 # -----------------------------------------------------------------------------
 # Use --data to skip file upload
 # -----------------------------------------------------------------------------
 
-parser = get_cli_parser()
+parser = server.cli
 parser.add_argument("--data", help="Unstructured file path", dest="data")
 args = parser.parse_args()
 if args.data:
@@ -360,10 +359,10 @@ if args.data:
     state.full_range = [full_min, full_max]
     state.threshold_range = [full_min, full_max]
     state.picking_modes = ["hover"]
-    html_mesh.update()
-    html_threshold.update()
+    ctrl.mesh_update()
+    ctrl.threshold_update()
 
 # -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    layout.start()
+    server.start()

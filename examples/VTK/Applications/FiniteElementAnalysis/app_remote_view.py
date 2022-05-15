@@ -20,9 +20,16 @@ from vtkmodules.vtkRenderingCore import (
     vtkRenderWindowInteractor,
 )
 
-from trame import state, get_cli_parser
-from trame.layouts import SinglePage
-from trame.html import vuetify, vtk
+from trame.app import get_server
+from trame.ui.vuetify import SinglePageLayout
+from trame.widgets import vuetify, vtk
+
+# -----------------------------------------------------------------------------
+# Trame setup
+# -----------------------------------------------------------------------------
+
+server = get_server()
+state, ctrl = server.state, server.controller
 
 # -----------------------------------------------------------------------------
 # VTK pipeline
@@ -60,8 +67,6 @@ mesh_mapper.SetScalarVisibility(0)
 mesh_actor = vtkActor()
 mesh_actor.SetMapper(mesh_mapper)
 renderer.AddActor(mesh_actor)
-
-html_view = vtk.VtkRemoteView(renderWindow, interactive_ratio=("1",))
 
 
 @state.change("nodes_file", "elems_file", "field_file")
@@ -198,7 +203,7 @@ def update_grid(nodes_file, elems_file, field_file, **kwargs):
         # writer.Write()
 
     renderer.ResetCamera()
-    html_view.update()
+    ctrl.view_update()
 
 
 @state.change("threshold_range")
@@ -207,11 +212,11 @@ def update_filter(threshold_range, **kwargs):
     filter_mapper.SetScalarRange(threshold_range)
     vtk_filter.SetLowerThreshold(threshold_range[0])
     vtk_filter.SetUpperThreshold(threshold_range[1])
-    html_view.update()
+    ctrl.view_update()
 
 
 @state.change("mesh_status")
-def update_mesh_representations():
+def update_mesh_representations(**kwargs):
     # defaults
     color = [1, 1, 1]
     representation = 2
@@ -226,7 +231,7 @@ def update_mesh_representations():
     property.SetRepresentation(representation)
     property.SetColor(color)
     property.SetOpacity(opacity)
-    html_view.update()
+    ctrl.view_update()
 
 
 def reset():
@@ -243,11 +248,6 @@ def reset():
 # -----------------------------------------------------------------------------
 # Web App setup
 # -----------------------------------------------------------------------------
-
-layout = SinglePage("FEA - Mesh viewer")
-layout.logo.click = reset
-layout.title.set_text("Mesh Viewer")
-
 file_style = {
     "dense": True,
     "hide_details": True,
@@ -258,72 +258,78 @@ file_style = {
     "accept": ".txt",
 }
 
-# Toolbar ----------------------------------------
-with layout.toolbar:
-    vuetify.VSpacer()
-    vuetify.VRangeSlider(
-        thumb_size=16,
-        thumb_label=True,
-        label="Threshold",
-        v_if=("mesh_status > 1",),
-        v_model=("threshold_range", [0, 1]),
-        min=("full_min", 0),
-        max=("full_max", 1),
-        dense=True,
-        hide_details=True,
-        style="max-width: 400px",
-    )
-    vuetify.VFileInput(
-        v_show=("mesh_status < 1",),
-        prepend_icon="mdi-vector-triangle",
-        v_model=("nodes_file", None),
-        placeholder="Nodes",
-        **file_style,
-    )
-    vuetify.VFileInput(
-        v_show=("mesh_status < 1",),
-        prepend_icon="mdi-dots-triangle",
-        v_model=("elems_file", None),
-        placeholder="Elements",
-        **file_style,
-    )
-    vuetify.VFileInput(
-        v_show=("mesh_status < 2",),
-        prepend_icon="mdi-gradient",
-        v_model=("field_file", None),
-        placeholder="Field",
-        **file_style,
-    )
-    with vuetify.VBtn(
-        v_if=("mesh_status",), icon=True, click="$refs.view.resetCamera()"
-    ):
-        vuetify.VIcon("mdi-crop-free")
+state.trame__title = "FEA - Mesh viewer"
 
-    vuetify.VProgressLinear(
-        indeterminate=True, absolute=True, bottom=True, active=("busy",)
-    )
 
-# Content ----------------------------------------
-layout.content.children += [
-    vuetify.VContainer(
-        fluid=True,
-        classes="pa-0 fill-height",
-        style="position: relative",
-        children=[html_view],
-    )
-]
+with SinglePageLayout(server) as layout:
+    layout.icon.click = reset
+    layout.title.set_text("Mesh Viewer")
+
+    # Toolbar ----------------------------------------
+    with layout.toolbar:
+        vuetify.VSpacer()
+        vuetify.VRangeSlider(
+            thumb_size=16,
+            thumb_label=True,
+            label="Threshold",
+            v_if=("mesh_status > 1",),
+            v_model=("threshold_range", [0, 1]),
+            min=("full_min", 0),
+            max=("full_max", 1),
+            dense=True,
+            hide_details=True,
+            style="max-width: 400px",
+        )
+        vuetify.VFileInput(
+            v_show=("mesh_status < 1",),
+            prepend_icon="mdi-vector-triangle",
+            v_model=("nodes_file", None),
+            placeholder="Nodes",
+            **file_style,
+        )
+        vuetify.VFileInput(
+            v_show=("mesh_status < 1",),
+            prepend_icon="mdi-dots-triangle",
+            v_model=("elems_file", None),
+            placeholder="Elements",
+            **file_style,
+        )
+        vuetify.VFileInput(
+            v_show=("mesh_status < 2",),
+            prepend_icon="mdi-gradient",
+            v_model=("field_file", None),
+            placeholder="Field",
+            **file_style,
+        )
+        with vuetify.VBtn(
+            v_if=("mesh_status",), icon=True, click=ctrl.view_reset_camera
+        ):
+            vuetify.VIcon("mdi-crop-free")
+
+        vuetify.VProgressLinear(
+            indeterminate=True, absolute=True, bottom=True, active=("trame__busy",)
+        )
+
+    # Content ----------------------------------------
+    with layout.content:
+        with vuetify.VContainer(
+            fluid=True,
+            classes="pa-0 fill-height",
+            style="position: relative",
+        ):
+            html_view = vtk.VtkRemoteView(renderWindow, interactive_ratio=("1",))
+            ctrl.view_update = html_view.update
+            ctrl.view_reset_camera = html_view.reset_camera
+
 
 # Variables not defined within HTML but used
-layout.state = {
-    # 0: empty / 1: mesh / 2: mesh+filter
-    "mesh_status": 0,
-}
+state.mesh_status = 0  # 0: empty / 1: mesh / 2: mesh+filter
 
 # -----------------------------------------------------------------------------
 # Use --data to skip file upload
 # -----------------------------------------------------------------------------
 
-parser = get_cli_parser()
+parser = server.cli
 parser.add_argument("--data", help="Unstructured file path", dest="data")
 args = parser.parse_args()
 if args.data:
@@ -346,4 +352,4 @@ if args.data:
 # -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    layout.start()
+    server.start()

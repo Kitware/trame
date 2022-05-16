@@ -1,0 +1,49 @@
+name: PyPI Release
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  publish:
+    name: PyPI
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      - name: Web tools
+        run: |
+          npm ci
+      - name: Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.7
+      - name: Install setuptools
+        run: python -m pip install --upgrade setuptools wheel twine
+      - name: Release Python
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          PYPI_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
+        run: |
+          git config --global user.name "Github Actions"
+          git config --global user.email "sebastien.jourdain@kitware.com"
+          npm run semantic-release
+      - name: Publish distribution 📦 to Test PyPI
+        continue-on-error: true
+        uses: pypa/gh-action-pypi-publish@master
+        with:
+          password: ${{ secrets.TEST_PYPI_API_TOKEN }}
+          repository_url: https://test.pypi.org/legacy/
+      - name: Publish distribution 📦 to PyPI
+        continue-on-error: true
+        # if: startsWith(github.ref, 'refs/tags')
+        uses: pypa/gh-action-pypi-publish@master
+        with:
+          password: ${{ secrets.PYPI_API_TOKEN }}

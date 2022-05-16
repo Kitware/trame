@@ -1,0 +1,3 @@
+trame>=2.0.0
+plotly
+pandas

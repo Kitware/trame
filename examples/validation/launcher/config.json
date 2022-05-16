@@ -1,0 +1,23 @@
+{
+    "configuration": {
+        "host" : "localhost",
+        "port" : 8080,
+        "endpoint": "paraview",
+        "content": "./www",
+        "proxy_file" : "./proxy-mapping.txt",
+        "sessionURL" : "ws://${host}:${port}/ws",
+        "timeout" : 25,
+        "log_dir" : "./viz-logs",
+        "fields" : []
+    },
+    "resources" : [
+        { "host" : "localhost", "port_range" : [9001, 9003] }
+    ],
+    "properties" : {},
+    "apps" : {
+        "trame" : {
+            "cmd" : ["python", "./cone.py", "--port", "$port", "--server"],
+            "ready_line" : "Cone Ready"
+        }
+    }
+}

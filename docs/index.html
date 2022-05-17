@@ -41,19 +41,20 @@
   <!-- RSS -->
   <link rel="alternate" href="/trame/atom.xml" title="trame" type="application/atom+xml">
   <!-- Open Graph -->
-  <meta name="description" content="trame The trame package provides a set of core functionality for designing your Python application with a Web UI.trame is at heart a shared state that lets you bind UI elements to Python methods by al">
+  <meta name="description" content="TrameTrame v2 is out and available via pip install trame --pre and therefore the documentation is now reporting the updated API and capabilities. If you were already working with Trame v1 you can look">
 <meta property="og:type" content="website">
 <meta property="og:title" content="trame">
 <meta property="og:url" content="https://kitware.github.io/trame/docs/index.html">
 <meta property="og:site_name" content="trame">
-<meta property="og:description" content="trame The trame package provides a set of core functionality for designing your Python application with a Web UI.trame is at heart a shared state that lets you bind UI elements to Python methods by al">
+<meta property="og:description" content="TrameTrame v2 is out and available via pip install trame --pre and therefore the documentation is now reporting the updated API and capabilities. If you were already working with Trame v1 you can look">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://kitware.github.io/trame/images/trame-concept.jpg">
-<meta property="article:published_time" content="2022-05-12T20:58:45.920Z">
-<meta property="article:modified_time" content="2022-05-12T20:58:45.920Z">
+<meta property="og:image" content="https://kitware.github.io/trame/images/tutorial-carotid.jpg">
+<meta property="og:image" content="https://kitware.github.io/trame/images/trame-architecture.jpg">
+<meta property="article:published_time" content="2022-05-17T22:30:20.234Z">
+<meta property="article:modified_time" content="2022-05-17T22:30:20.234Z">
 <meta property="article:author" content="Kitware Inc.">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://kitware.github.io/trame/images/trame-concept.jpg">
+<meta name="twitter:image" content="https://kitware.github.io/trame/images/tutorial-carotid.jpg">
   <!-- Google Analytics -->
   
 
@@ -105,25 +106,33 @@
                 <h1 class="article-title" itemprop="name"></h1>
               </header>
               <div class="article-content" itemprop="articleBody">
-                <h1 id="trame" class="article-heading"><a href="#trame" class="headerlink" title="trame"></a>trame<a class="article-anchor" href="#trame" aria-hidden="true"></a></h1><p><img src="/trame/images/trame-concept.jpg" alt="trame"></p>
-<p>The trame package provides a set of core functionality for designing your Python application with a Web UI.<br>trame is at heart a <code>shared state</code> that lets you bind UI elements to Python methods by allowing your code to react when the underlying data is changing.<br>On top of that <code>shared state</code> concept, you can simply bind <code>Python methods</code> to UI events such as a click. The binding of functions is done by defining triggers which tends to be done for you when using the <code>trame.html.*</code> modules.</p>
-<h2 id="How-to-use-it" class="article-heading"><a href="#How-to-use-it" class="headerlink" title="How to use it"></a>How to use it<a class="article-anchor" href="#How-to-use-it" aria-hidden="true"></a></h2><p>trame really aims to be simple and to enable anyone to create a GUI to a Python based application.<br>The fact that the UI is web based should not matter for the user, I guess this could be seen as a add-on bonus in case you want to use your application remotely across the internet. But trame can definitely be levarged for local use cases too.</p>
-<p>The anatomy of a trame application could be seen as follows:</p>
+                <h1 id="Trame" class="article-heading"><a href="#Trame" class="headerlink" title="Trame"></a>Trame<a class="article-anchor" href="#Trame" aria-hidden="true"></a></h1><p>Trame v2 is out and available via <code>pip install trame --pre</code> and therefore the documentation is now reporting the updated API and capabilities. If you were already working with Trame v1 you can look at our <a href="./trame_v2_migration.html">migration guide</a>.</p>
+<h2 id="Overview" class="article-heading"><a href="#Overview" class="headerlink" title="Overview"></a>Overview<a class="article-anchor" href="#Overview" aria-hidden="true"></a></h2><p>Trame is an Open Source platform for creating interactive and capable applications in plain Python in minutes.</p>
+<h2 id="What-is-Trame" class="article-heading"><a href="#What-is-Trame" class="headerlink" title="What is Trame"></a>What is Trame<a class="article-anchor" href="#What-is-Trame" aria-hidden="true"></a></h2><p>Trame is a Python framework to simply build ubiquitous applications with a web front-end with no knowledge in web development or technology. Before Trame, building any application would require a full-stack developer at least a day. Now any Python developer can be running in less than a couple of minutes.</p>
+<p><img src="/trame/images/tutorial-carotid.jpg" alt="trame"></p>
+<h2 id="Why-Trame" class="article-heading"><a href="#Why-Trame" class="headerlink" title="Why Trame"></a>Why Trame<a class="article-anchor" href="#Why-Trame" aria-hidden="true"></a></h2><p>There are variety of tools and frameworks available to you when building web applications, but very few are capable of doing interactive 3D visualization in an efficient manner by leveraging VTK or ParaView. VTK/ParaView Web was really the first, then vtk.js also enable Scientific Visualization in plain JavaScript. But with Trame, which is based on VTK/ParaView Web, you get the full power of such framework without the burden of web development.</p>
+<ul>
+<li>Open-source - You can build, deploy and sell your own application with confidence knowing trame will always be around and you won’t have any fee or subscription to worry about.</li>
+<li>All-in-one platform - Unlike other libraries or platforms, trame comes with all the components you need and if we are missing anything you can easily add your own simply.</li>
+<li>Design - Trame apps loo beautiful out of the box. Our built-in Material Design widget library let you create beautiful desktop like components.</li>
+<li>Real apps - With Trame, you get hight-performing interactive applications.</li>
+</ul>
+<h2 id="How-Trame-works" class="article-heading"><a href="#How-Trame-works" class="headerlink" title="How Trame works"></a>How Trame works<a class="article-anchor" href="#How-Trame-works" aria-hidden="true"></a></h2><p>Building apps with Trame has never been that simpple</p>
 <ol>
-<li>Business logic on what you application is doing</li>
-<li>Connect any method that should react to state change (i.e. slider changing a sampling parameter)</li>
-<li>Define functions that should be called when someone click or do something in the UI</li>
-<li>Pick a layout and fill it with some widgets<ol>
-<li>When defining widgets, you could bind states to their model with their initial value</li>
-<li>When clicking on something, provide the function that should be called</li>
+<li><strong>Install trame</strong> - Create a Python virtual environment and <code>pip install trame</code>. Once working locally, deploy it using Docker or as Dektop app bundle.</li>
+<li><strong>Business logic</strong> - Create your processing functions in plain Python and the <strong>state</strong> that needs to be shared with the UI.</li>
+<li><strong>State reactivity</strong> - Connect any method to react to state change (i.e. slider changing a sampling parameter)</li>
+<li><strong>Design your UI</strong> - Build beautiful, accessible user interfaces by defining the layout of your application and connecting your <strong>state</strong> and <strong>functions</strong> to your UI elements directly.</li>
+<li><strong>Run it anywhere</strong> - Once working, you can choose to run it locally as a desktop application, as a client/server or deploy it in the cloud and use it as a service.</li>
 </ol>
-</li>
-<li>Start your server/application</li>
-</ol>
+<p><img src="/trame/images/trame-architecture.jpg" alt="trame"></p>
+<p>At the end of the day, building a trame application is just a matter of orchestrating the various pieces in a convinient and transparent manner thanks to trame shared state and controller for dealing with event management.</p>
+<h2 id="Getting-started" class="article-heading"><a href="#Getting-started" class="headerlink" title="Getting started"></a>Getting started<a class="article-anchor" href="#Getting-started" aria-hidden="true"></a></h2><p>The best way to get familiar with trame is by following our <a href="https://kitware.github.io/trame/docs/tutorial.html">tutorial</a> or use our <a target="_blank" rel="noopener" href="https://github.com/Kitware/trame-cookiecutter">Cookie Cutter</a> when starting your new application.</p>
+<p>Also we have some kind of <a href="./cheatsheet.html">CheatSheet</a> and small <a href="./getting_started.html">getting started guide</a>.</p>
 
               </div>
               <footer class="article-footer">
-                <time class="article-footer-updated" datetime="2022-05-12T20:58:45.920Z" itemprop="dateModified">Last updated: 2022-05-12</time>
+                <time class="article-footer-updated" datetime="2022-05-17T22:30:20.234Z" itemprop="dateModified">Last updated: 2022-05-17</time>
                 <a href="getting_started.html" class="article-footer-next" title="How to start"><span>Next</span><i class="fa fa-chevron-right"></i></a>
               </footer>
               
@@ -132,14 +141,14 @@
           <aside id="article-toc" role="navigation">
             <div id="article-toc-inner">
               <strong class="sidebar-title">Contents</strong>
-              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#trame"><span class="toc-text">trame</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#How-to-use-it"><span class="toc-text">How to use it</span></a></li></ol></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Trame"><span class="toc-text">Trame</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Overview"><span class="toc-text">Overview</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-Trame"><span class="toc-text">What is Trame</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Why-Trame"><span class="toc-text">Why Trame</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-Trame-works"><span class="toc-text">How Trame works</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Getting-started"><span class="toc-text">Getting started</span></a></li></ol></li></ol>
               <a href="#" id="article-toc-top">Back to Top</a>
             </div>
           </aside>
         </div>
       </article>
       <aside id="sidebar" role="navigation">
-  <div class="inner"><strong class="sidebar-title">Getting Started</strong><a href="index.html" class="sidebar-link current">Introduction</a><a href="getting_started.html" class="sidebar-link">How to start</a><a href="api.html" class="sidebar-link">API</a><a href="cheatsheet.html" class="sidebar-link">Cheatsheet</a><strong class="sidebar-title">Version 2</strong><a href="trame_v2_intro.html" class="sidebar-link">Introduction</a><a href="trame_v2_migration.html" class="sidebar-link">From v1 to v2</a><strong class="sidebar-title">Tutorial</strong><a href="tutorial.html" class="sidebar-link">Overview</a><a href="tutorial-download.html" class="sidebar-link">Download</a><a href="tutorial-setup-vtk.html" class="sidebar-link">Setup for VTK</a><a href="tutorial-vtk.html" class="sidebar-link">VTK</a><a href="tutorial-layouts.html" class="sidebar-link">Layouts</a><a href="tutorial-html.html" class="sidebar-link">HTML</a><a href="tutorial-application.html" class="sidebar-link">Application</a><a href="tutorial-paraview.html" class="sidebar-link">ParaView</a><strong class="sidebar-title">Html Modules</strong><a href="module-vuetify.html" class="sidebar-link">vuetify</a><a href="module-vega.html" class="sidebar-link">vega</a><a href="module-markdown.html" class="sidebar-link">markdown</a><a href="module-widgets.html" class="sidebar-link">widgets</a><a href="module-vtk.html" class="sidebar-link">vtk</a><a href="module-paraview.html" class="sidebar-link">paraview</a><a href="module-deckgl.html" class="sidebar-link">deckgl</a><strong class="sidebar-title">How do I...</strong><a href="howdoi-static.html" class="sidebar-link">Display static content</a><a href="howdoi-dynamic.html" class="sidebar-link">Display dynamic content</a><a href="howdoi-interactive.html" class="sidebar-link">Display interactive UI</a><a href="howdoi-table.html" class="sidebar-link">Display a dataframe</a><a href="howdoi-upload.html" class="sidebar-link">Upload a file</a><a href="howdoi-download.html" class="sidebar-link">Download a file</a><a href="howdoi-cli.html" class="sidebar-link">Use CLI arguments</a></div>
+  <div class="inner"><strong class="sidebar-title">Getting Started</strong><a href="index.html" class="sidebar-link current">Introduction</a><a href="getting_started.html" class="sidebar-link">How to start</a><a href="api.html" class="sidebar-link">API</a><a href="cheatsheet.html" class="sidebar-link">Cheatsheet</a><strong class="sidebar-title">Version 2</strong><a href="trame_v2_intro.html" class="sidebar-link">Introduction</a><a href="trame_v2_migration.html" class="sidebar-link">From v1 to v2</a><strong class="sidebar-title">Tutorial</strong><a href="tutorial.html" class="sidebar-link">Overview</a><a href="tutorial-download.html" class="sidebar-link">Download</a><a href="tutorial-setup-vtk.html" class="sidebar-link">Setup for VTK</a><a href="tutorial-vtk.html" class="sidebar-link">VTK</a><a href="tutorial-layouts.html" class="sidebar-link">Layouts</a><a href="tutorial-html.html" class="sidebar-link">HTML</a><a href="tutorial-application.html" class="sidebar-link">Application</a><a href="tutorial-paraview.html" class="sidebar-link">ParaView</a></div>
 </aside>
     </div>
   </div>
@@ -204,7 +213,7 @@
       </li>
     </ul>
     
-      <strong class="mobile-nav-title">Getting Started</strong><a href="index.html" class="mobile-nav-link current">Introduction</a><a href="getting_started.html" class="mobile-nav-link">How to start</a><a href="api.html" class="mobile-nav-link">API</a><a href="cheatsheet.html" class="mobile-nav-link">Cheatsheet</a><strong class="mobile-nav-title">Version 2</strong><a href="trame_v2_intro.html" class="mobile-nav-link">Introduction</a><a href="trame_v2_migration.html" class="mobile-nav-link">From v1 to v2</a><strong class="mobile-nav-title">Tutorial</strong><a href="tutorial.html" class="mobile-nav-link">Overview</a><a href="tutorial-download.html" class="mobile-nav-link">Download</a><a href="tutorial-setup-vtk.html" class="mobile-nav-link">Setup for VTK</a><a href="tutorial-vtk.html" class="mobile-nav-link">VTK</a><a href="tutorial-layouts.html" class="mobile-nav-link">Layouts</a><a href="tutorial-html.html" class="mobile-nav-link">HTML</a><a href="tutorial-application.html" class="mobile-nav-link">Application</a><a href="tutorial-paraview.html" class="mobile-nav-link">ParaView</a><strong class="mobile-nav-title">Html Modules</strong><a href="module-vuetify.html" class="mobile-nav-link">vuetify</a><a href="module-vega.html" class="mobile-nav-link">vega</a><a href="module-markdown.html" class="mobile-nav-link">markdown</a><a href="module-widgets.html" class="mobile-nav-link">widgets</a><a href="module-vtk.html" class="mobile-nav-link">vtk</a><a href="module-paraview.html" class="mobile-nav-link">paraview</a><a href="module-deckgl.html" class="mobile-nav-link">deckgl</a><strong class="mobile-nav-title">How do I...</strong><a href="howdoi-static.html" class="mobile-nav-link">Display static content</a><a href="howdoi-dynamic.html" class="mobile-nav-link">Display dynamic content</a><a href="howdoi-interactive.html" class="mobile-nav-link">Display interactive UI</a><a href="howdoi-table.html" class="mobile-nav-link">Display a dataframe</a><a href="howdoi-upload.html" class="mobile-nav-link">Upload a file</a><a href="howdoi-download.html" class="mobile-nav-link">Download a file</a><a href="howdoi-cli.html" class="mobile-nav-link">Use CLI arguments</a>
+      <strong class="mobile-nav-title">Getting Started</strong><a href="index.html" class="mobile-nav-link current">Introduction</a><a href="getting_started.html" class="mobile-nav-link">How to start</a><a href="api.html" class="mobile-nav-link">API</a><a href="cheatsheet.html" class="mobile-nav-link">Cheatsheet</a><strong class="mobile-nav-title">Version 2</strong><a href="trame_v2_intro.html" class="mobile-nav-link">Introduction</a><a href="trame_v2_migration.html" class="mobile-nav-link">From v1 to v2</a><strong class="mobile-nav-title">Tutorial</strong><a href="tutorial.html" class="mobile-nav-link">Overview</a><a href="tutorial-download.html" class="mobile-nav-link">Download</a><a href="tutorial-setup-vtk.html" class="mobile-nav-link">Setup for VTK</a><a href="tutorial-vtk.html" class="mobile-nav-link">VTK</a><a href="tutorial-layouts.html" class="mobile-nav-link">Layouts</a><a href="tutorial-html.html" class="mobile-nav-link">HTML</a><a href="tutorial-application.html" class="mobile-nav-link">Application</a><a href="tutorial-paraview.html" class="mobile-nav-link">ParaView</a>
     
   </div>
   <div id="mobile-lang-select-wrap">

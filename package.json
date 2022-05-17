@@ -1,0 +1,27 @@
+{
+    "name": "trame",
+    "description": "Framework for building interactive Web applications quickly in plain Python",
+    "keywords": [
+      "Python",
+      "Interactive",
+      "Web Application",
+      "Framework"
+    ],
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/kitware/trame.git"
+    },
+    "license": "Apache-2.0",
+    "bugs": {
+      "url": "https://github.com/kitware/trame/issues"
+    },
+    "homepage": "https://github.com/kitware/trame#readme",
+    "devDependencies": {
+      "kw-doc": "3.1.2"
+    },
+    "scripts": {
+      "doc": "kw-doc -c ./docs/config.js",
+      "doc:www": "kw-doc -c ./docs/config.js -s",
+      "doc:publish": "kw-doc -c ./docs/config.js -mp"
+    }
+  }

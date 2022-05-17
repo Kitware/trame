@@ -1,0 +1,22 @@
+docs:
+  getting_started:
+    overview: index.html
+    start: getting_started.html
+    api: api.html
+    cheatsheet: cheatsheet.html
+  trame_v2:
+    intro: trame_v2_intro.html
+    migration: trame_v2_migration.html
+  tutorial:
+    t_overview: tutorial.html
+    t_download: tutorial-download.html
+    t_setup-vtk: tutorial-setup-vtk.html
+    t_vtk: tutorial-vtk.html
+    t_layouts: tutorial-layouts.html
+    t_html: tutorial-html.html
+    t_application: tutorial-application.html
+    t_pv: tutorial-paraview.html
+
+examples:
+  getting_started:
+    overview: index.html

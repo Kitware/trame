@@ -1,7 +1,5 @@
 # Trame v2
 
-Trame Version 2.0 is on the verge to be released and we wanted to start sharing what it is bringing to the table while also providing a migration guide.
-
 First of all, Trame v2 is not changing the ideas and concepts that made trame what it is. This new version is really focusing on a more powerful and refined suite for creating Python application effortlessly while supporting many deployment type. With trame we aim to support desktop, client/server, cloud services and Jupyter notebook without changing a single line of code change.
 
 ![trame](/trame/images/trame-architecture.jpg)

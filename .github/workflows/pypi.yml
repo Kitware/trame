@@ -34,7 +34,6 @@ jobs:
         run: |
           git config --global user.name "Github Actions"
           git config --global user.email "sebastien.jourdain@kitware.com"
-          npm run semantic-release
       - name: Publish distribution 📦 to Test PyPI
         continue-on-error: true
         uses: pypa/gh-action-pypi-publish@master

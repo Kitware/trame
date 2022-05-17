@@ -1,0 +1,26 @@
+ARG BASE_IMAGE=trame-common
+FROM ${BASE_IMAGE}
+
+# Install miniconda
+ENV CONDA_DIR /opt/conda
+RUN if [ $(uname -m) = "x86_64" ]; then arch="x86_64"; else arch="aarch64"; fi && \
+    wget -q https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-$arch.sh -O /miniconda.sh && \
+    /bin/bash /miniconda.sh -b -p $CONDA_DIR && \
+    rm /miniconda.sh && \
+    chown -R trame-user:trame-user $CONDA_DIR
+
+# Put conda in the path
+ENV PATH=$CONDA_DIR/bin:$PATH
+
+# Install pyyaml
+RUN gosu trame-user conda install -y --freeze-installed -c conda-forge \
+      pyyaml && \
+    conda clean -afy
+
+# Copy the scripts into place
+COPY scripts/conda/* /opt/trame/
+
+# Set venv paths
+ENV TRAME_VENV=/deploy/server/venv
+ENV PV_VENV=$TRAME_VENV
+ENV VTK_VENV=$TRAME_VENV

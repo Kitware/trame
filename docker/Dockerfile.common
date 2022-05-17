@@ -1,0 +1,53 @@
+ARG BASE_IMAGE=ubuntu:20.04
+FROM ${BASE_IMAGE}
+
+# Necessary to install tzdata. It will default to UTC.
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && \
+    apt-get install -y \
+      wget \
+      apache2 \
+      apache2-dev \
+      libapr1-dev \
+      apache2-utils \
+      gosu && \
+    rm -rf /var/lib/apt/lists/*
+
+# Set up needed permissions and users
+RUN groupadd trame-user -g 1000 && \
+    groupadd proxy-mapping -g 1001 && \
+    useradd -u 1000 -g trame-user -G proxy-mapping -s /sbin/nologin trame-user && \
+    usermod -a -G proxy-mapping www-data && \
+    mkdir -p /opt/trame && \
+    chown -R trame-user:trame-user /opt/trame && \
+    mkdir -p /home/trame-user && \
+    chown -R trame-user:trame-user /home/trame-user && \
+    touch /opt/trame/proxy-mapping.txt && \
+    chown trame-user:proxy-mapping /opt/trame/proxy-mapping.txt && \
+    chmod 660 /opt/trame/proxy-mapping.txt && \
+    mkdir -p /deploy && \
+    chown -R trame-user:trame-user /deploy
+
+# Copy the apache configuration file into place
+COPY config/apache/001-trame.conf /etc/apache2/sites-available/001-trame.conf
+COPY config/default-launcher.json /opt/trame/default-launcher.json
+
+# Configure the apache web server
+RUN a2enmod vhost_alias && \
+    a2enmod proxy && \
+    a2enmod proxy_http && \
+    a2enmod proxy_wstunnel && \
+    a2enmod rewrite && \
+    a2enmod headers && \
+    a2dissite 000-default.conf && \
+    a2ensite 001-trame && \
+    a2dismod autoindex -f
+
+# Copy the scripts into place
+COPY scripts/* /opt/trame/
+
+# Open port 80 to the world outside the container
+EXPOSE 80
+
+ENTRYPOINT ["/opt/trame/entrypoint.sh"]

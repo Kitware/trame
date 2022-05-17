@@ -1,3 +1,8 @@
+r"""
+Version for trame 1.x - https://github.com/Kitware/trame/blob/release-v1/examples/ParaView/SimpleCone/RemoteRendering.py
+Delta v1..v2          - https://github.com/Kitware/trame/commit/37e36bdd0bc55dfa9134e4f8eba9a014dda4f865
+"""
+
 import paraview.web.venv  # Available in PV 5.10-RC2+
 
 from trame.app import get_server

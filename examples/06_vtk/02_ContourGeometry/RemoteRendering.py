@@ -1,3 +1,8 @@
+r"""
+Version for trame 1.x - https://github.com/Kitware/trame/blob/release-v1/examples/VTK/ContourGeometry/RemoteRendering.py
+Delta v1..v2          - https://github.com/Kitware/trame/commit/3852cba56cd63f6efa684d5e5fb00881a6111e81
+"""
+
 from pathlib import Path
 
 from trame.app import get_server

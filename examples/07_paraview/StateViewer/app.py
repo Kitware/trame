@@ -1,3 +1,8 @@
+r"""
+Version for trame 1.x - https://github.com/Kitware/trame/blob/release-v1/examples/ParaView/StateViewer/app.py
+Delta v1..v2          - https://github.com/Kitware/trame/commit/23895e27489b828016327e1eccac4064ca62138a
+"""
+
 from paraview.web import venv  # Available in PV 5.10-RC2+
 from paraview import simple
 

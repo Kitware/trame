@@ -1,3 +1,8 @@
+r"""
+Version for trame 1.x - https://github.com/Kitware/trame/blob/release-v1/examples/PlainPython/ChartsAltair/app.py
+Delta v1..v2          - https://github.com/Kitware/trame/commit/0600aa8bc5da2bb63c2c488b204bcd16b894e8af
+"""
+
 # -----------------------------------------------------------------------------
 # More examples available at https://altair-viz.github.io/gallery/
 # -----------------------------------------------------------------------------

@@ -1,3 +1,8 @@
+r"""
+Version for trame 1.x - https://github.com/Kitware/trame/blob/release-v1/examples/howdoi/download.py
+Delta v1..v2          - https://github.com/Kitware/trame/commit/ae5066e942db36d0e1d5b957dd5c2c364996719d
+"""
+
 from trame.app import get_server
 from trame.ui.vuetify import VAppLayout
 from trame.widgets import vuetify

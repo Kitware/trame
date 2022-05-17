@@ -1,3 +1,8 @@
+r"""
+Version for trame 1.x - https://github.com/Kitware/trame/blob/release-v1/examples/PlainPython/Matplotlib/basic/app.py
+Delta v1..v2          - https://github.com/Kitware/trame/commit/75e15e23057dd93b7ff53389a8da544860ad10ee
+"""
+
 import numpy as np
 import matplotlib.pyplot as plt
 

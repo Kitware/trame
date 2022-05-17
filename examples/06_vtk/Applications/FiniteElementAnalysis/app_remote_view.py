@@ -1,3 +1,8 @@
+r"""
+Version for trame 1.x - https://github.com/Kitware/trame/blob/release-v1/examples/VTK/Applications/FiniteElementAnalysis/app_remote_view.py
+Delta v1..v2          - https://github.com/Kitware/trame/commit/03f28bb0084490acabf218264b96a1dbb3a17f19
+"""
+
 import os
 import io
 import numpy as np

@@ -1,4 +1,9 @@
-"""An example of showing geographic data."""
+r"""
+Version for trame 1.x - https://github.com/Kitware/trame/blob/release-v1/examples/PlainPython/GeoMaps/UberPickupsNYC/app.py
+Delta v1..v2          - https://github.com/Kitware/trame/commit/6f0882ab9060b0f1953915c2a7e93dbe996479e0
+
+An example of showing geographic data
+"""
 
 import os
 import pandas as pd

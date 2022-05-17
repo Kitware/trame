@@ -1,3 +1,8 @@
+r"""
+Version for trame 1.x - https://github.com/Kitware/trame/blob/release-v1/examples/howdoi/interactive.py
+Delta v1..v2          - https://github.com/Kitware/trame/commit/9f3d0df6b3e069257278e0fae29e994ca65bfc03
+"""
+
 from trame.app import get_server
 from trame.ui.vuetify import SinglePageLayout
 from trame.widgets import html, vuetify

@@ -1,3 +1,8 @@
+r"""
+Version for trame 1.x - https://github.com/Kitware/trame/blob/release-v1/examples/ParaView/TimeAnimation/app.py
+Delta v1..v2          - https://github.com/Kitware/trame/commit/22329eec355476e5e1a5fb21dfb3b23ee02ae427
+"""
+
 import paraview.web.venv  # Available in PV 5.10-RC2+
 import os
 import json

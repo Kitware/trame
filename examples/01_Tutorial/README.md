@@ -1,1 +1,1 @@
-Tutorial examples and data are available at https://github.com/Kitware/trame-tutorial/tree/trame-v2
+Tutorial examples and data are available at https://github.com/Kitware/trame-tutorial/

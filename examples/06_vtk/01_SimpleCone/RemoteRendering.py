@@ -1,3 +1,8 @@
+r"""
+Version for trame 1.x - https://github.com/Kitware/trame/blob/release-v1/examples/VTK/SimpleCone/RemoteRendering.py
+Delta v1..v2          - https://github.com/Kitware/trame/commit/674f72774228bbcab5689417c1c5642230b1eab8
+"""
+
 from trame.app import get_server
 from trame.widgets import vuetify, vtk
 from trame.ui.vuetify import SinglePageLayout

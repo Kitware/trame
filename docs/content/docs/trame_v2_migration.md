@@ -9,7 +9,7 @@ Before
 ```python
 from trame import state, controller
 from trame.layouts import SinglePage
-from trame.html import vuetify
+from trame.html import vuetify, Div
 
 [...]
 
@@ -27,7 +27,7 @@ After
 ```python
 from trame.app import get_server
 from trame.ui.vuetify import SinglePageLayout
-from trame.widgets import vuetify
+from trame.widgets import vuetify, html
 
 server = get_server()
 state, controller = server.state, server.controller
@@ -39,7 +39,7 @@ state.trame__title = tab_title
 ctrl.on_server_ready.add(_fn)
 
 with SinglePageLayout(server) as layout:
-    pass
+    html.Div("Hello")
 
 [...]
 

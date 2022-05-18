@@ -1,6 +1,6 @@
 r"""
 Version for trame 1.x - https://github.com/Kitware/trame/blob/release-v1/examples/VTK/Applications/MultiFilter/app.py
-Delta v1..v2          - https://github.com/Kitware/trame/commit/
+Delta v1..v2          - https://github.com/Kitware/trame/commit/7b3cda7c45b8a60132892f762e16ed28cb709481
 """
 
 import os

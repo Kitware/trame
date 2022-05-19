@@ -1,29 +1,61 @@
+r"""
+From a list of trame modules name, gather and generate the required static
+content that needs to be served for a trame application to work.
+"""
 import argparse
 import importlib
-from trame.app import get_server
+import shutil
+from pathlib import Path
 
 
-def enable_modules(_server, *names):
-    for module_name in names:
-        m = importlib.import_module(f"trame.modules.{module_name}")
-        _server.enable_module(m)
+class StaticContentGenerator:
+    def __init__(self):
+        self.www = None
+        self.serve = {}
+
+    def enable_modules(self, *names):
+        for module_name in names:
+            module = None
+            try:
+                module = importlib.import_module(f"trame.modules.{module_name}")
+            except ModuleNotFoundError:
+                try:
+                    module = importlib.import_module(module_name)
+                except ModuleNotFoundError:
+                    print(f" - Error: Skipping module {module_name}")
+
+            if "serve" in module.__dict__:
+                self.serve.update(module.serve)
+
+            if "www" in module.__dict__:
+                self.www = module.www
+
+    def write(self, output_directory=None):
+        if output_directory is None:
+            output_directory = Path.cwd()
+
+        if self.www:
+            shutil.copytree(self.www, output_directory, dirs_exist_ok=True)
+
+        for sub_path, src_dir in self.serve.items():
+            dst_dir = Path(output_directory) / sub_path
+            shutil.copytree(src_dir, dst_dir, dirs_exist_ok=True)
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Client generator for trame")
+    parser = argparse.ArgumentParser(
+        description="Static Web Client generator for trame applications"
+    )
 
     parser.add_argument(
         "--output",
         help="Directory to fill with trame client code",
-        required=True,
     )
 
     args, module_names = parser.parse_known_args()
-
-    server = get_server("www-generator")
-    enable_modules(server, "www")
-    enable_modules(server, *module_names)
-    server.write_www(args.output)
+    generator = StaticContentGenerator()
+    generator.enable_modules(*module_names)
+    generator.write(args.output)
 
 
 if __name__ == "__main__":

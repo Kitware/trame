@@ -11,3 +11,8 @@ class Singleton(Generic[T]):
 
     def __call__(self) -> T:
         return self._instance
+
+
+__all__ = [
+    "Singleton",
+]

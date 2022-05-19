@@ -100,3 +100,10 @@ class HttpFile(AbstractRemoteFile):
             urlretrieve(self._url, self._file_path)
         except HTTPError as e:
             print(RuntimeError(f"Failed to download {self._url}. {e.reason}"))
+
+
+__all__ = [
+    "AbstractRemoteFile",
+    "GoogleDriveFile",
+    "HttpFile",
+]

@@ -95,3 +95,8 @@ class LocalFileManager:
             _assets[key] = self._assests.get(key)
 
         return _assets
+
+
+__all__ = [
+    "LocalFileManager",
+]

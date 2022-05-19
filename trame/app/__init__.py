@@ -25,3 +25,8 @@ def get_server(name=None, create_if_missing=True, **kwargs):
 
     # No server available for given name
     return None
+
+
+__all__ = [
+    "get_server",
+]

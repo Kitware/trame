@@ -1,0 +1,10 @@
+{%- if show_headings %}
+{% set basename_split = basename.split(".") %}
+{{- basename_split | last | e | heading }}
+
+{% endif -%}
+.. automodule:: {{ qualname }}
+{%- for option in automodule_options %}
+   :{{ option }}:
+{%- endfor %}
+

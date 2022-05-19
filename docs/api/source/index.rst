@@ -20,6 +20,5 @@ Welcome to Trame's documentation!
    :caption: Tools
 
    tools.www.rst
-   tools.docker.rst
 
 .. include:: ../../../README.rst

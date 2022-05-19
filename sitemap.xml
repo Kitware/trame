@@ -20,6 +20,69 @@
   </url>
   
   <url>
+    <loc>https://kitware.github.io/trame/docs/tutorial-setup-vtk.html</loc>
+    
+    <lastmod>2022-05-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/tutorial-vtk.html</loc>
+    
+    <lastmod>2022-05-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/tutorial.html</loc>
+    
+    <lastmod>2022-05-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/vuetify-decoder.html</loc>
+    
+    <lastmod>2022-05-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/api.html</loc>
+    
+    <lastmod>2022-05-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/cheatsheet.html</loc>
+    
+    <lastmod>2022-05-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/concepts.html</loc>
+    
+    <lastmod>2022-05-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://kitware.github.io/trame/docs/getting_started.html</loc>
     
     <lastmod>2022-05-19</lastmod>
@@ -137,7 +200,7 @@
   </url>
   
   <url>
-    <loc>https://kitware.github.io/trame/docs/tutorial-download.html</loc>
+    <loc>https://kitware.github.io/trame/docs/tutorial-html.html</loc>
     
     <lastmod>2022-05-19</lastmod>
     
@@ -146,7 +209,7 @@
   </url>
   
   <url>
-    <loc>https://kitware.github.io/trame/docs/tutorial-html.html</loc>
+    <loc>https://kitware.github.io/trame/docs/tutorial-download.html</loc>
     
     <lastmod>2022-05-19</lastmod>
     
@@ -165,69 +228,6 @@
   
   <url>
     <loc>https://kitware.github.io/trame/docs/tutorial-paraview.html</loc>
-    
-    <lastmod>2022-05-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/tutorial-setup-vtk.html</loc>
-    
-    <lastmod>2022-05-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/tutorial-vtk.html</loc>
-    
-    <lastmod>2022-05-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/tutorial.html</loc>
-    
-    <lastmod>2022-05-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/vuetify-decoder.html</loc>
-    
-    <lastmod>2022-05-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/api.html</loc>
-    
-    <lastmod>2022-05-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/cheatsheet.html</loc>
-    
-    <lastmod>2022-05-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/concepts.html</loc>
     
     <lastmod>2022-05-19</lastmod>
     

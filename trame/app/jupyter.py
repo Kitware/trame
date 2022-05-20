@@ -1,7 +1,11 @@
 import asyncio
 from trame.app import get_server
 from IPython import display
-from trame_server.utils.asynchronous import handle_task_result
+
+__all__ = [
+    "show",
+    "display_iframe" "run",
+]
 
 
 def show(_server, ui=None, **kwargs):

@@ -10,6 +10,21 @@ def get_server(name=None, create_if_missing=True, **kwargs):
     Return a server for serving trame applications.
     If a name is given and such server is not available yet,
     it will be created otherwise the previsouly created instance will be returned.
+
+    :param name: A server name identifier which can be useful when serveral servers
+                are expected to be created. Most of the time, passing no arguments
+                is what you are looking for.
+    :type name: str
+
+
+    :param create_if_missing: By default if a server for a given name does not exist
+        that method will create it.
+    :type create_if_missing: bool
+
+    :param **kwargs: any extra keyword args are passed as option to the server instance.
+
+    :return: Return a unique Server instance per given name.
+    :rtype: trame_server.core.Server
     """
     if name is None:
         name = DEFAULT_NAME

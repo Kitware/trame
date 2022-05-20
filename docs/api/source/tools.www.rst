@@ -1,12 +1,13 @@
-wwww: Static Web Client generator
+Static Web Client generator
 ===================================================
 
 This small utility let you run a command line to generate a static directory
 that you can serve with Nginx/Apache for your trame application.
 
 You just need to provide the `--output` directory if you don't want to add
-to the current directory along with the list of module names that your application
-is using or plan to use.
+to the current directory. Then you can provide the list of module names that your application
+is using or plan to use. If no modules are provided, the executable will do a lookup in `trame.modules.*` and enable all of the them.
+The initialization order is not guarante.
 
 The following command line provide an example of what it could look like:
 
@@ -14,16 +15,12 @@ The following command line provide an example of what it could look like:
 
     python -m trame.tools.www --output ./www-content www vuetify vtk plotly
 
-Here is a list of known modules (so far)
+Or you can also do the following as only the pieces needed will be downloaded by the client when needed.
 
-* deckgl
-* markdown
-* matplotlib
-* paraview
-* plotly
-* router
-* trame
-* vega
-* vtk
-* vuetify
-* www <-- Main client code
+.. code-block:: bash
+
+    mkdir ./www-all
+    cd www-all
+    python -m trame.tools.www
+
+Here is a list of known modules: deckgl, markdown, matplotlib, paraview, plotly, router, trame, vega, vtk, vuetify, www (main client)

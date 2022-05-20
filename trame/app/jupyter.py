@@ -5,6 +5,18 @@ from trame_server.utils.asynchronous import handle_task_result
 
 
 def show(_server, ui=None, **kwargs):
+    """
+    Helper function to show a server ui element into the cell.
+
+    :param _server: the server on which the UI is defined
+    :type _server: trame_server.core.Server
+
+    :param ui: the name of the ui section to display. (Default: 'main')
+    :type ui: str
+
+    :param **kwargs: any keyword arguments are pass to the Jupyter IFrame.
+        Additionally `protocol=` and `host=` can be use to override the iframe src url.
+    """
     if isinstance(_server, str):
         _server = get_server(_server)
 
@@ -32,7 +44,14 @@ def show(_server, ui=None, **kwargs):
 
 
 def display_iframe(src, **kwargs):
-    """Convenience method to display an iframe for the given url source"""
+    """
+    Convenience method to display an iframe for the given url source
+
+    :param src: url to display
+    :type src: str
+
+    :param **kwargs: any keyword arguments are pass to the Jupyter IFrame.
+    """
 
     # Set some defaults. The kwargs can override these.
     # width and height are both required.

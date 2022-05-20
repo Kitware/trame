@@ -13,6 +13,12 @@ class StaticContentGenerator:
         self.www = None
         self.serve = {}
 
+    def enable_all(self):
+        import pkgutil
+
+        root = importlib.import_module("trame.modules")
+        self.enable_modules(*[m.name for m in pkgutil.iter_modules(root.__path__)])
+
     def enable_modules(self, *names):
         for module_name in names:
             module = None
@@ -54,7 +60,10 @@ def main():
 
     args, module_names = parser.parse_known_args()
     generator = StaticContentGenerator()
-    generator.enable_modules(*module_names)
+    if len(module_names):
+        generator.enable_modules(*module_names)
+    else:
+        generator.enable_all()
     generator.write(args.output)
 
 

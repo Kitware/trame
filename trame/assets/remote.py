@@ -63,13 +63,16 @@ class AbstractRemoteFile:
 
     @property
     def local(self):
+        """Return true if the file is available locally on the File System"""
         return os.path.exists(self._file_path)
 
     def fetch(self):
+        """Perform the action needed to fetch the content and store it locally"""
         pass
 
     @property
     def path(self):
+        """Return the actual local file path"""
         if not self.local:
             self.fetch()
 
@@ -77,7 +80,19 @@ class AbstractRemoteFile:
 
 
 class GoogleDriveFile(AbstractRemoteFile):
+    """
+    Helper file to manage caching and retreiving of file available on Google Drive
+    """
+
     def __init__(self, local_path=None, google_id=None, local_base=None):
+        """
+        Provide the information regarding where the file should be located
+        and where to fetch it if missing.
+
+        :param local_path: relative or absolute path
+        :param google_id: Resource ID from google
+        :param local_base: Absolute path when local_path is relative
+        """
         super().__init__(local_path, local_base)
         self._gid = google_id
 
@@ -90,7 +105,19 @@ class GoogleDriveFile(AbstractRemoteFile):
 
 
 class HttpFile(AbstractRemoteFile):
+    """
+    Helper file to manage caching and retreiving of file available on HTTP servers
+    """
+
     def __init__(self, local_path=None, remote_url=None, local_base=None):
+        """
+        Provide the information regarding where the file should be located
+        and where to fetch it if missing.
+
+        :param local_path: relative or absolute path
+        :param remote_url: http(s):// url to fetch the file from
+        :param local_base: Absolute path when local_path is relative
+        """
         super().__init__(local_path, local_base)
         self._url = remote_url
 

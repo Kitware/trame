@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """Set up sys.path to include ParaView, if available
 
 This checks the TRAME_PARAVIEW environment variable and the --paraview

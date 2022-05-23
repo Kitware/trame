@@ -51,6 +51,12 @@ autodoc_mock_imports = [
 
 html_theme = "sphinx_rtd_theme"
 
+html_static_path = ["_static"]
+
+html_css_files = [
+    "css/custom.css",
+]
+
 # -- Modify environment variables --------------------------------------------
 
 os.environ.update({

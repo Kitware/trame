@@ -43,6 +43,7 @@ class AbstractRemoteFile:
     AbstractRemoteFile provide infrastructure for RemoteFile where
     only the method fetch() needs to be defined for a concreate implementation.
     """
+
     def __init__(self, local_path=None, local_base=None):
         # setup base path
         self._base = os.getcwd()

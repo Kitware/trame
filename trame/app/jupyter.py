@@ -38,7 +38,7 @@ def show(_server, ui=None, **kwargs):
             port=0,
             open_browser=False,
             show_connection_info=False,
-            disableLogging=True,
+            disable_logging=True,
             timeout=0,
         )
     elif _server._running_stage == 1:

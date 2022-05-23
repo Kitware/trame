@@ -1,11 +1,15 @@
 # Configuration file for the Sphinx documentation builder.
 
+import inspect
 import os
 from pathlib import Path
+import re
 
 from sphinx.ext import apidoc
 
 import trame
+
+HTML_ELEMENT_REGEX = re.compile(r"^trame.*\.widgets\..*HtmlElement$")
 
 # -- Project information -----------------------------------------------------
 
@@ -94,6 +98,16 @@ def maybe_skip_member(app, what, name, obj, skip, options):
     return skip
 
 
+def autodoc_process_bases(app, name, obj, options, bases):
+    if len(bases) == 1 and inspect.isclass(bases[0]):
+        cls = bases[0]
+        name_with_module = f"{cls.__module__}.{cls.__qualname__}"
+        if HTML_ELEMENT_REGEX.match(name_with_module):
+            # It is an HtmlElement. Use it's base class instead.
+            bases[0] = cls.__bases__[0]
+
+
 def setup(app):
     app.connect("builder-inited", run_apidoc)
     app.connect("autodoc-skip-member", maybe_skip_member)
+    app.connect("autodoc-process-bases", autodoc_process_bases)

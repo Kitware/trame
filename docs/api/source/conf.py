@@ -61,6 +61,7 @@ def run_apidoc(_):
     apidoc.OPTIONS.extend([
         "members",
         "imported-members",
+        "show-inheritance",
     ])
 
     ignore_paths = []
@@ -88,5 +89,5 @@ def maybe_skip_member(app, what, name, obj, skip, options):
 
 
 def setup(app):
-    app.connect('builder-inited', run_apidoc)
-    app.connect('autodoc-skip-member', maybe_skip_member)
+    app.connect("builder-inited", run_apidoc)
+    app.connect("autodoc-skip-member", maybe_skip_member)

@@ -40,6 +40,7 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 autodoc_member_order = "bysource"
 autodoc_mock_imports = [
     "IPython",
+    "mpld3",
 ]
 
 # -- Options for HTML output -------------------------------------------------

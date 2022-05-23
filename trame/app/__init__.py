@@ -44,5 +44,4 @@ def get_server(name=None, create_if_missing=True, **kwargs):
 
 __all__ = [
     "get_server",
-    "Server",
 ]

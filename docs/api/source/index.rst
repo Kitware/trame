@@ -9,16 +9,24 @@ Welcome to Trame's documentation!
    :hidden:
    :caption: Trame API
 
-   trame.app.rst
-   trame.widgets.rst
-   trame.ui.rst
-   trame.assets.rst
-   trame.env.rst
+   trame.app
+   trame.widgets
+   trame.ui
+   trame.assets
+   trame.env
+
+.. toctree::
+   :hidden:
+   :caption: Core Classes
+
+   core.server
+   core.widget
+   core.ui
 
 .. toctree::
    :hidden:
    :caption: Tools
 
-   tools.www.rst
+   tools.www
 
 .. include:: ../../../README.rst

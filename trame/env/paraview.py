@@ -10,6 +10,7 @@ To use: specify one of the following, and then import this file:
  - `--paraview /path/to/paraview/release` argument
  - environment variable `TRAME_PARAVIEW=/path/to/paraview/release`
 """
+import os
 import platform
 import sys
 
@@ -19,7 +20,9 @@ PV_LOADED = False
 
 PV_HOME = utils.find_env_setting("--paraview", "TRAME_PARAVIEW")
 
-if PV_HOME is None:
+RAISE_ERRORS = os.getenv("TRAME_PARAVIEW_FAIL_SILENTLY") is None
+
+if PV_HOME is None and RAISE_ERRORS:
     msg = (
         "trame.env.paraview was imported, but the paraview location was not "
         "defined. Define it with either the argument '--paraview <path>' or "
@@ -44,13 +47,14 @@ search_paths_dict = {
     "Windows": windows_paths,
 }
 
-if PV_HOME and platform.system() == "Darwin":
-    env_paths = {
-        "PYTHONPATH": ["Contents/Python"],
-        "DYLD_LIBRARY_PATH": ["Contents/Libraries"],
-    }
-    utils.rerun(PV_HOME, env_paths, ["PV_VENV", "VTK_VENV"])
-else:
-    PV_LOADED = utils.prepend_python_path(PV_HOME, search_paths_dict)
-    if not PV_LOADED:
-        raise Exception(f"Failed to add paraview python libraries at {PV_HOME}")
+if PV_HOME:
+    if platform.system() == "Darwin":
+        env_paths = {
+            "PYTHONPATH": ["Contents/Python"],
+            "DYLD_LIBRARY_PATH": ["Contents/Libraries"],
+        }
+        utils.rerun(PV_HOME, env_paths, ["PV_VENV", "VTK_VENV"])
+    else:
+        PV_LOADED = utils.prepend_python_path(PV_HOME, search_paths_dict)
+        if not PV_LOADED and RAISE_ERRORS:
+            raise Exception(f"Failed to add paraview python libraries at {PV_HOME}")

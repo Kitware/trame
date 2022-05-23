@@ -1,5 +1,6 @@
 # Configuration file for the Sphinx documentation builder.
 
+import os
 from pathlib import Path
 
 from sphinx.ext import apidoc
@@ -45,6 +46,11 @@ autodoc_mock_imports = [
 
 html_theme = "sphinx_rtd_theme"
 
+# -- Modify environment variables --------------------------------------------
+
+os.environ.update({
+    "TRAME_PARAVIEW_FAIL_SILENTLY": "True",
+})
 
 # -- Hooks for sphinx events -------------------------------------------------
 

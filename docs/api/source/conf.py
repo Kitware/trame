@@ -64,11 +64,16 @@ def run_apidoc(_):
         "show-inheritance",
     ])
 
-    ignore_paths = []
+    exclude_paths = [
+        "env/utils.py",
+    ]
 
     cur_path = str(Path(__file__).parent)
     templates_path = str(Path(cur_path) / "apidoc_templates")
     module_path = str(Path(trame.__file__).parent)
+
+    # Make the exclude paths absolute
+    exclude_paths = [str(Path(module_path) / x) for x in exclude_paths]
 
     argv = [
         "-f",
@@ -78,7 +83,7 @@ def run_apidoc(_):
         "-o", cur_path,
         "-t", templates_path,
         module_path,
-    ] + ignore_paths
+    ] + exclude_paths
 
     apidoc.main(argv)
 

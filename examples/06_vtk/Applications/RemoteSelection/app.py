@@ -3,7 +3,6 @@ Version for trame 1.x - https://github.com/Kitware/trame/blob/release-v1/example
 Delta v1..v2          - https://github.com/Kitware/trame/commit/03f28bb0084490acabf218264b96a1dbb3a17f19
 """
 
-import os
 import pandas as pd
 
 # Plotly/chart imports
@@ -225,7 +224,7 @@ def on_box_selection_change(selection):
     actor.GetProperty().SetOpacity(0.5)
 
     # Update scatter plot with selection
-    update_figure()
+    update_figure(**state.to_dict())
 
     # Update 3D view
     ctrl.view_update()
@@ -326,7 +325,6 @@ with SinglePageLayout(server) as layout:
                 with vuetify.VCol(classes="pa-0"):
                     with trame.SizeObserver("figure_size"):
                         html_plot = plotly.Figure(
-                            "figure",
                             selected=(
                                 on_chart_selection,
                                 "[$event?.points.map(({pointIndex}) => pointIndex)]",

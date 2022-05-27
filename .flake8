@@ -1,0 +1,9 @@
+[flake8]
+
+# Just assume black did a good job with the line lengths
+ignore =
+    E501
+
+per-file-ignores =
+    # These directories will always contain "from ... import *"
+    trame/*:F401,F403

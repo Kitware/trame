@@ -28,5 +28,6 @@ Welcome to Trame's documentation!
    :caption: Tools
 
    tools.www
+   tools.app
 
 .. include:: ../../../README.rst

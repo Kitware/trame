@@ -62,7 +62,7 @@ def to_url(full_path):
 
 
 class LocalFileManager:
-    """LocalFileManager provide convinient methods for handling local files"""
+    """LocalFileManager provide convenient methods for handling local files"""
 
     def __init__(self, base_path):
         """

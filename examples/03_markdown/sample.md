@@ -133,7 +133,7 @@ apples
 oranges
   : Citrus!
 tomatoes
-  : There's no "e" in tomatoe.
+  : There's no "e" in tomato.
 
 Again, text is indented 4 spaces. (Put a blank line between each
 term/definition pair to spread things out more.)

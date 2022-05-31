@@ -1,0 +1,9 @@
+[flake8]
+
+# Just assume black did a good job with the line lengths
+ignore =
+    E501
+
+exclude =
+    # Exclude the examples for now
+    examples/*

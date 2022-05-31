@@ -128,7 +128,7 @@ Why do we care about *local* and *remote* rendering? Well each method of renderi
 
 - The data to be rendered doesn't move, only the resulting image.
 - Rendering can utilize parallel and distributed processing to handle larger and larger data.
-- The server can serve a more diverse set of clients. From cell phone to workstation, their requirements are limited to recieving and rendering images.
+- The server can serve a more diverse set of clients. From cell phone to workstation, their requirements are limited to receiving and rendering images.
 
 *Disadvantages*
 

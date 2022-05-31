@@ -8,7 +8,7 @@ Inside trame it might be useful to use markdown to simplify the writing of long 
 
 ## How to use it?
 
-trame supports an extended version of markdown for formatting documents, drawing diagrams, and more. Since Markdown could contains caracters that can conflict with the HTML syntax, a variable must be used to pass the markdown content to the UI component like in the snippet below.
+trame supports an extended version of markdown for formatting documents, drawing diagrams, and more. Since Markdown could contains characters that can conflict with the HTML syntax, a variable must be used to pass the markdown content to the UI component like in the snippet below.
 
 ```python
 from trame.html import markdown

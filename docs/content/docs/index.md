@@ -26,7 +26,7 @@ There are variety of tools and frameworks available to you when building web app
 
 Building apps with Trame has never been that simpple
 
-1. **Install trame** - Create a Python virtual environment and `pip install trame`. Once working locally, deploy it using Docker or as Dektop app bundle.
+1. **Install trame** - Create a Python virtual environment and `pip install trame`. Once working locally, deploy it using Docker or as Desktop app bundle.
 2. **Business logic** - Create your processing functions in plain Python and the **state** that needs to be shared with the UI.
 3. **State reactivity** - Connect any method to react to state change (i.e. slider changing a sampling parameter)
 4. **Design your UI** - Build beautiful, accessible user interfaces by defining the layout of your application and connecting your **state** and **functions** to your UI elements directly.
@@ -34,7 +34,7 @@ Building apps with Trame has never been that simpple
 
 ![trame](/trame/images/trame-architecture.jpg)
 
-At the end of the day, building a trame application is just a matter of orchestrating the various pieces in a convinient and transparent manner thanks to trame shared state and controller for dealing with event management.
+At the end of the day, building a trame application is just a matter of orchestrating the various pieces in a convenient and transparent manner thanks to trame shared state and controller for dealing with event management.
 
 ## Getting started
 

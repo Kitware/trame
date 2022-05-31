@@ -134,7 +134,7 @@ To learn more about ParaView scripting, you should look into ParaView trace whic
 
 ## Advanced example
 
-With the basics in place, we can now dive further in by using some built-in features of ParaView, such as saving and loading a state file. State files are a convinient way of capturing all the settings that were used to generate a visualization with Paraview.
+With the basics in place, we can now dive further in by using some built-in features of ParaView, such as saving and loading a state file. State files are a convenient way of capturing all the settings that were used to generate a visualization with Paraview.
 
 ![Rock Core](https://kitware.github.io/trame/examples/StateViewer-rock.jpg)
 

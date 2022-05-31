@@ -4,7 +4,8 @@ from IPython import display
 
 __all__ = [
     "show",
-    "display_iframe" "run",
+    "display_iframe",
+    "run",
 ]
 
 

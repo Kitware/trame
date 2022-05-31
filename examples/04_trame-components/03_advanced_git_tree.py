@@ -78,7 +78,7 @@ class PipelineManager:
         self._nodes.pop(_id)
         self._update_hierarchy()
 
-    def toggle_collapsed(self, _id, icons=["collapsed", "collapsable"]):
+    def toggle_collapsed(self, _id, icons=["collapsed", "collapsible"]):
         node = self.get_node(_id)
         node["collapsed"] = not node["collapsed"]
 
@@ -112,20 +112,20 @@ id_a = pipeline.add_node(
     name="a",
     visible=1,
     color="#42A5F5",
-    actions=["collapsable", "delete"],
+    actions=["collapsible", "delete"],
 )
 id_b = pipeline.add_node(
-    parent=id_root, name="b", visible=1, color="#00ACC1", actions=["collapsable"]
+    parent=id_root, name="b", visible=1, color="#00ACC1", actions=["collapsible"]
 )
 id_aa = pipeline.add_node(
     parent=id_a, name="aa", visible=1, color="#2962FF", actions=["test", "delete"]
 )
 id_aaa = pipeline.add_node(parent=id_aa, name="aaa", visible=1, color="black")
 id_ba = pipeline.add_node(
-    parent=id_b, name="ba", visible=1, color="#004D40", actions=["collapsable"]
+    parent=id_b, name="ba", visible=1, color="#004D40", actions=["collapsible"]
 )
 id_bb = pipeline.add_node(
-    parent=id_b, name="bb", visible=1, color="#80CBC4", actions=["collapsable"]
+    parent=id_b, name="bb", visible=1, color="#80CBC4", actions=["collapsible"]
 )
 id_bba = pipeline.add_node(parent=id_bb, name="bba", visible=1, color="#00838F")
 id_bbb = pipeline.add_node(parent=id_bb, name="bbb", visible=1, color="#4DB6AC")
@@ -136,7 +136,7 @@ local_file_manager = LocalFileManager(__file__)
 local_file_manager.url("test", BASE / "icons/abacus.svg")
 local_file_manager.url("delete", BASE / "icons/trash-can-outline.svg")
 local_file_manager.url("collapsed", BASE / "icons/chevron-up.svg")
-local_file_manager.url("collapsable", BASE / "icons/chevron-down.svg")
+local_file_manager.url("collapsible", BASE / "icons/chevron-down.svg")
 
 # -----------------------------------------------------------------------------
 # Callback

@@ -8,7 +8,7 @@ from trame.app import get_server               # Entry point to trame
 from trame.ui.vuetify import SinglePageLayout  # UI layout
 from trame.widgets import vuetify, vtk         # UI widgets
 
-server = get_server()                          # Create/retreive default server
+server = get_server()                          # Create/retrieve default server
 state, ctrl = server.state, server.controller  # Extract server state and controller
 
 # Reset resolution variable to 6
@@ -119,7 +119,7 @@ vuetify.VTextField(value=("'Hello' + var_name", ))
 
 Method can be passed to events attribute of your UI elements. By default, the function will be called with no arguments.
 
-If you want to control its arguments you can use a tuple where the second entry represents the __args__ and the third represents the __kwargs__. If you only want to provide args without kwargs, just provide a tuple with 2 entries. __$event__ is a reserved name to reprensent the event object.
+If you want to control its arguments you can use a tuple where the second entry represents the __args__ and the third represents the __kwargs__. If you only want to provide args without kwargs, just provide a tuple with 2 entries. __$event__ is a reserved name to represent the event object.
 
 ```python
 vuetify.VBtn("Click me", click=ctrl.do_something))

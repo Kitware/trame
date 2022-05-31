@@ -21,7 +21,7 @@ item = simput.SimputItem(
 
 simput.Simput(
   item,
-  ui_manager=..., # Get from seperate simput library 
+  ui_manager=..., # Get from separate simput library 
   prefix="...",   # Identifier for manager if multiple 
 )
 ```

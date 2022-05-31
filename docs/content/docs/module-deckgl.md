@@ -20,7 +20,7 @@ deck2 = pdk.Deck(**pydeck_parameters_2) # make a change
 deckgl_options = {
   "mapboxApiKey": ...,    # api token for mapbox layer
   "tooltip": False,       # whether to show tooltip
-  "customLibraries": ..., # deckgl add ons
+  "customLibraries": ..., # deckgl add-ons
 }
 
 # Method 1 ----------------------------------------------------------------------

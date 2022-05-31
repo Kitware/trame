@@ -62,8 +62,8 @@
 <meta property="og:image" content="https://kitware.github.io/trame/images/tutorial-gui-opacity.jpg">
 <meta property="og:image" content="https://kitware.github.io/trame/images/tutorial-gui-contour-by.jpg">
 <meta property="og:image" content="https://kitware.github.io/trame/images/tutorial-gui-contour-value.jpg">
-<meta property="article:published_time" content="2022-05-29T22:45:21.442Z">
-<meta property="article:modified_time" content="2022-05-29T22:45:21.442Z">
+<meta property="article:published_time" content="2022-05-31T11:05:11.037Z">
+<meta property="article:modified_time" content="2022-05-31T11:05:11.037Z">
 <meta property="article:author" content="Kitware Inc.">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://kitware.github.io/trame/images/tutorial-example.jpg">
@@ -213,7 +213,7 @@
 <h3 id="Drawer-GUI" class="article-heading"><a href="#Drawer-GUI" class="headerlink" title="Drawer GUI"></a>Drawer GUI<a class="article-anchor" href="#Drawer-GUI" aria-hidden="true"></a></h3><p style="text-align:center;"><img src="../images/tutorial-drawer.jpg" alt="Example Application Drawer" style="width: 25%; height: 25%"></p>
 
 <p>We want to create a drawer with the <em><strong>trame</strong></em> pipeline widget, a horizontal divider, and pipeline cards. The pipeline cards are shown corresponding to the selected pipeline in the <em><strong>trame</strong></em> pipeline widget. We need create state for the active pipeline card, so we add this to the shared state that can be updated on the state directly.</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># State use to track active ui card</span></span><br><span class="line">state.setdefault(<span class="string">&quot;active_ui&quot;</span>, <span class="literal">None</span>) <span class="comment"># prevent reseting value if already present</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># State use to track active ui card</span></span><br><span class="line">state.setdefault(<span class="string">&quot;active_ui&quot;</span>, <span class="literal">None</span>) <span class="comment"># prevent resetting value if already present</span></span><br></pre></td></tr></table></figure>
 
 <p>We want a little wider <code>drawer</code>, so we set the width to 325 pixels. Next, we add the <em><strong>trame</strong></em> pipeline widget using the <code>pipeline_widget</code> function. Then, we use a <code>VDivider</code> to separate the <em><strong>trame</strong></em> widget from the pipeline cards. Finally, we add the pipeline cards using the <code>mesh_card</code> and <code>contour_card</code> functions.</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> layout.drawer <span class="keyword">as</span> drawer:</span><br><span class="line">    <span class="comment"># drawer components</span></span><br><span class="line">    drawer.width = <span class="number">325</span></span><br><span class="line">    pipeline_widget()</span><br><span class="line">    vuetify.VDivider(classes=<span class="string">&quot;mb-2&quot;</span>)</span><br><span class="line">    mesh_card()</span><br><span class="line">    contour_card()</span><br></pre></td></tr></table></figure>
@@ -235,10 +235,10 @@
 <p><a id="mesh_card-id"></a></p>
 <h4 id="mesh-card" class="article-heading"><a href="#mesh-card" class="headerlink" title="mesh_card"></a><code>mesh_card</code><a class="article-anchor" href="#mesh-card" aria-hidden="true"></a></h4><p style="text-align:center;"><img src="../images/tutorial-mesh-card.jpg" alt="Mesh Card" style="width: 25%; height: 25%"></p>
 
-<p>The <code>mesh_card</code> containes strictly default GUI components of a pipeline. First, a dropdown menu for the visual <a href="#gui_representation-id">representation</a> type. Next, a row with two columns. One contains a dropdown menu for the array/field to <a href="#gui_color_by-id">color by</a>, and the other a dropdown menu for which <a href="#gui_color_map-id">color map</a> to use. Finally, a slider to control the <a href="#gui_opacity-id">opacity</a>.</p>
+<p>The <code>mesh_card</code> contains strictly default GUI components of a pipeline. First, a dropdown menu for the visual <a href="#gui_representation-id">representation</a> type. Next, a row with two columns. One contains a dropdown menu for the array/field to <a href="#gui_color_by-id">color by</a>, and the other a dropdown menu for which <a href="#gui_color_map-id">color map</a> to use. Finally, a slider to control the <a href="#gui_opacity-id">opacity</a>.</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">mesh_card</span>():</span><br><span class="line">    <span class="keyword">with</span> ui_card(title=<span class="string">&quot;Mesh&quot;</span>, ui_name=<span class="string">&quot;mesh&quot;</span>):</span><br><span class="line">        vuetify.VSelect(</span><br><span class="line">            <span class="comment"># Representation</span></span><br><span class="line">        )</span><br><span class="line">        <span class="keyword">with</span> vuetify.VRow(classes=<span class="string">&quot;pt-2&quot;</span>, dense=<span class="literal">True</span>):</span><br><span class="line">            <span class="keyword">with</span> vuetify.VCol(cols=<span class="string">&quot;6&quot;</span>):</span><br><span class="line">                vuetify.VSelect(</span><br><span class="line">                    <span class="comment"># Color By</span></span><br><span class="line">                )</span><br><span class="line">            <span class="keyword">with</span> vuetify.VCol(cols=<span class="string">&quot;6&quot;</span>):</span><br><span class="line">                vuetify.VSelect(</span><br><span class="line">                    <span class="comment"># Color Map</span></span><br><span class="line">                )</span><br><span class="line">        vuetify.VSlider(</span><br><span class="line">            <span class="comment"># Opacity</span></span><br><span class="line">        )</span><br></pre></td></tr></table></figure>
 
-<p>Since these are defaul pipeline elements, we will cover these items together with the contour_card individual components <a href="#default_components-id">below</a>.</p>
+<p>Since these are default pipeline elements, we will cover these items together with the contour_card individual components <a href="#default_components-id">below</a>.</p>
 <div class="print-break"></div>
 <a id="contour_card-id"></a>
 
@@ -422,7 +422,7 @@
 
               </div>
               <footer class="article-footer">
-                <time class="article-footer-updated" datetime="2022-05-29T22:45:21.442Z" itemprop="dateModified">Last updated: 2022-05-29</time>
+                <time class="article-footer-updated" datetime="2022-05-31T11:05:11.037Z" itemprop="dateModified">Last updated: 2022-05-31</time>
                 <a href="tutorial-html.html" class="article-footer-prev" title="HTML"><i class="fa fa-chevron-left"></i><span>Prev</span></a><a href="tutorial-paraview.html" class="article-footer-next" title="ParaView"><span>Next</span><i class="fa fa-chevron-right"></i></a>
               </footer>
               

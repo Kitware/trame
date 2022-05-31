@@ -75,15 +75,17 @@ jobs:
         with:
           node-version: 14
 
+      - name: Check Trame Install
+        run: npm ci
+
       - name: Install commitlint
+        if: github.event_name == 'pull_request'
         run: |
           npm install -g @commitlint/cli @commitlint/config-conventional
           echo "module.exports = {extends: ['@commitlint/config-conventional']}" > commitlint.config.js
 
-      - name: Check Trame Install
-        run: npm ci
-
       - name: Lint commits
+        if: github.event_name == 'pull_request'
         run: npx commitlint --from=${{ github.event.pull_request.base.sha }}
 
   release:

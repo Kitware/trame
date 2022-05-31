@@ -75,7 +75,13 @@ jobs:
         with:
           node-version: 14
 
-      - run: npm ci
+      - name: Install commitlint
+        run: |
+          npm install -g @commitlint/cli @commitlint/config-conventional
+          echo "module.exports = {extends: ['@commitlint/config-conventional']}" > commitlint.config.js
+
+      - name: Check Trame Install
+        run: npm ci
 
       - name: Lint commits
         run: npx commitlint --from=${{ github.event.pull_request.base.sha }}

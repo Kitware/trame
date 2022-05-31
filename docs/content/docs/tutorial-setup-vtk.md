@@ -39,7 +39,7 @@ from trame.app import get_server
 from trame.ui.vuetify import SinglePageLayout
 ```
 
-from ***trame***'s `app`, we import the factory function for getting a server instance on which we will bind our UI and buisness logic. We also import a skeleton for a single page client application that rely on vuetify (our main widget library) from `trame.ui.vuetify`.
+from ***trame***'s `app`, we import the factory function for getting a server instance on which we will bind our UI and business logic. We also import a skeleton for a single page client application that rely on vuetify (our main widget library) from `trame.ui.vuetify`.
 
 Next, we define the graphical user interface (GUI) by passing the server on which it should be bound to. Then with that layout we update the toolbar's title to hold `"Hello trame"`.
 

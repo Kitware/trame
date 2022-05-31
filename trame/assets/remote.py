@@ -86,7 +86,7 @@ class AbstractRemoteFile:
 
 class GoogleDriveFile(AbstractRemoteFile):
     """
-    Helper file to manage caching and retreiving of file available on Google Drive
+    Helper file to manage caching and retrieving of file available on Google Drive
     """
 
     def __init__(self, local_path=None, google_id=None, local_base=None):
@@ -111,7 +111,7 @@ class GoogleDriveFile(AbstractRemoteFile):
 
 class HttpFile(AbstractRemoteFile):
     """
-    Helper file to manage caching and retreiving of file available on HTTP servers
+    Helper file to manage caching and retrieving of file available on HTTP servers
     """
 
     def __init__(self, local_path=None, remote_url=None, local_base=None):

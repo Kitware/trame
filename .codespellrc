@@ -1,3 +1,4 @@
 [codespell]
 skip = **/package-lock.json,*.vti,PKG-INFO,**/dist/**
 ignore-words-list = hist
+ignore-regex = name="ba"

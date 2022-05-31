@@ -191,7 +191,7 @@ The `namespace` will also be used as `ref=` unless provided by the user.
 
 #### Mode parameter
 
-The mode is driven by the variable `{namespace}Mode` but can be provided when instantiated so the default can be overriden and a JavaScript expression can be used instead of the default variable. This attribute behaves the same way as any trame one except, we won't register the left side as a state entry since we already have one under `{namespace}Mode`. This means we will evaluate the left side of the expression assuming a tuple is provided and the right side of the tuple is used to set its inital value.
+The mode is driven by the variable `{namespace}Mode` but can be provided when instantiated so the default can be overridden and a JavaScript expression can be used instead of the default variable. This attribute behaves the same way as any trame one except, we won't register the left side as a state entry since we already have one under `{namespace}Mode`. This means we will evaluate the left side of the expression assuming a tuple is provided and the right side of the tuple is used to set its initial value.
 
 ### Examples
 

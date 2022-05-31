@@ -46,7 +46,7 @@ def slider_value_change(slider_value, **kwargs):
   print(f"Slider is changing slider_value to {slider_value}")
 ```
 
-So far, we only have the client modifing that variable. But if a function on the server were to change that variable, that function will also be called as we simply react to the fact that the variable has been updated by someone.
+So far, we only have the client modifying that variable. But if a function on the server were to change that variable, that function will also be called as we simply react to the fact that the variable has been updated by someone.
 
 ### Changing the value from Python
 

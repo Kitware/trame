@@ -319,7 +319,7 @@ We want to create a drawer with the ***trame*** pipeline widget, a horizontal di
 
 ```python
 # State use to track active ui card
-state.setdefault("active_ui", None) # prevent reseting value if already present
+state.setdefault("active_ui", None) # prevent resetting value if already present
 ```
 
 We want a little wider `drawer`, so we set the width to 325 pixels. Next, we add the ***trame*** pipeline widget using the `pipeline_widget` function. Then, we use a `VDivider` to separate the ***trame*** widget from the pipeline cards. Finally, we add the pipeline cards using the `mesh_card` and `contour_card` functions.
@@ -386,7 +386,7 @@ def ui_card(title, ui_name):
 
 <p style="text-align:center;"><img src="../images/tutorial-mesh-card.jpg" alt="Mesh Card" style="width: 25%; height: 25%"></p>
 
-The `mesh_card` containes strictly default GUI components of a pipeline. First, a dropdown menu for the visual [representation](#gui_representation-id) type. Next, a row with two columns. One contains a dropdown menu for the array/field to [color by](#gui_color_by-id), and the other a dropdown menu for which [color map](#gui_color_map-id) to use. Finally, a slider to control the [opacity](#gui_opacity-id).
+The `mesh_card` contains strictly default GUI components of a pipeline. First, a dropdown menu for the visual [representation](#gui_representation-id) type. Next, a row with two columns. One contains a dropdown menu for the array/field to [color by](#gui_color_by-id), and the other a dropdown menu for which [color map](#gui_color_map-id) to use. Finally, a slider to control the [opacity](#gui_opacity-id).
 
 ```python
 def mesh_card():
@@ -408,7 +408,7 @@ def mesh_card():
         )
 ```
 
-Since these are defaul pipeline elements, we will cover these items together with the contour_card individual components [below](#default_components-id).
+Since these are default pipeline elements, we will cover these items together with the contour_card individual components [below](#default_components-id).
 
 <div class="print-break"></div>
 <a id="contour_card-id"></a>

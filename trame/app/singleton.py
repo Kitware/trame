@@ -11,7 +11,7 @@ class Singleton(Generic[T]):
     to be used across your application modules.
 
     But using such decorator will make it tricky or impossible to
-    use your application within serveral server using the same
+    use your application within several server using the same
     event loop.
     """
 

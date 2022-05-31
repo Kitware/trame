@@ -146,7 +146,7 @@ def update_grid(nodes_file, elems_file, field_file, **kwargs):
     points = df_nodes[["x", "y", "z"]].to_numpy()
     cell_types = df_elems["cell_types"].to_numpy()
     n_nodes = df_elems.loc[:, "n_nodes"].to_numpy()
-    # subtract starting node id from all grid references in cells to avoid filling from 0 to first used node (in case mesh doesnt start at 1)
+    # subtract starting node id from all grid references in cells to avoid filling from 0 to first used node (in case mesh doesn't start at 1)
     p = df_elems.iloc[:, 3:-1].to_numpy() - df_nodes.index.min()
     # if you need to, re-order nodes here-ish
     a = np.hstack((n_nodes.reshape((len(n_nodes), 1)), p))

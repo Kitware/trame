@@ -26,7 +26,7 @@ def decrement():
 @state.change("my_number")
 def validate_my_number(my_number, **kwargs):
     if isinstance(my_number, int):
-        # Prevent infinit loop
+        # Prevent infinite loop
         return
 
     try:

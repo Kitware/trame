@@ -136,5 +136,5 @@ Read-only:
   - **trame__busy**: Provide information if we have pending request waiting
     for the server to respond.
   - **tts**: Template Time Stamp to regenerate sub elements when a template
-    get's updated. Usually used as `:key="tts"` to force some component
+    gets updated. Usually used as `:key="tts"` to force some component
     rebuild.

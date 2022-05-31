@@ -13,7 +13,7 @@ Each of these layouts can be utilized by importing, instantiating, and serving i
 
 ## `VAppLayout` or fullscreen
 
-If you want to experiement with it you can edit `02_layouts/app_cone.py` which was the latest cone example we built using the `SinglePage` layout.
+If you want to experiment with it you can edit `02_layouts/app_cone.py` which was the latest cone example we built using the `SinglePage` layout.
 
 The `VAppLayout` starts with VApp and exposes the children array where one could add in other desired HTML elements (Vuetify UI Components).
 
@@ -59,7 +59,7 @@ python 02_layouts/solution_FullScreenPage.py --port 1234
 
 ## `SinglePageLayout`
 
-The `SinglePageLayout` extends the `VAppLayout` with a few predifined components such as *icon*, *title*, *toolbar*, *content*, and *footer*.
+The `SinglePageLayout` extends the `VAppLayout` with a few predefined components such as *icon*, *title*, *toolbar*, *content*, and *footer*.
 
 <p style="text-align:center;"><img src="../images/tutorial-singlepage.jpg" alt="SinglePage Layout" style="width: 75%; height: 75%"></p>
 

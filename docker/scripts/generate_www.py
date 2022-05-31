@@ -9,10 +9,10 @@ def run(apps_path, out_path, *modules):
     cmd = ["python", "-m", "trame.tools.www", "--output", f"{out_path}", *modules]
     subprocess.run(cmd)
 
-    with open(apps_path, "r") as rf:
-        apps_dict = json.load(rf)
-
     # FIXME need to generate index.html => {app_name}.html
+    with open(apps_path, "r") as rf:
+        apps_dict = json.load(rf)  # noqa
+
     # for app_name, config in apps_dict.items():
     #     name = config['app']
     #     => cp out_path/index.html out_path/{name}.html

@@ -4,6 +4,6 @@
 ignore =
     E501
 
-per-file-ignores =
-    # These directories will always contain "from ... import *"
-    trame/*:F401,F403
+exclude =
+    # Exclude the examples for now
+    examples/*

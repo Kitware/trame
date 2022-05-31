@@ -59,21 +59,26 @@ html_css_files = [
 
 # -- Modify environment variables --------------------------------------------
 
-os.environ.update({
-    "TRAME_PARAVIEW_FAIL_SILENTLY": "True",
-})
+os.environ.update(
+    {
+        "TRAME_PARAVIEW_FAIL_SILENTLY": "True",
+    }
+)
 
 # -- Hooks for sphinx events -------------------------------------------------
+
 
 def run_apidoc(_):
 
     # Override the apidoc options with what we want
     apidoc.OPTIONS.clear()
-    apidoc.OPTIONS.extend([
-        "members",
-        "imported-members",
-        "show-inheritance",
-    ])
+    apidoc.OPTIONS.extend(
+        [
+            "members",
+            "imported-members",
+            "show-inheritance",
+        ]
+    )
 
     exclude_paths = [
         "env/utils.py",
@@ -91,8 +96,10 @@ def run_apidoc(_):
         "-T",
         "-e",
         "-M",
-        "-o", cur_path,
-        "-t", templates_path,
+        "-o",
+        cur_path,
+        "-t",
+        templates_path,
         module_path,
     ] + exclude_paths
 

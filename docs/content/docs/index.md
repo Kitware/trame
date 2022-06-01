@@ -1,6 +1,6 @@
 # Trame
 
-Trame v2 is out and available via `pip install trame --pre` and therefore the documentation is now reporting the updated API and capabilities. If you were already working with Trame v1 you can look at our [migration guide](./trame_v2_migration.html).
+Trame v2 is out and available via `pip install trame` and therefore the documentation is now reporting the updated API and capabilities. If you were already working with Trame v1 you can look at our [migration guide](./trame_v2_migration.html).
 
 ## Overview
 

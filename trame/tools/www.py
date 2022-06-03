@@ -26,9 +26,14 @@ class StaticContentGenerator:
                 module = importlib.import_module(f"trame.modules.{module_name}")
             except ModuleNotFoundError:
                 try:
+                    print("module_name:", module_name)
                     module = importlib.import_module(module_name)
                 except ModuleNotFoundError:
                     print(f" - Error: Skipping module {module_name}")
+
+            if module is None:
+                print(f"Skipping module: {module_name}")
+                continue
 
             if "serve" in module.__dict__:
                 self.serve.update(module.serve)

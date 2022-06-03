@@ -14,13 +14,28 @@ def run(apps_path, out_path):
         apps_dict = json.load(rf)  # noqa
 
         for app_name, config in apps_dict.items():
-            name = config['app']
+            name = config["app"]
             web_modules = config.get("www_modules")
             if web_modules is not None:
-                cmd = ["python", "-m", "trame.tools.www", "--output", out_path, *web_modules]
+                cmd = [
+                    "python",
+                    "-m",
+                    "trame.tools.www",
+                    "--output",
+                    out_path,
+                    *web_modules,
+                ]
                 subprocess.run(cmd)
             print(" => create app: ", app_name, name)
-            cmd = ["python", "-m", "trame.tools.app", "--input", out_path, "--name", name]
+            cmd = [
+                "python",
+                "-m",
+                "trame.tools.app",
+                "--input",
+                out_path,
+                "--name",
+                name,
+            ]
             subprocess.run(cmd)
 
 

@@ -14,7 +14,7 @@ def run(apps_path, out_path):
         apps_dict = json.load(rf)  # noqa
 
         for app_name, config in apps_dict.items():
-            name = config["app"]
+            # handle custom modules for www
             web_modules = config.get("www_modules")
             if web_modules is not None:
                 cmd = [
@@ -26,7 +26,8 @@ def run(apps_path, out_path):
                     *web_modules,
                 ]
                 subprocess.run(cmd)
-            print(" => create app: ", app_name, name)
+
+            # Create app.html file from index.html
             cmd = [
                 "python",
                 "-m",
@@ -34,7 +35,7 @@ def run(apps_path, out_path):
                 "--input",
                 out_path,
                 "--name",
-                name,
+                app_name,
             ]
             subprocess.run(cmd)
 

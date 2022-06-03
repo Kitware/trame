@@ -45,8 +45,9 @@ def run(input_path, apps_path, out_path):
             )
             raise Exception(msg)
 
-        app = config["app"]
-        default_cmd = [app] + default_command_flags
+        default_cmd = [
+            config.get("app", "your_trame_app_package_name")
+        ] + default_command_flags
         cmd = config.get("cmd", default_cmd)
         cmd += config.get("args", [])
         ready_line = config.get("ready_line", default_ready_line)

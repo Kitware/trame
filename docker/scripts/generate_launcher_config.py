@@ -14,7 +14,7 @@ def run(input_path, apps_path, out_path):
         "${secret}",
         "--server",
     ]
-    default_ready_line = "Starting factory"
+    default_ready_line = "App running at"
 
     with open(input_path, "r") as rf:
         input_dict = json.load(rf)

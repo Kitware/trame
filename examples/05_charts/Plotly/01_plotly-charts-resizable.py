@@ -152,8 +152,8 @@ def create_streamline_fig(width=100, height=100, **kwargs):
     x = np.linspace(-3, 3, 100)
     y = np.linspace(-3, 3, 100)
     Y, X = np.meshgrid(x, y)
-    u = -1 - X**2 + Y
-    v = 1 + X - Y**2
+    u = -1 - X ** 2 + Y
+    v = 1 + X - Y ** 2
 
     # Create streamline figure
     fig = ff.create_streamline(

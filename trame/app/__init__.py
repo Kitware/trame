@@ -1,5 +1,6 @@
 from trame_server import Server
 from trame_client import module
+from trame_client.widgets.core import VirtualNode
 
 DEFAULT_NAME = "trame"
 AVAILABLE_SERVERS = {}
@@ -33,7 +34,7 @@ def get_server(name=None, create_if_missing=True, **kwargs):
         return AVAILABLE_SERVERS[name]
 
     if create_if_missing:
-        server = Server(name, **kwargs)
+        server = Server(name, VirtualNode, **kwargs)
         server.enable_module(module)  # Always load html module first
         AVAILABLE_SERVERS[name] = server
         return server

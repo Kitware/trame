@@ -9,3 +9,4 @@ server
 
    core.state
    core.controller
+   core.vn_manager

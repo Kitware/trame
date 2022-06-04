@@ -2,6 +2,14 @@
 
 <!--next-version-placeholder-->
 
+## v2.1.0 (2022-06-04)
+### Feature
+* **ui:** Add virtual node ui manager with server ([`6956009`](https://github.com/Kitware/trame/commit/695600928f2bd3e3795c556d609eb11c93ba7c50))
+
+### Documentation
+* **welcome:** Update note ([`cee6461`](https://github.com/Kitware/trame/commit/cee64613717607cb374e9c2ca07f5d40f1c6c7c8))
+* **intro:** Remove --pre from pip install command ([`f748dd6`](https://github.com/Kitware/trame/commit/f748dd6736e4736365f9f18c00c5846c53f47793))
+
 ## v2.0.1 (2022-05-31)
 ### Fix
 * **CI:** Add initial CI with semantic-release ([`a881ffb`](https://github.com/Kitware/trame/commit/a881ffb9232fd2f78e445be4be58dcc112181ff5))

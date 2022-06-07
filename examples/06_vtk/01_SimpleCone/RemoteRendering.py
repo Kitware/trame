@@ -30,7 +30,7 @@ state, ctrl = server.state, server.controller
 state.trame__title = "VTK Remote rendering"
 
 # -----------------------------------------------------------------------------
-# VTK code
+# Custom / Advanced event handling
 # -----------------------------------------------------------------------------
 
 VTK_VIEW_EVENTS = [
@@ -74,12 +74,20 @@ VTK_VIEW_EVENTS = [
 DEFAULT_RESOLUTION = 6
 
 
+def on_event(*args, **kwargs):
+    print("event", args, kwargs)
+
+
 def event_listeners(events):
     result = {}
     for event in events:
-        result[event] = (event, "[utils.vtk.event($event)]")
+        result[event] = (on_event, "[utils.vtk.event($event)]")
     return result
 
+
+# -----------------------------------------------------------------------------
+# VTK code
+# -----------------------------------------------------------------------------
 
 renderer = vtkRenderer()
 renderWindow = vtkRenderWindow()
@@ -114,11 +122,6 @@ def update_reset_resolution():
 # GUI
 # -----------------------------------------------------------------------------
 
-
-def event(*args, **kwargs):
-    print("event", args, kwargs)
-
-
 with SinglePageLayout(server) as layout:
     layout.icon.click = ctrl.view_reset_camera
     layout.title.set_text("Cone Application")
@@ -146,8 +149,9 @@ with SinglePageLayout(server) as layout:
             view = vtk.VtkRemoteView(
                 renderWindow,
                 ref="view",
-                interactor_events=("event_types", VTK_VIEW_EVENTS),
-                **event_listeners(VTK_VIEW_EVENTS),
+                # For Custom / Advanced event handling
+                # interactor_events=("event_types", VTK_VIEW_EVENTS),
+                # **event_listeners(VTK_VIEW_EVENTS),
             )
             ctrl.view_update = view.update
             ctrl.view_reset_camera = view.reset_camera

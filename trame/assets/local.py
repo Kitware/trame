@@ -1,21 +1,7 @@
 import base64
-import mimetypes
 from pathlib import Path
 
-mimetypes.init()
-
-
-def to_mime(file_path):
-    """
-    Return the mime type from a given path
-
-    :param file_path: Path to analyse
-    :type file_path: str
-
-    :return: Mime type
-    :rtype: str
-    """
-    return mimetypes.guess_type(file_path)[0]
+from trame.app.mimetypes import to_mime
 
 
 def to_txt(full_path):

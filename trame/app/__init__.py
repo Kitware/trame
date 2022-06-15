@@ -2,6 +2,9 @@ from trame_server import Server
 from trame_client import module
 from trame_client.widgets.core import VirtualNode
 
+# Ensure this is imported so that mimetypes.init() is decorated
+import trame.app.mimetypes  # noqa: F401
+
 DEFAULT_NAME = "trame"
 AVAILABLE_SERVERS = {}
 

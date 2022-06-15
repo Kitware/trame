@@ -2,6 +2,14 @@
 
 <!--next-version-placeholder-->
 
+## v2.1.1 (2022-06-15)
+### Fix
+* **mimetypes:** Ensure javascript files get the correct mimetype ([`40a9618`](https://github.com/Kitware/trame/commit/40a9618af62da9f7d2b88bc333938c9ccc647487))
+
+### Documentation
+* **example:** Fix SimpleCone/RemoteRendering ([`498fd78`](https://github.com/Kitware/trame/commit/498fd7803505068cf269aa1ac83806e1b16d3d03))
+* **contributing:** Add CONTRIBUTING.rst ([`9e51275`](https://github.com/Kitware/trame/commit/9e5127537c23b743b04cbafff3f5f21ba277344a))
+
 ## v2.1.0 (2022-06-04)
 ### Feature
 * **ui:** Add virtual node ui manager with server ([`6956009`](https://github.com/Kitware/trame/commit/695600928f2bd3e3795c556d609eb11c93ba7c50))

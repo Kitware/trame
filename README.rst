@@ -1,6 +1,10 @@
 trame: simple, powerful, innovative
 ===========================================================
 
+.. image:: https://github.com/Kitware/trame/actions/workflows/test_and_release.yml/badge.svg
+    :target: https://github.com/Kitware/trame/actions/workflows/test_and_release.yml
+    :alt: Test and Release
+
 **trame** - a web framework that weaves together open source components into customized visual analytics easily.
 
 **trame** is French for

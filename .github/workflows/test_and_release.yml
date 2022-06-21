@@ -60,7 +60,14 @@ jobs:
       run: |
         pip install .
         pip install -r tests/requirements.txt
-        pytest -s ./tests
+        # Run the tests with coverage so we get a coverage report too
+        pip install coverage
+        coverage run --source . -m pytest .
+        # Print the coverage report
+        coverage report -m
+
+    - name: Upload Coverage to Codecov
+      uses: codecov/codecov-action@v3
 
   check-and-lint:
     runs-on: ubuntu-latest

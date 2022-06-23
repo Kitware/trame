@@ -1,6 +1,6 @@
 # From v1 to v2
 
-Trame v2 is a coming and has several breaking changes. Some features of trame v1 have been removed but in general the migration should be mostly manageable at the top of your files by tweaking imports and variables definitions.
+Trame v2 has arrived, introducing several breaking changes. Some features of trame v1 have been removed but in general the migration is straightforward by tweaking imports and variables definitions. The following example code shows how v1 code is implemented in v2.
 
 ## Main code change
 

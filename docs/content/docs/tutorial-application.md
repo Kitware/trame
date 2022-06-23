@@ -2,7 +2,7 @@
 
 ![Example Application](../images/tutorial-example.jpg)
 
-We will create a more complete example application that will show how to use several parts the ***trame*** library. Developing a trame application requires the following coding steps:
+In the following we will create a more complete example application to demonstrate how to use several parts the ***trame*** library. Developing a trame application requires the following coding steps:
 
 1. [Imports](#imports-id) for appropriate ***trame*** and vtk modules
 2. Create the necessary [VTK pipelines](#vtk_pipeline-id)
@@ -35,7 +35,7 @@ from trame.widgets import vtk, vuetify, trame
 
 We are creating a single page application with a drawer (`trame.ui.vuetify`), and we want to use one of ***trame***'s predefined widgets (`trame.widgets`) for displaying and interacting with visualization pipelines.
 
-**Finally**, our VTK pipelines are fairly straight forward, but not available as one of the vtk examples. We will add the import for our VTK objects.
+**Finally**, our VTK pipelines are fairly straight forward, but not available as one of the VTK examples. We will add the import for our VTK objects.
 
 ```python
 from vtkmodules.vtkCommonDataModel import vtkDataObject
@@ -119,7 +119,7 @@ mesh_lut.SetValueRange(1.0, 1.0)
 mesh_lut.Build()
 ```
 
-We finally want to be able to change the array or field to color by, so we get a handle on the mesh's mapper and set the array to color by and the range of the array to the defaults, tell the mapper to use the appropriate scalar mode for the array, turn on the scalar visibility, and tell the mapper to use the scalar range assigned to the lookup table.
+We finally want to be able to change how to color the array or field data, so we retrieve a handle on the mesh's mapper and set the array to color by and the range of the array to the defaults, tell the mapper to use the appropriate scalar mode for the array, turn on the scalar visibility, and tell the mapper to use the scalar range assigned to the lookup table.
 
 <div class="print-break"></div>
 
@@ -224,7 +224,7 @@ For this application, we want to enable dynamic switching between *local* and *r
 
 ## GUI
 
-We are creating a single page application with a drawer using `SinglePageWithDrawer`. By defauklt we get a title, toolbar, drawer, and a content section. So we instantiate a `SinglePageWithDrawer` with the `title` of "Viewer" and `on_ready` argument equal to `html_view.update`, which updates the three-dimensional visualization.
+We are creating a single page application with a drawer using `SinglePageWithDrawer`. By default we get a title, toolbar, drawer, and a content section. So we instantiate a `SinglePageWithDrawer` with the `title` of "Viewer" and `on_ready` argument equal to `html_view.update`, which updates the three-dimensional visualization.
 
 ```python
 with SinglePageWithDrawerLayout(server) as layout:
@@ -250,7 +250,7 @@ with SinglePageWithDrawerLayout(server) as layout:
             ctrl.on_server_ready.add(view.update)       # update view once server is ready
 ```
 
-**Note**: The `layout.drawer as drawer` syntax is used to get a reference to the drawer to set some of the drawer's properties
+**Note**: The `layout.drawer as drawer` syntax is used to get a reference to the drawer to set some of the drawer's properties.
 
 <div class="print-break"></div>
 <a id="gui_toolbar-id"></a>
@@ -259,7 +259,7 @@ with SinglePageWithDrawerLayout(server) as layout:
 
 <p style="text-align:center;"><img src="../images/tutorial-toolbar.jpg" alt="Example Application Toolbar" style="width: 75%; height: 75%"></p>
 
-We want to create a toolbar with the application logo and title on one end and some standard buttons separated by a vertical divider on the other end. The `VSpacer` is used to push the content the right-side of the application toolbar, and the `VDivider` is used to create the vertical divder, and method `standard_buttons` encapsulates the gui code to produce these buttons.
+We want to create a toolbar with the application logo and title on one end and some standard buttons separated by a vertical divider on the other end. The `VSpacer` is used to push the content the right-side of the application toolbar, and the `VDivider` is used to create the vertical divider, and method `standard_buttons` encapsulates the GUI code to produce these buttons.
 
 ```python
 with layout.toolbar:
@@ -318,7 +318,7 @@ The `viewMode` checkbox is used to switch between the *local* and *remote* rende
 We want to create a drawer with the ***trame*** pipeline widget, a horizontal divider, and pipeline cards. The pipeline cards are shown corresponding to the selected pipeline in the ***trame*** pipeline widget. We need create state for the active pipeline card, so we add this to the shared state that can be updated on the state directly.
 
 ```python
-# State use to track active ui card
+# State use to track active UI card
 state.setdefault("active_ui", None) # prevent resetting value if already present
 ```
 
@@ -460,7 +460,7 @@ The default components of a pipeline include the [representation](#gui_represent
 
 ##### Representation GUI
 
-First, we created a constant class `Representation` to enumerate the different representations.
+First, we create a constant class `Representation` to enumerate the different representations.
 
 ```python
 class Representation:
@@ -472,7 +472,7 @@ class Representation:
 
 <p style="text-align:center;"><img src="../images/tutorial-gui-representation.jpg" alt="Representation Selection" style="width: 25%; height: 25%"></p>
 
-Second, we created a dropdown menu for the representation type. The `VSelect` component is used to create a dropdown menu. The `v_model` uses the state variable `mesh_representation` initialized to be a surface. The `items` is a list of tuples, where the first element is the display string (`text`) of the representation, and the second element is the value of the representation used for selection.
+Second, we create a dropdown menu for the representation type. The `VSelect` component is used to create a dropdown menu. The `v_model` uses the state variable `mesh_representation` initialized to be a surface. The `items` is a list of tuples, where the first element is the display string (`text`) of the representation, and the second element is the value of the representation used for selection.
 
 ```python
         vuetify.VSelect(
@@ -515,7 +515,7 @@ The [`update_contour_representation`](#drawer_callbacks_update_contour_represent
 
 <p style="text-align:center;"><img src="../images/tutorial-gui-color-by.jpg" alt="Color By Selection" style="width: 12.5%; height: 12.5%"></p>
 
-We created a dropdown menu for the color by. The `VSelect` component is used to create a dropdown menu. The `v_model` uses the state variable `mesh_color_array_idx` initialized to be the default_array, 0. The `items` is a list of tuples, where the first element is the display string (`text`) of the array name, and the second element is the value of the array used for selection. For `items`, we use the state variable `array_list` to create the list of arrays initialized by our `dataset_arrays` array of dictionaries we created at read time.
+We create a dropdown menu for the color by. The `VSelect` component is used to create the dropdown menu. The `v_model` uses the state variable `mesh_color_array_idx` initialized to be the default_array, 0. The `items` is a list of tuples, where the first element is the display string (`text`) of the array name, and the second element is the value of the array used for selection. For `items`, we use the state variable `array_list` to create the list of arrays initialized by our `dataset_arrays` array of dictionaries we created at read time.
 
 ```python
                 vuetify.VSelect(
@@ -548,7 +548,7 @@ The [`update_contour_representation`](#drawer_callbacks_update_contour_color_by_
 
 ##### Color Map GUI
 
-First, we created a constant class `LookupTable` to enumerate the different color maps.
+First, we create a constant class `LookupTable` to enumerate the different color maps.
 
 ```python
 class LookupTable:
@@ -560,7 +560,7 @@ class LookupTable:
 
 <p style="text-align:center;"><img src="../images/tutorial-gui-color-map.jpg" alt="Color Map Selection" style="width: 12.5%; height: 12.5%"></p>
 
-Second, we created a dropdown menu for the color map. The `VSelect` component is used to create a dropdown menu. The `v_model` uses the state variable `mesh_color_preset` initialized to be the rainbow color map. The `items` is a list of tuples, where the first element is the display string (`text`) of the color map, and the second element is the value of the color map used for selection.
+Second, we create a dropdown menu for the color map. The `VSelect` component is used to create a dropdown menu. The `v_model` uses the state variable `mesh_color_preset` initialized to be the rainbow color map. The `items` is a list of tuples, where the first element is the display string (`text`) of the color map, and the second element is the value of the color map used for selection.
 
 ```python
                 vuetify.VSelect(
@@ -603,7 +603,7 @@ The [`update_contour_color_preset`](#drawer_callbacks_update_contour_color_prese
 
 <p style="text-align:center;"><img src="../images/tutorial-gui-opacity.jpg" alt="Opacity Slider" style="width: 25%; height: 25%"></p>
 
-We created a slider for the opacity. The `VSlider` component is used to create a slider. The `v_model` uses the state variable `mesh_opacity` initialized to 1.0. The `min` is set to 0 and the `max` is set to 1. The `step` is set to 0.1.
+We create a slider for the opacity. The `VSlider` component is used to create the slider. The `v_model` uses the state variable `mesh_opacity` initialized to 1.0. The `min` is set to 0 and the `max` is set to 1. The `step` is set to 0.1.
 
 ```python
         vuetify.VSlider(
@@ -642,7 +642,7 @@ The [`update_contour_opacity`](#drawer_callbacks_update_contour_opacity-id) call
 
 <p style="text-align:center;"><img src="../images/tutorial-gui-contour-by.jpg" alt="Contour By Selection" style="width: 25%; height: 25%"></p>
 
-We created a dropdown menu for the contour by. The `VSelect` component is used to create a dropdown menu. The `v_model` uses the state variable `contour_by_array_idx` initialized to be the default_array, 0. The `items` is a list of tuples, where the first element is the display string (`text`) of the array name, and the second element is the value of the array used for selection. For `items`, we use the state variable `array_list` to create the list of arrays initialized by our `dataset_arrays` array of dictionaries we created at read time.
+We create a dropdown menu for the contour by. The `VSelect` component is used to create the dropdown menu. The `v_model` uses the state variable `contour_by_array_idx` initialized to be the default_array, 0. The `items` is a list of tuples, where the first element is the display string (`text`) of the array name, and the second element is the value of the array used for selection. For `items`, we use the state variable `array_list` to create the list of arrays initialized by our `dataset_arrays` array of dictionaries we created at read time.
 
 ```python
         vuetify.VSelect(
@@ -663,7 +663,7 @@ The [`update_contour_by`](#drawer_callbacks_update_contour_by-id) callback is us
 
 ##### Contour Value GUI
 
-We created a slider for the contour value. The `VSlider` component is used to create a slider. The `v_model` uses the state variable `contour_value` initialized to mid-point of the selected contour by array. The `min` is set to minimum of the contour by array and the `max` is set to maximum of the contour by array. The `step` is set to 0.01 times the range of the contour by array.
+We create a slider for the contour value. The `VSlider` component is used to create the slider. The `v_model` uses the state variable `contour_value` initialized to mid-point of the selected contour by array. The `min` is set to minimum of the contour by array and the `max` is set to maximum of the contour by array. The `step` is set to 0.01 times the range of the contour by array.
 
 <p style="text-align:center;"><img src="../images/tutorial-gui-contour-value.jpg" alt="Contour Value Slider" style="width: 25%; height: 25%"></p>
 

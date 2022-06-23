@@ -6,11 +6,10 @@ ParaView 5.10+ can be downloaded from [here](https://www.paraview.org/download).
 
 ## Virtual Environment
 
-ParaView comes with its own Python, which may be missing some dependencies for the desired usage.
-We can add more Python packages into ParaView by create a virtual environment and activate it inside your application using that import line `from paraview.web import venv` or by using our [local version](https://github.com/Kitware/trame/blob/master/examples/v1/ParaView/venv.py) and importing it.
+ParaView comes with its own Python, which may be missing some dependencies for the desired usage. We can add more Python packages into ParaView by creating a virtual environment and then activating it inside the application using the import line `from paraview.web import venv` or by using our [local version](https://github.com/Kitware/trame/blob/master/examples/v1/ParaView/venv.py) and importing it.
 
 
-**First**, we need to setup the ParaView add-on python environment, which we will only install ***trame***, but we could add any other Python libraries that are not included in the ParaView bundle.
+**First**, we need to setup the ParaView add-on python environment, in which we will only install ***trame***, but we could add any other Python libraries that are not included in the ParaView bundle.
 
 ```bash
 python3.9 -m venv .pvenv
@@ -48,7 +47,7 @@ The command line below illustrate how a SimpleCone example can be run on a **Mac
 
 ## Understanding this ParaView example
 
-ParaView use proxies which abstracts the VTK object handling so they can be easily distributed for very large datasets.
+ParaView use proxies which abstracts the VTK object handling so they can be easily distributed to support the processing of very large datasets.
 
 For simplified usage, ParaView provides a `simple` package that lets us ***simply*** create and interact with these proxies. The `SimpleCone.py` example provides the core concepts needed to understand how to work with ParaView.
 
@@ -96,8 +95,7 @@ from trame.html import vuetify, paraview
 
 ## GUI
 
-Now we can start adding some UI to control some of the parameters that we want to interact with dynamically.
-Let's add a slider to control the resolution of the cone. We need to create a method to react when the `resolution` is changed by the slider. In ParaView proxies, object parameters are simple properties that can be get or set in a transparent manner. At this point, we simply need to update the `cone.Resolution` and update the view to see the change.
+Now we can start adding some UI to control some of the parameters that we want to interact with dynamically. Let's first add a slider to control the resolution of the cone. We need to create a method to react when the `resolution` is changed by the slider. In ParaView proxies, object parameters are simple properties that can be get or set in a transparent manner. At this point, we simply need to update the `cone.Resolution` and update the view to see the change.
 
 ```python
 @state.change("resolution")
@@ -124,7 +122,7 @@ with layout.toolbar:
 
 With these few lines, we have created a 3D cone, which we can adjust the resolution all leveraging ParaView.
 
-To learn more about ParaView scripting, you should look into ParaView trace which let you convert your UI interaction into actual Python code that can then be reused in your application.
+To learn more about ParaView scripting, look into ParaView trace which let you convert your UI interaction into actual Python code that can then be reused in your application.
 
 <center>
 <img src="../images/tutorial-paraview-trace.jpg" width="75%" />

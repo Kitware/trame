@@ -1,6 +1,6 @@
 # HTML
 
-***trame*** leverages Vuetify as its primary UI Component Library for defining HTML graphics user interfaces (GUI). [Vuetify](https://vuetifyjs.com/en/introduction/why-vuetify/#what-is-vuetify3f) is a mature, efficient, and expansive framework for good-looking web applications with the same simple state management system as ***trame***. ***trame*** makes Vuetify available in your Python with minimal overhead.
+***trame*** leverages Vuetify as its primary UI Component Library for defining HTML graphics user interfaces (GUI). [Vuetify](https://vuetifyjs.com/en/introduction/why-vuetify/#what-is-vuetify3f) is a mature, efficient, and expansive framework which produces good-looking web applications using the same simple state management system as ***trame***. ***trame*** makes Vuetify available in the Python environment with minimal overhead.
 
 [![Vuetify WebSite](../images/module-vuetify.jpg)](https://vuetifyjs.com/en/)
 
@@ -8,7 +8,7 @@
 
 ## Using Vuetify
 
-We expose all Vuetify components. As an example, let's look at how we would make a simple text box. This is taken from Vuetify's excellent [examples and documentation](https://vuetifyjs.com/en/components/text-fields/), which we recommend you consult while writing frontends with ***trame***.
+We expose all Vuetify components in ***trame***. As an example, let's look at how we would make a simple text box. This is taken from Vuetify's excellent [examples and documentation](https://vuetifyjs.com/en/components/text-fields/), which we recommend you consult while writing frontends with ***trame***.
 
 ```javascript
 // Somewhere in javascript
@@ -149,7 +149,7 @@ Your browser should open automatically to `http://localhost:1234/`
 
 ## `with` Construct
 
-The Python `with` construct allow us to automatically append to a given widget container but also for the Layouts it will automatically manage the flush of its content to the server. While it is possible to mutate the `children` attribute of a widget we encourage you to use the `with` syntax instead.
+The Python `with` construct allow us to automatically append to a given widget container but also for the Layouts it will automatically flush its content to the server. While it is possible to mutate the `children` attribute of a widget we encourage you to use the `with` syntax instead.
 
 <div class="print-break"></div>
 
@@ -203,7 +203,7 @@ def update_resolution(resolution, **kwargs):
 
 There is no need to get or update the `resolution` state variable. This update is carried out on the client-side by the v_model. We simply update the `cone_source` appropriately and update the view.
 
-The `VBtn` resets the the resolution when pressed by calling the `reset_resolution` function. This is a `trigger` event, where `v_models` are `change` events. Since, we use the function reference here, there is no need to use a `@trigger("...")` decorator here. It is created by default behind the scene.
+The `VBtn` resets the the resolution when pressed by calling the `reset_resolution` function. This is a `trigger` event, where `v_models` are `change` events. Since we use a function reference, there is no need to use a `@trigger("...")` decorator here. It is created by default behind the scenes.
 
 ```python
 def reset_resolution():

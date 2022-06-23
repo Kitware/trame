@@ -1,7 +1,6 @@
 # Cheatsheet
 
-The working application below manage to capture the fundamentals of __trame__ in less than 45 lines.
-In that sense, it could be seen as a cheatsheet on how to use __trame__ as it is mostly self explanatory.
+The working application below captures the fundamentals of __trame__ in less than 45 lines. Consider this as a cheatsheet on how to use __trame__ as it is mostly self explanatory.
 
 ```python
 from trame.app import get_server               # Entry point to trame
@@ -52,7 +51,7 @@ with SinglePageLayout(server) as layout:
 server.start()
 ```
 
-## Result
+## Results
 
 
 <p style="text-align:center;display: flex;align-items: center;">
@@ -60,25 +59,25 @@ server.start()
     <img src="/trame/images/trame-cheatsheet-output.jpg" alt="Output" style="width: 45%; height: 45%">
 </p>
 
-## Things to understand
+## Explanatory Details
 
 ### State
 
-Read variable from shared state
+Read a variable from shared state:
 
 ```python
 value = state.var_name
 value = state["var_name"]
 ```
 
-Write variable to the shared state
+Write a variable to shared state:
 
 ```python
 state.var_name = value
 state["var_name"] = value
 ```
 
-Write several variables at once in the shared state
+Write several variables at once to the shared state:
 
 ```python
 state.update({
@@ -87,7 +86,7 @@ state.update({
 })
 ```
 
-Bind a method/function to a state variable change
+Bind a method/function to a state variable change:
 
 ```python
 @state.change("var_name")
@@ -101,15 +100,14 @@ def change_detected(**kwargs):
     print(f"Either var_name or var_name_1 is modified")
 ```
 
-Initialise a variable from the UI definition with an initial value.
-Use a tuple to define the value of a given attribute where the first entry is a string with the variable name and the second entry is its initial value.
+Specify an initial value for a UI variable. Use a tuple to define the value of a given attribute, where the first entry is a string with the variable name and the second entry is its initial value.
 
 ```python
 vuetify.VTextField(v_model=("var_name", "initial value"))
 vuetify.VSlider(v_model=("resolution", 6), min=1)
 ```
 
-Provide a JavaScript expression as attribute. We still provide a tuple but with no initial value.
+Provide a JavaScript expression as an attribute value. We still provide a tuple but with no initial value.
 
 ```python
 vuetify.VTextField(value=("'Hello' + var_name", ))
@@ -117,7 +115,7 @@ vuetify.VTextField(value=("'Hello' + var_name", ))
 
 ### Method binding
 
-Method can be passed to events attribute of your UI elements. By default, the function will be called with no arguments.
+Methods can be passed to the events attribute of your UI elements. By default, the function will be called with no arguments.
 
 If you want to control its arguments you can use a tuple where the second entry represents the __args__ and the third represents the __kwargs__. If you only want to provide args without kwargs, just provide a tuple with 2 entries. __$event__ is a reserved name to represent the event object.
 
@@ -129,7 +127,7 @@ vuetify.VBtn("Click me", click=(ctrl.do_something, "[index, $event]", "{ a: 12 }
 
 ### Controller
 
-The controller from trame is just a dynamic container for methods or functions that can be get or set in either order.
+The trame controller is just a dynamic container for methods or functions that can be set or get in either order.
 
 ```python
 vuetify.VBtn("Click me", click=ctrl.do_something)
@@ -142,11 +140,11 @@ ctrl.do_something = fn
 
 ## Life Cycle
 
-* on_server_ready : All protocols initialized and available for client to connect
-* on_client_connected : Connection established to server
-* on_client_exited : Linked to browser "beforeunload" event
-* on_server_exited : Trame is exiting its event loop
-* on_server_reload : If callback registered it is use for reloading server side modules
+* on_server_ready : All protocols initialized and available for the client to connect.
+* on_client_connected : Connection established to server.
+* on_client_exited : Linked to browser "beforeunload" event.
+* on_server_exited : Trame is exiting its event loop.
+* on_server_reload : If callback registered it is used to reload server side modules.
 
 ```python
 
@@ -156,8 +154,8 @@ ctrl.on_server_ready.add(lambda **_: print("Staring Factory - Launcher barrier")
 ctrl.on_client_exited = lambda **_: print("Someone is gone...")
 ```
 
-## Conclusion
+## Conclusion and Next Steps
 
-The remaining part to learn is all the components available for displaying other 3D graphics, charts, maps and more. But right now you've learn the fundamentals on how trame works which should let you build your application simply. For more details, please refer to the [tutorial](https://kitware.github.io/trame/docs/tutorial.html) or [API](https://trame.readthedocs.io/en/latest/index.html).
+At this point the fundamentals of trame have been presented. To build fully-fledged applications, the next steps are to learn the various components available for displaying 3D graphics, charts, maps and more. For more details, please refer to the [tutorial](https://kitware.github.io/trame/docs/tutorial.html) or [API](https://trame.readthedocs.io/en/latest/index.html).
 
-Trame is a powerful framework for building any kind of application in plain Python. From prototypes to professional applications, trame offers an innovative approach for “write once and run anywhere” by allowing your app to migrate from your desktop to a cloud service.
+Trame is a powerful Pyton-based integration framework for creating visual analytics applications. From prototypes to professional applications, trame offers an innovative approach to “write once and run anywhere” through applications that run from a desktop to a cloud service using a standard web browser.

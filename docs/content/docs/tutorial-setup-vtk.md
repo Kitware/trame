@@ -1,6 +1,6 @@
-## Setup environment for VTK
+## Setup the VTK environment
 
-***trame*** requires Python 3.6+ but since ParaView 5.11 is bundling Python 3.9 we should use Python 3.9 for our environment.
+***trame*** requires Python 3.6+ but since ParaView 5.11 is bundling Python 3.9 we will use Python 3.9 in this tutorial.
 
 ```bash
 python3.9 -m venv .venv
@@ -12,7 +12,7 @@ pip install "vtk>=9.1.0"
 
 **Notes**:
  - `venv` was added in Python 3.3.
- - On mac with Arm architecture, VTK is only available on Python 3.9
+ - On a Mac with ARM architecture, VTK is only available with Python 3.9.
 
 ## Running the application
 
@@ -39,9 +39,9 @@ from trame.app import get_server
 from trame.ui.vuetify import SinglePageLayout
 ```
 
-from ***trame***'s `app`, we import the factory function for getting a server instance on which we will bind our UI and business logic. We also import a skeleton for a single page client application that rely on vuetify (our main widget library) from `trame.ui.vuetify`.
+from ***trame***'s `app`, we import the factory function for retrieving a server instance on which we will bind our UI and business logic. We also import a skeleton for a single page client application that relies on vuetify (our main widget library) from `trame.ui.vuetify`.
 
-Next, we define the graphical user interface (GUI) by passing the server on which it should be bound to. Then with that layout we update the toolbar's title to hold `"Hello trame"`.
+Next, we define the graphical user interface (GUI) by passing the server to which it should be bound. Then with that layout we update the toolbar's title to read `"Hello trame"`.
 
 ```python
 server = get_server()
@@ -50,7 +50,7 @@ with SinglePageLayout(server) as layout:
     layout.title.set_text("Hello trame")
 ```
 
-Finally, we start the Web server using
+Finally, we start the Web server using:
 
 ```python
 if __name__ == "__main__":
@@ -72,4 +72,4 @@ Note that for multi-users you need to use and configure a launcher.
 And to prevent your browser from opening, add '--server' to your command line.
 ```
 
-Your browser should open automatically to `http://localhost:1234/`
+Your browser should open automatically to `http://localhost:1234/`.

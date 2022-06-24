@@ -1,11 +1,9 @@
 # Layouts
 
 To simplify creation of the graphical user interface (GUI) for the web application, ***trame.ui.vuetify*** defines layouts objects such as `VAppLayout`, `SinglePageLayout`, and `SinglePageWithDrawerLayout`.
-On top of those `vuetify` layouts we also have a simple `trame.ui.html.DivLayout`.
+In addition to these `vuetify` layouts we also have a simple `trame.ui.html.DivLayout`.
 
-All core layouts start with a `VApp` (Vuetifies `v-app`) component. The `VApp` is **REQUIRED** for all applications. It is the mount point for other Vuetify components and functionality and ensures that it propagates the default application variant (dark/light) to children components while ensuring proper cross-browser support for certain click events in browsers like Safari. `VApp` should only be rendered within your application **ONCE**.
-
-More on Vuetify in the next chapter of the tutorial.
+All core layouts start with a `VApp` (Vuetifies `v-app`) component. The `VApp` is **REQUIRED** for all applications. It is the mount point for other Vuetify components and functionality and ensures that it propagates the default application variant (dark/light) to children components, and ensures proper cross-browser support for certain click events in browsers like Safari. `VApp` should only be rendered within your application **ONCE**. (More on Vuetify in the next chapter of the tutorial.)
 
 Each of these layouts can be utilized by importing, instantiating, and serving it via the `server.start()` function.
 
@@ -63,7 +61,7 @@ The `SinglePageLayout` extends the `VAppLayout` with a few predefined components
 
 <p style="text-align:center;"><img src="../images/tutorial-singlepage.jpg" alt="SinglePage Layout" style="width: 75%; height: 75%"></p>
 
-The *icon* and *title* sit on the left-hand side of the *toolbar* and customized as necessary. The icon is a *VAppBarNavIcon*  which can be customized by adding a child to it such as a VIcon with a [Material Design Icons](https://materialdesignicons.com/). The *toolbar* itself exposes its *children* array where one can add components as needed. The *footer* can be hidden, but currently has ***trame*** branding, the progress bar and list of trame modules available with their versions. The *content* is just a **VMain** to which you may add your desired Vuetify components.
+The *icon* and *title* sit on the left-hand side of the *toolbar* and are customized as necessary. The icon is a *VAppBarNavIcon*  which can be customized by adding a child to it such as a VIcon with a [Material Design Icons](https://materialdesignicons.com/). The *toolbar* itself exposes its *children* array in which one can add components as needed. The *footer* can be hidden, but currently has ***trame*** branding, the progress bar and list of trame modules available with their versions. The *content* is just a **VMain** to which you may add your desired Vuetify components.
 
 **First**, we import the `SinglePageLayout` class.
 

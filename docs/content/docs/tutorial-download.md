@@ -4,7 +4,7 @@
 git clone https://github.com/Kitware/trame-tutorial.git
 ```
 
-There is now a directory called ***trame-tutorial*** with the following file structure:
+This produces a directory called ***trame-tutorial*** with the following file structure:
 
 ```
 $ tree .
@@ -44,4 +44,4 @@ $ tree .
 7 directories, 24 files
 ```
 
-In the following steps of the tutorial we will assume to be inside the `trame-tutorial` root directory.
+The remaining tutorial steps assume that the current directory is the `trame-tutorial` root directory.

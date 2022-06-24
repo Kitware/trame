@@ -1,23 +1,18 @@
 # How to use trame
 
-trame aims to streamline creation of graphical interfaces for interactive data manipulation and visualization with a very compact and simple API.
-This document tries to capture the core API and concepts behind trame so you can use it when you get started but also as a reference once you get more familiar with trame.
+Trame aims to streamline the creation of visual analytics applications, with support for interactive data manipulation and visualization, through a very compact and simple API. This document describes the core API and concepts behind trame; the document is both a start up guide, but also a quick reference for those more familiar with trame.
 
-## Core concept
+## Core concepts
 
-trame allow you to easily share variables between the UI components and your Python application.
-But on top of that shared state, functions and methods can be triggered from either side.
-For example, you can link a Python function to be called when a button in the UI is clicked.
-This document will focus on how you can leverage those two functionalities inside your application using trame.
+Trame allows you to easily share variables between UI components and a Python application. The resulting shared state can be modified by functions and methods invoked from the UI or application. For example, a Python function can be called when a button in the UI is clicked; or the UI can be updated in response to programmatic changes to the state. This document focuses on how you can leverage these capabilities inside your application using trame.
 
 ## Shared state
 
-trame mainly focuses on the Python side, therefore the variables that we aim to use across our application will be defined from Python.
-The following sections will illustate the various way you can affect the shared state.
+Trame mainly focuses on the Python side, therefore the variables that we aim to use across our application will be defined from Python. The following sections illustate the various ways the shared state can be modified.
 
 ### UI element with a dynamic variable
 
-The example below uses Vuetify to create a slider where the value controlled by that slider is available in our shared state behind the name `slider_value` that we initialize with the value `8`. So variables in our shared state can be defined and initialized right were we want to use them when defining our UI elements. In this example, the slider will be able to modify that value but also will reflect its content if that value changes on the server side.
+The example below uses Vuetify to create a slider where the value is controlled by the slider. The variable `slider_value` is initialized with the value `8`. So variables in the shared state can be defined and initialized right were we want to use them when defining our UI elements. In this example, the slider will be able to modify that value but also will reflect its content if that value changes on the server side.
 
 ```python
 from trame.widgets import vuetify
@@ -30,10 +25,9 @@ slider = vuetify.VSlider(
 )
 ```
 
-### Listening to change
+### Listening to changes
 
-Let's pretend we want to monitor the value of `slider_value` within our Python application and execute a method when that variable gets updated.
-The code below illustate how we can annotate a function so it can be called when a value of our shared state is modified.
+Imagine that we want to monitor the value of `slider_value` within our Python application and execute a method when that variable is updated. The code below illustate how we can annotate a function so it can be called when a value of the shared state is modified.
 
 ```python
 from trame.app import get_server
@@ -46,12 +40,11 @@ def slider_value_change(slider_value, **kwargs):
   print(f"Slider is changing slider_value to {slider_value}")
 ```
 
-So far, we only have the client modifying that variable. But if a function on the server were to change that variable, that function will also be called as we simply react to the fact that the variable has been updated by someone.
+So far, we only have the client modifying that variable. But if a function on the server were to change that variable, the function would also be called as we simply react to the fact that the variable has been updated by someone.
 
 ### Changing the value from Python
 
-Within our Python application it is possible that we would like to read and even write in the shared state so the UI can reflect your changes.
-The code below provides a function that will read the current value and update its content.
+Within a Python trame application, it is possible to update the UI in response to read and even write operations to and from the shared state. The code below provides a function that will read the current value and update its content.
 
 ```python
 from trame.app import get_server
@@ -67,7 +60,7 @@ def random_update():
 
 ### Forcing state exchange
 
-Sometimes, the variable inside your shared state is an actual object with nested structure. While the state on the Python side always keeps the same reference to that object, you are manually editing its content and you want to flush its content so the client can see your changes. In that use case we have a `dirty()` method that can be called with the list of variable names that should be pushed. This is also useful in some async contexts to control when pieces of the state should be pushed to the other side. The code below provides a usage example.
+Sometimes, the variable inside your shared state is an actual object with a nested structure. While the state on the Python side always maintains a reference to that object, when manually editing it's important to flush its contents so that the client reflects changes. In this situation, the `dirty()` method can be called with the list of variable names that should be pushed. This is also useful in some async contexts to control when pieces of the state should be synchronized between client and server. The code below provides a typical example.
 
 ```python
 import asyncio
@@ -82,7 +75,7 @@ async def update_time():
 
 ## Method calls
 
-When building a client/server application you will need to be able to trigger methods on both side and trame has some easy ways to do that.
+When building a client/server application you will need to be able to trigger methods on both sides and trame has some easy ways to do that.
 
 ### Bind method to a button click
 
@@ -109,10 +102,9 @@ def random_update():
 ctrl.rnd_update = random_update
 ```
 
-### Calling JS methods
+### Calling JavaScript methods
 
-Some components in your layout may have APIs that you can use and call from the Python side.
-The code below provides an example of such use case:
+Some components in an application may have APIs that you be used and invoked from the Python side. The code below provides an example of such a use case:
 
 ```python
 from trame.app import get_server
@@ -131,9 +123,7 @@ def reset_camera():
 
 ## Layout management
 
-Layouts are meant to define the core UI elements of an application. Think of FullScreen vs Toolbar, Drawer, Footer and so on.
-Layouts let you drop pieces of your UI into pre-defined locations.
-The layout gathers the way your application will look. It could be defined once or be redifined at runtime.
+Layouts are meant to define the core UI elements of an application. Think of FullScreen vs Toolbar, Drawer, Footer and so on. Layouts let you drop pieces of your UI into pre-defined locations. The layout organizes the way an application is structured. It could be defined once, or be redifined at runtime.
 
 When creating a layout, you have the opportunity to define the Tab title along with a path to a favicon and a method to call at startup.
 
@@ -165,8 +155,7 @@ vuetify.VSlider(
 
 ## Command line arguments
 
-Since a trame application is a real application, as opposed to a service that aims to serve many concurrent users, you may want to provide some information to your application when you start it like which ML model you want to load or the file/directory that you would like to explore or process.
-This can be achieved by adding CLI parameters using [ArgParse](https://docs.python.org/3/library/argparse.html), like in the following example.
+Since trame is used to create applications, as compared to web services that aim to serve many concurrent users, it may be important to provide information to an application on start up. For example, which ML model to load, or the file/directory that you would like to explore or process. This can be achieved by adding CLI parameters using [ArgParse](https://docs.python.org/3/library/argparse.html), like in the following example.
 
 ```python
 from trame.app import get_server
@@ -178,10 +167,9 @@ args = server.cli.parse_args()
 print(args.data)
 ```
 
-## Starting the application
+## Starting an application
 
-trame server provides a `start()` method which will actually start your application.
-Usually we put the following section in your main script.
+The server provides a `start()` method which actually starts a trame application. Typically the following section is placed in the main script:
 
 ```python
 if __name__ == "__main__":

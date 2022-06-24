@@ -1,6 +1,6 @@
 ## VTK
 
-So we want to start adding VTK visualizations to our application.
+In this step we start adding VTK visualizations to our application.
 
 ## VTK Imports
 
@@ -14,7 +14,7 @@ from trame.widgets import vtk, vuetify
 
 This provides us access to ***trame***'s widgets for vtk and vuetify.
 
-**Next**, we will need to import the required objects from vtk. We will visualize a simple cone in this example so we will need `vtkConeSource`.
+**Next**, we will need to import the required objects from VTK. We will visualize a simple cone in this example so we will need `vtkConeSource`.
 
 ```python
 from vtkmodules.vtkFiltersSources import vtkConeSource
@@ -65,7 +65,7 @@ There are a number of ways to learn VTK:
 - [VTK Examples](https://kitware.github.io/vtk-examples/site/Python)
 - [VTK Documentation](https://www.vtk.org/doc/nightly/html/)
 
-This tutorial will not provide an adequate background for VTK, but we will explain the pieces and parts of the provided exmples at a high level.
+This tutorial does not provide an adequate background for VTK, but in the following we will explain the pieces and parts of the provided VTK examples at a high level.
 
 **First**, we create a `vtkRenderer` and `vtkRenderWindow`. The we tie them together by adding the `renderer` to the `renderWindow`.
 
@@ -83,9 +83,9 @@ renderWindowInteractor.SetRenderWindow(renderWindow)
 renderWindowInteractor.GetInteractorStyle().SetCurrentStyleToTrackballCamera()
 ```
 
-We create the interactor, connect it to the `renderWindow` and set the interaction style.
+We create the interactor, associate it with the `renderWindow` and set the interaction style.
 
-**Third**, we create the desired visualization. This process requires the creation of an object, a mapper, and an actor.
+**Third**, we create the desired visualization. This process requires the creation of an object, a mapper, and an actor (these constitute a simple VTK pipeline).
 
 ```python
 cone_source = vtkConeSource()
@@ -95,7 +95,7 @@ actor = vtkActor()
 actor.SetMapper(mapper)
 ```
 
-The instantiated `vtkConeSource` is our mesh source that will produce a polydata. Then we want to map it to a graphical representation by creating a `vtkPolyDataMapper`. We must digitally create a connection from the cone to the mapper by setting the input connection. We then create an actor and connect the mapper to the actor.
+The instantiated `vtkConeSource` is our mesh source that will produce a vtkPolyData. Then we want to map it to a graphical representation by creating a `vtkPolyDataMapper`. We must create a connection from the cone to the mapper by setting the input connection. We then create an actor and connect the mapper to the actor. (In VTK, actors are objects displayed by a renderer.)
 
 **Finally**, we add all the pipelines (actors) to the `renderer`, reset the camera, and render.
 
@@ -108,38 +108,38 @@ The VTK specific imports and pipelines defined for a ***trame*** application are
 
 ## Local and Remote Rendering
 
-Why do we care about *local* and *remote* rendering? Well each method of rendering has it's advantages and disadvantaages.
+Why do we care about *local* and *remote* rendering? Well each method of rendering has it's advantages and disadvantages. To a large extent it is a matter of data scale as described in the following.
 
 **Local Rendering**
 
 *Advantages*
 
 - The server doesn't need a graphics processing unit (GPU). Systems with GPUs are expensive to purchase and expensive to rent (cloud). These costs are pushed to the end-points on end-users.
-- The frames per second rendering is higher. Advancements in the browser's access to local GPU resources implies that the performance is nearly as good as available to a desktop application.
+- The performance as measured in frames per second (fps) rendering is higher when using local rendering. Recent advancements in the browser's access to local GPU resources means that rendering performance through the web browser is nearly as good as available to a desktop application.
 
 *Disadvantages*
 
-- The data to be rendered must move from the server to the client. This transfer may be too slow and it may be too large.
-- Where will the data be processed into graphic primitives? The processing may increase load and latency on the server side or the client side.
+- The data to be rendered must be transferred from the server to the client. This transfer may be too slow, and the data may be too large for the browser to manage.
+- How and where will the data be processed into graphic primitives? The processing may increase load and latency on the server side or the client side.
 
 **Remote Rendering**
 
 *Advantages*
 
-- The data to be rendered doesn't move, only the resulting image.
-- Rendering can utilize parallel and distributed processing to handle larger and larger data.
-- The server can serve a more diverse set of clients. From cell phone to workstation, their requirements are limited to receiving and rendering images.
+- The data to be rendered doesn't move, only the resulting rendered image is transmitted.
+- Rendering can utilize parallel and distributed processing to handle extremely large data.
+- The server can serve a more diverse set of clients. From cell phone to workstation, the client requirements is limited to receiving and rendering images.
 
 *Disadvantages*
 
-- The frames per second rendering might be capped by the speed and latency of image delivery.
+- Rendering fps might be capped by the speed and latency of image delivery.
 - The servers have to be more capable. Remote software rendering is possible, but the framerates will be further impacted.
 
 **Implementation**
 
-Down in the GUI section of the application, we **first** need to select a rendering scheme
+Down in the GUI section of the application, we **first** need to select a rendering method.
 
-for *local rendering*
+For *local rendering*
 
 ```python
 html_view = vtk.VtkLocalView(renderWindow)
@@ -151,7 +151,7 @@ for *remote rendering*
 html_view = vtk.VtkRemoteView(renderWindow)
 ```
 
-and define a container to hold the renderer
+and define a container to hold the renderer:
 
 ```python
 with SinglePageLayout(server) as layout:
@@ -169,16 +169,16 @@ with SinglePageLayout(server) as layout:
 
 We add a **Vuetify** component to the Web application. In this case, a `VContainer`. The arguments include: fluid (to get full width container), classes (CSS stylings), and nest our rendering view component into it.
 
-More information on [vuetify](https://vuetifyjs.com/en/introduction/why-vuetify/).
+(More information is available for [vuetify](https://vuetifyjs.com/en/introduction/why-vuetify/).)
 
 ## Update and Start
 
 Once the client and server are ready, we need to update the view (`html_view`) by calling  `html_view.update()`.
 
-To enable such call, we need to use the server controller on which we can attach method(s) for various life cycle events.
-The one we are interested here is **on_server_ready** on which we can bind our **update** method to.
+To enable this call, we need to use the server controller on which we can attach method(s) for various life cycle events.
+The one we are interested here is **on_server_ready** on which to which we can bind our **update** method.
 
-To do it, we revist our code base to extract our server controller and **add** our method to be called on the proper **on_server_ready** life cycle.
+To do so, we revist our code base to extract our server controller and **add** our method to be called on the proper **on_server_ready** life cycle.
 
 ```python
 ctrl = server.controller                                    # <--- New line
@@ -217,7 +217,7 @@ We are going to implement [CarotidFlowGlyphs](https://kitware.github.io/vtk-exam
 
 **Imports**
 
-We are going to read a file. So we will want to import the `os` module and set the current directory. Starting with our Hello ***trame*** cone application, we add
+We are going to read a file, requiring the import of the `os` module and set the current directory. Starting with our Hello ***trame*** cone application, we add
 
 ```python
 import os
@@ -341,7 +341,7 @@ outlineActor.GetProperty().SetColor(colors.GetColor3d("White"))
 
 ```
 
-**Note**: In the Colors and Data section we instantiate a helper for accessing named colors and read the desired data file on the **server**.
+**Note**: In the Colors and Data section we instantiated a helper for accessing named colors and read the desired data file on the **server**.
 
 **Finally**, we replace the single cone pipeline actor
 
@@ -349,7 +349,7 @@ outlineActor.GetProperty().SetColor(colors.GetColor3d("White"))
 renderer.AddActor(actor)
 ```
 
-with the three pipeline actors to the renderer.
+with three pipeline actors associated with the renderer.
 
 ```python
 renderer.AddActor(outlineActor)
@@ -357,7 +357,7 @@ renderer.AddActor(vectorActor)
 renderer.AddActor(isoActor)
 ```
 
-Our pipelines are the same pipelines used in [VTK Examples](https://kitware.github.io/vtk-examples/site/Python) except for some cosmetic edits (I like `renderer` and `renderWindow` instead of `ren1` and `renWin`).
+Our pipelines are the same pipelines used in [VTK Examples](https://kitware.github.io/vtk-examples/site/Python) except for some cosmetic edits (e.g., using `renderer` and `renderWindow` is clearer than `ren1` and `renWin`).
 
 **Running the Application**
 
@@ -369,6 +369,6 @@ Your browser should open automatically to `http://localhost:1234/`
 
 ## Ray Casting example
 
-If you want on your own time you can try to implement the Volume Rendering example [Simple Ray Cast](https://kitware.github.io/vtk-examples/site/Python/VolumeRendering/SimpleRayCast/) using **trame**.
+Left as an exercise to the reader, implement the Volume Rendering example [Simple Ray Cast](https://kitware.github.io/vtk-examples/site/Python/VolumeRendering/SimpleRayCast/) using **trame**.
 
-The solution of that example is available under `01_vtk/solution_ray_cast.py`.
+The solution of that example is available at `01_vtk/solution_ray_cast.py`.

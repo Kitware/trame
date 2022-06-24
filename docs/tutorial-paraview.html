@@ -41,12 +41,12 @@
   <!-- RSS -->
   <link rel="alternate" href="/trame/atom.xml" title="trame" type="application/atom+xml">
   <!-- Open Graph -->
-  <meta name="description" content="ParaViewDownload ParaViewParaView 5.10+ can be downloaded from here. Virtual EnvironmentParaView comes with its own Python, which may be missing some dependencies for the desired usage.We can add more">
+  <meta name="description" content="ParaViewDownload ParaViewParaView 5.10+ can be downloaded from here. Virtual EnvironmentParaView comes with its own Python, which may be missing some dependencies for the desired usage. We can add mor">
 <meta property="og:type" content="website">
 <meta property="og:title" content="trame">
 <meta property="og:url" content="https://kitware.github.io/trame/docs/tutorial-paraview.html">
 <meta property="og:site_name" content="trame">
-<meta property="og:description" content="ParaViewDownload ParaViewParaView 5.10+ can be downloaded from here. Virtual EnvironmentParaView comes with its own Python, which may be missing some dependencies for the desired usage.We can add more">
+<meta property="og:description" content="ParaViewDownload ParaViewParaView 5.10+ can be downloaded from here. Virtual EnvironmentParaView comes with its own Python, which may be missing some dependencies for the desired usage. We can add mor">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://kitware.github.io/trame/examples/pvSimpleCone-Remote.jpg">
 <meta property="og:image" content="https://kitware.github.io/trame/images/tutorial-paraview-trace.jpg">
@@ -55,8 +55,8 @@
 <meta property="og:image" content="https://kitware.github.io/trame/examples/StateViewer-medical.jpg">
 <meta property="og:image" content="https://kitware.github.io/trame/examples/PVStateViewer-diskout.jpg">
 <meta property="og:image" content="https://kitware.github.io/trame/examples/StateViewer-diskout.jpg">
-<meta property="article:published_time" content="2022-06-21T00:43:10.831Z">
-<meta property="article:modified_time" content="2022-06-21T00:43:10.827Z">
+<meta property="article:published_time" content="2022-06-24T10:29:35.676Z">
+<meta property="article:modified_time" content="2022-06-24T10:29:35.676Z">
 <meta property="article:author" content="Kitware Inc.">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://kitware.github.io/trame/examples/pvSimpleCone-Remote.jpg">
@@ -112,8 +112,8 @@
               </header>
               <div class="article-content" itemprop="articleBody">
                 <h1 id="ParaView" class="article-heading"><a href="#ParaView" class="headerlink" title="ParaView"></a>ParaView<a class="article-anchor" href="#ParaView" aria-hidden="true"></a></h1><h2 id="Download-ParaView" class="article-heading"><a href="#Download-ParaView" class="headerlink" title="Download ParaView"></a>Download ParaView<a class="article-anchor" href="#Download-ParaView" aria-hidden="true"></a></h2><p>ParaView 5.10+ can be downloaded from <a target="_blank" rel="noopener" href="https://www.paraview.org/download">here</a>.</p>
-<h2 id="Virtual-Environment" class="article-heading"><a href="#Virtual-Environment" class="headerlink" title="Virtual Environment"></a>Virtual Environment<a class="article-anchor" href="#Virtual-Environment" aria-hidden="true"></a></h2><p>ParaView comes with its own Python, which may be missing some dependencies for the desired usage.<br>We can add more Python packages into ParaView by create a virtual environment and activate it inside your application using that import line <code>from paraview.web import venv</code> or by using our <a target="_blank" rel="noopener" href="https://github.com/Kitware/trame/blob/master/examples/v1/ParaView/venv.py">local version</a> and importing it.</p>
-<p><strong>First</strong>, we need to setup the ParaView add-on python environment, which we will only install <em><strong>trame</strong></em>, but we could add any other Python libraries that are not included in the ParaView bundle.</p>
+<h2 id="Virtual-Environment" class="article-heading"><a href="#Virtual-Environment" class="headerlink" title="Virtual Environment"></a>Virtual Environment<a class="article-anchor" href="#Virtual-Environment" aria-hidden="true"></a></h2><p>ParaView comes with its own Python, which may be missing some dependencies for the desired usage. We can add more Python packages into ParaView by creating a virtual environment and then activating it inside the application using the import line <code>from paraview.web import venv</code> or by using our <a target="_blank" rel="noopener" href="https://github.com/Kitware/trame/blob/master/examples/v1/ParaView/venv.py">local version</a> and importing it.</p>
+<p><strong>First</strong>, we need to setup the ParaView add-on python environment, in which we will only install <em><strong>trame</strong></em>, but we could add any other Python libraries that are not included in the ParaView bundle.</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python3.9 -m venv .pvenv</span><br><span class="line"><span class="built_in">source</span> ./.pvenv/bin/activate</span><br><span class="line">python -m pip install --upgrade pip</span><br><span class="line">pip install <span class="string">&quot;trame&quot;</span></span><br><span class="line">deactivate</span><br></pre></td></tr></table></figure>
 
 <p><strong>Note:</strong></p>
@@ -129,7 +129,7 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/Applications/ParaView-5.10.0-RC1.app/Contents/bin/pvpython \</span><br><span class="line">    ./05_paraview/SimpleCone.py  \</span><br><span class="line">    --venv .pvenv</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://kitware.github.io/trame/examples/pvSimpleCone-Remote.jpg" alt="Simple Cone"></p>
-<h2 id="Understanding-this-ParaView-example" class="article-heading"><a href="#Understanding-this-ParaView-example" class="headerlink" title="Understanding this ParaView example"></a>Understanding this ParaView example<a class="article-anchor" href="#Understanding-this-ParaView-example" aria-hidden="true"></a></h2><p>ParaView use proxies which abstracts the VTK object handling so they can be easily distributed for very large datasets.</p>
+<h2 id="Understanding-this-ParaView-example" class="article-heading"><a href="#Understanding-this-ParaView-example" class="headerlink" title="Understanding this ParaView example"></a>Understanding this ParaView example<a class="article-anchor" href="#Understanding-this-ParaView-example" aria-hidden="true"></a></h2><p>ParaView use proxies which abstracts the VTK object handling so they can be easily distributed to support the processing of very large datasets.</p>
 <p>For simplified usage, ParaView provides a <code>simple</code> package that lets us <em><strong>simply</strong></em> create and interact with these proxies. The <code>SimpleCone.py</code> example provides the core concepts needed to understand how to work with ParaView.</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> paraview <span class="keyword">import</span> simple</span><br><span class="line"></span><br><span class="line">cone = simple.Cone()               <span class="comment"># Create a source (reader, filter...)</span></span><br><span class="line">representation = simple.Show(cone) <span class="comment"># Create a representation in a view (if no view, one is created)</span></span><br><span class="line">view = simple.Render()             <span class="comment"># Ask to compute image of active view and return the corresponding view</span></span><br></pre></td></tr></table></figure>
 
@@ -144,14 +144,14 @@
 <p>we import the <code>paraview</code> module</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> trame.html <span class="keyword">import</span> vuetify, paraview</span><br></pre></td></tr></table></figure>
 
-<h2 id="GUI" class="article-heading"><a href="#GUI" class="headerlink" title="GUI"></a>GUI<a class="article-anchor" href="#GUI" aria-hidden="true"></a></h2><p>Now we can start adding some UI to control some of the parameters that we want to interact with dynamically.<br>Let’s add a slider to control the resolution of the cone. We need to create a method to react when the <code>resolution</code> is changed by the slider. In ParaView proxies, object parameters are simple properties that can be get or set in a transparent manner. At this point, we simply need to update the <code>cone.Resolution</code> and update the view to see the change.</p>
+<h2 id="GUI" class="article-heading"><a href="#GUI" class="headerlink" title="GUI"></a>GUI<a class="article-anchor" href="#GUI" aria-hidden="true"></a></h2><p>Now we can start adding some UI to control some of the parameters that we want to interact with dynamically. Let’s first add a slider to control the resolution of the cone. We need to create a method to react when the <code>resolution</code> is changed by the slider. In ParaView proxies, object parameters are simple properties that can be get or set in a transparent manner. At this point, we simply need to update the <code>cone.Resolution</code> and update the view to see the change.</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">@state.change(<span class="params"><span class="string">&quot;resolution&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">update_cone</span>(<span class="params">resolution, **kwargs</span>):</span><br><span class="line">    cone.Resolution = resolution</span><br><span class="line">    html_view.update()</span><br></pre></td></tr></table></figure>
 
 <p>Now, we can extend the UI with a slider on the <code>layout.toolbar</code></p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">DEFAULT_RESOLUTION = <span class="number">6</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> layout.toolbar:</span><br><span class="line">    vuetify.VSlider(</span><br><span class="line">        v_model=(<span class="string">&quot;resolution&quot;</span>, DEFAULT_RESOLUTION),</span><br><span class="line">        <span class="built_in">min</span>=<span class="number">3</span>,</span><br><span class="line">        <span class="built_in">max</span>=<span class="number">60</span>,</span><br><span class="line">        step=<span class="number">1</span>,</span><br><span class="line">        hide_details=<span class="literal">True</span>,</span><br><span class="line">        dense=<span class="literal">True</span>,</span><br><span class="line">    )</span><br></pre></td></tr></table></figure>
 
 <p>With these few lines, we have created a 3D cone, which we can adjust the resolution all leveraging ParaView.</p>
-<p>To learn more about ParaView scripting, you should look into ParaView trace which let you convert your UI interaction into actual Python code that can then be reused in your application.</p>
+<p>To learn more about ParaView scripting, look into ParaView trace which let you convert your UI interaction into actual Python code that can then be reused in your application.</p>
 <center>
 <img src="../images/tutorial-paraview-trace.jpg" width="75%">
 </center>
@@ -209,9 +209,10 @@
 <img src="https://kitware.github.io/trame/examples/PVStateViewer-diskout.jpg" height="200px">
 <img src="https://kitware.github.io/trame/examples/StateViewer-diskout.jpg" height="200px">
 </center>
+
               </div>
               <footer class="article-footer">
-                <time class="article-footer-updated" datetime="2022-06-21T00:43:10.827Z" itemprop="dateModified">Last updated: 2022-06-21</time>
+                <time class="article-footer-updated" datetime="2022-06-24T10:29:35.676Z" itemprop="dateModified">Last updated: 2022-06-24</time>
                 <a href="tutorial-application.html" class="article-footer-prev" title="Application"><i class="fa fa-chevron-left"></i><span>Prev</span></a>
               </footer>
               

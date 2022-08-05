@@ -14,8 +14,13 @@ state, ctrl = server.state, server.controller
 # Keep track of the currently selected directory
 state.selected_dir = "None"
 
+root = Tk()
+
 # Ensure the tkinter main window is hidden
-Tk().withdraw()
+root.withdraw()
+
+# Ensure that the file browser will appear in front on Windows
+root.wm_attributes("-topmost", 1)
 
 
 def open_directory():

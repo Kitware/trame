@@ -21,6 +21,13 @@ Welcome to Trame's documentation!
 
 .. toctree::
    :hidden:
+   :caption: Client API
+
+   client.intro
+   client.utils
+
+.. toctree::
+   :hidden:
    :caption: Core Classes
 
    core.server

@@ -2,6 +2,25 @@
 
 <!--next-version-placeholder-->
 
+## v2.1.2 (2022-08-24)
+### Fix
+* **simput:** Add simput as default dependency ([`b6ca24c`](https://github.com/Kitware/trame/commit/b6ca24ccace036122abe6dce27f5d51fab53fb2e))
+
+### Documentation
+* **examples:** Add validation examples ([`8a7e1ca`](https://github.com/Kitware/trame/commit/8a7e1ca1416e61014c31315096343c83e1c8f91e))
+* **api:** Update client side API ([`738565f`](https://github.com/Kitware/trame/commit/738565fe1960aba916fd7bf6709de5b3f6a33c0a))
+* **reverse-stop:** Test client to ask server to stop ([`1877a46`](https://github.com/Kitware/trame/commit/1877a46c9e2be8b4e0a6157de16851d362761734))
+* **relay:** Add reverse connection and relay scenario ([`7cbfbf4`](https://github.com/Kitware/trame/commit/7cbfbf46bf1dc46850768909802da08d725c0944))
+* **example:** Add validation for download with promise ([`51ad010`](https://github.com/Kitware/trame/commit/51ad0108a72f24a67449e05eba306581c0f818b9))
+* **examples:** Ensure file browser appears in front ([`ef1a869`](https://github.com/Kitware/trame/commit/ef1a869dd4e6aa8c38a4da2dc3ebd1e1b47332f8))
+* **examples:** Add tkinter file browser example ([`190b37d`](https://github.com/Kitware/trame/commit/190b37dbcf56c900db0e38031f953b5695685067))
+* **coverage:** Remove codecov PR comment ([`49065a0`](https://github.com/Kitware/trame/commit/49065a0abb766c06c12972fa5022ee455d1fce9f))
+* **website:** Improve language and grammar ([`6959dc8`](https://github.com/Kitware/trame/commit/6959dc8971f2bbe34c0afdfc90fe2fabde29c242))
+* **coverage:** Add .coveragerc ([`41c4d62`](https://github.com/Kitware/trame/commit/41c4d62e7a6f5dba41fd9305b314c87fa8ed7b6f))
+* **ci:** Add coverage and codecov upload ([`e6f3181`](https://github.com/Kitware/trame/commit/e6f3181c053c009017a95355721525dc502c5d35))
+* **readme:** Add CI badge ([`c07b0d2`](https://github.com/Kitware/trame/commit/c07b0d22c673883e58914ea36489d49fc54b8ac4))
+* **readme:** Fix invalid path for pict ([`97b4a3c`](https://github.com/Kitware/trame/commit/97b4a3cb0c5a2346775d4f921107772200c87670))
+
 ## v2.1.1 (2022-06-15)
 ### Fix
 * **mimetypes:** Ensure javascript files get the correct mimetype ([`40a9618`](https://github.com/Kitware/trame/commit/40a9618af62da9f7d2b88bc333938c9ccc647487))

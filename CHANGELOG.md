@@ -2,6 +2,13 @@
 
 <!--next-version-placeholder-->
 
+## v2.2.0 (2022-08-29)
+### Feature
+* **ClientFile:** Add helper to handle multi-part upload file ([`d00907f`](https://github.com/Kitware/trame/commit/d00907f9b3806cb2d94b6565527956475848a7a2))
+
+### Documentation
+* **website:** Fix spacing ([`7073f5a`](https://github.com/Kitware/trame/commit/7073f5a401e0b9f626908784f3d8d73ac7316f9e))
+
 ## v2.1.2 (2022-08-24)
 ### Fix
 * **simput:** Add simput as default dependency ([`b6ca24c`](https://github.com/Kitware/trame/commit/b6ca24ccace036122abe6dce27f5d51fab53fb2e))

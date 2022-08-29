@@ -20,6 +20,60 @@
   </url>
   
   <url>
+    <loc>https://kitware.github.io/trame/docs/module-vuetify.html</loc>
+    
+    <lastmod>2022-08-29</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/module-widgets.html</loc>
+    
+    <lastmod>2022-08-29</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/trame_v2_intro.html</loc>
+    
+    <lastmod>2022-08-29</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/trame_v2_migration.html</loc>
+    
+    <lastmod>2022-08-29</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/tutorial-application.html</loc>
+    
+    <lastmod>2022-08-29</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/tutorial-download.html</loc>
+    
+    <lastmod>2022-08-29</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://kitware.github.io/trame/docs/tutorial-html.html</loc>
     
     <lastmod>2022-08-29</lastmod>
@@ -174,60 +228,6 @@
   
   <url>
     <loc>https://kitware.github.io/trame/docs/module-vtk.html</loc>
-    
-    <lastmod>2022-08-29</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/module-vuetify.html</loc>
-    
-    <lastmod>2022-08-29</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/module-widgets.html</loc>
-    
-    <lastmod>2022-08-29</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/trame_v2_intro.html</loc>
-    
-    <lastmod>2022-08-29</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/trame_v2_migration.html</loc>
-    
-    <lastmod>2022-08-29</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/tutorial-application.html</loc>
-    
-    <lastmod>2022-08-29</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/tutorial-download.html</loc>
     
     <lastmod>2022-08-29</lastmod>
     

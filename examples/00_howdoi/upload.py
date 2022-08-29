@@ -4,6 +4,7 @@ Delta v1..v2          - https://github.com/Kitware/trame/commit/faf00108b8d4cb3f
 """
 
 from trame.app import get_server
+from trame.app.file_upload import ClientFile
 from trame.ui.vuetify import VAppLayout
 from trame.widgets import vuetify
 
@@ -21,13 +22,17 @@ def file_uploaded(file_exchange, **kwargs):
     if file_exchange is None:
         return
 
+    file = ClientFile(file_exchange)
     file_name = file_exchange.get("name")
     file_size = file_exchange.get("size")
     file_time = file_exchange.get("lastModified")
     file_mime_type = file_exchange.get("type")
-    file_binary_content = file_exchange.get("content")
-    print(f"Got file {file_name} of size {file_size}")
-    print(file_binary_content)
+    file_binary_content = file_exchange.get(
+        "content"
+    )  # can be either list(bytes, ...), or bytes
+    print(file.info)
+    print(type(file.content))  # will always be bytes
+    # print(file_binary_content)
 
 
 if __name__ == "__main__":

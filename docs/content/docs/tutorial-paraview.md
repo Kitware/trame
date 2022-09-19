@@ -6,7 +6,7 @@ ParaView 5.10+ can be downloaded from [here](https://www.paraview.org/download).
 
 ## Virtual Environment
 
-ParaView comes with its own Python, which may be missing some dependencies for the desired usage. We can add more Python packages into ParaView by creating a virtual environment and then activating it inside the application using the import line `from paraview.web import venv` or by using our [local version](https://github.com/Kitware/trame/blob/master/examples/v1/ParaView/venv.py) and importing it.
+ParaView comes with its own Python, which may be missing some dependencies for the desired usage. We can add more Python packages into ParaView by creating a virtual environment and then activating it inside the application using the import line `import paraview.web.venv` or by using our [local version](https://github.com/Kitware/trame/blob/master/examples/v1/ParaView/venv.py) and importing it.
 
 
 **First**, we need to setup the ParaView add-on python environment, in which we will only install ***trame***, but we could add any other Python libraries that are not included in the ParaView bundle.
@@ -22,13 +22,31 @@ deactivate
 **Note:**
  - We can not use our virtual environment with a `vtk` as our `vtk` library will conflict with the one inside Paraview.
  - Since ParaView includes `vtk`, any VTK example can be run with ParaView assuming the proper code is used to handle the virtual-env loading to get ***trame*** inside our Python script.
+ - The python you use for creating your virtual-environment must match the Python version that comes with ParaView. (So far 5.10 and 5.11 use Python 3.9)
+
+## Conda environment
+
+Conda provide many open-source packages and ParaView is part of their offering. When using the conda approach you won't need to download ParaView as it will get installed by conda for you. That way you can create a virtual-environment that can contain both ParaView and trame by doing the following.
+
+```bash
+conda create -n pv-env -c conda-forge paraview
+conda activate pv-env
+pip install trame
+```
+
+Then later you can simply use python rather than pvpython
+
+```bash
+conda activate pv-env
+python .../trame-app.py
+```
 
 ## Making ***trame*** available in ParaView
 
 At the very top of our scripts, we need to import our helper script so the `--venv path/to/venv` can be processed.
 
 ```python
-from paraview.web import venv
+import paraview.web.venv # When using downloaded ParaView from Kitware
 ```
 
 After that we can import ***trame*** and start using it (assuming we run our application with the `--venv /path/to/venv/with/trame` argument).

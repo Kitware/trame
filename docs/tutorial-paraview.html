@@ -55,8 +55,8 @@
 <meta property="og:image" content="https://kitware.github.io/trame/examples/StateViewer-medical.jpg">
 <meta property="og:image" content="https://kitware.github.io/trame/examples/PVStateViewer-diskout.jpg">
 <meta property="og:image" content="https://kitware.github.io/trame/examples/StateViewer-diskout.jpg">
-<meta property="article:published_time" content="2022-09-16T20:52:49.300Z">
-<meta property="article:modified_time" content="2022-09-16T20:52:49.300Z">
+<meta property="article:published_time" content="2022-09-19T15:24:13.375Z">
+<meta property="article:modified_time" content="2022-09-19T15:24:13.375Z">
 <meta property="article:author" content="Kitware Inc.">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://kitware.github.io/trame/examples/pvSimpleCone-Remote.jpg">
@@ -112,7 +112,7 @@
               </header>
               <div class="article-content" itemprop="articleBody">
                 <h1 id="ParaView" class="article-heading"><a href="#ParaView" class="headerlink" title="ParaView"></a>ParaView<a class="article-anchor" href="#ParaView" aria-hidden="true"></a></h1><h2 id="Download-ParaView" class="article-heading"><a href="#Download-ParaView" class="headerlink" title="Download ParaView"></a>Download ParaView<a class="article-anchor" href="#Download-ParaView" aria-hidden="true"></a></h2><p>ParaView 5.10+ can be downloaded from <a target="_blank" rel="noopener" href="https://www.paraview.org/download">here</a>.</p>
-<h2 id="Virtual-Environment" class="article-heading"><a href="#Virtual-Environment" class="headerlink" title="Virtual Environment"></a>Virtual Environment<a class="article-anchor" href="#Virtual-Environment" aria-hidden="true"></a></h2><p>ParaView comes with its own Python, which may be missing some dependencies for the desired usage. We can add more Python packages into ParaView by creating a virtual environment and then activating it inside the application using the import line <code>from paraview.web import venv</code> or by using our <a target="_blank" rel="noopener" href="https://github.com/Kitware/trame/blob/master/examples/v1/ParaView/venv.py">local version</a> and importing it.</p>
+<h2 id="Virtual-Environment" class="article-heading"><a href="#Virtual-Environment" class="headerlink" title="Virtual Environment"></a>Virtual Environment<a class="article-anchor" href="#Virtual-Environment" aria-hidden="true"></a></h2><p>ParaView comes with its own Python, which may be missing some dependencies for the desired usage. We can add more Python packages into ParaView by creating a virtual environment and then activating it inside the application using the import line <code>import paraview.web.venv</code> or by using our <a target="_blank" rel="noopener" href="https://github.com/Kitware/trame/blob/master/examples/v1/ParaView/venv.py">local version</a> and importing it.</p>
 <p><strong>First</strong>, we need to setup the ParaView add-on python environment, in which we will only install <em><strong>trame</strong></em>, but we could add any other Python libraries that are not included in the ParaView bundle.</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python3.9 -m venv .pvenv</span><br><span class="line"><span class="built_in">source</span> ./.pvenv/bin/activate</span><br><span class="line">python -m pip install --upgrade pip</span><br><span class="line">pip install <span class="string">&quot;trame&quot;</span></span><br><span class="line">deactivate</span><br></pre></td></tr></table></figure>
 
@@ -120,9 +120,16 @@
 <ul>
 <li>We can not use our virtual environment with a <code>vtk</code> as our <code>vtk</code> library will conflict with the one inside Paraview.</li>
 <li>Since ParaView includes <code>vtk</code>, any VTK example can be run with ParaView assuming the proper code is used to handle the virtual-env loading to get <em><strong>trame</strong></em> inside our Python script.</li>
+<li>The python you use for creating your virtual-environment must match the Python version that comes with ParaView. (So far 5.10 and 5.11 use Python 3.9)</li>
 </ul>
+<h2 id="Conda-environment" class="article-heading"><a href="#Conda-environment" class="headerlink" title="Conda environment"></a>Conda environment<a class="article-anchor" href="#Conda-environment" aria-hidden="true"></a></h2><p>Conda provide many open-source packages and ParaView is part of their offering. When using the conda approach you won’t need to download ParaView as it will get installed by conda for you. That way you can create a virtual-environment that can contain both ParaView and trame by doing the following.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda create -n pv-env -c conda-forge paraview</span><br><span class="line">conda activate pv-env</span><br><span class="line">pip install trame</span><br></pre></td></tr></table></figure>
+
+<p>Then later you can simply use python rather than pvpython</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda activate pv-env</span><br><span class="line">python .../trame-app.py</span><br></pre></td></tr></table></figure>
+
 <h2 id="Making-trame-available-in-ParaView" class="article-heading"><a href="#Making-trame-available-in-ParaView" class="headerlink" title="Making trame available in ParaView"></a>Making <em><strong>trame</strong></em> available in ParaView<a class="article-anchor" href="#Making-trame-available-in-ParaView" aria-hidden="true"></a></h2><p>At the very top of our scripts, we need to import our helper script so the <code>--venv path/to/venv</code> can be processed.</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> paraview.web <span class="keyword">import</span> venv</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> paraview.web.venv <span class="comment"># When using downloaded ParaView from Kitware</span></span><br></pre></td></tr></table></figure>
 
 <p>After that we can import <em><strong>trame</strong></em> and start using it (assuming we run our application with the <code>--venv /path/to/venv/with/trame</code> argument).</p>
 <h2 id="Running-an-example" class="article-heading"><a href="#Running-an-example" class="headerlink" title="Running an example"></a>Running an example<a class="article-anchor" href="#Running-an-example" aria-hidden="true"></a></h2><p>The command line below illustrate how a SimpleCone example can be run on a <strong>Mac</strong> computer where ParaView 5.10 has been installed.</p>
@@ -212,7 +219,7 @@
 
               </div>
               <footer class="article-footer">
-                <time class="article-footer-updated" datetime="2022-09-16T20:52:49.300Z" itemprop="dateModified">Last updated: 2022-09-16</time>
+                <time class="article-footer-updated" datetime="2022-09-19T15:24:13.375Z" itemprop="dateModified">Last updated: 2022-09-19</time>
                 <a href="tutorial-application.html" class="article-footer-prev" title="Application"><i class="fa fa-chevron-left"></i><span>Prev</span></a>
               </footer>
               
@@ -221,7 +228,7 @@
           <aside id="article-toc" role="navigation">
             <div id="article-toc-inner">
               <strong class="sidebar-title">Contents</strong>
-              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ParaView"><span class="toc-text">ParaView</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Download-ParaView"><span class="toc-text">Download ParaView</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Virtual-Environment"><span class="toc-text">Virtual Environment</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Making-trame-available-in-ParaView"><span class="toc-text">Making trame available in ParaView</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Running-an-example"><span class="toc-text">Running an example</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Understanding-this-ParaView-example"><span class="toc-text">Understanding this ParaView example</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GUI"><span class="toc-text">GUI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Advanced-example"><span class="toc-text">Advanced example</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Running-the-StateLoader"><span class="toc-text">Running the StateLoader</span></a></li></ol></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ParaView"><span class="toc-text">ParaView</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Download-ParaView"><span class="toc-text">Download ParaView</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Virtual-Environment"><span class="toc-text">Virtual Environment</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conda-environment"><span class="toc-text">Conda environment</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Making-trame-available-in-ParaView"><span class="toc-text">Making trame available in ParaView</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Running-an-example"><span class="toc-text">Running an example</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Understanding-this-ParaView-example"><span class="toc-text">Understanding this ParaView example</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GUI"><span class="toc-text">GUI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Advanced-example"><span class="toc-text">Advanced example</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Running-the-StateLoader"><span class="toc-text">Running the StateLoader</span></a></li></ol></li></ol>
               <a href="#" id="article-toc-top">Back to Top</a>
             </div>
           </aside>

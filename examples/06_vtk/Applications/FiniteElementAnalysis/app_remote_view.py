@@ -85,6 +85,12 @@ def update_grid(nodes_file, elems_file, field_file, **kwargs):
     nodes_bytes = nodes_file.get("content")
     elems_bytes = elems_file.get("content")
 
+    if isinstance(nodes_bytes, list):
+        nodes_bytes = b"".join(nodes_bytes)
+
+    if isinstance(elems_bytes, list):
+        elems_bytes = b"".join(elems_bytes)
+
     df_nodes = pd.read_csv(
         io.StringIO(nodes_bytes.decode("utf-8")),
         delim_whitespace=True,
@@ -172,6 +178,8 @@ def update_grid(nodes_file, elems_file, field_file, **kwargs):
     # Add field if any
     if field_file:
         field_bytes = field_file.get("content")
+        if isinstance(field_bytes, list):
+            field_bytes = b"".join(field_bytes)
         df_elem_data = pd.read_csv(
             io.StringIO(field_bytes.decode("utf-8")),
             delim_whitespace=True,
@@ -236,6 +244,7 @@ def update_mesh_representations(**kwargs):
     property.SetRepresentation(representation)
     property.SetColor(color)
     property.SetOpacity(opacity)
+    property.SetLineWidth(2)
     ctrl.view_update()
 
 
@@ -322,7 +331,9 @@ with SinglePageLayout(server) as layout:
             classes="pa-0 fill-height",
             style="position: relative",
         ):
-            html_view = vtk.VtkRemoteView(renderWindow, interactive_ratio=("1",))
+            html_view = vtk.VtkRemoteView(
+                renderWindow, interactive_ratio=("1",), interactive_quality=(80,)
+            )
             ctrl.view_update = html_view.update
             ctrl.view_reset_camera = html_view.reset_camera
 

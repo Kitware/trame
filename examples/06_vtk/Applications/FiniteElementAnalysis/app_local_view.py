@@ -86,6 +86,12 @@ def update_grid(nodes_file, elems_file, field_file, **kwargs):
     nodes_bytes = nodes_file.get("content")
     elems_bytes = elems_file.get("content")
 
+    if isinstance(nodes_bytes, list):
+        nodes_bytes = b"".join(nodes_bytes)
+
+    if isinstance(elems_bytes, list):
+        elems_bytes = b"".join(elems_bytes)
+
     df_nodes = pd.read_csv(
         io.StringIO(nodes_bytes.decode("utf-8")),
         delim_whitespace=True,
@@ -173,6 +179,8 @@ def update_grid(nodes_file, elems_file, field_file, **kwargs):
     # Add field if any
     if field_file:
         field_bytes = field_file.get("content")
+        if isinstance(field_bytes, list):
+            field_bytes = b"".join(field_bytes)
         df_elem_data = pd.read_csv(
             io.StringIO(field_bytes.decode("utf-8")),
             delim_whitespace=True,
@@ -252,7 +260,7 @@ file_style = {
     "style": "max-width: 200px",
     "class": "mx-2",
     "small_chips": True,
-    "clearable": ("false",),
+    "clearable": False,
     "accept": ".txt",
 }
 

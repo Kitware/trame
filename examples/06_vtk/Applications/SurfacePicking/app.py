@@ -46,7 +46,7 @@ VIEW_SELECT = [{"button": 1, "action": "Select"}]
 
 data_directory = Path(__file__).parent.parent.parent.with_name("data")
 f1_vtp = data_directory / "f1.vtp"
-print(f1_vtp)
+# print(f1_vtp)
 
 reader = vtkXMLPolyDataReader()
 reader.SetFileName(f1_vtp)
@@ -94,7 +94,7 @@ state.update(
         "selectData": None,
         "tooltip": "",
         "coneVisibility": False,
-        "pixel_ratio": 1,
+        "pixel_ratio": 2,
         # Meshes
         "f1Visible": True,
     }
@@ -303,6 +303,17 @@ with SinglePageLayout(server) as layout:
                         vtk_class="vtkConeSource",
                         state=("cone", {}),
                     )
+# -----------------------------------------------------------------------------
+# Jupyter
+# -----------------------------------------------------------------------------
+
+
+def show(**kwargs):
+    from trame.app import jupyter
+
+    jupyter.show(server, **kwargs)
+
+
 # -----------------------------------------------------------------------------
 # CLI
 # -----------------------------------------------------------------------------

@@ -4,7 +4,7 @@ Delta v1..v2          - https://github.com/Kitware/trame/commit/674f72774228bbca
 """
 
 from trame.app import get_server
-from trame.widgets import vuetify, vtk
+from trame.widgets import vuetify, vtk as vtk_widgets
 from trame.ui.vuetify import SinglePageLayout
 
 from vtkmodules.vtkFiltersSources import vtkConeSource
@@ -67,10 +67,12 @@ with SinglePageLayout(server) as layout:
 
     with layout.content:
         with vuetify.VContainer(fluid=True, classes="pa-0 fill-height"):
-            with vtk.VtkView() as view:
+            with vtk_widgets.VtkView() as view:
                 ctrl.view_reset_camera = view.reset_camera
-                with vtk.VtkGeometryRepresentation():
-                    html_polydata = vtk.VtkPolyData("cone", dataset=cone_generator)
+                with vtk_widgets.VtkGeometryRepresentation():
+                    html_polydata = vtk_widgets.VtkPolyData(
+                        "cone", dataset=cone_generator
+                    )
                     ctrl.mesh_update = html_polydata.update
 
 

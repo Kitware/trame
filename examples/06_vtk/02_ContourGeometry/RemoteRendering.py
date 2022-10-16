@@ -6,7 +6,7 @@ Delta v1..v2          - https://github.com/Kitware/trame/commit/3852cba56cd63f6e
 from pathlib import Path
 
 from trame.app import get_server
-from trame.widgets import vuetify, vtk
+from trame.widgets import vuetify, vtk as vtk_widgets
 from trame.ui.vuetify import SinglePageLayout
 
 from vtkmodules.vtkIOXML import vtkXMLImageDataReader
@@ -133,8 +133,8 @@ with SinglePageLayout(server) as layout:
             fluid=True,
             classes="pa-0 fill-height",
         ):
-            # view = vtk.VtkLocalView(renderWindow)
-            view = vtk.VtkRemoteView(renderWindow)
+            # view = vtk_widgets.VtkLocalView(renderWindow)
+            view = vtk_widgets.VtkRemoteView(renderWindow)
             ctrl.view_update = view.update
             ctrl.view_reset_camera = view.reset_camera
             ctrl.on_server_ready.add(view.update)

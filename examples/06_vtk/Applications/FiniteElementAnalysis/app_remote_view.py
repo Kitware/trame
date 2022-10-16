@@ -27,7 +27,7 @@ from vtkmodules.vtkRenderingCore import (
 
 from trame.app import get_server
 from trame.ui.vuetify import SinglePageLayout
-from trame.widgets import vuetify, vtk
+from trame.widgets import vuetify, vtk as vtk_widgets
 
 # -----------------------------------------------------------------------------
 # Trame setup
@@ -331,7 +331,7 @@ with SinglePageLayout(server) as layout:
             classes="pa-0 fill-height",
             style="position: relative",
         ):
-            html_view = vtk.VtkRemoteView(
+            html_view = vtk_widgets.VtkRemoteView(
                 renderWindow, interactive_ratio=("1",), interactive_quality=(80,)
             )
             ctrl.view_update = html_view.update

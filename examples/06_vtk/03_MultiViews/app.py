@@ -4,7 +4,7 @@ Delta v1..v2          - https://github.com/Kitware/trame/commit/ba381b3ad286b626
 """
 
 from trame.app import get_server
-from trame.widgets import vuetify, vtk
+from trame.widgets import vuetify, vtk as vtk_widgets
 from trame.ui.vuetify import SinglePageLayout
 
 from vtkmodules.vtkFiltersSources import vtkConeSource
@@ -125,7 +125,9 @@ with SinglePageLayout(server) as layout:
                     )
                 with container:
                     with vuetify.VCol(classes="pa-0 ma-0"):
-                        view = vtk.VtkRemoteView(render_window, ref=f"view{idx}")
+                        view = vtk_widgets.VtkRemoteView(
+                            render_window, ref=f"view{idx}"
+                        )
                         html_views.append(view)
                         ctrl.update_views.add(view.update)
                         ctrl.reset_camera.add(view.reset_camera)

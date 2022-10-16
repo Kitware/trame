@@ -7,7 +7,7 @@ from pathlib import Path
 
 from trame.app import get_server
 from trame.ui.vuetify import SinglePageLayout
-from trame.widgets import vtk, vuetify, html, trame
+from trame.widgets import vuetify, html, trame, vtk as vtk_widgets
 
 from vtkmodules.web.utils import mesh as vtk_mesh
 from vtkmodules.vtkIOXML import vtkXMLPolyDataReader
@@ -262,7 +262,7 @@ with SinglePageLayout(server) as layout:
             ):
                 with vuetify.VCardText():
                     html.Pre("{{ tooltip }}")
-            with vtk.VtkView(
+            with vtk_widgets.VtkView(
                 ref="view",
                 picking_modes=("[pickingMode]",),
                 interactor_settings=("interactorSettings", VIEW_INTERACT),
@@ -270,7 +270,7 @@ with SinglePageLayout(server) as layout:
                 hover="pickData = $event",
                 select="selectData = $event",
             ):
-                with vtk.VtkGeometryRepresentation(
+                with vtk_widgets.VtkGeometryRepresentation(
                     id="f1",
                     v_if="f1",
                     color_map_preset=("colorMap",),
@@ -280,26 +280,26 @@ with SinglePageLayout(server) as layout:
                         "{ colorByArrayName: field, scalarMode: 3, interpolateScalarsBeforeMapping: true, scalarVisibility: field !== 'solid' }",
                     ),
                 ):
-                    vtk.VtkMesh("f1", dataset=f1_mesh, point_arrays=["p", "U"])
-                with vtk.VtkGeometryRepresentation(
+                    vtk_widgets.VtkMesh("f1", dataset=f1_mesh, point_arrays=["p", "U"])
+                with vtk_widgets.VtkGeometryRepresentation(
                     id="selection",
                     actor=("{ visibility: !!selection }",),
                     property=(
                         "{ color: [0.99,0.13,0.37], representation: 0, pointSize: Math.round(5 * pixel_ratio)}",
                     ),
                 ):
-                    vtk.VtkMesh("selection", state=("selection", None))
-                with vtk.VtkGeometryRepresentation(
+                    vtk_widgets.VtkMesh("selection", state=("selection", None))
+                with vtk_widgets.VtkGeometryRepresentation(
                     id="frustrum",
                     actor=("{ visibility: !!frustrum }",),
                 ):
-                    vtk.VtkMesh("frustrum", state=("frustrum", None))
-                with vtk.VtkGeometryRepresentation(
+                    vtk_widgets.VtkMesh("frustrum", state=("frustrum", None))
+                with vtk_widgets.VtkGeometryRepresentation(
                     id="pointer",
                     property=("{ color: [1, 0, 0]}",),
                     actor=("{ visibility: coneVisibility }",),
                 ):
-                    vtk.VtkAlgorithm(
+                    vtk_widgets.VtkAlgorithm(
                         vtk_class="vtkConeSource",
                         state=("cone", {}),
                     )

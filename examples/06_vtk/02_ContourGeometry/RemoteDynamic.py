@@ -6,7 +6,7 @@ Delta v1..v2          - https://github.com/Kitware/trame/commit/3852cba56cd63f6e
 from pathlib import Path
 
 from trame.app import get_server
-from trame.widgets import vuetify, vtk
+from trame.widgets import vuetify, vtk as vtk_widgets
 from trame.ui.vuetify import SinglePageLayout
 
 from vtkmodules.vtkIOXML import vtkXMLImageDataReader
@@ -118,8 +118,8 @@ def commit_changes():
 # GUI
 # -----------------------------------------------------------------------------
 
-html_remote_view = vtk.VtkRemoteView(renderWindow, trame_server=server)
-html_local_view = vtk.VtkLocalView(renderWindow, trame_server=server)
+html_remote_view = vtk_widgets.VtkRemoteView(renderWindow, trame_server=server)
+html_local_view = vtk_widgets.VtkLocalView(renderWindow, trame_server=server)
 
 
 layout = SinglePageLayout(server)

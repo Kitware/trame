@@ -5,7 +5,7 @@ Delta v1..v2          - https://github.com/Kitware/trame/commit/33f52b6bb9eb7312
 
 from trame.app import get_server
 from trame.ui.vuetify import SinglePageLayout
-from trame.widgets import vuetify, vtk
+from trame.widgets import vuetify, vtk as vtk_widgets
 
 # -----------------------------------------------------------------------------
 # Trame setup
@@ -23,9 +23,9 @@ state.trame__title = "VTK Rendering"
 with SinglePageLayout(server) as layout:
     with layout.content:
         with vuetify.VContainer(fluid=True, classes="pa-0 fill-height"):
-            with vtk.VtkView(ref="view"):
-                with vtk.VtkGeometryRepresentation():
-                    vtk.VtkAlgorithm(
+            with vtk_widgets.VtkView(ref="view"):
+                with vtk_widgets.VtkGeometryRepresentation():
+                    vtk_widgets.VtkAlgorithm(
                         vtkClass="vtkConeSource", state=("{ resolution }",)
                     )
 

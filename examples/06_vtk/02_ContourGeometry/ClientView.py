@@ -6,7 +6,7 @@ Delta v1..v2          - https://github.com/Kitware/trame/commit/3852cba56cd63f6e
 from pathlib import Path
 
 from trame.app import get_server
-from trame.widgets import vuetify, vtk
+from trame.widgets import vuetify, vtk as vtk_widgets
 from trame.ui.vuetify import SinglePageLayout
 
 from vtkmodules.vtkIOXML import vtkXMLImageDataReader
@@ -94,10 +94,10 @@ with SinglePageLayout(server) as layout:
 
     with layout.content:
         with vuetify.VContainer(fluid=True, classes="pa-0 fill-height"):
-            with vtk.VtkView() as view:
+            with vtk_widgets.VtkView() as view:
                 layout.icon.click = view.reset_camera
-                with vtk.VtkGeometryRepresentation():
-                    polydata = vtk.VtkPolyData("contour", dataset=contour)
+                with vtk_widgets.VtkGeometryRepresentation():
+                    polydata = vtk_widgets.VtkPolyData("contour", dataset=contour)
                     ctrl.ds_update = polydata.update
 
 # -----------------------------------------------------------------------------

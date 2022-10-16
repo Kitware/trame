@@ -13,7 +13,7 @@ import plotly.express as px
 from trame.app import get_server
 from trame.assets.remote import HttpFile
 from trame.ui.vuetify import SinglePageLayout
-from trame.widgets import vuetify, plotly, vtk, trame
+from trame.widgets import vuetify, plotly, trame, vtk as vtk_widgets
 
 # VTK imports
 from vtkmodules.vtkIOXML import vtkXMLUnstructuredGridReader
@@ -299,13 +299,13 @@ with SinglePageLayout(server) as layout:
                     classes="pa-0",
                     style="border-right: 1px solid #ccc; position: relative;",
                 ):
-                    view = vtk.VtkRemoteView(
+                    view = vtk_widgets.VtkRemoteView(
                         render_window,
                         box_selection=("vtk_selection",),
                         box_selection_change=(on_box_selection_change, "[$event]"),
                         **VTK_VIEW_SETTINGS,
                     )
-                    # view = vtk.VtkLocalView(
+                    # view = vtk_widgets.VtkLocalView(
                     #     render_window,
                     #     box_selection=("vtk_selection",),
                     #     box_selection_change=(on_box_selection_change, "[$event]"),

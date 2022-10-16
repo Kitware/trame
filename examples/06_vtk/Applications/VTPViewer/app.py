@@ -5,7 +5,7 @@ Delta v1..v2          - https://github.com/Kitware/trame/commit/8d7fd7d3f1136063
 
 from trame.app import get_server
 from trame.ui.vuetify import SinglePageLayout
-from trame.widgets import vtk, vuetify, trame
+from trame.widgets import vuetify, trame, vtk as vtk_widgets
 
 from vtkmodules.vtkIOXML import vtkXMLPolyDataReader
 from vtkmodules.web.utils import mesh as vtk_mesh
@@ -131,9 +131,9 @@ with SinglePageLayout(server) as layout:
         with vuetify.VContainer(
             fluid=True, classes="pa-0 fill-height", style="position: relative;"
         ):
-            with vtk.VtkView(ref="view") as view:
+            with vtk_widgets.VtkView(ref="view") as view:
                 ctrl.view_reset_camera = view.reset_camera
-                with vtk.VtkGeometryRepresentation(
+                with vtk_widgets.VtkGeometryRepresentation(
                     v_for="mesh, idx in meshes",
                     key=("idx",),
                     color_data_range=(
@@ -143,7 +143,7 @@ with SinglePageLayout(server) as layout:
                         "{ colorByArrayName: field, scalarMode: fields[field] && fields[field].scalarMode || 3, interpolateScalarsBeforeMapping: true, scalarVisibility: field !== 'solid' }",
                     ),
                 ):
-                    vtk.VtkMesh("myMesh", state=("mesh",))
+                    vtk_widgets.VtkMesh("myMesh", state=("mesh",))
 
 
 # -----------------------------------------------------------------------------

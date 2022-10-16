@@ -4,7 +4,7 @@ Delta v1..v2          - https://github.com/Kitware/trame/commit/7b3cda7c45b8a601
 """
 
 from trame.app import get_server
-from trame.widgets import html, vuetify, vtk
+from trame.widgets import html, vuetify, vtk as vtk_widgets
 from trame.ui.vuetify import SinglePageLayout
 
 from vtkContourGeneratorFromZarr import vtkContourGeneratorFromZarr
@@ -136,7 +136,7 @@ with SinglePageLayout(server) as layout:
             fluid=True,
             classes="pa-0 fill-height",
         ):
-            html_view = vtk.VtkRemoteView(renderWindow, ref="view")
+            html_view = vtk_widgets.VtkRemoteView(renderWindow, ref="view")
             ctrl.view_update = html_view.update
             ctrl.view_reset_camera = html_view.reset_camera
 

@@ -16,7 +16,7 @@ from vtkmodules.util import vtkConstants
 
 from trame.app import get_server
 from trame.ui.vuetify import SinglePageLayout
-from trame.widgets import vuetify, vtk, trame
+from trame.widgets import vuetify, trame, vtk as vtk_widgets
 
 # -----------------------------------------------------------------------------
 # Constants
@@ -304,7 +304,7 @@ with SinglePageLayout(server) as layout:
             classes="pa-0 fill-height",
             style="position: relative",
         ):
-            with vtk.VtkView(
+            with vtk_widgets.VtkView(
                 ref="view",
                 background=("[0.8, 0.8, 0.8]",),
                 hover="pick_data = $event",
@@ -313,7 +313,7 @@ with SinglePageLayout(server) as layout:
             ) as view:
                 ctrl.view_update = view.update
                 ctrl.view_reset_camera = view.reset_camera
-                with vtk.VtkGeometryRepresentation(
+                with vtk_widgets.VtkGeometryRepresentation(
                     v_if=("mesh",),
                     property=(
                         """{
@@ -323,14 +323,14 @@ with SinglePageLayout(server) as layout:
                             }""",
                     ),
                 ):
-                    mesh = vtk.VtkMesh("mesh", dataset=vtk_grid)
+                    mesh = vtk_widgets.VtkMesh("mesh", dataset=vtk_grid)
                     ctrl.mesh_update = mesh.update
 
-                with vtk.VtkGeometryRepresentation(
+                with vtk_widgets.VtkGeometryRepresentation(
                     v_if=("threshold",),
                     color_data_range=("full_range", [0, 1]),
                 ):
-                    threshold = vtk.VtkMesh(
+                    threshold = vtk_widgets.VtkMesh(
                         "threshold", dataset=vtk_filter, field_to_keep=field_to_keep
                     )
                     ctrl.threshold_update = threshold.update

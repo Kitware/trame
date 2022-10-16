@@ -28,7 +28,7 @@ from vtkmodules.vtkRenderingCore import (
 
 from trame.app import get_server
 from trame.ui.vuetify import SinglePageLayout
-from trame.widgets import vuetify, vtk
+from trame.widgets import vuetify, vtk as vtk_widgets
 
 # -----------------------------------------------------------------------------
 # Trame setup
@@ -322,7 +322,7 @@ with SinglePageLayout(server) as layout:
             classes="pa-0 fill-height",
             style="position: relative",
         ):
-            html_view = vtk.VtkLocalView(renderWindow)
+            html_view = vtk_widgets.VtkLocalView(renderWindow)
             ctrl.view_update = html_view.update
             ctrl.view_reset_camera = html_view.reset_camera
 

@@ -4,7 +4,7 @@ Delta v1..v2          - https://github.com/Kitware/trame/commit/674f72774228bbca
 """
 
 from trame.app import get_server
-from trame.widgets import vuetify, vtk
+from trame.widgets import vuetify, vtk as vtk_widgets
 from trame.ui.vuetify import SinglePageLayout
 
 from vtkmodules.vtkFiltersSources import vtkConeSource
@@ -92,7 +92,7 @@ with SinglePageLayout(server) as layout:
             fluid=True,
             classes="pa-0 fill-height",
         ):
-            view = vtk.VtkLocalView(renderWindow, ref="view")
+            view = vtk_widgets.VtkLocalView(renderWindow, ref="view")
             ctrl.view_update = view.update
             ctrl.view_reset_camera = view.reset_camera
 

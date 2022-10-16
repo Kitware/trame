@@ -7,7 +7,7 @@ import os
 
 from trame.app import get_server
 from trame.ui.vuetify import SinglePageWithDrawerLayout
-from trame.widgets import vtk, vuetify, trame
+from trame.widgets import vuetify, trame, vtk as vtk_widgets
 
 from vtkmodules.vtkCommonDataModel import vtkDataObject
 from vtkmodules.vtkFiltersCore import vtkContourFilter
@@ -64,7 +64,7 @@ renderWindowInteractor.GetInteractorStyle().SetCurrentStyleToTrackballCamera()
 
 # Read Data
 reader = vtkXMLUnstructuredGridReader()
-reader.SetFileName(os.path.join(CURRENT_DIRECTORY, "../data/disk_out_ref.vtu"))
+reader.SetFileName(os.path.join(CURRENT_DIRECTORY, "../../../data/disk_out_ref.vtu"))
 reader.Update()
 
 # Extract Array/Field information
@@ -586,9 +586,9 @@ with SinglePageWithDrawerLayout(server) as layout:
             fluid=True,
             classes="pa-0 fill-height",
         ):
-            # view = vtk.VtkRemoteView(renderWindow, interactive_ratio=1)
-            # view = vtk.VtkLocalView(renderWindow)
-            view = vtk.VtkRemoteLocalView(
+            # view = vtk_widgets.VtkRemoteView(renderWindow, interactive_ratio=1)
+            # view = vtk_widgets.VtkLocalView(renderWindow)
+            view = vtk_widgets.VtkRemoteLocalView(
                 renderWindow, namespace="view", mode="local", interactive_ratio=1
             )
             ctrl.view_update = view.update

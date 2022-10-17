@@ -10,15 +10,13 @@ from trame.widgets import vuetify, trame, html, paraview
 # Global helpers
 # -----------------------------------------------------------------------------
 
+PXM = simple.servermanager.ProxyManager()
 WAVELET_SCALAR_RANGE = [37.35310363769531, 276.8288269042969]
 
 
 def generate_contour_values(data_range, number_of_contours):
     delta = (data_range[1] - data_range[0]) / (number_of_contours - 1)
     return [data_range[0] + (delta * float(i)) for i in range(number_of_contours)]
-
-
-PXM = simple.servermanager.ProxyManager()
 
 
 def id_to_proxy(_id):
@@ -32,17 +30,6 @@ def id_to_proxy(_id):
     return simple.servermanager._getPyProxy(
         simple.servermanager.ActiveConnection.Session.GetRemoteObject(_id)
     )
-
-
-# -----------------------------------------------------------------------------
-# FIXME
-# -----------------------------------------------------------------------------
-
-# with self.state as state:
-# info = self.active_proxy.GetDataInformation(0)
-# state.active_data_info = dict(
-#     points=info.GetNumberOfPoints(), cells=info.GetNumberOfCells()
-# )
 
 
 # -----------------------------------------------------------------------------

@@ -25,6 +25,7 @@ sidebar:
     concepts: Concepts
     api: API
     cheatsheet: Cheatsheet
+    course: Course
     trame_v2: Version 2
     intro: Introduction
     migration: From v1 to v2

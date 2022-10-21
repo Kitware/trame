@@ -4,7 +4,7 @@ import asyncio
 
 from trame.app import get_server, asynchronous
 from trame.ui.vuetify import SinglePageWithDrawerLayout
-from trame.widgets import vuetify, trame, html, paraview
+from trame.widgets import vuetify, trame, html, paraview, rca
 
 # -----------------------------------------------------------------------------
 # Global helpers
@@ -501,14 +501,26 @@ with SinglePageWithDrawerLayout(server) as layout:
                     classes="text-caption",
                 )
             vuetify.VDivider()
-            # with vuetify.VCardText(style="height: 150px"):
-            #     rca.StatisticsDisplay(
-            #         name="view",
-            #         fps_delta=1.5,
-            #         stat_window_size=10,
-            #         history_window_size=30,
-            #         reset_ms_threshold=100,
-            #     )
+            with vuetify.VCardText(style="height: 150px"):
+                rca.StatisticsDisplay(
+                    name="view",
+                    fps_delta=1.5,
+                    stat_window_size=10,
+                    history_window_size=30,
+                    reset_ms_threshold=100,
+                    ws_topic="viewport.image.push.subscription",
+                    packet_decorator=(
+                        """
+                        (v) => {
+                            return {
+                                name: 'view',
+                                serverTime: Date.now(),
+                                contentSize: v.memsize,
+                            };
+                        }
+                    """,
+                    ),
+                )
 
         with vuetify.VCard(classes="my-2 mx-1"):
             with vuetify.VCardTitle(classes="py-0"):

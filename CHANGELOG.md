@@ -2,6 +2,26 @@
 
 <!--next-version-placeholder-->
 
+## v2.2.1 (2022-10-21)
+### Fix
+* **rca:** Add trame-rca in default dependencies ([`7fa2253`](https://github.com/Kitware/trame/commit/7fa2253058aebe6e4e1c5150407f0019b275110b))
+
+### Documentation
+* **example:** Add stats to pv/wavelet example ([`c257a54`](https://github.com/Kitware/trame/commit/c257a54a0a06c2a5a0dc2f2879819a9f69effc24))
+* **example:** Collaboration state async/busy update ([`792dd28`](https://github.com/Kitware/trame/commit/792dd28e288547f7dfe20eff5596c16554f80a70))
+* **course:** Expanded and polished description of course ([`cc4e0ac`](https://github.com/Kitware/trame/commit/cc4e0ac9932ecdabefdcac5b67071bd461e937f8))
+* **wavelet:** Add sc demo comparison ([`f9d5e36`](https://github.com/Kitware/trame/commit/f9d5e367eefcfa7c27e63e79daa1112b2dba3daf))
+* **wavelet:** Add sc demo comparison ([`def850b`](https://github.com/Kitware/trame/commit/def850b5768e2099c0c5c3610117e02b0e8126c9))
+* **course:** Update links of documents ([`73bb2e7`](https://github.com/Kitware/trame/commit/73bb2e71c68fb691aa8d265b410a5547accc656a))
+* **course:** Add links to the course ([`4f79912`](https://github.com/Kitware/trame/commit/4f79912a039c10a46afadc85c084c31977b146e7))
+* **vtk:** Rename trame.widgets.vtk to not confuse with vtk import ([`b480332`](https://github.com/Kitware/trame/commit/b48033261f364fd79f0dcd039b4c04c153eb67b1))
+* **FiniteElementAnalysis:** Fix file chunk handling ([`7790cd1`](https://github.com/Kitware/trame/commit/7790cd1df397b6988fabf4238317a1957b57c3c7))
+* **SurfacePicking:** Add jupyter helper function ([`76e6c8b`](https://github.com/Kitware/trame/commit/76e6c8b2a35e34e4a15ac6d3e479941b54500b36))
+* **download:** Add binary download example ([`af70938`](https://github.com/Kitware/trame/commit/af70938509d966eae4cea5d76389ecdd9c97bc88))
+* **examples:** Multi-server example ([`78008d9`](https://github.com/Kitware/trame/commit/78008d9a3b7ba0817df302ae1c81f93b7f618e5a))
+* **paraview:** Add info for using conda ([`5e1160d`](https://github.com/Kitware/trame/commit/5e1160d72aef0d0b1edcab0450f90a03b9c0977c))
+* **tutorial:** Fix typo in example ([`77b3a1b`](https://github.com/Kitware/trame/commit/77b3a1b6c262dfcfe50f10da26992ae023805f76))
+
 ## v2.2.0 (2022-08-29)
 ### Feature
 * **ClientFile:** Add helper to handle multi-part upload file ([`d00907f`](https://github.com/Kitware/trame/commit/d00907f9b3806cb2d94b6565527956475848a7a2))

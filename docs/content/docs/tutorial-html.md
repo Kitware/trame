@@ -129,11 +129,11 @@ with SinglePageLayout(server) as layout:
             hide_details=True,
             dense=True,
         )
-        vuetify.VBtn(
-            vuetify.VIcon("mdi-crop-free"),
+        with vuetify.VBtn(
             icon=True,
             click=ctrl.view_reset_camera, # <-- Use that reset_camera (init order does not matter)
-        )
+        ):
+            vuetify.VIcon("mdi-crop-free")
 ```
 **Running the Application**
 

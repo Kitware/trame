@@ -30,7 +30,7 @@ from trame.ui.vuetify import SinglePageLayout
 from trame.widgets import vuetify, html
 
 server = get_server()
-state, controller = server.state, server.controller
+state, ctrl = server.state, server.controller
 
 [...]
 

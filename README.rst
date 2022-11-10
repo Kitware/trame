@@ -55,7 +55,7 @@ trame can be installed with `pip <https://pypi.org/project/trame/>`_:
 
 .. code-block:: bash
 
-    pip install --upgrade trame --pre
+    pip install --upgrade trame
 
 Usage
 -----------------------------------------------------------

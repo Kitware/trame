@@ -38,6 +38,12 @@ sidebar:
     t_html: HTML
     t_application: Application
     t_pv: ParaView
+    deploy: Deploy targets
+    d_pypi: Python CLI
+    d_jupyter: Jupyter
+    d_desktop: Desktop
+    d_cloud: Cloud
+    d_hpc: HPC / Clusters
 
   examples:
     getting_started: Getting Started

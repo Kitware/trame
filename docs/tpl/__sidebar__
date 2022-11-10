@@ -17,6 +17,12 @@ docs:
     t_html: tutorial-html.html
     t_application: tutorial-application.html
     t_pv: tutorial-paraview.html
+  deploy:
+    d_pypi: deploy-pypi.html
+    d_jupyter: deploy-jupyter.html
+    d_desktop: deploy-desktop.html
+    d_cloud: deploy-cloud.html
+    d_hpc: deploy-hpc.html
 
 examples:
   getting_started:

@@ -21,7 +21,7 @@ with SinglePageLayout(server) as layout:
             with vtk_widgets.VtkView(ref="view"):
                 with vtk_widgets.VtkGeometryRepresentation():
                     vtk_widgets.VtkAlgorithm(
-                        vtkClass="vtkConeSource", state=("{ resolution }",)
+                        vtk_class="vtkConeSource", state=("{ resolution }",)
                     )
 
     with layout.toolbar:

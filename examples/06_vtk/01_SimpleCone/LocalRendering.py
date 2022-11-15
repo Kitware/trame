@@ -96,6 +96,16 @@ with SinglePageLayout(server) as layout:
             ctrl.view_update = view.update
             ctrl.view_reset_camera = view.reset_camera
 
+# -----------------------------------------------------------------------------
+# Jupyter
+# -----------------------------------------------------------------------------
+
+
+def show(**kwargs):
+    from trame.app import jupyter
+
+    jupyter.show(server, **kwargs)
+
 
 # -----------------------------------------------------------------------------
 # Main

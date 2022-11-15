@@ -52,7 +52,7 @@ with layout:
                 ctrl.reset_camera = view.reset_camera
                 with vtk.VtkGeometryRepresentation():
                     vtk.VtkAlgorithm(
-                        vtkClass="vtkConeSource", state=("{ resolution }",)
+                        vtk_class="vtkConeSource", state=("{ resolution }",)
                     )
 
 

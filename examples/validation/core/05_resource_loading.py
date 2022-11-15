@@ -14,7 +14,7 @@ with DivLayout(server) as layout:
     container.style = "width: 100vw; height: 100vh;"
     with vtk.VtkView(ref="view"):
         with vtk.VtkGeometryRepresentation():
-            vtk.VtkAlgorithm(vtkClass="vtkConeSource", state=("{ resolution }",))
+            vtk.VtkAlgorithm(vtk_class="vtkConeSource", state=("{ resolution }",))
     html.Input(
         type="range",
         min=3,

@@ -2,6 +2,23 @@
 
 <!--next-version-placeholder-->
 
+## v2.2.2 (2022-12-02)
+### Fix
+* **docker:** Add `wheel` to pip docker image ([`6f34a4e`](https://github.com/Kitware/trame/commit/6f34a4eead0e4f50372d3c6f524dfdd3f4a4b018))
+
+### Documentation
+* **examples:** Fix typo in vtkClass arg ([`4822ad3`](https://github.com/Kitware/trame/commit/4822ad3bbb60caab3630e8100cd71c3e4dc2d27e))
+* **video:** Add video on landing page ([`76926cf`](https://github.com/Kitware/trame/commit/76926cfdcfabd724af34acd7e5bd613dd1e072c0))
+* **video:** Add video on landing page ([`168a3c9`](https://github.com/Kitware/trame/commit/168a3c983bc71f5e03c27a0409d3f93f34683d54))
+* **menu:** Update doc menu ([`89ee007`](https://github.com/Kitware/trame/commit/89ee0074f495a383ac171a2982db08f3c24abc88))
+* **readme:** Remove the --pre in pip install command ([`dc01c70`](https://github.com/Kitware/trame/commit/dc01c70370c25fcb9e77fd86d46cd786a9a4e740))
+* **deploy:** Add a deployment section ([`2b5e122`](https://github.com/Kitware/trame/commit/2b5e122e09658534f970c2f0b1bb9fc9043df0d9))
+* **caprover:** Add info for caprover deploy ([`ea6fec4`](https://github.com/Kitware/trame/commit/ea6fec4b3c9d45241d00ff8b4913aab45200ebc0))
+* **docker:** Add single file example ([`18fa307`](https://github.com/Kitware/trame/commit/18fa30792e6d6b8f8a8decc54d659ea306d36be9))
+* **website:** Correct tutorial code examples ([`eb4a628`](https://github.com/Kitware/trame/commit/eb4a6283b2d1585d7c34b189c94871563817940e))
+* **fileUpload:** Add validation example ([`9c81ea9`](https://github.com/Kitware/trame/commit/9c81ea995473f205348e5639d528ba9dde03521f))
+* **example:** Switch view validation ([`662c5cb`](https://github.com/Kitware/trame/commit/662c5cb7c5092ff749edca94f15381cb72f22c6d))
+
 ## v2.2.1 (2022-10-21)
 ### Fix
 * **rca:** Add trame-rca in default dependencies ([`7fa2253`](https://github.com/Kitware/trame/commit/7fa2253058aebe6e4e1c5150407f0019b275110b))

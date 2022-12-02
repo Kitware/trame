@@ -25,7 +25,7 @@ RUN wget -q -O- https://bootstrap.pypa.io/get-pip.py | python3.9 && \
     pip install -U pip
 
 # Install setup dependencies
-RUN pip install PyYAML
+RUN pip install PyYAML wheel
 
 # Copy the pip scripts into place
 COPY scripts/pip/* /opt/trame/

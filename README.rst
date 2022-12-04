@@ -90,7 +90,7 @@ Optional dependencies
 -----------------------------------------------------------
 
 When installing trame using pip (`pip install trame`) you will get the core infrastructure for any trame application to work but more advanced usage may require additional dependencies.
-The list below capture which may need to add depending on your usage:
+The list below captures what may need to add depending on your usage:
 
 * **pywebview**  : Needed for desktop usage (--app)
 * **jupyterlab** : Needed to run inside jupyter-lab
@@ -117,7 +117,7 @@ and are prefixed with `on_*`.
 * **on_client_exited**    : Linked to browser "beforeunload" event
 * **on_server_exited**    : Trame is exiting its event loop
 
-* **on_server_reload**    : If callback registered it is use for reloading server side modules
+* **on_server_reload**    : If callback registered it is used for reloading server side modules
 
 
 Reserved state entries
@@ -125,19 +125,18 @@ Reserved state entries
 
 The shared state allow us to synchronize the server with the client.
 Rather than creating another mechanism to handle similar needs throughout
-the application we purposely reuse that state for internal purpose.
-To prevent any conflict with any user we are prefixing our internal
+the application we purposely reuse that state internally. To prevent any conflict with any user we are prefixing our internal
 variable with `trame__*`. In general those state values should not be use
 or changed by the user except for the one listed below:
 
 Read/Write:
   - **trame__favicon**: Update it to replace the displayed favicon in your
-    browser. The content needs to be a image encoded url.
+    browser. The content needs to be an image encoded url.
   - **trame__title**: Update it to replace your page title
     (tab name / window name).
 
 Read-only:
-  - **trame__busy**: Provide information if we have pending request waiting
+  - **trame__busy**: Provide information if we have pending requests waiting
     for the server to respond.
   - **tts**: Template Time Stamp to regenerate sub elements when a template
     gets updated. Usually used as `:key="tts"` to force some component

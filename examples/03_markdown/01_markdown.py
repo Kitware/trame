@@ -23,7 +23,7 @@ state, ctrl = server.state, server.controller
 @state.change("file_name")
 def update_md(file_name, **kwargs):
     md_file_path = os.path.join(os.path.dirname(__file__), file_name)
-    with open(md_file_path) as md:
+    with open(md_file_path, encoding='utf-8') as md:
         ctrl.md_update(md.read())
 
 

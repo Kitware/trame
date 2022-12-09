@@ -47,6 +47,11 @@ representation = simple.Show(dataset)
 view = simple.Render()
 
 
+def clear_selection():
+    simple.ClearSelection()
+    ctrl.view_update()
+
+
 @ctrl.set("on_selection_change")
 def on_box_selection(event):
     fn = MODE_TO_METHOD[state.selection_mode]
@@ -74,10 +79,17 @@ def on_mode_change(selection_mode, **kwargs):
         view.InteractionMode = "Selection"
 
     # Handle hover with live update
-    # => attempt to do hover selection...
-    # state.send_mouse = selection_mode in ["select_hover_point", "select_hover_cell"]
+    state.send_mouse = selection_mode in [
+        "select_block",
+        "select_hover_point",
+        "select_hover_cell",
+    ]
     # if state.send_mouse:
     #     asynchronous.create_task(animate())
+
+    # Disable active mode
+    if selection_mode == "-":
+        state.selection_mode = None
 
 
 # async def animate():
@@ -104,6 +116,8 @@ with SinglePageLayout(server) as layout:
                         height=ICON_SIZE,
                         width=ICON_SIZE,
                     )
+            with vuetify.VBtn(small=True, click=clear_selection, value="-"):
+                vuetify.VIcon("mdi-trash-can-outline", small=True)
 
     with layout.content:
         with vuetify.VContainer(fluid=True, classes="pa-0 fill-height"):

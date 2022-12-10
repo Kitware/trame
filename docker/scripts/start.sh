@@ -41,6 +41,10 @@
 #         -e EXTRA_PVPYTHON_ARGS="-dr,--mesa-swr" \
 #         ...
 #
+#
+# You may also replace `USE_HOST` via `TRAME_USE_HOST`.
+# If `TRAME_USE_HOST` contains `://`, then this will replace `ws://USE_HOST`
+# instead.
 
 ROOT_URL="ws://localhost"
 REPLACEMENT_ARGS=""
@@ -64,6 +68,17 @@ fi
 INPUT=$(<"${LAUNCHER_TEMPLATE_PATH}")
 OUTPUT="${INPUT//"SESSION_URL_ROOT"/$ROOT_URL}"
 OUTPUT="${OUTPUT//"EXTRA_PVPYTHON_ARGS"/$REPLACEMENT_ARGS}"
+
+if [[ -n $TRAME_USE_HOST ]]; then
+  REPLACEMENT_STRING="USE_HOST"
+  if [[ $TRAME_USE_HOST == *"://"* ]]; then
+    # If the string contains "://", then we are replacing the "ws://" at
+    # the beginning as well
+    REPLACEMENT_STRING="ws://$REPLACEMENT_STRING"
+  fi
+  OUTPUT="${OUTPUT//$REPLACEMENT_STRING/$TRAME_USE_HOST}"
+fi
+
 echo -e "$OUTPUT" > "${LAUNCHER_PATH}"
 
 # Run the pvw launcher in the foreground so this script doesn't end

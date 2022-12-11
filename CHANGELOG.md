@@ -2,6 +2,20 @@
 
 <!--next-version-placeholder-->
 
+## v2.2.3 (2022-12-11)
+### Fix
+* **docker:** Add build.sh script for easier builds ([`26effc0`](https://github.com/Kitware/trame/commit/26effc03b88cf5e86411fca80994c515ce29dee6))
+* **docker:** Add ability to replace USE_HOST ([`3cd4dc3`](https://github.com/Kitware/trame/commit/3cd4dc321db1e404ec4ce8ae7db8747868b4d255))
+* **docker:** Add additional build options ([`8ad6f44`](https://github.com/Kitware/trame/commit/8ad6f449347969e091bd178560edebb41c6aafb4))
+
+### Documentation
+* **selection:** Update pv selection with clear and click ([`0d06739`](https://github.com/Kitware/trame/commit/0d06739114ed3b37f838304b334295d6f93bf50d))
+* **Style:** Add global css style example ([`00fa606`](https://github.com/Kitware/trame/commit/00fa60618aaff4f383b50e34e1c85d3a89d2e4b5))
+* **Selection:** Add paraview remote rendering selection example ([`f9f6f7b`](https://github.com/Kitware/trame/commit/f9f6f7bbb23585e65bf2aaa0ccbfd00e342ebd14))
+* **readme:** Handle typos ([`12879f2`](https://github.com/Kitware/trame/commit/12879f2e1f0e5f0f8550221278908a32180e2d5b))
+* **examples:** Reformat using black ([`6fdc5a5`](https://github.com/Kitware/trame/commit/6fdc5a5f2bb52a2eff42ed4c1dfac9ec187cf372))
+* **markdown:** Provide encoding at read time ([`2760bc2`](https://github.com/Kitware/trame/commit/2760bc28917fa31cc7f97ea8dd9a361cfe9f541c))
+
 ## v2.2.2 (2022-12-02)
 ### Fix
 * **docker:** Add `wheel` to pip docker image ([`6f34a4e`](https://github.com/Kitware/trame/commit/6f34a4eead0e4f50372d3c6f524dfdd3f4a4b018))

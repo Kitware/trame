@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v2.2.4 (2022-12-12)
+### Fix
+* **docker:** Move apps.json creation into launcher section ([`eeb4a88`](https://github.com/Kitware/trame/commit/eeb4a886e39721b9059a7957ecdb3ea09d4a9b58))
+
 ## v2.2.3 (2022-12-11)
 ### Fix
 * **docker:** Add build.sh script for easier builds ([`26effc0`](https://github.com/Kitware/trame/commit/26effc03b88cf5e86411fca80994c515ce29dee6))

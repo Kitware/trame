@@ -3,10 +3,17 @@
 LAUNCHER_OUTPUT_PATH=/deploy/server/launcher.json
 WWW_PATH=/deploy/server/www
 
-# Convert the apps.yml file to json and put it in the right place.
-# This needs PyYAML, which is in the root python environment, so
-# we must do this before activating the venv.
-python /opt/trame/yaml_to_json.py /deploy/setup/apps.yml /opt/trame/apps.json
+# launcher
+# Build if it does not exist, or if "launcher" is in `TRAME_BUILD`
+if [[ ! -f $LAUNCHER_OUTPUT_PATH || $TRAME_BUILD == *"launcher"* ]]; then
+  # Convert the apps.yml file to json and put it in the right place.
+  # This needs PyYAML, which is in the root python environment, so
+  # we must do this before activating the venv.
+  python /opt/trame/yaml_to_json.py /deploy/setup/apps.yml /opt/trame/apps.json
+
+  # Generate the launcher config
+  python /opt/trame/generate_launcher_config.py
+fi
 
 # venv
 # Build if it does not exist, or if "venv" is in `TRAME_BUILD`
@@ -27,12 +34,6 @@ if [[ ! -d $TRAME_VENV || $TRAME_BUILD == *"venv"* ]]; then
 else
   # Activate it if we skipped building it
   . /opt/trame/activate_venv.sh
-fi
-
-# launcher
-# Build if it does not exist, or if "launcher" is in `TRAME_BUILD`
-if [[ ! -f $LAUNCHER_OUTPUT_PATH || $TRAME_BUILD == *"launcher"* ]]; then
-  python /opt/trame/generate_launcher_config.py
 fi
 
 # www

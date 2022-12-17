@@ -2,6 +2,14 @@
 
 <!--next-version-placeholder-->
 
+## v2.2.5 (2022-12-17)
+### Fix
+* **docker:** Separate out build and run steps ([`7393f1d`](https://github.com/Kitware/trame/commit/7393f1d44f9ddbc3d51db5cafbe88a4039ff9cc2))
+
+### Documentation
+* **docker:** Update readme ([`33e050d`](https://github.com/Kitware/trame/commit/33e050d986b22cadb377c57ac5d5d0ae714135a6))
+* **docker:** Update docker to use build script ([`c3b7bd1`](https://github.com/Kitware/trame/commit/c3b7bd130af104549e2a18dafee4719ba59abf24))
+
 ## v2.2.4 (2022-12-12)
 ### Fix
 * **docker:** Move apps.json creation into launcher section ([`eeb4a88`](https://github.com/Kitware/trame/commit/eeb4a886e39721b9059a7957ecdb3ea09d4a9b58))

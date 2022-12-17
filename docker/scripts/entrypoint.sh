@@ -1,19 +1,22 @@
 #!/usr/bin/env bash
 
-if [ ! -d /deploy/server ] && [ ! -d /deploy/setup ]
-then
-  echo "ERROR: The deploy directory must be mounted into the container at /deploy"
-  exit 1
+# The entrypoint provides some branching logic as to what we
+# are going to do. By default, it runs the server.
+# If the first argument is "build", however, it will build the
+# server instead, and forward any extra args to the build script.
+
+# First, perform initial setup
+. /opt/trame/setup.sh
+
+if [[ "$1" == "build" ]]; then
+  # Run the build
+  # Forward all arguments after `build`, so the user can pass things
+  # like `www venv launcher` etc.
+  echo "Running build..."
+  gosu trame-user /opt/trame/build.sh ${@:2}
+  echo "Build complete"
+else
+  # Start the server
+  echo "Starting server..."
+  gosu trame-user /opt/trame/run.sh
 fi
-
-# Fix any uid/gid mismatch
-/opt/trame/fix_uid_gid.sh
-
-# Ensure the needed directories exist
-gosu trame-user /opt/trame/make_directories.sh
-
-# Restart apache
-service apache2 restart
-
-# Start the server
-gosu trame-user /opt/trame/server.sh

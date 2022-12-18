@@ -17,3 +17,9 @@ Both the cookiecutter in `bundles/docker/DEPLOY.md` and the [single file app rep
 Trame applications have the possibility to be launched on server less architecture and therefore virtually scale to infinity by using a routing server and the reverse connection infrastructure of its server. Such feature can be leverage both in the cloud or in HPC.
 
 For more details on that feature please reach out to [Kitware](https://www.kitware.com/contact/).
+
+## Trame with Azure batch 
+
+[Interactive Web-based 3D Visualization of large scientific datasets using Azure Batch](https://techcommunity.microsoft.com/t5/azure-high-performance-computing/interactive-web-based-3d-visualization-of-large-scientific/ba-p/3686390) is a blog post that provides some background on how to create and deploy a trame application on Azure while enabling scalability. 
+
+

@@ -18,21 +18,13 @@ docker run -it --rm -p 8080:80 trame-app
 
 After the container is running, the application may be accessed at `localhost:8080`. Each time the URL is accessed, a new application process is created and displayed.
 
-### Options
+### Environment variable option
 
-When running the Trame Docker images through the main entrypoint, there
-are a few environment variables available that provide some options:
+By default a trame application will use the serving host and path for its sessionURL, but if the application get served by another host, you will need to provide the host/path that should be used instead. To support this use-case, you can provide the **TRAME_USE_HOST** environment variable for overriding that sessionURL.
 
-#### TRAME_USE_HOST
+- __TRAME_USE_HOST__
 
-The sessionURL by default is defined as: `ws://USE_HOST/proxy?sessionId=${id}&path=ws`
-
-If the `TRAME_USE_HOST` environment variable is set, then `USE_HOST` will be replaced
-with the contents of `TRAME_USE_HOST`.
-
-If `TRAME_USE_HOST` contains `://`, however, then it is assumed that it will be
-overwriting the `ws://` part at the beginning as well, and the whole
-`ws://USE_HOST` section will be replaced by the contents of `TRAME_USE_HOST`.
+   The sessionURL by default is defined as: `ws://USE_HOST/proxy?sessionId=${id}&path=ws` but if the `TRAME_USE_HOST` environment variable is set, then `USE_HOST` will be replaced with the contents of `TRAME_USE_HOST`. If `TRAME_USE_HOST` contains `://`, however, then it is assumed that it will be overwriting the `ws://` part at the beginning as well, and the whole `ws://USE_HOST` section will be replaced by the contents of `TRAME_USE_HOST`.
 
 ## Building the Server
 

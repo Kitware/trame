@@ -8,7 +8,7 @@ For more general purpose system, we've created a simple template for [Open OnDem
 
 ## Analytics Gateway
 
-[Infinite tactics](https://infinitetactics.com/) created a bridge for trame applications so they can be dropped into their [Analytics Gateway](https://analyticsgateway.com/www/index.php/analytics-gateway/) solution.  
+[InfiniteTactics](https://infinitetactics.com/) has created a bridge for trame applications to be easily integrated into their [Analytics Gateway](https://analyticsgateway.com/www/index.php/analytics-gateway/) solution. The Analytics Gateway is a portal that allows for easily running software/plugins on desired nodes types (depending on needs) with persistent data.  
 
 ## Need some help, missing information?
 

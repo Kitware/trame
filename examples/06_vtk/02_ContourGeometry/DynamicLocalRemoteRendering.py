@@ -124,6 +124,7 @@ with SinglePageLayout(server) as layout:
             style="max-width: 300px",
             start="trigger('demoAnimateStart')",
             end="trigger('demoAnimateStop')",
+            change=ctrl.view_update,
         )
         vuetify.VSwitch(
             v_model="$vuetify.theme.dark",

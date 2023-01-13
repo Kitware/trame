@@ -36,11 +36,6 @@ If applicable, add screenshots to help explain your problem (drag and drop the i
 
 **Platform:**
 
-***Trame:***
-<!-- Check all that apply -->
-- [ ] Version 1.x
-- [ ] Version 2.x
-
 ***Device:***
 <!-- Check all that apply -->
 - [ ] Desktop
@@ -63,6 +58,3 @@ If applicable, add screenshots to help explain your problem (drag and drop the i
 - [ ] Opera
 - [ ] Brave
 - [ ] IE 11
-
-***py-web-vue version:***
-vMAJOR.MINOR.PATCH

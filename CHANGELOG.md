@@ -2,6 +2,20 @@
 
 <!--next-version-placeholder-->
 
+## v2.2.6 (2023-01-20)
+### Fix
+* **hot_reload:** Remove old code ([`7fc2948`](https://github.com/Kitware/trame/commit/7fc2948a61a2b304f72648cae062be2a1f52b697))
+
+### Documentation
+* **hot_reload:** Add example ([`f0f3cc8`](https://github.com/Kitware/trame/commit/f0f3cc8238677a7b2b2afd4585881873132dd97d))
+* **issues:** Add issue code base ([`f177d4e`](https://github.com/Kitware/trame/commit/f177d4e35e855542513e17895092882bcc2d8521))
+* **reloading:** Allow dynamic method reloading ([`06be552`](https://github.com/Kitware/trame/commit/06be55252f885ddf7ac917b47f6a5149b3cdb756))
+* **Example:** Add cursor example ([`78e31cc`](https://github.com/Kitware/trame/commit/78e31cc1d9c593c58f664fbf10c9e943f9468e28))
+* **DynamicLocalRemoteRendering:** Fix example to flush geometry ([`d0a1deb`](https://github.com/Kitware/trame/commit/d0a1deb65a5a8f6bbe7a2dcbbfda14a5ba563a91))
+* **HPC:** Update hpc doc ([`208b711`](https://github.com/Kitware/trame/commit/208b71123da8428414d3c909b5d988cd665b9ac0))
+* **website:** Update some website guides ([`7f58c1a`](https://github.com/Kitware/trame/commit/7f58c1a987066d92efbb460d65954695a912bd9e))
+* **docker:** Update readme ([`ade4c25`](https://github.com/Kitware/trame/commit/ade4c25dc634d9dd30a25158e58c66d5a4b89322))
+
 ## v2.2.5 (2022-12-17)
 ### Fix
 * **docker:** Separate out build and run steps ([`7393f1d`](https://github.com/Kitware/trame/commit/7393f1d44f9ddbc3d51db5cafbe88a4039ff9cc2))

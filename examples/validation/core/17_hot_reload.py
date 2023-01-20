@@ -86,5 +86,5 @@ def setup_ui(*_):
 # start server
 # -----------------------------------------------------------------------------
 
-if __name__ == "__main__" and not server.running:
+if __name__ == "__main__":
     server.start()

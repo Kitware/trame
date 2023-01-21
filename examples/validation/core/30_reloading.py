@@ -4,6 +4,10 @@
 # Test: Click on the burger icon next to "Dynamic reload" title
 # -----------------------------------------------------------------------------
 
+# DEPRECATED
+# Since trame-server>=2.7.2 the hot_reload capability is now built-in
+# which make that example less relevant than the 17_hot_reload.py one
+
 
 from trame.app import get_server
 from trame.widgets import vuetify, html

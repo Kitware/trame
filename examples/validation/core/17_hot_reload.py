@@ -78,7 +78,7 @@ def setup_ui(*_):
                         "{{ number }} x {{ i }} = {{ number * i }}",
                         v_for="i in size",
                         key="i",
-                        classes="mx-auto text-h6",
+                        classes="mx-auto text-h6 text-center",
                     )
 
 

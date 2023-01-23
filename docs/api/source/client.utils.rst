@@ -71,6 +71,18 @@ The **utils** namespace is aiming to gather user friendly methods. Trame by defa
     That **safe** method will strip down anything that does not serialize in a transparent manner.
     This method is mainly meant for debugging or exploration as ideally you should only try to exchange between the server and the client only what is really required.
 
+.. function:: utils.tree(obj)
+
+    Helper function to convert a JavaScript object into a vuetify.VTreeView data structure.
+
+    .. code-block:: python
+
+        state.variable_name = { ... }
+        
+        # ...
+        with layout:
+            vuetify.VTreeview(items=("utils.tree(variable_name)",))
+
 .. function:: utils.vtk.event(event)
 
     This decorator is to handle meaningful data extraction from an event of trame.widgets.vtk.Vtk{...}View into something that can be processed on the server side.

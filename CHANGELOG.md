@@ -2,6 +2,16 @@
 
 <!--next-version-placeholder-->
 
+## v2.3.0 (2023-02-08)
+### Feature
+* **client_type:** Preparation for 3.x release ([`b88a994`](https://github.com/Kitware/trame/commit/b88a994e2acea87bf624340a178022158f00a79b))
+
+### Documentation
+* **website:** Update value proposition ([`e96749c`](https://github.com/Kitware/trame/commit/e96749c2360294ab5527d75052e2804dcc1aa210))
+* **utils.tree:** Add API doc ([`2818473`](https://github.com/Kitware/trame/commit/28184737d7712f9ffe749ac3543bf3b43f4200fd))
+* **hot_reload:** Deprecate @reloading example ([`96b4eb5`](https://github.com/Kitware/trame/commit/96b4eb5e5bd036ebc2816870022dcbbefdbc04ac))
+* **hot_reload:** Make content center ([`e6aec3f`](https://github.com/Kitware/trame/commit/e6aec3fb41a6edecb379d2d7651ca3ecb40fe45f))
+
 ## v2.2.6 (2023-01-20)
 ### Fix
 * **hot_reload:** Remove old code ([`7fc2948`](https://github.com/Kitware/trame/commit/7fc2948a61a2b304f72648cae062be2a1f52b697))

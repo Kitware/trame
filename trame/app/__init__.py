@@ -1,5 +1,4 @@
 from trame_server import Server
-from trame_client import module
 from trame_client.widgets.core import VirtualNode
 
 # Ensure this is imported so that mimetypes.init() is decorated
@@ -38,7 +37,6 @@ def get_server(name=None, create_if_missing=True, **kwargs):
 
     if create_if_missing:
         server = Server(name, VirtualNode, **kwargs)
-        server.enable_module(module)  # Always load html module first
         AVAILABLE_SERVERS[name] = server
         return server
 

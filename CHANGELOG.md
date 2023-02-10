@@ -2,6 +2,13 @@
 
 <!--next-version-placeholder-->
 
+## v2.3.1 (2023-02-10)
+### Fix
+* **testing:** Add testing helpers ([`493803d`](https://github.com/Kitware/trame/commit/493803d26b8c8d33b1f28c59cd5cdabb6c713636))
+
+### Documentation
+* **table:** Handle dynamic table ([`be314bf`](https://github.com/Kitware/trame/commit/be314bf58eef73dd0394f1dcc1c7735720fdcf73))
+
 ## v2.3.0 (2023-02-08)
 ### Feature
 * **client_type:** Preparation for 3.x release ([`b88a994`](https://github.com/Kitware/trame/commit/b88a994e2acea87bf624340a178022158f00a79b))

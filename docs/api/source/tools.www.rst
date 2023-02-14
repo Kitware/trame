@@ -24,3 +24,6 @@ Or you can also do the following as only the pieces needed will be downloaded by
     python -m trame.tools.www
 
 Here is a list of known modules: deckgl, markdown, matplotlib, paraview, plotly, router, trame, vega, vtk, vuetify, www (main client)
+
+With the add-on support of vue3 backend, you can now provide which client you want to enable by providing `--client-type vue2` or `--client-type vue3`.
+Keep in mind that vue2 UI template are not 100% compatible with their vue3 counter part...

@@ -8,6 +8,7 @@ from trame.ui.vuetify import SinglePageLayout  # UI layout
 from trame.widgets import vuetify, vtk         # UI widgets
 
 server = get_server()                          # Create/retrieve default server
+server.client_type = "vue2"                    # Choose between vue2 and vue3
 state, ctrl = server.state, server.controller  # Extract server state and controller
 
 # Reset resolution variable to 6

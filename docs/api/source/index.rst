@@ -3,10 +3,9 @@ Welcome to Trame's documentation!
 
 .. note::
 
-   Trame v2 is replacing trame v1 by providing even more flexibility and deployment capabilities.
-   Now trame officially support desktop, client/server, cloud and Jupyter as execution environment.
-   But we also refined trame API to make it more robust and future proof.
-   Some deep redesign will also allow integration of trame components into existing Web applications
+   Trame supports desktop, client/server, cloud and Jupyter as execution environment.
+   But we also provide a refined API to make it more robust and future proof.
+   Trame allow integration of vue2/3 components into its Web applications
    while also streamlining community contribution for new widgets.
 
 .. toctree::

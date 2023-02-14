@@ -125,7 +125,7 @@ export default defineConfig({
 
 ## Building a vue2/vue3 package with vite
 
-This assume no option API is used but only the composition API.
+This assume no option API is used but only the composition API inside `.js` files instead of `.vue`.
 
 __package.json__
 ```json
@@ -134,9 +134,6 @@ __package.json__
         "dev": "vite",
         "build": "vite build",
         "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore --ignore-pattern public"
-    },
-    "dependencies": {
-        "@vitejs/plugin-vue": "^4.0.0"
     },
     "peerDependencies": {
         "vue": "^2.7.0 || ^3.0.0"
@@ -156,10 +153,8 @@ __package.json__
 __vite.config.js__
 ```javascript
 import { defineConfig } from "vite";
-import vue from '@vitejs/plugin-vue';
 
 export default defineConfig({
-  plugins: [vue()],
   base: "./",
   build: {
     lib: {

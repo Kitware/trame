@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v2.3.2 (2023-02-14)
+### Fix
+* **www:** Allow www tool to support either vue2 or vue3 ([`363dd53`](https://github.com/Kitware/trame/commit/363dd5336034dbd9d5c5d03ce13ea242aa5f99c0))
+
 ## v2.3.1 (2023-02-10)
 ### Fix
 * **testing:** Add testing helpers ([`493803d`](https://github.com/Kitware/trame/commit/493803d26b8c8d33b1f28c59cd5cdabb6c713636))

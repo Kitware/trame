@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>trame</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://kitware.github.io/trame/docs/vue23.html">
+  <!-- Alternative links -->
+  
+    
+      <link rel="alternative" hreflang="en" href="https://kitware.github.io/trame/docs/vue23.html">
+    
+  
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/trame/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/trame/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/trame/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/trame/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/trame/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/trame/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/trame/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/trame/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/trame/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/trame/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/trame/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/trame/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/trame/icon/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/trame/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  
+<link rel="stylesheet" href="/trame/css/navy.css">
+
+  <!-- endbuild -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/trame/atom.xml" title="trame" type="application/atom+xml">
+  <!-- Open Graph -->
+  <meta name="description" content="Vue 2&#x2F;3trame is starting to enable support for both vue2 and vue3. This mainly mean that it could be worth building components that are compatible with either version. And to achieve that they are sev">
+<meta property="og:type" content="website">
+<meta property="og:title" content="trame">
+<meta property="og:url" content="https://kitware.github.io/trame/docs/vue23.html">
+<meta property="og:site_name" content="trame">
+<meta property="og:description" content="Vue 2&#x2F;3trame is starting to enable support for both vue2 and vue3. This mainly mean that it could be worth building components that are compatible with either version. And to achieve that they are sev">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-02-14T21:30:42.664Z">
+<meta property="article:modified_time" content="2023-02-14T21:30:42.664Z">
+<meta property="article:author" content="Kitware Inc.">
+<meta name="twitter:card" content="summary">
+  <!-- Google Analytics -->
+  
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-H4W9XHTJ7X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-H4W9XHTJ7X');
+</script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/trame/" id="logo">trame</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="/trame/" class="main-nav-link">trame</a><a href="/trame/docs/" class="main-nav-link">Documentation</a><a target="_blank" rel="noopener" href="https://github.com/Kitware/trame/discussions" class="main-nav-link">Discussions</a><a target="_blank" rel="noopener" href="https://github.com/Kitware/trame/issues" class="main-nav-link">Issues</a><a target="_blank" rel="noopener" href="https://www.kitware.com/contact-us/" class="main-nav-link">Contact Us</a>
+      <a target="_blank" rel="noopener" href="https://github.com/kitware/trame" class="main-nav-link"><i class="fa fa-github-alt"></i></a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <input type="search" id="search-input" placeholder="Search...">
+      </div>
+    </nav>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div id="content" class="wrapper">
+    <div id="content-inner">
+      <article class="article-container" itemscope itemtype="http://schema.org/Article">
+        <div class="article-inner">
+          <div class="article">
+            <div class="inner">
+              <header class="article-header">
+                <h1 class="article-title" itemprop="name"></h1>
+              </header>
+              <div class="article-content" itemprop="articleBody">
+                <h1 id="Vue-2-3" class="article-heading"><a href="#Vue-2-3" class="headerlink" title="Vue 2/3"></a>Vue 2/3<a class="article-anchor" href="#Vue-2-3" aria-hidden="true"></a></h1><p>trame is starting to enable support for both vue2 and vue3. This mainly mean that it could be worth building components that are compatible with either version. And to achieve that they are several path possible, but ideally you should rely on the composition API to enable a single bundle for both runtime.<br>Otherwise, you can build “almost the same code” against vue2 and vue3 to produce bundles that can be use for each version of vue independently.</p>
+<h2 id="How-to-specify-vue-version-at-runtime" class="article-heading"><a href="#How-to-specify-vue-version-at-runtime" class="headerlink" title="How to specify vue version at runtime"></a>How to specify vue version at runtime<a class="article-anchor" href="#How-to-specify-vue-version-at-runtime" aria-hidden="true"></a></h2><p>The <strong>server</strong> instance now has a <code>server.client_type</code> property that you can only be set once to either <code>vue2</code> or <code>vue3</code>.</p>
+<p>In <code>trame&lt;3.0.0</code> the <code>client_type</code> default is <code>&#39;vue2&#39;</code> but it is good to start fixing your version in your code as after <code>trame&gt;=3.0.0</code> the default will be <code>vue3</code> even if <code>vue2</code> will still be supported. Also <code>trame&gt;=3</code> will only keep <code>trame-client</code> and <code>trame-server</code> as dependencies which means it will be the responsibility of the application to list their other trame dependencies such as <code>trame-vtk</code>, <code>trame-vuetify</code> and so on…</p>
+<h2 id="Building-a-vue2-package-with-vite" class="article-heading"><a href="#Building-a-vue2-package-with-vite" class="headerlink" title="Building a vue2 package with vite"></a>Building a vue2 package with vite<a class="article-anchor" href="#Building-a-vue2-package-with-vite" aria-hidden="true"></a></h2><p><strong>package.json</strong></p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;dev&quot;</span><span class="punctuation">:</span> <span class="string">&quot;vite&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;build&quot;</span><span class="punctuation">:</span> <span class="string">&quot;vite build&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;lint&quot;</span><span class="punctuation">:</span> <span class="string">&quot;eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore --ignore-pattern public&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;dependencies&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;@vitejs/plugin-vue2&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^2.2.0&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;peerDependencies&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;vue&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^2.7.0&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;devDependencies&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;@rushstack/eslint-patch&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^1.1.4&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;@vue/eslint-config-prettier&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^7.0.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;eslint&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^8.33.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;eslint-plugin-vue&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^9.3.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;prettier&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^2.7.1&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;vite&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^4.1.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;vue&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^2.7.14&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>vite.config.js</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; defineConfig &#125; <span class="keyword">from</span> <span class="string">&quot;vite&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> vue <span class="keyword">from</span> <span class="string">&#x27;@vitejs/plugin-vue2&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">defineConfig</span>(&#123;</span><br><span class="line">  <span class="attr">plugins</span>: [<span class="title function_">vue</span>()],</span><br><span class="line">  <span class="attr">base</span>: <span class="string">&quot;./&quot;</span>,</span><br><span class="line">  <span class="attr">build</span>: &#123;</span><br><span class="line">    <span class="attr">lib</span>: &#123;</span><br><span class="line">      <span class="attr">entry</span>: <span class="string">&quot;./src/main.js&quot;</span>,</span><br><span class="line">      <span class="attr">name</span>: <span class="string">&quot;trame_xxx&quot;</span>,</span><br><span class="line">      <span class="attr">format</span>: <span class="string">&quot;umd&quot;</span>,</span><br><span class="line">      <span class="attr">fileName</span>: <span class="string">&quot;trame-xxx&quot;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">rollupOptions</span>: &#123;</span><br><span class="line">      <span class="attr">external</span>: [<span class="string">&quot;vue&quot;</span>],</span><br><span class="line">      <span class="attr">output</span>: &#123;</span><br><span class="line">        <span class="attr">globals</span>: &#123;</span><br><span class="line">          <span class="attr">vue</span>: <span class="string">&quot;Vue&quot;</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">outDir</span>: <span class="string">&quot;../trame_xxx/module/vue2-serve&quot;</span>,</span><br><span class="line">    <span class="attr">assetsDir</span>: <span class="string">&quot;.&quot;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="Building-a-vue3-package-with-vite" class="article-heading"><a href="#Building-a-vue3-package-with-vite" class="headerlink" title="Building a vue3 package with vite"></a>Building a vue3 package with vite<a class="article-anchor" href="#Building-a-vue3-package-with-vite" aria-hidden="true"></a></h2><p><strong>package.json</strong></p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;dev&quot;</span><span class="punctuation">:</span> <span class="string">&quot;vite&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;build&quot;</span><span class="punctuation">:</span> <span class="string">&quot;vite build&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;lint&quot;</span><span class="punctuation">:</span> <span class="string">&quot;eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore --ignore-pattern public&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;dependencies&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;@vitejs/plugin-vue&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^4.0.0&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;peerDependencies&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;vue&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^3.0.0&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;devDependencies&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;@rushstack/eslint-patch&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^1.1.4&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;@vue/eslint-config-prettier&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^7.0.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;eslint&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^8.33.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;eslint-plugin-vue&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^9.3.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;prettier&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^2.7.1&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;vite&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^4.1.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;vue&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^3.0.0&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>vite.config.js</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; defineConfig &#125; <span class="keyword">from</span> <span class="string">&quot;vite&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> vue <span class="keyword">from</span> <span class="string">&#x27;@vitejs/plugin-vue&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">defineConfig</span>(&#123;</span><br><span class="line">  <span class="attr">plugins</span>: [<span class="title function_">vue</span>()],</span><br><span class="line">  <span class="attr">base</span>: <span class="string">&quot;./&quot;</span>,</span><br><span class="line">  <span class="attr">build</span>: &#123;</span><br><span class="line">    <span class="attr">lib</span>: &#123;</span><br><span class="line">      <span class="attr">entry</span>: <span class="string">&quot;./src/main.js&quot;</span>,</span><br><span class="line">      <span class="attr">name</span>: <span class="string">&quot;trame_xxx&quot;</span>,</span><br><span class="line">      <span class="attr">format</span>: <span class="string">&quot;umd&quot;</span>,</span><br><span class="line">      <span class="attr">fileName</span>: <span class="string">&quot;trame-xxx&quot;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">rollupOptions</span>: &#123;</span><br><span class="line">      <span class="attr">external</span>: [<span class="string">&quot;vue&quot;</span>],</span><br><span class="line">      <span class="attr">output</span>: &#123;</span><br><span class="line">        <span class="attr">globals</span>: &#123;</span><br><span class="line">          <span class="attr">vue</span>: <span class="string">&quot;Vue&quot;</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">outDir</span>: <span class="string">&quot;../trame_xxx/module/vue3-serve&quot;</span>,</span><br><span class="line">    <span class="attr">assetsDir</span>: <span class="string">&quot;.&quot;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="Building-a-vue2-vue3-package-with-vite" class="article-heading"><a href="#Building-a-vue2-vue3-package-with-vite" class="headerlink" title="Building a vue2/vue3 package with vite"></a>Building a vue2/vue3 package with vite<a class="article-anchor" href="#Building-a-vue2-vue3-package-with-vite" aria-hidden="true"></a></h2><p>This assume no option API is used but only the composition API.</p>
+<p><strong>package.json</strong></p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;dev&quot;</span><span class="punctuation">:</span> <span class="string">&quot;vite&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;build&quot;</span><span class="punctuation">:</span> <span class="string">&quot;vite build&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;lint&quot;</span><span class="punctuation">:</span> <span class="string">&quot;eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore --ignore-pattern public&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;dependencies&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;@vitejs/plugin-vue&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^4.0.0&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;peerDependencies&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;vue&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^2.7.0 || ^3.0.0&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;devDependencies&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;@rushstack/eslint-patch&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^1.1.4&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;@vue/eslint-config-prettier&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^7.0.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;eslint&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^8.33.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;eslint-plugin-vue&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^9.3.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;prettier&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^2.7.1&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;vite&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^4.1.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;vue&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^3.0.0&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>vite.config.js</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; defineConfig &#125; <span class="keyword">from</span> <span class="string">&quot;vite&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> vue <span class="keyword">from</span> <span class="string">&#x27;@vitejs/plugin-vue&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">defineConfig</span>(&#123;</span><br><span class="line">  <span class="attr">plugins</span>: [<span class="title function_">vue</span>()],</span><br><span class="line">  <span class="attr">base</span>: <span class="string">&quot;./&quot;</span>,</span><br><span class="line">  <span class="attr">build</span>: &#123;</span><br><span class="line">    <span class="attr">lib</span>: &#123;</span><br><span class="line">      <span class="attr">entry</span>: <span class="string">&quot;./src/main.js&quot;</span>,</span><br><span class="line">      <span class="attr">name</span>: <span class="string">&quot;trame_xxx&quot;</span>,</span><br><span class="line">      <span class="attr">format</span>: <span class="string">&quot;umd&quot;</span>,</span><br><span class="line">      <span class="attr">fileName</span>: <span class="string">&quot;trame-xxx&quot;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">rollupOptions</span>: &#123;</span><br><span class="line">      <span class="attr">external</span>: [<span class="string">&quot;vue&quot;</span>],</span><br><span class="line">      <span class="attr">output</span>: &#123;</span><br><span class="line">        <span class="attr">globals</span>: &#123;</span><br><span class="line">          <span class="attr">vue</span>: <span class="string">&quot;Vue&quot;</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">outDir</span>: <span class="string">&quot;../trame_xxx/module/serve&quot;</span>,</span><br><span class="line">    <span class="attr">assetsDir</span>: <span class="string">&quot;.&quot;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="Python-implementation-compatibility-handling" class="article-heading"><a href="#Python-implementation-compatibility-handling" class="headerlink" title="Python implementation compatibility handling"></a>Python implementation compatibility handling<a class="article-anchor" href="#Python-implementation-compatibility-handling" aria-hidden="true"></a></h2><p>If you have different physical JS bundle for each vue version you should have those bundles separated like <code>.../module/vue2.py</code> and <code>.../module/vue3.py</code> which can then internally serve different directories and define their own <code>vue_use</code>. And then you should setup a <code>.../module/__init__.py</code> like below to switch at runtime.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">setup</span>(<span class="params">server, **kargs</span>):</span><br><span class="line">    client_type = <span class="string">&quot;vue2&quot;</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">hasattr</span>(server, <span class="string">&quot;client_type&quot;</span>):</span><br><span class="line">        client_type = server.client_type</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> client_type == <span class="string">&quot;vue2&quot;</span>:</span><br><span class="line">        <span class="keyword">from</span> . <span class="keyword">import</span> vue2</span><br><span class="line"></span><br><span class="line">        server.enable_module(vue2)</span><br><span class="line">    <span class="keyword">elif</span> client_type == <span class="string">&quot;vue3&quot;</span>:</span><br><span class="line">        <span class="keyword">from</span> . <span class="keyword">import</span> vue3</span><br><span class="line"></span><br><span class="line">        server.enable_module(vue3)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">raise</span> TypeError(</span><br><span class="line">            <span class="string">f&quot;Trying to initialize trame_XXXX with unknown client_type=<span class="subst">&#123;client_type&#125;</span>&quot;</span></span><br><span class="line">        )</span><br></pre></td></tr></table></figure>
+
+<p>Then if internally your Python Widget code, you set dynamic attribute, you may have to do the following:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># vue2/3 handling (add .value for vue3)</span></span><br><span class="line"><span class="keyword">if</span> self.server.client_type == <span class="string">&quot;vue2&quot;</span>:</span><br><span class="line">    self._attributes[<span class="string">&quot;view_id&quot;</span>] = <span class="string">f&#x27;:viewId=&quot;<span class="subst">&#123;self.__view_key_id&#125;</span>&quot;&#x27;</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    self._attributes[<span class="string">&quot;view_id&quot;</span>] = <span class="string">f&#x27;:viewId=&quot;<span class="subst">&#123;self.__view_key_id&#125;</span>.value&quot;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Python-usage" class="article-heading"><a href="#Python-usage" class="headerlink" title="Python usage"></a>Python usage<a class="article-anchor" href="#Python-usage" aria-hidden="true"></a></h2><p>With vue3, the reactive variable needs to be managed in a slightly different manner which means you should expect the following difference</p>
+<p><strong>vue2</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">vuetify.VSlider(v_model=<span class="string">&quot;resolution&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>vue3</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">vuetify3.VSlider(v_model=<span class="string">&quot;resolution.value&quot;</span>)</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">vuetify3.VSlider(v_model=<span class="string">&quot;state.resolution&quot;</span>)</span><br></pre></td></tr></table></figure>
+              </div>
+              <footer class="article-footer">
+                <time class="article-footer-updated" datetime="2023-02-14T21:30:42.664Z" itemprop="dateModified">Last updated: 2023-02-14</time>
+                <a href="course_intro.html" class="article-footer-prev" title="Course"><i class="fa fa-chevron-left"></i><span>Prev</span></a><a href="trame_v2_intro.html" class="article-footer-next" title="Introduction"><span>Next</span><i class="fa fa-chevron-right"></i></a>
+              </footer>
+              
+            </div>
+          </div>
+          <aside id="article-toc" role="navigation">
+            <div id="article-toc-inner">
+              <strong class="sidebar-title">Contents</strong>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Vue-2-3"><span class="toc-text">Vue 2&#x2F;3</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#How-to-specify-vue-version-at-runtime"><span class="toc-text">How to specify vue version at runtime</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Building-a-vue2-package-with-vite"><span class="toc-text">Building a vue2 package with vite</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Building-a-vue3-package-with-vite"><span class="toc-text">Building a vue3 package with vite</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Building-a-vue2-vue3-package-with-vite"><span class="toc-text">Building a vue2&#x2F;vue3 package with vite</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Python-implementation-compatibility-handling"><span class="toc-text">Python implementation compatibility handling</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Python-usage"><span class="toc-text">Python usage</span></a></li></ol></li></ol>
+              <a href="#" id="article-toc-top">Back to Top</a>
+            </div>
+          </aside>
+        </div>
+      </article>
+      <aside id="sidebar" role="navigation">
+  <div class="inner"><strong class="sidebar-title">Getting Started</strong><a href="index.html" class="sidebar-link">Introduction</a><a href="getting_started.html" class="sidebar-link">How to start</a><a href="api.html" class="sidebar-link">API</a><a href="cheatsheet.html" class="sidebar-link">Cheatsheet</a><a href="course_intro.html" class="sidebar-link">Course</a><a href="vue23.html" class="sidebar-link current">Vue 2/3 client</a><strong class="sidebar-title">Version 2</strong><a href="trame_v2_intro.html" class="sidebar-link">Introduction</a><a href="trame_v2_migration.html" class="sidebar-link">From v1 to v2</a><strong class="sidebar-title">Tutorial</strong><a href="tutorial.html" class="sidebar-link">Overview</a><a href="tutorial-download.html" class="sidebar-link">Download</a><a href="tutorial-setup-vtk.html" class="sidebar-link">Setup for VTK</a><a href="tutorial-vtk.html" class="sidebar-link">VTK</a><a href="tutorial-layouts.html" class="sidebar-link">Layouts</a><a href="tutorial-html.html" class="sidebar-link">HTML</a><a href="tutorial-application.html" class="sidebar-link">Application</a><a href="tutorial-paraview.html" class="sidebar-link">ParaView</a><strong class="sidebar-title">Deployment</strong><a href="deploy-pypi.html" class="sidebar-link">Python CLI</a><a href="deploy-jupyter.html" class="sidebar-link">Jupyter</a><a href="deploy-desktop.html" class="sidebar-link">Desktop</a><a href="deploy-cloud.html" class="sidebar-link">Cloud</a><a href="deploy-hpc.html" class="sidebar-link">HPC / Clusters</a></div>
+</aside>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2023 <a href="https://www.kitware.com/" target="_blank">Kitware Inc.</a>
+    </div>
+
+    <div id="footer-links">
+      <a href="https://github.com/kitware/trame" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+    </div>
+  </div>
+  <style>
+    @media print {
+      body { margin: 1.6cm; }
+    
+      aside {display: None;}
+    
+      footer {display: None;}
+    
+      nav {display: None;}
+    
+      div.print-break { page-break-before: always;}
+    	
+      h1 > a {display: None;}
+      h2 > a {display: None;}
+      h3 > a {display: None;}
+      h4 > a {display: None;}
+      h5 > a {display: None;}
+      h6 > a {display: None;}
+
+      a:empty {font-size: 0px;}
+    }
+
+  </style>
+  <!--
+    <a
+      style="position: fixed; background: #00529b; color: white; top: 0; right: 0; height: 70px"
+      target="_blank" rel="noopener" href="https://www.kitware.com/careers"
+    >
+      <div style="position: relative; text-align: center;">
+        <div
+          style="margin-top: 5px; background: url(https://www.cmake.org/wp-content/uploads/2018/09/jobs_icon.png) no-repeat; background-size: 100%; width: 50px; height: 40px; margin: 5px auto 0;"
+        ></div>
+        <span style="padding: 5px 10px">Kitware is Hiring</span>
+      </div>
+    </a>
+  -->
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="/trame/" class="mobile-nav-link">trame</a><a href="/trame/docs/" class="mobile-nav-link">Documentation</a><a target="_blank" rel="noopener" href="https://github.com/Kitware/trame/discussions" class="mobile-nav-link">Discussions</a><a target="_blank" rel="noopener" href="https://github.com/Kitware/trame/issues" class="mobile-nav-link">Issues</a><a target="_blank" rel="noopener" href="https://www.kitware.com/contact-us/" class="mobile-nav-link">Contact Us</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/kitware/trame" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+      <strong class="mobile-nav-title">Getting Started</strong><a href="index.html" class="mobile-nav-link">Introduction</a><a href="getting_started.html" class="mobile-nav-link">How to start</a><a href="api.html" class="mobile-nav-link">API</a><a href="cheatsheet.html" class="mobile-nav-link">Cheatsheet</a><a href="course_intro.html" class="mobile-nav-link">Course</a><a href="vue23.html" class="mobile-nav-link current">Vue 2/3 client</a><strong class="mobile-nav-title">Version 2</strong><a href="trame_v2_intro.html" class="mobile-nav-link">Introduction</a><a href="trame_v2_migration.html" class="mobile-nav-link">From v1 to v2</a><strong class="mobile-nav-title">Tutorial</strong><a href="tutorial.html" class="mobile-nav-link">Overview</a><a href="tutorial-download.html" class="mobile-nav-link">Download</a><a href="tutorial-setup-vtk.html" class="mobile-nav-link">Setup for VTK</a><a href="tutorial-vtk.html" class="mobile-nav-link">VTK</a><a href="tutorial-layouts.html" class="mobile-nav-link">Layouts</a><a href="tutorial-html.html" class="mobile-nav-link">HTML</a><a href="tutorial-application.html" class="mobile-nav-link">Application</a><a href="tutorial-paraview.html" class="mobile-nav-link">ParaView</a><strong class="mobile-nav-title">Deployment</strong><a href="deploy-pypi.html" class="mobile-nav-link">Python CLI</a><a href="deploy-jupyter.html" class="mobile-nav-link">Jupyter</a><a href="deploy-desktop.html" class="mobile-nav-link">Desktop</a><a href="deploy-cloud.html" class="mobile-nav-link">Cloud</a><a href="deploy-hpc.html" class="mobile-nav-link">HPC / Clusters</a>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>English</span></span>
+    <select id="mobile-lang-select" data-canonical="docs/vue23.html">
+      
+        <option value="en" selected>English</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+
+<script src="/trame/js/lang_select.js"></script>
+
+
+<script src="/trame/js/toc.js"></script>
+
+
+<script src="/trame/js/mobile_nav.js"></script>
+
+<!-- endbuild -->
+<script src="https://cdn.jsdelivr.net/retinajs/1.3.0/retina.min.js" async></script>
+
+
+
+</body>
+</html>

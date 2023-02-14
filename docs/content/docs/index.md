@@ -1,6 +1,6 @@
 # Trame
 
-Trame v2 is out and available via `pip install trame`. Consequently the documentation is now reporting the updated API and capabilities. If you were already working with Trame v1 you can look at our [migration guide](./trame_v2_migration.html).
+Trame is available on PyPI and conda-forge. Its documentation include a [tutorial](https://kitware.github.io/trame/docs/tutorial.html), a [2h course](https://kitware.github.io/trame/docs/course_intro.html), [API](https://trame.readthedocs.io/en/latest/), [many examples](https://kitware.github.io/trame/#examples) along with various guides on the [main documentation page](https://kitware.github.io/trame/docs/).
 
 ## Overview
 

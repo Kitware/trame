@@ -19,6 +19,7 @@ page:
 
 sidebar:
   docs:
+    vue23: Vue 2/3 client
     getting_started: Getting Started
     start: How to start
     overview: Introduction

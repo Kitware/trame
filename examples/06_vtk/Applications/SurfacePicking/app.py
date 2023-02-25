@@ -237,7 +237,8 @@ with SinglePageLayout(server) as layout:
         )
         vuetify.VSelect(
             v_model=("colorMap", "erdc_rainbow_bright"),
-            items=("''|vtkColorPresetItems",),
+            # items=("''|vtkColorPresetItems",),                 # <= For trame-vtk<2.1
+            items=("trame.utils.vtk.vtkColorPresetItems('')",),  # <= for trame-vtk>=2.1
             classes="ml-8",
             dense=True,
             hide_details=True,

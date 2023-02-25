@@ -162,10 +162,16 @@ def update_figure(figure_size, scatter_x, scatter_y, **kwargs):
 @state.change("vtk_selection")
 def update_interactor(vtk_selection, **kwargs):
     if vtk_selection:
+        # remote view
         rw_interactor.SetInteractorStyle(interactor_selection)
         interactor_selection.StartSelect()
+        # local view
+        state.interactorSettings = VIEW_SELECT
     else:
+        # remote view
         rw_interactor.SetInteractorStyle(interactor_trackball)
+        # local view
+        state.interactorSettings = VIEW_INTERACT
 
 
 # -----------------------------------------------------------------------------
@@ -202,14 +208,39 @@ def on_chart_selection(selected_point_idxs):
 
 def on_box_selection_change(selection):
     global SELECTED_IDX
+    if selection.get("mode") == "remote":
+        actor.GetProperty().SetOpacity(1)
+        selector.SetArea(
+            int(renderer.GetPickX1()),
+            int(renderer.GetPickY1()),
+            int(renderer.GetPickX2()),
+            int(renderer.GetPickY2()),
+        )
+    elif selection.get("mode") == "local":
+        camera = renderer.GetActiveCamera()
+        camera_props = selection.get("camera")
 
-    actor.GetProperty().SetOpacity(1)
-    selector.SetArea(
-        int(renderer.GetPickX1()),
-        int(renderer.GetPickY1()),
-        int(renderer.GetPickX2()),
-        int(renderer.GetPickY2()),
-    )
+        # Sync client view to server one
+        camera.SetPosition(camera_props.get("position"))
+        camera.SetFocalPoint(camera_props.get("focalPoint"))
+        camera.SetViewUp(camera_props.get("viewUp"))
+        camera.SetParallelProjection(camera_props.get("parallelProjection"))
+        camera.SetParallelScale(camera_props.get("parallelScale"))
+        camera.SetViewAngle(camera_props.get("viewAngle"))
+        render_window.SetSize(selection.get("size"))
+
+        actor.GetProperty().SetOpacity(1)
+        render_window.Render()
+
+        area = selection.get("selection")
+        selector.SetArea(
+            int(area[0]),
+            int(area[2]),
+            int(area[1]),
+            int(area[3]),
+        )
+
+    # Common server selection
     s = selector.Select()
     n = s.GetNode(0)
     ids = dsa.vtkDataArrayToVTKArray(n.GetSelectionData().GetArray("SelectedIds"))
@@ -220,7 +251,6 @@ def on_box_selection_change(selection):
     selection_extract.SetInputDataObject(1, s)
     selection_extract.Update()
     selection_actor.SetVisibility(1)
-
     actor.GetProperty().SetOpacity(0.5)
 
     # Update scatter plot with selection
@@ -267,6 +297,19 @@ VTK_VIEW_SETTINGS = {
     "interactive_quality": 80,
 }
 
+VIEW_INTERACT = [
+    {"button": 1, "action": "Rotate"},
+    {"button": 2, "action": "Pan"},
+    {"button": 3, "action": "Zoom", "scrollEnabled": True},
+    {"button": 1, "action": "Pan", "alt": True},
+    {"button": 1, "action": "Zoom", "control": True},
+    {"button": 1, "action": "Pan", "shift": True},
+    {"button": 1, "action": "Roll", "alt": True, "shift": True},
+]
+
+VIEW_SELECT = [{"button": 1, "action": "Select"}]
+
+
 # -----------------------------------------------------------------------------
 # UI
 # -----------------------------------------------------------------------------
@@ -300,17 +343,15 @@ with SinglePageLayout(server) as layout:
                     style="border-right: 1px solid #ccc; position: relative;",
                 ):
                     view = vtk_widgets.VtkRemoteView(
+                        # view = vtk_widgets.VtkLocalView(
                         render_window,
                         box_selection=("vtk_selection",),
                         box_selection_change=(on_box_selection_change, "[$event]"),
+                        # For VtkRemoteView
                         **VTK_VIEW_SETTINGS,
+                        # For VtkLocalView
+                        interactor_settings=("interactorSettings", VIEW_SELECT),
                     )
-                    # view = vtk_widgets.VtkLocalView(
-                    #     render_window,
-                    #     box_selection=("vtk_selection",),
-                    #     box_selection_change=(on_box_selection_change, "[$event]"),
-                    #     **VTK_VIEW_SETTINGS,
-                    # )
                     ctrl.view_update = view.update
                     ctrl.view_reset_camera = view.reset_camera
                     vuetify.VCheckbox(

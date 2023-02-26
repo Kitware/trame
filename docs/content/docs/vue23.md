@@ -200,31 +200,3 @@ def setup(server, **kargs):
             f"Trying to initialize trame_XXXX with unknown client_type={client_type}"
         )
 ```
-
-Then if internally your Python Widget code, you set dynamic attribute, you may have to do the following:
-
-```python
-# vue2/3 handling (add .value for vue3)
-if self.server.client_type == "vue2":
-    self._attributes["view_id"] = f':viewId="{self.__view_key_id}"'
-else:
-    self._attributes["view_id"] = f':viewId="{self.__view_key_id}.value"'
-```
-
-## Python usage
-
-With vue3, the reactive variable needs to be managed in a slightly different manner which means you should expect the following difference
-
-__vue2__
-
-```python
-vuetify.VSlider(v_model="resolution")
-```
-
-__vue3__
-
-```python
-vuetify3.VSlider(v_model="resolution.value")
-# or
-vuetify3.VSlider(v_model="state.resolution")
-```

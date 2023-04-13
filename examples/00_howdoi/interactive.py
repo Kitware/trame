@@ -14,6 +14,7 @@ state = server.state
 DEFAULT_VALUE = 5
 state.trame_title = "Counter"
 
+
 # Updates
 def increment():
     state.my_number += 1

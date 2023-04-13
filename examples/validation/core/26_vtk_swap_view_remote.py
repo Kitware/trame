@@ -140,7 +140,6 @@ async def refresh_function(**kwargs):
 
 
 with VAppLayout(server) as layout:
-
     with layout.root:
         with vuetify.VContainer(fluid=True, classes="pa-0 fill-height"):
             view = vtk.VtkRemoteView(cone_window)

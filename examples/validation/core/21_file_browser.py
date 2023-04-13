@@ -47,7 +47,6 @@ ctrl.open_directory = open_directory
 layout = SinglePageLayout(server)
 
 with layout:
-
     # Toolbar
     with layout.toolbar as toolbar:
         toolbar.clear()

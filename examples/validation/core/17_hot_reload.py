@@ -18,6 +18,7 @@ server.hot_reload = True
 html.initialize(server)
 vuetify.initialize(server)
 
+
 # -----------------------------------------------------------------------------
 # Dynamically modify any `ChangeMe` to see the new code execute while
 # interacting with the app.

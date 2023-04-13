@@ -33,6 +33,7 @@ layout = DivLayout(server)
 with layout:
     trame.LifeCycleMonitor()
 
+
 # UI helper to extent layout
 def create_variable_editor(name):
     with layout:

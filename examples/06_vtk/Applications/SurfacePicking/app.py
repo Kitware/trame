@@ -163,7 +163,6 @@ def update_tooltip(pickData, pixel_ratio, **kwargs):
         xyx = data["worldPosition"]
         idx = f1_mesh.FindPoint(xyx)
         if idx > -1:
-
             messages = []
             cone_state = {
                 "resolution": 12,

@@ -89,7 +89,6 @@ table = {
 
 @state.change("selection")
 def selection_change(selection=[], **kwargs):
-
     global DATA_FRAME
     selected_df = pd.DataFrame(selection)
 

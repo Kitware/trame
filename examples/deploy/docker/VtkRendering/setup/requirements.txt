@@ -1,0 +1,2 @@
+trame
+--find-links wheels.vtk.org vtk-osmesa

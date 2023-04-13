@@ -1,2 +1,3 @@
 trame
---find-links wheels.vtk.org vtk-osmesa
+--find-links https://wheels.vtk.org
+vtk-osmesa

@@ -1,3 +1,29 @@
 pygments
 sphinx
 sphinx-rtd-theme
+
+# Add external widgets
+
+# Vue 2
+trame-leaflet
+trame-simput
+trame-grid-layout
+trame-plotly
+trame-vega
+trame-router
+trame-components
+trame-matplotlib
+trame-deckgl
+trame-rca
+trame-markdown
+
+# Vue 2/3
+trame-vtk
+trame-vuetify
+trame-iframe
+trame-keycloak
+trame-xterm
+trame-code
+
+# Vue 3
+trame-formkit

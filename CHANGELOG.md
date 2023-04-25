@@ -2,6 +2,21 @@
 
 <!--next-version-placeholder-->
 
+## v2.4.0 (2023-04-25)
+### Feature
+* **py-client:** Enable cross trame-server communication ([`afab046`](https://github.com/Kitware/trame/commit/afab0462c8fedc9b8b0f70f86d7eb08f3ead9fe3))
+
+### Documentation
+* **api:** List external widgets ([`a333db1`](https://github.com/Kitware/trame/commit/a333db1dfccd9f3a838d25cdded59acfe9cc4c44))
+* **docker:** Fix docker remote rendering example ([`ab55187`](https://github.com/Kitware/trame/commit/ab5518795a3c8b5827f05e2e650e39bff32e55ac))
+* **osmesa:** Update requirements.txt for remote rendering ([`7b0fcbd`](https://github.com/Kitware/trame/commit/7b0fcbdf564b936ad1b7f5d927d4e0fe2fe1824a))
+* **docker:** VTK remote rendering ([`e11ff23`](https://github.com/Kitware/trame/commit/e11ff23beadb26ad16aa56f2925a0b92a62c056c))
+* **examples:** Add docker remote rendering example ([`7a847a0`](https://github.com/Kitware/trame/commit/7a847a0ca1294cbff2f191275a09fe7007d6f66e))
+* **vue3:** New template handling syntax ([`fbaffe3`](https://github.com/Kitware/trame/commit/fbaffe301a6a0d747d80782c9e7e29a529e20763))
+* **vtk:** Update example with latest trame-vtk ([`f306d2d`](https://github.com/Kitware/trame/commit/f306d2d37eb668362773e6b5e3d3ce0f012a9630))
+* **vue23:** Clarify some aspect ([`a5e2a5a`](https://github.com/Kitware/trame/commit/a5e2a5ac2223174f1ba128fbdd486b94f750f8f2))
+* **website:** Update to add doc on vue2/3 ([`d70f097`](https://github.com/Kitware/trame/commit/d70f097c173cfd572ebeae51b8ddb90a939d9d6a))
+
 ## v2.3.2 (2023-02-14)
 ### Fix
 * **www:** Allow www tool to support either vue2 or vue3 ([`363dd53`](https://github.com/Kitware/trame/commit/363dd5336034dbd9d5c5d03ce13ea242aa5f99c0))

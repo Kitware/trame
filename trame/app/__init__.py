@@ -1,4 +1,4 @@
-from trame_server import Server
+from trame_server import Server, Client
 from trame_client.widgets.core import VirtualNode
 
 # Ensure this is imported so that mimetypes.init() is decorated
@@ -6,6 +6,7 @@ import trame.app.mimetypes  # noqa: F401
 
 DEFAULT_NAME = "trame"
 AVAILABLE_SERVERS = {}
+AVAILABLE_CLIENTS = {}
 
 
 def get_server(name=None, create_if_missing=True, **kwargs):
@@ -44,6 +45,35 @@ def get_server(name=None, create_if_missing=True, **kwargs):
     return None
 
 
+def get_client(url=None, hot_reload=False, **kwargs):
+    """
+    Return a client to a remote trame applications.
+    If a url is given and such client is not available yet,
+    it will be created otherwise the previously created instance will be returned.
+
+    :param url: Websocket URL which to connect to.
+    :type url: str
+
+
+    :param hot_reload: Enable when state change function should be hot reloaded.
+    :type hot_reload: bool
+
+    :param **kwargs: any extra keyword args use for authentication configuration.
+
+    :return: Return a unique Client instance per given url. Each instance need to a connect() call.
+    :rtype: trame_server.client.Client
+    """
+    if url in AVAILABLE_CLIENTS:
+        return AVAILABLE_CLIENTS[url]
+
+    client = Client(url=url, config=kwargs, hot_reload=hot_reload)
+    if url is not None:
+        AVAILABLE_CLIENTS[url] = client
+
+    return client
+
+
 __all__ = [
     "get_server",
+    "get_client",
 ]

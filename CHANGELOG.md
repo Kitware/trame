@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v2.4.1 (2023-05-11)
+### Fix
+* Add cone application for validation ([`bf84770`](https://github.com/Kitware/trame/commit/bf84770826dfb247bce0cca155845b9812935a08))
+
 ## v2.4.0 (2023-04-25)
 ### Feature
 * **py-client:** Enable cross trame-server communication ([`afab046`](https://github.com/Kitware/trame/commit/afab0462c8fedc9b8b0f70f86d7eb08f3ead9fe3))

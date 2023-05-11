@@ -36,6 +36,20 @@ Building apps with Trame is this simple:
 
 At the end of the day, building a trame application is just a matter of orchestrating the various pieces in a convenient and transparent manner thanks to the trame shared state, and associated controller for dealing with event management.
 
+## Everything in 4 slides
+
+<table style="border: none;">
+  <tr>
+    <td><img style="border: 1px solid #ccc;" src="/trame/images/mvvm_0.jpg"></td>
+    <td><img style="border: 1px solid #ccc;" src="/trame/images/mvvm_1.jpg"></td>
+  </tr>
+  <tr style="background: none;">
+    <td><img style="border: 1px solid #ccc;" src="/trame/images/mvvm_2.jpg"></td>
+    <td><img style="border: 1px solid #ccc;" src="/trame/images/mvvm_3.jpg"></td>
+  </tr>
+</table>
+<center><a href="https://github.com/Kitware/trame-course/blob/master/intro/app.py">Full code</a></center>
+
 ## Getting started
 
 The best way to get familiar with trame is to follow the [tutorial](https://kitware.github.io/trame/docs/tutorial.html), or use the [Cookie Cutter](https://github.com/Kitware/trame-cookiecutter) template to build a new application.

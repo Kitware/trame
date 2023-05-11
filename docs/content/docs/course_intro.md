@@ -19,3 +19,7 @@ Please view the following assets to participate in the course.
 - [Slides](https://github.com/Kitware/trame-tutorial/raw/master/course/introduction/Introduction_to_trame.pdf)
 - [Exercises / code samples](https://github.com/Kitware/trame-tutorial/raw/master/course/introduction/exercises.zip)
 - [Reference information](https://github.com/Kitware/trame-tutorial/raw/master/course/introduction/trame_intro_ref.pdf)
+
+## Want to attend the next one?
+
+We'll try to provide a course at least once a year. If you are interested, feel free to reach out to [Kitware](https://www.kitware.com/contact/) so we can keep you in the loop when those get scheduled. We also provide private training which can provide tailored content. Either way, if you have interest in trame [we can help](https://www.kitware.com/contact/). Just talk to us and we'll figure out how to best help you.

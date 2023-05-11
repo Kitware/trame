@@ -52,6 +52,13 @@ class Cone:
                     vuetify.VIcon("mdi-crop-free")
 
 
+def show_in_jupyter(server=None, **kwargs):
+    from trame.app.jupyter import show
+
+    cone = Cone(server)
+    show(cone.server, **kwargs)
+
+
 def main(**kwargs):
     cone = Cone()
     cone.server.start(**kwargs)

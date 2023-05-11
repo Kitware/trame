@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v2.4.2 (2023-05-11)
+### Fix
+* **demo:** Rename cone to demo and add jupyter helper ([`429c10b`](https://github.com/Kitware/trame/commit/429c10b03d251c00b01a0deca5b2ecb6a9721f01))
+
 ## v2.4.1 (2023-05-11)
 ### Fix
 * Add cone application for validation ([`bf84770`](https://github.com/Kitware/trame/commit/bf84770826dfb247bce0cca155845b9812935a08))

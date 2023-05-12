@@ -6,9 +6,10 @@ docs:
     cheatsheet: cheatsheet.html
     course: course_intro.html
     vue23: vue23.html
-  trame_v2:
-    intro: trame_v2_intro.html
-    migration: trame_v2_migration.html
+  trame_roadmap:
+    roadmap_intro: trame_roadmap_intro.html
+    roadmap_v2: trame_v1-2.html
+    roadmap_v3: trame_v2-3.html
   tutorial:
     t_overview: tutorial.html
     t_download: tutorial-download.html

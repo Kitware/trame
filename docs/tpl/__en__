@@ -27,9 +27,10 @@ sidebar:
     api: API
     cheatsheet: Cheatsheet
     course: Course
-    trame_v2: Version 2
-    intro: Introduction
-    migration: From v1 to v2
+    trame_roadmap: Roadmap
+    roadmap_intro: Introduction
+    roadmap_v2: From 1 to 2
+    roadmap_v3: From 2 to 3
     tutorial: Tutorial
     t_overview: Overview
     t_download: Download

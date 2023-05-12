@@ -1,6 +1,6 @@
-# Trame v2
+# Trame
 
-Trame v2 is not changing the ideas and concepts that made trame what it is. This new version is really focusing on a more powerful and refined suite for creating Python applications while supporting many deployment types. Trame now supports desktop, client/server, cloud services, and Jupyter notebook without changing any code.
+Trame is not changing the ideas and concepts across versions that made trame what it is. Each version is all about refining its suite for creating Python applications while supporting many deployment types. Trame supports desktop, client/server, cloud services, and Jupyter notebook without changing any code.
 
 ![trame](/trame/images/trame-architecture.jpg)
 
@@ -18,4 +18,4 @@ With trame v2, we are deprecating PyWebVue in favor of our trame suite (trame + 
 
 In addition, since v2 formalizes how Python modules should interface with trame, the community can more easily extend trame with new widgets and/or UI elements.
 
-Now you might be wondering if a trame v3 is planned in the near future, possibly introducing additional breaking changes. At this point we do not expect a v3 anytime soon as v2 has gave us a chance to review our api, fix what we didn't like, and simplify implementation to support our various use-cases.
+Now you might be wondering if a trame v3 is planned in the near future, possibly introducing additional breaking changes. At this point we expect v3 once our vue3 widget offering is in par to our vue2 offering. We don't have a date in mind since vue3 can already be used with trame v2 and no other breaking changes is expected. But to learn more look at the __From 2 to 3__ document.

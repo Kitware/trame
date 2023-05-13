@@ -20,24 +20,6 @@
   </url>
   
   <url>
-    <loc>https://kitware.github.io/trame/docs/deploy-jupyter.html</loc>
-    
-    <lastmod>2023-05-13</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kitware.github.io/trame/docs/deploy-pypi.html</loc>
-    
-    <lastmod>2023-05-13</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://kitware.github.io/trame/docs/getting_started.html</loc>
     
     <lastmod>2023-05-13</lastmod>
@@ -300,6 +282,24 @@
   
   <url>
     <loc>https://kitware.github.io/trame/docs/deploy-hpc.html</loc>
+    
+    <lastmod>2023-05-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/deploy-jupyter.html</loc>
+    
+    <lastmod>2023-05-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/deploy-pypi.html</loc>
     
     <lastmod>2023-05-13</lastmod>
     

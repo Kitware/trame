@@ -1,5 +1,5 @@
 from trame.app import get_server
-from trame.widgets import client, vuetify
+from trame.widgets import client, vuetify, html
 from trame.ui.vuetify import SinglePageLayout
 
 # -----------------------------------------------------------------------------
@@ -12,6 +12,10 @@ state, ctrl = server.state, server.controller
 state.message_1 = "Hello 1"
 state.message_2 = "Hello 2"
 state.message_3 = "Hello 3"
+
+state.list_1 = [True, False, False]
+state.list_2 = [False, True, False]
+state.list_3 = [False, False, True]
 
 state.msg_idx = 1
 
@@ -45,10 +49,12 @@ with SinglePageLayout(server) as layout:
                         vuetify.VCardText(">>> {{ get(`message_${msg_idx}`) }}")
 
                 with vuetify.VCol():
-                    with vuetify.VCard(style="height: 200px;"):
-                        vuetify.VCardTitle("getter")
-                        vuetify.VDivider()
-                        with client.Getter(name=("`message_${msg_idx}`",)):
+                    with client.Getter(
+                        name=("`message_${msg_idx}`",), key_name="var_key"
+                    ):
+                        with vuetify.VCard(style="height: 200px;"):
+                            vuetify.VCardTitle("getter {{ var_key }}")
+                            vuetify.VDivider()
                             vuetify.VCardText(">>> {{ value }}")
 
                 with vuetify.VCol():
@@ -56,9 +62,31 @@ with SinglePageLayout(server) as layout:
                         vuetify.VCardTitle("getter with rename")
                         vuetify.VDivider()
                         with client.Getter(
-                            name=("`message_${msg_idx}`",), value_name="msg"
+                            name=("`message_${msg_idx}`",),
+                            value_name="msg",
+                            key_name="name",
                         ):
-                            vuetify.VCardText(">>> {{ msg }}")
+                            vuetify.VCardText(">>> {{ name }}={{ msg }}")
+
+            with vuetify.VRow():
+                with vuetify.VCol():
+                    with client.Getter(
+                        name=("`list_${msg_idx}`",),
+                        key_name="name",
+                        update_nested_name="update",
+                    ):
+                        with vuetify.VCard():
+                            vuetify.VCardTitle("List {{ name }}")
+                            vuetify.VDivider()
+                            with vuetify.VCardText():
+                                with vuetify.VList():
+                                    with vuetify.VListItem(
+                                        v_for="v, i in value", key="i"
+                                    ):
+                                        vuetify.VIcon(
+                                            v_text="v ? 'mdi-eye' : 'mdi-eye-off'",
+                                            click="update(i, !v)",
+                                        )
 
 
 # -----------------------------------------------------------------------------

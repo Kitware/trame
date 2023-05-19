@@ -2,6 +2,21 @@
 
 <!--next-version-placeholder-->
 
+## v2.5.0 (2023-05-19)
+### Feature
+* **dependencies:** Version update for all vue2 widgets ([`ddddb65`](https://github.com/Kitware/trame/commit/ddddb6581df8ef22ab8b38ad46283cc16e34c7d6))
+
+### Documentation
+* **GroupChips:** Add example ([`be98f8f`](https://github.com/Kitware/trame/commit/be98f8ff074b569f007a20b9ed948d3cae150358))
+* **getter:** Add example with nested update ([`cb67736`](https://github.com/Kitware/trame/commit/cb67736b78c75f7e6e9e1c07c802b40de45ba760))
+* **example:** Add <trame-getter> example ([`6a2b20c`](https://github.com/Kitware/trame/commit/6a2b20c78b70460e40c164d9736bffef7d52a006))
+* **website:** Update mstar tooltip ([`49c3c93`](https://github.com/Kitware/trame/commit/49c3c93c136c4ce8392b44a48e354ec3b83f64c0))
+* **website:** Update applications anchor ([`6379042`](https://github.com/Kitware/trame/commit/6379042985602583ce8b1d0a7f01ca88c94e8736))
+* **website:** Add mstar image in the app section ([`77a290c`](https://github.com/Kitware/trame/commit/77a290c0d4d8584380c9c90b4ebe6c3fdb8056fd))
+* **website:** Add roadmap and v2-3 mention ([`10ad9a3`](https://github.com/Kitware/trame/commit/10ad9a332e6596bb8da465f4d5c453fe9059ec65))
+* **website:** Add roadmap and v2-3 mention ([`97f6476`](https://github.com/Kitware/trame/commit/97f6476c5056df73b3b4585eaad718abbb4b1cf5))
+* **website:** Add more help ([`97bf7ff`](https://github.com/Kitware/trame/commit/97bf7ff484ac7e3af31191687313546a2d2af2ad))
+
 ## v2.4.2 (2023-05-11)
 ### Fix
 * **demo:** Rename cone to demo and add jupyter helper ([`429c10b`](https://github.com/Kitware/trame/commit/429c10b03d251c00b01a0deca5b2ecb6a9721f01))

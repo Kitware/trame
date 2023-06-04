@@ -12,7 +12,7 @@ trame: simple, powerful, innovative
 * the core that ties things together
 * a guide providing the essence of a task
 
-.. image:: https://kitware.github.io/trame/examples/MultiFilter.jpg
+.. image:: https://kitware.github.io/trame/examples/mstar.jpg
   :alt: Welcome to trame and 3D visualization
 
 With **trame**, create stunning, interactive web applications compactly and intuitively.

@@ -13,11 +13,12 @@
 
 With **trame**, create stunning, interactive web applications compactly and intuitively.
 
-<center>
+
+<div>
     <img src="https://kitware.github.io/trame/examples/CarotidFlow.jpg" style="width: 30%">
     <img src="https://kitware.github.io/trame/examples/UberPickupsNYC.jpg" style="width: 30%">
     <img src="https://kitware.github.io/trame/examples/FiniteElementAnalysis.jpg" style="width: 30%">
-</center>
+</div>
 
 
 ## 3D Visualization

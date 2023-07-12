@@ -60,6 +60,15 @@ jobs:
             push: true
             tags: localhost:5000/trame-common-glvnd
 
+      - name: Build common (cuda)
+        uses: docker/build-push-action@v2
+        with:
+            context: docker
+            file: docker/Dockerfile.common
+            build-args: BASE_IMAGE=nvidia/cuda:12.2.0-runtime-ubuntu20.04
+            push: true
+            tags: localhost:5000/trame-common-cuda
+
       - name: Build and push (pip)
         uses: docker/build-push-action@v2
         with:
@@ -84,6 +93,18 @@ jobs:
                 kitware/trame:glvnd
                 kitware/trame:1.2-glvnd-runtime-ubuntu20.04-py39
                 kitware/trame:glvnd_${{ env.MONTH_STAMP }}
+
+      - name: Build and push (pip cuda)
+        uses: docker/build-push-action@v2
+        with:
+            context: docker
+            file: docker/Dockerfile.pip
+            build-args: BASE_IMAGE=localhost:5000/trame-common-cuda
+            push: true
+            tags: |
+                kitware/trame:cuda
+                kitware/trame:12.2.0-cuda-runtime-ubuntu20.04-py39
+                kitware/trame:cuda_${{ env.MONTH_STAMP }}
 
       - name: Build and push (conda)
         uses: docker/build-push-action@v2

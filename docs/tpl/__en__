@@ -46,6 +46,7 @@ sidebar:
     d_desktop: Desktop
     d_cloud: Cloud
     d_hpc: HPC / Clusters
+    d_nginx: NGINX
 
   examples:
     getting_started: Getting Started

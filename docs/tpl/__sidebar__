@@ -25,6 +25,7 @@ docs:
     d_desktop: deploy-desktop.html
     d_cloud: deploy-cloud.html
     d_hpc: deploy-hpc.html
+    d_nginx: deploy-nginx.html
 
 examples:
   getting_started:

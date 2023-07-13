@@ -1,6 +1,6 @@
 # NGINX
 
-Often a trame application might be put behind an NGINX either for standard rooting or for providing SSL.
+Often a trame application might be put behind an NGINX either for standard routing or for providing SSL.
 Either way, the default behavior of NGINX with WebSocket will make it so you get periodically disconnected.
 You may want to adjust some of those parameters to allow un-interuption.
 

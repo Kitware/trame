@@ -1,5 +1,5 @@
 from trame_server import Server, Client
-from trame_server.core import set_default_client_type
+from trame_server.core import set_default_client_type, DEFAULT_CLIENT_TYPE
 from trame_client.widgets.core import VirtualNode
 
 # Ensure this is imported so that mimetypes.init() is decorated
@@ -9,8 +9,57 @@ DEFAULT_NAME = "trame"
 AVAILABLE_SERVERS = {}
 AVAILABLE_CLIENTS = {}
 
+
+def trame_3_warning(*args, **kwargs):
+    print()
+    print("-" * 80)
+    print("   !!! You are currently using trame@3 which may break your application !!!")
+    print("-" * 80)
+    print(
+        "\n 1. trame@3 only provides by default trame.widgets.[html,client] and remove"
+        "\n    everything else as implicit dependency. Those other widgets will still"
+        "\n    exist and will be supported, but they will need to be defined as a"
+        "\n    dependency of your application."
+        "\n"
+        "\n       $ pip install trame-vtk trame-vuetify trame-plotly"
+        "\n"
+        "\n    Import paths are remaining the same."
+        "\n"
+        "\n    For libraries like vuetify since they offer different API between"
+        "\n    their vue2 and vue3 implementation, the widget name will reflect"
+        "\n    which vue version they are referencing. But original naming will remain."
+        "\n"
+        "\n       from trame.widgets import vuetify2, vuetify3"
+        "\n\n"
+        "\n 2. trame@3 aims to use vue3 as a new default. But to smooth the transition"
+        "\n    we will maintain the server.client_type = 'vue2' default until"
+        "\n    December 2023 which is the vue2 EOL."
+        "\n"
+        "\n    After that time, the new default will be switched to 'vue3'."
+        "\n    Vue2 will still work 'forever' and many of the new widgets will be"
+        "\n    written to support both versions."
+        "\n"
+        "\n    If you have a 'vue2' application and don't need or want to update your code,"
+        "\n    you can still use trame@3 with vue2 by setting `server.client_type='vue2'."
+        "\n"
+        "\n Actions items"
+        "\n ~~~~~~~~~~~~~"
+        "\n   a. Make sure you set `server.client_type` to either 'vue2' or 'vue3'."
+        "\n   b. List the expected dependencies or have a 'trame<3' dependency"
+        "\n"
+    )
+    print("-" * 80)
+    print(f" => Current client_type default: {DEFAULT_CLIENT_TYPE}")
+    print("-" * 80)
+    print(flush=True)
+
+
+# ---------------------------------------------------------
 # After December 2023 we will switch to vue3
+# ---------------------------------------------------------
 set_default_client_type("vue2")
+trame_3_warning()
+# ---------------------------------------------------------
 
 
 def get_server(name=None, create_if_missing=True, **kwargs):
@@ -43,7 +92,6 @@ def get_server(name=None, create_if_missing=True, **kwargs):
     if create_if_missing:
         server = Server(name, VirtualNode, **kwargs)
         AVAILABLE_SERVERS[name] = server
-
         return server
 
     # No server available for given name

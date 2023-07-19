@@ -39,6 +39,10 @@ def get_server(name=None, create_if_missing=True, **kwargs):
     if create_if_missing:
         server = Server(name, VirtualNode, **kwargs)
         AVAILABLE_SERVERS[name] = server
+
+        # Last trame@2 version
+        server.client_type = "vue2"
+
         return server
 
     # No server available for given name

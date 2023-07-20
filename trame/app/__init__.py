@@ -1,4 +1,5 @@
 from trame_server import Server, Client
+from trame_server.core import set_default_client_type
 from trame_client.widgets.core import VirtualNode
 
 # Ensure this is imported so that mimetypes.init() is decorated
@@ -7,6 +8,9 @@ import trame.app.mimetypes  # noqa: F401
 DEFAULT_NAME = "trame"
 AVAILABLE_SERVERS = {}
 AVAILABLE_CLIENTS = {}
+
+# After December 2023 we will switch to vue3
+set_default_client_type("vue2")
 
 
 def get_server(name=None, create_if_missing=True, **kwargs):
@@ -39,9 +43,6 @@ def get_server(name=None, create_if_missing=True, **kwargs):
     if create_if_missing:
         server = Server(name, VirtualNode, **kwargs)
         AVAILABLE_SERVERS[name] = server
-
-        # Last trame@2 version
-        server.client_type = "vue2"
 
         return server
 

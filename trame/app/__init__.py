@@ -1,3 +1,4 @@
+import os
 import logging
 from trame_server import Server, Client
 from trame_server.core import set_default_client_type, DEFAULT_CLIENT_TYPE
@@ -14,13 +15,16 @@ logger = logging.getLogger(__name__)
 
 
 def trame_3_warning(*args, **kwargs):
-    logger.warn("")
-    logger.warn("-" * 80)
-    logger.warn(
+    if os.environ.get("TRAME_DISABLE_V3_WARNING", 0):
+        return
+
+    logger.warning("")
+    logger.warning("-" * 80)
+    logger.warning(
         "   !!! You are currently using trame@3 which may break your application !!!"
     )
-    logger.warn("-" * 80)
-    logger.warn(
+    logger.warning("-" * 80)
+    logger.warning(
         "\n 1. trame@3 only provides by default trame.widgets.[html,client] and remove"
         "\n    everything else as implicit dependency. Those other widgets will still"
         "\n    exist and will be supported, but they will need to be defined as a"
@@ -53,10 +57,10 @@ def trame_3_warning(*args, **kwargs):
         "\n   b. List the expected dependencies or have a 'trame<3' dependency"
         "\n"
     )
-    logger.warn("-" * 80)
-    logger.warn(f" => Current client_type default: {DEFAULT_CLIENT_TYPE}")
-    logger.warn("-" * 80)
-    logger.warn("")
+    logger.warning("-" * 80)
+    logger.warning(f" => Current client_type default: {DEFAULT_CLIENT_TYPE}")
+    logger.warning("-" * 80)
+    logger.warning("")
 
 
 # ---------------------------------------------------------

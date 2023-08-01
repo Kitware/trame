@@ -77,7 +77,7 @@ os.environ["TRAME_DISABLE_V3_WARNING"] = "1"
 
 Trame in itself won't have API change but it is possible that vue3 widget will have a different API like you can see between vuetify2 and vuetify3, but in general we'll try to maintain full API compatibility.
 
-## Available widgets with compatibility
+## Widgets compatibility and package name
 
 | Widget name (trame.widget.{name}) | Package name | Supported version |
 | --- | --- | --- |

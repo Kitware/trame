@@ -10,6 +10,8 @@ So far we don't have a release date, but while vuetify, vtk and more are already
 
 ## New defaults
 
+The default client_type will be changing from "vue2" to "vue3" on January 2024.
+
 ```python
 from trame.app import get_server
 
@@ -18,6 +20,9 @@ server.client_type = "vue3" # instead of 'vue2'
 ```
 
 ## New warning due to breaking change
+
+A message will be printed by default at the startup of trame with the v3 version.
+We are expecting to remove that message during summer 2024.
 
 ```
 --------------------------------------------------------------------------------

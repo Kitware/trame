@@ -6,8 +6,9 @@
 python3.9 -m venv .venv
 source ./.venv/bin/activate
 python -m pip install --upgrade pip
-pip install "trame>=2.0.0"
-pip install "vtk>=9.1.0"
+pip install trame                   # Install trame core
+pip install trame-vuetify trame-vtk # Install widgets that we'll be using
+pip install "vtk"
 ```
 
 **Notes**:

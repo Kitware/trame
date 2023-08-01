@@ -15,7 +15,7 @@ ParaView comes with its own Python, which may be missing some dependencies for t
 python3.9 -m venv .pvenv
 source ./.pvenv/bin/activate
 python -m pip install --upgrade pip
-pip install "trame"
+pip install trame trame-vtk trame-vuetify
 deactivate
 ```
 
@@ -29,9 +29,8 @@ deactivate
 Conda provide many open-source packages and ParaView is part of their offering. When using the conda approach you won't need to download ParaView as it will get installed by conda for you. That way you can create a virtual-environment that can contain both ParaView and trame by doing the following.
 
 ```bash
-conda create -n pv-env -c conda-forge paraview
+conda create -n pv-env -c conda-forge paraview trame trame-vtk trame-vuetify
 conda activate pv-env
-pip install trame
 ```
 
 Then later you can simply use python rather than pvpython
@@ -56,7 +55,7 @@ After that we can import ***trame*** and start using it (assuming we run our app
 The command line below illustrate how a SimpleCone example can be run on a **Mac** computer where ParaView 5.10 has been installed.
 
 ```bash
-/Applications/ParaView-5.10.0-RC1.app/Contents/bin/pvpython \
+/Applications/ParaView-5.10.1.app/Contents/bin/pvpython \
     ./05_paraview/SimpleCone.py  \
     --venv .pvenv
 ```

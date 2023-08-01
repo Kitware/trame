@@ -247,7 +247,6 @@ with SinglePageWithDrawerLayout(server) as layout:
             view = vtk.VtkRemoteLocalView(renderWindow, namespace="view", mode="local", interactive_ratio=1)
             ctrl.view_update = view.update              # capture view update method
             ctrl.view_reset_camera = view.reset_camera  # capture view reset_camera method
-            ctrl.on_server_ready.add(view.update)       # update view once server is ready
 ```
 
 **Note**: The `layout.drawer as drawer` syntax is used to get a reference to the drawer to set some of the drawer's properties.

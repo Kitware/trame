@@ -7,6 +7,7 @@ from trame.widgets import vuetify, vtk as vtk_widgets
 # -----------------------------------------------------------------------------
 
 server = get_server()
+server.client_type = "vue2"
 state, ctrl = server.state, server.controller
 
 # -----------------------------------------------------------------------------

@@ -20,15 +20,6 @@
   </url>
   
   <url>
-    <loc>https://kitware.github.io/trame/docs/trame_v1-2.html</loc>
-    
-    <lastmod>2023-08-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://kitware.github.io/trame/docs/tutorial-application.html</loc>
     
     <lastmod>2023-08-01</lastmod>
@@ -300,6 +291,24 @@
   
   <url>
     <loc>https://kitware.github.io/trame/docs/trame_roadmap_intro.html</loc>
+    
+    <lastmod>2023-08-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/trame_v1-2.html</loc>
+    
+    <lastmod>2023-08-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kitware.github.io/trame/docs/trame_v2-3.html</loc>
     
     <lastmod>2023-08-01</lastmod>
     

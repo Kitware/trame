@@ -1,0 +1,95 @@
+trame_splitpane:
+  module:
+    splitpane:
+      vue2:
+        scripts:
+          - https://unpkg.com/splitpanes@2.4.1/dist/splitpanes.umd.js
+          - name: trame-splitpane.js
+            content: |
+              window.trame_splitpanes2 = {
+                install(vue) {
+                  Object.keys(window.splitpanes).forEach((name) => {
+                    vue.component(name, window.splitpanes[name]);
+                  });
+                }
+              }
+
+        styles:
+          - https://unpkg.com/splitpanes@2.4.1/dist/splitpanes.css
+        vue_use: 
+          - trame_splitpanes2
+      vue3:
+        scripts:
+          - https://unpkg.com/splitpanes@3.1.5/dist/splitpanes.umd.js
+          - name: trame-splitpane.js
+            content: |
+              window.trame_splitpanes3 = {
+                install(vue) {
+                  Object.keys(window.splitpanes).forEach((name) => {
+                    vue.component(name, window.splitpanes[name]);
+                  });
+                }
+              }
+        styles:
+          - https://unpkg.com/splitpanes@3.1.5/dist/splitpanes.css
+        vue_use: 
+          - trame_splitpanes3
+  widgets:
+    splitpane:
+      SplitPanes:
+        component: splitpanes
+        properties:
+          - name: horizontal
+            help: | 
+              Default: false
+              The orientation of the panes splitting.
+              Vertical by default, meaning the splitters are vertical, but you can resize horizontally
+          - name: [push_other_panes, push-other-panes]
+            help: |
+              Default: true
+              Whether it should push the next splitter when dragging a splitter until it reached another one.
+          - name: [dbl_click_splitter, dbl-click-splitter]
+            help: |
+              Default: true
+              Double click on splitter to maximize the next pane.
+          - name: rtl
+            help: |
+              Default: false
+              Supports Right to left direction.
+          - name: [first_splitter, first-splitter]
+            help: |
+              Default: false
+              Displays the first splitter when set to true. This allows maximizing the first pane on splitter double click.
+        events:
+          - name: ready 
+            help: has no parameter and fires when splitpanes is ready
+          - name: resize
+            help: returns an array of all the panes objects with their dimensions, and fires while resizing (on mousemove/touchmove)
+          - name: resized
+            help: |
+              returns an array of all the panes objects with their dimensions, and fires once when the resizing stops after user drag (on mouseup/touchend).
+              This event is also fired after the internal resizing of panes that occurs after adding or removing a pane.
+          - name: [pane_click, pane-click]
+            help: returns the clicked pane object with its dimensions.
+          - name: [pane_maximize, pane-maximize]
+            help: returns the maximized pane object with its dimensions.
+          - name: [pane_add, pane-add]
+            help: returns an object containing the index of the added pane and the new array of panes after resize.
+          - name: [pane_remove, pane-remove]
+            help: returns an object containing the removed pane and an array of all the remaining panes objects with their dimensions after resize.
+          - name: [splitter_click, splitter-click]
+            help: |
+              returns the next pane object (with its dimensions) directly after the clicked splitter.
+              This event is only emitted if dragging did not occur between mousedown and mouseup.
+      Pane:
+        component: pane
+        properties:
+          - name:  size
+            help: Number of percent for the pane
+          - name:  [min_size, min-size]
+            help: Minimum percent for the pane
+          - name:  [max_size, max-size]
+            help: Maximum percent for the pane
+
+      
+

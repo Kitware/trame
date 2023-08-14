@@ -1,6 +1,9 @@
 r"""
 Version for trame 1.x - https://github.com/Kitware/trame/blob/release-v1/examples/PlainPython/Menu/app.py
 Delta v1..v2          - https://github.com/Kitware/trame/commit/f9582202f7ee08434b5a7e53f375b1041bee6dfe
+
+Installation requirements:
+    pip install trame trame-vuetify
 """
 
 from trame.app import get_server

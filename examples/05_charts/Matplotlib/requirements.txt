@@ -1,3 +1,5 @@
-trame>=2.0.0
+trame>3
+trame-vuetify
+trame-components
 trame-matplotlib
 numpy

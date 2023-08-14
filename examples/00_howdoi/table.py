@@ -1,6 +1,9 @@
 r"""
 Version for trame 1.x - https://github.com/Kitware/trame/blob/release-v1/examples/howdoi/table.py
 Delta v1..v2          - https://github.com/Kitware/trame/commit/c26f2c36fdab315bd1ab30a9a0dcfe442e2ca174
+
+Installation requirements:
+    pip install trame trame-vuetify pandas
 """
 
 from trame.app import get_server

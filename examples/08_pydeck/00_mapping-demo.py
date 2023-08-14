@@ -1,6 +1,9 @@
 r"""
 Version for trame 1.x - https://github.com/Kitware/trame/blob/release-v1/examples/PlainPython/GeoMaps/MappingDemo/app.py
 Delta v1..v2          - https://github.com/Kitware/trame/commit/c7aba7c09c4b0d29cf1e4015ae65f214f1828805
+
+Installation requirements:
+    pip install trame trame-vuetify trame-vtk trame-deckgl
 """
 
 import pydeck as pdk

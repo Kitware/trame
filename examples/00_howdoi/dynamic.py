@@ -1,6 +1,9 @@
 r"""
 Version for trame 1.x - https://github.com/Kitware/trame/blob/release-v1/examples/howdoi/dynamic.py
 Delta v1..v2          - https://github.com/Kitware/trame/commit/3ee54ce5b663bf2af12b3fbdda7aab944fb86298
+
+Installation requirements:
+    pip install trame trame-vuetify
 """
 
 import asyncio

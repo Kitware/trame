@@ -1,6 +1,9 @@
 r"""
 Version for trame 1.x - https://github.com/Kitware/trame/blob/release-v1/examples/ParaView/SimpleCone/LocalRendering.py
 Delta v1..v2          - https://github.com/Kitware/trame/commit/37e36bdd0bc55dfa9134e4f8eba9a014dda4f865
+
+Installation requirements:
+    pip install trame trame-vuetify trame-vtk
 """
 
 import paraview.web.venv  # Available in PV 5.10-RC2+

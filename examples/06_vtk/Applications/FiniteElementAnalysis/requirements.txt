@@ -1,3 +1,5 @@
 vtk>=9.1
 pandas
-trame>=2.0.0
+trame>3
+trame-vuetify
+trame-vtk

@@ -3,6 +3,9 @@ Version for trame 1.x - https://github.com/Kitware/trame/blob/release-v1/example
 Delta v1..v2          - https://github.com/Kitware/trame/commit/6f0882ab9060b0f1953915c2a7e93dbe996479e0
 
 An example of showing geographic data
+
+Installation requirements:
+    pip install trame trame-vuetify trame-vtk trame-deckgl trame-vega
 """
 
 import os

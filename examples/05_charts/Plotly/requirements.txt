@@ -1,3 +1,6 @@
-trame>=2.0.0
+trame>3
+trame-vuetify
+trame-components
+trame-plotly
 plotly
 pandas

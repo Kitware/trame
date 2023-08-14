@@ -1,6 +1,9 @@
 r"""
 Version for trame 1.x - https://github.com/Kitware/trame/blob/release-v1/examples/PlainPython/Widgets/GitTree/app.py
 Delta v1..v2          - https://github.com/Kitware/trame/commit/90578f2da5d78efed2a6241ea507331ce0289b1b
+
+Installation requirements:
+    pip install trame trame-vuetify trame-components
 """
 
 from pathlib import Path

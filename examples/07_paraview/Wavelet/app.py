@@ -1,3 +1,7 @@
+"""
+Installation requirements:
+    pip install trame trame-vuetify trame-vtk trame-components trame-rca
+"""
 import paraview.web.venv
 from paraview import simple
 import asyncio

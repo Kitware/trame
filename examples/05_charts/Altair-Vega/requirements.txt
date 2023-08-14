@@ -1,3 +1,5 @@
-trame>=2.0.0
+trame>3
 altair
 vega_datasets
+trame-vuetify
+trame-vega

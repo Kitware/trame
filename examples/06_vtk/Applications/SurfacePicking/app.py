@@ -1,6 +1,9 @@
 r"""
 Version for trame 1.x - https://github.com/Kitware/trame/blob/release-v1/examples/VTK/Applications/SurfacePicking/app.py
 Delta v1..v2          - https://github.com/Kitware/trame/commit/a886cbc131124bf13bb8aa72f7055f8818efdf3a
+
+Installation requirements:
+    pip install trame trame-vuetify trame-vtk trame-components
 """
 
 from pathlib import Path

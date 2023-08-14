@@ -1,6 +1,9 @@
 r"""
 Version for trame 1.x - https://github.com/Kitware/trame/blob/release-v1/examples/VTK/SimpleCone/LocalRendering.py
 Delta v1..v2          - https://github.com/Kitware/trame/commit/674f72774228bbcab5689417c1c5642230b1eab8
+
+Installation requirements:
+    pip install trame trame-vuetify trame-vtk
 """
 
 from trame.app import get_server

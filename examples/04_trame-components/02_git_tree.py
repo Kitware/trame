@@ -1,6 +1,9 @@
 r"""
 Version for trame 1.x - https://github.com/Kitware/trame/blob/release-v1/examples/modules/Widgets/GitTree.py
 Delta v1..v2          - https://github.com/Kitware/trame/commit/d8c4656c75a562c63e0b8fe818829702ad65bb39
+
+Installation requirements:
+    pip install trame trame-vuetify trame-components
 """
 
 from trame.app import get_server

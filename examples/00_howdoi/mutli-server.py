@@ -1,5 +1,8 @@
 r"""
 Multi-server setup
+
+Installation requirements:
+    pip install trame trame-vuetify
 """
 
 import asyncio

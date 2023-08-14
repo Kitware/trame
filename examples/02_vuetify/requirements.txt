@@ -1,4 +1,7 @@
-trame>=2.0.0
+trame>3
+trame-vuetify
+trame-router
+trame-vega
 altair
 pandas
 numpy

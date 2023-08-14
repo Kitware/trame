@@ -1,5 +1,10 @@
+"""
+Installation requirements:
+    pip install trame trame-vuetify trame-vtk
+"""
+
 # import asyncio
-from trame.app import get_server, asynchronous
+from trame.app import get_server
 from trame.assets.local import LocalFileManager
 from trame.widgets import vuetify, paraview
 from trame.ui.vuetify import SinglePageLayout

@@ -1,6 +1,9 @@
 r"""
 Version for trame 1.x - https://github.com/Kitware/trame/blob/release-v1/examples/PlainPython/Plotly/turbulence/app.py
 Delta v1..v2          - https://github.com/Kitware/trame/commit/cbc614f8a2e408a28574cddbe8f4b43b1b91e2dc
+
+Installation requirements:
+    pip install trame trame-vuetify trame-components trame-plotly
 """
 
 import plotly.graph_objects as go

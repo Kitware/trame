@@ -1,6 +1,9 @@
 r"""
 Version for trame 1.x - https://github.com/Kitware/trame/blob/release-v1/examples/VTK/ContourGeometry/RemoteDynamic.py
 Delta v1..v2          - https://github.com/Kitware/trame/commit/3852cba56cd63f6efa684d5e5fb00881a6111e81
+
+Installation requirements:
+    pip install trame trame-vuetify trame-vtk
 """
 
 from pathlib import Path

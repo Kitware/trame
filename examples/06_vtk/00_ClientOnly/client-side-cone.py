@@ -1,6 +1,9 @@
 r"""
 Version for trame 1.x - https://github.com/Kitware/trame/blob/release-v1/examples/PlainPython/ClientOnlyVTK/app.py
 Delta v1..v2          - https://github.com/Kitware/trame/commit/33f52b6bb9eb73129b181699a94be9ad86187d49
+
+Installation requirements:
+    pip install trame trame-vuetify trame-vtk
 """
 
 from trame.app import get_server

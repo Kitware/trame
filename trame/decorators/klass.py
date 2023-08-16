@@ -16,6 +16,9 @@ class TrameApp:
     This decorator can be used to automatically register methods to state.change, controller, trigger and life_cycle.
     The parameter are used to define where to fine the server instance within the object and where a namespace for the variable name is stored.
 
+
+    .. code-block:: python
+
         @TrameApp()
         class ExampleApp:
             def __init__(self):
@@ -133,10 +136,12 @@ def controller_decorator(method):
 class Controller:
     """Controller decorators
 
-    - once
-    - add
-    - add_task
-    - set
+    .. code-block:: text
+
+        - once
+        - add
+        - add_task
+        - set
     """
 
     def __init__(self):
@@ -149,13 +154,15 @@ class Controller:
 class LifeCycle:
     """Life Cycle decorators
 
-    - server_start
-    - server_bind
-    - server_ready
-    - client_connected
-    - client_exited
-    - server_exited
-    - server_reload
+    .. code-block:: text
+
+        - server_start
+        - server_bind
+        - server_ready
+        - client_connected
+        - client_exited
+        - server_exited
+        - server_reload
 
     """
 

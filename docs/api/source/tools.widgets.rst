@@ -39,7 +39,7 @@ The configuration file should be as follow.
                     events: # list of component events
                       - name: event_name
                         help: ... # help for doc string
-                      - name: [pevent_name_py, event-name-js]
+                      - name: [event_name_py, event-name-js]
                         help: ... # help for doc string
                 NextComponentName:
                     component: next-component-name

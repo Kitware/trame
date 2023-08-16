@@ -39,5 +39,6 @@ Welcome to Trame's documentation!
 
    tools.www
    tools.app
+   tools.widgets
 
 .. include:: ../../../README.rst

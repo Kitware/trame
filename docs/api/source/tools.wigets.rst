@@ -8,7 +8,6 @@ The idea behind that YAML description is to capture all the pieces in a compact 
 .. code-block:: bash
 
     python -m trame.tools.widgets --config ./api.yaml --output /path/to/fill
-    # => create trame
 
 
 The configuration file should be as follow.

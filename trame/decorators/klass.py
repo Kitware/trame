@@ -132,7 +132,13 @@ def controller_decorator(method):
 
 class Controller:
     def __init__(self):
-        """Controller decorators"""
+        """Controller decorators
+
+        - once
+        - add
+        - add_task
+        - set
+        """
         self.once = controller_decorator("once")
         self.add = controller_decorator("add")
         self.add_task = controller_decorator("add_task")
@@ -141,7 +147,17 @@ class Controller:
 
 class LifeCycle:
     def __init__(self):
-        """Life Cycle decorators"""
+        """Life Cycle decorators
+
+        - server_start
+        - server_bind
+        - server_ready
+        - client_connected
+        - client_exited
+        - server_exited
+        - server_reload
+
+        """
         self.server_start = controller_decorator("add")("on_server_start")
         self.server_bind = controller_decorator("add")("on_server_bind")
         self.server_ready = controller_decorator("add")("on_server_ready")

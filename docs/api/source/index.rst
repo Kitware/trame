@@ -15,6 +15,7 @@ Welcome to Trame's documentation!
    trame.app
    trame.widgets
    trame.ui
+   trame.decorators
    trame.assets
    trame.env
 

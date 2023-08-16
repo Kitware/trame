@@ -11,27 +11,27 @@ def can_be_decorated(x):
 
 
 class TrameApp:
+    """
+    Class Decorator for trame application.
+    This decorator can be used to automatically register methods to state.change, controller, trigger and life_cycle.
+    The parameter are used to define where to fine the server instance within the object and where a namespace for the variable name is stored.
+
+        @TrameApp()
+        class ExampleApp:
+            def __init__(self):
+                self.server = get_server()
+
+            @change("var_name_1", "var_name_n")
+            def on_state_change(**kwargs):
+                pass
+
+            @controller.set("hello")
+            def hello(**kwargs):
+                pass
+
+    """
+
     def __init__(self, server="server", namespace=""):
-        """
-        Class Decorator for trame application.
-        This decorator can be used to automatically register methods to state.change, controller, trigger and life_cycle.
-        The parameter are used to define where to fine the server instance within the object and where a namespace for the variable name is stored.
-
-            @TrameApp()
-            class ExampleApp:
-                def __init__(self):
-                    self.server = get_server()
-
-                @change("var_name_1", "var_name_n")
-                def on_state_change(**kwargs):
-                    pass
-
-                @controller.set("hello")
-                def hello(**kwargs):
-                    pass
-
-
-        """
         self.server_name = server
         self.namespace_prefix = namespace
 
@@ -131,14 +131,15 @@ def controller_decorator(method):
 
 
 class Controller:
-    def __init__(self):
-        """Controller decorators
+    """Controller decorators
 
-        - once
-        - add
-        - add_task
-        - set
-        """
+    - once
+    - add
+    - add_task
+    - set
+    """
+
+    def __init__(self):
         self.once = controller_decorator("once")
         self.add = controller_decorator("add")
         self.add_task = controller_decorator("add_task")
@@ -146,18 +147,19 @@ class Controller:
 
 
 class LifeCycle:
+    """Life Cycle decorators
+
+    - server_start
+    - server_bind
+    - server_ready
+    - client_connected
+    - client_exited
+    - server_exited
+    - server_reload
+
+    """
+
     def __init__(self):
-        """Life Cycle decorators
-
-        - server_start
-        - server_bind
-        - server_ready
-        - client_connected
-        - client_exited
-        - server_exited
-        - server_reload
-
-        """
         self.server_start = controller_decorator("add")("on_server_start")
         self.server_bind = controller_decorator("add")("on_server_bind")
         self.server_ready = controller_decorator("add")("on_server_ready")

@@ -1,5 +1,9 @@
 from trame_client.widgets.core import AbstractElement
 
+__all__ = [
+    "create_class",
+]
+
 
 def create_class(class_name, component_name, properties=[], events=[], module=None):
     """Helper for creating Widget class

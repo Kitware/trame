@@ -36,7 +36,10 @@ trame_splitpane:
           - trame_splitpanes3
   widgets:
     splitpane:
+      directives: []
       SplitPanes:
+        help: |
+          Container for Panes
         component: splitpanes
         properties:
           - name: horizontal

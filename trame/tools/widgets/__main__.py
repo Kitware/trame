@@ -1,8 +1,9 @@
+import asyncio
 import argparse
 from .generator import generate_trame_package
 
 
-def main():
+async def main():
     parser = argparse.ArgumentParser(description="Trame component generator")
 
     parser.add_argument(
@@ -18,8 +19,8 @@ def main():
 
     args, _ = parser.parse_known_args()
 
-    generate_trame_package(args.config, args.output)
+    await generate_trame_package(args.config, args.output)
 
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())

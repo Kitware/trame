@@ -200,6 +200,8 @@ async def create_web_content(ref_path, base_directory, web_config):
 
 async def handle_url(base_directory, entry):
     file_name = entry.split("/")[-1]
+    if "?" in file_name:
+        file_name = file_name.split("?")[0]
     async with aiohttp.ClientSession() as session:
         async with session.get(entry) as resp:
             if resp.status == 200:

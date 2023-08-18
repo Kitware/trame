@@ -5,6 +5,11 @@ import aiohttp
 
 PKG_INIT = """__path__ = __import__("pkgutil").extend_path(__path__, __name__)"""
 
+EXT_BY_TYPES = {
+    "scripts": ".js",
+    "styles": ".css",
+}
+
 
 async def generate_trame_package(config_path, output_path):
     output = Path(output_path)
@@ -60,7 +65,7 @@ async def create_base_structure(ref_path, config, output):
                         file.write(
                             "from trame_client.widgets.core import AbstractElement, Template  # noqa\n"
                         )
-                        file.write("from .. import module\n")
+                        file.write(f"from ..module import {module}\n")
                         file.write("\nclass HtmlElement(AbstractElement):")
                         file.write(
                             "\n    def __init__(self, _elem_name, children=None, **kwargs):"
@@ -69,7 +74,7 @@ async def create_base_structure(ref_path, config, output):
                             "\n        super().__init__(_elem_name, children, **kwargs)"
                         )
                         file.write("\n        if self.server:")
-                        file.write("\n            self.server.enable_module(module)")
+                        file.write(f"\n            self.server.enable_module({module})")
                         file.write("\n\n")
 
                         all_class_names = []
@@ -119,7 +124,7 @@ async def create_base_structure(ref_path, config, output):
                     # Register trame/modules/{webdir}
                     trame_plugins[
                         f"trame/widgets/{module}.py"
-                    ] = f"from {name}.module.{module} import *\n\ndef initialize(server):\n    from {name}.module import {module}\n\n    server.enable_module({module})\n"
+                    ] = f"from {name}.widgets.{module} import *\n\ndef initialize(server):\n    from {name}.module import {module}\n\n    server.enable_module({module})\n"
 
     # Create trame package connectors
     for file, content in trame_plugins.items():
@@ -184,7 +189,9 @@ async def create_web_content(ref_path, base_directory, web_config):
             for item in web_config[key]:
                 if isinstance(item, str):
                     if item.startswith("http"):
-                        local_conf.append(await handle_url(base_directory, item))
+                        local_conf.append(
+                            await handle_url(base_directory, item, EXT_BY_TYPES[key])
+                        )
                     else:
                         local_conf.append(
                             handle_relative_path(ref_path, base_directory, item)
@@ -198,8 +205,13 @@ async def create_web_content(ref_path, base_directory, web_config):
     return out_conf
 
 
-async def handle_url(base_directory, entry):
-    file_name = entry.split("/")[-1]
+URL_FILE_COUNT = 0
+
+
+async def handle_url(base_directory, entry, ext):
+    global URL_FILE_COUNT
+    URL_FILE_COUNT += 1
+    file_name = f"{URL_FILE_COUNT}{ext}"
     if "?" in file_name:
         file_name = file_name.split("?")[0]
     async with aiohttp.ClientSession() as session:

@@ -1,6 +1,8 @@
 # trame: simple, powerful, innovative
 
 ![Test and Release](https://github.com/Kitware/trame/actions/workflows/test_and_release.yml/badge.svg)
+![PyPI](https://img.shields.io/pypi/v/trame?label=pypi%20package)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/trame)
 
 **trame** - a web framework that weaves together open source components into customized visual analytics easily.
 

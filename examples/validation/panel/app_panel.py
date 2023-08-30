@@ -49,8 +49,9 @@ vtkpan = pn.pane.VTK(
 vtkpan
 
 # =============================================================================
-
 # Creation of a mapping between Custom name and the VTK object reference
+# =============================================================================
+
 actor_ref = ["None", actor.__this__]
 actor_names = ["None", "St Helen"]
 actor_opts = {k: v for k, v in zip(actor_names, actor_ref)}
@@ -62,8 +63,9 @@ actor_selection = pn.widgets.Select(
 actor_selection
 
 # =============================================================================
-
 # Scene Layout
+# =============================================================================
+
 color = "".join(
     ["#"] + ["{:02x}".format(int(v * 255)) for v in pl.background_color[:3]]
 )
@@ -91,8 +93,9 @@ pn.Column(scene_props, light_props, max_width=320)
 
 
 # =============================================================================
-
 # layout actor props
+# =============================================================================
+
 opacity = pn.widgets.FloatSlider(value=1, start=0, end=1, name="Opacity", disabled=True)
 lighting = pn.widgets.Toggle(value=True, name="Lighting", disabled=True)
 interpolation = pn.widgets.Select(
@@ -156,8 +159,9 @@ actor_props
 
 
 # =============================================================================
-
 # Linking
+# =============================================================================
+
 light_type.jslink(
     vtkpan,
     code={
@@ -429,7 +433,7 @@ target.renderer_el.getRenderWindow().render()
     },
 )
 
-pn.Column(
+ui = pn.Column(
     "This example demonstrates the use of **VTK and pyvista** to display a *scene*",
     pn.Row(
         vtkpan.servable(title="VTK - Mt. St Helens"),
@@ -449,6 +453,3 @@ pn.Column(
     ),
     min_height=600,
 )
-
-
-# =============================================================================

@@ -27,3 +27,4 @@ trame-code
 
 # Vue 3
 trame-formkit
+trame-quasar

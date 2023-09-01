@@ -50,6 +50,8 @@ class StHelens:
         self.actor = self.ploter.add_mesh(ds, smooth_shading=True, lighting=True)
         self.ploter.camera_position = DEFAULT_CAMERA
         self.render_window = self.ploter.ren_win
+        self.actor.prop.RenderPointsAsSpheresOn()
+        self.actor.prop.SetPointSize(4)
 
         # Set initial values
         self.server.state.update(
@@ -102,7 +104,7 @@ class StHelens:
                 with quasar.QDrawer(
                     v_model=("show_drawer", True),
                     side="left",
-                    overlay=True,
+                    overlay=False,
                     bordered=True,
                     width=350,
                 ):
@@ -266,10 +268,9 @@ class StHelens:
                             )
 
                 with quasar.QPageContainer(classes="fullscreen", style="z-index: 0;"):
-                    with vtk.VtkRemoteView(
-                        self.render_window,
-                        interactive_ratio=1,
-                    ) as view:
+                    rw = self.render_window
+                    with vtk.VtkRemoteView(rw, interactive_ratio=1) as view:
+                        # with vtk.VtkLocalView(rw, interactive_ratio=1) as view:
                         self.ctrl.view_update = view.update
                         self.ctrl.view_reset_camera = view.reset_camera
 

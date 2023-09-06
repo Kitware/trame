@@ -16,6 +16,10 @@ def kill_server():
     sys.exit(0)
 
 
+def throw_exception():
+    raise Exception("That is an expected error")
+
+
 async def fake_busy():
     print("start busy...")
     asyncio.sleep(5)
@@ -42,6 +46,7 @@ with layout:
         toolbar.dense = True
         vuetify.VSpacer()
         vuetify.VBtn("Kill server", click=kill_server)
+        vuetify.VBtn("Server exception", click=throw_exception)
         vuetify.VBtn("JS Error", click="console.error('test')")
 
 # -----------------------------------------------------------------------------

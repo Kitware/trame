@@ -86,6 +86,7 @@ Trame in itself won't have API change but it is possible that vue3 widget will h
 | html | (built-in) | 2 & 3 |
 | client | (built-in) | 2 & 3 |
 | vuetify, vuetify2, vuetify3 | trame-vuetify | 2 & 3 |
+| router | trame-router | 2 & 3 |
 | vtk, paraview | trame-vtk | 2 & 3 |
 | plotly | trame-plotly | 2 & 3 |
 | xterm | trame-xterm | 2 & 3 |
@@ -101,8 +102,7 @@ Trame in itself won't have API change but it is possible that vue3 widget will h
 | tauri | trame-tauri | 2 |
 | vega | trame-vega | 2 |
 | simput | trame-simput | 2 |
-| router | trame-router | 2 |
-| rca | trame-rca | 2 |
+| rca | trame-rca | 2 (wip for 3) |
 | matplotlib | trame-matplotlib | 2 |
 | markdown | trame-markdown | 2 |
 | deckgl | trame-deckgl | 2 |

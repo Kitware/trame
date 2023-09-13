@@ -92,7 +92,7 @@ Trame in itself won't have API change but it is possible that vue3 widget will h
 | xterm | trame-xterm | 2 & 3 |
 | code | trame-code | 2 & 3 |
 | iframe | trame-iframe | 2 & 3 |
-| trame | trame-components | 2 (wip for 3) |
+| trame | trame-components | 2 & 3 |
 | keycloak | trame-keycloak | 2 & 3 (wip) |
 | formkit | trame-formkit | 3 |
 | leaflet | trame-leaflet | 2 |

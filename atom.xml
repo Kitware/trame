@@ -6,7 +6,7 @@
   <link href="https://kitware.github.io/trame/atom.xml" rel="self"/>
   
   <link href="https://kitware.github.io/trame/"/>
-  <updated>2023-09-13T19:00:21.807Z</updated>
+  <updated>2023-05-13T00:33:08.599Z</updated>
   <id>https://kitware.github.io/trame/</id>
   
   <author>
@@ -18,10 +18,10 @@
   
   <entry>
     <title>Hexo</title>
-    <link href="https://kitware.github.io/trame/2016/04/29/kw-doc/"/>
-    <id>https://kitware.github.io/trame/2016/04/29/kw-doc/</id>
+    <link href="https://kitware.github.io/trame/2016/04/28/kw-doc/"/>
+    <id>https://kitware.github.io/trame/2016/04/28/kw-doc/</id>
     <published>2016-04-29T00:00:00.000Z</published>
-    <updated>2023-09-13T19:00:21.807Z</updated>
+    <updated>2023-05-13T00:33:08.599Z</updated>
     
     <content type="html"><![CDATA[<p>Thanks for using kw-doc which is based on Hexo and its template from its own documentation.</p>]]></content>
     

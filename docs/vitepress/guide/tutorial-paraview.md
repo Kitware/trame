@@ -267,7 +267,6 @@ That's it. You now have a ParaView `trame` application that let you reproduce co
 Your browser should open automatically to `http://localhost:1234/`
 
 
-<center>
-<img src="https://kitware.github.io/trame/examples/PVStateViewer-diskout.jpg" height="200px" />
-<img src="https://kitware.github.io/trame/examples/StateViewer-diskout.jpg" height="200px" />
-</center>
+| ![ParaView](https://kitware.github.io/trame/examples/PVStateViewer-diskout.jpg){ width=85%} | ![Trame](https://kitware.github.io/trame/examples/StateViewer-diskout.jpg) |
+| :---: | :---: |
+

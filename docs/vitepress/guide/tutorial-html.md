@@ -99,7 +99,10 @@ In the `increment_weight` function, we use addition assignment for `state.myWeig
 
 Let's modify the Hello ***trame*** application to add some GUI elements by starting editing the file `03_html/app_cone.py`.
 
-<p style="text-align:center;"><img src="../images/tutorial-light.jpg" alt="Light Mode" style="width: 45%; height: 45%"><img src="../images/tutorial-dark.jpg" alt="Dark Mode" style="width: 45%; height: 45%"></p>
+| ![Light Mode](/images/tutorial-light.jpg) | ![Dark Mode](/images/tutorial-dark.jpg) |
+| :---: | :---: |
+| Light mode | Dark Mode |
+
 
 So with the `SinglePageLayout`, we could add UI elements to either the `toolbar`, `content`, or the `footer`. We'll limit ourself to the `toolbar`, but the procedure is still the same. Let us add to the right side of the `toolbar` a switch to toggle between light and dark mode of the application and a button to reset the view after panning and/or zooming.
 

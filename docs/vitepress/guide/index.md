@@ -10,7 +10,7 @@ Trame is an open-source platform for creating interactive and powerful visual an
 
 Trame is a Python integration framework to easily build web applications with minimal knowledge of web development or technology. Before trame, building such applications typically required a full-stack developer at least a day. Now any Python developer can build applications in minutes.
 
-![trame](/trame/images/tutorial-carotid.jpg)
+![trame](/landing.png)
 
 
 ## Why Trame
@@ -32,22 +32,16 @@ Building apps with Trame is this simple:
 4. **Design your UI** - Build beautiful, accessible user interfaces by defining the layout of your application and connecting your **state** and **functions** to your UI elements directly.
 5. **Run it anywhere** - Once working, you can choose to run it locally as a desktop or client/server application, or deploy it in the cloud and use it as a service.
 
-![trame](/trame/images/trame-architecture.jpg)
+![trame](/images/trame-architecture.png)
 
 At the end of the day, building a trame application is just a matter of orchestrating the various pieces in a convenient and transparent manner thanks to the trame shared state, and associated controller for dealing with event management.
 
 ## Everything in 4 slides
 
-<table style="border: none;">
-  <tr>
-    <td><img style="border: 1px solid #ccc;" src="/trame/images/mvvm_0.jpg"></td>
-    <td><img style="border: 1px solid #ccc;" src="/trame/images/mvvm_1.jpg"></td>
-  </tr>
-  <tr style="background: none;">
-    <td><img style="border: 1px solid #ccc;" src="/trame/images/mvvm_2.jpg"></td>
-    <td><img style="border: 1px solid #ccc;" src="/trame/images/mvvm_3.jpg"></td>
-  </tr>
-</table>
+| ![MVVM](/images/mvvm_0.jpg) | ![Responsibilities](/images/mvvm_1.jpg) |
+| :---: | :---: |
+| ![View Model](/images/mvvm_2.jpg) | ![View](/images/mvvm_3.jpg) |
+
 <center><a href="https://github.com/Kitware/trame-course/blob/master/intro/app.py">Full code</a></center>
 
 ## Getting started

@@ -11,15 +11,15 @@
 * the core that ties things together
 * a guide providing the essence of a task
 
-![Welcome to trame and 3D visualization](https://kitware.github.io/trame/examples/mstar.jpg)
+![Welcome to trame and 3D visualization](https://raw.githubusercontent.com/Kitware/trame/master/docs/vitepress/assets/images/examples/mstar.jpg)
 
 With **trame**, create stunning, interactive web applications compactly and intuitively.
 
 
 <div>
-    <img src="https://kitware.github.io/trame/examples/CarotidFlow.jpg" style="width: 30%">
-    <img src="https://kitware.github.io/trame/examples/UberPickupsNYC.jpg" style="width: 30%">
-    <img src="https://kitware.github.io/trame/examples/FiniteElementAnalysis.jpg" style="width: 30%">
+    <img src="https://raw.githubusercontent.com/Kitware/trame/master/docs/vitepress/assets/images/examples/CarotidFlow.jpg" style="width: 30%">
+    <img src="https://raw.githubusercontent.com/Kitware/trame/master/docs/vitepress/assets/images/examples/UberPickupsNYC.jpg" style="width: 30%">
+    <img src="https://raw.githubusercontent.com/Kitware/trame/master/docs/vitepress/assets/images/examples/FiniteElementAnalysis.jpg" style="width: 30%">
 </div>
 
 
@@ -52,7 +52,7 @@ pip install --upgrade trame
 
 ## Usage
 
-The [Trame Tutorial](https://kitware.github.io/trame/docs/tutorial.html) is the place to go to learn how to use the library and start building your own application.
+The [Trame Tutorial](https://kitware.github.io/trame/guide/tutorial/) is the place to go to learn how to use the library and start building your own application.
 
 The [API Reference](https://trame.readthedocs.io/en/latest/index.html) documentation provides API-level documentation.
 

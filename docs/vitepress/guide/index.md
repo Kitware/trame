@@ -1,6 +1,6 @@
 # Trame
 
-Trame is available on PyPI and conda-forge. Its documentation include a [tutorial](https://kitware.github.io/trame/docs/tutorial.html), a [2h course](https://kitware.github.io/trame/docs/course_intro.html), [API](https://trame.readthedocs.io/en/latest/), [many examples](https://kitware.github.io/trame/#examples) along with various guides on the [main documentation page](https://kitware.github.io/trame/docs/).
+Trame is available on PyPI and conda-forge. Its documentation include a [tutorial](/guide/tutorial/), a [2h course](/guide/intro/course), [API](https://trame.readthedocs.io/en/latest/), [many examples](/examples/) along with various guides on the [main documentation page](/guide/).
 
 ## Overview
 
@@ -10,7 +10,7 @@ Trame is an open-source platform for creating interactive and powerful visual an
 
 Trame is a Python integration framework to easily build web applications with minimal knowledge of web development or technology. Before trame, building such applications typically required a full-stack developer at least a day. Now any Python developer can build applications in minutes.
 
-![trame](/landing.png)
+![trame](/assets/images/apps/visualizer-dark.png)
 
 
 ## Why Trame
@@ -32,20 +32,20 @@ Building apps with Trame is this simple:
 4. **Design your UI** - Build beautiful, accessible user interfaces by defining the layout of your application and connecting your **state** and **functions** to your UI elements directly.
 5. **Run it anywhere** - Once working, you can choose to run it locally as a desktop or client/server application, or deploy it in the cloud and use it as a service.
 
-![trame](/images/trame-architecture.png)
+![trame](/assets/images/guide/architecture.png)
 
 At the end of the day, building a trame application is just a matter of orchestrating the various pieces in a convenient and transparent manner thanks to the trame shared state, and associated controller for dealing with event management.
 
 ## Everything in 4 slides
 
-| ![MVVM](/images/mvvm_0.jpg) | ![Responsibilities](/images/mvvm_1.jpg) |
+| ![MVVM](/assets/images/course/mvvm_0.jpg) | ![Responsibilities](/assets/images/course/mvvm_1.jpg) |
 | :---: | :---: |
-| ![View Model](/images/mvvm_2.jpg) | ![View](/images/mvvm_3.jpg) |
+| ![View Model](/assets/images/course/mvvm_2.jpg) | ![View](/assets/images/course/mvvm_3.jpg) |
 
 <center><a href="https://github.com/Kitware/trame-course/blob/master/intro/app.py">Full code</a></center>
 
 ## Getting started
 
-The best way to get familiar with trame is to follow the [tutorial](https://kitware.github.io/trame/docs/tutorial.html), or use the [Cookie Cutter](https://github.com/Kitware/trame-cookiecutter) template to build a new application.
+The best way to get familiar with trame is to follow the [tutorial](/guide/tutorial/), or use the [Cookie Cutter](https://github.com/Kitware/trame-cookiecutter) template to build a new application.
 
-Also check out the demonstrative example [CheatSheet](./cheatsheet.html), and short [getting started guide](./getting_started.html).
+Also check out the demonstrative example [CheatSheet](./intro/cheatsheet), and short [getting started guide](/guide/).

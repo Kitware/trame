@@ -2,11 +2,14 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  base: "trame",
+  base: "/trame",
   title: "trame",
   description: "Trame lets you weave various components and technologies into a Web Application solely written in Python",
   lastUpdated: true,
   head: [
+    ['link', { rel: "apple-touch-icon", sizes: "196x196", href: "/assets/favicons/favicon-196x196.png"}],
+    ['link', { rel: "icon", type: "image/png", sizes: "32x32", href: "/assets/favicons/favicon-32x32.png"}],
+    ['link', { rel: "icon", type: "image/png", sizes: "16x16", href: "/assets/favicons/favicon-16x16.png"}],
     [
       'script',
       { async: '', src: 'https://www.googletagmanager.com/gtag/js?id=G-H4W9XHTJ7X' }
@@ -24,12 +27,12 @@ export default defineConfig({
     search: {
       provider: 'local'
     },
-    logo: '/logo-title.svg',
+    logo: '/assets/trame-text.ff85ece7.svg',
     siteTitle: false,
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Guide', link: '/docs/' },
+      { text: 'Guide', link: '/guide/' },
       { text: 'Examples', link: '/examples/' },
       {
         text: 'Resources',
@@ -43,61 +46,102 @@ export default defineConfig({
     ],
 
     sidebar: {
-      '/docs/':[
+      '/guide/':[
         {
           text: 'Getting Started',
           items: [
-            { text: 'Introduction', link: '/docs/' },
-            { text: 'How to start', link: '/docs/getting_started' },
-            { text: 'API', link: '/docs/api' },
-            { text: 'Cheatsheet', link: '/docs/cheatsheet' },
-            { text: 'Course', link: '/docs/course_intro' },
-            { text: 'Vue 2/3 client', link: '/docs/vue23' },
+            { text: 'Introduction', link: '/guide/' },
+            { text: 'How to start', link: '/guide/intro/getting_started' },
+            { text: 'API', link: '/guide/intro/api' },
+            { text: 'Cheatsheet', link: '/guide/intro/cheatsheet' },
+            { text: 'Course', link: '/guide/intro/course' },
+            // { text: 'Vue 2/3 client', link: '/guide/intro/vue23' },
           ]
         },
         {
-          text: 'Roadmap',
+          text: 'Versions: 1, 2, 3',
           items: [
-            { text: 'Introduction', link: '/docs/trame_roadmap_intro' },
-            { text: 'From 1 to 2', link: '/docs/trame_v1-2' },
-            { text: 'From 2 to 3', link: '/docs/trame_v2-3' },
+            { text: 'Introduction', link: '/guide/versions/' },
+            { text: 'From 1 to 2', link: '/guide/versions/trame_v1-2' },
+            { text: 'From 2 to 3', link: '/guide/versions/trame_v2-3' },
           ]
         },
         {
           text: 'Tutorial',
           items: [
-            { text: 'Overview', link: '/docs/tutorial' },
-            { text: 'Download', link: '/docs/tutorial-download' },
-            { text: 'Setup for VTK', link: '/docs/tutorial-setup-vtk' },
-            { text: 'VTK', link: '/docs/tutorial-vtk' },
-            { text: 'Layouts', link: '/docs/tutorial-layouts' },
-            { text: 'HTML', link: '/docs/tutorial-html' },
-            { text: 'Application', link: '/docs/tutorial-application' },
-            { text: 'ParaView', link: '/docs/tutorial-paraview' },
+            { text: 'Overview', link: '/guide/tutorial/' },
+            { text: 'Download', link: '/guide/tutorial/download' },
+            { text: 'Setup for VTK', link: '/guide/tutorial/setup' },
+            { text: 'VTK', link: '/guide/tutorial/vtk' },
+            { text: 'Layouts', link: '/guide/tutorial/layouts' },
+            { text: 'HTML', link: '/guide/tutorial/html' },
+            { text: 'Application', link: '/guide/tutorial/application' },
+            { text: 'ParaView', link: '/guide/tutorial/paraview' },
           ]
         },
         {
           text: 'Deployment',
           items: [
-            { text: 'Python CLI', link: '/docs/deploy-pypi' },
-            { text: 'Jupyter', link: '/docs/deploy-jupyter' },
-            { text: 'Desktop', link: '/docs/deploy-desktop' },
-            { text: 'Cloud', link: '/docs/deploy-cloud' },
-            { text: 'HPC / Clusters', link: '/docs/deploy-hpc' },
-            { text: 'NGINX', link: '/docs/deploy-nginx' },
+            { text: 'Python CLI', link: '/guide/deployment/pypi' },
+            { text: 'Jupyter', link: '/guide/deployment/jupyter' },
+            { text: 'Desktop', link: '/guide/deployment/desktop' },
+            { text: 'Cloud', link: '/guide/deployment/cloud' },
+            { text: 'HPC / Clusters', link: '/guide/deployment/hpc' },
+            { text: 'NGINX', link: '/guide/deployment/nginx' },
           ]
         },
       ],
       '/examples/':[
         {
-          text: 'Basic',
+          text: 'Applications',
           items: [
-            { text: 'Listing', link: '/examples/' },
-            { text: 'Files', link: '/examples/files' },
-            { text: 'Desktop', link: '/docs/deploy-desktop' },
-            { text: 'Cloud', link: '/docs/deploy-cloud' },
-            { text: 'HPC / Clusters', link: '/docs/deploy-hpc' },
-            { text: 'NGINX', link: '/docs/deploy-nginx' },
+            { text: 'Introduction', link: '/examples/apps/applications' },
+            { text: 'ArrowFlow', link: '/examples/apps/arrow-flow' },
+            { text: 'Vera Core', link: '/examples/apps/vera-core' },
+            { text: 'XAITK', link: '/examples/apps/xaitk' },
+            { text: 'MNIST', link: '/examples/apps/mnist' },
+            { text: 'Peacock', link: '/examples/apps/peacock' },
+            { text: 'PFB Viewer', link: 'https://github.com/Kitware/pfb-viewer' },
+            { text: 'Conceptual Modeler', link: '/examples/apps/conceptual-modeler' },
+            { text: 'ParFlow Simulation Modeler', link: 'https://github.com/Kitware/pf-simulation-modeler' },
+            { text: 'Visualizer', link: 'https://github.com/Kitware/paraview-visualizer' },
+            { text: 'Asynchronous ParaView', link: 'https://github.com/Kitware/async-paraview-app' },
+          ]
+        },
+        {
+          text: 'VTK',
+          items: [
+            { text: 'Finite Element Analysis', link: '/examples/vtk/fea' },
+            { text: 'Multi-Filters', link: '/examples/vtk/multi' },
+            { text: 'Selection', link: '/examples/vtk/selection' },
+            { text: 'Surface Picking', link: '/examples/vtk/picking' },
+            { text: 'PolyData Viewer', link: '/examples/vtk/vtp' },
+            { text: 'ZARR Viewer', link: '/examples/vtk/zarr' },
+          ]
+        },
+        {
+          text: 'ParaView',
+          items: [
+            { text: 'Contour Geometry', link: '/examples/paraview/contour' },
+            { text: 'Picking', link: '/examples/paraview/picking' },
+            { text: 'Simple Cone', link: '/examples/paraview/cone' },
+            { text: 'State loader', link: '/examples/paraview/state' },
+          ]
+        },
+        {
+          text: 'Core functionalities',
+          items: [
+            { text: 'CLI', link: 'https://github.com/Kitware/trame/blob/master/examples/00_howdoi/cli.py' },
+            { text: 'File Upload', link: 'https://github.com/Kitware/trame/blob/master/examples/00_howdoi/upload.py' },
+            { text: 'Router', link: 'https://github.com/Kitware/trame/blob/master/examples/validation/core/10_router.py' },
+            { text: 'Favicon', link: 'https://github.com/Kitware/trame/blob/master/examples/validation/core/12_reserved_state.py' },
+            { text: 'MouseTrap', link: 'https://github.com/Kitware/trame/blob/master/examples/validation/core/16_mousetrap.py'},
+            { text: 'Download text', link: 'https://github.com/Kitware/trame/blob/master/examples/validation/core/22_download_server_content.py' },
+            { text: 'Download binary', link: 'https://github.com/Kitware/trame/blob/master/examples/validation/core/24_vtk_download_image.py' },
+            { text: 'CSS', link: 'https://github.com/Kitware/trame/blob/master/examples/validation/core/28_css.py' },
+            { text: 'Class decorator', link: 'https://github.com/Kitware/trame/blob/master/examples/validation/decorators/default_class_decorator.py' },
+            { text: 'Panel comparison', link: 'https://github.com/Kitware/trame/blob/master/examples/validation/panel' },
+            { text: 'Docker', link: 'https://github.com/Kitware/trame/blob/master/examples/deploy/docker/SingleFile' },
           ]
         },
       ],
@@ -108,7 +152,6 @@ export default defineConfig({
     ],
 
     footer: {
-      message: 'Released under the Apache 2 License.',
       copyright: 'Copyright © 2021-present Kitware Inc.'
     }
   },

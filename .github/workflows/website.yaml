@@ -32,6 +32,7 @@ jobs:
           fetch-depth: 0 # Not needed if lastUpdated is not enabled
       - name: Setup Node
         uses: actions/setup-node@v3
+        working-directory: docs/vitepress
         with:
           node-version: 18
           cache: npm

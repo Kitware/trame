@@ -82,9 +82,6 @@ jobs:
         with:
           node-version: 14
 
-      - name: Check Trame Install
-        run: npm ci
-
       - name: Install commitlint
         if: github.event_name == 'pull_request'
         run: |

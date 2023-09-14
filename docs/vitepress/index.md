@@ -38,13 +38,14 @@ features:
   - title: Problem Focused
     icon: 🔍
     details: By relying simply on Python and HTML, trame focuses on one's data and associated analysis and visualizations while hiding the complications of web development.
+    link: /examples/
   - title: Desktop, cloud, Jupyter and HPC
     icon:
       src: /assets/jupyter.1a86c226.svg
       alt: Jupyter and more
       width: 40
     details: Trame applications can be deployed on a desktop, in the cloud, within a Jupyter cell or on HPC environments. Trame simply make your application ubiquitous.
-
+    link: /guide/deployment/desktop
   - title: Support and Services
     icon:
       src: /assets/kitware.c9978938.svg

@@ -55,10 +55,9 @@ server.start()
 ## Results
 
 
-<p style="text-align:center;display: flex;align-items: center;">
-    <img src="/trame/images/trame-cheatsheet-app.jpg" alt="Application" style="width: 45%; height: 45%">
-    <img src="/trame/images/trame-cheatsheet-output.jpg" alt="Output" style="width: 45%; height: 45%">
-</p>
+| ![GUI](/images/trame-cheatsheet-app.jpg){ width=60% } | ![Terminal](/images/trame-cheatsheet-output.jpg) |
+| :---: | :---: |
+
 
 ## Explanatory Details
 
@@ -121,6 +120,7 @@ Methods can be passed to the events attribute of your UI elements. By default, t
 If you want to control its arguments you can use a tuple where the second entry represents the __args__ and the third represents the __kwargs__. If you only want to provide args without kwargs, just provide a tuple with 2 entries. __$event__ is a reserved name to represent the event object.
 
 ```python
+vuetify.VBtn("Click me", click="a = $event"))
 vuetify.VBtn("Click me", click=ctrl.do_something))
 vuetify.VBtn("Click me", click=(ctrl.do_something, "['hello', $event]"))
 vuetify.VBtn("Click me", click=(ctrl.do_something, "[index, $event]", "{ a: 12 }"))

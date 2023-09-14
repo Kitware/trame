@@ -69,7 +69,7 @@ import time
 async def update_time():
   while True:
     await asyncio.sleep(1)
-    with state:
+    with state: # needed because of async
       state.time = time.time()
 ```
 

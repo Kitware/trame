@@ -2,7 +2,7 @@
 
 Trame is not changing the ideas and concepts across versions that made trame what it is. Each version is all about refining its suite for creating Python applications while supporting many deployment types. Trame supports desktop, client/server, cloud services, and Jupyter notebook without changing any code.
 
-![trame](/trame/images/trame-architecture.jpg)
+![trame](/images/trame-architecture.png)
 
 As shown in the architecture diagram, trame focus on four types of services supporting the development of interactive visual applications.
 

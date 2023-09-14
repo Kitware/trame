@@ -1,0 +1,1 @@
+[![MNIST Sample application](/assets/images/apps/mnist.png)](https://github.com/Kitware/trame-mnist)

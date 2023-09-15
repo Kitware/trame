@@ -7,9 +7,9 @@ export default defineConfig({
   description: "Trame lets you weave various components and technologies into a Web Application solely written in Python",
   lastUpdated: true,
   head: [
-    ['link', { rel: "apple-touch-icon", sizes: "196x196", href: "/assets/favicons/favicon-196x196.png"}],
-    ['link', { rel: "icon", type: "image/png", sizes: "32x32", href: "/assets/favicons/favicon-32x32.png"}],
-    ['link', { rel: "icon", type: "image/png", sizes: "16x16", href: "/assets/favicons/favicon-16x16.png"}],
+    ['link', { rel: "apple-touch-icon", sizes: "196x196", href: "/trame/logos/favicon-196x196.png"}],
+    ['link', { rel: "icon", type: "image/png", sizes: "32x32", href: "/trame/logos/favicon-32x32.png"}],
+    ['link', { rel: "icon", type: "image/png", sizes: "16x16", href: "/trame/logos/favicon-16x16.png"}],
     [
       'script',
       { async: '', src: 'https://www.googletagmanager.com/gtag/js?id=G-H4W9XHTJ7X' }
@@ -27,7 +27,7 @@ export default defineConfig({
     search: {
       provider: 'local'
     },
-    logo: '/assets/trame-text.ff85ece7.svg',
+    logo: '/logos/trame-text.svg',
     siteTitle: false,
     // https://vitepress.dev/reference/default-theme-config
     nav: [

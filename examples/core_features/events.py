@@ -43,8 +43,6 @@ def method_4(*args, **kwargs):
     state.a += 10
 
 
-ctrl.alias_3 = method_4
-
 # -----------------------------------------------------------------------------
 # UI setup
 # -----------------------------------------------------------------------------
@@ -60,8 +58,12 @@ with DivLayout(server):
     html.Button(f"Method 3", click=(method_3, "[1, 2]", "{ x: 3, y: 4 }"))
     html.Button(f"alias_1", click=(ctrl.alias_1, "[2]", "{ z: 4 }"))
     html.Button(f"alias_2", click=(ctrl.alias_2, "[3]", "{ z: 5 }"))
+    html.Button(f"alias_3", click=(ctrl.alias_3, "[4]", "{ z: 6 }"))
     html.Button(f"a+", click="a+=1")
 
+
+# Can be defined after usage
+ctrl.alias_3 = method_4
 
 # -----------------------------------------------------------------------------
 # start server

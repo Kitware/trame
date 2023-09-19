@@ -47,8 +47,6 @@ def method_4(*args, **kwargs):
 # UI setup
 # -----------------------------------------------------------------------------
 
-layout = DivLayout(server)
-
 with DivLayout(server):
     html.Div(
         "State a={{ a }}", style="padding: 20px; margin: 20px; border: solid 1px #333;"

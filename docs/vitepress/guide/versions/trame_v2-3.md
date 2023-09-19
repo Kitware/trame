@@ -79,30 +79,4 @@ os.environ["TRAME_DISABLE_V3_WARNING"] = "1"
 
 Trame in itself won't have API change but it is possible that vue3 widget will have a different API like you can see between vuetify2 and vuetify3, but in general we'll try to maintain full API compatibility.
 
-## Widgets compatibility and package name
-
-| Widget name (trame.widget.{name}) | Package name | Supported version |
-| --- | --- | --- |
-| html | (built-in) | 2 & 3 |
-| client | (built-in) | 2 & 3 |
-| vuetify, vuetify2, vuetify3 | trame-vuetify | 2 & 3 |
-| router | trame-router | 2 & 3 |
-| vtk, paraview | trame-vtk | 2 & 3 |
-| plotly | trame-plotly | 2 & 3 |
-| xterm | trame-xterm | 2 & 3 |
-| code | trame-code | 2 & 3 |
-| iframe | trame-iframe | 2 & 3 |
-| trame | trame-components | 2 & 3 |
-| keycloak | trame-keycloak | 2 & 3 (wip) |
-| formkit | trame-formkit | 3 |
-| leaflet | trame-leaflet | 2 |
-| video | trame-video | 2 |
-| pvui | trame-pvui | 2 |
-| grid | trame-grid-layout | 2 |
-| tauri | trame-tauri | 2 |
-| vega | trame-vega | 2 |
-| simput | trame-simput | 2 |
-| rca | trame-rca | 2 (wip for 3) |
-| matplotlib | trame-matplotlib | 2 |
-| markdown | trame-markdown | 2 |
-| deckgl | trame-deckgl | 2 |
+<!--@include: ../intro/widgets.md-->

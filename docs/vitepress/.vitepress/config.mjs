@@ -56,6 +56,7 @@ export default defineConfig({
             { text: 'Cheatsheet', link: '/guide/intro/cheatsheet' },
             { text: 'Course', link: '/guide/intro/course' },
             // { text: 'Vue 2/3 client', link: '/guide/intro/vue23' },
+            { text: 'Widgets', link: '/guide/intro/widgets' },
           ]
         },
         {
@@ -96,20 +97,9 @@ export default defineConfig({
           text: 'Core functionalities',
           items: [
             { text: 'Basics', link: '/examples/core/basics' },
-            { text: 'File management', link: '/examples/core/files' },
+            { text: 'Files', link: '/examples/core/files' },
             { text: 'Jupyter', link: '/examples/core/jupyter' },
-            
-            // { text: 'CLI', link: 'https://github.com/Kitware/trame/blob/master/examples/00_howdoi/cli.py' },
-            // { text: 'File Upload', link: 'https://github.com/Kitware/trame/blob/master/examples/00_howdoi/upload.py' },
-            // { text: 'Router', link: 'https://github.com/Kitware/trame/blob/master/examples/validation/core/10_router.py' },
-            // { text: 'Favicon', link: 'https://github.com/Kitware/trame/blob/master/examples/validation/core/12_reserved_state.py' },
-            // { text: 'MouseTrap', link: 'https://github.com/Kitware/trame/blob/master/examples/validation/core/16_mousetrap.py'},
-            // { text: 'Download text', link: 'https://github.com/Kitware/trame/blob/master/examples/validation/core/22_download_server_content.py' },
-            // { text: 'Download binary', link: 'https://github.com/Kitware/trame/blob/master/examples/validation/core/24_vtk_download_image.py' },
-            // { text: 'CSS', link: 'https://github.com/Kitware/trame/blob/master/examples/validation/core/28_css.py' },
-            // { text: 'Class decorator', link: 'https://github.com/Kitware/trame/blob/master/examples/validation/decorators/default_class_decorator.py' },
-            // { text: 'Panel comparison', link: 'https://github.com/Kitware/trame/blob/master/examples/validation/panel' },
-            // { text: 'Docker', link: 'https://github.com/Kitware/trame/blob/master/examples/deploy/docker/SingleFile' },
+            // router, docker            
           ]
         },
         {

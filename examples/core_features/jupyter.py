@@ -1,38 +1,14 @@
-r"""
-Within Jupyter
-
-```
-import os
-os.environ["TRAME_DISABLE_V3_WARNING"] = "1"
-
-cone = Cone()
-await cone.ui.ready
-cone.ui
-```
-
-Another cell
-
-```
-cone.resolution = 4
-```
-
-"""
-
-
 from trame.app import get_server
 from trame.ui.vuetify import SinglePageLayout
 from trame.widgets import html, vuetify, vtk
 from trame.decorators import TrameApp, change
 
 
-@TrameApp()
 class Cone:
     def __init__(self, name=None):
         self.server = get_server(name)
         self.server.client_type = "vue2"
         self._ui = None
-
-        self.state.a = 0
 
         # Build UI
         self.ui
@@ -56,10 +32,6 @@ class Cone:
 
     def reset_resolution(self):
         self.resolution = 6
-
-    @change("resolution")
-    def _resolution_change(self, resolution, **kwargs):
-        self.state.a = resolution
 
     @property
     def ui(self):

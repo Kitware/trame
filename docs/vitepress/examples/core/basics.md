@@ -5,10 +5,8 @@ The examples presented below are meant to be executed and explored so you can un
 ## State management
 
 ::: code-group
-
 <<< @/../../examples/core_features/state.py
 <<< @/../../examples/core_features/reserved_state.py
-
 :::
 
 ## Events management
@@ -18,10 +16,8 @@ The examples presented below are meant to be executed and explored so you can un
 ## User Interface
 
 ::: code-group
-
 <<< @/../../examples/core_features/dynamic_layout.py
 <<< @/../../examples/core_features/multi_layout.py
-
 :::
 
 ## Life Cycle 
@@ -41,3 +37,7 @@ Once hot-reload is enabled by either using the `TRAME_HOT_RELOAD` environment va
 But in the following example, you can use `watchdog` to execute the UI update on file change.
 
 <<< @/../../examples/core_features/hot_reload.py
+
+## Class for trame application
+
+<<< @/../../examples/core_features/app.py

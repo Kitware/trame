@@ -3,14 +3,7 @@ https://v2.vuetifyjs.com/en/components/tooltips/
 
     <v-tooltip bottom>
       <template v-slot:activator="{ on, attrs }">
-        <v-btn
-          color="primary"
-          dark
-          v-bind="attrs"
-          v-on="on"
-        >
-          Button
-        </v-btn>
+        <v-btn v-bind="attrs" v-on="on">Hover over me</v-btn>
       </template>
       <span>Tooltip</span>
     </v-tooltip>

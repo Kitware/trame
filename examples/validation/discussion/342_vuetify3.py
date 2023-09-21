@@ -1,11 +1,11 @@
 r"""
 https://vuetifyjs.com/en/components/tooltips/
 
-<v-tooltip text="Tooltip">
-  <template v-slot:activator="{ props }">
-    <v-btn v-bind="props">Hover over me</v-btn>
-  </template>
-</v-tooltip>
+    <v-tooltip text="Tooltip">
+      <template v-slot:activator="{ props }">
+        <v-btn v-bind="props">Hover over me</v-btn>
+      </template>
+    </v-tooltip>
 """
 
 from trame.app import get_server

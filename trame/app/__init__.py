@@ -67,11 +67,16 @@ def trame_3_warning(*args, **kwargs):
 # After December 2023 we will switch to vue3
 # ---------------------------------------------------------
 set_default_client_type("vue2")
-trame_3_warning()
 # ---------------------------------------------------------
 
 
-def get_server(name=None, create_if_missing=True, **kwargs):
+def apply_client_type(server, client_type=None):
+    if client_type is not None:
+        server.client_type = client_type
+    return server
+
+
+def get_server(name=None, create_if_missing=True, client_type=None, **kwargs):
     """
     Return a server for serving trame applications.
     If a name is given and such server is not available yet,
@@ -79,29 +84,40 @@ def get_server(name=None, create_if_missing=True, **kwargs):
 
     :param name: A server name identifier which can be useful when several servers
                 are expected to be created. Most of the time, passing no arguments
-                is what you are looking for.
-    :type name: str
-
+                is what you are looking for. Also an actual Server instance can be
+                provided so you can use it as a decorator function.
+    :type name: None | str | Server instance
 
     :param create_if_missing: By default if a server for a given name does not exist
         that method will create it.
     :type create_if_missing: bool
+
+    :param client_type: If provided, it will set it on the server.
+    :type client_type: None | "vue2" | "vue3"
 
     :param **kwargs: any extra keyword args are passed as option to the server instance.
 
     :return: Return a unique Server instance per given name.
     :rtype: trame_server.core.Server
     """
+    if client_type is None:
+        trame_3_warning()
+
+    # Convenient method for decorator like usage
+    if isinstance(name, Server):
+        return apply_client_type(name, client_type)
+
     if name is None:
         name = DEFAULT_NAME
 
     if name in AVAILABLE_SERVERS:
-        return AVAILABLE_SERVERS[name]
+        return apply_client_type(AVAILABLE_SERVERS[name], client_type)
 
     if create_if_missing:
         server = Server(name, VirtualNode, **kwargs)
         AVAILABLE_SERVERS[name] = server
-        return server
+
+        return apply_client_type(server, client_type)
 
     # No server available for given name
     return None

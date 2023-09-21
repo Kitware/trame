@@ -4,19 +4,9 @@ from trame.widgets import vuetify, vtk as vtk_widgets
 
 
 class Cone:
-    def __init__(self, server=None):
-        if server is None:
-            server = get_server()
-
-        if isinstance(server, str):
-            server = get_server(server)
-
-        self._server = server
-        self.ui()
-
-    @property
-    def server(self):
-        return self._server
+    def __init__(self, server_or_name=None):
+        self.server = get_server(server_or_name, client_type="vue2")
+        self.ui = self._generate_ui()
 
     @property
     def ctrl(self):
@@ -26,19 +16,23 @@ class Cone:
     def state(self):
         return self.server.state
 
-    def ui(self):
-        with SinglePageLayout(self.server) as layout:
-            with layout.content:
-                with vuetify.VContainer(fluid=True, classes="pa-0 fill-height"):
-                    with vtk_widgets.VtkView() as view:
-                        self.ctrl.view_reset_camera = view.reset_camera
-                        with vtk_widgets.VtkGeometryRepresentation():
-                            vtk_widgets.VtkAlgorithm(
-                                vtk_class="vtkConeSource",
-                                state=("{ resolution }",),
-                            )
+    @property
+    def resolution(self):
+        return self.state.resolution
 
-            with layout.toolbar:
+    @resolution.setter
+    def resolution(self, v):
+        with self.state:
+            self.state.resolution = v
+
+    def reset_resolution(self):
+        self.resolution = 6
+
+    def _generate_ui(self):
+        with SinglePageLayout(self.server) as layout:
+            layout.title.set_text("Trame demo")
+            with layout.toolbar as toolbar:
+                toolbar.dense = True
                 vuetify.VSpacer()
                 vuetify.VSlider(
                     v_model=("resolution", 6),
@@ -48,15 +42,21 @@ class Cone:
                     hide_details=True,
                     style="max-width: 300px;",
                 )
+                with vuetify.VBtn(icon=True, click=self.reset_resolution):
+                    vuetify.VIcon("mdi-lock-reset")
                 with vuetify.VBtn(icon=True, click=self.ctrl.view_reset_camera):
                     vuetify.VIcon("mdi-crop-free")
 
+            with layout.content:
+                with vuetify.VContainer(fluid=True, classes="pa-0 fill-height"):
+                    with vtk_widgets.VtkView() as view:
+                        self.ctrl.view_reset_camera = view.reset_camera
+                        with vtk_widgets.VtkGeometryRepresentation():
+                            vtk_widgets.VtkAlgorithm(
+                                vtk_class="vtkConeSource", state=("{ resolution }",)
+                            )
 
-def show_in_jupyter(server=None, **kwargs):
-    from trame.app.jupyter import show
-
-    cone = Cone(server)
-    show(cone.server, **kwargs)
+            return layout
 
 
 def main(**kwargs):

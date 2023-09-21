@@ -99,6 +99,8 @@ export default defineConfig({
             { text: 'Basics', link: '/examples/core/basics' },
             { text: 'Files', link: '/examples/core/files' },
             { text: 'Jupyter', link: '/examples/core/jupyter' },
+            { text: 'Plotly', link: '/examples/core/plotly' },
+            { text: 'Docker', link: '/examples/core/docker' },
             // router, docker            
           ]
         },
@@ -111,11 +113,11 @@ export default defineConfig({
             { text: 'XAITK', link: '/examples/apps/xaitk' },
             { text: 'MNIST', link: '/examples/apps/mnist' },
             { text: 'Peacock', link: '/examples/apps/peacock' },
-            { text: 'PFB Viewer', link: 'https://github.com/Kitware/pfb-viewer' },
+            { text: 'Visualizer', link: '/examples/apps/visualizer' },
             { text: 'Conceptual Modeler', link: '/examples/apps/conceptual-modeler' },
-            { text: 'ParFlow Simulation Modeler', link: 'https://github.com/Kitware/pf-simulation-modeler' },
-            { text: 'Visualizer', link: 'https://github.com/Kitware/paraview-visualizer' },
             { text: 'Asynchronous ParaView', link: 'https://github.com/Kitware/async-paraview-app' },
+            { text: 'PFB Viewer', link: 'https://github.com/Kitware/pfb-viewer' },
+            { text: 'ParFlow Simulation Modeler', link: 'https://github.com/Kitware/pf-simulation-modeler' },
           ]
         },
         {
@@ -127,6 +129,7 @@ export default defineConfig({
             { text: 'Surface Picking', link: '/examples/vtk/picking' },
             { text: 'PolyData Viewer', link: '/examples/vtk/vtp' },
             { text: 'ZARR Viewer', link: '/examples/vtk/zarr' },
+            { text: 'More examples', link: '/examples/vtk/examples' },
           ]
         },
         {

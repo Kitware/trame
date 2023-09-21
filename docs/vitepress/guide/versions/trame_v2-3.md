@@ -22,6 +22,8 @@ server.client_type = "vue3" # instead of 'vue2'
 A message will be printed by default at the startup of trame with the v3 version.
 We are expecting to remove that message during summer 2024.
 
+::: info
+
     --------------------------------------------------------------------------------
        !!! You are currently using trame@3 which may break your application !!!
     --------------------------------------------------------------------------------
@@ -57,6 +59,8 @@ We are expecting to remove that message during summer 2024.
      ~~~~~~~~~~~~~
        a. Make sure you set `server.client_type` to either 'vue2' or 'vue3'.
        b. List the expected dependencies or have a 'trame<3' dependency
+
+:::
 
 
 To disable that warning you have 2 options. Use environment variable by setting __TRAME_DISABLE_V3_WARNING__ or __disabling logging__ which can be done by the following code snippet.

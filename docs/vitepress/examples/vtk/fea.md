@@ -14,6 +14,10 @@ In trame we are exposing 3 approaches:
 
 The data files can be found [here in the original project](https://github.com/shkiefer/dash_vtk_unstructured/tree/main/data).
 
-[![Gallery](/assets/images/examples/FiniteElementAnalysis.jpg)](https://github.com/Kitware/trame/tree/master/examples/)
+[![FEA Example](/assets/images/examples/FiniteElementAnalysis.jpg)](https://github.com/Kitware/trame/tree/master/examples/06_vtk/Applications/FiniteElementAnalysis)
 
-The code is available [here](https://github.com/Kitware/trame/tree/master/examples/06_vtk/Applications/FiniteElementAnalysis)
+::: code-group
+<<< @/../../examples/06_vtk/Applications/FiniteElementAnalysis/app_client_view.py 
+<<< @/../../examples/06_vtk/Applications/FiniteElementAnalysis/app_local_view.py 
+<<< @/../../examples/06_vtk/Applications/FiniteElementAnalysis/app_remote_view.py
+:::

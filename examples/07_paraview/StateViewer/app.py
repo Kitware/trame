@@ -1,12 +1,9 @@
 r"""
-Version for trame 1.x - https://github.com/Kitware/trame/blob/release-v1/examples/ParaView/StateViewer/app.py
-Delta v1..v2          - https://github.com/Kitware/trame/commit/23895e27489b828016327e1eccac4064ca62138a
-
 Installation requirements:
     pip install trame trame-vuetify trame-vtk
 """
 
-from paraview.web import venv  # Available in PV 5.10-RC2+
+import paraview.web.venv
 from paraview import simple
 
 from pathlib import Path
@@ -20,6 +17,7 @@ from trame.ui.vuetify import SinglePageLayout
 
 server = get_server()
 state, ctrl = server.state, server.controller
+state.trame__title = "State Viewer"
 
 # Preload paraview modules onto server
 paraview.initialize(server)
@@ -29,6 +27,7 @@ paraview.initialize(server)
 # -----------------------------------------------------------------------------
 
 
+@ctrl.add("on_server_ready")
 def load_data(**kwargs):
     # CLI
     args, _ = server.cli.parse_known_args()
@@ -58,13 +57,9 @@ def load_data(**kwargs):
                 ctrl.view_update = html_view.update
 
 
-ctrl.on_server_ready.add(load_data)
-
 # -----------------------------------------------------------------------------
 # GUI
 # -----------------------------------------------------------------------------
-
-state.trame__title = "State Viewer"
 
 with SinglePageLayout(server) as layout:
     layout.icon.click = ctrl.view_reset_camera
@@ -74,10 +69,6 @@ with SinglePageLayout(server) as layout:
         with vuetify.VContainer(fluid=True, classes="pa-0 fill-height"):
             client.Loading("Loading state")
 
-
-# -----------------------------------------------------------------------------
-# Main
-# -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
     server.cli.add_argument("--data", help="Path to state file", dest="data")

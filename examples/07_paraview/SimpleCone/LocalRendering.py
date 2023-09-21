@@ -1,12 +1,9 @@
 r"""
-Version for trame 1.x - https://github.com/Kitware/trame/blob/release-v1/examples/ParaView/SimpleCone/LocalRendering.py
-Delta v1..v2          - https://github.com/Kitware/trame/commit/37e36bdd0bc55dfa9134e4f8eba9a014dda4f865
-
 Installation requirements:
     pip install trame trame-vuetify trame-vtk
 """
 
-import paraview.web.venv  # Available in PV 5.10-RC2+
+import paraview.web.venv  # Available in PV 5.11
 
 from trame.app import get_server
 from trame.widgets import vuetify, paraview
@@ -15,11 +12,10 @@ from trame.ui.vuetify import SinglePageLayout
 from paraview import simple
 
 # -----------------------------------------------------------------------------
-# Trame setup
-# -----------------------------------------------------------------------------
 
 server = get_server()
 state, ctrl = server.state, server.controller
+state.trame__title = "ParaView cone"
 
 # -----------------------------------------------------------------------------
 # ParaView code
@@ -43,10 +39,7 @@ def update_reset_resolution():
 
 
 # -----------------------------------------------------------------------------
-# GUI
-# -----------------------------------------------------------------------------
 
-state.trame__title = "ParaView cone"
 
 with SinglePageLayout(server) as layout:
     layout.icon.click = ctrl.view_reset_camera
@@ -72,10 +65,6 @@ with SinglePageLayout(server) as layout:
             html_view = paraview.VtkLocalView(view, ref="view")
             ctrl.view_reset_camera = html_view.reset_camera
             ctrl.view_update = html_view.update
-
-# -----------------------------------------------------------------------------
-# Main
-# -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
     server.start()

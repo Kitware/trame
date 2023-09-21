@@ -137,14 +137,5 @@ with SinglePageLayout(server) as layout:
             ctrl.view_reset_camera = html_view.reset_camera
             ctrl.view_update = html_view.update
 
-# -----------------------------------------------------------------------------
-# Main
-# -----------------------------------------------------------------------------
-
-
-def main():
-    server.start()
-
-
 if __name__ == "__main__":
-    main()
+    server.start()

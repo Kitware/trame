@@ -9,7 +9,7 @@
 
 <<< @/../../examples/core_features/upload.py
 
-## Browse
+## Local file browsing
 
 <<< @/../../examples/core_features/sys_filebrowser.py
 

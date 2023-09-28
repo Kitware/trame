@@ -1,6 +1,7 @@
 import asyncio
-from trame.app import get_server
 from IPython import display
+
+from . import get_server
 
 __all__ = [
     "show",
@@ -22,8 +23,7 @@ def show(_server, ui=None, **kwargs):
     :param **kwargs: any keyword arguments are pass to the Jupyter IFrame.
         Additionally `protocol=` and `host=` can be use to override the iframe src url.
     """
-    if isinstance(_server, str):
-        _server = get_server(_server)
+    _server = get_server(_server)
 
     def on_ready(**_):
         params = f"?ui={ui}" if ui else ""

@@ -101,7 +101,7 @@ export default defineConfig({
             { text: 'Jupyter', link: '/examples/core/jupyter' },
             { text: 'Plotly', link: '/examples/core/plotly' },
             { text: 'Docker', link: '/examples/core/docker' },
-            // router, docker            
+            // router, docker
           ]
         },
         {
@@ -118,6 +118,7 @@ export default defineConfig({
             { text: 'Asynchronous ParaView', link: 'https://github.com/Kitware/async-paraview-app' },
             { text: 'PFB Viewer', link: 'https://github.com/Kitware/pfb-viewer' },
             { text: 'ParFlow Simulation Modeler', link: 'https://github.com/Kitware/pf-simulation-modeler' },
+            { text: 'Community', link: '/examples/apps/community' },
           ]
         },
         {

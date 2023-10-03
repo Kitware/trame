@@ -42,6 +42,7 @@ def figure_size():
 
 
 def FirstDemo():
+    plt.close("all")
     fig, ax = plt.subplots(**figure_size())
     np.random.seed(0)
     ax.plot(
@@ -63,6 +64,7 @@ def FirstDemo():
 
 
 def MultiLines():
+    plt.close("all")
     fig, ax = plt.subplots(**figure_size())
     x = np.linspace(0, 10, 1000)
     for offset in np.linspace(0, 3, 7):
@@ -78,6 +80,7 @@ def MultiLines():
 
 
 def DotsandPoints():
+    plt.close("all")
     fig, ax = plt.subplots(**figure_size())
     ax.plot(
         np.random.rand(20),
@@ -108,11 +111,11 @@ def MovingWindowAverage():
 
     kernel = np.ones(25) / 25.0
     x_smooth = np.convolve(x + dx, kernel, mode="same")
-
+    plt.close("all")
     fig, ax = plt.subplots(**figure_size())
     ax.plot(t, x + dx, linestyle="", marker="o", color="black", markersize=3, alpha=0.3)
     ax.plot(t, x_smooth, "-k", lw=3)
-    ax.plot(t, x, "--k", lw=3, color="blue")
+    ax.plot(t, x, "--", lw=3, color="blue")
 
     return fig
 
@@ -121,6 +124,7 @@ def MovingWindowAverage():
 
 
 def Subplots():
+    plt.close("all")
     fig = plt.figure(**figure_size())
     fig.subplots_adjust(hspace=0.3)
 

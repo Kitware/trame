@@ -32,6 +32,7 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Home', link: '/' },
+      { text: 'News', link: '/news' },
       { text: 'Guide', link: '/guide/' },
       { text: 'Examples', link: '/examples/' },
       {

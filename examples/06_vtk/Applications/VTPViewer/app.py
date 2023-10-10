@@ -1,7 +1,4 @@
 r"""
-Version for trame 1.x - https://github.com/Kitware/trame/blob/release-v1/examples/VTK/Applications/VTPViewer/app.py
-Delta v1..v2          - https://github.com/Kitware/trame/commit/8d7fd7d3f11360637315f61ec8c66154d3b1af69
-
 Installation requirements:
     pip install trame trame-vuetify trame-vtk trame-components
 """
@@ -9,6 +6,7 @@ Installation requirements:
 from trame.app import get_server
 from trame.ui.vuetify import SinglePageLayout
 from trame.widgets import vuetify, trame, vtk as vtk_widgets
+from trame.app.file_upload import ClientFile
 
 from vtkmodules.vtkIOXML import vtkXMLPolyDataReader
 from vtkmodules.web.utils import mesh as vtk_mesh
@@ -42,9 +40,10 @@ def load_client_files(files, **kwargs):
             return
 
         for file in files:
-            print(f'Load {file.get("name")}')
-            bytes = file.get("content")
-            filesOutput.append({"name": file.get("name"), "size": file.get("size")})
+            file = ClientFile(file)
+            print(f"Load {file.name}")
+            bytes = file.content
+            filesOutput.append({"name": file.name, "size": file.size})
             reader = vtkXMLPolyDataReader()
             reader.ReadFromInputStringOn()
             reader.SetInputString(bytes)

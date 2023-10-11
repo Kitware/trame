@@ -15,12 +15,13 @@
 | iframe | trame-iframe | 2 & 3 | 2 |
 | trame | trame-components | 2 & 3 | 11 |
 | markdown | trame-markdown | 2 & 3 | 1 |
+| rca | trame-rca | 2 & 3 | 7 |
 | keycloak | trame-keycloak | 2 & 3 (wip) | 1 |
 
 ::: warning
 - **vuetify**: The set of components are a bit different with API change. Please look at the [upgrade guide](https://vuetifyjs.com/en/getting-started/upgrade-guide/) for more details.
 - **markdown**: If coming from v2, the v3 has a different engine configuration while now supporting both vue 2/3.
-- **trame**: In the code upgrade to support 2 & 3, some event keys have been updated. 
+- **trame**: In the code upgrade to support 2 & 3, some event keys have been updated.
 - **keycloak**: This component has been pushed before being tested, hence the WIP status.
 :::
 
@@ -36,11 +37,10 @@
 | Widget name (trame.widget.{name}) | Package name | Supported version | Number of components |
 | --- | --- | --- | --- |
 | leaflet | trame-leaflet | 2 | 22 |
-| pvui | trame-pvui | 2 | . |
+| pvui | trame-pvui | 2 | 4 |
 | grid | trame-grid-layout | 2 | 2 |
 | tauri | trame-tauri | 2 | - |
 | vega | trame-vega | 2 | 1 |
 | simput | trame-simput | 2 | 2 |
-| rca | trame-rca | 2 (wip for 3) | 7 |
 | matplotlib | trame-matplotlib | 2 | 1 |
 | deckgl | trame-deckgl | 2 | 1 |

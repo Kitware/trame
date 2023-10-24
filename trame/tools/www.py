@@ -25,10 +25,13 @@ class StaticContentGenerator:
         pass
 
     def enable_module(self, module, **kwargs):
+        # Make sure definitions is a dict
+        definitions = module if isinstance(module, dict) else module.__dict__
+
         load_remaining = False
-        if "setup" in module.__dict__:
+        if "setup" in definitions:
             try:
-                module.setup(self)
+                definitions.get("setup")(self)
                 load_remaining = True
             except TypeError:
                 pass  # Skip incompatible modules
@@ -36,11 +39,11 @@ class StaticContentGenerator:
             load_remaining = True
 
         if load_remaining:
-            if "serve" in module.__dict__:
-                self.serve.update(module.serve)
+            if "serve" in definitions:
+                self.serve.update(definitions.get("serve"))
 
-            if "www" in module.__dict__:
-                self.www = module.www
+            if "www" in definitions:
+                self.www = definitions.get("www")
 
     def enable_modules(self, *names):
         for module_name in names:

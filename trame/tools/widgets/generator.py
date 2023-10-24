@@ -78,7 +78,7 @@ async def create_base_structure(ref_path, config, output):
                         file.write("\n\n")
 
                         all_class_names = []
-                        for (class_name, class_info) in config[name][sub_name][
+                        for class_name, class_info in config[name][sub_name][
                             module
                         ].items():
                             if class_name == "directives":

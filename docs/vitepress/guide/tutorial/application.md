@@ -33,6 +33,12 @@ from trame.ui.vuetify import SinglePageLayout
 from trame.widgets import vtk, vuetify, trame
 ```
 
+But because we are adding `trame` to the list of widgets, we should add it to our environment by running
+
+```sh
+pip install trame-components
+```
+
 We are creating a single page application with a drawer (`trame.ui.vuetify`), and we want to use one of ***trame***'s predefined widgets (`trame.widgets`) for displaying and interacting with visualization pipelines.
 
 **Finally**, our VTK pipelines are fairly straight forward, but not available as one of the VTK examples. We will add the import for our VTK objects.

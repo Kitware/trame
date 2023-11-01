@@ -1,3 +1,8 @@
+## November 1st, 2023
+
+[Introduction blog post available on Medium](https://medium.com/@ash_computational_qm/trame-frontend-with-vue-js-but-in-python-329111755b98)
+
+
 ## October 10, 2023
 
 This is what happens when you let an engineer play for the first time with **VTK** and **trame**.

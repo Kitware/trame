@@ -1,7 +1,12 @@
 ## November 1st, 2023
 
-[Introduction blog post available on Medium](https://medium.com/@ash_computational_qm/trame-frontend-with-vue-js-but-in-python-329111755b98)
+[Medium blog post](https://medium.com/@ash_computational_qm/trame-frontend-with-vue-js-but-in-python-329111755b98)
 
+Trame: Frontend With Vue.js, but in Python
+
+You may have heard about Vue.js — a javascript library for quick one-page websites and UIs, a performant library with easy development. But what you may not have heard of is Trame — a library for Vue.js, but in Python!
+
+[...]
 
 ## October 10, 2023
 

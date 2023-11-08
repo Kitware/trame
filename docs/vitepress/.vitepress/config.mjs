@@ -116,9 +116,9 @@ export default defineConfig({
             { text: 'Peacock', link: '/examples/apps/peacock' },
             { text: 'Visualizer', link: '/examples/apps/visualizer' },
             { text: 'Conceptual Modeler', link: '/examples/apps/conceptual-modeler' },
-            { text: 'Asynchronous ParaView', link: 'https://github.com/Kitware/async-paraview-app' },
-            { text: 'PFB Viewer', link: 'https://github.com/Kitware/pfb-viewer' },
-            { text: 'ParFlow Simulation Modeler', link: 'https://github.com/Kitware/pf-simulation-modeler' },
+            // { text: 'Asynchronous ParaView', link: 'https://github.com/Kitware/async-paraview-app' },
+            // { text: 'PFB Viewer', link: 'https://github.com/Kitware/pfb-viewer' },
+            // { text: 'ParFlow Simulation Modeler', link: 'https://github.com/Kitware/pf-simulation-modeler' },
             { text: 'Community', link: '/examples/apps/community' },
           ]
         },

@@ -50,3 +50,13 @@ More about the Web3D conference that will happen in October 9-11 2023. (https://
 While documentation is an ongoing process. I'm excited of the new trame website which includes a lot of examples and references to get started with trame.
 
 [![Trame website](/assets/images/news/trame-website.jpg)](https://www.linkedin.com/posts/sebastienjourdain_trame-activity-7110432344230002688-NooO?utm_source=share&utm_medium=member_desktop)
+
+## December 5, 2022
+
+**Interactive Web-based 3D Visualization of large scientific datasets using Azure Batch**
+
+![Microsoft Azure](/assets/logos/azure.svg)
+
+Scientific computing has long relied on high-performance computing (HPC) systems to accelerate scientific discovery. What constitutes an HPC system has continued to evolve. Access to computing keeps getting democratized and HPC is no longer limited to multi-billion dollar government laboratories and industries who can afford the infrastructure. Anyone with access to the Internet can now easily leverage the ubiquitous cloud for their computing task du jour! Azure natively supports HPC by providing hardware suitable for high performance computing needs together with software infrastructure to make it easy to harness these resources. In this post, we focus on one such Azure infrastructure component, Azure Batch, and see how it can be used to support a common use-case: data browser with interactive 3D visualization support.
+
+[Microsoft Azure High Performance Computing Blog](https://techcommunity.microsoft.com/t5/azure-high-performance-computing/interactive-web-based-3d-visualization-of-large-scientific/ba-p/3686390)

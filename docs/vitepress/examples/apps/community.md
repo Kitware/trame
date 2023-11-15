@@ -19,3 +19,7 @@ The key features are:
 - Extendable: Currently support .out (UppASD), Non-binary .ovf (Mumax3, OOMMF, Spirit), and .data (Vampire) output files and can easily extend to other magnetic simulation code.
 - Shareable: Take snapshoot, rendering a trajectory video, make a portable interactive HTML file with only one click!
 - Community support: Open-source (GPL V3) and free to use, based on Python, Pandas, Numpy, Scipy, Trame, and Pyvista.
+
+## AI/Medical application
+
+<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7093253518769201153" height="997" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>

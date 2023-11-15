@@ -1,6 +1,7 @@
 <!--.vitepress/theme/MyLayout.vue-->
 <script setup>
 import DefaultTheme from 'vitepress/theme'
+import GithubButton from 'vue-github-button'
 
 const { Layout } = DefaultTheme
 </script>
@@ -18,6 +19,16 @@ const { Layout } = DefaultTheme
         >
         </iframe>
     </template>
+    <template #nav-bar-content-after>
+      <github-button
+          style="margin: 5px 1rem 0 1rem;"
+          href="https://github.com/kitware/trame"
+          data-icon="octicon-star"
+          data-show-count="false"
+          aria-label="Star kitware/trame on GitHub"
+      />
+      <img src="https://img.shields.io/pypi/dm/trame" />
+    </template>
   </Layout>
 </template>
 
@@ -27,6 +38,7 @@ const { Layout } = DefaultTheme
     padding: calc(var(--vp-nav-height) + var(--vp-layout-top-height, 0px) + 48px) 24px 48px;
     height: 300px;
   }
+
   @media (min-width: 640px) {
     .hero-video {
       height: 400px;

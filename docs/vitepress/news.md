@@ -51,6 +51,10 @@ While documentation is an ongoing process. I'm excited of the new trame website 
 
 [![Trame website](/assets/images/news/trame-website.jpg)](https://www.linkedin.com/posts/sebastienjourdain_trame-activity-7110432344230002688-NooO?utm_source=share&utm_medium=member_desktop)
 
+## August 2023
+
+<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7093253518769201153" height="997" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+
 ## December 5, 2022
 
 **Interactive Web-based 3D Visualization of large scientific datasets using Azure Batch**

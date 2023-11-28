@@ -1,12 +1,23 @@
 #!/usr/bin/env python
 
+import os
 import json
 import subprocess
+
+CLIENT_TYPE = os.environ.get("TRAME_CLIENT_TYPE", "vue2")
 
 
 def run(apps_path, out_path):
     # Generate www content
-    cmd = ["python", "-m", "trame.tools.www", "--output", out_path]
+    cmd = [
+        "python",
+        "-m",
+        "trame.tools.www",
+        "--output",
+        out_path,
+        "--client-type",
+        CLIENT_TYPE,
+    ]
     subprocess.run(cmd)
 
     # Generate app files index.html => {app_name}.html
@@ -16,6 +27,7 @@ def run(apps_path, out_path):
         for app_name, config in apps_dict.items():
             # handle custom modules for www
             web_modules = config.get("www_modules")
+            client_type = config.get("client_type", CLIENT_TYPE)
             if web_modules is not None:
                 cmd = [
                     "python",
@@ -23,6 +35,8 @@ def run(apps_path, out_path):
                     "trame.tools.www",
                     "--output",
                     out_path,
+                    "--client-type",
+                    client_type,
                     *web_modules,
                 ]
                 subprocess.run(cmd)

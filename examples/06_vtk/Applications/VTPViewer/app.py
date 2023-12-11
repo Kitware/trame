@@ -102,6 +102,7 @@ state.meshes = []
 
 with SinglePageLayout(server) as layout:
     layout.title.set_text("File Loader")
+    layout.icon.click = ctrl.view_reset_camera
     with layout.toolbar:
         vuetify.VSpacer()
         vuetify.VSelect(

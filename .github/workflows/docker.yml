@@ -61,7 +61,8 @@ jobs:
         with:
             context: docker
             file: docker/Dockerfile.common
-            build-args: BASE_IMAGE=nvidia/opengl:1.2-glvnd-devel-ubuntu20.04
+            build-args: |
+              BASE_IMAGE=nvidia/opengl:1.2-glvnd-devel-ubuntu20.04
             push: true
             tags: localhost:5000/trame-common-glvnd
 
@@ -70,7 +71,8 @@ jobs:
         with:
             context: docker
             file: docker/Dockerfile.common
-            build-args: BASE_IMAGE=nvidia/cuda:12.2.0-runtime-ubuntu20.04
+            build-args: |
+              BASE_IMAGE=nvidia/cuda:12.2.0-runtime-ubuntu20.04
             push: true
             tags: localhost:5000/trame-common-cuda
 
@@ -80,9 +82,9 @@ jobs:
             platforms: linux/amd64,linux/arm64
             context: docker
             file: docker/Dockerfile.pip
-            build-args:
-              - BASE_IMAGE=localhost:5000/trame-common
-              - PYTHON_VERSION=${{ matrix.python-version }}
+            build-args: |
+              BASE_IMAGE=localhost:5000/trame-common
+              PYTHON_VERSION=${{ matrix.python-version }}
             push: true
             tags: |
                 kitware/trame:py${{ matrix.python-version }}
@@ -94,9 +96,9 @@ jobs:
         with:
             context: docker
             file: docker/Dockerfile.pip
-            build-args:
-              - BASE_IMAGE=localhost:5000/trame-common-glvnd
-              - PYTHON_VERSION=${{ matrix.python-version }}
+            build-args: |
+              BASE_IMAGE=localhost:5000/trame-common-glvnd
+              PYTHON_VERSION=${{ matrix.python-version }}
             push: true
             tags: |
                 kitware/trame:py${{ matrix.python-version }}-glvnd
@@ -108,9 +110,9 @@ jobs:
         with:
             context: docker
             file: docker/Dockerfile.pip
-            build-args:
-              - BASE_IMAGE=localhost:5000/trame-common-cuda
-              - PYTHON_VERSION=${{ matrix.python-version }}
+            build-args: |
+              BASE_IMAGE=localhost:5000/trame-common-cuda
+              PYTHON_VERSION=${{ matrix.python-version }}
             push: true
             tags: |
                 kitware/trame:py${{ matrix.python-version }}-cuda
@@ -123,9 +125,9 @@ jobs:
             platforms: linux/amd64,linux/arm64
             context: docker
             file: docker/Dockerfile.conda
-            build-args:
-              - BASE_IMAGE=localhost:5000/trame-common
-              - PYTHON_VERSION=${{ matrix.python-version }}
+            build-args: |
+              BASE_IMAGE=localhost:5000/trame-common
+              PYTHON_VERSION=${{ matrix.python-version }}
             push: true
             tags: |
                 kitware/trame:py${{ matrix.python-version }}-conda

@@ -12,7 +12,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: [3.9, 3.10]
+        python-version: 
+          - "3.9"
+          - "3.10"
 
     # Start a local registry to which we will push trame-common, so that
     # docker buildx may access it in later steps.

@@ -64,7 +64,7 @@ jobs:
             context: docker
             file: docker/Dockerfile.common
             build-args: |
-              BASE_IMAGE=nvidia/opengl:1.2-glvnd-devel-ubuntu20.04
+              BASE_IMAGE=nvidia/opengl:1.2-glvnd-devel-ubuntu22.04
             push: true
             tags: localhost:5000/trame-common-glvnd
 
@@ -74,7 +74,7 @@ jobs:
             context: docker
             file: docker/Dockerfile.common
             build-args: |
-              BASE_IMAGE=nvidia/cuda:12.2.0-runtime-ubuntu20.04
+              BASE_IMAGE=nvidia/cuda:12.2.0-runtime-ubuntu22.04
             push: true
             tags: localhost:5000/trame-common-cuda
 
@@ -90,7 +90,7 @@ jobs:
             push: true
             tags: |
                 kitware/trame:py${{ matrix.python-version }}
-                kitware/trame:py${{ matrix.python-version }}-ubuntu-20.04
+                kitware/trame:py${{ matrix.python-version }}-ubuntu-22.04
                 kitware/trame:py${{ matrix.python-version }}-${{ env.MONTH_STAMP }}
 
       - name: Build and push (pip py${{ matrix.python-version }}-glvnd)
@@ -104,7 +104,7 @@ jobs:
             push: true
             tags: |
                 kitware/trame:py${{ matrix.python-version }}-glvnd
-                kitware/trame:py${{ matrix.python-version }}-1.2-glvnd-runtime-ubuntu20.04
+                kitware/trame:py${{ matrix.python-version }}-1.2-glvnd-runtime-ubuntu22.04
                 kitware/trame:py${{ matrix.python-version }}-glvnd-${{ env.MONTH_STAMP }}
 
       - name: Build and push (pip py${{ matrix.python-version }}-cuda)
@@ -118,7 +118,7 @@ jobs:
             push: true
             tags: |
                 kitware/trame:py${{ matrix.python-version }}-cuda
-                kitware/trame:py${{ matrix.python-version }}-12.2.0-cuda-runtime-ubuntu20.04
+                kitware/trame:py${{ matrix.python-version }}-12.2.0-cuda-runtime-ubuntu22.04
                 kitware/trame:py${{ matrix.python-version }}-cuda-${{ env.MONTH_STAMP }}
 
       - name: Build and push (py${{ matrix.python-version }}-conda)
@@ -133,5 +133,5 @@ jobs:
             push: true
             tags: |
                 kitware/trame:py${{ matrix.python-version }}-conda
-                kitware/trame:py${{ matrix.python-version }}-conda_ubuntu-20.04
+                kitware/trame:py${{ matrix.python-version }}-conda_ubuntu-22.04
                 kitware/trame:py${{ matrix.python-version }}-conda-${{ env.MONTH_STAMP }}

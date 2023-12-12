@@ -7,8 +7,7 @@ RUN apt-get update && \
     apt-get install -y \
       python${PYTHON_VERSION} \
       # python-distutils is required to install pip
-      # it unfortunately has to install python3.8-minimal as well...
-      python${PYTHON_VERSION}-distutils \
+      python3-distutils \
       # python-is-python3 creates a symlink for python to python3
       python-is-python3 \
       # For creating virtual environments

@@ -59,6 +59,8 @@ jobs:
             platforms: linux/amd64,linux/arm64
             context: docker
             file: docker/Dockerfile.common
+            build-args: |
+              BASE_IMAGE=ubuntu:${{ matrix.config.ubuntu }}
             push: true
             tags: localhost:5000/trame-common-ubuntu${{ matrix.config.ubuntu }}
 

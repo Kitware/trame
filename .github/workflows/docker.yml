@@ -12,9 +12,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: 
-          - "3.9"
-          - "3.10"
+        config:
+          - ubuntu: 20.04
+            python: 3.9
+            label: 3.9
+          - ubuntu: 22.04
+            python: 3
+            label: "3.10"
 
     # Start a local registry to which we will push trame-common, so that
     # docker buildx may access it in later steps.
@@ -56,7 +60,7 @@ jobs:
             context: docker
             file: docker/Dockerfile.common
             push: true
-            tags: localhost:5000/trame-common
+            tags: localhost:5000/trame-common-ubuntu${{ matrix.config.ubuntu }}
 
       - name: Build common (glvnd)
         uses: docker/build-push-action@v2
@@ -64,9 +68,9 @@ jobs:
             context: docker
             file: docker/Dockerfile.common
             build-args: |
-              BASE_IMAGE=nvidia/opengl:1.2-glvnd-devel-ubuntu22.04
+              BASE_IMAGE=nvidia/opengl:1.2-glvnd-devel-ubuntu${{ matrix.config.ubuntu }}
             push: true
-            tags: localhost:5000/trame-common-glvnd
+            tags: localhost:5000/trame-common-glvnd-ubuntu${{ matrix.config.ubuntu }}
 
       - name: Build common (cuda)
         uses: docker/build-push-action@v2
@@ -74,64 +78,64 @@ jobs:
             context: docker
             file: docker/Dockerfile.common
             build-args: |
-              BASE_IMAGE=nvidia/cuda:12.2.0-runtime-ubuntu22.04
+              BASE_IMAGE=nvidia/cuda:12.2.0-runtime-ubuntu${{ matrix.config.ubuntu }}
             push: true
-            tags: localhost:5000/trame-common-cuda
+            tags: localhost:5000/trame-common-cuda-ubuntu${{ matrix.config.ubuntu }}
 
-      - name: Build and push (py${{ matrix.python-version }}-pip)
+      - name: Build and push (py${{ matrix.config.label }}-pip)
         uses: docker/build-push-action@v2
         with:
             platforms: linux/amd64,linux/arm64
             context: docker
             file: docker/Dockerfile.pip
             build-args: |
-              BASE_IMAGE=localhost:5000/trame-common
-              PYTHON_VERSION=${{ matrix.python-version }}
+              BASE_IMAGE=localhost:5000/trame-common-ubuntu${{ matrix.config.ubuntu }}
+              PYTHON_VERSION=${{ matrix.config.python }}
             push: true
             tags: |
-                kitware/trame:py${{ matrix.python-version }}
-                kitware/trame:py${{ matrix.python-version }}-ubuntu-22.04
-                kitware/trame:py${{ matrix.python-version }}-${{ env.MONTH_STAMP }}
+                kitware/trame:py${{ matrix.config.label }}
+                kitware/trame:py${{ matrix.config.label }}-ubuntu${{ matrix.config.ubuntu }}
+                kitware/trame:py${{ matrix.config.label }}-${{ env.MONTH_STAMP }}
 
-      - name: Build and push (pip py${{ matrix.python-version }}-glvnd)
+      - name: Build and push (pip py${{ matrix.config.label }}-glvnd)
         uses: docker/build-push-action@v2
         with:
             context: docker
             file: docker/Dockerfile.pip
             build-args: |
-              BASE_IMAGE=localhost:5000/trame-common-glvnd
-              PYTHON_VERSION=${{ matrix.python-version }}
+              BASE_IMAGE=localhost:5000/trame-common-glvnd-ubuntu${{ matrix.config.ubuntu }}
+              PYTHON_VERSION=${{ matrix.config.python }}
             push: true
             tags: |
-                kitware/trame:py${{ matrix.python-version }}-glvnd
-                kitware/trame:py${{ matrix.python-version }}-1.2-glvnd-runtime-ubuntu22.04
-                kitware/trame:py${{ matrix.python-version }}-glvnd-${{ env.MONTH_STAMP }}
+                kitware/trame:py${{ matrix.config.label }}-glvnd
+                kitware/trame:py${{ matrix.config.label }}-1.2-glvnd-runtime-ubuntu${{ matrix.config.ubuntu }}
+                kitware/trame:py${{ matrix.config.label }}-glvnd-${{ env.MONTH_STAMP }}
 
-      - name: Build and push (pip py${{ matrix.python-version }}-cuda)
+      - name: Build and push (pip py${{ matrix.config.label }}-cuda)
         uses: docker/build-push-action@v2
         with:
             context: docker
             file: docker/Dockerfile.pip
             build-args: |
-              BASE_IMAGE=localhost:5000/trame-common-cuda
-              PYTHON_VERSION=${{ matrix.python-version }}
+              BASE_IMAGE=localhost:5000/trame-common-cuda-ubuntu${{ matrix.config.ubuntu }}
+              PYTHON_VERSION=${{ matrix.config.python }}
             push: true
             tags: |
-                kitware/trame:py${{ matrix.python-version }}-cuda
-                kitware/trame:py${{ matrix.python-version }}-12.2.0-cuda-runtime-ubuntu22.04
-                kitware/trame:py${{ matrix.python-version }}-cuda-${{ env.MONTH_STAMP }}
+                kitware/trame:py${{ matrix.config.label }}-cuda
+                kitware/trame:py${{ matrix.config.label }}-12.2.0-cuda-runtime-ubuntu${{ matrix.config.ubuntu }}
+                kitware/trame:py${{ matrix.config.label }}-cuda-${{ env.MONTH_STAMP }}
 
-      - name: Build and push (py${{ matrix.python-version }}-conda)
+      - name: Build and push (py${{ matrix.config.label }}-conda)
         uses: docker/build-push-action@v2
         with:
             platforms: linux/amd64,linux/arm64
             context: docker
             file: docker/Dockerfile.conda
             build-args: |
-              BASE_IMAGE=localhost:5000/trame-common
-              PYTHON_VERSION=${{ matrix.python-version }}
+              BASE_IMAGE=localhost:5000/trame-common-ubuntu${{ matrix.config.ubuntu }}
+              PYTHON_VERSION=${{ matrix.config.label }}
             push: true
             tags: |
-                kitware/trame:py${{ matrix.python-version }}-conda
-                kitware/trame:py${{ matrix.python-version }}-conda_ubuntu-22.04
-                kitware/trame:py${{ matrix.python-version }}-conda-${{ env.MONTH_STAMP }}
+                kitware/trame:py${{ matrix.config.label }}-conda
+                kitware/trame:py${{ matrix.config.label }}-conda-ubuntu${{ matrix.config.ubuntu }}
+                kitware/trame:py${{ matrix.config.label }}-conda-${{ env.MONTH_STAMP }}

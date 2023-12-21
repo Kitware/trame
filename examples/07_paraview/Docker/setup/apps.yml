@@ -1,0 +1,11 @@
+trame:
+  cmd:
+    - /opt/paraview/bin/pvpython
+    - /deploy/SimpleCone.py
+    - --host
+    - ${host}
+    - --port
+    - ${port}
+    - --authKey
+    - ${secret}
+    - --server

@@ -15,7 +15,7 @@ from vtkmodules.web.utils import mesh as vtk_mesh
 # Trame setup
 # -----------------------------------------------------------------------------
 
-server = get_server()
+server = get_server(client_type="vue2")
 state, ctrl = server.state, server.controller
 
 # -----------------------------------------------------------------------------

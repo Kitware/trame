@@ -4,7 +4,7 @@ from trame.widgets import vuetify
 from trame.app.file_upload import ClientFile
 
 
-server = get_server()
+server = get_server(client_type="vue2")
 
 with SinglePageWithDrawerLayout(server) as layout:
     with layout.toolbar:

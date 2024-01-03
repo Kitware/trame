@@ -25,6 +25,7 @@ state.client_only("b")
 # UI setup
 # -----------------------------------------------------------------------------
 
+
 # UI helper to extent layout
 def create_ui_for_state_var(name):
     with html.Div(style="margin: 20px; padding: 20px; border: solid 1px #333;"):

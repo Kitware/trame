@@ -1,7 +1,4 @@
 r"""
-Version for trame 1.x - https://github.com/Kitware/trame/blob/release-v1/examples/PlainPython/Router/app.py
-Delta v1..v2          - https://github.com/Kitware/trame/commit/f2ad3e65c17539315d23f5e3e981048f68b4d31e
-
 Installation requirements:
     pip install trame trame-vuetify trame-router
 """
@@ -15,7 +12,7 @@ from trame.widgets import vuetify, router
 # Trame setup
 # -----------------------------------------------------------------------------
 
-server = get_server()
+server = get_server(client_type="vue2")
 state, ctrl = server.state, server.controller
 
 # -----------------------------------------------------------------------------

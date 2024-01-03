@@ -41,8 +41,7 @@ def id_to_proxy(_id):
 # -----------------------------------------------------------------------------
 class App:
     def __init__(self, server=None):
-        if server is None:
-            server = get_server()
+        server = get_server(server, client_type="vue2")
 
         self.server = server
         self.state = server.state
@@ -340,7 +339,7 @@ class App:
 # Setup
 # -----------------------------------------------------------------------------
 
-server = get_server()
+server = get_server(client_type="vue2")
 app = App(server)
 app.setup_demo()
 

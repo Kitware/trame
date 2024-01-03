@@ -1,6 +1,6 @@
 from trame.app import get_server
 from trame.ui.html import DivLayout
-from trame.widgets import vuetify, html, helper
+from trame.widgets import html, helper
 
 # From: https://quasar.dev/start/umd
 
@@ -57,8 +57,7 @@ QCircularProgress = helper.create_class(
 # Trame usage
 # -----------------------------------------------------------------------------
 
-server = get_server()
-server.client_type = "vue3"
+server = get_server(client_type="vue3")
 
 
 def reset():

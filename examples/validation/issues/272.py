@@ -13,7 +13,7 @@ from vtkmodules.vtkRenderingCore import (
 import vtkmodules.vtkRenderingOpenGL2  # noqa
 
 USING_WITH = True
-server = get_server()
+server = get_server(client_type="vue2")
 ctrl = server.controller
 
 

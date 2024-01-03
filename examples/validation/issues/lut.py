@@ -31,7 +31,7 @@ renderWindow.AddRenderer(ren1)
 renderWindow.Render()
 
 
-server = trame.app.get_server(name="1234")
+server = trame.app.get_server(name="1234", client_type="vue2")
 state, ctrl = server.state, server.controller
 
 with SinglePageLayout(server) as layout:

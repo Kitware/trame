@@ -1,14 +1,13 @@
 from trame.app import get_server
-from trame.widgets import vuetify3, html
+from trame.widgets import vuetify3
 from trame.ui.vuetify3 import SinglePageLayout
 
 # -----------------------------------------------------------------------------
 # Trame setup
 # -----------------------------------------------------------------------------
 
-server = get_server()
+server = get_server(client_type="vue3")
 state, ctrl = server.state, server.controller
-server.client_type = "vue3"
 
 # -----------------------------------------------------------------------------
 # i18n

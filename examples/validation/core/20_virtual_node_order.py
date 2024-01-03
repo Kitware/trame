@@ -1,5 +1,5 @@
 from trame.app import get_server
-from trame.widgets import vtk, vuetify
+from trame.widgets import vuetify
 from trame.ui.vuetify import SinglePageLayout
 
 # -----------------------------------------------------------------------------
@@ -7,6 +7,7 @@ from trame.ui.vuetify import SinglePageLayout
 # -----------------------------------------------------------------------------
 
 server = get_server(
+    client_type="vue2",
     # log_network="/Users/sebastien.jourdain/Documents/code/open-source/Web/trame-next/test-examples/logs",
 )
 state, ui = server.state, server.ui

@@ -2,7 +2,7 @@ from pathlib import Path
 from trame.app import get_server
 from trame.ui.vuetify import VAppLayout
 
-server = get_server()
+server = get_server(client_type="vue2")
 
 SCRIPT_PATH = Path(__file__).with_name("291.js")
 split_pane_module = {

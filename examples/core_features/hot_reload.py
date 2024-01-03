@@ -1,7 +1,3 @@
-import os
-
-os.environ["TRAME_DISABLE_V3_WARNING"] = "1"
-
 from trame.app import get_server
 from trame.decorators import hot_reload
 from trame.widgets import html
@@ -19,6 +15,7 @@ state, ctrl = server.state, server.controller
 # 1. export TRAME_HOT_RELOAD=1
 # 2. --hot-reload
 server.hot_reload = True
+
 
 # -----------------------------------------------------------------------------
 # Dynamically modify any `ChangeMe` to see the new code execute while

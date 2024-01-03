@@ -8,7 +8,7 @@ from trame_server.utils.hot_reload import hot_reload
 # Trame setup
 # -----------------------------------------------------------------------------
 
-server = get_server()
+server = get_server(client_type="vue2")
 state, ctrl = server.state, server.controller
 
 # Can do `export TRAME_HOT_RELOAD=1` instead

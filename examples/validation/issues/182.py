@@ -50,7 +50,7 @@ linesPolyData.SetLines(lines)
 # Trame initialization
 # -----------------------------------------------------------------------------
 
-server = get_server()
+server = get_server(client_type="vue2")
 state, ctrl = server.state, server.controller
 
 # -----------------------------------------------------------------------------

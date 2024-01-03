@@ -1,13 +1,11 @@
 from trame.app import get_server
 from trame.ui.vuetify import SinglePageLayout
 from trame.widgets import html, vuetify, vtk
-from trame.decorators import TrameApp, change
 
 
 class Cone:
     def __init__(self, name=None):
-        self.server = get_server(name)
-        self.server.client_type = "vue2"
+        self.server = get_server(name, client_type="vue2")
         self._ui = None
 
         # Build UI

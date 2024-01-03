@@ -1,5 +1,5 @@
 from trame.app import get_server
-from trame.widgets import vtk, vuetify, html
+from trame.widgets import vtk, vuetify
 from trame.ui.vuetify import SinglePageLayout
 
 from vtkmodules.vtkFiltersSources import vtkConeSource
@@ -40,6 +40,7 @@ renderWindow.Render()
 # -----------------------------------------------------------------------------
 
 server = get_server(
+    client_type="vue2",
     # log_network="/Users/sebastien.jourdain/Documents/code/open-source/Web/trame-next/test-examples/logs",
 )
 state, ctrl = server.state, server.controller

@@ -9,7 +9,7 @@ from trame.ui.vuetify import SinglePageLayout
 
 pv.OFF_SCREEN = True
 
-server = get_server()
+server = get_server(client_type="vue2")
 state, ctrl = server.state, server.controller
 
 cyl = pv.Cylinder(resolution=8, direction=(0, 1, 0))

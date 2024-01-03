@@ -34,13 +34,7 @@ def color_to_rgb_hex(color_float):
 @TrameApp()
 class StHelens:
     def __init__(self, server=None):
-        if server is None:
-            server = get_server()
-
-        if isinstance(server, str):
-            server = get_server(server)
-
-        server.client_type = "vue3"
+        server = get_server(server, client_type="vue3")
         self.server = server
         self._ui = None
 

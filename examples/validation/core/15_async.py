@@ -7,7 +7,7 @@ from trame.widgets import vuetify
 # Trame app
 # -----------------------------------------------------------------------------
 
-server = get_server(ws_heart_beat=5)  # 5s
+server = get_server(client_type="vue2", ws_heart_beat=5)  # 5s
 state, ctrl = server.state, server.controller
 
 # -----------------------------------------------------------------------------

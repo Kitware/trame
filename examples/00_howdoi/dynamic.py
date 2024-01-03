@@ -1,7 +1,4 @@
 r"""
-Version for trame 1.x - https://github.com/Kitware/trame/blob/release-v1/examples/howdoi/dynamic.py
-Delta v1..v2          - https://github.com/Kitware/trame/commit/3ee54ce5b663bf2af12b3fbdda7aab944fb86298
-
 Installation requirements:
     pip install trame trame-vuetify
 """
@@ -13,7 +10,7 @@ from trame.widgets import vuetify
 
 coundown_init = 10
 
-server = get_server()
+server = get_server(client_type="vue2")
 state = server.state
 state.trame__title = "Coundown"
 

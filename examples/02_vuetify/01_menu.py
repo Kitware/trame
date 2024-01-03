@@ -1,7 +1,4 @@
 r"""
-Version for trame 1.x - https://github.com/Kitware/trame/blob/release-v1/examples/PlainPython/Menu/app.py
-Delta v1..v2          - https://github.com/Kitware/trame/commit/f9582202f7ee08434b5a7e53f375b1041bee6dfe
-
 Installation requirements:
     pip install trame trame-vuetify
 """
@@ -14,7 +11,7 @@ from trame.ui.vuetify import SinglePageLayout
 # Trame setup
 # -----------------------------------------------------------------------------
 
-server = get_server()
+server = get_server(client_type="vue2")
 state, ctrl = server.state, server.controller
 
 state.menu_items = ["one", "two", "three"]

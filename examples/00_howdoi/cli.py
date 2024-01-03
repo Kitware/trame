@@ -1,7 +1,4 @@
 r"""
-Version for trame 1.x - https://github.com/Kitware/trame/blob/release-v1/examples/howdoi/cli.py
-Delta v1..v2          - https://github.com/Kitware/trame/commit/abe8722c2299ccb9faebb72595665952e5479099
-
 Installation requirements:
     pip install trame
 """

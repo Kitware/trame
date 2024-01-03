@@ -13,7 +13,7 @@ from paraview import simple
 
 # -----------------------------------------------------------------------------
 
-server = get_server()
+server = get_server(client_type="vue2")
 state, ctrl = server.state, server.controller
 state.trame__title = "ParaView cone"
 

@@ -1,7 +1,4 @@
 r"""
-Version for trame 1.x - https://github.com/Kitware/trame/tree/release-v1/examples/VTK/Applications/ZarrContourViewer
-Delta v1..v2          - https://github.com/Kitware/trame/commit/7b3cda7c45b8a60132892f762e16ed28cb709481
-
 Installation requirements:
     pip install trame trame-vuetify trame-vtk
 """
@@ -27,7 +24,7 @@ import vtkmodules.vtkRenderingOpenGL2  # noqa
 # Trame setup
 # -----------------------------------------------------------------------------
 
-server = get_server()
+server = get_server(client_type="vue2")
 state, ctrl = server.state, server.controller
 
 # -----------------------------------------------------------------------------

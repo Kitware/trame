@@ -1,12 +1,12 @@
 from trame.app import get_server
-from trame.widgets import client, vuetify, html
+from trame.widgets import client, vuetify
 from trame.ui.vuetify import SinglePageLayout
 
 # -----------------------------------------------------------------------------
 # Trame setup
 # -----------------------------------------------------------------------------
 
-server = get_server()
+server = get_server(client_type="vue2")
 state, ctrl = server.state, server.controller
 
 state.message_1 = "Hello 1"

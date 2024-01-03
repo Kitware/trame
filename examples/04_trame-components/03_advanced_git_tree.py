@@ -1,7 +1,4 @@
 r"""
-Version for trame 1.x - https://github.com/Kitware/trame/blob/release-v1/examples/PlainPython/Widgets/GitTree/app.py
-Delta v1..v2          - https://github.com/Kitware/trame/commit/90578f2da5d78efed2a6241ea507331ce0289b1b
-
 Installation requirements:
     pip install trame trame-vuetify trame-components
 """
@@ -20,7 +17,7 @@ BASE = Path(__file__).parent
 # Trame setup
 # -----------------------------------------------------------------------------
 
-server = get_server()
+server = get_server(client_type="vue2")
 state, ctrl = server.state, server.controller
 
 # -----------------------------------------------------------------------------

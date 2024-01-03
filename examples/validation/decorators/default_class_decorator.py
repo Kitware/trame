@@ -6,9 +6,8 @@ from trame.widgets import vuetify
 
 @TrameApp()
 class App:
-    def __init__(self):
-        self.server = get_server()
-        self.server.client_type = "vue2"
+    def __init__(self, server=None):
+        self.server = get_server(server, client_type="vue2")
         self.ui()
 
     @property

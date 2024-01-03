@@ -24,7 +24,7 @@ from vtkmodules.vtkInteractionStyle import vtkInteractorStyleSwitch  # noqa
 # Trame initialization
 # -----------------------------------------------------------------------------
 
-server = get_server()
+server = get_server(client_type="vue2")
 state, ctrl = server.state, server.controller
 
 state.trame__title = "VTK Remote View - Local Rendering"

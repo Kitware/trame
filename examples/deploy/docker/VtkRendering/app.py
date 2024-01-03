@@ -19,8 +19,7 @@ import vtkmodules.vtkRenderingOpenGL2  # noqa
 # Trame initialization
 # -----------------------------------------------------------------------------
 
-server = get_server()
-server.client_type = "vue2"
+server = get_server(client_type="vue2")
 state, ctrl = server.state, server.controller
 
 state.trame__title = "VTK Remote rendering"

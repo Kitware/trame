@@ -12,11 +12,11 @@ from trame.ui.vuetify import SinglePageLayout
 from trame.widgets import vuetify
 
 
-server1 = get_server("server1")
+server1 = get_server("server1", client_type="vue2")
 state1 = server1.state
 state1.trame__title = "Server1"
 
-server2 = get_server("server2")
+server2 = get_server("server2", client_type="vue2")
 state2 = server2.state
 state2.trame__title = "Server2"
 

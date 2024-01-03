@@ -2,13 +2,13 @@ from tkinter import filedialog, Tk
 
 from trame.app import get_server
 from trame.ui.vuetify import SinglePageLayout
-from trame.widgets import trame, vuetify
+from trame.widgets import vuetify
 
 # -----------------------------------------------------------------------------
 # Trame setup
 # -----------------------------------------------------------------------------
 
-server = get_server()
+server = get_server(client_type="vue2")
 state, ctrl = server.state, server.controller
 
 # Keep track of the currently selected directory

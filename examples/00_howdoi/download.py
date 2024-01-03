@@ -1,7 +1,4 @@
 r"""
-Version for trame 1.x - https://github.com/Kitware/trame/blob/release-v1/examples/howdoi/download.py
-Delta v1..v2          - https://github.com/Kitware/trame/commit/ae5066e942db36d0e1d5b957dd5c2c364996719d
-
 Installation requirements:
     pip install trame trame-vuetify
 """
@@ -10,7 +7,7 @@ from trame.app import get_server
 from trame.ui.vuetify import VAppLayout
 from trame.widgets import vuetify
 
-server = get_server()
+server = get_server(client_type="vue2")
 
 with VAppLayout(server):
     vuetify.VBtn(

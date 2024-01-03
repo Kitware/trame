@@ -100,7 +100,7 @@ sphere_window = sphere()
 # Trame setup
 # -----------------------------------------------------------------------------
 
-server = get_server()
+server = get_server(client_type="vue2")
 state, ctrl = server.state, server.controller
 
 state.visible_view = 0

@@ -1,7 +1,4 @@
 r"""
-Version for trame 1.x - https://github.com/Kitware/trame/blob/release-v1/examples/howdoi/upload.py
-Delta v1..v2          - https://github.com/Kitware/trame/commit/faf00108b8d4cb3f4c4babc256ee995e181bfa34
-
 Installation requirements:
     pip install trame trame-vuetify
 """
@@ -11,7 +8,7 @@ from trame.app.file_upload import ClientFile
 from trame.ui.vuetify import VAppLayout
 from trame.widgets import vuetify
 
-server = get_server(log_network="./upload-exchange.txt")
+server = get_server(client_type="vue2", log_network="./upload-exchange.txt")
 state = server.state
 
 with VAppLayout(server):

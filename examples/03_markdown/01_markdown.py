@@ -1,7 +1,4 @@
 r"""
-Version for trame 1.x - https://github.com/Kitware/trame/blob/release-v1/examples/PlainPython/Markdown/Simple.py
-Delta v1..v2          - https://github.com/Kitware/trame/commit/ccf34b2f845021bc2ef56daebe92f66019a33c64
-
 Installation requirements:
     pip install trame trame-vuetify trame-markdown
 """
@@ -15,7 +12,7 @@ from trame.widgets import markdown, vuetify
 # Trame setup
 # -----------------------------------------------------------------------------
 
-server = get_server()
+server = get_server(client_type="vue2")
 state, ctrl = server.state, server.controller
 
 # -----------------------------------------------------------------------------

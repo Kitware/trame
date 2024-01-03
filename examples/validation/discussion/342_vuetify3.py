@@ -12,8 +12,7 @@ from trame.app import get_server
 from trame.ui.vuetify3 import VAppLayout
 from trame.widgets import vuetify3
 
-server = get_server()
-server.client_type = "vue3"
+server = get_server(client_type="vue3")
 
 with VAppLayout(server):
     with vuetify3.VTooltip(text="Tooltip"):

@@ -13,8 +13,7 @@ from trame.app import get_server
 from trame.ui.vuetify2 import VAppLayout
 from trame.widgets import vuetify2, html
 
-server = get_server()
-server.client_type = "vue2"
+server = get_server(client_type="vue2")
 
 with VAppLayout(server):
     with vuetify2.VTooltip(bottom=True):

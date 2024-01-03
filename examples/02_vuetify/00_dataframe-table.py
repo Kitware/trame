@@ -1,7 +1,4 @@
 r"""
-Version for trame 1.x - https://github.com/Kitware/trame/blob/release-v1/examples/PlainPython/Tables/app.py
-Delta v1..v2          - https://github.com/Kitware/trame/commit/9a64369ebb1d016be3c1393fd06475694370b238
-
 Installation requirements:
     pip install trame trame-vuetify trame-vega altair pandas numpy
 """
@@ -20,7 +17,7 @@ import numpy as np
 # Trame setup
 # -----------------------------------------------------------------------------
 
-server = get_server()
+server = get_server(client_type="vue2")
 state, ctrl = server.state, server.controller
 
 # --------------------------------------------------------------------------------

@@ -3,7 +3,7 @@ from trame.widgets import vuetify
 from trame.ui.vuetify import SinglePageLayout
 
 
-server = get_server()
+server = get_server(client_type="vue2")
 state, ctrl = server.state, server.controller
 
 state.visibilityList = [True, False, True, False]

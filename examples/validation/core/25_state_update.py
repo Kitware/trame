@@ -8,7 +8,7 @@ from trame.ui.vuetify import SinglePageLayout
 # Trame app
 # -----------------------------------------------------------------------------
 
-server = get_server()
+server = get_server(client_type="vue2")
 state = server.state
 
 # -----------------------------------------------------------------------------

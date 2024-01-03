@@ -6,7 +6,7 @@ from trame.ui.vuetify import SinglePageLayout
 # Trame setup
 # -----------------------------------------------------------------------------
 
-server = get_server()
+server = get_server(client_type="vue2")
 
 
 async def stop_server():

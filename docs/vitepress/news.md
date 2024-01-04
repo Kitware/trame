@@ -1,3 +1,12 @@
+## January 4th, 2024
+
+Trame course on February 12th for __#trame__
+
+<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7148802264046911488" height="526" width="100%" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+
+Links to [Trame course](https://www.kitware.com/courses/trame/) | [Kitware trainings](https://www.kitware.com/training) | [LinkedIn](https://www.linkedin.com/posts/sebastienjourdain_trame-trame-vtk-activity-7148802264755806209-hCZX?utm_source=share&utm_medium=member_desktop)
+
+
 ## November 1st, 2023
 
 [Medium blog post](https://medium.com/@ash_computational_qm/trame-frontend-with-vue-js-but-in-python-329111755b98)

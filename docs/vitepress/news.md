@@ -1,3 +1,16 @@
+## January 5th, 2024
+
+__2023 summary in kind words from the community:__
+- I came across trame and is __simply MIND BLOWING__. What a fantastic job you did. [Link](https://github.com/Kitware/trame/discussions/395)
+- I'm quite new on Trame but I have __been using Dash__ for a while to build some web applications. __I really like how easy you can create interactive 3D visualization with Trame__ and I wondered whether I should start using it, instead of Dash. [Link](https://github.com/Kitware/trame/discussions/130)
+- I recently came across Trame and __the capabilities are really astounding__. It is a very nicely done framework for creating rich applications for 3D visualization, analysis, and interaction. [Link](https://github.com/Kitware/trame/discussions/399)
+- Hi! First of all, thanks for this __amazing library, been having lots of fun rebuilding some old streamlit apps__ with it! [Link](https://github.com/Kitware/trame/discussions/249)
+
+[LinkedIn post](https://www.linkedin.com/posts/sebastienjourdain_trame-trame-vtk-activity-7149110069140369408-KD8k?utm_source=share&utm_medium=member_desktop)
+![Image from a trame discussion forum](https://media.licdn.com/dms/image/D5622AQEZa_nuvTNASQ/feedshare-shrink_800/0/1704480663800?e=1707350400&v=beta&t=_H_fwEar7CUNEeS3_sEwrI8wl-f7tP1KrXlkj1Yy68E)
+<!-- 
+<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7149110068158869504" height="917" width="100%" frameborder="0" allowfullscreen="" title="Embedded post"></iframe> -->
+
 ## January 4th, 2024
 
 Trame course on February 12th for __#trame__

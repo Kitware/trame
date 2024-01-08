@@ -90,6 +90,7 @@ export default defineConfig({
             { text: 'Cloud', link: '/guide/deployment/cloud' },
             { text: 'HPC / Clusters', link: '/guide/deployment/hpc' },
             { text: 'NGINX', link: '/guide/deployment/nginx' },
+            { text: 'Docker', link: '/guide/deployment/docker' },
           ]
         },
       ],

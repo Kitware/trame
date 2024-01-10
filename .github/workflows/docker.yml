@@ -145,7 +145,6 @@ jobs:
       - name: Build and push (py${{ matrix.config.label }}-conda-glvnd)
         uses: docker/build-push-action@v2
         with:
-            platforms: linux/amd64,linux/arm64
             context: docker
             file: docker/Dockerfile.conda
             build-args: |

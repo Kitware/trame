@@ -4,7 +4,7 @@ import os
 import json
 import subprocess
 
-CLIENT_TYPE = os.environ.get("TRAME_CLIENT_TYPE", "vue2")
+CLIENT_TYPE = os.environ.get("TRAME_CLIENT_TYPE", "vue3")
 
 
 def run(apps_path, out_path):

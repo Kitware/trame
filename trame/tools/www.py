@@ -12,7 +12,7 @@ class StaticContentGenerator:
     def __init__(self):
         self.www = None
         self.serve = {}
-        self.client_type = "vue2"
+        self.client_type = "vue3"
 
     def enable_all(self):
         import pkgutil
@@ -87,7 +87,7 @@ def main():
 
     parser.add_argument(
         "--client-type",
-        default="vue2",
+        default="vue3",
         help="Type of client to use [vue2, vue3]",
     )
 

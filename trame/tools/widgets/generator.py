@@ -157,7 +157,7 @@ def create_module_init(init_path, init_conf):
 
     with init_path.open("w") as file:
         file.write("def setup(server, **kargs):\n")
-        file.write('    client_type = "vue2"\n')
+        file.write('    client_type = "vue3"\n')
         file.write('    if hasattr(server, "client_type"):\n')
         file.write("        client_type = server.client_type\n")
         if "vue2" in init_conf:

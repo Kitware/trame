@@ -1,7 +1,7 @@
 from pathlib import Path
 
 from trame.app import get_server
-from trame.widgets import vuetify3
+from trame.widgets import vuetify3, client
 from trame.ui.vuetify3 import SinglePageLayout
 
 
@@ -26,8 +26,30 @@ class CustomAddOnJS:
         # Make sure my js code get loaded on the client side
         load_my_js(self.server)
 
+    @property
+    def state(self):
+        return self.server.state
+
+    @property
+    def ctrl(self):
+        return self.server.controller
+
+    def trigger_alert(self):
+        self.ctrl.js_eval(f"server({self.state.name})")
+
     def _build_ui(self):
         with SinglePageLayout(self.server, full_height=True) as layout:
+            self.ctrl.js_eval = client.JSEval(
+                exec="utils.my_code.actions.hello($event)"
+            ).exec
+            with layout.toolbar:
+                vuetify3.VTextField(
+                    v_model=("name", "world"),
+                    density="compact",
+                    hide_details=True,
+                )
+                vuetify3.VBtn("Local JS", click="utils.my_code.actions.hello(name)")
+                vuetify3.VBtn("JS from Py", click=self.trigger_alert)
             with layout.content:
                 vuetify3.VTextField(
                     v_model=("text_1", "1.2"),

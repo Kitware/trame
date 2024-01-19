@@ -17,6 +17,7 @@ if [[ "$1" == "build" ]]; then
   echo "Build complete"
 else
   # Start the server
+  /opt/trame/runtime_patch.sh
   echo "Starting server..."
   gosu trame-user /opt/trame/run.sh
 fi

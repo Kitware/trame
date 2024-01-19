@@ -17,9 +17,9 @@ fi
 
 # Remap internal docker group to the group of /var/run/docker.sock
 # This is to support docker-in-docker when /var/run/docker.sock is mounted
-dnd_dir=/var/run/docker.sock
-if [ ! -d $dnd_dir ]
+dnd_socket=/var/run/docker.sock
+if [ -S $dnd_socket ]
 then
-    docker_gid=$(stat -c '%g' $dnd_dir)
+    docker_gid=$(stat -c '%g' $dnd_socket)
     groupmod --gid $docker_gid docker
 fi

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Remap trame-user to a file/directory owner (TRAME_USER_DATA)
-if [ TRAME_USER_DATA ]
+if [ -d "$TRAME_USER_DATA" ]
 then
     new_uid=$(stat -c '%u' $TRAME_USER_DATA)
     new_gid=$(stat -c '%g' $TRAME_USER_DATA)

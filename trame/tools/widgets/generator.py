@@ -99,6 +99,8 @@ async def create_base_structure(ref_path, config, output):
                                 events = class_info.get("events", [])
                                 file.write(f"\nclass {class_name}(HtmlElement):")
                                 to_py_help(file, class_info)
+                                if class_info.get("methods"):
+                                    file.write("\n    _next_id = 0")
                                 file.write(
                                     "\n    def __init__(self, children=None, **kwargs):"
                                 )
@@ -113,7 +115,48 @@ async def create_base_structure(ref_path, config, output):
                                 for item in events:
                                     to_py_attr(file, item, 4 * 3)
                                 file.write("\n        ]")
-                                file.write("\n\n")
+
+                                # Generate ref
+                                if class_info.get("methods"):
+                                    file.write(
+                                        f"""\n        {class_name}._next_id += 1"""
+                                    )
+                                    file.write(
+                                        f"""\n        self.__ref = kwargs.get("ref", f"{class_name}_{{{class_name}._next_id}}")"""
+                                    )
+                                    file.write(
+                                        """\n        self._attributes["ref"] = f'ref="{self.__ref}"'"""
+                                    )
+                                    file.write("\n\n")
+
+                                    file.write("\n    @property")
+                                    file.write("\n    def ref(self):")
+                                    file.write("\n        return self.__ref")
+                                    file.write("\n\n")
+
+                                    for entry in class_info.get("methods"):
+                                        method = entry.get("name")
+                                        help = entry.get("help")
+                                        if isinstance(method, (list, tuple)):
+                                            py_m, js_m = method
+                                        else:
+                                            py_m = method
+                                            js_m = method
+                                        file.write(f"\n    def {py_m}(self, *args):")
+                                        if help:
+                                            file.write(f'\n        """{help}')
+                                            if help.endswith("\n"):
+                                                file.write('        """')
+                                            elif "\n" in help:
+                                                file.write('\n        """')
+                                            else:
+                                                file.write('"""')
+                                        file.write(
+                                            f'\n        self.server.js_call(self.ref, "{js_m}", *args)'
+                                        )
+                                        file.write("\n\n")
+                                else:
+                                    file.write("\n\n")
 
                         file.write("\n__all__ = [")
                         for class_name in all_class_names:

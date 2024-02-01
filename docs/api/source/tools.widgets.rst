@@ -41,6 +41,9 @@ The configuration file should be as follow.
                         help: ... # help for doc string
                       - name: [event_name_py, event-name-js]
                         help: ... # help for doc string
+                    methods: # list of methods available on vue component
+                      - name: [method_py, methodNameInJS]
+                        help: ... # help for doc string
                 NextComponentName:
                     component: next-component-name
                     properties: []

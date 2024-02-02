@@ -24,7 +24,9 @@ trame-iframe
 trame-keycloak
 trame-xterm
 trame-code
+trame-vtk3d
 
 # Vue 3
 trame-formkit
 trame-quasar
+trame-datagrid

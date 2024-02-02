@@ -17,6 +17,7 @@
 | markdown | trame-markdown | 2 & 3 | 1 |
 | rca | trame-rca | 2 & 3 | 7 |
 | keycloak | trame-keycloak | 2 & 3 (wip) | 1 |
+| vtk3d | trame-vtk3d | 2 & 3 | 1 |
 
 ::: warning
 - **vuetify**: The set of components are a bit different with API change. Please look at the [upgrade guide](https://vuetifyjs.com/en/getting-started/upgrade-guide/) for more details.
@@ -31,6 +32,7 @@
 | --- | --- | --- | --- |
 | quasar | trame-quasar | 3 | 123 |
 | formkit | trame-formkit | 3 | 2 |
+| datagrid | trame-datagrid | 3 | 3 |
 
 ## Vue 2 only
 

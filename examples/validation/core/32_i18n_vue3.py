@@ -15,56 +15,49 @@ state, ctrl = server.state, server.controller
 
 LANG = {
     "en": {
-        "$vuetify": {
-            "title": "Hello world",
-            "selector": "Language selection",
+        "stepper": {
+            "next": "Next",
+            "prev": "Previous",
         },
     },
     "fr": {
-        "$vuetify": {
-            "title": "Bonjour tout le monde",
-            "selector": "Langue selection",
+        "stepper": {
+            "next": "Suivant(me)",
+            "prev": "Precedent(me)",
         },
     },
 }
 
-server.enable_module(
-    dict(
-        vue_use=[
-            (
-                "trame_vuetify",
-                {
-                    "locale": {
-                        "locale": "en",
-                        "fallback": "en",
-                        "messages": LANG,
-                    }
-                },
-            )
-        ]
-    )
-)
+CONFIG = {
+    "locale": {
+        "locale": "en",
+        "fallback": "en",
+        "messages": LANG,
+    }
+}
 
 
 # -----------------------------------------------------------------------------
 # UI setup
 # -----------------------------------------------------------------------------
 
-with SinglePageLayout(server) as layout:
+with SinglePageLayout(server, vuetify_config=CONFIG) as layout:
     # Toolbar
     with layout.toolbar as toolbar:
         vuetify3.VSpacer()
-        toolbar.add_child("{{ $vuetify.locale.t('title') }}")
-        vuetify3.VSpacer()
-        toolbar.add_child("{{ $vuetify.lang.current }}")
-        vuetify3.VSpacer()
         vuetify3.VSelect(
-            label=("$vuetify.locale.t('selector')",),
-            v_model=("$vuetify3.locale.current",),
+            v_model=("$vuetify.locale.current",),
             items=("langs", ["en", "fr"]),
+            density="compact",
         )
 
-    layout.content.add_child("i18n test {{ Object.keys($vuetify.locale) }}")
+    with layout.content:
+        with vuetify3.VStepper(
+            items=("steps", ["Step 1", "Step 2", "Step 3"]),
+        ):
+            for i in range(3):
+                with vuetify3.Template(raw_attrs=[f"v-slot:item.{i+1}"]):
+                    vuetify3.VCardTitle(title=f"Step {i+1}")
 
 
 # -----------------------------------------------------------------------------

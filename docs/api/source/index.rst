@@ -41,5 +41,6 @@ Welcome to Trame's documentation!
    tools.www
    tools.app
    tools.widgets
+   tools.serve
 
 .. include:: ../../../README.rst

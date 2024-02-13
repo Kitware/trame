@@ -32,9 +32,10 @@ from vtkmodules.vtkInteractionStyle import vtkInteractorStyleSwitch  # noqa
 # local rendering, but doesn't hurt to include it
 import vtkmodules.vtkRenderingOpenGL2  # noqa
 
-from trame_vtk.modules.vtk.serializers import encode_lut
+from trame_vtk.modules.vtk.serializers import configure_serializer
 
-encode_lut(True)
+# Configure scene encoder
+configure_serializer(encode_lut=True, skip_light=True)
 
 CURRENT_DIRECTORY = os.path.abspath(os.path.dirname(__file__))
 

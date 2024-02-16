@@ -1,3 +1,34 @@
+## February, 2024
+
+__Top Python Frontend Libraries for Data Science__ - HiRETOP
+
+In the ever-evolving world of data science and machine learning, Python remains a dominant language, thanks in large part to its vast ecosystem of libraries. Among these, frontend libraries have become essential for professionals looking to translate complex data into accessible and interactive web applications. Here's an insightful exploration of the top Python frontend libraries, each offering unique capabilities to enhance your data science projects.
+
+__Trame: Interactive and Visual Richness__
+
+Trame is another notable mention for data scientists and engineers looking to build interactive web applications with rich visualizations, including 3D models and sophisticated simulations. Leveraging libraries like VTK and ParaView, Trame excels in scientific and engineering applications. Its approach to creating reactive, stateful applications is promising, although the relatively new framework means a smaller community and potential growing pains as it continues to develop.
+
+[Full article](https://hiretop.com/blog2/top-python-frontend-libraries-for-data-science/)
+
+## January 15th, 2024
+
+__The Best Python Frontend Libraries For Data Science__ - Alessandro Fiori
+
+Developing web and desktop applications requires knowledge of several programming languages. Defining user interfaces is a fundamental aspect of providing a good user experience (UX) and viewing information in an effective and appealing manner. For those involved in analysing data or collecting it, however, this aspect is critical. In fact, many developers specialise in one language and are reluctant to expand their knowledge to other languages or tasks that are not their core business. For this reason, in this article we present five libraries in python that can facilitate and speed up the development of user interfaces.
+
+[Full article](https://flowygo.com/en/blog/the-best-python-frontend-libraries-for-data-science/)
+
+## January 15th, 2024
+
+__5 Exceptional Python Frameworks for Frontend Development__ - Ishaan Gupta
+
+__#4 Trame__
+
+If you find yourself tasked with creating a data-centric dashboard, Trame emerges as an excellent choice. This versatile tool empowers you to concentrate on your data analysis, effortlessly streamlining the intricacies of web development. Trame is ingeniously constructed upon Vuetify, a dynamic UI component framework rooted in Vue, ensuring a seamless and efficient dashboard creation experience.
+
+[Full article](https://python.plainenglish.io/5-exceptional-python-frameworks-for-frontend-development-fcb7abb87462)
+
+
 ## January 5th, 2024
 
 __2023 summary in kind words from the community:__
@@ -7,9 +38,9 @@ __2023 summary in kind words from the community:__
 - Hi! First of all, thanks for this __amazing library, been having lots of fun rebuilding some old streamlit apps__ with it! [Link](https://github.com/Kitware/trame/discussions/249)
 
 [LinkedIn post](https://www.linkedin.com/posts/sebastienjourdain_trame-trame-vtk-activity-7149110069140369408-KD8k?utm_source=share&utm_medium=member_desktop)
-![Image from a trame discussion forum](https://media.licdn.com/dms/image/D5622AQEZa_nuvTNASQ/feedshare-shrink_800/0/1704480663800?e=1707350400&v=beta&t=_H_fwEar7CUNEeS3_sEwrI8wl-f7tP1KrXlkj1Yy68E)
-<!-- 
-<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7149110068158869504" height="917" width="100%" frameborder="0" allowfullscreen="" title="Embedded post"></iframe> -->
+<!-- ![Image from a trame discussion forum](https://media.licdn.com/dms/image/D5622AQEZa_nuvTNASQ/feedshare-shrink_800/0/1704480663800?e=1707350400&v=beta&t=_H_fwEar7CUNEeS3_sEwrI8wl-f7tP1KrXlkj1Yy68E) -->
+
+<!-- <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7149110068158869504" height="917" width="100%" frameborder="0" allowfullscreen="" title="Embedded post"></iframe> -->
 
 ## January 4th, 2024
 
@@ -19,16 +50,25 @@ Trame course on February 12th for __#trame__
 
 Links to [Trame course](https://www.kitware.com/courses/trame/) | [Kitware trainings](https://www.kitware.com/training) | [LinkedIn](https://www.linkedin.com/posts/sebastienjourdain_trame-trame-vtk-activity-7148802264755806209-hCZX?utm_source=share&utm_medium=member_desktop)
 
+## December 24th, 2023
+
+__Top-5 Python Frontend Libraries for Data Science__ - Artem Shelamanov
+
+__#3 Trame__ 
+
+So, Trame is a go-to if you want to create some science-focused apps with interactive, complex visualizations and simulations (Even in 3D!). It’s multi-platform, it provides many useful features, and overall it looks aesthetically pleasing.
+
+
+[Full Medium Post](https://python.plainenglish.io/top-5-python-frontend-libraries-for-data-science-91261a65e366)
 
 ## November 1st, 2023
 
-[Medium blog post](https://medium.com/@ash_computational_qm/trame-frontend-with-vue-js-but-in-python-329111755b98)
 
-Trame: Frontend With Vue.js, but in Python
+__Trame: Frontend With Vue.js, but in Python__
 
 You may have heard about Vue.js — a javascript library for quick one-page websites and UIs, a performant library with easy development. But what you may not have heard of is Trame — a library for Vue.js, but in Python!
 
-[...]
+[Full Medium blog post](https://medium.com/@ash_computational_qm/trame-frontend-with-vue-js-but-in-python-329111755b98)
 
 ## October 10, 2023
 
@@ -56,6 +96,14 @@ So far, we have **SpinView**, a general interactive visual analysis tool develop
 
 [![SpinView](/assets/images/news/spinview.png)](https://www.linkedin.com/feed/update/urn:li:activity:7114654111735697408?utm_source=share&utm_medium=member_desktop)
 
+## September 22, 2023
+
+__13 Python Frameworks for Frontend Development: JavaScript Alternatives__ - Adejumo Ridwan Suleiman
+
+If you are in a situation to create a dashboard, heavily based on data. I will suggest Trame as a goto option, it allows you to focus on your analysis while abstracting the complications of web development. Trame is built on Vuetify, which is a UI component framework built on Vue.
+
+[Full article](https://python.plainenglish.io/8-python-frameworks-for-frontend-development-javascript-alternatives-2370e0cf6ae9)
+
 ## September 4, 2023
 
 Kitware is delighted to announce that a trame tutorial will be given during the Siggraph Web3d conference in October of this year in San Sebastian, Spain.
@@ -76,6 +124,22 @@ While documentation is an ongoing process. I'm excited of the new trame website 
 ## August 2023
 
 <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7093253518769201153" height="997" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+
+## April 2023
+
+__Webifying UncertainSCI Using Trame__ - Jess Tate
+
+Web deployment of research tools has become increasingly important as the commercially available computing platforms become more diverse. However, the web deployment of Python packages and applications, especially with a GUI, has traditionally required significant training in javascript or a similar web language. Trame is a Python JavaScript integration framework that simplifies the GUI development and web deployment for Python apps. We used trame to deploy UncertainSCI, our Python package for uncertainty quantification (UQ), on web browser and cloud services.
+
+UncertainSCI non-invasively computes forward model uncertainty propagated from input variability. It uses weighted approximate Fekete points (WAFP) to parsimoniously sample input parameter space, and polynomial chaos emulators (PCE) to accurately estimate model variation of complex computer simulations. UncertainSCI has been developed for use in 3D bioelectric field simulation to work with 3D biophysical models, balancing accurate multivariate analysis with computation cost.
+
+The process of deploying UncertainSCI on the web was greatly facilitated by trame. Because trame interfaces with JavaScript packages such as vue.js, and vtk.js, we were able to implement a tailored interactive web-based GUI with Python code. Building and running a web app has been made simple through trame’s docker support, making deploying on webservice providers like AWS steamlined for low traffic use cases.
+
+In this presentation, we will describe UncertainSCI, how we used trame to build web apps and web services, and how users can use UncertainSCI to perform UQ on their modeling pipelines.
+
+![Application UI](/assets/images/news/uncertainty.png)
+
+[Poster list](https://us.pycon.org/2023/schedule/posters/list/)
 
 ## December 5, 2022
 

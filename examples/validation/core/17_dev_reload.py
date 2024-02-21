@@ -2,6 +2,7 @@ import sys
 from trame.app import get_server, dev
 from trame.widgets import vtk, vuetify
 from trame.ui.vuetify import SinglePageLayout
+from trame_server import Server
 
 # -----------------------------------------------------------------------------
 # Trame setup
@@ -16,14 +17,14 @@ def reset_resolution():
 
 
 # Mode A ----------------------------------------------------------------------
-def full_reload():
+def full_reload(server: Server):
     print("=> Reload mode A")
     dev.remove_change_listeners(server, "resolution")
     dev.reload(sys.modules.get("__main__"))
 
 
 # Mode B ----------------------------------------------------------------------
-def reload_app():
+def reload_app(server: Server):
     print("=> Reload mode B")
     # dev.clear_triggers(app) # Not needed here
     dev.clear_change_listeners(server)

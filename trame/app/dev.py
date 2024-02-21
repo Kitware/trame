@@ -19,7 +19,7 @@ def clear_change_listeners(server):
     :param server: server on which we want to clear the state.change listeners
     :type server: trame_server.core.Server
     """
-    server._change_callbacks.clear()
+    server.state._change_callbacks.clear()
 
 
 def remove_change_listeners(server, *names):
@@ -34,8 +34,8 @@ def remove_change_listeners(server, *names):
     :type *names: str
     """
     for name in names:
-        if name in server._change_callbacks:
-            server._change_callbacks.pop(name)
+        if name in server.state._change_callbacks:
+            server.state._change_callbacks.pop(name)
 
 
 def reload(*reload_list):

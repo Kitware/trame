@@ -24,8 +24,8 @@ def on_click(e):
     print(e)
 
 
-def load_data(item):
-    print(item)
+def load_data(entry, item):
+    print(entry, item)
 
 
 with SinglePageLayout(server) as layout:
@@ -44,14 +44,13 @@ with SinglePageLayout(server) as layout:
                     $event.preventDefault();
                     menuX = $event.clientX;
                     menuY = $event.clientY;
-                    menuShow = true;
+                    menuShow = $event.srcElement.textContent;
                  """,
         )
         with vuetify3.VMenu(
             v_model=("menuShow", False),
             style=("{ position: 'absolute', left: `${menuX}px`, top: `${menuY}px`}",),
         ) as menu:
-            print(menu)
             with vuetify3.VList():
                 with vuetify3.VListItem(
                     v_for="(item, i) in menu_items",
@@ -60,7 +59,7 @@ with SinglePageLayout(server) as layout:
                 ):
                     vuetify3.VBtn(
                         "{{ item }}",
-                        click=(load_data, "[item]"),
+                        click=(load_data, "[menuShow, item]"),
                     )
 
 

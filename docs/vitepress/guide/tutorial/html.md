@@ -67,7 +67,8 @@ First, we need to get the `state` instance from a trame server to simplify its m
 ```python
 from trame.app import get_server
 
-server = get_server()
+# trame v3 use vue3 as default
+server = get_server(client_type="vue2")
 state = server.state
 ```
 

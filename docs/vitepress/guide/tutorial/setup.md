@@ -13,7 +13,7 @@ pip install vtk                     # Install the VTK library
 
 **Notes**:
  - `venv` was added in Python 3.3.
- - On a Mac with ARM architecture, VTK is only available with Python 3.9.
+ - On a Mac with ARM architecture, VTK is only available with Python 3.9+.
 
 ## Running the application
 
@@ -45,7 +45,7 @@ from ***trame***'s `app`, we import the factory function for retrieving a server
 Next, we define the graphical user interface (GUI) by passing the server to which it should be bound. Then with that layout we update the toolbar's title to read `"Hello trame"`.
 
 ```python
-server = get_server()
+server = get_server(client_type="vue2")
 
 with SinglePageLayout(server) as layout:
     layout.title.set_text("Hello trame")

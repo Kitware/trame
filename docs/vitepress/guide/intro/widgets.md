@@ -18,6 +18,10 @@
 | rca | trame-rca | 2 & 3 | 7 |
 | keycloak | trame-keycloak | 2 & 3 (wip) | 1 |
 | vtk3d | trame-vtk3d | 2 & 3 | 1 |
+| simput | trame-simput | 2 & 3 | 2 |
+| vega | trame-vega | 2 & 3 | 1 |
+| matplotlib | trame-matplotlib | 2 & 3 | 1 |
+| deckgl | trame-deckgl | 2 & 3 | 1 |
 
 ::: warning
 - **vuetify**: The set of components are a bit different with API change. Please look at the [upgrade guide](https://vuetifyjs.com/en/getting-started/upgrade-guide/) for more details.
@@ -42,7 +46,3 @@
 | pvui | trame-pvui | 2 | 4 |
 | grid | trame-grid-layout | 2 | 2 |
 | tauri | trame-tauri | 2 | - |
-| vega | trame-vega | 2 | 1 |
-| simput | trame-simput | 2 | 2 |
-| matplotlib | trame-matplotlib | 2 | 1 |
-| deckgl | trame-deckgl | 2 | 1 |

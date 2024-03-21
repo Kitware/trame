@@ -1,5 +1,12 @@
 class ClientFile:
+    """
+    Helper class that make it easier to handle file from the trame state
+
+    This class behave like a decorator to the state variable so you can easily access its various properties and content.
+    """
+
     def __init__(self, file_state_variable=None):
+        """Pass the state variable you want to decorate as arg"""
         self._name = None
         self._size = None
         self._time = None
@@ -46,4 +53,5 @@ class ClientFile:
 
     @property
     def info(self):
+        """Return a string summarizing the file information"""
         return f"File: {self.name} of size {self.size} and type {self.mime_type}"

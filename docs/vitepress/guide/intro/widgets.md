@@ -22,6 +22,7 @@
 | vega | trame-vega | 2 & 3 | 1 |
 | matplotlib | trame-matplotlib | 2 & 3 | 1 |
 | deckgl | trame-deckgl | 2 & 3 | 1 |
+| tauri | trame-tauri | 2 & 3 | 2 + utils |
 
 ::: warning
 - **vuetify**: The set of components are a bit different with API change. Please look at the [upgrade guide](https://vuetifyjs.com/en/getting-started/upgrade-guide/) for more details.
@@ -45,4 +46,4 @@
 | leaflet | trame-leaflet | 2 | 22 |
 | pvui | trame-pvui | 2 | 4 |
 | grid | trame-grid-layout | 2 | 2 |
-| tauri | trame-tauri | 2 | - |
+

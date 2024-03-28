@@ -51,7 +51,7 @@ trame: # Default app under /index.html
 
 This indicates that the docker image should run the `trame-app` package when a user connects.
 
-Additional options at the same level as `app` include `www_modules` if there are custom Vue components that should be included, and `cmd` if a custom command should be used for launching the application (this will replace the `app` key).
+Additional options at the same level as __app__ include __www_modules__ if there are custom Vue components that should be included, and `cmd` if a custom command should be used for launching the application (this will replace the `app` key). __www_modules__ expect a list of package names that should be enabled on the server when not already defined within `trame.modules.*`
 
 Additional endpoints may also be specified. For instance:
 

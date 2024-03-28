@@ -26,15 +26,21 @@ By default a trame application will use the serving host and path for its sessio
 
    The sessionURL by default is defined as: `ws://USE_HOST/proxy?sessionId=${id}&path=ws` but if the `TRAME_USE_HOST` environment variable is set, then `USE_HOST` will be replaced with the contents of `TRAME_USE_HOST`. If `TRAME_USE_HOST` contains `://`, however, then it is assumed that it will be overwriting the `ws://` part at the beginning as well, and the whole `ws://USE_HOST` section will be replaced by the contents of `TRAME_USE_HOST`.
 
+In case you aim the trame application to read/write files on a mounted directory, you can also provide another environment variable to ensure the trame-user to execute the process as the same use as the one owning that directory. Typically that overcome issue where the docker user does not match the host user.
+
+- __TRAME_USER_DATA__
+
+    Path iniside docker for checking ownership and remapping that UID/GID to the unpriviledge trame-user within docker. 
+
 ## Building the Server
 
 To run your application in a Trame Docker image, a server directory must be present that contains everything required to run the application. This includes the static website (www) that needs to be served, instructions for starting the application (launcher) when a user requests access, and the Python dependencies that are needed to run it (venv).
 
 The server directory may either be built within the Dockerfile itself (see [here](https://github.com/Kitware/trame/tree/master/examples/deploy/docker/SingleFile) for an example), or a pre-existing server directory may be mounted at `/deploy/server` at runtime (see [here](https://github.com/Kitware/trame-cookiecutter/blob/master/%7B%7Bcookiecutter.package_name%7D%7D/bundles/docker/scripts/build_server.sh) for an example of building the server directory outside the container that can be mounted inside later).
 
-To build the server, a `setup` directory is expected to be mounted in `/deploy/setup`. This directory should contain 3 files:
+To build the server, a `setup` directory is expected to be mounted in `/deploy/setup`. This directory could contain 3 files and a directory:
 
-### apps.yml
+### apps.yml (mandatory)
 
 The apps.yml file contains instructions for running the trame application, along with different endpoints for a multi-endpoint setup. The most basic application is as follows:
 
@@ -56,16 +62,20 @@ hello: # /hello.html
 
 This indicates that the app `trame-app` may also be accessed at the `/hello.html` end point.
 
-### requirements.txt
+### requirements.txt (optional)
 
 This file contains requirements that will be installed during setup.
 For pip, the file will be installed via `pip install -r requirements.txt`.
 For conda, the file will be installed via `conda install -y --file requirements.txt`.
 This file may include the actual trame application itself.
 
-### initialize.sh
+### initialize.sh  (optional)
 
 This file is optional. If present, it may be used to run additional commands that are necessary during setup. It is executed before the `requirements.txt` is installed. It may include the installation of the actual Trame application itself.
+
+### www/ (optional)
+
+This directory will be merged with the generated one at build time inside `/deploy/server/www`. Its content if overlapping existing files will override any previously generated one. This allow you to add or customize/replace specific files for your static file delivery. 
 
 ### The Build Command
 

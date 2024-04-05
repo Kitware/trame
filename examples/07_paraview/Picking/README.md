@@ -6,7 +6,7 @@ Setup a local venv with `trame` installed
 python3.9 -m venv .venv
 source .venv/bin/activate
 pip install -U pip
-pip install trame
+pip install trame trame-vtk trame-vuetify
 
 export PV_VENV=$PWD/.venv
 ```

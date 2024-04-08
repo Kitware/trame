@@ -18,3 +18,10 @@ python -m trame.app.demo --app
 ```
 
 ![Simple trame app](/assets/images/deployment/cone-app.png)
+
+![Tauri](/assets/images/deployment/tauri.svg)
+
+Otherwise you can also use tauri and fully leverage File Dialog, Multi-Windows, and App bundler for Linux, Mac and Windows.
+[Several examples are available](https://github.com/Kitware/trame-tauri/tree/master/examples) in its package repository.
+
+![Tauri trame app](/assets/images/deployment/tauri-cone-app.png)

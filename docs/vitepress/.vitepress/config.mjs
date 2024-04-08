@@ -82,10 +82,20 @@ export default defineConfig({
           ]
         },
         {
+          text: 'Jupyter',
+          items: [
+            { text: 'Trame in Jupyter', link: '/guide/jupyter/intro' },
+            { text: 'Code example', link: '/guide/jupyter/sample-code' },
+            { text: 'How it works', link: '/guide/jupyter/how-it-works' },
+            { text: 'Advanced usecase', link: '/guide/jupyter/advanced' },
+            { text: 'Trame extension', link: '/guide/jupyter/extension' },
+          ]
+        },
+        {
           text: 'Deployment',
           items: [
             { text: 'Python CLI', link: '/guide/deployment/pypi' },
-            { text: 'Jupyter', link: '/guide/deployment/jupyter' },
+            { text: 'Jupyter', link: '/guide/jupyter/intro' },
             { text: 'Desktop', link: '/guide/deployment/desktop' },
             { text: 'Cloud', link: '/guide/deployment/cloud' },
             { text: 'HPC / Clusters', link: '/guide/deployment/hpc' },

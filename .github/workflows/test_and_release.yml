@@ -78,9 +78,9 @@ jobs:
           fetch-depth: 0 # needed so commitlint can lint the commits
 
       - name: Setup node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
-          node-version: 14
+          node-version: lts
 
       - name: Install commitlint
         if: github.event_name == 'pull_request'

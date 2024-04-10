@@ -80,7 +80,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v4
         with:
-          node-version: lts
+          node-version: lts/Hydrogen
 
       - name: Install commitlint
         if: github.event_name == 'pull_request'

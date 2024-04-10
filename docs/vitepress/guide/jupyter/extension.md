@@ -6,7 +6,38 @@ For __Jupyter Lab v3__, you must use the __"trame-jupyter-extension<2"__, while 
 
 You can install the extension by running `pip install trame-jupyter-extension` or via the __conda-forge__ channel.
 
-## Debugging checklist
+## Installation & validation steps
+
+### Setup your Jupyter Lab environment
+
+::: code-group
+<<< @/guide/jupyter/tests/conda.sh
+<<< @/guide/jupyter/tests/py39.sh
+<<< @/guide/jupyter/tests/py310.sh
+<<< @/guide/jupyter/tests/py311.sh
+<<< @/guide/jupyter/tests/py312.sh
+:::
+
+### Enable extensions
+
+
+| ![Enable extensions](./tests/step1.png) | ![What you should see once enabled](./tests/step2.png) |
+| :---: | :---: |
+| (1) Accept warning | (2) Extension in Installed list |
+
+### Testing code
+
+::: code-group
+<<< @/guide/jupyter/tests/test.py
+<<< @/guide/jupyter/tests/test.ipynb
+:::
+
+The printed output should show that __TRAME_JUPYTER_WWW__ exist and that the __iframe(src=)__ use the same port as the Jupyter Lab server using a path like `/trame-jupyter-server/servers/...`.
+
+
+![Illustration of validation test](./tests/result.png)
+
+## Advanced Debugging Checklist
 
 While the extension should just work, sometime things are not easy. This section, focus on the various steps needed to ensure that everything is a expected.
 

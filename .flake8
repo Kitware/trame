@@ -7,3 +7,4 @@ ignore =
 exclude =
     # Exclude the examples for now
     examples/*
+    docs/vitepress/guide/jupyter/tests/test.py

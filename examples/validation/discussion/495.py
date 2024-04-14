@@ -1,3 +1,7 @@
+"""
+pip install trame trame-vuetify
+python ./495.py
+"""
 from trame.app import get_server
 from trame.ui.vuetify3 import VAppLayout
 from trame.widgets import vuetify3, html, client
@@ -6,17 +10,17 @@ server = get_server(client_type="vue3")
 
 # 1. Grab the font
 server.enable_module(
-    dict(
-        styles=[
+    {
+        "styles": [
             "https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.2.0/dist/tabler-icons.min.css"
         ]
-    )
+    }
 )
 
 
 with VAppLayout(server, full_height=True):
     # 2. Force .ti font-family
-    client.Style(".ti.mdi:before{font-family:tabler-icons;}")
+    client.Style(".ti:before{font-family:tabler-icons!important}")
 
     with vuetify3.VContainer(fluid=True, classes="full-height"):
         # MDI

@@ -30,7 +30,7 @@ MRI Viewer is a web application **for analyzing and visualizing VTI files**. The
 
 <table>
   <tr>
-    <td><img src="https://github.com/karelvrabeckv/mri-viewer/blob/main/assets/aorta.png" alt="Aorta"></td>
-    <td><img src="https://github.com/karelvrabeckv/mri-viewer/blob/main/assets/brain.png" alt="Brain"></td>
+    <td><img src="https://raw.githubusercontent.com/karelvrabeckv/mri-viewer/main/assets/aorta.png" alt="Aorta"></td>
+    <td><img src="https://raw.githubusercontent.com/karelvrabeckv/mri-viewer/main/assets/brain.png" alt="Brain"></td>
   </tr>
 </table>

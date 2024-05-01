@@ -23,3 +23,14 @@ The key features are:
 ## AI/Medical application
 
 <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7093253518769201153" height="997" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+
+## [MRI Viewer](https://github.com/karelvrabeckv/mri-viewer)
+
+MRI Viewer is a web application **for analyzing and visualizing VTI files**. The purpose of the application is to simplify scientific work **with 4D flow MRI medical data**. The tool is oriented especially **towards researchers**. It was created for **the Institute for Clinical and Experimental Medicine** in Prague, Czech Republic.
+
+<table>
+  <tr>
+    <td><img src="https://github.com/karelvrabeckv/mri-viewer/blob/main/assets/aorta.png" alt="Aorta"></td>
+    <td><img src="https://github.com/karelvrabeckv/mri-viewer/blob/main/assets/brain.png" alt="Brain"></td>
+  </tr>
+</table>

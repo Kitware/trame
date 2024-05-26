@@ -4,6 +4,9 @@ FROM ${BASE_IMAGE}
 # Necessary to install tzdata. It will default to UTC.
 ENV DEBIAN_FRONTEND=noninteractive
 
+# Make sure we enable all GPU if we have one
+ENV NVIDIA_DRIVER_CAPABILITIES=all
+
 RUN apt-get update && \
     apt-get install -y \
       wget \

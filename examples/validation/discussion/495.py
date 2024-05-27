@@ -2,6 +2,7 @@
 pip install trame trame-vuetify
 python ./495.py
 """
+
 from trame.app import get_server
 from trame.ui.vuetify3 import VAppLayout
 from trame.widgets import vuetify3, html, client

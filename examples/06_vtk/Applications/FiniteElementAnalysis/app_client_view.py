@@ -121,9 +121,11 @@ def update_grid(nodes_file, elems_file, field_file, **kwargs):
     df_elems.loc[df_elems.loc[:, 0] > 0, "cell_types"] = df_elems.loc[
         df_elems.loc[:, 0] > 0, 1
     ].map(
-        lambda x: vtk_shape_id_map[x.strip()]
-        if x.strip() in vtk_shape_id_map.keys()
-        else np.nan
+        lambda x: (
+            vtk_shape_id_map[x.strip()]
+            if x.strip() in vtk_shape_id_map.keys()
+            else np.nan
+        )
     )
     df_elems = df_elems.dropna(subset=["cell_types"], axis=0)
 

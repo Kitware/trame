@@ -2,6 +2,7 @@ r"""
 From a list of trame modules name, gather and generate the required static
 content that needs to be served for a trame application to work.
 """
+
 import argparse
 import importlib
 import shutil
@@ -10,6 +11,7 @@ from pathlib import Path
 
 class StaticContentGenerator:
     def __init__(self):
+        self.name = "www_generator"  # required to look like a server
         self.www = None
         self.serve = {}
         self.client_type = "vue3"

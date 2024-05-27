@@ -54,9 +54,9 @@ async def create_base_structure(ref_path, config, output):
                             config[name][sub_name][module][web_dir],
                         )
                     # Register trame/modules/{webdir}
-                    trame_plugins[
-                        f"trame/modules/{module}.py"
-                    ] = f"from {name}.module.{module} import *\n"
+                    trame_plugins[f"trame/modules/{module}.py"] = (
+                        f"from {name}.module.{module} import *\n"
+                    )
                     create_module_init(module_root_init, module_conf_init)
 
                 elif sub_name == "widgets":
@@ -165,9 +165,9 @@ async def create_base_structure(ref_path, config, output):
                         file.write("\n")
 
                     # Register trame/modules/{webdir}
-                    trame_plugins[
-                        f"trame/widgets/{module}.py"
-                    ] = f"from {name}.widgets.{module} import *\n\ndef initialize(server):\n    from {name}.module import {module}\n\n    server.enable_module({module})\n"
+                    trame_plugins[f"trame/widgets/{module}.py"] = (
+                        f"from {name}.widgets.{module} import *\n\ndef initialize(server):\n    from {name}.module import {module}\n\n    server.enable_module({module})\n"
+                    )
 
     # Create trame package connectors
     for file, content in trame_plugins.items():

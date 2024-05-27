@@ -2,6 +2,7 @@ r"""
 From the directory containing the static content for a trame application to work,
 generate another application specific HTML file.
 """
+
 import argparse
 import re
 from pathlib import Path

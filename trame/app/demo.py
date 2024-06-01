@@ -1,11 +1,11 @@
 from trame.app import get_server
-from trame.ui.vuetify import SinglePageLayout
-from trame.widgets import vuetify, vtk as vtk_widgets
+from trame.ui.vuetify3 import SinglePageLayout
+from trame.widgets import vuetify3 as v3, vtk as vtk_widgets
 
 
 class Cone:
     def __init__(self, server_or_name=None):
-        self.server = get_server(server_or_name, client_type="vue2")
+        self.server = get_server(server_or_name)
         self.ui = self._generate_ui()
 
     @property
@@ -33,8 +33,8 @@ class Cone:
             layout.title.set_text("Trame demo")
             with layout.toolbar as toolbar:
                 toolbar.dense = True
-                vuetify.VSpacer()
-                vuetify.VSlider(
+                v3.VSpacer()
+                v3.VSlider(
                     v_model=("resolution", 6),
                     min=3,
                     max=60,
@@ -42,13 +42,13 @@ class Cone:
                     hide_details=True,
                     style="max-width: 300px;",
                 )
-                with vuetify.VBtn(icon=True, click=self.reset_resolution):
-                    vuetify.VIcon("mdi-lock-reset")
-                with vuetify.VBtn(icon=True, click=self.ctrl.view_reset_camera):
-                    vuetify.VIcon("mdi-crop-free")
+                with v3.VBtn(icon=True, click=self.reset_resolution):
+                    v3.VIcon("mdi-lock-reset")
+                with v3.VBtn(icon=True, click=self.ctrl.view_reset_camera):
+                    v3.VIcon("mdi-crop-free")
 
             with layout.content:
-                with vuetify.VContainer(fluid=True, classes="pa-0 fill-height"):
+                with v3.VContainer(fluid=True, classes="pa-0 fill-height"):
                     with vtk_widgets.VtkView() as view:
                         self.ctrl.view_reset_camera = view.reset_camera
                         with vtk_widgets.VtkGeometryRepresentation():

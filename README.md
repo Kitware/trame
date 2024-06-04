@@ -1,5 +1,18 @@
 # trame: simple, powerful, innovative
 
+
+Trame is an easy-to-use, Python-based framework that let you create desktop like application which shows up in your web browser. 
+You can create buttons, dialogs, 3D scenes with VTK/ParaView, charts, maps and much more.
+
+It is great for any micro apps, dashboards, or even replacing a PyQt app into a web app. 
+You can also use it in development, for example when tweaking/configuring 3D rendering, machine learning and more.
+
+At the end your app can be used locally, remotely, in the cloud, in Jupyter or on HPC. 
+
+Trame is available as a PyPI package, on conda-forge and we provide docker images for cloud deployment.
+
+If you need help don't hesitate [to reach out](https://www.kitware.com/trame/)
+
 ![Test and Release](https://github.com/Kitware/trame/actions/workflows/test_and_release.yml/badge.svg)
 ![PyPI](https://img.shields.io/pypi/v/trame?label=pypi%20package)
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/trame)

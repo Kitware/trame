@@ -17,6 +17,7 @@ If you need help don't hesitate [to reach out](https://www.kitware.com/trame/)
 ![PyPI](https://img.shields.io/pypi/v/trame?label=pypi%20package)
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/trame)
 ![Conda - Downloads](https://pyviz.org/_static/cache/trame_conda_downloads_badge.svg)
+![GitHub stars](https://img.shields.io/github/stars/kitware/trame)
 
 **trame** - a web framework that weaves together open source components into customized visual analytics easily.
 

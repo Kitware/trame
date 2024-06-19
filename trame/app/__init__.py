@@ -1,29 +1,38 @@
+from __future__ import annotations
+
 import logging
-from trame_server import Server, Client
-from trame_server.core import set_default_client_type
+from typing import Literal
+
 from trame_client.widgets.core import VirtualNode
+from trame_server import Client, Server
+from trame_server.core import set_default_client_type
 
 # Ensure this is imported so that mimetypes.init() is decorated
 import trame.app.mimetypes  # noqa: F401
 
 DEFAULT_NAME = "trame"
-AVAILABLE_SERVERS = {}
-AVAILABLE_CLIENTS = {}
+AVAILABLE_SERVERS: dict[str, Server] = {}
+AVAILABLE_CLIENTS: dict[str, Client] = {}
 
 logger = logging.getLogger(__name__)
 
 set_default_client_type("vue3")
 
 
-def apply_client_type(server, client_type=None):
+def apply_client_type(server: Server, client_type: str | None = None) -> Server:
     if client_type is not None:
         server.client_type = client_type
     return server
 
 
-def get_server(name=None, create_if_missing=True, client_type=None, **kwargs):
-    """
-    Return a server for serving trame applications.
+def get_server(
+    name: str | Server | None = None,
+    create_if_missing: bool = True,
+    client_type: Literal["vue2", "vue3"] | None = None,
+    **kwargs,
+) -> Server | None:
+    """Return a server for serving trame applications.
+
     If a name is given and such server is not available yet,
     it will be created otherwise the previously created instance will be returned.
 
@@ -65,9 +74,9 @@ def get_server(name=None, create_if_missing=True, client_type=None, **kwargs):
     return None
 
 
-def get_client(url=None, hot_reload=False, **kwargs):
-    """
-    Return a client to a remote trame applications.
+def get_client(url: str | None = None, hot_reload: bool = False, **kwargs) -> Client:
+    """Return a client to a remote trame applications.
+
     If a url is given and such client is not available yet,
     it will be created otherwise the previously created instance will be returned.
 

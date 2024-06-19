@@ -40,7 +40,7 @@ class ClientFile:
         return self._size
 
     @property
-    def modified_time(self: ClientFile):
+    def modified_time(self: ClientFile) -> int | None:
         """Modified time"""
         return self._time
 

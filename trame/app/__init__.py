@@ -3,8 +3,8 @@ from __future__ import annotations
 import logging
 
 from trame_client.widgets.core import VirtualNode
-from trame_server import Client, Server, ClientType
-from trame_server.core import set_default_client_type
+from trame_server import Client, Server
+from trame_server.core import set_default_client_type, ClientType
 
 # Ensure this is imported so that mimetypes.init() is decorated
 import trame.app.mimetypes  # noqa: F401

@@ -1,10 +1,9 @@
 from __future__ import annotations
 
 import logging
-from typing import Literal
 
 from trame_client.widgets.core import VirtualNode
-from trame_server import Client, Server
+from trame_server import Client, Server, ClientType
 from trame_server.core import set_default_client_type
 
 # Ensure this is imported so that mimetypes.init() is decorated
@@ -19,7 +18,7 @@ logger = logging.getLogger(__name__)
 set_default_client_type("vue3")
 
 
-def apply_client_type(server: Server, client_type: str | None = None) -> Server:
+def apply_client_type(server: Server, client_type: ClientType | None = None) -> Server:
     if client_type is not None:
         server.client_type = client_type
     return server
@@ -28,7 +27,7 @@ def apply_client_type(server: Server, client_type: str | None = None) -> Server:
 def get_server(
     name: str | Server | None = None,
     create_if_missing: bool = True,
-    client_type: Literal["vue2", "vue3"] | None = None,
+    client_type: ClientType | None = None,
     **kwargs,
 ) -> Server | None:
     """Return a server for serving trame applications.

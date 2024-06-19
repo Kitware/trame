@@ -1,5 +1,12 @@
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
 import asyncio
 from IPython import display
+
+if TYPE_CHECKING:
+    from trame_server import Server
 
 from . import get_server
 
@@ -10,7 +17,7 @@ __all__ = [
 ]
 
 
-def show(_server, ui=None, **kwargs):
+def show(_server: Server, ui: str | None = None, **kwargs) -> None:
     """
     Helper function to show a server ui element into the cell.
 
@@ -48,7 +55,7 @@ def show(_server, ui=None, **kwargs):
         on_ready()
 
 
-def display_iframe(src, **kwargs):
+def display_iframe(src: str, **kwargs) -> display.DisplayHandle:
     """
     Convenience method to display an iframe for the given url source
 
@@ -69,7 +76,7 @@ def display_iframe(src, **kwargs):
     return display.display(iframe)
 
 
-def run(name, **kwargs):
+def run(name: str, **kwargs) -> display.DisplayHandle:
     """Run and display a Jupyter server proxy process with the given name
 
     Note that the proxy process must be registered with Jupyter by setting

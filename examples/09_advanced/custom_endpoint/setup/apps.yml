@@ -1,0 +1,13 @@
+trame:
+  cmd:
+    - python
+    - /deploy/app.py
+    - --host
+    - ${host}
+    - --port
+    - ${port}
+    - --authKey
+    - ${secret}
+    - --server
+    - --session
+    - ${id}

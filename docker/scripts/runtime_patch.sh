@@ -23,3 +23,18 @@ then
     docker_gid=$(stat -c '%g' $dnd_socket)
     groupmod --gid $docker_gid docker
 fi
+
+# Patch Apache configuration to add prefix
+if [ -d "$TRAME_URL_PREFIX" ]
+then
+    TEMPLATE_INPUT=/opt/trame/apache.tpl
+    CONFIG_OUTPUT=/etc/apache2/sites-available/001-trame.conf
+
+    OUTPUT=$(<"${TEMPLATE_INPUT}")
+
+    REPLACEMENT_STRING="TRAME_URL_PREFIX"
+    OUTPUT="${OUTPUT//$REPLACEMENT_STRING/$TRAME_URL_PREFIX}"
+    echo -e "$OUTPUT" > "${CONFIG_OUTPUT}"
+
+    systemctl restart apache2
+fi

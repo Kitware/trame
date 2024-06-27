@@ -51,6 +51,7 @@ RUN groupadd trame-user -g 1000 && \
 
 # Copy the apache configuration file into place
 COPY config/apache/001-trame.conf /etc/apache2/sites-available/001-trame.conf
+COPY config/apache/001-trame.tpl  /opt/trame/apache.tpl
 COPY config/default-launcher.json /opt/trame/default-launcher.json
 
 # Configure the apache web server

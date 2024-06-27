@@ -53,3 +53,7 @@ apt-get update && apt-get install mesa-utils-extra -y && eglinfo
 #   EGL API version: 1.5
 #   EGL vendor string: NVIDIA
 ```
+
+## Image not working
+
+Usually when you run into an issue where wslink is not found, that means the build/bunlding process of your trame app failed and you should be looking at the docker build step to see what could have gone wrong. For that the docker flags `--no-cache --progress=plain` could be useful.

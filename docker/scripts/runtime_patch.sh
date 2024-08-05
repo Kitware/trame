@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Remap trame-user to a file/directory owner (TRAME_USER_DATA)
-if [ -d "$TRAME_USER_DATA" ]
+if [[ -n "$TRAME_USER_DATA" ]]
 then
     new_uid=$(stat -c '%u' $TRAME_USER_DATA)
     new_gid=$(stat -c '%g' $TRAME_USER_DATA)
@@ -25,8 +25,9 @@ then
 fi
 
 # Patch Apache configuration to add prefix
-if [ -d "$TRAME_URL_PREFIX" ]
+if [[ -n "$TRAME_URL_PREFIX" ]]
 then
+    # Fix Apache
     TEMPLATE_INPUT=/opt/trame/apache.tpl
     CONFIG_OUTPUT=/etc/apache2/sites-available/001-trame.conf
 
@@ -36,5 +37,5 @@ then
     OUTPUT="${OUTPUT//$REPLACEMENT_STRING/$TRAME_URL_PREFIX}"
     echo -e "$OUTPUT" > "${CONFIG_OUTPUT}"
 
-    systemctl restart apache2
+    service apache2 restart
 fi

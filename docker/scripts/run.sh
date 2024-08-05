@@ -27,6 +27,11 @@ if [[ -n $TRAME_USE_HOST ]]; then
     REPLACEMENT_STRING="ws://$REPLACEMENT_STRING"
   fi
   OUTPUT="${OUTPUT//$REPLACEMENT_STRING/$TRAME_USE_HOST}"
+elif [[ -n "$TRAME_URL_PREFIX" ]]; then
+  # Need to patch session URL with prefix
+  REPLACEMENT_STRING="ws://USE_HOST/proxy"
+  OUTPUT_STRING="ws://USE_HOST$TRAME_URL_PREFIX/proxy"
+  OUTPUT="${OUTPUT//$REPLACEMENT_STRING/$OUTPUT_STRING}"
 fi
 
 echo -e "$OUTPUT" > "${LAUNCHER_PATH}"

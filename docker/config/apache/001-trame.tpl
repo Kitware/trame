@@ -9,6 +9,7 @@
       Options Indexes FollowSymLinks
       AllowOverride None
       Require all granted
+      FallbackResource /index.html
   </Directory>
 
   # Set CORS headers

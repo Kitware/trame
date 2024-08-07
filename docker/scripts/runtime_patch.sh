@@ -38,4 +38,12 @@ then
     echo -e "$OUTPUT" > "${CONFIG_OUTPUT}"
 
     service apache2 restart
+
+    # Fix index.html <base href=".">
+    FILE_TO_PATCH=/deploy/server/www/index.html
+    OUTPUT=$(<"${FILE_TO_PATCH}")
+    BASE_OLD='<base href=".">'
+    BASE_NEW="<base href=\"$TRAME_URL_PREFIX/\">"
+    OUTPUT="${OUTPUT//$BASE_OLD/$BASE_NEW}"
+    echo -e "$OUTPUT" > "${FILE_TO_PATCH}"
 fi

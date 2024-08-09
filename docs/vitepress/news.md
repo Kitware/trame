@@ -44,6 +44,10 @@ Nice to see __trame__ being used by the community within __jupyter__ context to 
 
 ## February, 2024
 
+<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7159257484077977600" height="875" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+
+## February, 2024
+
 __Top Python Frontend Libraries for Data Science__ - HiRETOP
 
 In the ever-evolving world of data science and machine learning, Python remains a dominant language, thanks in large part to its vast ecosystem of libraries. Among these, frontend libraries have become essential for professionals looking to translate complex data into accessible and interactive web applications. Here's an insightful exploration of the top Python frontend libraries, each offering unique capabilities to enhance your data science projects.

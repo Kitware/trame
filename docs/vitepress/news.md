@@ -1,3 +1,47 @@
+## August 9, 2024
+
+New blog on trame available [covering its Architecture and Capabilities](https://www.kitware.com/trame-architecture-and-capabilities/)
+
+<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7227731960389844992" height="505" width="100%" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+
+## August 5, 2024
+
+__Trame usage keeps growing__
+
+<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7226592532988604417" height="470" width="100%" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+
+## July, 2024
+
+__Enterprise deployment of CFD models with M-STAR__
+
+<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7225162200967979009" height="803" width="100%" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+
+
+
+## July 8-14, 2024
+
+__Trame was present at SciPy__
+
+Jaswant presented the new VTK/Python advancement (wrapping and WASM) and participated at the PyVista tutorial by teaching more usage of trame with VTK and PyVista. 
+
+## June, 2025
+
+Nice to see __trame__ being used by the community within __jupyter__ context to create 3D interactive solutions.
+
+<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7207780229610672129" height="677" width="100%" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+
+## May, 2024
+
+<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7189758268393545728" height="640" width="100%" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+
+## April, 2024
+
+<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7182113276732874752" height="461" width="100%" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+
+## March, 2024
+
+<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7168743724531769344" height="551" width="100%" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+
 ## February, 2024
 
 __Top Python Frontend Libraries for Data Science__ - HiRETOP

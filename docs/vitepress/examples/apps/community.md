@@ -5,6 +5,28 @@ If you would like to see your application listed below, please submit a MR addin
 
 <!-- [[toc]] -->
 
+## [ImpactX Dashboard](https://impactx.readthedocs.io/en/latest/usage/dashboard.html)
+
+[ImpactX Dashboard](https://impactx.readthedocs.io/en/latest/usage/dashboard.html) is a browser-based interface to the beam dynamics code [ImpactX](https://github.com/ECP-WarpX/impactx).
+The purpose of the application is to interactively design particle accelerator beamlines, run simulations and analyze them.
+
+![ImpactX Dashboard](https://gist.githubusercontent.com/ax3l/b56aa3c3261f9612e276f3198b34f771/raw/11bfe461a24e1daa7fd2d663c686b0fcc2b6e305/dashboard.png)
+
+## [MRI Viewer](https://github.com/karelvrabeckv/mri-viewer)
+
+MRI Viewer is a web application **for analyzing and visualizing VTI files**. The purpose of the application is to simplify scientific work **with 4D flow MRI medical data**. The tool is oriented especially **towards researchers**. It was created for **the Institute for Clinical and Experimental Medicine** in Prague, Czech Republic.
+
+<table>
+  <tr>
+    <td><img src="https://raw.githubusercontent.com/karelvrabeckv/mri-viewer/main/assets/aorta.png" alt="Aorta"></td>
+    <td><img src="https://raw.githubusercontent.com/karelvrabeckv/mri-viewer/main/assets/brain.png" alt="Brain"></td>
+  </tr>
+</table>
+
+## AI/Medical application
+
+<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7093253518769201153" height="997" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+
 ## [SpinView](https://mxjk851.github.io/SpinView/)
 
 SpinView is a general interactive visual analysis tool developed for multiscale computational magnetism that allow users with interdisciplinary backgrounds to simplified their own workflow, speeds up analysis of complex datasets and trajectories, and enables new types of analysis.
@@ -19,26 +41,3 @@ The key features are:
 - Extendable: Currently support .out (UppASD), Non-binary .ovf (Mumax3, OOMMF, Spirit), and .data (Vampire) output files and can easily extend to other magnetic simulation code.
 - Shareable: Take snapshoot, rendering a trajectory video, make a portable interactive HTML file with only one click!
 - Community support: Open-source (GPL V3) and free to use, based on Python, Pandas, Numpy, Scipy, Trame, and Pyvista.
-
-## AI/Medical application
-
-<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7093253518769201153" height="997" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
-
-## [MRI Viewer](https://github.com/karelvrabeckv/mri-viewer)
-
-MRI Viewer is a web application **for analyzing and visualizing VTI files**. The purpose of the application is to simplify scientific work **with 4D flow MRI medical data**. The tool is oriented especially **towards researchers**. It was created for **the Institute for Clinical and Experimental Medicine** in Prague, Czech Republic.
-
-<table>
-  <tr>
-    <td><img src="https://raw.githubusercontent.com/karelvrabeckv/mri-viewer/main/assets/aorta.png" alt="Aorta"></td>
-    <td><img src="https://raw.githubusercontent.com/karelvrabeckv/mri-viewer/main/assets/brain.png" alt="Brain"></td>
-  </tr>
-</table>
-
-
-## [ImpactX Dashboard](https://impactx.readthedocs.io/en/latest/usage/dashboard.html)
-
-[ImpactX Dashboard](https://impactx.readthedocs.io/en/latest/usage/dashboard.html) is a browser-based interface to the beam dynamics code [ImpactX](https://github.com/ECP-WarpX/impactx).
-The purpose of the application is to interactively design particle accelerator beamlines, run simulations and analyze them.
-
-![ImpactX Dashboard](https://gist.githubusercontent.com/ax3l/b56aa3c3261f9612e276f3198b34f771/raw/11bfe461a24e1daa7fd2d663c686b0fcc2b6e305/dashboard.png)

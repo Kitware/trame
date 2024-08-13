@@ -4,6 +4,10 @@ sphinx-rtd-theme
 
 # Add external widgets
 
+# core
+trame-client>=3.2.3
+trame-server>=3.0.3
+
 # Vue 2
 trame-leaflet
 trame-simput

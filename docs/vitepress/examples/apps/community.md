@@ -34,3 +34,11 @@ MRI Viewer is a web application **for analyzing and visualizing VTI files**. The
     <td><img src="https://raw.githubusercontent.com/karelvrabeckv/mri-viewer/main/assets/brain.png" alt="Brain"></td>
   </tr>
 </table>
+
+
+## [ImpactX Dashboard](https://impactx.readthedocs.io/en/latest/usage/dashboard.html)
+
+[ImpactX Dashboard](https://impactx.readthedocs.io/en/latest/usage/dashboard.html) is a browser-based interface to the beam dynamics code [ImpactX](https://github.com/ECP-WarpX/impactx).
+The purpose of the application is to interactively design particle accelerator beamlines, run simulations and analyze them.
+
+![ImpactX Dashboard](https://gist.githubusercontent.com/ax3l/b56aa3c3261f9612e276f3198b34f771/raw/11bfe461a24e1daa7fd2d663c686b0fcc2b6e305/dashboard.png)

@@ -41,7 +41,7 @@ export default defineConfig({
           { text: 'API', link: 'https://trame.readthedocs.io/en/latest/index.html' },
           { text: 'Discussions', link: 'https://github.com/Kitware/trame/discussions' },
           { text: 'Bugs', link: 'https://github.com/Kitware/trame/issues' },
-          { text: 'Contact Us', link: 'https://www.kitware.com/contact-us/' },
+          { text: 'Services', link: 'https://www.kitware.com/trame/' },
         ]
       }
     ],

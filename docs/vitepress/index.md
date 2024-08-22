@@ -11,8 +11,8 @@ hero:
       text: Getting started
       link: /guide/
     - theme: alt
-      text: Support
-      link: https://www.kitware.com/contact/
+      text: Services
+      link: https://www.kitware.com/trame/
 
 features:
   - title: 3D Visualization (VTK/ParaView)
@@ -52,6 +52,6 @@ features:
       alt: Kitware Inc.
       width: 28
     details: Kitware can help you get started, create custom components, or even build full applications. Our team is here to help.  Please contact us
-    link: https://www.kitware.com/contact/
+    link: https://www.kitware.com/trame/
 
 ---

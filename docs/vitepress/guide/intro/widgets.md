@@ -18,7 +18,6 @@
 | rca | trame-rca | 2 & 3 | 7 |
 | keycloak | trame-keycloak (wip) | 2 & 3 (needs funding) | 1 |
 | vtk3d | trame-vtk3d | 2 & 3 | 1 |
-| vtklocal | trame-vtklocal (wip) | 2 & 3 | 1 |
 | simput | trame-simput | 2 & 3 | 2 |
 | vega | trame-vega | 2 & 3 | 1 |
 | matplotlib | trame-matplotlib | 2 & 3 | 1 |
@@ -26,6 +25,7 @@
 | tauri | trame-tauri | 2 & 3 | 2 + utils |
 | bbox | trame-bbox (wip) | 2 & 3 | 1 |
 | tweakpane | trame-tweakpane | 2 & 3 | 10 |
+| vtklocal | trame-vtklocal | 2 & 3 | 1 |
 
 ::: warning
 - **vuetify**: The set of components are a bit different with API change. Please look at the [upgrade guide](https://vuetifyjs.com/en/getting-started/upgrade-guide/) for more details.

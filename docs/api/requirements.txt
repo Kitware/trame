@@ -29,6 +29,7 @@ trame-keycloak
 trame-xterm
 trame-code
 trame-vtk3d
+trame-vtklocal
 
 # Vue 3
 trame-formkit

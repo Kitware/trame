@@ -1,3 +1,6 @@
+--extra-index-url https://wheels.vtk.org
+vtk==9.3.20240817.dev0
+
 pygments
 sphinx
 sphinx-rtd-theme

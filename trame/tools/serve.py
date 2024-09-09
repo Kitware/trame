@@ -51,7 +51,7 @@ class MultiClientServer:
         try:
             await ws_network.prepare(request)
             ws_app = app.server._server.ws
-            connection = ws_app.connect()
+            connection = await ws_app.connect()
             connection.on_message(on_msg_from_server)
             async for msg in ws_network:
                 await connection.send(msg.type == aiohttp.WSMsgType.BINARY, msg)

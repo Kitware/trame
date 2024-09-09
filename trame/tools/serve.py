@@ -56,7 +56,7 @@ class MultiClientServer:
             async for msg in ws_network:
                 await connection.send(msg.type == aiohttp.WSMsgType.BINARY, msg)
         finally:
-            connection.close()
+            await connection.close()
             await app.server.stop()
             await task
 

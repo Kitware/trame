@@ -17,6 +17,7 @@ then
     # Run chown on all trame-user directories/files
     chown -R trame-user:trame-user /opt/trame
     chown trame-user:proxy-mapping /opt/trame/proxy-mapping.txt
+    find /deploy -exec chown trame-user:trame-user {} \;
     chown -R trame-user:trame-user /deploy
 fi
 

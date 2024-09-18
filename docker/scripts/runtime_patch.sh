@@ -13,6 +13,10 @@ then
     if [[ "$new_gid" != "$trame_gid" ]]; then
         groupmod --gid $new_gid trame-user
     fi
+    
+    # Run chown on all trame-user directories/files
+    chown -R trame-user:trame-user /opt/trame
+    chown trame-user:proxy-mapping /opt/trame/proxy-mapping.txt
 fi
 
 # Remap internal docker group to the group of /var/run/docker.sock

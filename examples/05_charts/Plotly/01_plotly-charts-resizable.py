@@ -103,7 +103,7 @@ def create_ternary_fig(width=300, height=300, **kwargs):
     fig.update_layout(
         margin=dict(l=50, r=50, t=50, b=50),
         width=width,
-        height=height,
+        height=max(height, 10),
     )
     return fig
 
@@ -143,7 +143,7 @@ def create_polar_fig(width=300, height=300, **kwargs):
         margin=dict(l=20, r=20, t=20, b=20),
         showlegend=False,
         width=width,
-        height=height,
+        height=max(height, 10),
     )
     return fig
 
@@ -168,7 +168,7 @@ def create_streamline_fig(width=100, height=100, **kwargs):
         margin=dict(l=20, r=20, t=10, b=10),
         showlegend=False,
         width=width,
-        height=height,
+        height=max(height, 10),
     )
     return fig
 
@@ -201,7 +201,7 @@ def create_contour_fig(width=100, height=100, **kwargs):
         margin=dict(l=20, r=20, t=10, b=10),
         showlegend=False,
         width=width,
-        height=height,
+        height=max(height, 10),
     )
     return fig
 

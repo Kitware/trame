@@ -255,7 +255,7 @@ with SinglePageLayout(server) as layout:
 
     with layout.content:
         with vuetify.VContainer(fluid=True, classes="fill-height"):
-            with vuetify.VRow():
+            with vuetify.VRow(style="height: 50%;"):
                 with vuetify.VCol():
                     with trame.SizeObserver("polar_size"):
                         ctrl.update_polar = plotly.Figure(
@@ -266,7 +266,7 @@ with SinglePageLayout(server) as layout:
                         ctrl.update_ternary = plotly.Figure(
                             display_mode_bar=("false",),
                         ).update
-            with vuetify.VRow(style="min-height: 300px;"):
+            with vuetify.VRow(style="height: 50%;"):
                 with vuetify.VCol():
                     with trame.SizeObserver("contour_size"):
                         ctrl.update_contour = plotly.Figure(

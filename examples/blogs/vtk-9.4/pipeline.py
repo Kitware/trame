@@ -8,13 +8,13 @@ from trame.decorators import TrameApp, change
 
 def setup_vtk():
     renderer = vtk.vtkRenderer()
-    render_window = vtk.vtkRenderWindow()
+    render_window = vtk.vtkRenderWindow(off_screen_rendering=True)
     render_window.AddRenderer(renderer)
-    render_window.off_screen_rendering = True
 
-    render_window_interactor = vtk.vtkRenderWindowInteractor()
-    render_window_interactor.SetRenderWindow(render_window)
-    render_window_interactor.GetInteractorStyle().SetCurrentStyleToTrackballCamera()
+    render_window_interactor = vtk.vtkRenderWindowInteractor(
+        render_window=render_window
+    )
+    render_window_interactor.interactor_style.SetCurrentStyleToTrackballCamera()
 
     # Pipeline
     sphere_source = vtk.vtkSphereSource(
@@ -28,23 +28,24 @@ def setup_vtk():
         resolution=30,
     )
 
-    normals = vtk.vtkPolyDataNormals()
-    normals.compute_cell_normals = 1
-    normals.SetInputConnection(sphere_source.GetOutputPort())
+    normals = vtk.vtkPolyDataNormals(
+        compute_cell_normals=1,
+        input_connection=sphere_source.output_port,
+    )
 
-    cell_centers = vtk.vtkCellCenters()
-    cell_centers.SetInputConnection(normals.GetOutputPort())
+    cell_centers = vtk.vtkCellCenters(
+        input_connection=normals.output_port,
+    )
 
-    glyph_mapper = vtk.vtkGlyph3DMapper()
-    glyph_mapper.SetInputConnection(0, cell_centers.GetOutputPort())
-    glyph_mapper.SetInputConnection(1, cone_source.GetOutputPort())
-    glyph_mapper.orient = True
-    glyph_mapper.orientation_array = "Normals"
+    glyph_mapper = vtk.vtkGlyph3DMapper(
+        orient=True,
+        orientation_array="Normals",
+        input_connection=cell_centers.output_port,
+        source_connection=cone_source.output_port,
+    )
 
     # Rendering
-    actor = vtk.vtkActor()
-    actor.SetMapper(glyph_mapper)
-    renderer.AddActor(actor)
+    renderer.AddActor(vtk.vtkActor(mapper=glyph_mapper))
     renderer.ResetCamera()
     render_window.Render()
 

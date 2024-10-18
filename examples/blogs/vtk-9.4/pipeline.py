@@ -75,7 +75,6 @@ class TitleWithStatistic(v3.VCardTitle):
             with v3.VChip(
                 size="small",
                 variant="outlined",
-                classes="mr-2",
                 style=f"width: {width}rem;",
             ):
                 v3.VIcon("mdi-dots-triangle", start=True)
@@ -83,6 +82,7 @@ class TitleWithStatistic(v3.VCardTitle):
             with v3.VChip(
                 size="small",
                 variant="outlined",
+                classes="ml-2",
                 style=f"width: {width}rem;",
                 v_show=f"{name}_points !== {name}_cells",
             ):

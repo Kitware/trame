@@ -1,3 +1,78 @@
+## October 29, 2024
+
+With the release of hashtag#vtk 9.4, we have some really cool news for the #python community. 
+
+![](https://www.kitware.com/main/wp-content/uploads/2024/10/Screenshot-2024-10-18-at-16.35.59.png)
+
+Want to learn more on how to best leverage vtk with Python? 
+Read our [#blog on the new property and pipeline syntax](https://www.kitware.com/vtk-9-4-a-step-closer-to-the-ways-of-python/).
+
+As always, #kitware [can help](https://www.kitware.com/industry/support/) you reach new heights with #vtk, #paraview, #trame and #cmake. 
+
+## October 16, 2024
+
+Building Interactive Web Applications with trame
+A simple paradigm for modern application development
+
+Creating highly interactive or data intensive applications can be challenging in itself but if you want to venture to the web, things can become even more complicated. What if that was not true and you could leverage your existing team to create such applications? With trame, a single application can be deployed in the cloud, on HPC, run within Jupyter or bundled locally like any desktop application.
+
+[Trame webinar with video recording available](https://www.kitware.com/webinars/from-desktop-to-ubiquitous-application-with-trame/)
+
+## October 1, 2024
+
+Modeling and simulation tools typically offer a comprehensive set of features to meet the needs of all potential users in a variety of domains. These tools are powerful, but come with a steep learning curve. Micro-workflows can be used to simplify the complex - creating a custom workflow packaged as a web application targeted at a specific need that is easy to learn, easy to use, and runs anywhere. Kitware Inc. can help you create micro-workflows that enable your domain experts to harness the power of your modeling and simulation tools without having to face a daunting learning curve. Find out more in our latest blog post on hashtag#trame, then contact us to set up a meeting to talk about micro-workflows for your environment based on our open source platforms. 
+
+[Full blog available here](https://www.kitware.com/trame-micro-workflow-use-case/)
+
+## September 28, 2024
+
+<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7243006448488587264" height="592" width="100%" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+
+## September 26, 2024
+
+Want to learn how to create Web apps with #VTK and #ParaView in plain #Python? I'll be teaching a course on September 26th. 
+
+Come and join me to [learn more about #trame](https://www.kitware.com/courses/trame/).
+
+## September 21, 2024
+
+<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7243017214008647680" height="760" width="100%" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+
+## September 20, 2024
+
+<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7242292335647023105" height="655" width="100%" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+
+## September 18, 2024
+
+<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7234614892945666050" height="676" width="100%" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+
+
+## September 5, 2024
+
+#trame can do more than just interactive 3D visualization on the Web with #vtk and #paraview. In fact it can also be used to create dashboards like #dash and #streamlit but with more capabilities.
+
+Want to learn more? [Checkout our blog on dashboards with trame](https://www.kitware.com/trame-dashboard-use-case/). 
+
+## September 3, 2024
+
+Wondering how to leverage #trame with #paraview? The 5.13 release make it strait forward. [This blog provides a quick introduction on how to get going](https://www.kitware.com/exposing-web-application-with-paraview-5-13-is-getting-simpler/).
+
+## August 29, 2024
+
+We have our first blog out about #paraview and its new `--venv` option to extend the #python packages available.
+
+Using Python Virtual environments in ParaView 5.13.0
+
+[Full blog available here](https://www.kitware.com/using-python-virtual-environments-in-paraview-5-13-0/)
+
+## August 21, 2024
+
+Make Your Automotive Simulation Tools Available on the Web
+
+We use websites to do everything, from communicating with friends and family and paying bills, to shopping for cars, and visiting the doctor. Even at work we rely heavily on the web because it provides a platform for wide-spread and easy access to applications. Web browsers are highly effective at delivering applications with excellent user experiences.
+
+[Full blog available here](https://www.kitware.com/make-your-automotive-simulation-tools-available-on-the-web/)
+
 ## August 9, 2024
 
 New blog on trame available [covering its Architecture and Capabilities](https://www.kitware.com/trame-architecture-and-capabilities/)

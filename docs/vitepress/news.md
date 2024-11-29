@@ -1,13 +1,13 @@
 ## October 29, 2024
 
-With the release of hashtag#vtk 9.4, we have some really cool news for the #python community. 
+With the release of __vtk__ 9.4, we have some really cool news for the __python__ community. 
 
 ![](https://www.kitware.com/main/wp-content/uploads/2024/10/Screenshot-2024-10-18-at-16.35.59.png)
 
 Want to learn more on how to best leverage vtk with Python? 
-Read our [#blog on the new property and pipeline syntax](https://www.kitware.com/vtk-9-4-a-step-closer-to-the-ways-of-python/).
+Read our [blog on the new property and pipeline syntax](https://www.kitware.com/vtk-9-4-a-step-closer-to-the-ways-of-python/).
 
-As always, #kitware [can help](https://www.kitware.com/industry/support/) you reach new heights with #vtk, #paraview, #trame and #cmake. 
+As always, [kitware can help](https://www.kitware.com/industry/support/) 
 
 ## October 16, 2024
 
@@ -20,7 +20,7 @@ Creating highly interactive or data intensive applications can be challenging in
 
 ## October 1, 2024
 
-Modeling and simulation tools typically offer a comprehensive set of features to meet the needs of all potential users in a variety of domains. These tools are powerful, but come with a steep learning curve. Micro-workflows can be used to simplify the complex - creating a custom workflow packaged as a web application targeted at a specific need that is easy to learn, easy to use, and runs anywhere. Kitware Inc. can help you create micro-workflows that enable your domain experts to harness the power of your modeling and simulation tools without having to face a daunting learning curve. Find out more in our latest blog post on hashtag#trame, then contact us to set up a meeting to talk about micro-workflows for your environment based on our open source platforms. 
+Modeling and simulation tools typically offer a comprehensive set of features to meet the needs of all potential users in a variety of domains. These tools are powerful, but come with a steep learning curve. Micro-workflows can be used to simplify the complex - creating a custom workflow packaged as a web application targeted at a specific need that is easy to learn, easy to use, and runs anywhere. Kitware Inc. can help you create micro-workflows that enable your domain experts to harness the power of your modeling and simulation tools without having to face a daunting learning curve. Find out more in our latest blog post on __trame__, then contact us to set up a meeting to talk about micro-workflows for your environment based on our open source platforms. 
 
 [Full blog available here](https://www.kitware.com/trame-micro-workflow-use-case/)
 
@@ -30,9 +30,9 @@ Modeling and simulation tools typically offer a comprehensive set of features to
 
 ## September 26, 2024
 
-Want to learn how to create Web apps with #VTK and #ParaView in plain #Python? I'll be teaching a course on September 26th. 
+Want to learn how to create Web apps with __VTK__ and __ParaView__ in plain __Python__? I'll be teaching a course on September 26th. 
 
-Come and join me to [learn more about #trame](https://www.kitware.com/courses/trame/).
+Come and join me to [learn more about trame](https://www.kitware.com/courses/trame/).
 
 ## September 21, 2024
 
@@ -49,17 +49,21 @@ Come and join me to [learn more about #trame](https://www.kitware.com/courses/tr
 
 ## September 5, 2024
 
-#trame can do more than just interactive 3D visualization on the Web with #vtk and #paraview. In fact it can also be used to create dashboards like #dash and #streamlit but with more capabilities.
+__trame__ can do more than just interactive 3D visualization on the Web with __vtk__ and __paraview__. In fact it can also be used to create dashboards like __dash__ and __streamlit__ but with more capabilities.
+
+![dasboard](https://www.kitware.com/main/wp-content/uploads/2024/08/image1.png)
 
 Want to learn more? [Checkout our blog on dashboards with trame](https://www.kitware.com/trame-dashboard-use-case/). 
 
 ## September 3, 2024
 
-Wondering how to leverage #trame with #paraview? The 5.13 release make it strait forward. [This blog provides a quick introduction on how to get going](https://www.kitware.com/exposing-web-application-with-paraview-5-13-is-getting-simpler/).
+Wondering how to leverage __trame__ with __paraview__? The 5.13 release make it strait forward. [This blog provides a quick introduction on how to get going](https://www.kitware.com/exposing-web-application-with-paraview-5-13-is-getting-simpler/).
+
+![ParaView Trame Components](https://www.kitware.com/main/wp-content/uploads/2024/08/Screenshot-2024-08-14-at-15.39.48.png)
 
 ## August 29, 2024
 
-We have our first blog out about #paraview and its new `--venv` option to extend the #python packages available.
+We have our first blog out about __paraview__ and its new `--venv` option to extend the __python__ packages available.
 
 Using Python Virtual environments in ParaView 5.13.0
 
@@ -70,6 +74,8 @@ Using Python Virtual environments in ParaView 5.13.0
 Make Your Automotive Simulation Tools Available on the Web
 
 We use websites to do everything, from communicating with friends and family and paying bills, to shopping for cars, and visiting the doctor. Even at work we rely heavily on the web because it provides a platform for wide-spread and easy access to applications. Web browsers are highly effective at delivering applications with excellent user experiences.
+
+![](https://www.kitware.com/main/wp-content/uploads/2024/08/OnlineWindTunnel.jpg)
 
 [Full blog available here](https://www.kitware.com/make-your-automotive-simulation-tools-available-on-the-web/)
 
@@ -167,7 +173,7 @@ __2023 summary in kind words from the community:__
 
 ## January 4th, 2024
 
-Trame course on February 12th for __#trame__
+Trame course on February 12th for __trame__
 
 <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7148802264046911488" height="526" width="100%" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
 
@@ -202,7 +208,7 @@ This is what happens when you let an engineer play for the first time with **VTK
 
 ## October 4, 2023
 
-Wow, I'm so impressed by #trame's impact.
+Wow, I'm so impressed by __trame__'s impact.
 
 We are at 30K downloads a month... If you are enjoying it, don't forget to add a star.
 

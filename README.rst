@@ -146,3 +146,11 @@ Read-only:
   - **tts**: Template Time Stamp to regenerate sub elements when a template
     gets updated. Usually used as `:key="tts"` to force some component
     rebuild.
+
+
+Professional Support
+--------------------------------------------------------------------------
+
+* `Training <https://www.kitware.com/courses/trame/>`_: Learn how to confidently use trame from the expert developers at Kitware.
+* `Support <https://www.kitware.com/trame/support/>`_: Our experts can assist your team as you build your web application and establish in-house expertise.
+* `Custom Development <https://www.kitware.com/trame/support/>`_: Leverage Kitware’s 25+ years of experience to quickly build your web application.

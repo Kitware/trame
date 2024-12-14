@@ -74,7 +74,7 @@ class PipelineManager:
 
     def remove_node(self, _id):
         for id in self._children_map[_id]:
-            self.remove_node(_id)
+            self.remove_node(id)
         self._nodes.pop(_id)
         self._update_hierarchy()
 

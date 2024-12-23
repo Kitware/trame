@@ -1,53 +1,41 @@
 # Known available widgets
 
-## Vue 2 and 3
-
-| Widget name (trame.widget.{name}) | Package name | Supported version | Number of components |
-| --- | --- | --- | --- |
-| html | (built-in) | 2 & 3 | 80 |
-| client | (built-in) | 2 & 3 | 5 |
-| vuetify, vuetify2, vuetify3 | trame-vuetify | 2 & 3 | 146/156 |
-| router | trame-router | 2 & 3 | 2 |
-| vtk, paraview | trame-vtk | 2 & 3 | 15 |
-| plotly | trame-plotly | 2 & 3 | 1 |
-| xterm | trame-xterm | 2 & 3 | 1 |
-| code | trame-code | 2 & 3 | 1 |
-| iframe | trame-iframe | 2 & 3 | 2 |
-| trame | trame-components | 2 & 3 | 11 |
-| markdown | trame-markdown | 2 & 3 | 1 |
-| rca | trame-rca | 2 & 3 | 7 |
-| keycloak | trame-keycloak (wip) | 2 & 3 (needs funding) | 1 |
-| vtk3d | trame-vtk3d | 2 & 3 | 1 |
-| simput | trame-simput | 2 & 3 | 2 |
-| vega | trame-vega | 2 & 3 | 1 |
-| matplotlib | trame-matplotlib | 2 & 3 | 1 |
-| deckgl | trame-deckgl | 2 & 3 | 1 |
-| tauri | trame-tauri | 2 & 3 | 2 + utils |
-| bbox | trame-bbox (wip) | 2 & 3 | 1 |
-| tweakpane | trame-tweakpane | 2 & 3 | 10 |
-| vtklocal | trame-vtklocal | 2 & 3 | 1 |
-
-::: warning
-- **vuetify**: The set of components are a bit different with API change. Please look at the [upgrade guide](https://vuetifyjs.com/en/getting-started/upgrade-guide/) for more details.
-- **markdown**: If coming from v2, the v3 has a different engine configuration while now supporting both vue 2/3.
-- **trame**: In the code upgrade to support 2 & 3, some event keys have been updated.
-- **keycloak**: This component has been pushed to capture the current development state but is currently lacking funding to complete it.
-- **vtklocal**: This component leverage VTK-WASM and therefore requires nightly VTK build with matching wasm package.
-:::
-
-## Vue 3 only
-
-| Widget name (trame.widget.{name}) | Package name | Supported version | Number of components |
-| --- | --- | --- | --- |
-| quasar | trame-quasar | 3 | 123 |
-| formkit | trame-formkit | 3 | 2 |
-| datagrid | trame-datagrid | 3 | 3 |
-
-## Vue 2 only
-
-| Widget name (trame.widget.{name}) | Package name | Supported version | Number of components |
-| --- | --- | --- | --- |
-| leaflet | trame-leaflet | 2 | 22 |
-| pvui | trame-pvui | 2 | 4 |
-| grid | trame-grid-layout | 2 | 2 |
-
+| Category | Widget name (trame.widget.{name}) | Package name | Vue version | Number of components |
+| --- | --- | --- | --- | --- |
+| **Front** |
+| | html | (built-in) | 2 & 3 | 80 |
+| | client | (built-in) | 2 & 3 | 5 |
+| | [iframe](https://github.com/Kitware/trame-iframe "Handle cross-origin communication with iframe") | trame-iframe | 2 & 3 | 2 |
+| **GUI** |
+| | [bbox](https://github.com/Kitware/trame-bbox "Widget to draw and/or interact with bounding boxes") [🏗️](# "Work in progress") | trame-bbox | 2 & 3 | 1 |
+| | [datagrid](https://github.com/Kitware/trame-datagrid "RevoGrid spreadsheet") | trame-datagrid | 3 | 3 |
+| | [formkit](https://github.com/Kitware/trame-formkit "FormKit widgets") | trame-formkit | 3 | 2 |
+| | [grid](https://github.com/Kitware/trame-grid-layout "Dynamic grid layout containers ") | trame-grid-layout | 2 | 2 |
+| | [markdown](https://github.com/Kitware/trame-markdown "Component that renders Markdown syntax") | trame-markdown | 2 & 3 [⚠️](# "If coming from v2, the v3 has a different engine configuration while now supporting both vue 2/3.") | 1 |
+| | [pvui](https://pypi.org/project/trame-pvui/ "Widgets that may be used in the Paraview user interface") | trame-pvui | 2 | 4 |
+| | [quasar](https://github.com/Kitware/trame-quasar "Quasar widgets") | trame-quasar | 3 | 123 |
+| | [simput](https://github.com/Kitware/trame-simput "Create forms from model/proxies") | trame-simput | 2 & 3 | 2 |
+| | [trame](https://github.com/Kitware/trame-components "Helper components") | trame-components | 2 & 3 [⚠️](# "In the code upgrade to support 2 & 3, some event keys have been updated.") | 11 |
+| | [tweakpane](https://github.com/Kitware/trame-tweakpane "Tweakpane widgets") | trame-tweakpane | 2 & 3 | 10 |
+| | [vuetify, vuetify2, vuetify3](https://github.com/Kitware/trame-vuetify "Vuetify UI components") | trame-vuetify | 2 & 3 [⚠️](# "The set of components are a bit different with API change. Please look at the 'upgrade guide' for more details.")| 146 & 156 |
+| **Charts** | 
+| | [matplotlib](https://github.com/Kitware/trame-matplotlib "Renders Matplotlib plots") | trame-matplotlib | 2 & 3 | 1 |
+| | [plotly](https://github.com/Kitware/trame-plotly "Renders Plotly charts") | trame-plotly | 2 & 3 | 1 |
+| | [vega](https://github.com/Kitware/trame-vega "Figure component that is capable of rendering Vega grammars such as Altair plots") | trame-vega | 2 & 3 | 1 |
+| **GIS** |
+| | [deckgl](https://github.com/Kitware/trame-deckgl "Components that can interface with PyDeck while being powered by Deck.gl") | trame-deckgl | 2 & 3 | 1 |
+| | [leaflet](https://github.com/Kitware/trame-leaflet "Leaflet integration to create map views") | trame-leaflet | 2 | 22 |
+| **3D** | 
+| | [vtk, paraview](https://github.com/Kitware/trame-vtk "Interface with VTK and/or ParaView") | trame-vtk | 2 & 3 | 15 |
+| | [vtk3d](https://github.com/Kitware/trame-vtk3d "Wrapper to WASM bundle of VTK") | trame-vtk3d | 2 & 3 | 1 |
+| | 🆕[vtklocal](https://github.com/Kitware/trame-vtklocal "Local Rendering using VTK/WASM to match server side rendering pipeline on the client side") [⚠️](# "This component leverage VTK-WASM and therefore requires nightly VTK build with matching wasm package.") | trame-vtklocal | 2 & 3 | 1 |
+| | 3D Slicer [🏗️](# "coming soon") | slicer-trame | TBA | TBA |
+| **Development** |
+| | [xterm](https://github.com/Kitware/trame-xterm "Expose xterm.js") | trame-xterm | 2 & 3 | 1 |
+| | [code](https://github.com/Kitware/trame-code "Monaco VS code editor") | trame-code | 2 & 3 | 1 |
+| **Connectivity** |
+| | [keycloak](https://github.com/Kitware/trame-keycloak "Keycloak Authentication widget") [🏗️](# "This component has been pushed to capture the current development state but is currently lacking funding to complete it.")| trame-keycloak | 2 & 3 (needs funding) | 1 |
+| **Misc** |
+| | [rca](https://github.com/Kitware/trame-rca "Infrastructure to display remote generated image based content while allowing interaction forwarding") | trame-rca | 2 & 3 | 7 |
+| | [router](https://github.com/Kitware/trame-router "Vue Router components") | trame-router | 2 & 3 | 2 |
+| | [tauri](https://github.com/Kitware/trame-tauri "Tauri integration to deploy trame into a desktop application") | trame-tauri | 2 & 3 | 2 + utils |

@@ -6,6 +6,7 @@
 | | html | (built-in) | 2 & 3 | 80 |
 | | client | (built-in) | 2 & 3 | 5 |
 | | [iframe](https://github.com/Kitware/trame-iframe "Handle cross-origin communication with iframe") | trame-iframe | 2 & 3 | 2 |
+| | [react](https://github.com/Kitware/trame-react "React component that wraps trame iframe") | trame-react | 2 & 3 | 2 |
 | **GUI** |
 | | [bbox](https://github.com/Kitware/trame-bbox "Widget to draw and/or interact with bounding boxes") [🏗️](# "Work in progress") | trame-bbox | 2 & 3 | 1 |
 | | [datagrid](https://github.com/Kitware/trame-datagrid "RevoGrid spreadsheet") | trame-datagrid | 3 | 3 |

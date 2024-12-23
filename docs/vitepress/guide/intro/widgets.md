@@ -34,7 +34,8 @@
 | | [xterm](https://github.com/Kitware/trame-xterm "Expose xterm.js") | trame-xterm | 2 & 3 | 1 |
 | | [code](https://github.com/Kitware/trame-code "Monaco VS code editor") | trame-code | 2 & 3 | 1 |
 | **Connectivity** |
-| | [keycloak](https://github.com/Kitware/trame-keycloak "Keycloak Authentication widget") [🏗️](# "This component has been pushed to capture the current development state but is currently lacking funding to complete it.")| trame-keycloak | 2 & 3 (needs funding) | 1 |
+| | [gwc](https://github.com/Kitware/trame-gwc "Girder Web Components to connect with scientifc data storage Python Girder WSGI") | trame-gwc | 2  | 10 |
+| | [keycloak](https://github.com/Kitware/trame-keycloak "Keycloak Authentication widget") [🏗️](# "This component has been pushed to capture the current development state but is currently lacking funding to complete it.")| trame-keycloak | 2 & 3 | 1 |
 | **Misc** |
 | | [rca](https://github.com/Kitware/trame-rca "Infrastructure to display remote generated image based content while allowing interaction forwarding") | trame-rca | 2 & 3 | 7 |
 | | [router](https://github.com/Kitware/trame-router "Vue Router components") | trame-router | 2 & 3 | 2 |

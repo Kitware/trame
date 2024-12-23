@@ -39,9 +39,15 @@
 | | [code](https://github.com/Kitware/trame-code "Monaco VS code editor") | trame-code | 2 & 3 | 1 |
 | | [xterm](https://github.com/Kitware/trame-xterm "Expose xterm.js") | trame-xterm | 2 & 3 | 1 |
 | **Connectivity** |
-| | [gwc](https://github.com/Kitware/trame-gwc "Girder Web Components to connect with scientifc data storage Python Girder WSGI") | trame-gwc | 2  | 10 |
+| | [gwc](https://github.com/Kitware/trame-gwc "Girder Web Components to connect with scientific data storage Python Girder WSGI") | trame-gwc | 2  | 10 |
 | | [keycloak](https://github.com/Kitware/trame-keycloak "Keycloak Authentication widget") [🏗️](# "This component has been pushed to capture the current development state but is currently lacking funding to complete it.")| trame-keycloak | 2 & 3 | 1 |
 | **Misc** |
 | | [rca](https://github.com/Kitware/trame-rca "Infrastructure to display remote generated image based content while allowing interaction forwarding") | trame-rca | 2 & 3 | 7 |
 | | [router](https://github.com/Kitware/trame-router "Vue Router components") | trame-router | 2 & 3 | 2 |
 | | [tauri](https://github.com/Kitware/trame-tauri "Tauri integration to deploy trame into a desktop application") | trame-tauri | 2 & 3 | 2 + utils |
+
+::: warning
+This table may be incomplete or slightly out of date. Please [correct it](https://github.com/Kitware/trame/pulls) or [reach out](https://github.com/Kitware/trame/discussions) for up-to-date information.
+
+If you are looking for specific widgets, contributions are welcome you can [ask for support](https://www.kitware.com/trame/).
+:::

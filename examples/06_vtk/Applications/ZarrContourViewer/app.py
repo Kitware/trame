@@ -121,10 +121,12 @@ with SinglePageLayout(server) as layout:
             classes="mx-2",
         )
         html.Div(
-            "Level({{ level }}) - Points({{parseInt( points ).toLocaleString()}}) - Cells({{parseInt( cells ).toLocaleString()}})",
+            "Level({{ level }}) "
+            "- Points({{parseInt( points ).toLocaleString()}}) "
+            "- Cells({{parseInt( cells ).toLocaleString()}})",
             style="min-width: 350px; text-align: right;",
         )
-        vuetify.VDivider(vertical=True, classes="mx-2"),
+        vuetify.VDivider(vertical=True, classes="mx-2")
         vuetify.VBtn(
             icon=True,
             click=update_reset_level,

@@ -1,4 +1,3 @@
-import time
 import asyncio
 
 import pyvista as pv

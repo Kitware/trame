@@ -1,6 +1,5 @@
 import vtk
 
-from vtkmodules.util.execution_model import select_ports
 
 from trame.app import get_server
 from trame.ui.vuetify3 import VAppLayout

@@ -78,9 +78,10 @@ async def create_base_structure(ref_path, config, output):
                         file.write("\n\n")
 
                         all_class_names = []
-                        for class_name, class_info in config[name][sub_name][
-                            module
-                        ].items():
+                        for (
+                            class_name,
+                            class_info,
+                        ) in config[name][sub_name][module].items():
                             if class_name == "directives":
                                 for entry in class_info:
                                     if isinstance(entry, list):
@@ -122,7 +123,11 @@ async def create_base_structure(ref_path, config, output):
                                         f"""\n        {class_name}._next_id += 1"""
                                     )
                                     file.write(
-                                        f"""\n        self.__ref = kwargs.get("ref", f"{class_name}_{{{class_name}._next_id}}")"""
+                                        f"""\n        self.__ref = kwargs.get("ref", f"{
+                                            class_name
+                                        }_{{{
+                                            class_name
+                                        }._next_id}}")"""
                                     )
                                     file.write(
                                         """\n        self._attributes["ref"] = f'ref="{self.__ref}"'"""
@@ -137,7 +142,10 @@ async def create_base_structure(ref_path, config, output):
                                     for entry in class_info.get("methods"):
                                         method = entry.get("name")
                                         help = entry.get("help")
-                                        if isinstance(method, (list, tuple)):
+                                        if isinstance(
+                                            method,
+                                            (list, tuple),
+                                        ):
                                             py_m, js_m = method
                                         else:
                                             py_m = method
@@ -166,7 +174,12 @@ async def create_base_structure(ref_path, config, output):
 
                     # Register trame/modules/{webdir}
                     trame_plugins[f"trame/widgets/{module}.py"] = (
-                        f"from {name}.widgets.{module} import *\n\ndef initialize(server):\n    from {name}.module import {module}\n\n    server.enable_module({module})\n"
+                        f"from {name}.widgets.{module} import *\n"
+                        "\n"
+                        f"def initialize(server):\n"
+                        f"    from {name}.module import {module}\n"
+                        "\n"
+                        f"server.enable_module({module})\n"
                     )
 
     # Create trame package connectors
@@ -233,11 +246,19 @@ async def create_web_content(ref_path, base_directory, web_config):
                 if isinstance(item, str):
                     if item.startswith("http"):
                         local_conf.append(
-                            await handle_url(base_directory, item, EXT_BY_TYPES[key])
+                            await handle_url(
+                                base_directory,
+                                item,
+                                EXT_BY_TYPES[key],
+                            )
                         )
                     else:
                         local_conf.append(
-                            handle_relative_path(ref_path, base_directory, item)
+                            handle_relative_path(
+                                ref_path,
+                                base_directory,
+                                item,
+                            )
                         )
                 else:
                     # in-line JS file

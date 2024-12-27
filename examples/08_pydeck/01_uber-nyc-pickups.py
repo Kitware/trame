@@ -34,9 +34,12 @@ DATA_URL = (
 )
 
 
+def lowercase(x):
+    return str(x).lower()
+
+
 def load_data(nrows):
     data = pd.read_csv(DATA_URL, nrows=nrows)
-    lowercase = lambda x: str(x).lower()
     data.rename(lowercase, axis="columns", inplace=True)
     data[DATE_TIME] = pd.to_datetime(data[DATE_TIME])
     return data

@@ -32,7 +32,7 @@ def validate_my_number(my_number, **kwargs):
 
     try:
         state.my_number = int(my_number)
-    except:
+    except ValueError:
         state.my_number = DEFAULT_VALUE
 
 

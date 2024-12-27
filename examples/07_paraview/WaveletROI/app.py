@@ -1,4 +1,3 @@
-import paraview.web.venv
 from trame.app import get_server
 from trame.ui.vuetify3 import SinglePageWithDrawerLayout
 from trame.widgets import vuetify3 as v3, paraview as pv_widgets
@@ -75,7 +74,8 @@ class App:
         with SinglePageWithDrawerLayout(self.server, full_height=True) as layout:
             with layout.toolbar:
                 v3.VLabel(
-                    "Extent [{{i_range.join(', ')}}, {{j_range.join(', ')}}, {{k_range.join(', ')}}] - Volume: {{ volume }}",
+                    "Extent [{{i_range.join(', ')}}, {{j_range.join(', ')}}, {{k_range.join(', ')}}]"
+                    " - Volume: {{ volume }}",
                     classes="mx-2",
                 )
                 v3.VBtn(icon="mdi-crop-free", click=self.ctrl.view_reset_camera)

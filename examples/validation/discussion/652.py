@@ -1,5 +1,5 @@
 from trame.app import get_server
-from trame.widgets import vtk as tvtk, vuetify
+from trame.widgets import vuetify
 from trame.ui.vuetify import SinglePageWithDrawerLayout
 
 import json

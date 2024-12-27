@@ -495,13 +495,13 @@ with SinglePageWithDrawerLayout(server) as layout:
                 vuetify.VSpacer()
                 vuetify.VIcon("mdi-dots-triangle", x_small=True, classes="mr-1")
                 html.Div(
-                    "{{ active_data_info?.points.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') | 0 }}",
+                    r"{{ active_data_info?.points.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') | 0 }}",
                     classes="text-caption",
                 )
                 vuetify.VSpacer()
                 vuetify.VIcon("mdi-triangle-outline", x_small=True, classes="mr-1")
                 html.Div(
-                    "{{ active_data_info?.cells.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') || 0 }}",
+                    r"{{ active_data_info?.cells.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') || 0 }}",
                     classes="text-caption",
                 )
             vuetify.VDivider()

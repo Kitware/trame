@@ -11,6 +11,8 @@ from trame.app import get_server
 from trame.widgets import vuetify, paraview
 from trame.ui.vuetify import SinglePageLayout
 
+from paraview import simple
+
 # -----------------------------------------------------------------------------
 # Trame setup
 # -----------------------------------------------------------------------------
@@ -28,12 +30,10 @@ head_vti = data_directory / "head.vti"
 # -----------------------------------------------------------------------------
 # ParaView pipeline
 # -----------------------------------------------------------------------------
-from paraview import simple
-
 simple.LoadDistributedPlugin("AcceleratedAlgorithms", remote=False, ns=globals())
 reader = simple.XMLImageDataReader(FileName=[str(head_vti)])
 # contour = simple.Contour(Input=reader) # Default filter    => no plugin but slow
-contour = FlyingEdges3D(Input=reader)  # Faster processing => make it interactive
+contour = simple.FlyingEdges3D(Input=reader)  # Faster processing => make it interactive
 
 # Extract data range => Update store/state
 array = reader.GetPointDataInformation().GetArray(0)

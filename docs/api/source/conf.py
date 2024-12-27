@@ -69,7 +69,6 @@ os.environ.update(
 
 
 def run_apidoc(_):
-
     # Override the apidoc options with what we want
     apidoc.OPTIONS.clear()
     apidoc.OPTIONS.extend(

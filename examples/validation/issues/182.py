@@ -11,7 +11,6 @@ from vtkmodules.vtkRenderingCore import (
     vtkRenderWindowInteractor,
 )
 from vtkmodules.vtkFiltersCore import vtkTubeFilter
-from vtkmodules.vtkInteractionStyle import vtkInteractorStyleTrackballCamera
 
 import vtkmodules.vtkRenderingOpenGL2  # noqa (needed for vtkHardwareSelector)
 

@@ -19,7 +19,7 @@ state.trame__title = "Coundown"
 async def start_countdown():
     try:
         state.countdown = int(state.countdown)
-    except:
+    except ValueError:
         state.countdown = coundown_init
 
     while state.countdown > 0:

@@ -34,7 +34,7 @@ class App:
                 self.toggle_visibility(node_id)
 
     def _build_ui(self):
-        with DivLayout(self.server) as layout:
+        with DivLayout(self.server):
             trame.GitTree(
                 sources=(
                     "pipeline",

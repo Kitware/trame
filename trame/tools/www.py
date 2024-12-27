@@ -70,7 +70,11 @@ class StaticContentGenerator:
             output_directory = Path.cwd()
 
         if self.www:
-            shutil.copytree(self.www, output_directory, dirs_exist_ok=True)
+            shutil.copytree(
+                self.www,
+                output_directory,
+                dirs_exist_ok=True,
+            )
 
         for sub_path, src_dir in self.serve.items():
             dst_dir = Path(output_directory) / sub_path

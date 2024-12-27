@@ -74,7 +74,11 @@ def get_server(
     return None
 
 
-def get_client(url: str | None = None, hot_reload: bool = False, **kwargs) -> Client:
+def get_client(
+    url: str | None = None,
+    hot_reload: bool = False,
+    **kwargs,
+) -> Client:
     """Return a client to a remote trame applications.
 
     If a url is given and such client is not available yet,
@@ -89,7 +93,8 @@ def get_client(url: str | None = None, hot_reload: bool = False, **kwargs) -> Cl
 
     :param **kwargs: any extra keyword args use for authentication configuration.
 
-    :return: Return a unique Client instance per given url. Each instance need to a connect() call.
+    :return: Return a unique Client instance per given url. Each instance needs to call
+             connect().
     :rtype: trame_server.client.Client
     """
     if url in AVAILABLE_CLIENTS:

@@ -4,7 +4,6 @@ from trame.widgets import vuetify3 as v3, html
 from trame.decorators import TrameApp, controller
 
 import time
-from pathlib import Path
 from aiohttp import web
 
 

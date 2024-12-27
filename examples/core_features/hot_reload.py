@@ -23,7 +23,7 @@ server.hot_reload = True
 # -----------------------------------------------------------------------------
 @ctrl.set("number_reset")
 def reset_number():
-    print("reset_number::ChangeMe")
+    print("reset_number::ChangeMe 2")
     state.number = 6
     state.size = 1
     do_someting()
@@ -83,7 +83,7 @@ try:
         UpdateUIOnChange(), str(Path(__file__).parent.absolute()), recursive=False
     )
     observer.start()
-except:
+except ImportError:
     print("Watchdog not installed so skipping the auto monitoring")
 
 # -----------------------------------------------------------------------------

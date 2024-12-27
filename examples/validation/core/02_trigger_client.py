@@ -59,10 +59,10 @@ with layout:
     ctrl.call = client_triggers.call
 
     with html.Div(style="padding: 10px;") as div:
-        html.Button(f"Method 1", click=call_method_1)
-        html.Button(f"Method 2", click=call_method_2)
-        html.Button(f"Method 3", click=call_method_3)
-        html.Button(f"a+", click="a+=1")
+        html.Button("Method 1", click=call_method_1)
+        html.Button("Method 2", click=call_method_2)
+        html.Button("Method 3", click=call_method_3)
+        html.Button("a+", click="a+=1")
         div.add_child("")
 
     trame.LifeCycleMonitor(type="error", events=("['created', 'destroyed']",))

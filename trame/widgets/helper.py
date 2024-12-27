@@ -5,7 +5,13 @@ __all__ = [
 ]
 
 
-def create_class(class_name, component_name, properties=[], events=[], module=None):
+def create_class(
+    class_name,
+    component_name,
+    properties=[],
+    events=[],
+    module=None,
+):
     """Helper for creating Widget class
 
     Args:
@@ -23,4 +29,8 @@ def create_class(class_name, component_name, properties=[], events=[], module=No
         self._attr_names += properties
         self._event_names += events
 
-    return type(class_name, (AbstractElement,), dict(__init__=constructor))
+    return type(
+        class_name,
+        (AbstractElement,),
+        dict(__init__=constructor),
+    )

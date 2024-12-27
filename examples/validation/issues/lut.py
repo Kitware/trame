@@ -1,6 +1,5 @@
 import vtk
 import vtk.util.numpy_support
-import numpy as np
 
 # trame imports
 import trame.app

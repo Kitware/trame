@@ -42,14 +42,14 @@ def esc():
 # -----------------------------------------------------------------------------
 layout = DivLayout(server)
 
-with layout as l:
+with layout:
     mt = trame.MouseTrap(
         Save=save,
         Open=open,
         Edit=edit,
         Escape=esc,
     )
-    l.root.add_child("{{ last_action }} #{{action_count}}")
+    layout.root.add_child("{{ last_action }} #{{action_count}}")
 
 
 # Do binding after

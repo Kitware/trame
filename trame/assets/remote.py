@@ -10,7 +10,13 @@ def download_file_from_google_drive(id, destination):
 
     session = requests.Session()
     response = session.get(
-        URL, params={"id": id, "confirm": "t", "export": "download"}, stream=True
+        URL,
+        params={
+            "id": id,
+            "confirm": "t",
+            "export": "download",
+        },
+        stream=True,
     )
     token = get_confirm_token(response)
 
@@ -89,7 +95,12 @@ class GoogleDriveFile(AbstractRemoteFile):
     Helper file to manage caching and retrieving of file available on Google Drive
     """
 
-    def __init__(self, local_path=None, google_id=None, local_base=None):
+    def __init__(
+        self,
+        local_path=None,
+        google_id=None,
+        local_base=None,
+    ):
         """
         Provide the information regarding where the file should be located
         and where to fetch it if missing.
@@ -114,7 +125,12 @@ class HttpFile(AbstractRemoteFile):
     Helper file to manage caching and retrieving of file available on HTTP servers
     """
 
-    def __init__(self, local_path=None, remote_url=None, local_base=None):
+    def __init__(
+        self,
+        local_path=None,
+        remote_url=None,
+        local_base=None,
+    ):
         """
         Provide the information regarding where the file should be located
         and where to fetch it if missing.

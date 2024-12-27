@@ -31,8 +31,8 @@ def run(input_path, apps_path, out_path):
     for app_name, config in apps_dict.items():
         if "app" not in config and "cmd" not in config:
             msg = (
-                f'In {apps_path}, every app must contain an "app" key if a "cmd" is not provided, but '
-                f'"{app_name}" does not'
+                f'In {apps_path}, every app must contain an "app" key '
+                f'if a "cmd" is not provided, but "{app_name}" does not'
             )
             raise Exception(msg)
 

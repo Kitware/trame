@@ -44,7 +44,10 @@ class Cone:
                 )
                 with v3.VBtn(icon=True, click=self.reset_resolution):
                     v3.VIcon("mdi-lock-reset")
-                with v3.VBtn(icon=True, click=self.ctrl.view_reset_camera):
+                with v3.VBtn(
+                    icon=True,
+                    click=self.ctrl.view_reset_camera,
+                ):
                     v3.VIcon("mdi-crop-free")
 
             with layout.content:
@@ -53,7 +56,8 @@ class Cone:
                         self.ctrl.view_reset_camera = view.reset_camera
                         with vtk_widgets.VtkGeometryRepresentation():
                             vtk_widgets.VtkAlgorithm(
-                                vtk_class="vtkConeSource", state=("{ resolution }",)
+                                vtk_class="vtkConeSource",
+                                state=("{ resolution }",),
                             )
 
             return layout

@@ -209,7 +209,13 @@ background_color.jslink(
     vtkpan,
     code={
         "value": """
-const hextoarr = (color) => {return [parseInt(color.slice(1,3),16)/255, parseInt(color.slice(3,5),16)/255, parseInt(color.slice(5,7),16)/255]}
+const hextoarr = (color) => {
+    return [
+        parseInt(color.slice(1,3),16)/255,
+        parseInt(color.slice(3,5),16)/255,
+        parseInt(color.slice(5,7),16)/255
+    ]
+}
 target.renderer_el.getRenderer().setBackground(hextoarr(source.color))
 target.renderer_el.getRenderWindow().render()
 """
@@ -268,7 +274,13 @@ edges_color.jscallback(
     args={"target": vtkpan, "actor_selection": actor_selection},
     value="""
 if (actor_selection.value!="None"){
-    const hextoarr = (color) => {return [parseInt(color.slice(1,3),16)/255, parseInt(color.slice(3,5),16)/255, parseInt(color.slice(5,7),16)/255]}
+    const hextoarr = (color) => {
+        return [
+            parseInt(color.slice(1,3),16)/255,
+            parseInt(color.slice(3,5),16)/255,
+            parseInt(color.slice(5,7),16)/255
+        ]
+    }
     const actor = target.getActors(actor_selection.value)[0]
     actor.getProperty().setEdgeColor(hextoarr(source.color))
     target.renderer_el.getRenderWindow().render()
@@ -367,13 +379,16 @@ if (source.value!="None"){
     const actor = target.getActors(source.value)[0]
     target.outline.setInputData(actor.getMapper().getInputData())
     target.renderer_el.getRenderer().addActor(target.outline_actor)
-    
+
     //synchronize actor props and widgets values
     const properties = actor.getProperty()
     opacity.setv({value: properties.getOpacity()}, {silent: true})
     lighting.setv({active: !!properties.getLighting()}, {silent: true})
     edges.active = !!properties.getEdgeVisibility()
-    const actor_color = "#" + properties.getEdgeColor().map((c) => ("0" + Math.round(255*c).toString(16,2)).slice(-2)).join('')
+    const actor_color = "#"
+        + properties.getEdgeColor().map(
+            (c) => ("0" + Math.round(255*c).toString(16,2)
+        ).slice(-2)).join('')
     edges_color.setv({color: actor_color}, {silent: true})
     const interp_string = properties.getInterpolationAsString()
     interpolation.setv({value: interp_string[0] + interp_string.slice(1).toLocaleLowerCase()}, {silent: true})

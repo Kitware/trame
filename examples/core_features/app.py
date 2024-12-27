@@ -35,7 +35,7 @@ class App:
         print("on_ready")
 
     def ui(self):
-        with DivLayout(self.server) as layout:
+        with DivLayout(self.server):
             html.Input(
                 type="range",
                 min=3,

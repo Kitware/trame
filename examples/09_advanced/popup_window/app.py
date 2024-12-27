@@ -1,5 +1,5 @@
 from trame.app import get_server
-from trame.widgets import vuetify3, client
+from trame.widgets import vuetify3
 from trame.ui.vuetify3 import SinglePageLayout, VAppLayout
 
 
@@ -33,7 +33,13 @@ class MultiWindow:
                 vuetify3.VBtn(
                     "Open Hello",
                     disabled=("window_hello",),
-                    click="window_hello = window.open('/?ui=hello', target='_blank', 'popup,width=200,height=200,left=10,top=10')",
+                    click="""
+                        window_hello = window.open(
+                            '/?ui=hello',
+                            target='_blank',
+                            'popup,width=200,height=200,left=10,top=10'
+                        )
+                    """,
                 )
                 vuetify3.VBtn(
                     "Close Hello", click="window_hello.close(); window_hello = null;"
@@ -41,7 +47,13 @@ class MultiWindow:
                 vuetify3.VBtn(
                     "Open World",
                     disabled=("window_world",),
-                    click="window_world = window.open('/?ui=world', target='_blank', 'popup,width=200,height=200,left=100,top=100')",
+                    click="""
+                        window_world = window.open(
+                            '/?ui=world',
+                            target='_blank',
+                            'popup,width=200,height=200,left=100,top=100'
+                        )
+                    """,
                 )
                 vuetify3.VBtn(
                     "Close World", click="window_world.close(); window_world = null;"

@@ -31,7 +31,7 @@ head_vti = data_directory / "head.vti"
 
 reader = simple.XMLImageDataReader(FileName=[str(head_vti)])
 # contour = simple.Contour(Input=reader) # Default filter    => no plugin but slow
-contour = FlyingEdges3D(Input=reader)  # Faster processing => make it interactive
+contour = simple.FlyingEdges3D(Input=reader)  # Faster processing => make it interactive
 
 # Extract data range => Update store/state
 array = reader.GetPointDataInformation().GetArray(0)

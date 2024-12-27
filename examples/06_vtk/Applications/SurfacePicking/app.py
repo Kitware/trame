@@ -277,7 +277,12 @@ with SinglePageLayout(server) as layout:
                     color_data_range=("fieldParameters[field].range",),
                     actor=("{ visibility: f1Visible }",),
                     mapper=(
-                        "{ colorByArrayName: field, scalarMode: 3, interpolateScalarsBeforeMapping: true, scalarVisibility: field !== 'solid' }",
+                        """{
+                            colorByArrayName: field,
+                            scalarMode: 3,
+                            interpolateScalarsBeforeMapping: true,
+                            scalarVisibility: field !== 'solid',
+                        }""",
                     ),
                 ):
                     vtk_widgets.VtkMesh("f1", dataset=f1_mesh, point_arrays=["p", "U"])

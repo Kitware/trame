@@ -5,7 +5,6 @@ Installation requirements:
 
 import plotly.graph_objects as go
 import plotly.figure_factory as ff
-from plotly.subplots import make_subplots
 
 from trame.app import get_server
 from trame.ui.vuetify import SinglePageLayout
@@ -236,7 +235,7 @@ def update_polar_size(polar_size, **kwargs):
 
 
 @state.change("ternary_size")
-def update_stream_size(ternary_size, **kwargs):
+def update_ternary_size(ternary_size, **kwargs):
     if ternary_size is None:
         return
 

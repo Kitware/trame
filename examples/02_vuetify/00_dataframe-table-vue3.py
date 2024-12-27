@@ -164,7 +164,6 @@ with SinglePageLayout(server) as layout:
         )
 
     with layout.content:
-
         state.rows = rows
         with vuetify.VDataTable(**table):
             with vuetify.Template(

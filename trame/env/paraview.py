@@ -10,6 +10,7 @@ To use: specify one of the following, and then import this file:
  - `--paraview /path/to/paraview/release` argument
  - environment variable `TRAME_PARAVIEW=/path/to/paraview/release`
 """
+
 import os
 import platform
 import sys

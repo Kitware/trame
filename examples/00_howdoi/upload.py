@@ -30,6 +30,8 @@ def file_uploaded(file_exchange, **kwargs):
     file_binary_content = file_exchange.get(
         "content"
     )  # can be either list(bytes, ...), or bytes
+    print(f"{file_name=}, {file_size=} {file_time=} {file_mime_type=}")
+    print(f"file_binary_content=size({len(file_binary_content)})")
     print(file.info)
     print(type(file.content))  # will always be bytes
     # print(file_binary_content)

@@ -7,6 +7,7 @@ Use `import trame.env.venv` along one of the following
 
 This can be used when you must use an existing Python interpreter, not the venv bin/python.
 """
+
 import os
 import site
 import sys

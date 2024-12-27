@@ -2,7 +2,8 @@ class ClientFile:
     """
     Helper class that make it easier to handle file from the trame state
 
-    This class behave like a decorator to the state variable so you can easily access its various properties and content.
+    This class behave like a decorator to the state variable so you can
+    easily access its various properties and content.
     """
 
     def __init__(self, file_state_variable=None):

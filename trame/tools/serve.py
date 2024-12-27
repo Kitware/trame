@@ -20,7 +20,9 @@ class MultiClientServer:
         for route in sorted(app_www.serve.keys(), reverse=True):
             routes.append(
                 aiohttp_web.static(
-                    f"/{route}", app_www.serve[route], append_version=True
+                    f"/{route}",
+                    app_www.serve[route],
+                    append_version=True,
                 )
             )
         routes.append(aiohttp_web.static("/", app_www._www, append_version=True))
@@ -54,7 +56,10 @@ class MultiClientServer:
             connection = await ws_app.connect()
             connection.on_message(on_msg_from_server)
             async for msg in ws_network:
-                await connection.send(msg.type == aiohttp.WSMsgType.BINARY, msg)
+                await connection.send(
+                    msg.type == aiohttp.WSMsgType.BINARY,
+                    msg,
+                )
         finally:
             await connection.close()
             await app.server.stop()
@@ -138,7 +143,9 @@ def main():
 
     trame_app = getattr(module, app_name)
     web_server = MultiClientServer(
-        trame_app, heartbeat=args.ws_heart_beat, max_msg_size=args.ws_max_size
+        trame_app,
+        heartbeat=args.ws_heart_beat,
+        max_msg_size=args.ws_max_size,
     )
     asyncio.run(web_server.run(args.host, args.port))
 

@@ -33,8 +33,8 @@ with DivLayout(server) as layout:
             html.Div(f"Line: { line_count }")
         line_count += 1
 
-    html.Button(f"Add line", click=add_line)
-    html.Button(f"Update first line", click=update_first_line)
+    html.Button("Add line", click=add_line)
+    html.Button("Update first line", click=update_first_line)
 
 # -----------------------------------------------------------------------------
 # start server

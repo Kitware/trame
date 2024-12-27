@@ -143,7 +143,12 @@ with SinglePageLayout(server) as layout:
                         "fields[field] && fields[field].range || [0, 1]",
                     ),
                     mapper=(
-                        "{ colorByArrayName: field, scalarMode: fields[field] && fields[field].scalarMode || 3, interpolateScalarsBeforeMapping: true, scalarVisibility: field !== 'solid' }",
+                        """{
+                            colorByArrayName: field,
+                            scalarMode: fields[field] && fields[field].scalarMode || 3,
+                            interpolateScalarsBeforeMapping: true,
+                            scalarVisibility: field !== 'solid',
+                        }""",
                     ),
                 ):
                     vtk_widgets.VtkMesh("myMesh", state=("mesh",))

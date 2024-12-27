@@ -6,7 +6,6 @@ Installation requirements:
 import pandas as pd
 
 # Plotly/chart imports
-import plotly.graph_objects as go
 import plotly.express as px
 
 # Trame imports
@@ -34,11 +33,9 @@ from vtkmodules.vtkRenderingCore import (
 
 from vtkmodules.vtkInteractionStyle import (
     vtkInteractorStyleRubberBandPick,
-    vtkInteractorStyleSwitch,
 )  # noqa
 import vtkmodules.vtkRenderingOpenGL2  # noqa
 
-from vtkmodules.vtkInteractionStyle import vtkInteractorStyleRubberBandPick
 
 # -----------------------------------------------------------------------------
 # Data file information

@@ -13,8 +13,10 @@ def can_be_decorated(x):
 class TrameApp:
     """
     Class Decorator for trame application.
-    This decorator can be used to automatically register methods to state.change, controller, trigger and life_cycle.
-    The parameter are used to define where to fine the server instance within the object and where a namespace for the variable name is stored.
+    This decorator can be used to automatically register methods to
+    state.change, controller, trigger and life_cycle.
+    The parameter are used to define where to fine the server instance
+    within the object and where a namespace for the variable name is stored.
 
 
     .. code-block:: python

@@ -27,8 +27,8 @@ def add():
 layout = DivLayout(server)
 with layout as c:
     c.root.add_child("a={{ a }} <br> template_ts={{ tts }} <br> ")
-    html.Button(f"a+", click="a+=1")
-    html.Button(f"set(a+)", click="set('a', a+1)")
+    html.Button("a+", click="a+=1")
+    html.Button("set(a+)", click="set('a', a+1)")
     html.Button("server", click=add)
     trame.LifeCycleMonitor()
 

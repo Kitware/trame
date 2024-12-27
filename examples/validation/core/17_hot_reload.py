@@ -47,10 +47,10 @@ def do_someting():
 def setup_ui(*_):
     with SinglePageLayout(server) as layout:
         layout.title.set_text("Hot Reload - ChangeMe")
-        layout.toolbar.dense = True
 
         # Toolbar
         with layout.toolbar as toolbar:
+            toolbar.dense = True
             vuetify.VSpacer()
             vuetify.VSlider(
                 hide_details=True,

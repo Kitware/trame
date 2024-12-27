@@ -53,7 +53,7 @@ def read_source(path: str, supported_arrays=None):
     vtk_source.Update()
 
     # Extract Array/Field information from source
-    logging.debug(f"Extracting fields information from source")
+    logging.debug("Extracting fields information from source")
     dataset_arrays = []
     fields = [
         (vtk_source.GetOutput().GetPointData(), vtkDataObject.FIELD_ASSOCIATION_POINTS),
@@ -155,7 +155,7 @@ def get_default_array(arrays, reader_port):
     default_array_idx = 0
     default_array = arrays[default_array_idx]
     del existing_field_names
-    logging.debug(f"Getting bounds")
+    logging.debug("Getting bounds")
     abs_min, abs_max = default_array.get("range")
     polyData, polyDataBounds = getBounds(reader_port)
     return default_array, default_array_idx, abs_min, abs_max, polyData, polyDataBounds
@@ -228,7 +228,7 @@ state.dataset_arrays = dataset_arrays
 logging.debug("Setting the default array index")
 state.default_color_array_idx = default_array_idx
 state.color_array_idx = default_array_idx
-logging.debug(f"Setting some values of the default array to state")
+logging.debug("Setting some values of the default array to state")
 # Initialize absolute min and max values
 state.abs_min = abs_min
 state.abs_max = abs_max
@@ -240,18 +240,18 @@ logging.debug(f"New values to state: bounds={state.bounds}")
 
 # ***** Dataset, color map and scalar bar *****
 # ***** Dataset *****
-logging.debug(f"Configuring dataset mapper")
+logging.debug("Configuring dataset mapper")
 dataset_mapper.SetInputConnection(vtk_source.GetOutputPort())
 dataset_mapper.ScalarVisibilityOn()
 scalar_range = vtk_source.GetOutput().GetScalarRange()
 dataset_mapper.SetScalarRange(scalar_range)
 # Color map
-logging.debug(f"Configuring color map")
+logging.debug("Configuring color map")
 dataset_lut = set_color_preset(dataset_mapper.GetLookupTable(), LookupTable.Rainbow)
 dataset_mapper.SetLookupTable(dataset_lut)
 
 # ***** Mesh *****
-logging.debug(f"Configuring mesh actor")
+logging.debug("Configuring mesh actor")
 mesh_actor.SetMapper(dataset_mapper)
 # Mesh: Setup default representation to surface
 mesh_actor.GetProperty().SetRepresentationToSurface()
@@ -260,7 +260,7 @@ mesh_actor.GetProperty().EdgeVisibilityOn()
 renderer.AddActor(mesh_actor)
 
 # *****  Scalar bar *****
-logging.debug(f"Configuring scalar bar")
+logging.debug("Configuring scalar bar")
 scalarBarActor.SetLookupTable(dataset_mapper.GetLookupTable())
 scalarBarActor.SetNumberOfLabels(7)
 scalarBarActor.UnconstrainedFontSizeOn()
@@ -270,7 +270,7 @@ scalarBarActor.SetTitle(default_array.get("text"))
 renderer.AddActor2D(scalarBarActor)
 
 # ***** Axes - boundaries, camera, and styling *****
-logging.debug(f"Configuring axes")
+logging.debug("Configuring axes")
 axes_actor.SetBounds(mesh_actor.GetBounds())
 axes_actor.SetCamera(renderer.GetActiveCamera())
 axes_actor.SetXLabelFormat("%6.1f")
@@ -376,14 +376,14 @@ def update_color_by_name(color_array_idx, **kwargs):
         logging.debug(f"Updating scalar bar title to '{_array.get('text')}'")
         scalarBarActor.SetTitle(_array.get("text"))
         # Update color map for mesh
-        logging.debug(f"Updating colormap for mesh actor")
+        logging.debug("Updating colormap for mesh actor")
         update_colormap(mesh_actor, _array)
         # Update scalar bar actor
         scalarBarActor.SetLookupTable(mesh_actor.GetMapper().GetLookupTable())
         # Update state
         state.color_array_idx = color_array_idx
         # Initialize custom min and max to absolute min and max
-        logging.debug(f"Updating bounds")
+        logging.debug("Updating bounds")
         # Initialize absolute min and max values
         _min, _max = _array.get("range")
         state.abs_min = _min
@@ -393,7 +393,7 @@ def update_color_by_name(color_array_idx, **kwargs):
         )
 
         # Update view
-        logging.debug(f"Updating view")
+        logging.debug("Updating view")
         ctrl.view_update()
 
     logging.debug("END update_color_by_name")
@@ -559,7 +559,7 @@ set_default_visibility()
 renderer.ResetCamera()
 
 # Layout content
-logging.debug(f"Configuring GUI")
+logging.debug("Configuring GUI")
 with SinglePageWithDrawerLayout(server) as layout:
     # -----------------------------------------------------------------------------
     # Toolbar

@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v3.7.3 (2024-12-29)
+
+### Bug Fixes
+
+- **ci**: Pypi publish step
+  ([`d3f0275`](https://github.com/Kitware/trame/commit/d3f027564c70a7225c4321b50fa32481f70b5ce0))
+
+
 ## v3.7.2 (2024-12-29)
 
 ### Bug Fixes

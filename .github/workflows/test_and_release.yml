@@ -10,9 +10,9 @@ jobs:
   pre-commit:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.9"
 
@@ -28,7 +28,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: [3.9]
+        python-version: ["3.9"]
         config:
         - {
             name: "Linux",
@@ -49,16 +49,16 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
 
     - name: Install and Run Tests
       run: |
-        pip install .
+        pip install ".[dev]"
         pip install -r tests/requirements.txt
         # Run the tests with coverage so we get a coverage report too
         pip install coverage
@@ -73,7 +73,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Check and Lint
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0 # needed so commitlint can lint the commits
 
@@ -96,16 +96,23 @@ jobs:
     needs: [pre-commit, pytest, check-and-lint]
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
+    environment: release
+    permissions:
+      id-token: write # IMPORTANT: mandatory for trusted publishing
+      contents: write # IMPORTANT: mandatory for making GitHub Releases
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Python Semantic Release
-        uses: relekang/python-semantic-release@v7.34.6
+        id: release
+        uses: python-semantic-release/python-semantic-release@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          repository_username: __token__
-          repository_password: ${{ secrets.PYPI_API_TOKEN }}
+
+      - name: Publish package distributions to PyPI
+        if: steps.release.outputs.released == 'true'
+        uses: pypa/gh-action-pypi-publish@release/v1

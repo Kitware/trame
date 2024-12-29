@@ -96,7 +96,9 @@ jobs:
     needs: [pre-commit, pytest, check-and-lint]
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
-    environment: release
+    environment:
+          name: pypi
+          url: https://pypi.org/p/trame
     permissions:
       id-token: write # IMPORTANT: mandatory for trusted publishing
       contents: write # IMPORTANT: mandatory for making GitHub Releases

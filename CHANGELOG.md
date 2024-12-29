@@ -1,6 +1,19 @@
 # CHANGELOG
 
 
+## v3.7.4 (2024-12-29)
+
+### Bug Fixes
+
+- **ci**: Pypi publish
+  ([`7834633`](https://github.com/Kitware/trame/commit/78346332f559dd5e5a6533291b5e806f00b63181))
+
+### Continuous Integration
+
+- Update action version
+  ([`e5faf52`](https://github.com/Kitware/trame/commit/e5faf527163d5534dc7c3f27d0e8552baf48820c))
+
+
 ## v3.7.3 (2024-12-29)
 
 ### Bug Fixes

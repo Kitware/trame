@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v3.7.5 (2024-12-30)
+
+### Bug Fixes
+
+- License string
+  ([`cf94c77`](https://github.com/Kitware/trame/commit/cf94c777a463ac816c79baf74c06d8f7eec2fb78))
+
+
 ## v3.7.4 (2024-12-29)
 
 ### Bug Fixes

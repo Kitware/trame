@@ -1,9 +1,8 @@
---extra-index-url https://wheels.vtk.org
-vtk==9.3.20240817.dev0
+vtk==9.4.1
 
 pygments
 sphinx
-sphinx-rtd-theme
+sphinx_rtd_theme
 
 # Add external widgets
 

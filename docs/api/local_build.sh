@@ -8,4 +8,8 @@ mkdir dist
 
 # Build and open
 sphinx-build source dist
-google-chrome ./dist/index.html
+# rm -rf _build/doctrees
+# python -m sphinx -T -b html -d _build/doctrees -D language=en source dist
+
+cd dist
+python -m http.server 8000

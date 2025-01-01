@@ -62,7 +62,29 @@ def random_update():
 
 ### Forcing state exchange
 
-Sometimes, the variable inside your shared state is an actual object with a nested structure. While the state on the Python side always maintains a reference to that object, when manually editing it's important to flush its contents so that the client reflects changes. In this situation, the `dirty()` method can be called with the list of variable names that should be pushed. This is also useful in some async contexts to control when pieces of the state should be synchronized between client and server. The code below provides a typical example.
+Sometimes, the variable inside your shared state is an actual object with a nested structure. While the state on the Python side always maintains a reference to that object, when manually editing it's important to flush its contents so that the client reflects changes. In this situation, the `dirty()` method can be called with the list of variable names that should be pushed. 
+
+Here is a simple example of what we mean by nested structure.
+
+```python
+from trame.app import get_server
+
+server = get_server()
+state = server.state
+
+state.list_variable = []
+state.dict_variable = {}
+
+def edit_state():
+  state.list_variable.append(f"new item {len(state.list_variable)}"")
+  state.dict_variable["a"] = state.dict_variable.setdefault("a", 1) + 1
+  state.dirty("list_variable", "dict_variable")
+```
+
+You can also decide when a state needs to be flushed using it as a context manager. 
+Be aware that flushing will only work on variables that are known to be modified/dirty.
+Also such flushing operation is mendatory when running in an async task or coroutine.
+The code below provides a simple example.
 
 ```python
 import asyncio
@@ -71,8 +93,16 @@ import time
 async def update_time():
   while True:
     await asyncio.sleep(1)
-    with state: # needed because of async
+    # needed because of async and will flush on exit
+    with state: 
+      # modification is automatically detected
       state.time = time.time()
+
+      # dirty() is needed as we modify object in place
+      # => python does not know that "list_variable" has changed
+      state.list_variable.append(len(state.list_variable))
+      state.dirty("list_variable")
+
 ```
 
 ## Method calls

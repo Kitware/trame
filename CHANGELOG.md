@@ -1,6 +1,22 @@
 # CHANGELOG
 
 
+## v3.7.6 (2025-01-01)
+
+### Bug Fixes
+
+- **tools**: Using google syntax in widget generator
+  ([`6b21e99`](https://github.com/Kitware/trame/commit/6b21e9919e9858df489ecd9f92416fb2f3dc5b6b))
+
+### Documentation
+
+- **rtd**: Update python version
+  ([`a8ed1e2`](https://github.com/Kitware/trame/commit/a8ed1e2537e212c3726635d4d0b9c352934247af))
+
+- **widgets**: Move trame-router and small tweaks
+  ([`3e9072c`](https://github.com/Kitware/trame/commit/3e9072cde1c495b143cfc176949de2e35616f8e1))
+
+
 ## v3.7.5 (2024-12-30)
 
 ### Bug Fixes

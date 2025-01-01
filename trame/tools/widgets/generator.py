@@ -55,7 +55,7 @@ async def create_base_structure(ref_path, config, output):
                         )
                     # Register trame/modules/{webdir}
                     trame_plugins[f"trame/modules/{module}.py"] = (
-                        f"from {name}.module.{module} import *\n"
+                        f"from {name}.module.{module} import *  # noqa F403\n"
                     )
                     create_module_init(module_root_init, module_conf_init)
 
@@ -99,7 +99,7 @@ async def create_base_structure(ref_path, config, output):
                                 properties = class_info.get("properties", [])
                                 events = class_info.get("events", [])
                                 file.write(f"\nclass {class_name}(HtmlElement):")
-                                to_py_help(file, class_info)
+                                to_py_help(file, class_info, class_name)
                                 if class_info.get("methods"):
                                     file.write("\n    _next_id = 0")
                                 file.write(
@@ -174,7 +174,7 @@ async def create_base_structure(ref_path, config, output):
 
                     # Register trame/modules/{webdir}
                     trame_plugins[f"trame/widgets/{module}.py"] = (
-                        f"from {name}.widgets.{module} import *\n"
+                        f"from {name}.widgets.{module} import *  # noqa F403\n"
                         "\n"
                         f"def initialize(server):\n"
                         f"    from {name}.module import {module}\n"
@@ -313,7 +313,25 @@ def to_py_attr(file, item, indent=4):
         file.write(f'\n{" "*indent}"{entry}",')
 
 
-def to_py_help(file, class_info):
+def multi_line_help(help, indent):
+    help = help.strip()
+    if len(help) > 80:
+        tokens = help.split(" ")
+        description_lines = []
+        while len(tokens):
+            line = []
+            while len(" ".join(line)) < 60 and len(tokens):
+                line.append(tokens.pop(0))
+            description_lines.append(" ".join(line))
+            line = []
+        if len(line):
+            description_lines.append(" ".join(line))
+
+        help = f"\n{' '*indent}".join(description_lines)
+    return help
+
+
+def to_py_help(file, class_info, class_name):
     indent = 4
     file.write(f'\n{" "*indent}"""')
     main_help = class_info.get("help", "")
@@ -322,22 +340,30 @@ def to_py_help(file, class_info):
 
     if len(main_help):
         file.write(f'\n{" "* indent}{main_help}')
+    else:
+        file.write(
+            f'\n{" "* indent}Component {class_name} with the following properties\n'
+        )
+
+    if len(properties) + len(events) > 0:
+        file.write(f'\n{" "* indent}Args:')
 
     if len(properties):
-        file.write(f'\n{" "* indent}Properties\n')
         for prop in properties:
             name = prop.get("name")
             help = prop.get("help", "").replace("\n", " ")
             if isinstance(name, (list, tuple)):
                 name = name[0]
-            file.write(f'\n{" "* indent}:param {name}: {help}')
+            file.write(f'\n{" "* (indent + 2)}{name}:\n{" "* (indent + 4)}')
+            file.write(multi_line_help(help, indent + 4))
 
     if len(events):
-        file.write(f'\n\n{" "* indent}Events\n')
         for prop in events:
             name = prop.get("name")
             help = prop.get("help", "").replace("\n", " ")
             if isinstance(name, (list, tuple)):
                 name = name[0]
-            file.write(f'\n{" "* indent}:param {name}: {help}')
-    file.write(f'\n{" "*indent}"""')
+            file.write(f'\n{" "* (indent + 2)}{name} (event):\n{" "* (indent + 4)}')
+            file.write(multi_line_help(help, indent + 4))
+
+    file.write(f'\n\n{" "*indent}"""')

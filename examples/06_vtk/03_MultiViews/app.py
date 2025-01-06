@@ -91,7 +91,10 @@ def update_cone(resolution=DEFAULT_RESOLUTION, **kwargs):
 
 
 def update_reset_resolution():
-    state.resolution = DEFAULT_RESOLUTION
+    with state:
+        state.resolution = DEFAULT_RESOLUTION
+
+    ctrl.update_views()
 
 
 # -----------------------------------------------------------------------------
@@ -112,6 +115,7 @@ with SinglePageLayout(server) as layout:
             hide_details=True,
             dense=True,
             style="max-width: 300px",
+            end=ctrl.update_views,
         )
         vuetify.VDivider(vertical=True, classes="mx-2")
         with vuetify.VBtn(icon=True, click=update_reset_resolution):

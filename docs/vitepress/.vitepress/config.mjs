@@ -21,7 +21,17 @@ export default defineConfig({
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-H4W9XHTJ7X');`
-    ]
+    ],
+    [
+      'script',
+      { 
+        async: '', 
+        src: 'https://widget.gurubase.io/widget.latest.min.js', 
+        id: 'guru-widget-id',
+        'data-widget-id': 'RC2sPqrQBnNKn3MJcyQacPVdhrHIQUJgiKg8nmgBiSs',
+        'data-icon-url': 'https://kitware.github.io/trame/logos/favicon-196x196.png',
+      }
+    ],
   ],
   themeConfig: {
     search: {

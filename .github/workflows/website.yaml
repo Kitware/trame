@@ -48,7 +48,7 @@ jobs:
           cp -rf .vitepress/dist/logos .vitepress/dist/trame/logos
           cp -rf .vitepress/dist/assets .vitepress/dist/trame/assets
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3
         with:
           path: docs/vitepress/.vitepress/dist
 

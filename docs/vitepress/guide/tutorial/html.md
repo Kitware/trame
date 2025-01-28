@@ -40,7 +40,7 @@ Exposing Vuetify in Python was accomplished by making a few syntax changes.
 
 2. Strings, ints, floats, and booleans used to set attributes are assigned as normal like `vuetify.VTextField(label="myLabel")` for the `"myLabel"` String.
 
-3. Variables used to set attributes are surrounded by parenthesis like `vuetify.VTextField(label=("myLabel",))`. The comma is used to provide an initial value like `vuetify.VTextField(label=("myLabel", "Initial Label"))`.
+3. Expressions or state variables used to set attributes are assigned as a String in a tuple (i.e. surrounded by parenthesis) like `vuetify.VTextField(label=("myLabel",))`. The comma enforces the usage of a tuple. An optional second parameter is used to provide an initial value like `vuetify.VTextField(label=("myLabel", "Initial Label"))`.
 
 4. Vuetify implicitly sets boolean properties. For example, if something is to be `disabled`, then one simply writes disabled. In our Python implementation, this is done explicitly like `vuetify.VTextField(disabled=True)`.
 
@@ -51,8 +51,8 @@ Given these rules, we can recreate the JavaScript/HTML text field example in ***
 ```python
 field = VTextField(
     label="Weight",
-    v_model=("myWeight",28),
-    suffix=("currentSuffix","lbs"),
+    v_model=("myWeight", 28),
+    suffix=("currentSuffix", "lbs"),
 )
 ```
 

@@ -1,4 +1,5 @@
 import inspect
+import functools
 import logging
 
 logger = logging.getLogger(__name__)
@@ -41,60 +42,61 @@ class TrameApp:
         self.namespace_prefix = namespace
 
     def __call__(self, klass):
-        def decorated_constructor(*args, **kwargs):
-            logger.debug("Create instance")
-            instance = klass(*args, **kwargs)
-            logger.debug("Instance created")
+        class TrameWrapper(klass):
+            @functools.wraps(klass, updated=())
+            def __init__(instance, *args, **kwargs):
+                logger.debug("Create instance")
+                super(TrameWrapper, instance).__init__(*args, **kwargs)
 
-            server = getattr(instance, self.server_name)
-            prefix = (
-                getattr(instance, self.namespace_prefix)
-                if self.namespace_prefix
-                else ""
-            )
+                logger.debug("Instance created")
 
-            logger.debug(f"{server=} {prefix=}")
+                server = getattr(instance, self.server_name)
+                prefix = (
+                    getattr(instance, self.namespace_prefix)
+                    if self.namespace_prefix
+                    else ""
+                )
 
-            # Look for method decorator
-            for k in inspect.getmembers(instance.__class__, can_be_decorated):
-                fn = getattr(instance, k[0])
+                logger.debug(f"{server=} {prefix=}")
 
-                # Handle @state.change
-                if "_trame_state_change" in fn.__dict__:
-                    state_change_names = fn.__dict__["_trame_state_change"]
-                    logger.debug(
-                        f"state.change({[f'{prefix}{v}' for v in state_change_names]})({k[0]})"
-                    )
-                    server.state.change(*[f"{prefix}{v}" for v in state_change_names])(
-                        fn
-                    )
+                # Look for method decorator
+                for k in inspect.getmembers(instance.__class__, can_be_decorated):
+                    fn = getattr(instance, k[0])
 
-                # Handle @trigger
-                if "_trame_trigger_names" in fn.__dict__:
-                    trigger_names = fn.__dict__["_trame_trigger_names"]
-                    for trigger_name in trigger_names:
-                        logger.debug(f"trigger({trigger_name})({k[0]})")
-                        server.trigger(f"{trigger_name}")(fn)
-                        if prefix:
-                            logger.debug(f"trigger({prefix}{trigger_name})({k[0]})")
-                            server.trigger(f"{prefix}{trigger_name}")(fn)
+                    # Handle @state.change
+                    if "_trame_state_change" in fn.__dict__:
+                        state_change_names = fn.__dict__["_trame_state_change"]
+                        logger.debug(
+                            f"state.change({[f'{prefix}{v}' for v in state_change_names]})({k[0]})"
+                        )
+                        server.state.change(
+                            *[f"{prefix}{v}" for v in state_change_names]
+                        )(fn)
 
-                # Handle @ctrl.[add, once, add_task, set]
-                if "_trame_controller" in fn.__dict__:
-                    actions = fn.__dict__["_trame_controller"]
-                    for action in actions:
-                        name = action.get("name")
-                        method = action.get("method")
-                        decorate = getattr(server.controller, method)
-                        logger.debug(f"ctrl.{method}({name})({k[0]})")
-                        decorate(name)(fn)
-                        if prefix:
-                            logger.debug(f"ctrl.{method}({prefix}{name})({k[0]})")
-                            decorate(f"{prefix}{name}")(fn)
+                    # Handle @trigger
+                    if "_trame_trigger_names" in fn.__dict__:
+                        trigger_names = fn.__dict__["_trame_trigger_names"]
+                        for trigger_name in trigger_names:
+                            logger.debug(f"trigger({trigger_name})({k[0]})")
+                            server.trigger(f"{trigger_name}")(fn)
+                            if prefix:
+                                logger.debug(f"trigger({prefix}{trigger_name})({k[0]})")
+                                server.trigger(f"{prefix}{trigger_name}")(fn)
 
-            return instance
+                    # Handle @ctrl.[add, once, add_task, set]
+                    if "_trame_controller" in fn.__dict__:
+                        actions = fn.__dict__["_trame_controller"]
+                        for action in actions:
+                            name = action.get("name")
+                            method = action.get("method")
+                            decorate = getattr(server.controller, method)
+                            logger.debug(f"ctrl.{method}({name})({k[0]})")
+                            decorate(name)(fn)
+                            if prefix:
+                                logger.debug(f"ctrl.{method}({prefix}{name})({k[0]})")
+                                decorate(f"{prefix}{name}")(fn)
 
-        return decorated_constructor
+        return TrameWrapper
 
 
 def change(*args):

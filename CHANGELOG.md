@@ -1,6 +1,55 @@
 # CHANGELOG
 
 
+## v3.8.0 (2025-02-04)
+
+### Chores
+
+- **deps-dev**: Bump vite from 4.5.3 to 4.5.9 in /docs/vitepress
+  ([`b34a4b2`](https://github.com/Kitware/trame/commit/b34a4b26a3506fc368f632ff4d86b9fab8d6e290))
+
+Bumps [vite](https://github.com/vitejs/vite/tree/HEAD/packages/vite) from 4.5.3 to 4.5.9. - [Release
+  notes](https://github.com/vitejs/vite/releases) -
+  [Changelog](https://github.com/vitejs/vite/blob/v4.5.9/packages/vite/CHANGELOG.md) -
+  [Commits](https://github.com/vitejs/vite/commits/v4.5.9/packages/vite)
+
+--- updated-dependencies: - dependency-name: vite dependency-type: indirect
+
+...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+
+### Continuous Integration
+
+- Try to fix website update
+  ([`e239c53`](https://github.com/Kitware/trame/commit/e239c53332bf9f2ac42bc45bee3d3b00ee455ba2))
+
+- Update website upload action
+  ([`e8d010e`](https://github.com/Kitware/trame/commit/e8d010e87359fbdae9ca0207aea9c1daac5e594a))
+
+### Documentation
+
+- **ai**: Add chat bot
+  ([`f0c1989`](https://github.com/Kitware/trame/commit/f0c1989c00b7f750aa4c11de806e553793704da0))
+
+- **docker**: Update base image
+  ([`1528091`](https://github.com/Kitware/trame/commit/15280919ab22d2448f77b87d98f9585f830a054f))
+
+- **guide**: Update 'Forcing state exchange' section
+  ([`5ec0c85`](https://github.com/Kitware/trame/commit/5ec0c859511944ef129f65b9853f3012e2159da9))
+
+- **multi-view**: Trigger 2 render
+  ([`445c7b8`](https://github.com/Kitware/trame/commit/445c7b85109db7a459ab01d8e67bd3aa143e0378))
+
+### Features
+
+- **TrameApp**: Avoid intermediate class
+  ([`1af1fd8`](https://github.com/Kitware/trame/commit/1af1fd87a879ff8fa27608a6c4fd895c968da7fc))
+
+- **TrameApp**: Support decorated class inheritance
+  ([`7e7b9ff`](https://github.com/Kitware/trame/commit/7e7b9ff5457cd534eee326d8e82bd016889b1db6))
+
+
 ## v3.7.6 (2025-01-01)
 
 ### Bug Fixes

@@ -9,3 +9,9 @@ repos:
     hooks:
       - id: ruff
       - id: ruff-format
+  - repo: https://github.com/alessandrojcm/commitlint-pre-commit-hook
+    rev: v9.20.0
+    hooks:
+      - id: commitlint
+        stages: [commit-msg]
+        additional_dependencies: ['@commitlint/config-conventional']

@@ -5,6 +5,7 @@ Contributing to trame
 #. Clone the repository using ``git clone``
 #. Install pre-commit via ``pip install pre-commit``
 #. Run ``pre-commit install`` to set up pre-commit hooks
+#. Run ``pre-commit install --hook-type commit-msg`` to register commit-msg hook
 #. Make changes to the code, and commit your changes to a separate branch
 #. Create a fork of the repository on GitHub
 #. Push your branch to your fork, and open a pull request

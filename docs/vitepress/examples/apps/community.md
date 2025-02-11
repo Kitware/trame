@@ -5,6 +5,12 @@ If you would like to see your application listed below, please submit a MR addin
 
 <!-- [[toc]] -->
 
+## [Drill Down](https://github.com/cardinalgeo/drilldown)
+
+DrillDown is a visualization and analysis toolkit for "drilling down" into ore deposits datasets.
+
+![poster](https://raw.githubusercontent.com/cardinalgeo/drilldown/refs/heads/main/media/poster.jpg)
+
 ## [ImpactX Dashboard](https://impactx.readthedocs.io/en/latest/usage/dashboard.html)
 
 [ImpactX Dashboard](https://impactx.readthedocs.io/en/latest/usage/dashboard.html) is a browser-based interface to the beam dynamics code [ImpactX](https://github.com/ECP-WarpX/impactx).

@@ -4,12 +4,12 @@ Installation requirements:
 """
 
 from trame.app import get_server
-from trame.ui.vuetify import SinglePageLayout
-from trame.widgets import vuetify
+from trame.ui.vuetify3 import SinglePageLayout
+from trame.widgets import html, vuetify3 as vuetify
 
 import pandas as pd
 
-server = get_server(client_type="vue2")
+server = get_server(client_type="vue3")
 state, ctrl = server.state, server.controller
 
 state.setdefault("active_ui", None)
@@ -118,26 +118,31 @@ frame = pd.DataFrame.from_dict(data)
 # --------------------------------------------------------------------------------
 
 # fmt: off
-header_options = {
-    "name":         {"text": "Dessert", "align": "start", "sortable": False},
-    "calories":     {"text": "Calories"},
-    "fat":          {"text": "Fat (g)"},
-    "carbs":        {"text": "Carbs (g)"},
-    "protein":      {"text": "Protein (g)"},
-    "iron":         {"text": "Iron (%)"},
-    "glutenfree":   {"text": "Gluten-Free"}
-}
+headers = [
+    {"key": "name", "title": "Dessert", "align": "start", "sortable": False},
+    {"key": "calories", "title": "Calories"},
+    {"key": "fat", "title": "Fat (g)"},
+    {"key": "carbs", "title": "Carbs (g)"},
+    {"key": "protein", "title": "Protein (g)"},
+    {"key": "iron", "title": "Iron (%)"},
+    {"key": "glutenfree", "title": "Gluten-Free"},
+]
+
+state.setdefault("group_by", [{"key": "glutenfree", "order": "asc"}])
 
 # fmt: on
-headers, rows = vuetify.dataframe_to_grid(frame, header_options)
+_, rows = vuetify.dataframe_to_grid(frame)
+
+
 table = {
+    "group_by": ("group_by",),
     "headers": ("headers", headers),
     "items": ("rows", rows),
     "search": ("query", ""),
     "classes": "elevation-1 ma-4",
     "multi_sort": True,
     "dense": True,
-    "items_per_page": 5,
+    "items_per_page": 10,
 }
 
 
@@ -167,6 +172,22 @@ with SinglePageLayout(server) as layout:
         state.rows = rows
         with vuetify.VDataTable(**table):
             with vuetify.Template(
+                group_header="{ item, columns, toggleGroup, isGroupOpen }",
+                __properties=[
+                    ("group_header", "v-slot:group-header"),
+                ],
+            ):
+                with html.Tr():
+                    with html.Td(colspan=("columns.length",)):
+                        vuetify.VBtn(
+                            icon=("isGroupOpen(item) ? '$expand' : '$next'",),
+                            size="small",
+                            variant="text",
+                            click="toggleGroup(item)",
+                        )
+                        html.Span("{{ item.value ?'Gluten free' : 'Contains gluten' }}")
+
+            with vuetify.Template(
                 calories="{ item }",
                 __properties=[
                     ("calories", "v-slot:item.calories"),
@@ -183,7 +204,7 @@ with SinglePageLayout(server) as layout:
                     ("glutenfree", "v-slot:item.glutenfree"),
                 ],
             ):
-                vuetify.VSimpleCheckbox(
+                vuetify.VCheckbox(
                     "{{ item.glutenfree }}",
                     v_model=("item.glutenfree",),
                     disabled=False,

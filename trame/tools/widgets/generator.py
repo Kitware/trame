@@ -179,7 +179,7 @@ async def create_base_structure(ref_path, config, output):
                         f"def initialize(server):\n"
                         f"    from {name}.module import {module}\n"
                         "\n"
-                        f"server.enable_module({module})\n"
+                        f"    server.enable_module({module})\n"
                     )
 
     # Create trame package connectors

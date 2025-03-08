@@ -1,6 +1,33 @@
 # CHANGELOG
 
 
+## v3.8.1 (2025-03-08)
+
+### Bug Fixes
+
+- **tools**: Fix indent for widget generation
+  ([`e9ed78b`](https://github.com/Kitware/trame/commit/e9ed78bddc61a3ed960d3f8d635465c532c2a9a1))
+
+### Continuous Integration
+
+- Add commit message validation hook
+  ([`96fbedb`](https://github.com/Kitware/trame/commit/96fbedbc8fb4e6e2de072f287d382916de591654))
+
+- Build Python 3.11 docker image ([#676](https://github.com/Kitware/trame/pull/676),
+  [`d4888e3`](https://github.com/Kitware/trame/commit/d4888e3c64c309c9b61f87ea2f4f1a42b23bae4c))
+
+### Documentation
+
+- **drilldown**: Add Drill Down to community page
+  ([`0845e47`](https://github.com/Kitware/trame/commit/0845e4793780b9d8ed6625ff15f93d77a9960ebe))
+
+- **example**: Load style for missing font
+  ([`7ec0e6f`](https://github.com/Kitware/trame/commit/7ec0e6fb3a82ee062565a11e97a77d83440ebc60))
+
+- **examples**: Fix vue3 vuetify datatable example
+  ([`4ff6b19`](https://github.com/Kitware/trame/commit/4ff6b19d6a46e61e6a89d737b53c3d57f262f416))
+
+
 ## v3.8.0 (2025-02-04)
 
 ### Chores

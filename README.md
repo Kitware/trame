@@ -80,10 +80,22 @@ trame is made available under the Apache License, Version 2.0. For more details,
 
 ## Community
 
-[Trame](https://kitware.github.io/trame/) | [Discussions](https://github.com/Kitware/trame/discussions) | [Issues](https://github.com/Kitware/trame/issues) | [RoadMap](https://github.com/Kitware/trame/projects/1)| [Contact Us](https://www.kitware.com/contact-us/)
+[Trame](https://kitware.github.io/trame/) | [Discussions](https://github.com/Kitware/trame/discussions) | [Issues](https://github.com/Kitware/trame/issues) | [Contact Us](https://www.kitware.com/contact-us/)
 
+__Citing options__
 
 [![DOI](https://zenodo.org/badge/410108340.svg)](https://zenodo.org/badge/latestdoi/410108340)
+
+```bibtex
+@article{Trame,
+    author = {Jourdain, S. and O'Leary, P. and Schroeder, W.},
+    title = {Trame: Platform Ubiquitous, Scalable Integration Framework for Visual Analytics},
+    journal = {IEEE Computer Graphics and Applications},
+    month = {March},
+    year = {2025},
+    doi = {10.1109/MCG.2025.3540264},
+}
+```
 
 ## Enjoying trame?
 

@@ -5,6 +5,13 @@ If you would like to see your application listed below, please submit a MR addin
 
 <!-- [[toc]] -->
 
+## [Parsli](https://github.com/brendanjmeade/parsli)
+
+Parsli is a VTK based viewer for seismic data that enables fast exploration and export of time animation.
+This software available on PyPI is the result of a collaboration between [Kitware](https://www.kitware.com/trame/) and Brendan Meade, a Professor of Earth & Planetary Sciences at Harvard University. 
+
+![Parsli](/assets/images/apps/parsli.png)
+
 ## [Drill Down](https://github.com/cardinalgeo/drilldown)
 
 DrillDown is a visualization and analysis toolkit for "drilling down" into ore deposits datasets.

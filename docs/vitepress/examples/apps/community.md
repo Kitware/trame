@@ -7,7 +7,7 @@ If you would like to see your application listed below, please submit a MR addin
 
 ## [Parsli](https://github.com/brendanjmeade/parsli)
 
-Parsli is a VTK based viewer for seismic data that enables fast exploration and export of time animation.
+Parsli is a VTK based viewer for fault system kinematics that enables fast exploration and export of time animation.
 This software available on PyPI is the result of a collaboration between [Kitware](https://www.kitware.com/trame/) and Brendan Meade, a Professor of Earth & Planetary Sciences at Harvard University. 
 
 ![Parsli](/assets/images/apps/parsli.png)

@@ -1,6 +1,55 @@
 # CHANGELOG
 
 
+## v3.8.2 (2025-04-10)
+
+### Bug Fixes
+
+- **yaml**: Add missing dependency for tools.widget
+  ([`5d0e0c7`](https://github.com/Kitware/trame/commit/5d0e0c7675e3d73366cfcc50127d076b102085c4))
+
+### Build System
+
+- Install `gosu` from `tianon/gosu` image instead of ap
+  ([`dc12610`](https://github.com/Kitware/trame/commit/dc12610b4224ab1e1b330b485bdd588e15ac3234))
+
+- **ci**: Build Python 3.12 images on top of Ubuntu 24.04
+  ([`1c0f557`](https://github.com/Kitware/trame/commit/1c0f55789efd4694f4e9778e2a61d14a0276c18c))
+
+### Chores
+
+- **deps-dev**: Bump vite from 4.5.9 to 4.5.11 in /docs/vitepress
+  ([`cee0585`](https://github.com/Kitware/trame/commit/cee058512c48a7defb74132f220ae1dc6553b31d))
+
+Bumps [vite](https://github.com/vitejs/vite/tree/HEAD/packages/vite) from 4.5.9 to 4.5.11. -
+  [Release notes](https://github.com/vitejs/vite/releases) -
+  [Changelog](https://github.com/vitejs/vite/blob/v4.5.11/packages/vite/CHANGELOG.md) -
+  [Commits](https://github.com/vitejs/vite/commits/v4.5.11/packages/vite)
+
+--- updated-dependencies: - dependency-name: vite dependency-type: indirect
+
+...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+
+### Documentation
+
+- Update community.md
+  ([`095f86f`](https://github.com/Kitware/trame/commit/095f86fe07cb34672087cf845580c66e5117a3ce))
+
+- **citing**: Add citing information
+  ([`18368d3`](https://github.com/Kitware/trame/commit/18368d3136b8684230d4d7f06eb1c069672cb336))
+
+- **examples**: Ruff + add deep reactive
+  ([`6b1a595`](https://github.com/Kitware/trame/commit/6b1a595a97aef8714af6688f1a5ce9c88f3cfd8e))
+
+- **launcher**: Update instructions to make the launcher example works
+  ([`6d67d21`](https://github.com/Kitware/trame/commit/6d67d21adc8798371fd6c1eaeb712a6b3ffb95f2))
+
+- **parsli**: Add parsli to the community page
+  ([`3c815e2`](https://github.com/Kitware/trame/commit/3c815e22eb3541c9317218aecec5597ec4574559))
+
+
 ## v3.8.1 (2025-03-08)
 
 ### Bug Fixes

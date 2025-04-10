@@ -90,7 +90,7 @@ class TitleWithStatistic(v3.VCardTitle):
 
 
 def slider(title, name, default_value, min_value, max_value, step_value):
-    v3.VLabel(f"{ title }: {{{{ {name} }}}}")
+    v3.VLabel(f"{title}: {{{{ {name} }}}}")
     v3.VSlider(
         v_model=(name, default_value),
         min=min_value,

@@ -202,8 +202,8 @@ def update_tooltip(pickData, pixel_ratio, **kwargs):
                 state.cone = cone_state
                 state.tooltipStyle = {
                     "position": "absolute",
-                    "left": f"{(x / pixel_ratio )+ 10}px",
-                    "bottom": f"{(y / pixel_ratio ) + 10}px",
+                    "left": f"{(x / pixel_ratio) + 10}px",
+                    "bottom": f"{(y / pixel_ratio) + 10}px",
                     "zIndex": 10,
                     "pointerEvents": "none",
                 }

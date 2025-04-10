@@ -19,7 +19,7 @@ def update_first_line():
     global line_count
     with server.ui.first_line:
         server.ui.first_line.clear()
-        html.Div(f"First line: { line_count }")
+        html.Div(f"First line: {line_count}")
     line_count += 1
 
 
@@ -30,7 +30,7 @@ with DivLayout(server) as layout:
     def add_line():
         global line_count
         with layout:
-            html.Div(f"Line: { line_count }")
+            html.Div(f"Line: {line_count}")
         line_count += 1
 
     html.Button("Add line", click=add_line)

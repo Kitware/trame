@@ -65,7 +65,7 @@ def update_view():
     t0 = time.time()
     ctrl.view_update()
     t1 = time.time()
-    print(f"Server: Updated scene in {t1-t0:.3f}s")
+    print(f"Server: Updated scene in {t1 - t0:.3f}s")
 
 
 @state.change("resolution")

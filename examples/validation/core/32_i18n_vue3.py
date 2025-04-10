@@ -56,8 +56,8 @@ with SinglePageLayout(server, vuetify_config=CONFIG) as layout:
             items=("steps", ["Step 1", "Step 2", "Step 3"]),
         ):
             for i in range(3):
-                with vuetify3.Template(raw_attrs=[f"v-slot:item.{i+1}"]):
-                    vuetify3.VCardTitle(title=f"Step {i+1}")
+                with vuetify3.Template(raw_attrs=[f"v-slot:item.{i + 1}"]):
+                    vuetify3.VCardTitle(title=f"Step {i + 1}")
 
 
 # -----------------------------------------------------------------------------

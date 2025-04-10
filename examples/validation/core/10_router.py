@@ -137,7 +137,7 @@ with layout:
                     vuetify.VListItemTitle("Bars")
                 with vuetify.VListItemContent():
                     for i in range(5):
-                        with vuetify.VListItem(to=f"/bar/{ i + 1 }"):
+                        with vuetify.VListItem(to=f"/bar/{i + 1}"):
                             with vuetify.VListItemIcon():
                                 vuetify.VIcon("mdi-peanut-outline")
                             with vuetify.VListItemContent():

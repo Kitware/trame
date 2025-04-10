@@ -125,9 +125,7 @@ async def create_base_structure(ref_path, config, output):
                                     file.write(
                                         f"""\n        self.__ref = kwargs.get("ref", f"{
                                             class_name
-                                        }_{{{
-                                            class_name
-                                        }._next_id}}")"""
+                                        }_{{{class_name}._next_id}}")"""
                                     )
                                     file.write(
                                         """\n        self._attributes["ref"] = f'ref="{self.__ref}"'"""
@@ -223,7 +221,7 @@ def create_module_init(init_path, init_conf):
 
         if "vue3" in init_conf:
             file.write(
-                f'    {"elif" if "vue2" in init_conf else "if" } client_type == "vue3":\n'
+                f'    {"elif" if "vue2" in init_conf else "if"} client_type == "vue3":\n'
             )
             file.write("        from . import vue3\n")
             file.write("        server.enable_module(vue3)\n")
@@ -308,9 +306,9 @@ def to_py_attr(file, item, indent=4):
     entry = item.get("name")
     if isinstance(entry, (list, tuple)):
         py_name, js_name = entry
-        file.write(f'\n{" "*indent}("{py_name}", "{js_name}"),')
+        file.write(f'\n{" " * indent}("{py_name}", "{js_name}"),')
     else:
-        file.write(f'\n{" "*indent}"{entry}",')
+        file.write(f'\n{" " * indent}"{entry}",')
 
 
 def multi_line_help(help, indent):
@@ -327,26 +325,26 @@ def multi_line_help(help, indent):
         if len(line):
             description_lines.append(" ".join(line))
 
-        help = f"\n{' '*indent}".join(description_lines)
+        help = f"\n{' ' * indent}".join(description_lines)
     return help
 
 
 def to_py_help(file, class_info, class_name):
     indent = 4
-    file.write(f'\n{" "*indent}"""')
+    file.write(f'\n{" " * indent}"""')
     main_help = class_info.get("help", "")
     properties = class_info.get("properties", [])
     events = class_info.get("properties", [])
 
     if len(main_help):
-        file.write(f'\n{" "* indent}{main_help}')
+        file.write(f"\n{' ' * indent}{main_help}")
     else:
         file.write(
-            f'\n{" "* indent}Component {class_name} with the following properties\n'
+            f"\n{' ' * indent}Component {class_name} with the following properties\n"
         )
 
     if len(properties) + len(events) > 0:
-        file.write(f'\n{" "* indent}Args:')
+        file.write(f"\n{' ' * indent}Args:")
 
     if len(properties):
         for prop in properties:
@@ -354,7 +352,7 @@ def to_py_help(file, class_info, class_name):
             help = prop.get("help", "").replace("\n", " ")
             if isinstance(name, (list, tuple)):
                 name = name[0]
-            file.write(f'\n{" "* (indent + 2)}{name}:\n{" "* (indent + 4)}')
+            file.write(f"\n{' ' * (indent + 2)}{name}:\n{' ' * (indent + 4)}")
             file.write(multi_line_help(help, indent + 4))
 
     if len(events):
@@ -363,7 +361,7 @@ def to_py_help(file, class_info, class_name):
             help = prop.get("help", "").replace("\n", " ")
             if isinstance(name, (list, tuple)):
                 name = name[0]
-            file.write(f'\n{" "* (indent + 2)}{name} (event):\n{" "* (indent + 4)}')
+            file.write(f"\n{' ' * (indent + 2)}{name} (event):\n{' ' * (indent + 4)}")
             file.write(multi_line_help(help, indent + 4))
 
-    file.write(f'\n\n{" "*indent}"""')
+    file.write(f'\n\n{" " * indent}"""')

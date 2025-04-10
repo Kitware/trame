@@ -9,6 +9,7 @@
 | | [react](https://github.com/Kitware/trame-react "React component that wraps trame iframe") | trame-react | 2 & 3 | 2 |
 | | [router](https://github.com/Kitware/trame-router "Vue Router components") | trame-router | 2 & 3 | 2 |
 | **GUI** |
+| | [alerts](https://github.com/Kitware/trame-alerts "Notification and alerts") | trame-alerts | 3 | [3](# "core, vuetify and quasar.") |
 | | [datagrid](https://github.com/Kitware/trame-datagrid "RevoGrid spreadsheet") | trame-datagrid | 3 | 3 |
 | | [formkit](https://github.com/Kitware/trame-formkit "FormKit widgets") | trame-formkit | 3 | 2 |
 | | [goldenlayout](https://github.com/Kitware/trame-goldenlayout "Golden-layout widgets") | trame-goldenlayout | 3 | 1 |

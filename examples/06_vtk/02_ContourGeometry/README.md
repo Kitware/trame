@@ -1,3 +1,3 @@
 # VTK Contour Geometry Example
 
-![VTK Contour Example](../../../docs/content/examples/ContourGeometry.jpg)
+![VTK Contour Example](../../../docs/vitepress/assets/images/examples/ContourGeometry.jpg)

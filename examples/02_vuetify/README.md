@@ -6,7 +6,7 @@ This directory gather several examples involving in various way the vuetify modu
 
 This example illustrates how Vuetify tables can easily display tabular data from sources like a Pandas dataframe.
 
-![Tables Example](../../../docs/content/examples/Table.jpg)
+![Tables Example](../../docs//vitepress/assets/images/examples/Table.jpg)
 
 ## Menu
 

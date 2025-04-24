@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
-import os
 import json
+import os
 import subprocess
 
 CLIENT_TYPE = os.environ.get("TRAME_CLIENT_TYPE", "vue3")

@@ -1,15 +1,15 @@
 # pip install psutil watchdog
 
+import argparse
 import asyncio
 import os
-import argparse
-import psutil
 import pwd
 from functools import partial
 from pathlib import Path
 
-from watchdog.observers import Observer
+import psutil
 from watchdog.events import FileSystemEventHandler
+from watchdog.observers import Observer
 
 
 def cli():

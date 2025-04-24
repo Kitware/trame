@@ -1,8 +1,16 @@
 import asyncio
-from trame.app import get_server
-from trame.ui.vuetify import VAppLayout
-from trame.widgets import vtk, vuetify, html
 
+# Required for rendering initialization, not necessary for
+# local rendering, but doesn't hurt to include it
+import vtkmodules.vtkRenderingOpenGL2  # noqa
+from vtkmodules.vtkCommonColor import vtkNamedColors
+from vtkmodules.vtkFiltersSources import vtkConeSource, vtkSphereSource
+
+# Required for interactor initialization
+from vtkmodules.vtkInteractionStyle import (
+    vtkInteractorStyleSwitch,  # noqa
+    vtkInteractorStyleTrackballCamera,
+)
 from vtkmodules.vtkRenderingCore import (
     vtkActor,
     vtkPolyDataMapper,
@@ -11,18 +19,9 @@ from vtkmodules.vtkRenderingCore import (
     vtkRenderWindowInteractor,
 )
 
-from vtkmodules.vtkFiltersSources import vtkConeSource, vtkSphereSource
-from vtkmodules.vtkCommonColor import vtkNamedColors
-from vtkmodules.vtkInteractionStyle import vtkInteractorStyleTrackballCamera
-
-
-# Required for interactor initialization
-from vtkmodules.vtkInteractionStyle import vtkInteractorStyleSwitch  # noqa
-
-# Required for rendering initialization, not necessary for
-# local rendering, but doesn't hurt to include it
-import vtkmodules.vtkRenderingOpenGL2  # noqa
-
+from trame.app import get_server
+from trame.ui.vuetify import VAppLayout
+from trame.widgets import html, vtk, vuetify
 
 # -----------------------------------------------------------------------------
 # VTK pipeline

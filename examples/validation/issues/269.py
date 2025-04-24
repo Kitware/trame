@@ -1,7 +1,4 @@
-from trame.app import get_server
-from trame.ui.vuetify import SinglePageLayout
-from trame.widgets import html, vuetify, vtk as vtk_widgets
-
+import vtkmodules.vtkRenderingOpenGL2  # noqa
 from vtkmodules.vtkFiltersSources import vtkConeSource
 from vtkmodules.vtkRenderingCore import (
     vtkActor,
@@ -10,7 +7,10 @@ from vtkmodules.vtkRenderingCore import (
     vtkRenderWindow,
 )
 
-import vtkmodules.vtkRenderingOpenGL2  # noqa
+from trame.app import get_server
+from trame.ui.vuetify import SinglePageLayout
+from trame.widgets import html, vuetify
+from trame.widgets import vtk as vtk_widgets
 
 USING_WITH = True
 server = get_server(client_type="vue2")

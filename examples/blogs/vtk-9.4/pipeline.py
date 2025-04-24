@@ -1,10 +1,11 @@
 import vtk
 
-
 from trame.app import get_server
-from trame.ui.vuetify3 import VAppLayout
-from trame.widgets import html, vtk as vtk_widgets, vuetify3 as v3
 from trame.decorators import TrameApp, change
+from trame.ui.vuetify3 import VAppLayout
+from trame.widgets import html
+from trame.widgets import vtk as vtk_widgets
+from trame.widgets import vuetify3 as v3
 
 # -----------------------------------------------------------------------------
 # VTK pipeline definition

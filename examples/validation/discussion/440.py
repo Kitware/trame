@@ -1,8 +1,9 @@
 import asyncio
+
 from trame.app import get_server
+from trame.decorators import TrameApp, controller
 from trame.ui.html import DivLayout
 from trame.widgets import trame
-from trame.decorators import TrameApp, controller
 
 
 def toggle_node(node, node_id):

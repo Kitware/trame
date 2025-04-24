@@ -1,6 +1,5 @@
 import panel as pn
 import pyvista as pv
-
 from pyvista import examples
 
 pn.extension("vtk", design="material", sizing_mode="stretch_width", template="material")

@@ -6,20 +6,20 @@ Installation requirements:
     pip install trame trame-vuetify trame-vtk
 """
 
-import os
 import io
+import os
+
 import numpy as np
 import pandas as pd
-
-from vtkmodules.vtkCommonCore import vtkPoints, vtkIdList, vtkLookupTable
-from vtkmodules.vtkCommonDataModel import vtkUnstructuredGrid, vtkCellArray
-from vtkmodules.vtkFiltersCore import vtkThreshold
+import vtkmodules.vtkRenderingOpenGL2  # noqa
 from vtkmodules.numpy_interface.dataset_adapter import numpyTovtkDataArray as np2da
 from vtkmodules.util import vtkConstants
+from vtkmodules.vtkCommonCore import vtkIdList, vtkLookupTable, vtkPoints
+from vtkmodules.vtkCommonDataModel import vtkCellArray, vtkUnstructuredGrid
+from vtkmodules.vtkFiltersCore import vtkThreshold
 
 # Add import for the rendering
 from vtkmodules.vtkInteractionStyle import vtkInteractorStyleSwitch  # noqa
-import vtkmodules.vtkRenderingOpenGL2  # noqa
 from vtkmodules.vtkRenderingCore import (
     vtkActor,
     vtkDataSetMapper,
@@ -30,7 +30,8 @@ from vtkmodules.vtkRenderingCore import (
 
 from trame.app import get_server
 from trame.ui.vuetify import SinglePageLayout
-from trame.widgets import vuetify, vtk as vtk_widgets
+from trame.widgets import vtk as vtk_widgets
+from trame.widgets import vuetify
 
 # -----------------------------------------------------------------------------
 # Trame setup

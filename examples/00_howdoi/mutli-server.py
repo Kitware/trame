@@ -11,7 +11,6 @@ from trame.app import get_server
 from trame.ui.vuetify import SinglePageLayout
 from trame.widgets import vuetify
 
-
 server1 = get_server("server1", client_type="vue2")
 state1 = server1.state
 state1.trame__title = "Server1"

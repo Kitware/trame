@@ -3,12 +3,12 @@ Installation requirements:
     pip install trame trame-vuetify trame-plotly
 """
 
-import plotly.graph_objects as go
 import plotly.express as px
+import plotly.graph_objects as go
 
 from trame.app import get_server
 from trame.ui.vuetify import SinglePageLayout
-from trame.widgets import vuetify, plotly
+from trame.widgets import plotly, vuetify
 
 # -----------------------------------------------------------------------------
 # Trame setup

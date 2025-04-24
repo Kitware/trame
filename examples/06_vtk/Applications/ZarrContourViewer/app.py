@@ -3,12 +3,9 @@ Installation requirements:
     pip install trame trame-vuetify trame-vtk
 """
 
-from trame.app import get_server
-from trame.widgets import html, vuetify, vtk as vtk_widgets
-from trame.ui.vuetify import SinglePageLayout
-
+import vtkmodules.vtkRenderingOpenGL2  # noqa
 from vtkContourGeneratorFromZarr import vtkContourGeneratorFromZarr
-
+from vtkmodules.vtkInteractionStyle import vtkInteractorStyleSwitch  # noqa
 from vtkmodules.vtkRenderingCore import (
     vtkActor,
     vtkPolyDataMapper,
@@ -17,8 +14,10 @@ from vtkmodules.vtkRenderingCore import (
     vtkRenderWindowInteractor,
 )
 
-from vtkmodules.vtkInteractionStyle import vtkInteractorStyleSwitch  # noqa
-import vtkmodules.vtkRenderingOpenGL2  # noqa
+from trame.app import get_server
+from trame.ui.vuetify import SinglePageLayout
+from trame.widgets import html, vuetify
+from trame.widgets import vtk as vtk_widgets
 
 # -----------------------------------------------------------------------------
 # Trame setup

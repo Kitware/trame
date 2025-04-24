@@ -6,22 +6,23 @@ Installation requirements:
     pip install trame trame-vuetify trame-vtk
 """
 
-from trame.app import get_server
-from trame.widgets import vuetify, vtk as vtk_widgets
-from trame.ui.vuetify import SinglePageLayout
-
+import vtkmodules.vtkRenderingOpenGL2  # noqa
 from vtkmodules.vtkFiltersSources import vtkConeSource
-from vtkmodules.vtkRenderingCore import (
-    vtkRenderer,
-    vtkRenderWindow,
-    vtkRenderWindowInteractor,
-    vtkPolyDataMapper,
-    vtkActor,
-)
 
 # VTK factory initialization
 from vtkmodules.vtkInteractionStyle import vtkInteractorStyleSwitch  # noqa
-import vtkmodules.vtkRenderingOpenGL2  # noqa
+from vtkmodules.vtkRenderingCore import (
+    vtkActor,
+    vtkPolyDataMapper,
+    vtkRenderer,
+    vtkRenderWindow,
+    vtkRenderWindowInteractor,
+)
+
+from trame.app import get_server
+from trame.ui.vuetify import SinglePageLayout
+from trame.widgets import vtk as vtk_widgets
+from trame.widgets import vuetify
 
 # -----------------------------------------------------------------------------
 # Trame initialization

@@ -8,7 +8,6 @@ from urllib.error import HTTPError
 from urllib.request import urlretrieve
 
 import vtkmodules.vtkRenderingOpenGL2  # noqa
-from trame.ui.vuetify3 import SinglePageLayout
 from vtkmodules.vtkFiltersGeometry import vtkGeometryFilter
 
 # VTK imports
@@ -22,6 +21,7 @@ from vtkmodules.vtkRenderingCore import (
 
 # Trame imports
 from trame.app import get_server
+from trame.ui.vuetify3 import SinglePageLayout
 from trame.widgets import vtk as vtk_widgets
 from trame.widgets import vuetify3 as vuetify
 

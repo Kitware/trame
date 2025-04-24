@@ -3,8 +3,8 @@ Installation requirements:
     pip install trame trame-vuetify trame-components
 """
 
-from pathlib import Path
 from collections import defaultdict
+from pathlib import Path
 
 from trame.app import get_server
 from trame.assets.local import LocalFileManager

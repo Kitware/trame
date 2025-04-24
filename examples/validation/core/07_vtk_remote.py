@@ -1,21 +1,21 @@
-from trame.app import get_server
-from trame.widgets import html, trame, vtk
-from trame.ui.html import DivLayout
+import vtkmodules.vtkRenderingOpenGL2  # noqa
 
 # -----------------------------------------------------------------------------
 # VTK
 # -----------------------------------------------------------------------------
-
 from vtkmodules.vtkFiltersSources import vtkConeSource
+from vtkmodules.vtkInteractionStyle import vtkInteractorStyleSwitch  # noqa
 from vtkmodules.vtkRenderingCore import (
+    vtkActor,
+    vtkPolyDataMapper,
     vtkRenderer,
     vtkRenderWindow,
     vtkRenderWindowInteractor,
-    vtkPolyDataMapper,
-    vtkActor,
 )
-import vtkmodules.vtkRenderingOpenGL2  # noqa
-from vtkmodules.vtkInteractionStyle import vtkInteractorStyleSwitch  # noqa
+
+from trame.app import get_server
+from trame.ui.html import DivLayout
+from trame.widgets import html, trame, vtk
 
 DEFAULT_RESOLUTION = 6
 

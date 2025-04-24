@@ -1,8 +1,8 @@
-from trame.app import get_server
-from trame.widgets import vuetify
-from trame.ui.vuetify import SinglePageWithDrawerLayout
-
 import json
+
+from trame.app import get_server
+from trame.ui.vuetify import SinglePageWithDrawerLayout
+from trame.widgets import vuetify
 
 server = get_server(client_type="vue2")
 state = server.state

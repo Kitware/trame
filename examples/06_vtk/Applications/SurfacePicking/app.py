@@ -5,14 +5,15 @@ Installation requirements:
 
 from pathlib import Path
 
+from vtkmodules.vtkFiltersCore import vtkThreshold
+from vtkmodules.vtkFiltersGeneral import vtkExtractSelectedFrustum
+from vtkmodules.vtkIOXML import vtkXMLPolyDataReader
+from vtkmodules.web.utils import mesh as vtk_mesh
+
 from trame.app import get_server
 from trame.ui.vuetify import SinglePageLayout
-from trame.widgets import vuetify, html, trame, vtk as vtk_widgets
-
-from vtkmodules.web.utils import mesh as vtk_mesh
-from vtkmodules.vtkIOXML import vtkXMLPolyDataReader
-from vtkmodules.vtkFiltersGeneral import vtkExtractSelectedFrustum
-from vtkmodules.vtkFiltersCore import vtkThreshold
+from trame.widgets import html, trame, vuetify
+from trame.widgets import vtk as vtk_widgets
 
 # -----------------------------------------------------------------------------
 # Trame

@@ -7,35 +7,34 @@ import pandas as pd
 
 # Plotly/chart imports
 import plotly.express as px
+import vtkmodules.vtkRenderingOpenGL2  # noqa
+from vtkmodules.numpy_interface import dataset_adapter as dsa
+from vtkmodules.vtkCommonCore import vtkIdTypeArray
+from vtkmodules.vtkCommonDataModel import vtkDataObject, vtkSelection, vtkSelectionNode
+from vtkmodules.vtkFiltersExtraction import vtkExtractSelection
+from vtkmodules.vtkFiltersGeometry import vtkGeometryFilter
+from vtkmodules.vtkInteractionStyle import (
+    vtkInteractorStyleRubberBandPick,
+)  # noqa
+
+# VTK imports
+from vtkmodules.vtkIOXML import vtkXMLUnstructuredGridReader
+from vtkmodules.vtkRenderingCore import (
+    vtkActor,
+    vtkDataSetMapper,
+    vtkHardwareSelector,
+    vtkRenderedAreaPicker,
+    vtkRenderer,
+    vtkRenderWindow,
+    vtkRenderWindowInteractor,
+)
 
 # Trame imports
 from trame.app import get_server
 from trame.assets.remote import HttpFile
 from trame.ui.vuetify import SinglePageLayout
-from trame.widgets import vuetify, plotly, trame, vtk as vtk_widgets
-
-# VTK imports
-from vtkmodules.vtkIOXML import vtkXMLUnstructuredGridReader
-from vtkmodules.numpy_interface import dataset_adapter as dsa
-from vtkmodules.vtkCommonDataModel import vtkSelection, vtkSelectionNode, vtkDataObject
-from vtkmodules.vtkCommonCore import vtkIdTypeArray
-from vtkmodules.vtkFiltersExtraction import vtkExtractSelection
-from vtkmodules.vtkFiltersGeometry import vtkGeometryFilter
-from vtkmodules.vtkRenderingCore import (
-    vtkActor,
-    vtkDataSetMapper,
-    vtkRenderer,
-    vtkRenderWindow,
-    vtkRenderWindowInteractor,
-    vtkHardwareSelector,
-    vtkRenderedAreaPicker,
-)
-
-from vtkmodules.vtkInteractionStyle import (
-    vtkInteractorStyleRubberBandPick,
-)  # noqa
-import vtkmodules.vtkRenderingOpenGL2  # noqa
-
+from trame.widgets import plotly, trame, vuetify
+from trame.widgets import vtk as vtk_widgets
 
 # -----------------------------------------------------------------------------
 # Data file information

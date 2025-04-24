@@ -1,8 +1,9 @@
 import asyncio
 import sys
+
 from trame.app import get_server
-from trame.widgets import trame, vuetify
 from trame.ui.vuetify import SinglePageLayout
+from trame.widgets import trame, vuetify
 
 # -----------------------------------------------------------------------------
 # Trame setup

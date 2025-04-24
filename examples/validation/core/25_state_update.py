@@ -1,8 +1,9 @@
-import time
 import asyncio
+import time
+
 from trame.app import get_server
-from trame.widgets import vuetify, html
 from trame.ui.vuetify import SinglePageLayout
+from trame.widgets import html, vuetify
 
 # -----------------------------------------------------------------------------
 # Trame app

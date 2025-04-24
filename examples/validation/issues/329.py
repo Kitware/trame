@@ -1,10 +1,14 @@
 import os
 from pathlib import Path
-from trame.app import get_server
-from trame.ui.vuetify import SinglePageLayout
-from trame.widgets import vtk as vtk2, vuetify
+
 import vtk
 
+# Required for rendering initialization, not necessary for
+# local rendering, but doesn't hurt to include it
+import vtkmodules.vtkRenderingOpenGL2  # noqa
+
+# Required for interactor initialization
+from vtkmodules.vtkInteractionStyle import vtkInteractorStyleSwitch  # noqa
 from vtkmodules.vtkIOLegacy import vtkUnstructuredGridReader
 from vtkmodules.vtkRenderingCore import (
     vtkRenderer,
@@ -12,12 +16,10 @@ from vtkmodules.vtkRenderingCore import (
     vtkRenderWindowInteractor,
 )
 
-# Required for interactor initialization
-from vtkmodules.vtkInteractionStyle import vtkInteractorStyleSwitch  # noqa
-
-# Required for rendering initialization, not necessary for
-# local rendering, but doesn't hurt to include it
-import vtkmodules.vtkRenderingOpenGL2  # noqa
+from trame.app import get_server
+from trame.ui.vuetify import SinglePageLayout
+from trame.widgets import vtk as vtk2
+from trame.widgets import vuetify
 
 CURRENT_DIRECTORY = os.path.abspath(os.path.dirname(__file__))
 

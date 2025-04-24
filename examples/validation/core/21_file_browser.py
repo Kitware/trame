@@ -1,4 +1,4 @@
-from tkinter import filedialog, Tk
+from tkinter import Tk, filedialog
 
 from trame.app import get_server
 from trame.ui.vuetify import SinglePageLayout

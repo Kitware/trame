@@ -9,11 +9,11 @@
 # which make that example less relevant than the 17_hot_reload.py one
 
 
-from trame.app import get_server
-from trame.widgets import vuetify, html
-from trame.ui.vuetify import SinglePageLayout
-
 from reloading import reloading
+
+from trame.app import get_server
+from trame.ui.vuetify import SinglePageLayout
+from trame.widgets import html, vuetify
 
 # -----------------------------------------------------------------------------
 # Trame setup

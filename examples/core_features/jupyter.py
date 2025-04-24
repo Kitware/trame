@@ -1,6 +1,6 @@
 from trame.app import get_server
 from trame.ui.vuetify import SinglePageLayout
-from trame.widgets import html, vuetify, vtk
+from trame.widgets import html, vtk, vuetify
 
 
 class Cone:

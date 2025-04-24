@@ -1,10 +1,10 @@
-from trame.app import get_server
-
-from trame.ui.vuetify import SinglePageWithDrawerLayout
-from trame.ui.router import RouterViewLayout
-from trame.widgets import vtk, html, vuetify, router, trame
-
+# Required for rendering initialization, not necessary for
+# local rendering, but doesn't hurt to include it
+import vtkmodules.vtkRenderingOpenGL2  # noqa
 from vtkmodules.vtkFiltersSources import vtkConeSource
+
+# Required for interactor initialization
+from vtkmodules.vtkInteractionStyle import vtkInteractorStyleSwitch  # noqa
 from vtkmodules.vtkRenderingCore import (
     vtkActor,
     vtkPolyDataMapper,
@@ -13,12 +13,10 @@ from vtkmodules.vtkRenderingCore import (
     vtkRenderWindowInteractor,
 )
 
-# Required for interactor initialization
-from vtkmodules.vtkInteractionStyle import vtkInteractorStyleSwitch  # noqa
-
-# Required for rendering initialization, not necessary for
-# local rendering, but doesn't hurt to include it
-import vtkmodules.vtkRenderingOpenGL2  # noqa
+from trame.app import get_server
+from trame.ui.router import RouterViewLayout
+from trame.ui.vuetify import SinglePageWithDrawerLayout
+from trame.widgets import html, router, trame, vtk, vuetify
 
 # -----------------------------------------------------------------------------
 # VTK pipeline

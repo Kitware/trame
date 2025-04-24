@@ -1,6 +1,6 @@
 from trame.app import get_server
 from trame.ui.html import DivLayout
-from trame.widgets import html, helper
+from trame.widgets import helper, html
 
 # From: https://quasar.dev/start/umd
 

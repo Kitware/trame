@@ -9,14 +9,15 @@ Installation requirements:
 """
 
 import os
-import pandas as pd
-import numpy as np
+
 import altair as alt
+import numpy as np
+import pandas as pd
 import pydeck as pdk
 
 from trame.app import get_server
 from trame.ui.vuetify import SinglePageLayout
-from trame.widgets import html, vuetify, deckgl, vega
+from trame.widgets import deckgl, html, vega, vuetify
 
 # -----------------------------------------------------------------------------
 # Trame setup

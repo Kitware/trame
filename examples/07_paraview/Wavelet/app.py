@@ -3,13 +3,14 @@ Installation requirements:
     pip install trame trame-vuetify trame-vtk trame-components trame-rca
 """
 
-import paraview.web.venv
-from paraview import simple
 import asyncio
 
-from trame.app import get_server, asynchronous
+import paraview.web.venv
+from paraview import simple
+
+from trame.app import asynchronous, get_server
 from trame.ui.vuetify import SinglePageWithDrawerLayout
-from trame.widgets import vuetify, trame, html, paraview, rca
+from trame.widgets import html, paraview, rca, trame, vuetify
 
 # -----------------------------------------------------------------------------
 # Global helpers

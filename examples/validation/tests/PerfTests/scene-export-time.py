@@ -1,22 +1,22 @@
-from trame.app import get_server
-from trame.widgets import vuetify, vtk
-from trame.ui.vuetify import SinglePageLayout
-
 import time
 
-from vtkmodules.vtkImagingCore import vtkRTAnalyticSource
+import vtkmodules.vtkRenderingOpenGL2  # noqa
 from vtkmodules.vtkFiltersGeometry import vtkGeometryFilter
-from vtkmodules.vtkRenderingCore import (
-    vtkRenderer,
-    vtkRenderWindow,
-    vtkRenderWindowInteractor,
-    vtkDataSetMapper,
-    vtkActor,
-)
+from vtkmodules.vtkImagingCore import vtkRTAnalyticSource
 
 # VTK factory initialization
 from vtkmodules.vtkInteractionStyle import vtkInteractorStyleSwitch  # noqa
-import vtkmodules.vtkRenderingOpenGL2  # noqa
+from vtkmodules.vtkRenderingCore import (
+    vtkActor,
+    vtkDataSetMapper,
+    vtkRenderer,
+    vtkRenderWindow,
+    vtkRenderWindowInteractor,
+)
+
+from trame.app import get_server
+from trame.ui.vuetify import SinglePageLayout
+from trame.widgets import vtk, vuetify
 
 # -----------------------------------------------------------------------------
 # Trame initialization

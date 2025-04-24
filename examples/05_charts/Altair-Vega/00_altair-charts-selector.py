@@ -12,7 +12,7 @@ from vega_datasets import data
 
 from trame.app import get_server
 from trame.ui.vuetify import SinglePageLayout
-from trame.widgets import vuetify, vega
+from trame.widgets import vega, vuetify
 
 # -----------------------------------------------------------------------------
 # Trame setup

@@ -4,8 +4,8 @@ Installation requirements:
 """
 
 from trame.app import get_server
-from trame.widgets import vuetify
 from trame.ui.vuetify import SinglePageLayout
+from trame.widgets import vuetify
 
 # -----------------------------------------------------------------------------
 # Trame setup

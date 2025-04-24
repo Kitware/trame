@@ -3,15 +3,15 @@ Installation requirements:
     pip install trame trame-vuetify trame-vega altair pandas numpy
 """
 
-from trame.app import get_server
-from trame.ui.vuetify import SinglePageLayout
-from trame.widgets import vuetify, vega
-
 from itertools import cycle
 
 import altair as alt
-import pandas as pd
 import numpy as np
+import pandas as pd
+
+from trame.app import get_server
+from trame.ui.vuetify import SinglePageLayout
+from trame.widgets import vega, vuetify
 
 # -----------------------------------------------------------------------------
 # Trame setup

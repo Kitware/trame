@@ -1,8 +1,10 @@
 import sys
-from trame.app import get_server, dev
-from trame.widgets import vtk, vuetify
-from trame.ui.vuetify import SinglePageLayout
+
 from trame_server import Server
+
+from trame.app import dev, get_server
+from trame.ui.vuetify import SinglePageLayout
+from trame.widgets import vtk, vuetify
 
 # -----------------------------------------------------------------------------
 # Trame setup

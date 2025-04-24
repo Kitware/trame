@@ -6,17 +6,17 @@ Installation requirements:
     pip install trame trame-vuetify trame-vtk
 """
 
-import paraview.web.venv  # Available in PV 5.10-RC2+
-import os
-import json
 import asyncio
-
-from trame.app import get_server, asynchronous
-from trame.widgets import vuetify, paraview
-from trame.ui.vuetify import SinglePageLayout
+import json
+import os
 
 import paraview as pv
+import paraview.web.venv  # Available in PV 5.10-RC2+
 from paraview import simple
+
+from trame.app import asynchronous, get_server
+from trame.ui.vuetify import SinglePageLayout
+from trame.widgets import paraview, vuetify
 
 # -----------------------------------------------------------------------------
 # Trame setup

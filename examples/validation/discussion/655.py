@@ -1,11 +1,10 @@
 import plotly.express as px
 
 from trame.app import get_server
-from trame.ui.vuetify3 import SinglePageWithDrawerLayout
 from trame.ui.router import RouterViewLayout
-from trame.widgets import router, plotly
+from trame.ui.vuetify3 import SinglePageWithDrawerLayout
+from trame.widgets import plotly, router
 from trame.widgets import vuetify3 as vuetify
-
 
 # -----------------------------------------------------------------------------
 # Charts

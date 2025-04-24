@@ -1,9 +1,8 @@
 import time
 
 import trame.widgets.vuetify3 as v3
-from trame.app import get_server, asynchronous
+from trame.app import asynchronous, get_server
 from trame.ui.vuetify3 import VAppLayout
-
 
 # -------------------------------------------------------------------
 # Helper

@@ -1,8 +1,7 @@
 from trame.app import get_server
 from trame.decorators import hot_reload
-from trame.widgets import html
 from trame.ui.html import DivLayout
-
+from trame.widgets import html
 
 # -----------------------------------------------------------------------------
 # Trame setup
@@ -65,8 +64,9 @@ update_ui()
 try:
     import asyncio
     from pathlib import Path
-    from watchdog.observers import Observer
+
     from watchdog.events import FileSystemEventHandler
+    from watchdog.observers import Observer
 
     current_event_loop = asyncio.get_event_loop()
 

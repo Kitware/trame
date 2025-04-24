@@ -1,10 +1,9 @@
 import paraview.web.venv  # Available in PV 5.10
+from paraview import simple
 
 from trame.app import get_server
-from trame.widgets import vuetify, paraview
 from trame.ui.vuetify import SinglePageLayout
-
-from paraview import simple
+from trame.widgets import paraview, vuetify
 
 # -----------------------------------------------------------------------------
 # trame setup

@@ -4,7 +4,8 @@ import vtk.util.numpy_support
 # trame imports
 import trame.app
 from trame.ui.vuetify import SinglePageLayout
-from trame.widgets import vuetify, vtk as vtk_widgets
+from trame.widgets import vtk as vtk_widgets
+from trame.widgets import vuetify
 
 
 def get_scalar_bar(colorTransferFunction):

@@ -3,11 +3,12 @@ Installation requirements:
     pip install trame trame-vuetify pandas
 """
 
+import pandas as pd
+
 from trame.app import get_server
 from trame.ui.vuetify3 import SinglePageLayout
-from trame.widgets import html, vuetify3 as vuetify
-
-import pandas as pd
+from trame.widgets import html
+from trame.widgets import vuetify3 as vuetify
 
 server = get_server(client_type="vue3")
 state, ctrl = server.state, server.controller

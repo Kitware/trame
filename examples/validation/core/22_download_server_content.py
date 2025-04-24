@@ -1,4 +1,5 @@
 import time
+
 from trame.app import get_server
 from trame.ui.vuetify import SinglePageLayout
 from trame.widgets import vuetify

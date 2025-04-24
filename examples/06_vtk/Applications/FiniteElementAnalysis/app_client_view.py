@@ -6,20 +6,21 @@ Installation requirements:
     pip install trame trame-vuetify trame-vtk
 """
 
-import os
 import io
+import os
+
 import numpy as np
 import pandas as pd
-
-from vtkmodules.vtkCommonCore import vtkPoints, vtkIdList
-from vtkmodules.vtkCommonDataModel import vtkUnstructuredGrid, vtkCellArray
-from vtkmodules.vtkFiltersCore import vtkThreshold
 from vtkmodules.numpy_interface.dataset_adapter import numpyTovtkDataArray as np2da
 from vtkmodules.util import vtkConstants
+from vtkmodules.vtkCommonCore import vtkIdList, vtkPoints
+from vtkmodules.vtkCommonDataModel import vtkCellArray, vtkUnstructuredGrid
+from vtkmodules.vtkFiltersCore import vtkThreshold
 
 from trame.app import get_server
 from trame.ui.vuetify import SinglePageLayout
-from trame.widgets import vuetify, trame, vtk as vtk_widgets
+from trame.widgets import trame, vuetify
+from trame.widgets import vtk as vtk_widgets
 
 # -----------------------------------------------------------------------------
 # Constants

@@ -1,7 +1,7 @@
 import trame.widgets.html as h
 import trame.widgets.vuetify3 as v3
 from trame.app import get_server
-from trame.ui.vuetify3 import VAppLayout, SinglePageLayout
+from trame.ui.vuetify3 import SinglePageLayout, VAppLayout
 
 
 class Example2:

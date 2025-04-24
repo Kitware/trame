@@ -1,7 +1,8 @@
 import time
+
 from trame.app import get_server
-from trame.widgets import html
 from trame.ui.html import DivLayout
+from trame.widgets import html
 
 # -----------------------------------------------------------------------------
 # Trame app

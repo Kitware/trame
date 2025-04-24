@@ -1,9 +1,10 @@
-from trame.app import get_server
-from trame.ui.vuetify3 import SinglePageWithDrawerLayout
-from trame.widgets import vuetify3 as v3, paraview as pv_widgets
-from trame.decorators import TrameApp, change
+from paraview import servermanager, simple
 
-from paraview import simple, servermanager
+from trame.app import get_server
+from trame.decorators import TrameApp, change
+from trame.ui.vuetify3 import SinglePageWithDrawerLayout
+from trame.widgets import paraview as pv_widgets
+from trame.widgets import vuetify3 as v3
 
 
 @TrameApp()

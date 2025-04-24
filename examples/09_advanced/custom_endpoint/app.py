@@ -1,10 +1,12 @@
-from trame.app import get_server
-from trame.ui.vuetify3 import SinglePageLayout
-from trame.widgets import vuetify3 as v3, html
-from trame.decorators import TrameApp, controller
-
 import time
+
 from aiohttp import web
+
+from trame.app import get_server
+from trame.decorators import TrameApp, controller
+from trame.ui.vuetify3 import SinglePageLayout
+from trame.widgets import html
+from trame.widgets import vuetify3 as v3
 
 
 @TrameApp()

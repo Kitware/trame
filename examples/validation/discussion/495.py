@@ -5,7 +5,7 @@ python ./495.py
 
 from trame.app import get_server
 from trame.ui.vuetify3 import VAppLayout
-from trame.widgets import vuetify3, html, client
+from trame.widgets import client, html, vuetify3
 
 server = get_server(client_type="vue3")
 

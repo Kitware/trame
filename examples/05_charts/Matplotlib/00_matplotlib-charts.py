@@ -3,12 +3,12 @@ Installation requirements:
     pip install trame trame-vuetify trame-components trame-matplotlib
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 from trame.app import get_server
 from trame.ui.vuetify import SinglePageLayout
-from trame.widgets import vuetify, trame, matplotlib
+from trame.widgets import matplotlib, trame, vuetify
 
 # -----------------------------------------------------------------------------
 # Trame setup

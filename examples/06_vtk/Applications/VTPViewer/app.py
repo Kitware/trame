@@ -3,13 +3,14 @@ Installation requirements:
     pip install trame trame-vuetify trame-vtk trame-components
 """
 
-from trame.app import get_server
-from trame.ui.vuetify import SinglePageLayout
-from trame.widgets import vuetify, trame, vtk as vtk_widgets
-from trame.app.file_upload import ClientFile
-
 from vtkmodules.vtkIOXML import vtkXMLPolyDataReader
 from vtkmodules.web.utils import mesh as vtk_mesh
+
+from trame.app import get_server
+from trame.app.file_upload import ClientFile
+from trame.ui.vuetify import SinglePageLayout
+from trame.widgets import trame, vuetify
+from trame.widgets import vtk as vtk_widgets
 
 # -----------------------------------------------------------------------------
 # Trame setup

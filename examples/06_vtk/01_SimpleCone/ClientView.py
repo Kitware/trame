@@ -6,11 +6,12 @@ Installation requirements:
     pip install trame trame-vuetify trame-vtk
 """
 
-from trame.app import get_server
-from trame.widgets import vuetify, vtk as vtk_widgets
-from trame.ui.vuetify import SinglePageLayout
-
 from vtkmodules.vtkFiltersSources import vtkConeSource
+
+from trame.app import get_server
+from trame.ui.vuetify import SinglePageLayout
+from trame.widgets import vtk as vtk_widgets
+from trame.widgets import vuetify
 
 # -----------------------------------------------------------------------------
 # Trame initialization

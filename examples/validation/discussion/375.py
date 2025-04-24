@@ -1,19 +1,23 @@
-import os
 import logging
 import logging.handlers
+import os
 from pathlib import Path
 
-# Trame
-from trame.app import get_server
-from trame.ui.vuetify import SinglePageWithDrawerLayout
-from trame.widgets import vtk, vuetify, trame
+# Required for rendering initialization, not necessary for
+# local rendering, but doesn't hurt to include it
+import vtkmodules.vtkRenderingOpenGL2  # noqa
 
 # VTK
 from vtkmodules.vtkCommonDataModel import vtkDataObject, vtkPolyData
 from vtkmodules.vtkFiltersGeometry import vtkGeometryFilter
+
+# Required for interactor initialization
+from vtkmodules.vtkInteractionStyle import (
+    vtkInteractorStyleSwitch,  # noqa
+    vtkInteractorStyleTrackballCamera,
+)
 from vtkmodules.vtkIOXML import vtkXMLUnstructuredGridReader
 from vtkmodules.vtkRenderingAnnotation import vtkCubeAxesActor, vtkScalarBarActor
-from vtkmodules.vtkInteractionStyle import vtkInteractorStyleTrackballCamera
 from vtkmodules.vtkRenderingCore import (
     vtkActor,
     vtkDataSetMapper,
@@ -22,13 +26,10 @@ from vtkmodules.vtkRenderingCore import (
     vtkRenderWindowInteractor,
 )
 
-# Required for interactor initialization
-from vtkmodules.vtkInteractionStyle import vtkInteractorStyleSwitch  # noqa
-
-# Required for rendering initialization, not necessary for
-# local rendering, but doesn't hurt to include it
-import vtkmodules.vtkRenderingOpenGL2  # noqa
-
+# Trame
+from trame.app import get_server
+from trame.ui.vuetify import SinglePageWithDrawerLayout
+from trame.widgets import trame, vtk, vuetify
 
 # -----------------------------------------------------------------------------
 # Globals

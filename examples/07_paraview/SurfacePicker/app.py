@@ -1,15 +1,17 @@
 # pip install trame trame-vtk trame-vuetify
 
-import paraview.web.venv
-
-from paraview import simple
 from typing import Any
+
+import paraview.web.venv
+from paraview import simple
+from trame_server import Server
+from trame_server.controller import Controller
+
 from trame.app import get_server
 from trame.decorators import TrameApp, change
 from trame.ui.vuetify3 import SinglePageLayout
-from trame.widgets import vuetify3 as vuetify, paraview, client
-from trame_server import Server
-from trame_server.controller import Controller
+from trame.widgets import client, paraview
+from trame.widgets import vuetify3 as vuetify
 
 
 @TrameApp()

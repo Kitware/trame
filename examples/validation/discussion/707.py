@@ -1,7 +1,9 @@
+from pathlib import Path
+
 from trame.app import get_server
 from trame.ui.html import DivLayout
-from pathlib import Path
-from trame.widgets import vuetify3 as vuetify, helper
+from trame.widgets import helper
+from trame.widgets import vuetify3 as vuetify
 
 server = get_server(client_type="vue3")
 state = server.state

@@ -2,10 +2,9 @@ import pyvista as pv
 from pyvista import examples
 
 from trame.app import get_server
-from trame.ui.quasar import QLayout
-from trame.widgets import quasar, vtk, html
-
 from trame.decorators import TrameApp, change
+from trame.ui.quasar import QLayout
+from trame.widgets import html, quasar, vtk
 
 DEFAULT_CAMERA = [
     (567000.9232163235, 5119147.423216323, 6460.423216322832),

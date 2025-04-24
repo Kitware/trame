@@ -2,14 +2,14 @@
 # pvpython ./examples/validation/core/23_pv_interactive_render_exit.py --venv .venv
 import paraview.web.venv
 
-from trame.app import get_server
-from trame.widgets import html, paraview
-from trame.ui.html import DivLayout
-
 # -----------------------------------------------------------------------------
 # VTK
 # -----------------------------------------------------------------------------
 from paraview import simple
+
+from trame.app import get_server
+from trame.ui.html import DivLayout
+from trame.widgets import html, paraview
 
 DEFAULT_RESOLUTION = 8
 

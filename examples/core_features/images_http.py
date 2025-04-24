@@ -1,9 +1,8 @@
 from pathlib import Path
 
 from trame.app import get_server
-from trame.widgets import html
 from trame.ui.html import DivLayout
-
+from trame.widgets import html
 
 DIRECTORY = Path(__file__).parent.parent.parent / "docs/vitepress/assets/images/apps"
 

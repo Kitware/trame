@@ -1,27 +1,26 @@
-from trame.app import get_server
-from trame.widgets import vtk as vtk_widgets
-
 import pyvista as pv
 from pyvista.trame.ui import plotter_ui
-
 from vtkmodules.vtkFiltersSources import vtkSphereSource
 from vtkmodules.vtkRenderingCore import (
+    vtkActor,
+    vtkPolyDataMapper,
     vtkRenderer,
     vtkRenderWindow,
-    vtkPolyDataMapper,
-    vtkActor,
 )
+
+from trame.app import get_server
+from trame.widgets import vtk as vtk_widgets
 
 CLIENT_TYPE = "vue3"
 USE_PV = False
 RADIUS = 0.1
 
 if CLIENT_TYPE == "vue2":
-    from trame.widgets import vuetify2 as vuetify
     from trame.ui.vuetify2 import SinglePageLayout
+    from trame.widgets import vuetify2 as vuetify
 else:
-    from trame.widgets import vuetify3 as vuetify
     from trame.ui.vuetify3 import SinglePageLayout
+    from trame.widgets import vuetify3 as vuetify
 
 
 class App:

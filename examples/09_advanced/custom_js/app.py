@@ -1,8 +1,8 @@
 from pathlib import Path
 
 from trame.app import get_server
-from trame.widgets import vuetify3, client
 from trame.ui.vuetify3 import SinglePageLayout
+from trame.widgets import client, vuetify3
 
 
 def load_my_js(server):

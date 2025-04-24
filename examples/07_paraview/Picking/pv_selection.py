@@ -4,14 +4,14 @@ Installation requirements:
 """
 
 # import asyncio
-from trame.app import get_server
-from trame.assets.local import LocalFileManager
-from trame.widgets import vuetify, paraview
-from trame.ui.vuetify import SinglePageLayout
-
 from pathlib import Path
 
 from paraview import simple
+
+from trame.app import get_server
+from trame.assets.local import LocalFileManager
+from trame.ui.vuetify import SinglePageLayout
+from trame.widgets import paraview, vuetify
 
 # -----------------------------------------------------------------------------
 # Trame setup

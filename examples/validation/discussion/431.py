@@ -7,11 +7,11 @@ from trame.widgets import html
 CLIENT_TYPE = "vue3"
 
 if CLIENT_TYPE == "vue2":
-    from trame.widgets import vuetify2 as vuetify
     from trame.ui.vuetify2 import SinglePageLayout
+    from trame.widgets import vuetify2 as vuetify
 else:
-    from trame.widgets import vuetify3 as vuetify
     from trame.ui.vuetify3 import SinglePageLayout
+    from trame.widgets import vuetify3 as vuetify
 
 server = get_server()
 server.client_type = CLIENT_TYPE

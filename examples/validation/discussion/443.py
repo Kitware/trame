@@ -1,4 +1,5 @@
 import os
+
 from trame.app import get_server
 from trame.ui.vuetify3 import SinglePageLayout
 from trame.widgets import trame, vuetify3

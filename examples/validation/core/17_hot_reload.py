@@ -1,8 +1,8 @@
-from trame.app import get_server
-from trame.widgets import html, vuetify
-from trame.ui.vuetify import SinglePageLayout
-
 from trame_server.utils.hot_reload import hot_reload
+
+from trame.app import get_server
+from trame.ui.vuetify import SinglePageLayout
+from trame.widgets import html, vuetify
 
 # -----------------------------------------------------------------------------
 # Trame setup

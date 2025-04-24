@@ -2,9 +2,10 @@
 # export DYLD_LIBRARY_PATH=/Applications/ParaView-5.12.0-RC1.app/Contents/Libraries/
 
 from paraview import simple
+
 from trame.app import get_server
 from trame.ui.html import DivLayout
-from trame.widgets import paraview, html
+from trame.widgets import html, paraview
 
 # create a new 'IOSS Reader'
 disk_out_refex2 = simple.IOSSReader(

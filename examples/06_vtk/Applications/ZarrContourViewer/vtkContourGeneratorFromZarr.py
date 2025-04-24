@@ -1,8 +1,8 @@
 import os
 import sys
-import zarr
 
 import vtk
+import zarr
 from vtk.util import numpy_support as np_s
 
 

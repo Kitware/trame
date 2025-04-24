@@ -11,7 +11,7 @@ https://v2.vuetifyjs.com/en/components/tooltips/
 
 from trame.app import get_server
 from trame.ui.vuetify2 import VAppLayout
-from trame.widgets import vuetify2, html
+from trame.widgets import html, vuetify2
 
 server = get_server(client_type="vue2")
 

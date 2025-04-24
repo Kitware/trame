@@ -6,13 +6,14 @@ Installation requirements:
     pip install trame trame-vuetify trame-vtk trame-deckgl
 """
 
-import pydeck as pdk
-import pandas as pd
 import os
+
+import pandas as pd
+import pydeck as pdk
 
 from trame.app import get_server
 from trame.ui.vuetify import SinglePageLayout
-from trame.widgets import vuetify, deckgl
+from trame.widgets import deckgl, vuetify
 
 # -----------------------------------------------------------------------------
 # Trame setup

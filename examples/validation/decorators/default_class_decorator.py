@@ -1,5 +1,5 @@
 from trame.app import get_server
-from trame.decorators import TrameApp, change, controller, trigger, life_cycle
+from trame.decorators import TrameApp, change, controller, life_cycle, trigger
 from trame.ui.vuetify import SinglePageLayout
 from trame.widgets import vuetify
 

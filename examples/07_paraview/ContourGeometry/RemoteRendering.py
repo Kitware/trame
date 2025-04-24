@@ -3,15 +3,14 @@ Installation requirements:
     pip install trame trame-vuetify trame-vtk
 """
 
-import paraview.web.venv
-
 from pathlib import Path
 
-from trame.app import get_server
-from trame.widgets import vuetify, paraview
-from trame.ui.vuetify import SinglePageLayout
-
+import paraview.web.venv
 from paraview import simple
+
+from trame.app import get_server
+from trame.ui.vuetify import SinglePageLayout
+from trame.widgets import paraview, vuetify
 
 # -----------------------------------------------------------------------------
 # Trame setup

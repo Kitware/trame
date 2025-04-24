@@ -1,22 +1,21 @@
 from pathlib import Path
 
-from trame import controller as ctrl
-from trame.html import vuetify, vtk
-from trame.layouts import SinglePage
-
-from vtkmodules.vtkIOXML import vtkXMLUnstructuredGridReader
-
-from vtkmodules.vtkRenderingCore import (
-    vtkRenderer,
-    vtkRenderWindow,
-    vtkRenderWindowInteractor,
-    vtkDataSetMapper,
-    vtkActor,
-)
+import vtkmodules.vtkRenderingOpenGL2  # noqa
 
 # VTK factory initialization
 from vtkmodules.vtkInteractionStyle import vtkInteractorStyleSwitch  # noqa
-import vtkmodules.vtkRenderingOpenGL2  # noqa
+from vtkmodules.vtkIOXML import vtkXMLUnstructuredGridReader
+from vtkmodules.vtkRenderingCore import (
+    vtkActor,
+    vtkDataSetMapper,
+    vtkRenderer,
+    vtkRenderWindow,
+    vtkRenderWindowInteractor,
+)
+
+from trame import controller as ctrl
+from trame.html import vtk, vuetify
+from trame.layouts import SinglePage
 
 DATA_DIR = Path(Path(__file__).parent.parent.parent.parent, "data")
 MESH_PATH = str(Path(DATA_DIR, "mesh.vtu"))

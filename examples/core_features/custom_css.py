@@ -1,8 +1,8 @@
 from pathlib import Path
 
 from trame.app import get_server
-from trame.widgets import client
 from trame.ui.html import DivLayout
+from trame.widgets import client
 
 CSS_FILE = Path(__file__).with_name("custom.css")
 

@@ -1,7 +1,7 @@
 from trame.app import get_server
-from trame.widgets import trame, vuetify, html, client
-from trame.ui.vuetify import SinglePageLayout
 from trame.ui.html import DivLayout
+from trame.ui.vuetify import SinglePageLayout
+from trame.widgets import client, html, trame, vuetify
 
 # -----------------------------------------------------------------------------
 # Trame setup

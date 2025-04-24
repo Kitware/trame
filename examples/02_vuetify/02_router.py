@@ -4,9 +4,9 @@ Installation requirements:
 """
 
 from trame.app import get_server
-from trame.ui.vuetify import SinglePageWithDrawerLayout
 from trame.ui.router import RouterViewLayout
-from trame.widgets import vuetify, router
+from trame.ui.vuetify import SinglePageWithDrawerLayout
+from trame.widgets import router, vuetify
 
 # -----------------------------------------------------------------------------
 # Trame setup

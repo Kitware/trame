@@ -1,23 +1,23 @@
-from trame.app import get_server
-from trame.widgets import vuetify, vtk
-from trame.ui.vuetify import SinglePageLayout
+import vtkmodules.vtkRenderingOpenGL2  # noqa
 
 # -----------------------------------------------------------------------------
 # VTK
 # -----------------------------------------------------------------------------
-
 from vtkmodules.vtkFiltersSources import vtkConeSource
+from vtkmodules.vtkInteractionStyle import vtkInteractorStyleSwitch  # noqa
 from vtkmodules.vtkIOImage import vtkPNGWriter
 from vtkmodules.vtkRenderingCore import (
+    vtkActor,
+    vtkPolyDataMapper,
     vtkRenderer,
     vtkRenderWindow,
     vtkRenderWindowInteractor,
-    vtkPolyDataMapper,
-    vtkActor,
     vtkWindowToImageFilter,
 )
-import vtkmodules.vtkRenderingOpenGL2  # noqa
-from vtkmodules.vtkInteractionStyle import vtkInteractorStyleSwitch  # noqa
+
+from trame.app import get_server
+from trame.ui.vuetify import SinglePageLayout
+from trame.widgets import vtk, vuetify
 
 DEFAULT_RESOLUTION = 6
 

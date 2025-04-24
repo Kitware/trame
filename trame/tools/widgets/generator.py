@@ -1,7 +1,8 @@
-import yaml
 import shutil
 from pathlib import Path
+
 import aiohttp
+import yaml
 
 PKG_INIT = """__path__ = __import__("pkgutil").extend_path(__path__, __name__)"""
 

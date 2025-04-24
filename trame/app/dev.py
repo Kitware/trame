@@ -1,17 +1,3 @@
-def clear_triggers(server):
-    """
-    Helper function to remove all triggers.
-
-    :param server: server on which we want to clear the triggers
-    :type server: trame_server.core.Server
-    """
-    names = list(server._triggers.keys())
-    for name in names:
-        fn = server._triggers.pop(name)
-        server._triggers_fn2name.pop(fn)
-        print(f"unregister trigger {name}")
-
-
 def clear_change_listeners(server):
     """
     Helper function to remove all state.change listeners.

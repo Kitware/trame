@@ -1,4 +1,11 @@
-def clear_triggers(server):
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from types import ModuleType
+    from trame_server import Server
+
+
+def clear_triggers(server: Server) -> None:
     """
     Helper function to remove all triggers.
 
@@ -12,7 +19,7 @@ def clear_triggers(server):
         print(f"unregister trigger {name}")
 
 
-def clear_change_listeners(server):
+def clear_change_listeners(server: Server) -> None:
     """
     Helper function to remove all state.change listeners.
 
@@ -22,7 +29,7 @@ def clear_change_listeners(server):
     server.state._change_callbacks.clear()
 
 
-def remove_change_listeners(server, *names):
+def remove_change_listeners(server: Server, *names: str) -> None:
     """
     Helper function to remove any listeners for a given set
     of state variable names.
@@ -38,7 +45,7 @@ def remove_change_listeners(server, *names):
             server.state._change_callbacks.pop(name)
 
 
-def reload(*reload_list):
+def reload(*reload_list: ModuleType) -> None:
     """
     Helper function use to reload python modules that were passed as
     arguments.

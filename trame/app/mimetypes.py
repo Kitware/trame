@@ -1,4 +1,11 @@
+from __future__ import annotations
+
 import mimetypes
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from os import PathLike
 
 
 MIMETYPE_OVERRIDES = {
@@ -8,7 +15,7 @@ MIMETYPE_OVERRIDES = {
 }
 
 
-def decorate_mimetypes_init():
+def decorate_mimetypes_init() -> None:
     """
     Decorate the mimetypes.init() method with our function that
     afterwards adds any mimetype overrides that were saved.
@@ -24,7 +31,7 @@ def decorate_mimetypes_init():
     mimetypes.init = new_init
 
 
-def add_mimetype_override(type, ext):
+def add_mimetype_override(type: str, ext: str) -> None:
     """
     Add a mimetype both now and when mimetypes.init() is called.
 
@@ -40,7 +47,7 @@ def add_mimetype_override(type, ext):
     mimetypes.add_type(type, ext)
 
 
-def to_mime(file_path):
+def to_mime(file_path: str | PathLike[str]) -> str | None:
     """
     Return the mime type from a given path
 

@@ -1,7 +1,8 @@
 def test_TrameApp():
     import asyncio
-    from trame.decorators import TrameApp, change, controller
+
     from trame.app import get_server
+    from trame.decorators import TrameApp, change, controller
 
     @TrameApp()
     class A:

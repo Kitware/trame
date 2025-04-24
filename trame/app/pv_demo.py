@@ -3,15 +3,17 @@ Installation requirements:
     pip install trame trame-vuetify trame-vtk
 """
 
+from paraview import simple
+
 from trame.app import get_server
 from trame.decorators import TrameApp, change
+from trame.ui.vuetify3 import SinglePageLayout
 from trame.widgets import (
-    vuetify3 as v3,
     paraview as pv_widgets,
 )
-from trame.ui.vuetify3 import SinglePageLayout
-
-from paraview import simple
+from trame.widgets import (
+    vuetify3 as v3,
+)
 
 # -----------------------------------------------------------------------------
 

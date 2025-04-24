@@ -1,15 +1,14 @@
+from trame_common.exec.asynchronous import create_task, decorate_task, task
 from trame_server.utils.asynchronous import (
-    create_task,
-    decorate_task,
-    create_state_queue_monitor_task,
     StateQueue,
-    task,
+    create_state_queue_monitor_task,
 )
 
 __all__ = [
     "create_task",
     "decorate_task",
-    "create_state_queue_monitor_task",
-    "StateQueue",
     "task",
+    # state sync across threads
+    "StateQueue",
+    "create_state_queue_monitor_task",
 ]

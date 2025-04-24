@@ -5,8 +5,8 @@ generate another application specific HTML file.
 
 import argparse
 import re
-from pathlib import Path
 import sys
+from pathlib import Path
 
 APP_PATTERN = re.compile(r'data-app-name="\w+"')
 

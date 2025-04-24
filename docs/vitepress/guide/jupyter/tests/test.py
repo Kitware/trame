@@ -1,4 +1,5 @@
 import os
+
 from trame.app.demo import Cone
 
 print(os.environ.get("TRAME_JUPYTER_WWW"))

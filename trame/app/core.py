@@ -7,9 +7,6 @@ from trame_client.widgets.core import VirtualNode
 from trame_server import Client, Server
 from trame_server.core import set_default_client_type
 
-# Ensure this is imported so that mimetypes.init() is decorated
-import trame.assets.mimetypes  # noqa: F401
-
 DEFAULT_NAME = "trame"
 AVAILABLE_SERVERS: dict[str, Server] = {}
 AVAILABLE_CLIENTS: dict[str, Client] = {}

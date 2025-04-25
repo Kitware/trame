@@ -1,6 +1,73 @@
 # CHANGELOG
 
 
+## v3.9.0 (2025-04-25)
+
+### Bug Fixes
+
+- **client**: Bump client to get v_on
+  ([`863c052`](https://github.com/Kitware/trame/commit/863c0527231bf46d5acafcf3f977e66ff93409a7))
+
+- **import**: Circular import in trame.app
+  ([`61c5960`](https://github.com/Kitware/trame/commit/61c59601d86ec58f5412c08b8fd41aab868f7006))
+
+### Code Style
+
+- **ruff**: Import sort
+  ([`b7a4ce8`](https://github.com/Kitware/trame/commit/b7a4ce87a6f95d4cb32d20fa722b9f7c63aab781))
+
+- **ruff**: Reformat helper scripts
+  ([`5190d77`](https://github.com/Kitware/trame/commit/5190d774855ab51795924597e3943abfaa412ed0))
+
+### Documentation
+
+- **discussion**: Add example 707
+  ([`a684a5b`](https://github.com/Kitware/trame/commit/a684a5b0a6269919336afd0c1c35f794e31fc459))
+
+- **examples**: Fix image path in readmes
+  ([`37a9e38`](https://github.com/Kitware/trame/commit/37a9e38e3d762b77ddce7cc9bc6f53f4f218611d))
+
+- **examples**: Images
+  ([`0c154b2`](https://github.com/Kitware/trame/commit/0c154b29524075dd616057bf5d3d35c22f7fe8bb))
+
+- **examples**: Images
+  ([`9c7618b`](https://github.com/Kitware/trame/commit/9c7618b9313646c0b6a05dd1cbe396125f5cb6a2))
+
+- **examples**: Images
+  ([`0bc5c30`](https://github.com/Kitware/trame/commit/0bc5c30b7c77e48999a283cbef475ad5eb163eb8))
+
+- **examples**: Images
+  ([`26c69da`](https://github.com/Kitware/trame/commit/26c69dace91a34d42bb2a92fb6a83e496a8bf120))
+
+- **examples**: Images
+  ([`daed428`](https://github.com/Kitware/trame/commit/daed428b41cc254dce79c4abb07a6f736fc90b9d))
+
+- **examples**: Reformat using ruff and sorting import
+  ([`74b0276`](https://github.com/Kitware/trame/commit/74b0276384e001ded22b91f182b5114e79e597b3))
+
+### Features
+
+- **common**: Leverage trame-common for utility class/function
+  ([`61b60a9`](https://github.com/Kitware/trame/commit/61b60a9b5e5f669ea2d89ea0fd005c2423809b24))
+
+__New Features__: - Add dependency to trame-common for providing generic classes that can be
+  relevant across trame packages. This includes assets handling, execution helper (throttle, async
+  task), decorators and abstract classes for building components or apps. - Expose new TrameApp and
+  TrameComponent classes from trame.app to simplify the creation of trame pieces when using
+  inheritance instead of the @TrameApp() decorator.
+
+__Deprecation and cleanup__ - trame.app.dev should be deprecated/removed but for now we just remove
+  a method that has been broken for quite some time. In general that package is fairly advanced and
+  internal. It should not be needed by 99.99% of folks. - trame.app.jupyter has been removed since
+  the Jupyter integration is directly part of the layouts and that package should not be used
+  anymore.
+
+### Testing
+
+- Update endlines
+  ([`834fab6`](https://github.com/Kitware/trame/commit/834fab6818d2e7d812f9129d803bc59695f308c1))
+
+
 ## v3.8.2 (2025-04-10)
 
 ### Bug Fixes

@@ -7,4 +7,4 @@ pip install -r ./requirements.txt
 python ./app.py
 ```
 
-![](./cfd-bike.gif)
+[![](./cfd-bike.gif)](./cfd-bike-480.m4v)

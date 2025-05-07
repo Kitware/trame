@@ -147,6 +147,7 @@ export default defineConfig({
         {
           text: 'VTK',
           items: [
+            { text: 'WASM', link: '/examples/vtk/wasm' },
             { text: 'Finite Element Analysis', link: '/examples/vtk/fea' },
             { text: 'Multi-Filters', link: '/examples/vtk/multi' },
             { text: 'Selection', link: '/examples/vtk/selection' },

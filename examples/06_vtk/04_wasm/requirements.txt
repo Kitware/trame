@@ -1,0 +1,5 @@
+trame>=3.9
+trame-vuetify
+trame-components
+trame-vtklocal>=0.9
+vtk>=9.4.2

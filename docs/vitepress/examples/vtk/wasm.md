@@ -4,7 +4,7 @@ Streamline seed control from both 3D widgets and 2D widget.
 
 
 <video control loop autoplay muted>
-    <source src="/assets/videos/cfd-bike-480.m4v" alt="Bike CFD example">
+    <source src="/assets/videos/cfd-bike-480.mp4" alt="Bike CFD example">
 </video>
 
 

@@ -1,0 +1,19 @@
+ARG BASE_IMAGE=trame-common
+FROM ${BASE_IMAGE}
+
+ARG PYTHON_VERSION=3.12
+
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+
+# Copy the uv scripts into place
+COPY scripts/uv/* /opt/trame/
+
+# uv config envs
+ENV UV_NO_CACHE=1
+ENV UV_COMPILE_BYTECODE=1
+ENV VIRTUAL_ENV=/deploy/server/venv
+
+# Set venv paths
+ENV TRAME_VENV=$VIRTUAL_ENV
+ENV PV_VENV=$VIRTUAL_ENV
+ENV VTK_VENV=$VIRTUAL_ENV

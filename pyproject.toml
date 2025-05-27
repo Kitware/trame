@@ -8,7 +8,7 @@ authors = [
 dependencies = [
     "trame-server>=3.4,<4",
     "trame-client>=3.8,<4",
-    "trame-common>=0.2,<1",
+    "trame-common>=1,<2",
     "wslink>=2.3.3",
     "pyyaml", # for trame.tools.widgets
 ]

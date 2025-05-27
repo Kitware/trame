@@ -36,6 +36,10 @@ In case you aim the trame application to read/write files on a mounted directory
 
     Path to serve content from. Rather that serving everything from `/`, when `TRAME_URL_PREFIX` is defined to `/app`, that means you should connect to `/app` in order to get access to the trame content. Same for `/app/launcher` and `/app/api/*`.
 
+- __TRAME_LAUNCHER_TIMEOUT__
+
+    Number of second to wait for the session to start before assuming a timeout. The default value is set to 25 seconds.
+
 ## Building the Server
 
 To run your application in a Trame Docker image, a server directory must be present that contains everything required to run the application. This includes the static website (www) that needs to be served, instructions for starting the application (launcher) when a user requests access, and the Python dependencies that are needed to run it (venv).

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import json
+import os
 from pathlib import Path
 
 
@@ -63,6 +64,12 @@ def run(input_path, apps_path, out_path):
         # the default localhost:9000 web page will use that app.
         first_key = next(iter(input_dict["apps"]))
         input_dict["apps"]["trame"] = input_dict["apps"][first_key]
+
+    # Allow user to override launcher timeout via
+    # the TRAME_LAUNCHER_TIMEOUT environment variable
+    if "TRAME_LAUNCHER_TIMEOUT" in os.environ:
+        timeout = int(os.environ.get("TRAME_LAUNCHER_TIMEOUT", 25))
+        input_dict["configuration"]["timeout"] = timeout
 
     with open(out_path, "w") as wf:
         json.dump(input_dict, wf, indent=2)

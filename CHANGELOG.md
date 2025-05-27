@@ -1,6 +1,85 @@
 # CHANGELOG
 
 
+## v3.9.1 (2025-05-27)
+
+### Bug Fixes
+
+- **common**: Update dep version on trame-common
+  ([`f72ea0e`](https://github.com/Kitware/trame/commit/f72ea0e62a5afc461428dd13b22ed2538c733716))
+
+### Chores
+
+- **deps-dev**: Bump vite from 4.5.11 to 4.5.13 in /docs/vitepress
+  ([`f2f2a04`](https://github.com/Kitware/trame/commit/f2f2a0499f5835f652cc36d8401ba5bd6ba7a159))
+
+Bumps [vite](https://github.com/vitejs/vite/tree/HEAD/packages/vite) from 4.5.11 to 4.5.13. -
+  [Release notes](https://github.com/vitejs/vite/releases) -
+  [Changelog](https://github.com/vitejs/vite/blob/v4.5.13/packages/vite/CHANGELOG.md) -
+  [Commits](https://github.com/vitejs/vite/commits/v4.5.13/packages/vite)
+
+--- updated-dependencies: - dependency-name: vite dependency-version: 4.5.13
+
+dependency-type: indirect
+
+...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+
+- **deps-dev**: Bump vite from 4.5.13 to 4.5.14 in /docs/vitepress
+  ([`a7d19b8`](https://github.com/Kitware/trame/commit/a7d19b878a3622b8135c5c19e5617af3d9c5ce36))
+
+Bumps [vite](https://github.com/vitejs/vite/tree/HEAD/packages/vite) from 4.5.13 to 4.5.14. -
+  [Release notes](https://github.com/vitejs/vite/releases) -
+  [Changelog](https://github.com/vitejs/vite/blob/v4.5.14/packages/vite/CHANGELOG.md) -
+  [Commits](https://github.com/vitejs/vite/commits/v4.5.14/packages/vite)
+
+--- updated-dependencies: - dependency-name: vite dependency-version: 4.5.14
+
+dependency-type: indirect
+
+...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+
+- **docker**: Add option to configure launcher timeout
+  ([`9dd07cc`](https://github.com/Kitware/trame/commit/9dd07ccdde520a5bc5b7fbc53b5a60e2515ba9fb))
+
+### Continuous Integration
+
+- Make docker.yml exec manual
+  ([`6898ffa`](https://github.com/Kitware/trame/commit/6898ffafccc613094f6794038578e8030ee913a5))
+
+- **docker**: Add uv setup
+  ([`ace80cd`](https://github.com/Kitware/trame/commit/ace80cd33466c78a7529a91f221bd0d00fb52d18))
+
+### Documentation
+
+- Add trame-alerts in known available widgets
+  ([`9fd77df`](https://github.com/Kitware/trame/commit/9fd77dfec4118920710ccefa4415451f0299cc04))
+
+- Update website
+  ([`eca8cb7`](https://github.com/Kitware/trame/commit/eca8cb7364abc2525f8ac603e65a1696610ce530))
+
+- **html**: Precise the usage of parentheses for expressions
+  ([`081dbe9`](https://github.com/Kitware/trame/commit/081dbe9f3ab06554cb43b2fb0a6abd6f8f6b686f))
+
+- **wasm**: Add example
+  ([`8afb47b`](https://github.com/Kitware/trame/commit/8afb47bcfe14e9c2952772bffde1d25a1ea0add1))
+
+- **wasm**: Add example
+  ([`e39eb87`](https://github.com/Kitware/trame/commit/e39eb877e166bfcf38ee33fe64e476933ef2d87a))
+
+- **wasm**: Add example
+  ([`b60b429`](https://github.com/Kitware/trame/commit/b60b4295061e32a16f441fdf0bc6f4834fa460f9))
+
+- **wasm**: Add example
+  ([`9fee106`](https://github.com/Kitware/trame/commit/9fee106efd27d56bacd0948ecbef4104554f701f))
+
+- **wasm**: Add example
+  ([`6646477`](https://github.com/Kitware/trame/commit/66464776455da64f542ea834af19fafc4549230f))
+
+
 ## v3.9.0 (2025-04-25)
 
 ### Bug Fixes

@@ -1,27 +1,18 @@
-vtk==9.4.1
+vtk==9.4.2
 
 pygments
-sphinx
+sphinx<8
 sphinx_rtd_theme
 
 # Add external widgets
 
 # core
-trame-client>=3.2.3
-trame-server>=3.0.3
+trame-client>=3.9
+trame-server>=3.4
 
 # Vue 2
-trame-leaflet
-trame-simput
 trame-grid-layout
-trame-plotly
-trame-vega
-trame-router
-trame-components
-trame-matplotlib
 trame-deckgl
-trame-rca
-trame-markdown
 
 # Vue 2/3
 trame-vtk
@@ -32,8 +23,18 @@ trame-xterm
 trame-code
 trame-vtk3d
 trame-vtklocal
+trame-rca
+trame-markdown
+trame-plotly
+trame-vega
+trame-router
+trame-leaflet
+trame-simput
+trame-components
+trame-matplotlib
 
 # Vue 3
 trame-formkit
 trame-quasar
 trame-datagrid
+trame-image-tools

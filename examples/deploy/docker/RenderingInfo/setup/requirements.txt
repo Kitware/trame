@@ -1,2 +1,2 @@
-trame
+trame>=3.10.1
 vtk

@@ -15,8 +15,8 @@ def get_rendering_information():
 
         return render_window.ReportCapabilities()
 
-    except ImportError:
-        return "VTK is not available"
+    except ImportError as err:
+        return err.msg
 
 
 class VtkRenderingInfo(TrameApp):

@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v3.10.0 (2025-05-28)
+
+### Features
+
+- **vtk**: Add tool for displaying rendering capabilities
+  ([`e644c0f`](https://github.com/Kitware/trame/commit/e644c0f3ba0a58eca78c7bcb2e04cf4cbea3dcbb))
+
+
 ## v3.9.1 (2025-05-27)
 
 ### Bug Fixes

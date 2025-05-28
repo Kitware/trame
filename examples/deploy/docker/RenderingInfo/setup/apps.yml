@@ -1,0 +1,12 @@
+trame:
+  cmd:
+    - python
+    - -m
+    - trame.tools.vtk
+    - --host
+    - ${host}
+    - --port
+    - ${port}
+    - --authKey
+    - ${secret}
+    - --server

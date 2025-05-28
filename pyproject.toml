@@ -1,6 +1,6 @@
 [project]
 name = "trame"
-version = "3.10.0"
+version = "3.10.1"
 description = "Trame, a framework to build applications in plain Python"
 authors = [
     {name = "Kitware Inc."},

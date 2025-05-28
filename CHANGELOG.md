@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v3.10.1 (2025-05-28)
+
+### Bug Fixes
+
+- **vtk**: Return import error
+  ([`73b9a34`](https://github.com/Kitware/trame/commit/73b9a34c63f104e450728fae607d490a886a2bf1))
+
+
 ## v3.10.0 (2025-05-28)
 
 ### Features

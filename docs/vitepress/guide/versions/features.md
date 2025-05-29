@@ -1,5 +1,10 @@
 # Features by versions
 
+## Version 3.10
+
+This version is bringing a new tool around VTK for debugging remote rendering deployment.
+More information are captured [here](https://trame.readthedocs.io/en/latest/tools.vtk.html).
+
 ## Version 3.9
 
 This version is bringing new classes to help with application or component setup.

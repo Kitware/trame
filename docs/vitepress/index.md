@@ -55,3 +55,14 @@ features:
     link: https://www.kitware.com/trame/
 
 ---
+
+<div class="vp-doc home-wrapper">
+
+# Activities
+
+<!-- @include: ./news.md{,23} -->
+
+--- 
+[See all news](./news)
+
+</div>

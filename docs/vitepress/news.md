@@ -1,3 +1,27 @@
+## Mai 28, 2025
+
+[Version 3.10](https://kitware.github.io/trame/guide/versions/features.html#version-3-10) of trame has been released. This version add a new tool for providing information on the rendering backend used by VTK. The tool documentation is available [here](https://trame.readthedocs.io/en/latest/tools.vtk.html), but in a nutshell, this is going to be very useful when debugging cloud deployment for remote rendering setup for either VTK or ParaView.
+
+## Mai 9, 2025
+
+Trame client is now 3.9 and brings all the [built-in components](https://vuejs.org/api/built-in-components.html#built-in-components) of vue.js.
+
+## April 25, 2025
+
+[Version 3.9](https://kitware.github.io/trame/guide/versions/features.html#version-3-9) of trame has been released. This version brings a new core module named trame-common into the mix. That module aims to provide generic classes that can be relevant across trame packages. This includes assets handling, execution helper (throttle, async task), decorators and abstract classes for building components or apps.
+
+## April 24, 2025
+
+Trame client is now 3.8 and brings support for event modifier from vue.js when using the v_on_xxx_yyy notation. 
+
+## April 14, 2025
+
+Trame vuetify has been updated to include [Andromeda 3.8](https://vuetifyjs.com/en/blog/announcing-vuetify-3.8/).
+
+## February 4, 2025
+
+[Version 3.8](https://kitware.github.io/trame/guide/versions/features.html#version-3-8) of trame has been released. This mainly fixes the `@TrameApp()` decorator so it can be used throw inheritance.
+
 ## October 29, 2024
 
 With the release of __vtk__ 9.4, we have some really cool news for the __python__ community. 
@@ -8,6 +32,10 @@ Want to learn more on how to best leverage vtk with Python?
 Read our [blog on the new property and pipeline syntax](https://www.kitware.com/vtk-9-4-a-step-closer-to-the-ways-of-python/).
 
 As always, [kitware can help](https://www.kitware.com/industry/support/) 
+
+## October 20, 2024
+
+We have a new widget that enable deep reactiveness on a state variable. This feature is only available with the vue3 client. An example of such usage is available [here](https://github.com/Kitware/trame-client/blob/master/examples/vue3/nested_reactive.py).
 
 ## October 16, 2024
 
@@ -97,8 +125,6 @@ __Enterprise deployment of CFD models with M-STAR__
 
 <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7225162200967979009" height="803" width="100%" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
 
-
-
 ## July 8-14, 2024
 
 __Trame was present at SciPy__
@@ -114,6 +140,10 @@ Nice to see __trame__ being used by the community within __jupyter__ context to 
 ## May, 2024
 
 <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7189758268393545728" height="640" width="100%" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+
+## April 10, 2024
+
+[Version 3.6](https://kitware.github.io/trame/guide/versions/features.html#version-3-6) of trame has been released. This version brings some big internal refactoring that replace the network layer to support message chunking via msgpack. This is key for enabling better support for trame within Jupyter thanks to the trame-jupyter-extension. 
 
 ## April, 2024
 

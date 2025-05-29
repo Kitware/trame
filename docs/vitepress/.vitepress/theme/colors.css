@@ -7,3 +7,11 @@
     --vp-c-brand-1: #2C68C0;
     --vp-c-brand-2: #5DAC41;
 }
+
+.home-wrapper {
+    margin: 0 auto;
+    position: relative;
+    width: 100%;
+    padding: 32px 48px 96px;
+    max-width: 1152px;
+}

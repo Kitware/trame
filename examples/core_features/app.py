@@ -1,22 +1,13 @@
-from trame.app import get_server
-from trame.decorators import TrameApp, change, controller, life_cycle, trigger
+from trame.app import TrameApp
+from trame.decorators import change, controller, life_cycle, trigger
 from trame.ui.html import DivLayout
 from trame.widgets import html
 
 
-@TrameApp()
-class App:
+class App(TrameApp):
     def __init__(self, name=None):
-        self.server = get_server(name)
-        self.ui()
-
-    @property
-    def state(self):
-        return self.server.state
-
-    @property
-    def ctrl(self):
-        return self.server.controller
+        super().__init__(server=name)
+        self._build_ui()
 
     @trigger("exec")
     def method_call(self, msg):
@@ -34,8 +25,8 @@ class App:
     def on_ready(self, *args, **kwargs):
         print("on_ready")
 
-    def ui(self):
-        with DivLayout(self.server):
+    def _build_ui(self):
+        with DivLayout(self.server) as self.ui:
             html.Input(
                 type="range",
                 min=3,

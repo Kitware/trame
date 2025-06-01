@@ -1,12 +1,5 @@
 # Exposing a trame application into Jupyter
 
-## Disable warning
-
-```python
-import os
-os.environ["TRAME_DISABLE_V3_WARNING"] = "1"
-```
-
 ## Define application
 
 <<< @/../../examples/core_features/jupyter.py
@@ -15,8 +8,7 @@ os.environ["TRAME_DISABLE_V3_WARNING"] = "1"
 
 ```python
 cone = Cone()
-await cone.ui.ready
-cone.ui
+cone
 ```
 
 ![Trame in Jupyer](/assets/images/deployment/jupyter.png)
@@ -26,4 +18,3 @@ cone.ui
 ```python
 cone.resolution = 4
 ```
-

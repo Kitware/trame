@@ -1,23 +1,12 @@
-from trame.app import get_server
-from trame.ui.vuetify import SinglePageLayout
-from trame.widgets import html, vtk, vuetify
+from trame.app import TrameApp
+from trame.ui.vuetify3 import SinglePageLayout
+from trame.widgets import html, vtk, vuetify3
 
 
-class Cone:
+class Cone(TrameApp):
     def __init__(self, name=None):
-        self.server = get_server(name, client_type="vue2")
-        self._ui = None
-
-        # Build UI
-        self.ui
-
-    @property
-    def state(self):
-        return self.server.state
-
-    @property
-    def ctrl(self):
-        return self.server.controller
+        super().__init__(server=name)
+        self._build_ui()
 
     @property
     def resolution(self):
@@ -31,25 +20,21 @@ class Cone:
     def reset_resolution(self):
         self.resolution = 6
 
-    @property
-    def ui(self):
-        if self._ui is None:
-            with SinglePageLayout(self.server) as layout:
-                self._ui = layout
-                with layout.toolbar:
-                    html.Div("a: {{ a }}")
-                    vuetify.VSpacer()
-                    vuetify.VSlider(
-                        v_model=("resolution", 6), min=3, max=60, hide_details=True
-                    )
-                    vuetify.VBtn("Reset", click=self.reset_resolution)
-                with layout.content:
-                    with vuetify.VContainer(fluid=True, classes="pa-0 fill-height"):
-                        with vtk.VtkView() as vtk_view:
-                            self.ctrl.reset_camera = vtk_view.reset_camera
-                            with vtk.VtkGeometryRepresentation():
-                                vtk.VtkAlgorithm(
-                                    vtkClass="vtkConeSource", state=("{ resolution }",)
-                                )
-
-        return self._ui
+    def _build_ui(self):
+        with SinglePageLayout(self.server) as self.ui:
+            self.ui.icon.click = self.ctrl.reset_camera
+            with self.ui.toolbar:
+                html.Div("resolution: {{ resolution }}")
+                vuetify3.VSpacer()
+                vuetify3.VSlider(
+                    v_model=("resolution", 6), min=3, max=60, step=1, hide_details=True
+                )
+                vuetify3.VBtn("Reset", click=self.reset_resolution)
+            with self.ui.content:
+                with vuetify3.VContainer(fluid=True, classes="pa-0 fill-height"):
+                    with vtk.VtkView() as vtk_view:
+                        self.ctrl.reset_camera = vtk_view.reset_camera
+                        with vtk.VtkGeometryRepresentation():
+                            vtk.VtkAlgorithm(
+                                vtkClass="vtkConeSource", state=("{ resolution }",)
+                            )

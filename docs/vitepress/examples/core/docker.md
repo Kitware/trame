@@ -6,18 +6,19 @@ For instance you could deploy the following on a CapRover instance by just runni
 
 [![Simple deployment over https](/assets/images/deployment/cone-caprover.png)](https://github.com/Kitware/trame-app-cone)
 
-
-## ./
-
 ::: code-group
 
 ```Dockerfile
-FROM kitware/trame
+FROM kitware/trame:py3.10-glvnd
+
+RUN apt-get update \
+    && apt-get install -y \
+    libxrender1 \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY --chown=trame-user:trame-user . /deploy
 
 RUN /opt/trame/entrypoint.sh build
-
 ```
 
 ```captain-definition
@@ -27,12 +28,6 @@ RUN /opt/trame/entrypoint.sh build
 }
 ```
 <<< @/../../examples/deploy/docker/VtkRendering/app.py
+<<< @/../../examples/deploy/docker/VtkRendering/setup/apps.yml [./setup/apps.yaml]
+<<< @/../../examples/deploy/docker/VtkRendering/setup/requirements.txt [./setup/requirements.txt]
 :::
-
-## ./setup
-
-::: code-group
-<<< @/../../examples/deploy/docker/VtkRendering/setup/apps.yml
-<<< @/../../examples/deploy/docker/VtkRendering/setup/requirements.txt
-:::
-

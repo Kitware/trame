@@ -62,7 +62,7 @@ def random_update():
 
 ### Forcing state exchange
 
-Sometimes, the variable inside your shared state is an actual object with a nested structure. While the state on the Python side always maintains a reference to that object, when manually editing it's important to flush its contents so that the client reflects changes. In this situation, the `dirty()` method can be called with the list of variable names that should be pushed. 
+Sometimes, the variable inside your shared state is an actual object with a nested structure. While the state on the Python side always maintains a reference to that object, when manually editing it's important to flush its contents so that the client reflects changes. In this situation, the `dirty()` method can be called with the list of variable names that should be pushed.
 
 Here is a simple example of what we mean by nested structure.
 
@@ -81,7 +81,7 @@ def edit_state():
   state.dirty("list_variable", "dict_variable")
 ```
 
-You can also decide when a state needs to be flushed using it as a context manager. 
+You can also decide when a state needs to be flushed using it as a context manager.
 Be aware that flushing will only work on variables that are known to be modified/dirty.
 Also such flushing operation is mendatory when running in an async task or coroutine.
 The code below provides a simple example.
@@ -94,7 +94,7 @@ async def update_time():
   while True:
     await asyncio.sleep(1)
     # needed because of async and will flush on exit
-    with state: 
+    with state:
       # modification is automatically detected
       state.time = time.time()
 
@@ -163,7 +163,7 @@ When creating a layout, you have the opportunity to define the Tab title along w
 
 ## HTML Elements
 
-HTML elements in trame (trame.html.*) are just helpers for generating HTML content. But because they exist as Python objects, users can interact with them simply by setting attributes on them in plain Python.
+HTML elements in trame (trame.widgets.html.*) are just helpers for generating HTML content. But because they exist as Python objects, users can interact with them simply by setting attributes on them in plain Python.
 
 Below are various ways that you can translate what you see on a Vue component into trame syntax.
 

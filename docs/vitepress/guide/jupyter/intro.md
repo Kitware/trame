@@ -1,7 +1,7 @@
 # Trame and Jupyter Lab
 
-A trame application, while working in standlone fashion, can also be imported inside Jupyter and displayed within a notebook.
-To make that possible, the user will need to be able to import and instantiate such application in a Jupyter context. Then, the user will need to have access to the layout (ui) of that application so it can be displayed in the notebook flow. 
+A trame application, while working in standalone fashion, can also be imported inside Jupyter and displayed within a notebook.
+To make that possible, the user will need to be able to import and instantiate such application in a Jupyter context. Then, the user will need to have access to the layout (ui) of that application so it can be displayed in the notebook flow.
 
 ## Simple example
 
@@ -36,14 +36,11 @@ from trame.app.demo import Cone
 # Create new application instance
 app = Cone()
 
-# Let's start the server by waiting for its UI to be ready
-await app.ui.ready
-
 # Put the UI into the resulting cell
-app.ui
+app
 ```
 
-This should look like 
+This should look like
 
 ![Cone in Jupyter](/assets/images/jupyter/jupyter-cone.png)
 

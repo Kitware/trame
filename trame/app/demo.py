@@ -1,21 +1,13 @@
-from trame.app import get_server
+from trame.app import TrameApp
 from trame.ui.vuetify3 import SinglePageLayout
 from trame.widgets import vtk as vtk_widgets
 from trame.widgets import vuetify3 as v3
 
 
-class Cone:
+class Cone(TrameApp):
     def __init__(self, server_or_name=None):
-        self.server = get_server(server_or_name)
-        self.ui = self._generate_ui()
-
-    @property
-    def ctrl(self):
-        return self.server.controller
-
-    @property
-    def state(self):
-        return self.server.state
+        super().__init__(server_or_name)
+        self._build_ui()
 
     @property
     def resolution(self):
@@ -29,11 +21,11 @@ class Cone:
     def reset_resolution(self):
         self.resolution = 6
 
-    def _generate_ui(self):
-        with SinglePageLayout(self.server) as layout:
-            layout.title.set_text("Trame demo")
-            with layout.toolbar as toolbar:
-                toolbar.dense = True
+    def _build_ui(self):
+        with SinglePageLayout(self.server) as self.ui:
+            self.ui.title.set_text("Trame demo")
+            with self.ui.toolbar as toolbar:
+                toolbar.density = "compact"
                 v3.VSpacer()
                 v3.VSlider(
                     v_model=("resolution", 6),
@@ -43,15 +35,10 @@ class Cone:
                     hide_details=True,
                     style="max-width: 300px;",
                 )
-                with v3.VBtn(icon=True, click=self.reset_resolution):
-                    v3.VIcon("mdi-lock-reset")
-                with v3.VBtn(
-                    icon=True,
-                    click=self.ctrl.view_reset_camera,
-                ):
-                    v3.VIcon("mdi-crop-free")
+                v3.VBtn(icon="mdi-lock-reset", click=self.reset_resolution)
+                v3.VBtn(icon="mdi-crop-free", click=self.ctrl.view_reset_camera)
 
-            with layout.content:
+            with self.ui.content:
                 with v3.VContainer(fluid=True, classes="pa-0 fill-height"):
                     with vtk_widgets.VtkView() as view:
                         self.ctrl.view_reset_camera = view.reset_camera
@@ -60,8 +47,6 @@ class Cone:
                                 vtk_class="vtkConeSource",
                                 state=("{ resolution }",),
                             )
-
-            return layout
 
 
 def main(**kwargs):

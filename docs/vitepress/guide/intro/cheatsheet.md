@@ -1,64 +1,12 @@
 # Cheatsheet
 
-The working application below captures the fundamentals of __trame__ in less than 45 lines. Consider this as a cheatsheet on how to use __trame__ as it is mostly self explanatory.
+The working application below captures the fundamentals of **trame** in less than 45 lines. Consider this as a cheatsheet on how to use **trame** as it is mostly self explanatory.
 
-```python
-from trame.app import get_server               # Entry point to trame
-from trame.ui.vuetify import SinglePageLayout  # UI layout
-from trame.widgets import vuetify, vtk         # UI widgets
-
-server = get_server()                          # Create/retrieve default server
-server.client_type = "vue2"                    # Choose between vue2 and vue3
-state, ctrl = server.state, server.controller  # Extract server state and controller
-
-# Reset resolution variable to 6
-def reset_resolution():
-    state.resolution = 6
-
-# When resolution change, execute fn
-@state.change("resolution")
-def resolution_change(resolution, **kwargs):
-    print(f"Slider updating resolution to {resolution}")
-
-# Initialize application layout/ui
-with SinglePageLayout(server) as layout:
-    # Toolbar customization (add-on)
-    with layout.toolbar as toolbar:
-        toolbar.dense = True            # Update toolbar attribute
-        vuetify.VSpacer()               # Push things to the right
-        vuetify.VSlider(                # Add slider
-            v_model=("resolution", 6),     # bind variable with an initial value of 6
-            min=3, max=60,                 # slider range
-            dense=True, hide_details=True, # presentation setup
-        )
-        # Bind methods to 2 icon buttons
-        with vuetify.VBtn(icon=True, click=ctrl.reset_camera):
-            vuetify.VIcon("mdi-crop-free")
-        with vuetify.VBtn(icon=True, click=reset_resolution):
-            vuetify.VIcon("mdi-undo")
-
-    # Content setup
-    with layout.content:
-        with vuetify.VContainer(fluid=True, classes="pa-0 fill-height"):
-            with vtk.VtkView() as vtk_view:               # vtk.js view for local rendering
-                ctrl.reset_camera = vtk_view.reset_camera # Bind method to controller
-                with vtk.VtkGeometryRepresentation():     # Add representation to vtk.js view
-                    vtk.VtkAlgorithm(                     # Add ConeSource to representation
-                        vtkClass="vtkConeSource",           # Set attribute value with no JS eval
-                        state=("{ resolution }",)           # Set attribute value with JS eval
-                    )
-
-# Start server
-server.start()
-```
+<<< @/../../examples/06_vtk/00_ClientOnly/cheatsheet.py
 
 ## Results
 
-![Code](/assets/images/guide/cheatsheet-code.jpg)
-
-| ![GUI](/assets/images/guide/cheatsheet-app.jpg){ width=60% } | ![Terminal](/assets/images/guide/cheatsheet-output.jpg) |
-| --- | --- |
-
+![Code](/assets/images/guide/cheatsheet-app.png)
 
 ## Explanatory Details
 
@@ -118,7 +66,7 @@ vuetify.VTextField(value=("'Hello' + var_name", ))
 
 Methods can be passed to the events attribute of your UI elements. By default, the function will be called with no arguments.
 
-If you want to control its arguments you can use a tuple where the second entry represents the __args__ and the third represents the __kwargs__. If you only want to provide args without kwargs, just provide a tuple with 2 entries. __$event__ is a reserved name to represent the event object.
+If you want to control its arguments you can use a tuple where the second entry represents the **args** and the third represents the **kwargs**. If you only want to provide args without kwargs, just provide a tuple with 2 entries. **$event** is a reserved name to represent the event object.
 
 ```python
 vuetify.VBtn("Click me", click="a = $event"))
@@ -143,16 +91,15 @@ ctrl.do_something = fn
 ### Summary
 
 | ![Shared state summary](/assets/images/course/state.jpg) | ![Event summary](/assets/images/course/events.jpg) |
-| --- | --- |
-
+| -------------------------------------------------------- | -------------------------------------------------- |
 
 ## Life Cycle
 
-* on_server_ready : All protocols initialized and available for the client to connect.
-* on_client_connected : Connection established to server.
-* on_client_exited : Linked to browser "beforeunload" event.
-* on_server_exited : Trame is exiting its event loop.
-* on_server_reload : If callback registered it is used to reload server side modules.
+- on_server_ready : All protocols initialized and available for the client to connect.
+- on_client_connected : Connection established to server.
+- on_client_exited : Linked to browser "beforeunload" event.
+- on_server_exited : Trame is exiting its event loop.
+- on_server_reload : If callback registered it is used to reload server side modules.
 
 ```python
 

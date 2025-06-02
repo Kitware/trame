@@ -9,9 +9,7 @@ The [trame-cookiecutter](https://github.com/Kitware/trame-cookiecutter) provide 
 For tauri, you can look at an example [here](https://github.com/Kitware/trame-tauri/tree/master/examples/simple-cone). Then you can browse around for more...
 
 ```bash
-pip install \
-    trame trame-vuetify trame-vtk \ # Demo app requirement
-    pywebview # Simple Python app view for web content
+pip install "trame[app]" trame-vuetify trame-vtk # Demo app requirement
 
 # Run simple example app
 python -m trame.app.demo --app

@@ -1,6 +1,39 @@
 # CHANGELOG
 
 
+## v3.10.2 (2025-06-06)
+
+### Bug Fixes
+
+- **assets**: Expose download_file_from_google_drive
+  ([`351d13b`](https://github.com/Kitware/trame/commit/351d13b7a44e7606bd0acef01abb6f595e801593))
+
+### Continuous Integration
+
+- Try to fix rtd
+  ([`bd48e8b`](https://github.com/Kitware/trame/commit/bd48e8bfb9b6557a871c0c31b0aceef7381e5ce7))
+
+### Documentation
+
+- Update basic example with new TrameApp
+  ([`3a7f8f2`](https://github.com/Kitware/trame/commit/3a7f8f2e9740eb243018a4fb63f784e7e82b8124))
+
+- Update cone docker app image
+  ([`36be943`](https://github.com/Kitware/trame/commit/36be9438d2d9063659c8f0f20731b08985befe91))
+
+- Update plotly and docker
+  ([`12291ec`](https://github.com/Kitware/trame/commit/12291ec655c99c05b0f07ba379b5f76b8c84af24))
+
+- Upgrade sample code on website
+  ([`615c85f`](https://github.com/Kitware/trame/commit/615c85f02b733f6cc69bf5c4fb7cad6b6b3dd242))
+
+- **jupyter**: Update example with TrameApp
+  ([`8b4cf3a`](https://github.com/Kitware/trame/commit/8b4cf3a28ee511c5d70a02f1020dcda73e57dd24))
+
+- **website**: Add activity section and update news
+  ([`1361bbc`](https://github.com/Kitware/trame/commit/1361bbc2c76607fe8f110beac3aeeb5ccc780f65))
+
+
 ## v3.10.1 (2025-05-28)
 
 ### Bug Fixes

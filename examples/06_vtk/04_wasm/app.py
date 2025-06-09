@@ -1,3 +1,18 @@
+#!/usr/bin/env -S uv run --script
+#
+# /// script
+# requires-python = ">=3.11"
+# dependencies = [
+#     "trame>=3.10",
+#     "trame-components>=2.5",
+#     "trame-vtklocal",
+#     "trame-vuetify",
+#     "vtk==9.5.0rc2",
+# ]
+#
+# [[tool.uv.index]]
+# url = "https://wheels.vtk.org"
+# ///
 import vtk
 
 from trame.app import TrameApp

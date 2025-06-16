@@ -1,7 +1,8 @@
 # Local rendering with WASM
 
-Streamline seed control from both 3D widgets and 2D widget.
+The example below showcase how the line source for the streamline seeds can be controlled from either a 3D widgets and 2D widget.
 
+To learn more about VTK.wasm and what you can do with it, [the VTK.wasm documentation website](https://kitware.github.io/vtk-wasm/) is the reference to follow.
 
 <video control loop autoplay muted>
     <source src="/assets/videos/cfd-bike-480.mp4" alt="Bike CFD example">

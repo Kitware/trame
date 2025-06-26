@@ -12,7 +12,7 @@
 | | [alerts](https://github.com/Kitware/trame-alerts "Notification and alerts") | trame-alerts | 3 | [3](# "core, vuetify and quasar.") |
 | | [datagrid](https://github.com/Kitware/trame-datagrid "RevoGrid spreadsheet") | trame-datagrid | 3 | 3 |
 | | [formkit](https://github.com/Kitware/trame-formkit "FormKit widgets") | trame-formkit | 3 | 2 |
-| | [goldenlayout](https://github.com/Kitware/trame-goldenlayout "Golden-layout widgets") | trame-goldenlayout | 3 | 1 |
+| | [dockview](https://github.com/Kitware/trame-dockview "Dockview widgets") | trame-dockview | 3 | 1 |
 | | [grid](https://github.com/Kitware/trame-grid-layout "Dynamic grid layout containers ") | trame-grid-layout | 2 | 2 |
 | | [markdown](https://github.com/Kitware/trame-markdown "Component that renders Markdown syntax") | trame-markdown | 2 & 3 [⚠️](# "If coming from v2, the v3 has a different engine configuration while now supporting both vue 2/3.") | 1 |
 | | [pvui (ParaView UI)](https://github.com/Kitware/trame-pvui "Widgets that may be used in the Paraview user interface") | trame-pvui | 2 | 4 |
@@ -21,14 +21,14 @@
 | | [trame](https://github.com/Kitware/trame-components "Helper components") | trame-components | 2 & 3 [⚠️](# "In the code upgrade to support 2 & 3, some event keys have been updated.") | 11 |
 | | [tweakpane](https://github.com/Kitware/trame-tweakpane "Tweakpane widgets") | trame-tweakpane | 2 & 3 | 10 |
 | | [vuetify, vuetify2, vuetify3](https://github.com/Kitware/trame-vuetify "Vuetify UI components") | trame-vuetify | 2 & 3 [⚠️](# "The set of components are a bit different with API change. Please look at the 'upgrade guide' for more details.")| 146 & 156 |
-| **Charts** | 
+| **Charts** |
 | | [matplotlib](https://github.com/Kitware/trame-matplotlib "Renders Matplotlib plots") | trame-matplotlib | 2 & 3 | 1 |
 | | [plotly](https://github.com/Kitware/trame-plotly "Renders Plotly charts") | trame-plotly | 2 & 3 | 1 |
 | | [vega](https://github.com/Kitware/trame-vega "Figure component that is capable of rendering Vega grammars such as Altair plots") | trame-vega | 2 & 3 | 1 |
 | **2D** |
 | | [annotations](https://github.com/Kitware/trame-annotations "Widgets for image and video annotations") | trame-annotations | 3 | 4
 | | [bbox](https://github.com/Kitware/trame-bbox "Widget to draw and/or interact with bounding boxes") [🏗️](# "This component has been pushed to capture the current development state but is currently lacking funding to complete it.") | trame-bbox | 2 & 3 | 1 |
-| **3D** | 
+| **3D** |
 | | [vtk, paraview](https://github.com/Kitware/trame-vtk "Interface with VTK and/or ParaView") | trame-vtk | 2 & 3 | 15 |
 | | [vtk3d](https://github.com/Kitware/trame-vtk3d "Wrapper to WASM bundle of VTK") | trame-vtk3d | 2 & 3 | 1 |
 | | 🆕[vtklocal](https://github.com/Kitware/trame-vtklocal "Local Rendering using VTK/WASM to match server side rendering pipeline on the client side") [⚠️](# "This component leverage VTK-WASM and therefore requires nightly VTK build with matching wasm package.") | trame-vtklocal | 2 & 3 | 1 |

@@ -1,6 +1,28 @@
 # CHANGELOG
 
 
+## v3.11.0 (2025-07-24)
+
+### Documentation
+
+- Update wasm to use script notation
+  ([`5317d1a`](https://github.com/Kitware/trame/commit/5317d1a78c2d72dfb1d3d3a891759ab153284138))
+
+- **pv**: Update to vue3
+  ([`40bc0bf`](https://github.com/Kitware/trame/commit/40bc0bf0ea3381dc99b39ea0eefeaaee4ecd2367))
+
+- **wasm**: Add link to wasm website
+  ([`ab901d0`](https://github.com/Kitware/trame/commit/ab901d0d1898be39b68445ce7c51b779de66f275))
+
+- **widgets**: Add dockview
+  ([`fc8ff92`](https://github.com/Kitware/trame/commit/fc8ff9231a19c3ce192e187efae090717dccea6b))
+
+### Features
+
+- **jupyter**: Add css helper
+  ([`c5fecb9`](https://github.com/Kitware/trame/commit/c5fecb9414194ceae76ca27ed5665b6bca08b1ed))
+
+
 ## v3.10.2 (2025-06-06)
 
 ### Bug Fixes

@@ -3,16 +3,16 @@ Installation requirements:
     pip install trame trame-vuetify trame-vtk
 """
 
-import paraview.web.venv  # Available in PV 5.11
+# import paraview.web.venv  # Available in PV 5.11
 from paraview import simple
 
 from trame.app import get_server
-from trame.ui.vuetify import SinglePageLayout
-from trame.widgets import paraview, vuetify
+from trame.ui.vuetify3 import SinglePageLayout
+from trame.widgets import paraview, vuetify3
 
 # -----------------------------------------------------------------------------
 
-server = get_server(client_type="vue2")
+server = get_server(client_type="vue3")
 state, ctrl = server.state, server.controller
 state.trame__title = "ParaView cone"
 
@@ -45,23 +45,22 @@ with SinglePageLayout(server) as layout:
     layout.title.set_text("Cone Application")
 
     with layout.toolbar:
-        vuetify.VSpacer()
-        vuetify.VSlider(
+        vuetify3.VSpacer()
+        vuetify3.VSlider(
             v_model=("resolution", DEFAULT_RESOLUTION),
             min=3,
             max=60,
             step=1,
             hide_details=True,
-            dense=True,
+            density="compact",
             style="max-width: 300px",
         )
-        vuetify.VDivider(vertical=True, classes="mx-2")
-        with vuetify.VBtn(icon=True, click=update_reset_resolution):
-            vuetify.VIcon("mdi-undo-variant")
+        vuetify3.VDivider(vertical=True, classes="mx-2")
+        vuetify3.VBtn(icon="mdi-undo-variant", click=update_reset_resolution)
 
     with layout.content:
-        with vuetify.VContainer(fluid=True, classes="pa-0 fill-height"):
-            html_view = paraview.VtkLocalView(view, ref="view")
+        with vuetify3.VContainer(fluid=True, classes="pa-0 fill-height"):
+            html_view = paraview.VtkLocalView(view)
             ctrl.view_reset_camera = html_view.reset_camera
             ctrl.view_update = html_view.update
 

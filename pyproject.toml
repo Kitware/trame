@@ -2,19 +2,17 @@
 name = "trame"
 version = "3.11.0"
 description = "Trame, a framework to build applications in plain Python"
-authors = [
-    {name = "Kitware Inc."},
-]
+authors = [{ name = "Kitware Inc." }]
 dependencies = [
     "trame-server>=3.4,<4",
-    "trame-client>=3.8,<4",
+    "trame-client>=3.10.1,<4",
     "trame-common>=1,<2",
     "wslink>=2.3.3",
-    "pyyaml", # for trame.tools.widgets
+    "pyyaml",                  # for trame.tools.widgets
 ]
 requires-python = ">=3.9"
 readme = "README.rst"
-license = {text = "Apache License 2.0"}
+license = { text = "Apache License 2.0" }
 keywords = ["Python", "Interactive", "Web", "Application", "Framework"]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
@@ -28,17 +26,9 @@ classifiers = [
 ]
 
 [project.optional-dependencies]
-app = [
-    "pywebview",
-]
-jupyter = [
-    "jupyterlab",
-]
-dev = [
-    "pre-commit",
-    "ruff",
-    "pytest",
-]
+app = ["pywebview"]
+jupyter = ["jupyterlab"]
+dev = ["pre-commit", "ruff", "pytest"]
 
 [build-system]
 requires = ['setuptools', 'wheel']
@@ -51,9 +41,7 @@ where = ["."]
 
 
 [tool.semantic_release]
-version_toml = [
-    "pyproject.toml:project.version",
-]
+version_toml = ["pyproject.toml:project.version"]
 build_command = """
   python -m venv .venv
   source .venv/bin/activate

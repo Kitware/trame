@@ -40,6 +40,7 @@ Welcome to Trame's documentation!
 
    tools.www
    tools.app
+   tools.retry
    tools.widgets
    tools.serve
    tools.vtk

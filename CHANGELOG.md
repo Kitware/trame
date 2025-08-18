@@ -1,6 +1,22 @@
 # CHANGELOG
 
 
+## v3.12.0 (2025-08-18)
+
+### Documentation
+
+- **vtklocal**: Add push camera example
+  ([`0c45443`](https://github.com/Kitware/trame/commit/0c45443151b42bb8d2fab9a333ff5d8c56dc6c91))
+
+- **widgets**: Update listing
+  ([`e89182a`](https://github.com/Kitware/trame/commit/e89182a24a999223877c7bf5906c789590fee795))
+
+### Features
+
+- **tools**: Add a retry tool for launcher
+  ([`c3110e5`](https://github.com/Kitware/trame/commit/c3110e5f8bc1265d2fbea53d7ebd899dd8fab887))
+
+
 ## v3.11.0 (2025-07-24)
 
 ### Documentation

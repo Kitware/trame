@@ -17,6 +17,15 @@ jobs:
           - ubuntu: 22.04
             python: 3
             label: "3.10"
+          - ubuntu: 22.04
+            python: 3
+            label: "3.11"
+          - ubuntu: 22.04
+            python: 3
+            label: "3.12"
+          - ubuntu: 22.04
+            python: 3
+            label: "3.13"
 
     # Start a local registry to which we will push trame-common, so that
     # docker buildx may access it in later steps.

@@ -1,4 +1,6 @@
-FROM kitware/trame:py3.10-glvnd
+FROM kitware/trame:uv-glvnd
+
+ENV TRAME_PYTHON=3.13
 
 RUN apt-get update \
     && apt-get install -y \

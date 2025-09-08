@@ -1,6 +1,8 @@
-FROM kitware/trame:py3.10
+FROM kitware/trame:uv
+
+ENV TRAME_PYTHON=3.13
+ENV TRAME_CLIENT_TYPE=vue2
 
 COPY --chown=trame-user:trame-user . /deploy
 
-ENV TRAME_CLIENT_TYPE=vue2
 RUN /opt/trame/entrypoint.sh build

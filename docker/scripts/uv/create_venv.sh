@@ -1,2 +1,2 @@
-uv venv -p $PYTHON_VERSION $TRAME_VENV
+uv venv -p $TRAME_PYTHON $TRAME_VENV
 . $TRAME_VENV/bin/activate

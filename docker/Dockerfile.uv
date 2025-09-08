@@ -1,7 +1,12 @@
 ARG BASE_IMAGE=trame-common
 FROM ${BASE_IMAGE}
 
-ARG PYTHON_VERSION=3.12
+# This is just the Python version that will be used in the root Python
+# venv (required by the build step). The Python version used by
+# applications can be set elsewhere by overriding the `TRAME_VENV`
+# environment variable.
+ARG PYTHON_VERSION=3.13
+ENV UV_ROOT_VENV=/home/trame-user/root_venv
 
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
@@ -11,9 +16,22 @@ COPY scripts/uv/* /opt/trame/
 # uv config envs
 ENV UV_NO_CACHE=1
 ENV UV_COMPILE_BYTECODE=1
+ENV UV_LINK_MODE=copy
 ENV VIRTUAL_ENV=/deploy/server/venv
+ENV TRAME_PYTHON=${PYTHON_VERSION}
 
 # Set venv paths
 ENV TRAME_VENV=$VIRTUAL_ENV
 ENV PV_VENV=$VIRTUAL_ENV
 ENV VTK_VENV=$VIRTUAL_ENV
+
+# Set up the root venv (for things like pyyaml).
+# Have to use `gosu` to create the venv so that python will be
+# installed somewhere that is accessible to trame-user
+RUN gosu trame-user uv venv --python ${PYTHON_VERSION} $UV_ROOT_VENV
+
+# Put the uv root dir in the path
+ENV PATH=$UV_ROOT_VENV/bin:$PATH
+
+# Install build dependencies in the root environment
+RUN gosu trame-user uv pip install PyYAML wheel

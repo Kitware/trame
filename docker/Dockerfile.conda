@@ -2,7 +2,7 @@ ARG BASE_IMAGE=trame-common
 FROM ${BASE_IMAGE}
 
 # Install miniconda
-ENV CONDA_DIR /opt/conda
+ENV CONDA_DIR=/opt/conda
 RUN if [ $(uname -m) = "x86_64" ]; then arch="x86_64"; else arch="aarch64"; fi && \
     wget -q https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-$arch.sh -O /miniconda.sh && \
     /bin/bash /miniconda.sh -b -p $CONDA_DIR && \
@@ -13,7 +13,7 @@ RUN if [ $(uname -m) = "x86_64" ]; then arch="x86_64"; else arch="aarch64"; fi &
 ENV PATH=$CONDA_DIR/bin:$PATH
 
 # Install pyyaml
-RUN gosu trame-user conda install -y --freeze-installed -c conda-forge \
+RUN gosu trame-user conda install -y --freeze-installed -c conda-forge --override-channels \
       pyyaml && \
     conda clean -afy
 

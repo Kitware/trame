@@ -4,7 +4,7 @@ The Trame Docker images are intended to be used for deploying multi-client Parav
 
 The images include an Apache front-end that is able to serve static web content and manage WebSocket routing, a launcher for starting new processes, and a Python virtual environment containing the runtime requirements for the ParaviewWeb/Trame application.
 
-A few different flavors of the Trame Docker images exist, including pip, pip with glvnd (for nvidia runtimes), and conda.
+A few different flavors of the Trame Docker images exist, including uv, uv with glvnd (for nvidia runtimes), and conda.
 
 An example of its usage can be found [here](https://github.com/Kitware/trame/tree/master/examples/deploy/docker/SingleFile). The `trame-cookiecutter` package [also contains an example](https://github.com/Kitware/trame-cookiecutter/tree/master/%7B%7Bcookiecutter.package_name%7D%7D/bundles/docker).
 
@@ -30,7 +30,7 @@ In case you aim the trame application to read/write files on a mounted directory
 
 - __TRAME_USER_DATA__
 
-    Path iniside docker for checking ownership and remapping that UID/GID to the unpriviledge trame-user within docker. 
+    Path iniside docker for checking ownership and remapping that UID/GID to the unpriviledge trame-user within docker.
 
 - __TRAME_URL_PREFIX__
 
@@ -73,7 +73,7 @@ This indicates that the app `trame-app` may also be accessed at the `/hello.html
 ### requirements.txt (optional)
 
 This file contains requirements that will be installed during setup.
-For pip, the file will be installed via `pip install -r requirements.txt`.
+For uv, the file will be installed via `uv pip install -r requirements.txt`.
 For conda, the file will be installed via `conda install -y --file requirements.txt`.
 This file may include the actual trame application itself.
 
@@ -83,7 +83,7 @@ This file is optional. If present, it may be used to run additional commands tha
 
 ### www/ (optional)
 
-This directory will be merged with the generated one at build time inside `/deploy/server/www`. Its content if overlapping existing files will override any previously generated one. This allow you to add or customize/replace specific files for your static file delivery. 
+This directory will be merged with the generated one at build time inside `/deploy/server/www`. Its content if overlapping existing files will override any previously generated one. This allow you to add or customize/replace specific files for your static file delivery.
 
 ### The Build Command
 

@@ -10,4 +10,4 @@ layout: page
 | [![diskout](/assets/images/examples/StateViewer-diskout.jpg)](/examples/paraview/state) | [![Markdown](/assets/images/examples/Markdown.jpg)](https://github.com/Kitware/trame/tree/master/examples/03_markdown) | [![rock](/assets/images/examples/StateViewer-rock.jpg)](/examples/paraview/state) |
 | [![xaitk](/assets/images/examples/xaitk.jpg)](/examples/apps/xaitk) | [![mnist](/assets/images/examples/trame-mnist.jpg)](/examples/apps/mnist) | [![hover](/assets/images/examples/SurfacePicking-hover.jpg)](/examples/vtk/picking) | ![select](/assets/images/examples/SurfacePicking-select.jpg) |
 | [![Table](/assets/images/examples/Table.jpg)](https://github.com/Kitware/trame/blob/master/examples/02_vuetify/00_dataframe-table.py) | [![USIncomeByState](/assets/images/examples/USIncomeByState.jpg)](https://github.com/Kitware/trame/tree/master/examples/05_charts/Altair-Vega) | [![singlepin](/assets/images/examples/VTPViewer-singlepin.jpg)](/examples/vtk/vtp) |
-
+| | [![slicer](/assets/images/apps/trame-slicer.png)](/examples/app/trame-slicer) |

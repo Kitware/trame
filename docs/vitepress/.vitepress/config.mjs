@@ -179,7 +179,8 @@ export default defineConfig({
             // { text: 'Asynchronous ParaView', link: 'https://github.com/Kitware/async-paraview-app' },
             // { text: 'PFB Viewer', link: 'https://github.com/Kitware/pfb-viewer' },
             // { text: 'ParFlow Simulation Modeler', link: 'https://github.com/Kitware/pf-simulation-modeler' },
-            { text: "Community", link: "/examples/apps/community" },
+            { text: '3D Slicer', link: '/examples/apps/trame-slicer' },
+            { text: 'Community', link: '/examples/apps/community' },
           ],
         },
         {

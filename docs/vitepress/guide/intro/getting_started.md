@@ -197,9 +197,16 @@ from trame.app import get_server
 server = get_server()
 
 server.cli.add_argument("-d", "--data", help="Directory to explore", dest="data")
-args = server.cli.parse_args()
+args = server.cli.parse_known_args()[0]
 print(args.data)
 ```
+
+Note that if you intend to use your own CLI parser or rely on a library which parses CLI arguments,
+you need to make sure that the arguments are not overlapping with the trame server ones.
+In case of CLI arguments overlapping and still requiring to pass arguments to trame server's, it is
+recommended to use either the `--trame-args` flag (eg. `--trame-args="-p 1000"`) or the `TRAME_ARGS` environment variable,
+which have a higher priority over CLI arguments.
+
 
 ## Starting an application
 

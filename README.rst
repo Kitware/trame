@@ -120,9 +120,10 @@ and are prefixed with `on_*`.
 * **on_server_ready**     : All protocols initialized and available for client to connect
 * **on_client_connected** : Connection established to server
 * **on_client_exited**    : Linked to browser "beforeunload" event
+* **on_server_start**     : Trame is starting its event loop
 * **on_server_exited**    : Trame is exiting its event loop
-
 * **on_server_reload**    : If callback registered it is used for reloading server side modules
+* **on_error**            : A JavaScript error has occured in the client, can be used to do something on the server when this occurs
 
 
 Reserved state entries

@@ -123,7 +123,7 @@ and are prefixed with `on_*`.
 * **on_server_start**     : Trame is starting its event loop
 * **on_server_exited**    : Trame is exiting its event loop
 * **on_server_reload**    : If callback registered it is used for reloading server side modules
-* **on_error**            : A JavaScript error has occured in the client, can be used to do something on the server when this occurs
+* **on_error**            : A JavaScript error has occurred in the client, can be used to do something on the server when this occurs
 
 
 Reserved state entries

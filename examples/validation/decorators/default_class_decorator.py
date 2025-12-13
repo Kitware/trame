@@ -34,6 +34,10 @@ class App:
     def on_ready(self, *args, **kwargs):
         print("on_ready")
 
+    @life_cycle.on_error
+    def on_error(self, message):
+        print(f"A JS error occured: {message}")
+
     def ui(self):
         with SinglePageLayout(self.server) as layout:
             with layout.toolbar:
@@ -47,6 +51,7 @@ class App:
                 vuetify.VBtn("trigger", click="trigger('exec')")
                 vuetify.VBtn("method", click=self.method_call)
                 vuetify.VBtn("ctrl", click=self.ctrl.hello)
+                vuetify.VBtn("JS error", click="undefined_func()")
 
 
 app = App()

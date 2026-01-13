@@ -125,13 +125,17 @@ The list below captures what may need to add depending on your usage:
 Life cycle events are directly managed on the application controller
 and are prefixed with `on_*`.
 
+* **on_server_start**     : Executed at server.start() call while passing the server as argument.
+* **on_server_bind**      : WSLinkServer is getting bound to trame so you can attach your own routes. Its instance will be passed as argument to callback.
 * **on_server_ready**     : All protocols initialized and available for client to connect
 * **on_client_connected** : Connection established to server
 * **on_client_exited**    : Linked to browser "beforeunload" event
 * **on_server_exited**    : Trame is exiting its event loop
 
-* **on_server_reload**    : If callback registered it is used for reloading server side modules
+* **on_error**            : JS error forwarded (msg:str) on the python
+* **on_exception**        : Server exception occurred when interacting with the UI. The exception instance is provided as arg.
 
+* **on_server_reload**    : If callback registered it is used for reloading server side modules
 
 ## Reserved state entries
 

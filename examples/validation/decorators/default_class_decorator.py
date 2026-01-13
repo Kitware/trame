@@ -36,7 +36,7 @@ class App:
 
     @life_cycle.on_error
     def on_error(self, message):
-        print(f"A JS error occured: {message}")
+        print(f"A JS error occurred: {message}")
 
     def ui(self):
         with SinglePageLayout(self.server) as layout:

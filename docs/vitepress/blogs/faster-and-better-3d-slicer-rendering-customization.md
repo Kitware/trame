@@ -10,7 +10,7 @@ January 13, 2026
 
 3D Slicer is a very versatile and powerful medical imaging platform that provides plenty of ways for customization; scripted modules allowing the creation of new logic, Qt widgets in both Python and C++, IO plugins for reading custom file formats, segmentation effects for adding new features to the builtin segmentation tools and much more.
 
-With the introduction of the **[SlicerLayerDisplayableManager](https://github.com/KitwareMedical/SlicerLayerDisplayableManager)** module in [3D](link)[Slicer 5.10](https://www.kitware.com/3d-slicer-5-10-now-available-for-download/), extending the rendering pipeline is now significantly easier.
+With the introduction of the **[SlicerLayerDisplayableManager](https://github.com/KitwareMedical/SlicerLayerDisplayableManager)** module in [3D Slicer 5.10](https://www.kitware.com/3d-slicer-5-10-now-available-for-download/), extending the rendering pipeline is now significantly easier.
 
 ## What can you do with it?
 
@@ -66,4 +66,3 @@ Looking to take your application to new heights? [Get in touch](https://www.kit
 Tags:
 
 [3D Slicer](https://www.kitware.com/tag/3d-slicer/) | [Medical Imaging](https://www.kitware.com/tag/medical-imaging/) | [Press Releases](https://www.kitware.com/tag/press/) | [rendering](https://www.kitware.com/tag/rendering/) | [VTK](https://www.kitware.com/tag/vtk/)
-

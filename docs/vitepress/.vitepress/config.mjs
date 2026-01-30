@@ -1,5 +1,7 @@
 import { defineConfig } from "vitepress";
 
+import blogs from "./blogs.json";
+
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   base: "/trame",
@@ -72,6 +74,7 @@ export default defineConfig({
       { text: "Home", link: "/" },
       { text: "News", link: "/news" },
       { text: "Guide", link: "/guide/" },
+      { text: "Blogs", link: "/blogs/" },
       { text: "Examples", link: "/examples/" },
       {
         text: "Resources",
@@ -179,8 +182,8 @@ export default defineConfig({
             // { text: 'Asynchronous ParaView', link: 'https://github.com/Kitware/async-paraview-app' },
             // { text: 'PFB Viewer', link: 'https://github.com/Kitware/pfb-viewer' },
             // { text: 'ParFlow Simulation Modeler', link: 'https://github.com/Kitware/pf-simulation-modeler' },
-            { text: '3D Slicer', link: '/examples/apps/trame-slicer' },
-            { text: 'Community', link: '/examples/apps/community' },
+            { text: "3D Slicer", link: "/examples/apps/trame-slicer" },
+            { text: "Community", link: "/examples/apps/community" },
           ],
         },
         {
@@ -206,6 +209,7 @@ export default defineConfig({
           ],
         },
       ],
+      "/blogs/": blogs,
     },
 
     socialLinks: [{ icon: "github", link: "https://github.com/kitware/trame" }],

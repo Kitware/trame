@@ -33,12 +33,18 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 24
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Install dependencies
         working-directory: docs/vitepress
         run: npm ci
+      - name: Update blogs
+        working-directory: docs/vitepress
+        run: python update_blogs.py
       - name: Build with VitePress
         working-directory: docs/vitepress
         run: |

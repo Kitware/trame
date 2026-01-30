@@ -30,7 +30,6 @@ class Demo(TrameApp):
                             title=("item",),
                         )
 
-
     def print_item(self, item):
         print("Clicked on", item)
 

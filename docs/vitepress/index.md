@@ -56,6 +56,8 @@ features:
 
 ---
 
+<!-- @include: ./blogs/index.md{,} -->
+
 <div class="vp-doc home-wrapper">
 
 # Activities

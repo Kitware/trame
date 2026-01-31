@@ -224,9 +224,10 @@ def generate_index(blogs_dir: Path, output_file: Path, columns: int = 3):
         max_y = y
         items.append(
             """<div class="blog-item">"""
-            f""" <a class="blog-link" title="{blog.title}" href="{blog.filename[:-3]}" style="--x: {x}; --y: {y};">"""
-            f"""<img src="{blog.image}" alt="{blog.title}"/></a>"""
-            """</div>"""
+            f"""<a class="blog-link" title="{blog.title}" href="/trame/blogs/{blog.filename[:-3]}" """
+            f""" style="--x: {x}; --y: {y};">"""
+            f"""<img src="{blog.image}" alt="{blog.title}"/>"""
+            """</a></div>"""
         )
 
     BLOG_INDEX.write_text(

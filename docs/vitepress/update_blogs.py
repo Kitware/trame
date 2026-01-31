@@ -26,6 +26,22 @@ class BlogInfo:
     filename: str
 
 
+def to_xy(index, n_cols=6):
+    x = index
+    y = 0
+    delta = -1
+    while x >= n_cols:
+        x -= n_cols
+        n_cols += delta
+        delta *= -1
+        y += 1
+
+    if delta > 0:
+        x += 0.5
+
+    return x, y
+
+
 def parse_blog(filepath: Path) -> BlogInfo | None:
     """Parse a markdown blog file and extract metadata."""
     try:
@@ -164,38 +180,66 @@ def generate_index(blogs_dir: Path, output_file: Path, columns: int = 3):
 
     BLOG_MENU.write_text(json.dumps(final_structure, indent=2), encoding="utf-8")
 
-    # Generate markdown
-    md_lines = [
-        "# Blogs",
-        "<table>",
-    ]
+    # # Generate markdown
+    # md_lines = [
+    #     "# Blogs",
+    #     "<table>",
+    # ]
 
-    # Create rows with specified columns
-    for i in range(0, len(blogs), columns):
-        md_lines.append("  <tr>")
-        for j in range(columns):
-            if i + j < len(blogs):
-                blog = blogs[i + j]
-                cell_content = []
-                cell_content.append(f"<small>{blog.date}</small><br>")
-                if blog.image:
-                    cell_content.append(f'<img src="{blog.image}" width="200"><br>')
-                cell_content.append(
-                    f'<strong><a href="{Path(blog.filename).stem}">{blog.title}</a></strong>'
-                )
-                md_lines.append(
-                    f'    <td align="center" width="{100 // columns}%" valign="top">'
-                )
-                md_lines.append("      " + "".join(cell_content))
-                md_lines.append("    </td>")
-            else:
-                md_lines.append(f'    <td width="{100 // columns}%"></td>')
-        md_lines.append("  </tr>")
+    # # Create rows with specified columns
+    # for i in range(0, len(blogs), columns):
+    #     md_lines.append("  <tr>")
+    #     for j in range(columns):
+    #         if i + j < len(blogs):
+    #             blog = blogs[i + j]
+    #             cell_content = []
+    #             cell_content.append(f"<small>{blog.date}</small><br>")
+    #             if blog.image:
+    #                 cell_content.append(f'<img src="{blog.image}" width="200"><br>')
+    #             cell_content.append(
+    #                 f'<strong><a href="{Path(blog.filename).stem}">{blog.title}</a></strong>'
+    #             )
+    #             md_lines.append(
+    #                 f'    <td align="center" width="{100 // columns}%" valign="top">'
+    #             )
+    #             md_lines.append("      " + "".join(cell_content))
+    #             md_lines.append("    </td>")
+    #         else:
+    #             md_lines.append(f'    <td width="{100 // columns}%"></td>')
+    #     md_lines.append("  </tr>")
 
-    md_lines.append("</table>")
-    md_lines.append("")
+    # md_lines.append("</table>")
+    # md_lines.append("")
 
-    BLOG_INDEX.write_text("\n".join(md_lines), encoding="utf-8")
+    # BLOG_INDEX.write_text("\n".join(md_lines), encoding="utf-8")
+
+    # ------------------------------------------
+    # Generate Hex gallery
+    # ------------------------------------------
+
+    items = []
+    max_y = 0
+    for i, blog in enumerate(blogs):
+        x, y = to_xy(i, 5)
+        max_y = y
+        items.append(
+            """<div class="blog-item">"""
+            f""" <a class="blog-link" title="{blog.title}" href="{blog.filename[:-3]}" style="--x: {x}; --y: {y};">"""
+            f"""<img src="{blog.image}" alt="{blog.title}"/></a>"""
+            """</div>"""
+        )
+
+    BLOG_INDEX.write_text(
+        f"""# Blogs
+
+<div class="blog-hex-gallery" style="--max-blog-y: {max_y}">
+    {"\n".join(items)}
+</div>
+
+""",
+        encoding="utf-8",
+    )
+
     print(f"Generated {output_file} with {len(blogs)} blog entries")
 
 

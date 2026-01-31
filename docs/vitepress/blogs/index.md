@@ -1,124 +1,38 @@
 # Blogs
-<table>
-  <tr>
-    <td align="center" width="33%" valign="top">
-      <small>January 13, 2026</small><br><img src="https://www.kitware.com/main/wp-content/uploads/2025/12/model_glow_example.jpg" width="200"><br><strong><a href="faster-and-better-3d-slicer-rendering-customization">Faster and better 3D Slicer rendering customization</a></strong>
-    </td>
-    <td align="center" width="33%" valign="top">
-      <small>December 4, 2025</small><br><img src="https://www.kitware.com/main/wp-content/uploads/2025/12/SC25-Blog-Feature.jpg" width="200"><br><strong><a href="a-framework-for-next-generation-visual-workflows-in-scientific-computing">A Framework for Next-Generation Visual Workflows in Scientific Computing</a></strong>
-    </td>
-    <td align="center" width="33%" valign="top">
-      <small>November 20, 2025</small><br><img src="https://www.kitware.com/main/wp-content/uploads/2025/11/Screenshot-2025-11-20-082509.png" width="200"><br><strong><a href="trame-slicer-announcement">trame-slicer: Bringing the power of 3D Slicer to the web</a></strong>
-    </td>
-  </tr>
-  <tr>
-    <td align="center" width="33%" valign="top">
-      <small>October 21, 2025</small><br><img src="https://www.kitware.com/main/wp-content/uploads/2025/10/SC-2025_Hero.jpg" width="200"><br><strong><a href="sc25">Supercomputing Conference 2025</a></strong>
-    </td>
-    <td align="center" width="33%" valign="top">
-      <small>October 17, 2025</small><br><img src="https://www.kitware.com/main/wp-content/uploads/2025/09/VTK-WASM-Webinar-2025-Q3_feature.jpg" width="200"><br><strong><a href="bring-powerful-3d-visualization-to-the-browser-with-vtk-wasm">Bring Powerful 3D Visualization to the Browser with VTK.wasm</a></strong>
-    </td>
-    <td align="center" width="33%" valign="top">
-      <small>October 13, 2025</small><br><img src="https://www.kitware.com/main/wp-content/uploads/2025/10/trame-feature.jpg" width="200"><br><strong><a href="whats-new-in-trame-bespoke-workflows-for-better-productivity">What’s New in trame: Bespoke Workflows for Better Productivity</a></strong>
-    </td>
-  </tr>
-  <tr>
-    <td align="center" width="33%" valign="top">
-      <small>October 6, 2025</small><br><img src="https://www.kitware.com/main/wp-content/uploads/2025/10/Python-Expanding.png" width="200"><br><strong><a href="using-python-to-power-scalable-sustainable-innovation">Using Python to Power Scalable, Sustainable Innovation</a></strong>
-    </td>
-    <td align="center" width="33%" valign="top">
-      <small>August 4, 2025</small><br><img src="https://www.kitware.com/main/wp-content/uploads/2025/08/trame-feature4.jpg" width="200"><br><strong><a href="how-trame-powers-todays-visualizations">How trame Powers Today’s Visualizations</a></strong>
-    </td>
-    <td align="center" width="33%" valign="top">
-      <small>June 21, 2025</small><br><img src="https://www.kitware.com/main/wp-content/uploads/2025/06/grayscott.png" width="200"><br><strong><a href="faster-simpler-python-application-execution-with-uv-and-trame">Faster, simpler Python application execution with uv and trame</a></strong>
-    </td>
-  </tr>
-  <tr>
-    <td align="center" width="33%" valign="top">
-      <small>March 3, 2025</small><br><img src="https://www.kitware.com/main/wp-content/uploads/2025/03/Medical-Trend-2025_blog-feature.jpg" width="200"><br><strong><a href="medical-technology-trends-to-watch-in-2025">Medical Technology Trends to Watch in 2025</a></strong>
-    </td>
-    <td align="center" width="33%" valign="top">
-      <small>January 7, 2025</small><br><img src="https://www.kitware.com/main/wp-content/uploads/2025/01/feature.png" width="200"><br><strong><a href="why-medical-device-leaders-trust-kitware-for-medical-image-innovations">Why Medical Device Leaders Trust Kitware for Medical Image Innovations</a></strong>
-    </td>
-    <td align="center" width="33%" valign="top">
-      <small>December 17, 2024</small><br><img src="https://www.kitware.com/main/wp-content/uploads/2024/10/9f751c47-4a87-4e50-9930-3bec7f8a263a.png" width="200"><br><strong><a href="jupyterlab-trame-manager-at-julich-supercomputing-centre">JupyterLab Trame Manager at Jülich Supercomputing Centre</a></strong>
-    </td>
-  </tr>
-  <tr>
-    <td align="center" width="33%" valign="top">
-      <small>December 2, 2024</small><br><img src="https://www.kitware.com/main/wp-content/uploads/2024/12/2024-Year-of-Innovation-Feature.jpg" width="200"><br><strong><a href="a-year-of-innovation-our-most-impactful-projects-and-technologies-in-2024">A Year of Innovation: Our Most Impactful Projects and Technologies in 2024</a></strong>
-    </td>
-    <td align="center" width="33%" valign="top">
-      <small>November 5, 2024</small><br><img src="https://www.kitware.com/main/wp-content/uploads/2024/11/thumbnail.png" width="200"><br><strong><a href="lidarview-5-0-new-supported-sensors-algorithms-and-more">LidarView 5.0 – new supported sensors, algorithms, and more!</a></strong>
-    </td>
-    <td align="center" width="33%" valign="top">
-      <small>October 29, 2024</small><br><img src="https://www.kitware.com/main/wp-content/uploads/2024/10/Screenshot-2024-10-18-at-16.35.59.png" width="200"><br><strong><a href="vtk-9-4-a-step-closer-to-the-ways-of-python">VTK 9.4: A Step Closer to the Ways of Python</a></strong>
-    </td>
-  </tr>
-  <tr>
-    <td align="center" width="33%" valign="top">
-      <small>October 28, 2024</small><br><img src="https://www.kitware.com/main/wp-content/uploads/2024/09/trame-webinar-Q4-2024-Feature.jpg" width="200"><br><strong><a href="simplify-web-application-development-with-trame">Simplify Web Application Development with trame</a></strong>
-    </td>
-    <td align="center" width="33%" valign="top">
-      <small>October 16, 2024</small><br><img src="https://www.kitware.com/main/wp-content/uploads/2024/09/Screenshot-2024-09-12-at-17.10.35.png" width="200"><br><strong><a href="vtk-wasm-and-its-trame-integration">VTK.wasm and its trame integration</a></strong>
-    </td>
-    <td align="center" width="33%" valign="top">
-      <small>October 15, 2024</small><br><img src="https://www.kitware.com/main/wp-content/uploads/2024/08/Model-Sim-Web-Q4-2024-Feature.jpg" width="200"><br><strong><a href="making-modeling-and-simulation-tools-accessible-on-the-web">Making Modeling and Simulation Tools Accessible on the Web</a></strong>
-    </td>
-  </tr>
-  <tr>
-    <td align="center" width="33%" valign="top">
-      <small>October 1, 2024</small><br><img src="https://www.kitware.com/main/wp-content/uploads/2024/09/image6-1.png" width="200"><br><strong><a href="trame-micro-workflow-use-case">trame: Micro-Workflow Use Case</a></strong>
-    </td>
-    <td align="center" width="33%" valign="top">
-      <small>September 5, 2024</small><br><img src="https://www.kitware.com/main/wp-content/uploads/2024/08/image5-1.png" width="200"><br><strong><a href="trame-dashboard-use-case">trame: Dashboard Use Case</a></strong>
-    </td>
-    <td align="center" width="33%" valign="top">
-      <small>September 3, 2024</small><br><img src="https://www.kitware.com/main/wp-content/uploads/2024/08/web-app-output.png" width="200"><br><strong><a href="exposing-web-application-with-paraview-5-13-is-getting-simpler">Exposing Web applications with ParaView 5.13 is getting simpler</a></strong>
-    </td>
-  </tr>
-  <tr>
-    <td align="center" width="33%" valign="top">
-      <small>August 21, 2024</small><br><img src="https://www.kitware.com/main/wp-content/uploads/2024/08/OnlineWindTunnel.jpg" width="200"><br><strong><a href="make-your-automotive-simulation-tools-available-on-the-web">Make Your Automotive Simulation Tools Available on the Web</a></strong>
-    </td>
-    <td align="center" width="33%" valign="top">
-      <small>August 9, 2024</small><br><img src="https://www.kitware.com/main/wp-content/uploads/2024/08/image2-1.jpg" width="200"><br><strong><a href="trame-architecture-and-capabilities">trame: Architecture and Capabilities</a></strong>
-    </td>
-    <td align="center" width="33%" valign="top">
-      <small>July 10, 2024</small><br><img src="https://www.kitware.com/main/wp-content/uploads/2024/07/M_M_2024-scaled.jpg" width="200"><br><strong><a href="microscopy-microanalysis">Microscopy & Microanalysis</a></strong>
-    </td>
-  </tr>
-  <tr>
-    <td align="center" width="33%" valign="top">
-      <small>February 27, 2024</small><br><img src="https://www.kitware.com/main/wp-content/uploads/2024/02/20240226-Screenshot.png" width="200"><br><strong><a href="visualizing-lidar-point-cloud-on-the-web-with-trame">Lidar point cloud on the web with trame</a></strong>
-    </td>
-    <td align="center" width="33%" valign="top">
-      <small>November 17, 2023</small><br><img src="https://www.kitware.com/main/wp-content/uploads/2023/11/FeatureImage.png" width="200"><br><strong><a href="transform-your-medical-imaging-with-kitwares-comprehensive-suite-of-advanced-visualization-solutions">Transform Your Medical Imaging with Kitware’s Comprehensive Suite of Advanced Visualization Solutions</a></strong>
-    </td>
-    <td align="center" width="33%" valign="top">
-      <small>October 30, 2023</small><br><img src="https://www.kitware.com/main/wp-content/uploads/2023/10/Blog_Feature_SC23_trame.png" width="200"><br><strong><a href="supercomputing-2023">Supercomputing 2023</a></strong>
-    </td>
-  </tr>
-  <tr>
-    <td align="center" width="33%" valign="top">
-      <small>August 3, 2023</small><br><img src="https://www.kitware.com/main/wp-content/uploads/2023/08/trame-featured2.jpg" width="200"><br><strong><a href="trame-revolutionizing-visual-analytics-with-python">trame: Revolutionizing Visual Analytics with Python</a></strong>
-    </td>
-    <td align="center" width="33%" valign="top">
-      <small>June 22, 2023</small><br><img src="https://www.kitware.com/main/wp-content/uploads/2023/06/featured-image.jpg" width="200"><br><strong><a href="the-evolution-of-peacock-a-powerful-interface-for-moose-simulations">The Evolution of Peacock: A Powerful Interface for MOOSE Simulations</a></strong>
-    </td>
-    <td align="center" width="33%" valign="top">
-      <small>January 18, 2023</small><br><img src="https://www.kitware.com/main/wp-content/uploads/2023/01/VERACore.png" width="200"><br><strong><a href="veracore-trame-in-application">VERACore: trame in Application</a></strong>
-    </td>
-  </tr>
-  <tr>
-    <td align="center" width="33%" valign="top">
-      <small>December 8, 2022</small><br><img src="https://www.kitware.com/main/wp-content/uploads/2022/12/Sans-titre3.png" width="200"><br><strong><a href="numerical-plasma-dynamics-from-the-comfort-of-your-web-browser-with-trame">Numerical plasma dynamics from the comfort of your web browser with trame</a></strong>
-    </td>
-    <td align="center" width="33%" valign="top">
-      <small>August 4, 2022</small><br><img src="https://www.kitware.com/main/wp-content/uploads/2022/08/Support-for-MONAI.png" width="200"><br><strong><a href="leveraging-monai-for-medical-ai">Leveraging MONAI for Medical AI</a></strong>
-    </td>
-    <td align="center" width="33%" valign="top">
-      <small>January 18, 2022</small><br><img src="https://www.kitware.com/main/wp-content/uploads/2022/01/JellyfishCropped.png" width="200"><br><strong><a href="scientific-visualization-in-2022">Scientific Visualization in 2022</a></strong>
-    </td>
-  </tr>
-</table>
+
+<div class="blog-hex-gallery" style="--max-blog-y: 7">
+    <div class="blog-item"> <a class="blog-link" title="Faster and better 3D Slicer rendering customization" href="faster-and-better-3d-slicer-rendering-customization" style="--x: 0; --y: 0;"><img src="https://www.kitware.com/main/wp-content/uploads/2025/12/model_glow_example.jpg" alt="Faster and better 3D Slicer rendering customization"/></a></div>
+<div class="blog-item"> <a class="blog-link" title="A Framework for Next-Generation Visual Workflows in Scientific Computing" href="a-framework-for-next-generation-visual-workflows-in-scientific-computing" style="--x: 1; --y: 0;"><img src="https://www.kitware.com/main/wp-content/uploads/2025/12/SC25-Blog-Feature.jpg" alt="A Framework for Next-Generation Visual Workflows in Scientific Computing"/></a></div>
+<div class="blog-item"> <a class="blog-link" title="trame-slicer: Bringing the power of 3D Slicer to the web" href="trame-slicer-announcement" style="--x: 2; --y: 0;"><img src="https://www.kitware.com/main/wp-content/uploads/2025/11/Screenshot-2025-11-20-082509.png" alt="trame-slicer: Bringing the power of 3D Slicer to the web"/></a></div>
+<div class="blog-item"> <a class="blog-link" title="Supercomputing Conference 2025" href="sc25" style="--x: 3; --y: 0;"><img src="https://www.kitware.com/main/wp-content/uploads/2025/10/SC-2025_Hero.jpg" alt="Supercomputing Conference 2025"/></a></div>
+<div class="blog-item"> <a class="blog-link" title="Bring Powerful 3D Visualization to the Browser with VTK.wasm" href="bring-powerful-3d-visualization-to-the-browser-with-vtk-wasm" style="--x: 4; --y: 0;"><img src="https://www.kitware.com/main/wp-content/uploads/2025/09/VTK-WASM-Webinar-2025-Q3_feature.jpg" alt="Bring Powerful 3D Visualization to the Browser with VTK.wasm"/></a></div>
+<div class="blog-item"> <a class="blog-link" title="What’s New in trame: Bespoke Workflows for Better Productivity" href="whats-new-in-trame-bespoke-workflows-for-better-productivity" style="--x: 0.5; --y: 1;"><img src="https://www.kitware.com/main/wp-content/uploads/2025/10/trame-feature.jpg" alt="What’s New in trame: Bespoke Workflows for Better Productivity"/></a></div>
+<div class="blog-item"> <a class="blog-link" title="Using Python to Power Scalable, Sustainable Innovation" href="using-python-to-power-scalable-sustainable-innovation" style="--x: 1.5; --y: 1;"><img src="https://www.kitware.com/main/wp-content/uploads/2025/10/Python-Expanding.png" alt="Using Python to Power Scalable, Sustainable Innovation"/></a></div>
+<div class="blog-item"> <a class="blog-link" title="How trame Powers Today’s Visualizations" href="how-trame-powers-todays-visualizations" style="--x: 2.5; --y: 1;"><img src="https://www.kitware.com/main/wp-content/uploads/2025/08/trame-feature4.jpg" alt="How trame Powers Today’s Visualizations"/></a></div>
+<div class="blog-item"> <a class="blog-link" title="Faster, simpler Python application execution with uv and trame" href="faster-simpler-python-application-execution-with-uv-and-trame" style="--x: 3.5; --y: 1;"><img src="https://www.kitware.com/main/wp-content/uploads/2025/06/grayscott.png" alt="Faster, simpler Python application execution with uv and trame"/></a></div>
+<div class="blog-item"> <a class="blog-link" title="Medical Technology Trends to Watch in 2025" href="medical-technology-trends-to-watch-in-2025" style="--x: 0; --y: 2;"><img src="https://www.kitware.com/main/wp-content/uploads/2025/03/Medical-Trend-2025_blog-feature.jpg" alt="Medical Technology Trends to Watch in 2025"/></a></div>
+<div class="blog-item"> <a class="blog-link" title="Why Medical Device Leaders Trust Kitware for Medical Image Innovations" href="why-medical-device-leaders-trust-kitware-for-medical-image-innovations" style="--x: 1; --y: 2;"><img src="https://www.kitware.com/main/wp-content/uploads/2025/01/feature.png" alt="Why Medical Device Leaders Trust Kitware for Medical Image Innovations"/></a></div>
+<div class="blog-item"> <a class="blog-link" title="JupyterLab Trame Manager at Jülich Supercomputing Centre" href="jupyterlab-trame-manager-at-julich-supercomputing-centre" style="--x: 2; --y: 2;"><img src="https://www.kitware.com/main/wp-content/uploads/2024/10/9f751c47-4a87-4e50-9930-3bec7f8a263a.png" alt="JupyterLab Trame Manager at Jülich Supercomputing Centre"/></a></div>
+<div class="blog-item"> <a class="blog-link" title="A Year of Innovation: Our Most Impactful Projects and Technologies in 2024" href="a-year-of-innovation-our-most-impactful-projects-and-technologies-in-2024" style="--x: 3; --y: 2;"><img src="https://www.kitware.com/main/wp-content/uploads/2024/12/2024-Year-of-Innovation-Feature.jpg" alt="A Year of Innovation: Our Most Impactful Projects and Technologies in 2024"/></a></div>
+<div class="blog-item"> <a class="blog-link" title="LidarView 5.0 – new supported sensors, algorithms, and more!" href="lidarview-5-0-new-supported-sensors-algorithms-and-more" style="--x: 4; --y: 2;"><img src="https://www.kitware.com/main/wp-content/uploads/2024/11/thumbnail.png" alt="LidarView 5.0 – new supported sensors, algorithms, and more!"/></a></div>
+<div class="blog-item"> <a class="blog-link" title="VTK 9.4: A Step Closer to the Ways of Python" href="vtk-9-4-a-step-closer-to-the-ways-of-python" style="--x: 0.5; --y: 3;"><img src="https://www.kitware.com/main/wp-content/uploads/2024/10/Screenshot-2024-10-18-at-16.35.59.png" alt="VTK 9.4: A Step Closer to the Ways of Python"/></a></div>
+<div class="blog-item"> <a class="blog-link" title="Simplify Web Application Development with trame" href="simplify-web-application-development-with-trame" style="--x: 1.5; --y: 3;"><img src="https://www.kitware.com/main/wp-content/uploads/2024/09/trame-webinar-Q4-2024-Feature.jpg" alt="Simplify Web Application Development with trame"/></a></div>
+<div class="blog-item"> <a class="blog-link" title="VTK.wasm and its trame integration" href="vtk-wasm-and-its-trame-integration" style="--x: 2.5; --y: 3;"><img src="https://www.kitware.com/main/wp-content/uploads/2024/09/Screenshot-2024-09-12-at-17.10.35.png" alt="VTK.wasm and its trame integration"/></a></div>
+<div class="blog-item"> <a class="blog-link" title="Making Modeling and Simulation Tools Accessible on the Web" href="making-modeling-and-simulation-tools-accessible-on-the-web" style="--x: 3.5; --y: 3;"><img src="https://www.kitware.com/main/wp-content/uploads/2024/08/Model-Sim-Web-Q4-2024-Feature.jpg" alt="Making Modeling and Simulation Tools Accessible on the Web"/></a></div>
+<div class="blog-item"> <a class="blog-link" title="trame: Micro-Workflow Use Case" href="trame-micro-workflow-use-case" style="--x: 0; --y: 4;"><img src="https://www.kitware.com/main/wp-content/uploads/2024/09/image6-1.png" alt="trame: Micro-Workflow Use Case"/></a></div>
+<div class="blog-item"> <a class="blog-link" title="trame: Dashboard Use Case" href="trame-dashboard-use-case" style="--x: 1; --y: 4;"><img src="https://www.kitware.com/main/wp-content/uploads/2024/08/image5-1.png" alt="trame: Dashboard Use Case"/></a></div>
+<div class="blog-item"> <a class="blog-link" title="Exposing Web applications with ParaView 5.13 is getting simpler" href="exposing-web-application-with-paraview-5-13-is-getting-simpler" style="--x: 2; --y: 4;"><img src="https://www.kitware.com/main/wp-content/uploads/2024/08/web-app-output.png" alt="Exposing Web applications with ParaView 5.13 is getting simpler"/></a></div>
+<div class="blog-item"> <a class="blog-link" title="Make Your Automotive Simulation Tools Available on the Web" href="make-your-automotive-simulation-tools-available-on-the-web" style="--x: 3; --y: 4;"><img src="https://www.kitware.com/main/wp-content/uploads/2024/08/OnlineWindTunnel.jpg" alt="Make Your Automotive Simulation Tools Available on the Web"/></a></div>
+<div class="blog-item"> <a class="blog-link" title="trame: Architecture and Capabilities" href="trame-architecture-and-capabilities" style="--x: 4; --y: 4;"><img src="https://www.kitware.com/main/wp-content/uploads/2024/08/image2-1.jpg" alt="trame: Architecture and Capabilities"/></a></div>
+<div class="blog-item"> <a class="blog-link" title="Microscopy & Microanalysis" href="microscopy-microanalysis" style="--x: 0.5; --y: 5;"><img src="https://www.kitware.com/main/wp-content/uploads/2024/07/M_M_2024-scaled.jpg" alt="Microscopy & Microanalysis"/></a></div>
+<div class="blog-item"> <a class="blog-link" title="Lidar point cloud on the web with trame" href="visualizing-lidar-point-cloud-on-the-web-with-trame" style="--x: 1.5; --y: 5;"><img src="https://www.kitware.com/main/wp-content/uploads/2024/02/20240226-Screenshot.png" alt="Lidar point cloud on the web with trame"/></a></div>
+<div class="blog-item"> <a class="blog-link" title="Transform Your Medical Imaging with Kitware’s Comprehensive Suite of Advanced Visualization Solutions" href="transform-your-medical-imaging-with-kitwares-comprehensive-suite-of-advanced-visualization-solutions" style="--x: 2.5; --y: 5;"><img src="https://www.kitware.com/main/wp-content/uploads/2023/11/FeatureImage.png" alt="Transform Your Medical Imaging with Kitware’s Comprehensive Suite of Advanced Visualization Solutions"/></a></div>
+<div class="blog-item"> <a class="blog-link" title="Supercomputing 2023" href="supercomputing-2023" style="--x: 3.5; --y: 5;"><img src="https://www.kitware.com/main/wp-content/uploads/2023/10/Blog_Feature_SC23_trame.png" alt="Supercomputing 2023"/></a></div>
+<div class="blog-item"> <a class="blog-link" title="trame: Revolutionizing Visual Analytics with Python" href="trame-revolutionizing-visual-analytics-with-python" style="--x: 0; --y: 6;"><img src="https://www.kitware.com/main/wp-content/uploads/2023/08/trame-featured2.jpg" alt="trame: Revolutionizing Visual Analytics with Python"/></a></div>
+<div class="blog-item"> <a class="blog-link" title="The Evolution of Peacock: A Powerful Interface for MOOSE Simulations" href="the-evolution-of-peacock-a-powerful-interface-for-moose-simulations" style="--x: 1; --y: 6;"><img src="https://www.kitware.com/main/wp-content/uploads/2023/06/featured-image.jpg" alt="The Evolution of Peacock: A Powerful Interface for MOOSE Simulations"/></a></div>
+<div class="blog-item"> <a class="blog-link" title="VERACore: trame in Application" href="veracore-trame-in-application" style="--x: 2; --y: 6;"><img src="https://www.kitware.com/main/wp-content/uploads/2023/01/VERACore.png" alt="VERACore: trame in Application"/></a></div>
+<div class="blog-item"> <a class="blog-link" title="Numerical plasma dynamics from the comfort of your web browser with trame" href="numerical-plasma-dynamics-from-the-comfort-of-your-web-browser-with-trame" style="--x: 3; --y: 6;"><img src="https://www.kitware.com/main/wp-content/uploads/2022/12/Sans-titre3.png" alt="Numerical plasma dynamics from the comfort of your web browser with trame"/></a></div>
+<div class="blog-item"> <a class="blog-link" title="Leveraging MONAI for Medical AI" href="leveraging-monai-for-medical-ai" style="--x: 4; --y: 6;"><img src="https://www.kitware.com/main/wp-content/uploads/2022/08/Support-for-MONAI.png" alt="Leveraging MONAI for Medical AI"/></a></div>
+<div class="blog-item"> <a class="blog-link" title="Scientific Visualization in 2022" href="scientific-visualization-in-2022" style="--x: 0.5; --y: 7;"><img src="https://www.kitware.com/main/wp-content/uploads/2022/01/JellyfishCropped.png" alt="Scientific Visualization in 2022"/></a></div>
+</div>
+

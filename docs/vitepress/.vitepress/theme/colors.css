@@ -1,11 +1,15 @@
 /* https://github.com/vuejs/vitepress/blob/main/src/client/theme-default/styles/vars.css */
 :root {
-    --vp-home-hero-name-color: #2C68C0;
+    --vp-home-hero-name-color: #2c68c0;
     --vp-home-hero-name-color: transparent;
-    --vp-home-hero-name-background: -webkit-linear-gradient(15deg, #2C68C0, #5DAC41);
+    --vp-home-hero-name-background: -webkit-linear-gradient(
+        15deg,
+        #2c68c0,
+        #5dac41
+    );
 
-    --vp-c-brand-1: #2C68C0;
-    --vp-c-brand-2: #5DAC41;
+    --vp-c-brand-1: #2c68c0;
+    --vp-c-brand-2: #5dac41;
 }
 
 .home-wrapper {
@@ -14,4 +18,70 @@
     width: 100%;
     padding: 32px 48px 96px;
     max-width: 1152px;
+}
+
+.blog-hex-gallery {
+    position: relative;
+    height: calc(var(--max-blog-y) * var(--grid-width));
+    transition: transform 150ms ease-out;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+    width: calc(5 * var(--grid-width));
+    margin: 3rem auto;
+    --grid-width: 90px;
+}
+
+@media (min-width: 640px) {
+    .blog-hex-gallery {
+        --grid-width: 100px;
+    }
+}
+
+@media (min-width: 960px) {
+    .blog-hex-gallery {
+        --grid-width: 140px;
+    }
+}
+
+.blog-item {
+    position: relative;
+    transition: filter 250ms ease-out;
+    animation: fade-in 350ms cubic-bezier(0.215, 0.61, 0.355, 1) 0.1s backwards;
+}
+
+.blog-item:hover {
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+    z-index: 3;
+}
+
+.blog-link {
+    position: absolute;
+    --transform: perspective(75em)
+        translate(calc(var(--x) * 100%), calc(var(--y) * 86.67%)) scale(1.145);
+    transform: var(--transform);
+    transition: transform 250ms ease-out;
+    clip-path: polygon(
+        50% 100%,
+        93.3% 75%,
+        93.3% 25%,
+        50% 0%,
+        6.7% 25%,
+        6.7% 75%
+    );
+}
+
+.blog-link:hover {
+    transform: var(--transform) scale(1.1);
+}
+
+.blog-hex-gallery img {
+    aspect-ratio: 1;
+    object-fit: cover;
+    width: var(--grid-width);
+}
+
+@keyframes fade-in {
+    from {
+        filter: blur(20px);
+        opacity: 0;
+    }
 }

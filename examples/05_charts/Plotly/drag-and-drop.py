@@ -99,16 +99,16 @@ class PlotlyViewer(TrameApp):
     def select_plot(self, plot_name):
         self.active_plot_name = plot_name
 
-    def apply_placement(self, plot_name):
-        if plot_name is not None and self.active_plot_name is not None:
-            self.update_plot_figure(self.active_plot_name, plot_name)
+    def apply_placement(self, slot_name):
+        if slot_name is not None and self.active_plot_name is not None:
+            self.update_plot_figure(self.active_plot_name, slot_name)
         self.active_plot_name = None
 
-    def update_plot_figure(self, plot_type, plot_destination):
-        figure_data = PLOTS.get(plot_type)
+    def update_plot_figure(self, plot_name, slot_name):
+        figure_data = PLOTS.get(plot_name)
         if figure_data:
-            self.ctx[plot_destination].update(figure_data)
-            self.state[plot_destination] = True  # show the plot
+            self.ctx[slot_name].update(figure_data)
+            self.state[slot_name] = True  # show the plot
 
     def _build_ui(self):
         with VAppLayout(self.server, full_height=True) as self.ui:

@@ -1,32 +1,31 @@
 ARG BASE_IMAGE=trame-common
 FROM ${BASE_IMAGE}
 
-ARG PYTHON_VERSION=3.9
+ARG PYTHON_VERSION=3.13
 
-RUN apt-get update && \
-    apt-get install -y \
-      python${PYTHON_VERSION} \
-      # python-distutils is required to install pip
-      python${PYTHON_VERSION}-distutils \
-      # python-is-python3 creates a symlink for python to python3
-      python-is-python3 \
-      # For creating virtual environments
-      python${PYTHON_VERSION}-venv && \
-    rm -rf /var/lib/apt/lists/*
+# Install Python and required dependencies (but do NOT install the system-provided pip to avoid vulnerable versions)
+RUN apk update && \
+    apk add --no-cache \
+      python-${PYTHON_VERSION} \
+      python-${PYTHON_VERSION}-dev \
+      py${PYTHON_VERSION}-virtualenv \
+      py3-wheel \
+      wget
 
-# Set python3 to python3.x (otherwise, it will be python3.8)
-RUN if [ "$PYTHON_VERSION" != "3" ] ; then update-alternatives --install /usr/bin/python3 python3 /usr/bin/python${PYTHON_VERSION} 1 ;fi
+# Create a symlink to set python3 to the desired python version, if not default
+RUN if [ "$PYTHON_VERSION" != "3" ]; then ln -sf /usr/bin/python${PYTHON_VERSION} /usr/bin/python3; fi
 
 # Never use a cache directory for pip, both here in this Dockerfile
 # and when we run the container.
 ENV PIP_NO_CACHE_DIR=1
 
-# Install and upgrade pip
-RUN wget -q -O- https://bootstrap.pypa.io/get-pip.py | python${PYTHON_VERSION} && \
-    pip install -U pip
-
-# Install setup dependencies
-RUN pip install PyYAML wheel
+# Install pip safely, pinning to >=25.2 to avoid GHSA-4xh5-x5gv-qwph
+RUN python${PYTHON_VERSION} -m ensurepip --upgrade || true && \
+    wget -O /tmp/get-pip.py https://bootstrap.pypa.io/get-pip.py && \
+    python${PYTHON_VERSION} /tmp/get-pip.py --no-cache-dir --force-reinstall && \
+    pip install --no-cache-dir --upgrade 'pip>=25.2' && \
+    rm -f /tmp/get-pip.py && \
+    pip install --no-cache-dir PyYAML wheel
 
 # Copy the pip scripts into place
 COPY scripts/pip/* /opt/trame/

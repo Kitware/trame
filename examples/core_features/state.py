@@ -1,29 +1,15 @@
-from trame.app import get_server
+#!/usr/bin/env -S uv run --script
+#
+# /// script
+# requires-python = ">=3.10"
+# dependencies = [
+#     "trame",
+# ]
+# ///
+from trame.app import TrameApp
+from trame.decorators import change
 from trame.ui.html import DivLayout
 from trame.widgets import html
-
-# -----------------------------------------------------------------------------
-# Trame app
-# -----------------------------------------------------------------------------
-
-server = get_server()
-state = server.state
-
-# -----------------------------------------------------------------------------
-# State setup
-# -----------------------------------------------------------------------------
-
-# Creating new entries to the shared state
-state.a = 1
-state["b"] = 2
-
-# Force state.d to be client side only
-state.client_only("b")
-# state.trame__client_only += ["b"]
-
-# -----------------------------------------------------------------------------
-# UI setup
-# -----------------------------------------------------------------------------
 
 
 # UI helper to extent layout
@@ -42,24 +28,36 @@ def create_ui_for_state_var(name):
             html.Button(f"set({name}=5)", click=f"set('{name}', 5)")
 
 
-# Start with some UI to control a
-with DivLayout(server) as layout:
-    create_ui_for_state_var("a")
-    create_ui_for_state_var("b")
+class StateUsage(TrameApp):
+    def __init__(self, server=None):
+        super().__init__(server)
+        self.state_setup()
+        self._build_ui()
 
-# -----------------------------------------------------------------------------
-# State Listener
-# -----------------------------------------------------------------------------
+    def state_setup(self):
+        # Creating new entries to the shared state
+        self.state.a = 1
+        self.state["b"] = 2
+
+        # Force state.d to be client side only
+        self.state.client_only("b")
+        # self.state.trame__client_only += ["b"]
+
+    def _build_ui(self):
+        with DivLayout(self.server) as self.ui:
+            create_ui_for_state_var("a")
+            create_ui_for_state_var("b")
+
+    @change("a", "b")
+    def state_change(self, a, b, **_):
+        """State listener"""
+        print(f"State updated a={a} b={b}")
 
 
-@state.change("a", "b")
-def state_change(a, b, **kwargs):
-    print(f"State updated a={a} b={b}")
+def main():
+    app = StateUsage()
+    app.server.start()
 
-
-# -----------------------------------------------------------------------------
-# start server
-# -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    server.start()
+    main()

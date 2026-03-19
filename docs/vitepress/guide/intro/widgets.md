@@ -45,6 +45,7 @@
 | | [gwc (girder web components)](https://github.com/Kitware/trame-gwc "Girder Web Components to connect with scientific data storage Python Girder WSGI") | trame-gwc | 2  | 10 |
 | **Misc** |
 | | 👍 [rca](https://github.com/Kitware/trame-rca "Infrastructure to display remote generated image based content while allowing interaction forwarding") | trame-rca | 2 & 3 | 7 |
+| | 🆕 [dataclass](https://github.com/Kitware/trame-dataclass "Dynamic management of complex data structure and synchronization") | trame-dataclass | 2 & 3 | 1 + utils |
 | | [tauri](https://github.com/Kitware/trame-tauri "Tauri integration to deploy trame into a desktop application") | trame-tauri | 2 & 3 | 2 + utils |
 
 ::: warning

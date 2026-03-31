@@ -349,7 +349,7 @@ The ***trame*** widgets are easy to use. Here, we simply create the widget, defi
 
 ```python
 def pipeline_widget():
-    widgets.GitTree(
+    trame.GitTree(
         sources=(
             "pipeline",
             [

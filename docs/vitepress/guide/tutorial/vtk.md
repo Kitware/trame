@@ -195,6 +195,9 @@ with ... as layout:
 
 ```bash
 python ./01_vtk/app_cone.py --port 1234
+# or
+python ./01_vtk/solution_cone.py --port 1234
+
 ```
 
 Your browser should open automatically to `http://localhost:1234/`
@@ -211,7 +214,7 @@ Now you can take most of the code examples at [VTK Examples](https://kitware.git
 
 [![Carotid Flow VTK Example](/assets/images/tutorial/carotid.jpg)](https://kitware.github.io/vtk-examples/site/Python/VisualizationAlgorithms/CarotidFlowGlyphs/)
 
-We are going to implement [CarotidFlowGlyphs](https://kitware.github.io/vtk-examples/site/Python/VisualizationAlgorithms/CarotidFlowGlyphs/) by editing the file in `01_vtk/app_flow.py.py` which start from our cone rendering example solution.
+We are going to implement [CarotidFlowGlyphs](https://kitware.github.io/vtk-examples/site/Python/VisualizationAlgorithms/CarotidFlowGlyphs/) by editing the file in `01_vtk/app_flow.py` which start from our cone rendering example solution.
 
 <div class="print-break"></div>
 
@@ -363,6 +366,8 @@ Our pipelines are the same pipelines used in [VTK Examples](https://kitware.gith
 
 ```bash
 python ./01_vtk/app_flow.py --port 1234
+# or
+python ./01_vtk/solution_flow.py --port 1234
 ```
 
 Your browser should open automatically to `http://localhost:1234/`

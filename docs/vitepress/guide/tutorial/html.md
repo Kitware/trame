@@ -145,7 +145,7 @@ with SinglePageLayout(server) as layout:
 ```bash
 python 03_html/app_cone.py --port 1234
 # or
-python 03_html/solution_buttons_a.py --port 1234
+python 03_html/solution_buttons.py --port 1234
 ```
 
 Your browser should open automatically to `http://localhost:1234/`
@@ -176,6 +176,7 @@ Let's add a `VSlider` for adjusting the resolution, a `VBtn` with `VIcon` to res
 
 ```python
 with SinglePageLayout(server) as layout:
+    # [...]
     with layout.toolbar:
         vuetify.VSpacer()
         vuetify.VSlider(

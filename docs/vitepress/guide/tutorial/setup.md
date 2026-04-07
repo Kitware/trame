@@ -1,19 +1,14 @@
 # Setup environment
 
-***trame*** requires Python 3.6+ but since ParaView 5.11 is bundling Python 3.9 we will use Python 3.9 in this tutorial.
+***trame*** requires Python 3.10+ but since ParaView 6 is bundling Python 3.12 we will use Python 3.12 in this tutorial. Also for uniformity across OS we will be using [uv](https://docs.astral.sh/uv/).
 
 ```bash
-python3.9 -m venv .venv
+uv venv -p 3.12
 source ./.venv/bin/activate
-python -m pip install --upgrade pip
-pip install trame                   # Install trame core
-pip install trame-vuetify trame-vtk # Install widgets that we'll be using
-pip install vtk                     # Install the VTK library
+uv pip install trame      # Install trame core
+uv pip install trame-vuetify trame-vtk # Install widgets that we'll be using
+uv pip install vtk                     # Install the VTK library
 ```
-
-**Notes**:
- - `venv` was added in Python 3.3.
- - On a Mac with ARM architecture, VTK is only available with Python 3.9+.
 
 ## Running the application
 

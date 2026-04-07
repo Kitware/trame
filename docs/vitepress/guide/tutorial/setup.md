@@ -3,7 +3,6 @@
 ***trame*** requires Python 3.10+ but since ParaView 6 is bundling Python 3.12 we will use Python 3.12 in this tutorial. Also for uniformity across OS we will be using [uv](https://docs.astral.sh/uv/).
 
 ```bash
-bash
 uv venv -p 3.12
 source ./.venv/bin/activate
 uv pip install trame      # Install trame core

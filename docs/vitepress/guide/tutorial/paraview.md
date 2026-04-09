@@ -72,7 +72,7 @@ view = simple.Render()             # Ask to compute image of active view and ret
 With these three lines, we create a full pipeline and a view. Now, we can use ***trame*** to show that view in the client.
 
 ```python
-from trame.html import vuetify, paraview
+from trame.widgets import vuetify3 as vuetify, paraview
 from trame.layouts import SinglePage
 
 html_view = paraview.VtkRemoteView(view)   # For remote rendering
@@ -93,13 +93,13 @@ with layout.content:
 The rest of the code looks very similar to the VTK Hello ***trame*** example, but instead of importing the `vtk` module of ***trame***
 
 ```python
-from trame.html import vuetify, vtk
+from trame.widgets import vuetify3 as vuetify, vtk
 ```
 
 we import the `paraview` module
 
 ```python
-from trame.html import vuetify, paraview
+from trame.widgets import vuetify3 as vuetify, paraview
 ```
 
 ## GUI

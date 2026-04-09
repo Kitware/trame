@@ -4,7 +4,7 @@ ParaView is the world’s leading open source post-processing visualization engi
 
 ## Download ParaView
 
-ParaView 5.10+ can be downloaded from [here](https://www.paraview.org/download).
+ParaView 6+ can be downloaded from [here](https://www.paraview.org/download).
 
 ## Virtual Environment
 
@@ -14,7 +14,7 @@ ParaView comes with its own Python, which may be missing some dependencies for t
 **First**, we need to setup the ParaView add-on python environment, in which we will only install ***trame***, but we could add any other Python libraries that are not included in the ParaView bundle.
 
 ```bash
-python3.9 -m venv .pvenv
+python3.12 -m venv .pvenv
 source ./.pvenv/bin/activate
 python -m pip install --upgrade pip
 pip install trame trame-vtk trame-vuetify
@@ -82,7 +82,7 @@ view = simple.Render()             # Ask to compute image of active view and ret
 With these three lines, we create a full pipeline and a view. Now, we can use ***trame*** to show that view in the client.
 
 ```python
-from trame.html import vuetify, paraview
+from trame.widgets import vuetify3 as vuetify, paraview
 from trame.layouts import SinglePage
 
 html_view = paraview.VtkRemoteView(view)   # For remote rendering
@@ -103,13 +103,13 @@ with layout.content:
 The rest of the code looks very similar to the VTK Hello ***trame*** example, but instead of importing the `vtk` module of ***trame***
 
 ```python
-from trame.html import vuetify, vtk
+from trame.widgets import vuetify3 as vuetify, vtk
 ```
 
 we import the `paraview` module
 
 ```python
-from trame.html import vuetify, paraview
+from trame.widgets import vuetify3 as vuetify, paraview
 ```
 
 ## GUI

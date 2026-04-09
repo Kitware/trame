@@ -18,28 +18,13 @@ We will start by editing `04_application/app.py` which contain the basic structu
 
 ## Imports
 
-**First**, our ***trame*** imports have also changed. Thus, we will replace
-
-```python
-from trame.layouts import SinglePage
-from trame.html import vtk, vuetify
-```
-
-with
-
-```python
-from trame.app import get_server
-from trame.ui.vuetify import SinglePageLayout
-from trame.widgets import vtk, vuetify, trame
-```
-
-But because we are adding `trame` to the list of widgets, we should add it to our environment by running
+because we are adding `trame` to the list of widgets, we should add it to our environment by running
 
 ```sh
 pip install trame-components
 ```
 
-We are creating a single page application with a drawer (`trame.ui.vuetify`), and we want to use one of ***trame***'s predefined widgets (`trame.widgets`) for displaying and interacting with visualization pipelines.
+We are creating a single page application with a drawer (`trame.ui.vuetify3`), and we want to use one of ***trame***'s predefined widgets (`trame.widgets`) for displaying and interacting with visualization pipelines.
 
 **Finally**, our VTK pipelines are fairly straight forward, but not available as one of the VTK examples. We will add the import for our VTK objects.
 
@@ -233,7 +218,7 @@ For this application, we want to enable dynamic switching between *local* and *r
 We are creating a single page application with a drawer using `SinglePageWithDrawer`. By default we get a title, toolbar, drawer, and a content section. So we instantiate a `SinglePageWithDrawer` with the `title` of "Viewer" and `on_ready` argument equal to `html_view.update`, which updates the three-dimensional visualization.
 
 ```python
-with SinglePageWithDrawerLayout(server) as layout:
+with SinglePageWithDrawerLayout(server, theme=("theme", "light")) as layout:
     layout.title.set_text("Viewer")
 
     with layout.toolbar:
@@ -289,9 +274,11 @@ def standard_buttons():
         dense=True,
     )
     vuetify.VCheckbox(
-        v_model="$vuetify.theme.dark",
-        on_icon="mdi-lightbulb-off-outline",
-        off_icon="mdi-lightbulb-outline",
+        v_model="theme",
+        true_value="dark",
+        false_value="light",
+        true_icon="mdi-lightbulb-off-outline",
+        false_icon="mdi-lightbulb-outline",
         classes="mx-1",
         hide_details=True,
         dense=True,
@@ -477,7 +464,7 @@ class Representation:
 
 ![Representation Selection](/assets/images/tutorial/gui-representation.jpg){ width=50% }
 
-Second, we create a dropdown menu for the representation type. The `VSelect` component is used to create a dropdown menu. The `v_model` uses the state variable `mesh_representation` initialized to be a surface. The `items` is a list of tuples, where the first element is the display string (`text`) of the representation, and the second element is the value of the representation used for selection.
+Second, we create a dropdown menu for the representation type. The `VSelect` component is used to create a dropdown menu. The `v_model` uses the state variable `mesh_representation` initialized to be a surface. The `items` is a list of dicts, where the element with the `item_title` parameter as key is the display string (`text`) of the representation, and the element with the `item_value` parameter as key is the value of the representation used for selection.
 
 ```python
 vuetify.VSelect(
@@ -492,6 +479,8 @@ vuetify.VSelect(
             {"text": "SurfaceWithEdges", "value": 3},
         ],
     ),
+    item_title="text",
+    item_value="value",
     label="Representation",
     hide_details=True,
     dense=True,
@@ -528,6 +517,8 @@ vuetify.VSelect(
     label="Color by",
     v_model=("mesh_color_array_idx", 0),
     items=("array_list", dataset_arrays),
+    item_title="text",
+    item_value="value",
     hide_details=True,
     dense=True,
     outlined=True,
@@ -581,6 +572,8 @@ Second, we create a dropdown menu for the color map. The `VSelect` component is 
                             {"text": "Inv Greyscale", "value": 3},
                         ],
                     ),
+                    item_title="text",
+                    item_value="value",
                     hide_details=True,
                     dense=True,
                     outlined=True,
@@ -655,6 +648,8 @@ We create a dropdown menu for the contour by. The `VSelect` component is used to
             label="Contour by",
             v_model=("contour_by_array_idx", 0),
             items=("array_list", dataset_arrays),
+            item_title="text",
+            item_value="value",
             hide_details=True,
             dense=True,
             outlined=True,

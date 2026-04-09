@@ -29,7 +29,7 @@ We've included, optionally, a `label` and a `suffix` for the text box. The `labe
 Looking through the Vuetify documentation, we see a large number of wonderful user interface (UI) components. ***trame*** exposes Vuetify from within Python. Access to Vuetify is provided through ***trame*** using the following import.
 
 ```python
-from trame.widgets import vuetify
+from trame.widgets import vuetify3 as vuetify
 ```
 
 ## Python Vuetify Rules
@@ -67,8 +67,7 @@ First, we need to get the `state` instance from a trame server to simplify its m
 ```python
 from trame.app import get_server
 
-# trame v3 use vue3 as default
-server = get_server(client_type="vue2")
+server = get_server()
 state = server.state
 ```
 
@@ -112,14 +111,15 @@ So with the `SinglePageLayout`, we could add UI elements to either the `toolbar`
 
 - The VSpacer Vuetify component pushes the extra space on the left side of the component.
 
-- The VSwitch component toggles between two different states. In this case, we will update a Vuetify variable `$vuetify.theme.dark`. The hide_details and dense attribute creates a smaller, tighter switch.
+- The VSwitch component toggles between two different states. In this case, we will update the state variable `theme` which will be used as a parameter for the layout. The hide_details and dense attribute creates a smaller, tighter switch.
 
 - The VBtn component is a button. We decorate the button with a VIcon component where the argument is a String identifying the [Material Design Icons](https://materialdesignicons.com/) instead of text in this case. The VBtn icon attribute provides proper sizing and padding for the icon. Finally, the click attribute tells the application what method to call when the button is pressed.
 
 We add all the Vuetify components in a *flow* from left to right, top to bottom to the `layout.toolbar` container.
 
 ```python
-with SinglePageLayout(server) as layout:
+# Use state variable `theme` for the theme with default value 'light'
+with SinglePageLayout(server, theme=("theme", "light")) as layout:
     # [...]
         # [...]
             view = vtk.VtkLocalView(renderWindow)
@@ -130,7 +130,9 @@ with SinglePageLayout(server) as layout:
     with layout.toolbar:
         vuetify.VSpacer()
         vuetify.VSwitch(
-            v_model="$vuetify.theme.dark",
+            v_model="theme",
+            false_value="light", # <-- Value of v_model's variable if switch toggled off
+            true_value="dark", # <-- Value of v_model's variable if switch toggled on
             hide_details=True,
             dense=True,
         )
@@ -175,7 +177,7 @@ DEFAULT_RESOLUTION = 6
 Let's add a `VSlider` for adjusting the resolution, a `VBtn` with `VIcon` to reset the resolution to the default value, and a vertical `VDivider` to separate our visualization GUI from the application GUI. The following is added after the `VSpacer` component at the beginning of the `with` `toolbar` *flow*.
 
 ```python
-with SinglePageLayout(server) as layout:
+with SinglePageLayout(server, theme=("theme", "light")) as layout:
     # [...]
     with layout.toolbar:
         vuetify.VSpacer()
@@ -190,7 +192,9 @@ with SinglePageLayout(server) as layout:
         vuetify.VDivider(vertical=True, classes="mx-2")
 
         vuetify.VSwitch(
-            v_model="$vuetify.theme.dark",
+            v_model="theme",
+            false_value="light",
+            true_value="dark",
             hide_details=True,
             dense=True,
         )

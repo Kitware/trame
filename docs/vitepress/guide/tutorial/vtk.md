@@ -6,10 +6,10 @@ In this step we start adding VTK visualizations to our application.
 
 Start editing the file in `01_vtk/app_cone.py` which has the same content as `00_setup/app.py`.
 
-**First**, what we need to add is an import for `vtk` and `vuetify` from `trame.widgets`.
+**First**, what we need to add is an import for `vtk` and `vuetify3` from `trame.widgets`.
 
 ```python
-from trame.widgets import vtk, vuetify
+from trame.widgets import vtk, vuetify3 as vuetify
 ```
 
 This provides us access to ***trame***'s widgets for vtk and vuetify.

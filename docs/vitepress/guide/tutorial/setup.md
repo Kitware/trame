@@ -32,7 +32,7 @@ We start by importing the basic building blocks for our client-server applicatio
 
 ```python
 from trame.app import get_server
-from trame.ui.vuetify import SinglePageLayout
+from trame.ui.vuetify3 import SinglePageLayout
 ```
 
 from ***trame***'s `app`, we import the factory function for retrieving a server instance on which we will bind our UI and business logic. We also import a skeleton for a single page client application that relies on vuetify (our main widget library) from `trame.ui.vuetify`.
@@ -40,7 +40,7 @@ from ***trame***'s `app`, we import the factory function for retrieving a server
 Next, we define the graphical user interface (GUI) by passing the server to which it should be bound. Then with that layout we update the toolbar's title to read `"Hello trame"`.
 
 ```python
-server = get_server(client_type="vue2")
+server = get_server()
 
 with SinglePageLayout(server) as layout:
     layout.title.set_text("Hello trame")

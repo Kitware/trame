@@ -20,7 +20,7 @@ The `VAppLayout` starts with VApp and exposes the children array where one could
 **First**, add the import to `VAppLayout`.
 
 ```python
-from trame.ui.vuetify import VAppLayout
+from trame.ui.vuetify3 import VAppLayout
 ```
 
 **Second**, we instantiate the `layout` object, create the `vtk.VtkLocalView` component, and add it directly to its `root` element using a Vuetify `VContainer` with arguments descripted in the [VTK](vtk) chapter.
@@ -66,7 +66,7 @@ The *icon* and *title* sit on the left-hand side of the *toolbar* and are custom
 **First**, we import the `SinglePageLayout` class.
 
 ```python
-from trame.ui.vuetify import SinglePageLayout
+from trame.ui.vuetify3 import SinglePageLayout
 ```
 
 **Second**, we instantiate the `layout` object, maybe change the title, create the `vtk.VtkLocalView` component, and add it to the `content` component's `children` using a Vuetify `VContainer` with arguments descripted in the [VTK]() chapter.
@@ -111,7 +111,7 @@ The `SinglePageWithDrawerLayout` extends the `SinglePageLayout` with a *drawer*.
 **First**, we import the `SinglePageWithDrawerLayout` class.
 
 ```python
-from trame.ui.vuetify import SinglePageWithDrawerLayout
+from trame.ui.vuetify3 import SinglePageWithDrawerLayout
 ```
 
 **Second**, we instantiate the `layout` object with access to everything within the `SinglePageLayout` layout.

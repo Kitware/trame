@@ -6,14 +6,14 @@ Installation requirements:
 import os
 
 from trame.app import get_server
-from trame.ui.vuetify import SinglePageLayout
-from trame.widgets import markdown, vuetify
+from trame.ui.vuetify3 import SinglePageLayout
+from trame.widgets import markdown, vuetify3
 
 # -----------------------------------------------------------------------------
 # Trame setup
 # -----------------------------------------------------------------------------
 
-server = get_server(client_type="vue2")
+server = get_server(client_type="vue3")
 state, ctrl = server.state, server.controller
 
 # -----------------------------------------------------------------------------
@@ -38,8 +38,8 @@ with SinglePageLayout(server) as layout:
     layout.title.set_text("Markdown Viewer")
 
     with layout.toolbar:
-        vuetify.VSpacer()
-        vuetify.VSelect(
+        vuetify3.VSpacer()
+        vuetify3.VSelect(
             v_model=("file_name", "demo.md"),
             items=("options", ["demo.md", "sample.md", "module.md"]),
             hide_details=True,

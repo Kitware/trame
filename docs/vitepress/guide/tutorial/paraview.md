@@ -82,20 +82,23 @@ view = simple.Render()             # Ask to compute image of active view and ret
 With these three lines, we create a full pipeline and a view. Now, we can use ***trame*** to show that view in the client.
 
 ```python
+import paraview.web.venv
+from trame.app import get_server
 from trame.widgets import vuetify3, paraview
-from trame.layouts import SinglePage
+from trame.ui.vuetify3 import SinglePageLayout
+server = get_server()
+state, ctrl = server.state, server.controller
 
-html_view = paraview.VtkRemoteView(view)   # For remote rendering
-# html_view = paraview.VtkLocalView(view)  # For local rendering
-
-layout = SinglePage("ParaView cone", on_ready=html_view.update)
-
-with layout.content:
-    vuetify3.VContainer(
-        fluid=True,
-        classes="pa-0 fill-height",
-        children=[html_view],
-    )
+with SinglePageLayout(server) as layout:
+    with layout.content:
+        vuetify3.VContainer(
+            fluid=True,
+            classes="pa-0 fill-height",
+        ):
+            html_view = paraview.VtkRemoteView(view)
+            # html_view = paraview.VtkLocalView(view)
+            ctrl.view_update = html_view.update
+            ctrl.view_reset_camera = html_view.reset_camera
 ```
 
 <div class="print-break"></div>
@@ -136,6 +139,7 @@ with layout.toolbar:
         step=1,
         hide_details=True,
         dense=True,
+        style="max-width: 300px",
     )
 ```
 

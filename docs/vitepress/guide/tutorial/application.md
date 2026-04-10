@@ -18,7 +18,7 @@ We will start by editing `04_application/app.py` which contain the basic structu
 
 ## Imports
 
-because we are adding `trame` to the list of widgets, we should add it to our environment by running
+Because we are adding `trame` to the list of widgets, we should add it to our environment by running
 
 ```sh
 pip install trame-components
@@ -464,7 +464,7 @@ class Representation:
 
 ![Representation Selection](/assets/images/tutorial/gui-representation.jpg){ width=50% }
 
-Second, we create a dropdown menu for the representation type. The `VSelect` component is used to create a dropdown menu. The `v_model` uses the state variable `mesh_representation` initialized to be a surface. The `items` is a list of dicts, where the element with the `item_title` parameter as key is the display string (`text`) of the representation, and the element with the `item_value` parameter as key is the value of the representation used for selection.
+Second, we create a dropdown menu for the representation type. The `VSelect` component is used to create a dropdown menu. The `v_model` uses the state variable `mesh_representation` initialized to be a surface. The `items` is a list of dicts, where the element with the `item_title` parameter as key is the displayed string of the representation, and the element with the `item_value` parameter as key is the value of the representation used for selection.
 
 ```python
 vuetify3.VSelect(

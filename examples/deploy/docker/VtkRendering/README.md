@@ -9,10 +9,10 @@ using the nvidia-runtime with __kitware/trame:glvnd__ base image and an EGL buil
 docker build -t trame-vtk-app .
 ```
 
-# Run the image on port 8080
+# Run the image on port 9000
 
 ```bash
-docker run -it --rm -p 8080:80 trame-vtk-app
+docker run -it --rm -p 9000:80 trame-vtk-app
 ```
 
 # Deploying into CapRover

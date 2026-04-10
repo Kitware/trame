@@ -96,6 +96,7 @@ def selection_change(selection=[], **kwargs):
     chart_data = DATA_FRAME.loc[
         :, ["date_time_naive", "apple", "banana", "chocolate"]
     ].assign(source="total")
+    chart_data["date_time_naive"] = chart_data["date_time_naive"].astype(str)
 
     if not selected_df.empty:
         selected_data = selected_df.loc[

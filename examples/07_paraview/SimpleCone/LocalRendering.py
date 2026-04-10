@@ -3,7 +3,7 @@ Installation requirements:
     pip install trame trame-vuetify trame-vtk
 """
 
-# import paraview.web.venv  # Available in PV 5.11
+import paraview.web.venv  # Available in PV 5.11
 from paraview import simple
 
 from trame.app import get_server

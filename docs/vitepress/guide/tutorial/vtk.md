@@ -9,7 +9,7 @@ Start editing the file in `01_vtk/app_cone.py` which has the same content as `00
 **First**, what we need to add is an import for `vtk` and `vuetify3` from `trame.widgets`.
 
 ```python
-from trame.widgets import vtk, vuetify3 as vuetify
+from trame.widgets import vtk, vuetify3
 ```
 
 This provides us access to ***trame***'s widgets for vtk and vuetify.
@@ -158,7 +158,7 @@ with SinglePageLayout(server) as layout:
     # [...]
 
     with layout.content:
-        with vuetify.VContainer(
+        with vuetify3.VContainer(
             fluid=True,
             classes="pa-0 fill-height",
         ):
@@ -185,7 +185,7 @@ ctrl = server.controller                                    # <--- New line
 
 with ... as layout:
     with layout.content:
-        with vuetify.VContainer(...):
+        with vuetify3.VContainer(...):
             # html_view = vtk.VtkLocalView(renderWindow)
             html_view = vtk.VtkRemoteView(renderWindow)
             ctrl.on_server_ready.add(html_view.update)      # <--- New line

@@ -22,14 +22,14 @@ const myWeight = 28.0;
 
 ![Vuetify example](/assets/images/tutorial/vuetify-example.gif)
 
-Here we have a vuetify text field (`v-text-field`). In Vue, the `v-model` is a directive that provides two-way data binding between an input and form data or between two components. The variable `myWeight` is bound by the `v-model` attribute, so the shared state can read from it (shown in the GUI form) and write to it (input to the form stored as the variable contents).
+Here we have a vuetify3 text field (`v-text-field`). In Vue, the `v-model` is a directive that provides two-way data binding between an input and form data or between two components. The variable `myWeight` is bound by the `v-model` attribute, so the shared state can read from it (shown in the GUI form) and write to it (input to the form stored as the variable contents).
 
 We've included, optionally, a `label` and a `suffix` for the text box. The `label` is a static string or title, and the `suffix` could be a static string, but the "`:`" in `:suffix` means we will look up and use the contents of a variable `currentSuffix`. This variable could change to 'kg' if our user prefers the metric system.
 
 Looking through the Vuetify documentation, we see a large number of wonderful user interface (UI) components. ***trame*** exposes Vuetify from within Python. Access to Vuetify is provided through ***trame*** using the following import.
 
 ```python
-from trame.widgets import vuetify3 as vuetify
+from trame.widgets import vuetify3
 ```
 
 ## Python Vuetify Rules
@@ -38,13 +38,13 @@ Exposing Vuetify in Python was accomplished by making a few syntax changes.
 
 1. We use CamelCase in our Python component's name, while attribute hyphens become underscores. For example, the `v-text-field` component becomes VTextField, and the `v-model` attribute becomes `v_model`.
 
-2. Strings, ints, floats, and booleans used to set attributes are assigned as normal like `vuetify.VTextField(label="myLabel")` for the `"myLabel"` String.
+2. Strings, ints, floats, and booleans used to set attributes are assigned as normal like `vuetify3.VTextField(label="myLabel")` for the `"myLabel"` String.
 
-3. Expressions or state variables used to set attributes are assigned as a String in a tuple (i.e. surrounded by parenthesis) like `vuetify.VTextField(label=("myLabel",))`. The comma enforces the usage of a tuple. An optional second parameter is used to provide an initial value like `vuetify.VTextField(label=("myLabel", "Initial Label"))`.
+3. Expressions or state variables used to set attributes are assigned as a String in a tuple (i.e. surrounded by parenthesis) like `vuetify3.VTextField(label=("myLabel",))`. The comma enforces the usage of a tuple. An optional second parameter is used to provide an initial value like `vuetify3.VTextField(label=("myLabel", "Initial Label"))`.
 
-4. Vuetify implicitly sets boolean properties. For example, if something is to be `disabled`, then one simply writes disabled. In our Python implementation, this is done explicitly like `vuetify.VTextField(disabled=True)`.
+4. Vuetify implicitly sets boolean properties. For example, if something is to be `disabled`, then one simply writes disabled. In our Python implementation, this is done explicitly like `vuetify3.VTextField(disabled=True)`.
 
-5. For events, HTML uses the `@` like `@click="runMethod"` to set the function to call upon a click event and double quotes on the String name of the function to run. In our Python version of Vuetify, we ignore the `@` and use the reference to the function instead of a the String name of the function call like `vuetify.VBtn(click=runMethod)`.
+5. For events, HTML uses the `@` like `@click="runMethod"` to set the function to call upon a click event and double quotes on the String name of the function to run. In our Python version of Vuetify, we ignore the `@` and use the reference to the function instead of a the String name of the function call like `vuetify3.VBtn(click=runMethod)`.
 
 Given these rules, we can recreate the JavaScript/HTML text field example in ***trame*** as follows.
 
@@ -128,19 +128,19 @@ with SinglePageLayout(server, theme=("theme", "light")) as layout:
             ctrl.view_reset_camera = view.reset_camera # <-- Capture reset_camera method
 
     with layout.toolbar:
-        vuetify.VSpacer()
-        vuetify.VSwitch(
+        vuetify3.VSpacer()
+        vuetify3.VSwitch(
             v_model="theme",
             false_value="light", # <-- Value of v_model's variable if switch toggled off
             true_value="dark", # <-- Value of v_model's variable if switch toggled on
             hide_details=True,
             dense=True,
         )
-        with vuetify.VBtn(
+        with vuetify3.VBtn(
             icon=True,
             click=ctrl.view_reset_camera, # <-- Use that reset_camera (init order does not matter)
         ):
-            vuetify.VIcon("mdi-crop-free")
+            vuetify3.VIcon("mdi-crop-free")
 ```
 **Running the Application**
 
@@ -180,26 +180,26 @@ Let's add a `VSlider` for adjusting the resolution, a `VBtn` with `VIcon` to res
 with SinglePageLayout(server, theme=("theme", "light")) as layout:
     # [...]
     with layout.toolbar:
-        vuetify.VSpacer()
-        vuetify.VSlider(
+        vuetify3.VSpacer()
+        vuetify3.VSlider(
             v_model=("resolution", DEFAULT_RESOLUTION), # (var_name, initial_value)
             min=3, max=60, step=1,                      # min/max/step
             hide_details=True, dense=True,              # presentation params
             style="max-width: 300px",                   # css style
         )
-        with vuetify.VBtn(icon=True, click=reset_resolution):
-            vuetify.VIcon("mdi-restore")
-        vuetify.VDivider(vertical=True, classes="mx-2")
+        with vuetify3.VBtn(icon=True, click=reset_resolution):
+            vuetify3.VIcon("mdi-restore")
+        vuetify3.VDivider(vertical=True, classes="mx-2")
 
-        vuetify.VSwitch(
+        vuetify3.VSwitch(
             v_model="theme",
             false_value="light",
             true_value="dark",
             hide_details=True,
             dense=True,
         )
-        with vuetify.VBtn(icon=True, click=ctrl.view_reset_camera):
-            vuetify.VIcon("mdi-crop-free")
+        with vuetify3.VBtn(icon=True, click=ctrl.view_reset_camera):
+            vuetify3.VIcon("mdi-crop-free")
 ```
 
 The `VSlider` creates `resolution` as a state variable and is initialized to the default resolution. When interacting with the slider, the code will call a function decorated with `@state.change("resolution")`.

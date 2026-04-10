@@ -82,7 +82,7 @@ view = simple.Render()             # Ask to compute image of active view and ret
 With these three lines, we create a full pipeline and a view. Now, we can use ***trame*** to show that view in the client.
 
 ```python
-from trame.widgets import vuetify3 as vuetify, paraview
+from trame.widgets import vuetify3, paraview
 from trame.layouts import SinglePage
 
 html_view = paraview.VtkRemoteView(view)   # For remote rendering
@@ -91,7 +91,7 @@ html_view = paraview.VtkRemoteView(view)   # For remote rendering
 layout = SinglePage("ParaView cone", on_ready=html_view.update)
 
 with layout.content:
-    vuetify.VContainer(
+    vuetify3.VContainer(
         fluid=True,
         classes="pa-0 fill-height",
         children=[html_view],
@@ -103,13 +103,13 @@ with layout.content:
 The rest of the code looks very similar to the VTK Hello ***trame*** example, but instead of importing the `vtk` module of ***trame***
 
 ```python
-from trame.widgets import vuetify3 as vuetify, vtk
+from trame.widgets import vuetify3, vtk
 ```
 
 we import the `paraview` module
 
 ```python
-from trame.widgets import vuetify3 as vuetify, paraview
+from trame.widgets import vuetify3, paraview
 ```
 
 ## GUI
@@ -129,7 +129,7 @@ Now, we can extend the UI with a slider on the `layout.toolbar`
 DEFAULT_RESOLUTION = 6
 
 with layout.toolbar:
-    vuetify.VSlider(
+    vuetify3.VSlider(
         v_model=("resolution", DEFAULT_RESOLUTION),
         min=3,
         max=60,
@@ -160,14 +160,13 @@ Let's analyse the example in `./05_paraview/StateLoader.py`. The ***trame*** cor
 **Script Header**
 
 ```python
-import venv
-
-import os
-import trame
-from trame.html import vuetify, paraview
-from trame.layouts import SinglePage
-
+from paraview.web import venv
 from paraview import simple
+
+from pathlib import Path
+from trame.app import get_server
+from trame.widgets import vuetify3, paraview, client
+from trame.ui.vuetify3 import SinglePageLayout
 ```
 
 **Script Core**
@@ -181,7 +180,7 @@ def load_data():
 layout = SinglePage("State Viewer", on_ready=load_data)
 layout.logo.click = "$refs.view.resetCamera()"
 layout.title.set_text("ParaView State Viewer")
-layout.content.add_child(vuetify.VContainer(fluid=True, classes="pa-0 fill-height"))
+layout.content.add_child(vuetify3.VContainer(fluid=True, classes="pa-0 fill-height"))
 
 if __name__ == "__main__":
     layout.start()

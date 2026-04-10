@@ -1,7 +1,7 @@
 # Layouts
 
-To simplify creation of the graphical user interface (GUI) for the web application, ***trame.ui.vuetify*** defines layouts objects such as `VAppLayout`, `SinglePageLayout`, and `SinglePageWithDrawerLayout`.
-In addition to these `vuetify` layouts we also have a simple `trame.ui.html.DivLayout`.
+To simplify creation of the graphical user interface (GUI) for the web application, ***trame.ui.vuetify3*** defines layouts objects such as `VAppLayout`, `SinglePageLayout`, and `SinglePageWithDrawerLayout`.
+In addition to these `vuetify3` layouts we also have a simple `trame.ui.html.DivLayout`.
 
 All core layouts start with a `VApp` (Vuetifies `v-app`) component. The `VApp` is **REQUIRED** for all applications. It is the mount point for other Vuetify components and functionality and ensures that it propagates the default application variant (dark/light) to children components, and ensures proper cross-browser support for certain click events in browsers like Safari. `VApp` should only be rendered within your application **ONCE**. (More on Vuetify in the next chapter of the tutorial.)
 
@@ -28,7 +28,7 @@ from trame.ui.vuetify3 import VAppLayout
 ```python
 with VAppLayout(server) as layout:
     with layout.root:
-        with vuetify.VContainer(
+        with vuetify3.VContainer(
             fluid=True,
             classes="pa-0 fill-height",
         ):
@@ -76,7 +76,7 @@ with SinglePageLayout(server) as layout:
     layout.title.set_text("Hello trame")
 
     with layout.content:
-        with vuetify.VContainer(
+        with vuetify3.VContainer(
             fluid=True,
             classes="pa-0 fill-height",
         ):
@@ -121,7 +121,7 @@ with SinglePageWithDrawerLayout(server) as layout:
     layout.title.set_text("Hello trame")
 
     with layout.content:
-        with vuetify.VContainer(
+        with vuetify3.VContainer(
             fluid=True,
             classes="pa-0 fill-height",
         ):

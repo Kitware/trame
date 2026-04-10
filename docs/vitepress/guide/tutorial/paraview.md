@@ -4,7 +4,7 @@ ParaView is the world’s leading open source post-processing visualization engi
 
 ## Download ParaView
 
-ParaView 5.10+ can be downloaded from [here](https://www.paraview.org/download).
+ParaView 6+ can be downloaded from [here](https://www.paraview.org/download).
 
 ## Virtual Environment
 
@@ -14,7 +14,7 @@ ParaView comes with its own Python, which may be missing some dependencies for t
 **First**, we need to setup the ParaView add-on python environment, in which we will only install ***trame***, but we could add any other Python libraries that are not included in the ParaView bundle.
 
 ```bash
-python3.9 -m venv .pvenv
+python3.12 -m venv .pvenv
 source ./.pvenv/bin/activate
 python -m pip install --upgrade pip
 pip install trame trame-vtk trame-vuetify
@@ -82,20 +82,23 @@ view = simple.Render()             # Ask to compute image of active view and ret
 With these three lines, we create a full pipeline and a view. Now, we can use ***trame*** to show that view in the client.
 
 ```python
-from trame.html import vuetify, paraview
-from trame.layouts import SinglePage
+import paraview.web.venv
+from trame.app import get_server
+from trame.widgets import vuetify3, paraview
+from trame.ui.vuetify3 import SinglePageLayout
+server = get_server()
+state, ctrl = server.state, server.controller
 
-html_view = paraview.VtkRemoteView(view)   # For remote rendering
-# html_view = paraview.VtkLocalView(view)  # For local rendering
-
-layout = SinglePage("ParaView cone", on_ready=html_view.update)
-
-with layout.content:
-    vuetify.VContainer(
-        fluid=True,
-        classes="pa-0 fill-height",
-        children=[html_view],
-    )
+with SinglePageLayout(server) as layout:
+    with layout.content:
+        vuetify3.VContainer(
+            fluid=True,
+            classes="pa-0 fill-height",
+        ):
+            html_view = paraview.VtkRemoteView(view)
+            # html_view = paraview.VtkLocalView(view)
+            ctrl.view_update = html_view.update
+            ctrl.view_reset_camera = html_view.reset_camera
 ```
 
 <div class="print-break"></div>
@@ -103,13 +106,13 @@ with layout.content:
 The rest of the code looks very similar to the VTK Hello ***trame*** example, but instead of importing the `vtk` module of ***trame***
 
 ```python
-from trame.html import vuetify, vtk
+from trame.widgets import vuetify3, vtk
 ```
 
 we import the `paraview` module
 
 ```python
-from trame.html import vuetify, paraview
+from trame.widgets import vuetify3, paraview
 ```
 
 ## GUI
@@ -129,13 +132,14 @@ Now, we can extend the UI with a slider on the `layout.toolbar`
 DEFAULT_RESOLUTION = 6
 
 with layout.toolbar:
-    vuetify.VSlider(
+    vuetify3.VSlider(
         v_model=("resolution", DEFAULT_RESOLUTION),
         min=3,
         max=60,
         step=1,
         hide_details=True,
         dense=True,
+        style="max-width: 300px",
     )
 ```
 
@@ -160,14 +164,13 @@ Let's analyse the example in `./05_paraview/StateLoader.py`. The ***trame*** cor
 **Script Header**
 
 ```python
-import venv
-
-import os
-import trame
-from trame.html import vuetify, paraview
-from trame.layouts import SinglePage
-
+from paraview.web import venv
 from paraview import simple
+
+from pathlib import Path
+from trame.app import get_server
+from trame.widgets import vuetify3, paraview, client
+from trame.ui.vuetify3 import SinglePageLayout
 ```
 
 **Script Core**
@@ -181,7 +184,7 @@ def load_data():
 layout = SinglePage("State Viewer", on_ready=load_data)
 layout.logo.click = "$refs.view.resetCamera()"
 layout.title.set_text("ParaView State Viewer")
-layout.content.add_child(vuetify.VContainer(fluid=True, classes="pa-0 fill-height"))
+layout.content.add_child(vuetify3.VContainer(fluid=True, classes="pa-0 fill-height"))
 
 if __name__ == "__main__":
     layout.start()

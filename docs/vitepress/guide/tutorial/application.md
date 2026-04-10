@@ -18,28 +18,13 @@ We will start by editing `04_application/app.py` which contain the basic structu
 
 ## Imports
 
-**First**, our ***trame*** imports have also changed. Thus, we will replace
-
-```python
-from trame.layouts import SinglePage
-from trame.html import vtk, vuetify
-```
-
-with
-
-```python
-from trame.app import get_server
-from trame.ui.vuetify import SinglePageLayout
-from trame.widgets import vtk, vuetify, trame
-```
-
-But because we are adding `trame` to the list of widgets, we should add it to our environment by running
+Because we are adding `trame` to the list of widgets, we should add it to our environment by running
 
 ```sh
 pip install trame-components
 ```
 
-We are creating a single page application with a drawer (`trame.ui.vuetify`), and we want to use one of ***trame***'s predefined widgets (`trame.widgets`) for displaying and interacting with visualization pipelines.
+We are creating a single page application with a drawer (`trame.ui.vuetify3`), and we want to use one of ***trame***'s predefined widgets (`trame.widgets`) for displaying and interacting with visualization pipelines.
 
 **Finally**, our VTK pipelines are fairly straight forward, but not available as one of the VTK examples. We will add the import for our VTK objects.
 
@@ -233,7 +218,7 @@ For this application, we want to enable dynamic switching between *local* and *r
 We are creating a single page application with a drawer using `SinglePageWithDrawer`. By default we get a title, toolbar, drawer, and a content section. So we instantiate a `SinglePageWithDrawer` with the `title` of "Viewer" and `on_ready` argument equal to `html_view.update`, which updates the three-dimensional visualization.
 
 ```python
-with SinglePageWithDrawerLayout(server) as layout:
+with SinglePageWithDrawerLayout(server, theme=("theme", "light")) as layout:
     layout.title.set_text("Viewer")
 
     with layout.toolbar:
@@ -246,7 +231,7 @@ with SinglePageWithDrawerLayout(server) as layout:
 
     with layout.content:
         # content components
-        with vuetify.VContainer(
+        with vuetify3.VContainer(
             fluid=True,
             classes="pa-0 fill-height",
         ):
@@ -269,8 +254,8 @@ We want to create a toolbar with the application logo and title on one end and s
 ```python
 with layout.toolbar:
     # toolbar components
-    vuetify.VSpacer()
-    vuetify.VDivider(vertical=True, classes="mx-2")
+    vuetify3.VSpacer()
+    vuetify3.VDivider(vertical=True, classes="mx-2")
     standard_buttons()
 ```
 
@@ -280,7 +265,7 @@ Three of the buttons have on/off states, so we will use a `VCheckbox` with the `
 
 ```python
 def standard_buttons():
-    vuetify.VCheckbox(
+    vuetify3.VCheckbox(
         v_model=("cube_axes_visibility", True),
         on_icon="mdi-cube-outline",
         off_icon="mdi-cube-off-outline",
@@ -288,15 +273,17 @@ def standard_buttons():
         hide_details=True,
         dense=True,
     )
-    vuetify.VCheckbox(
-        v_model="$vuetify.theme.dark",
-        on_icon="mdi-lightbulb-off-outline",
-        off_icon="mdi-lightbulb-outline",
+    vuetify3.VCheckbox(
+        v_model="theme",
+        true_value="dark",
+        false_value="light",
+        true_icon="mdi-lightbulb-off-outline",
+        false_icon="mdi-lightbulb-outline",
         classes="mx-1",
         hide_details=True,
         dense=True,
     )
-    vuetify.VCheckbox(
+    vuetify3.VCheckbox(
         v_model=("viewMode", "local"), # VtkRemoteLocalView => {namespace}Mode=['local', 'remote']
         on_icon="mdi-lan-disconnect",
         off_icon="mdi-lan-connect",
@@ -306,11 +293,11 @@ def standard_buttons():
         hide_details=True,
         dense=True,
     )
-    with vuetify.VBtn(icon=True, click=ctrl.view_reset_camera):
-        vuetify.VIcon("mdi-crop-free")
+    with vuetify3.VBtn(icon=True, click=ctrl.view_reset_camera):
+        vuetify3.VIcon("mdi-crop-free")
 ```
 
-The `dark` checkbox is as the previous examples using built-in *Vuetify* (`$vuetify.theme.dark`) reactive variable.
+The `dark` checkbox is as the previous examples using layout's parameter (`theme`) reactive variable.
 
 The `viewMode` checkbox is used to switch between the *local* and *remote* rendering, and leverages the `VtkRemoteLocalView` mode. The `cube_axes_visibility` checkbox is used to turn on and off the cube axes, and leverages the [`cube_axes_visibility` callback](#toolbar_callbacks_cube_axes_visibility-id).
 
@@ -334,7 +321,7 @@ with layout.drawer as drawer:
     # drawer components
     drawer.width = 325
     pipeline_widget()
-    vuetify.VDivider(classes="mb-2")
+    vuetify3.VDivider(classes="mb-2")
     mesh_card()
     contour_card()
 ```
@@ -373,15 +360,15 @@ The default GUI card is a simple card with a title, and a body. The card itself 
 
 ```python
 def ui_card(title, ui_name):
-    with vuetify.VCard(v_show=f"active_ui == '{ui_name}'"):
-        vuetify.VCardTitle(
+    with vuetify3.VCard(v_show=f"active_ui == '{ui_name}'"):
+        vuetify3.VCardTitle(
             title,
             classes="grey lighten-1 py-1 grey--text text--darken-3",
             style="user-select: none; cursor: pointer",
             hide_details=True,
             dense=True,
         )
-        content = vuetify.VCardText(classes="py-2")
+        content = vuetify3.VCardText(classes="py-2")
     return content
 ```
 
@@ -396,19 +383,19 @@ The `mesh_card` contains strictly default GUI components of a pipeline. First, a
 ```python
 def mesh_card():
     with ui_card(title="Mesh", ui_name="mesh"):
-        vuetify.VSelect(
+        vuetify3.VSelect(
             # Representation
         )
-        with vuetify.VRow(classes="pt-2", dense=True):
-            with vuetify.VCol(cols="6"):
-                vuetify.VSelect(
+        with vuetify3.VRow(classes="pt-2", dense=True):
+            with vuetify3.VCol(cols="6"):
+                vuetify3.VSelect(
                     # Color By
                 )
-            with vuetify.VCol(cols="6"):
-                vuetify.VSelect(
+            with vuetify3.VCol(cols="6"):
+                vuetify3.VSelect(
                     # Color Map
                 )
-        vuetify.VSlider(
+        vuetify3.VSlider(
             # Opacity
         )
 ```
@@ -427,25 +414,25 @@ The `contour_card` contains a dropdown menu to select the array/field to [contou
 ```python
 def contour_card():
     with ui_card(title="Contour", ui_name="contour"):
-        vuetify.VSelect(
+        vuetify3.VSelect(
             # Contour By
         )
-        vuetify.VSlider(
+        vuetify3.VSlider(
             # Contour Value
         )
-   *    vuetify.VSelect(
+   *    vuetify3.VSelect(
    *        # Representation
    *    )
-   *    with vuetify.VRow(classes="pt-2", dense=True):
-   *        with vuetify.VCol(cols="6"):
-   *            vuetify.VSelect(
+   *    with vuetify3.VRow(classes="pt-2", dense=True):
+   *        with vuetify3.VCol(cols="6"):
+   *            vuetify3.VSelect(
    *                # Color By
    *            )
-   *        with vuetify.VCol(cols="6"):
-   *            vuetify.VSelect(
+   *        with vuetify3.VCol(cols="6"):
+   *            vuetify3.VSelect(
    *                # Color Map
    *            )
-   *    vuetify.VSlider(
+   *    vuetify3.VSlider(
    *        # Opacity
    *    )
 ```
@@ -477,10 +464,10 @@ class Representation:
 
 ![Representation Selection](/assets/images/tutorial/gui-representation.jpg){ width=50% }
 
-Second, we create a dropdown menu for the representation type. The `VSelect` component is used to create a dropdown menu. The `v_model` uses the state variable `mesh_representation` initialized to be a surface. The `items` is a list of tuples, where the first element is the display string (`text`) of the representation, and the second element is the value of the representation used for selection.
+Second, we create a dropdown menu for the representation type. The `VSelect` component is used to create a dropdown menu. The `v_model` uses the state variable `mesh_representation` initialized to be a surface. The `items` is a list of dicts, where the element with the `item_title` parameter as key is the displayed string of the representation, and the element with the `item_value` parameter as key is the value of the representation used for selection.
 
 ```python
-vuetify.VSelect(
+vuetify3.VSelect(
     # Representation
     v_model=("mesh_representation", Representation.Surface),
     items=(
@@ -492,6 +479,8 @@ vuetify.VSelect(
             {"text": "SurfaceWithEdges", "value": 3},
         ],
     ),
+    item_title="text",
+    item_value="value",
     label="Representation",
     hide_details=True,
     dense=True,
@@ -505,7 +494,7 @@ The [`update_mesh_representation`](#drawer_callbacks_update_mesh_representation-
 The dropdown menu for the representation type for the contour pipeline is similar to the mesh pipeline, but replace the `v_model` line with the `v_model` line for the contour pipeline.
 
 ```python
-vuetify.VSelect(
+vuetify3.VSelect(
     # Representation
     v_model=("contour_representation", Representation.Surface),
     # ... same as mesh ...
@@ -523,11 +512,13 @@ The [`update_contour_representation`](#drawer_callbacks_update_contour_represent
 We create a dropdown menu for the color by. The `VSelect` component is used to create the dropdown menu. The `v_model` uses the state variable `mesh_color_array_idx` initialized to be the default_array, 0. The `items` is a list of tuples, where the first element is the display string (`text`) of the array name, and the second element is the value of the array used for selection. For `items`, we use the state variable `array_list` to create the list of arrays initialized by our `dataset_arrays` array of dictionaries we created at read time.
 
 ```python
-vuetify.VSelect(
+vuetify3.VSelect(
     # Color By
     label="Color by",
     v_model=("mesh_color_array_idx", 0),
     items=("array_list", dataset_arrays),
+    item_title="text",
+    item_value="value",
     hide_details=True,
     dense=True,
     outlined=True,
@@ -540,7 +531,7 @@ The [`update_mesh_color_by_name`](#drawer_callbacks_update_mesh_color_by_name-id
 The dropdown menu for the color by of the contour pipeline is similar to the mesh pipeline, but replace the `v_model` line with the `v_model` line for the contour pipeline.
 
 ```python
-vuetify.VSelect(
+vuetify3.VSelect(
     # Color By
     v_model=("contour_color_array_idx", 0),
     # ... same as mesh ...
@@ -568,7 +559,7 @@ class LookupTable:
 Second, we create a dropdown menu for the color map. The `VSelect` component is used to create a dropdown menu. The `v_model` uses the state variable `mesh_color_preset` initialized to be the rainbow color map. The `items` is a list of tuples, where the first element is the display string (`text`) of the color map, and the second element is the value of the color map used for selection.
 
 ```python
-                vuetify.VSelect(
+                vuetify3.VSelect(
                     # Color Map
                     label="Colormap",
                     v_model=("mesh_color_preset", LookupTable.Rainbow),
@@ -581,6 +572,8 @@ Second, we create a dropdown menu for the color map. The `VSelect` component is 
                             {"text": "Inv Greyscale", "value": 3},
                         ],
                     ),
+                    item_title="text",
+                    item_value="value",
                     hide_details=True,
                     dense=True,
                     outlined=True,
@@ -593,7 +586,7 @@ The [`update_mesh_color_preset`](#drawer_callbacks_update_mesh_color_preset-id) 
 The dropdown menu for the color map of the contour pipeline is similar to the mesh pipeline, but replace the `v_model` line with the `v_model` line for the contour pipeline.
 
 ```python
-                vuetify.VSelect(
+                vuetify3.VSelect(
                     # Color Map
                     v_model=("contour_color_preset", LookupTable.Rainbow),
                     # ... same as mesh ...
@@ -611,7 +604,7 @@ The [`update_contour_color_preset`](#drawer_callbacks_update_contour_color_prese
 We create a slider for the opacity. The `VSlider` component is used to create the slider. The `v_model` uses the state variable `mesh_opacity` initialized to 1.0. The `min` is set to 0 and the `max` is set to 1. The `step` is set to 0.1.
 
 ```python
-        vuetify.VSlider(
+        vuetify3.VSlider(
             # Opacity
             v_model=("mesh_opacity", 1.0),
             min=0,
@@ -629,7 +622,7 @@ The [`update_mesh_opacity`](#drawer_callbacks_update_mesh_opacity-id) callback i
 The slider for the opacity of the contour pipeline is similar to the mesh pipeline, but replace the `v_model` line with the `v_model` line for the contour pipeline.
 
 ```python
-        vuetify.VSlider(
+        vuetify3.VSlider(
             # Opacity
             v_model=("contour_opacity", 1.0),
             # ... same as mesh ...
@@ -650,11 +643,13 @@ The [`update_contour_opacity`](#drawer_callbacks_update_contour_opacity-id) call
 We create a dropdown menu for the contour by. The `VSelect` component is used to create the dropdown menu. The `v_model` uses the state variable `contour_by_array_idx` initialized to be the default_array, 0. The `items` is a list of tuples, where the first element is the display string (`text`) of the array name, and the second element is the value of the array used for selection. For `items`, we use the state variable `array_list` to create the list of arrays initialized by our `dataset_arrays` array of dictionaries we created at read time.
 
 ```python
-        vuetify.VSelect(
+        vuetify3.VSelect(
             # Contour By
             label="Contour by",
             v_model=("contour_by_array_idx", 0),
             items=("array_list", dataset_arrays),
+            item_title="text",
+            item_value="value",
             hide_details=True,
             dense=True,
             outlined=True,
@@ -673,7 +668,7 @@ We create a slider for the contour value. The `VSlider` component is used to cre
 ![Contour By Selection](/assets/images/tutorial/gui-contour-value.jpg){ width=50% }
 
 ```python
-        vuetify.VSlider(
+        vuetify3.VSlider(
             # Contour Value
             v_model=("contour_value", contour_value),
             min=("contour_min", default_min),

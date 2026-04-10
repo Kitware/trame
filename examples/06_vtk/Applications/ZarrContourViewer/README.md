@@ -1,3 +1,3 @@
 # Zarr Contour Viewer Example
    
-![Zarr Contour Viewer](https://kitware.github.io/trame/assets/ZarrContourViewer.Sq6ukGyj.jpg)
+![Zarr Contour Viewer](../../../../docs/vitepress/assets/images/examples/ZarrContourViewer.jpg)

@@ -23,7 +23,7 @@ state, ctrl = server.state, server.controller
 # Data file
 # -----------------------------------------------------------------------------
 
-data_directory = Path(__file__).parent.parent.parent.with_name("data")
+data_directory = Path(__file__).parent.parent.with_name("data")
 head_vti = data_directory / "head.vti"
 
 # -----------------------------------------------------------------------------

@@ -25,7 +25,7 @@ state, ctrl = server.state, server.controller
 
 simple.LoadDistributedPlugin("AcceleratedAlgorithms", remote=False, ns=globals())
 
-data_directory = Path(__file__).parent.parent.parent.with_name("data")
+data_directory = Path(__file__).parent.parent.with_name("data")
 head_vti = data_directory / "head.vti"
 
 reader = simple.XMLImageDataReader(FileName=[str(head_vti)])
@@ -106,7 +106,7 @@ with SinglePageLayout(server) as layout:
             hide_details=True,
         )
 
-        with vuetify.VBtn(icon=True, click="$refs.view.resetCamera()"):
+        with vuetify.VBtn(icon=True, click=ctrl.view_reset_camera):
             vuetify.VIcon("mdi-crop-free")
 
         vuetify.VProgressLinear(

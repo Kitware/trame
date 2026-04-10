@@ -8,10 +8,10 @@
         "ElementBlockFields": [],
         "NodeSets": [],
         "SideSets": []
-    },    
+    },
     "fields": [
-        { "text": "accl", "value": 0, "location": "POINTS", "range": [60000, 201941280] },
-        { "text": "displ", "value": 1, "location": "POINTS" , "range": [2, 20]},
-        { "text": "vel", "value": 2, "location": "POINTS" , "range": [1500, 5000] }
+        { "text": "ACCL", "value": 0, "location": "POINTS", "range": [60000, 201941280] },
+        { "text": "DISPL", "value": 1, "location": "POINTS" , "range": [2, 20]},
+        { "text": "VEL", "value": 2, "location": "POINTS" , "range": [1500, 5000] }
     ]
 }

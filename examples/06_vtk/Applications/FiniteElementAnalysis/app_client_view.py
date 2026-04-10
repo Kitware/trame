@@ -74,7 +74,7 @@ def update_grid(nodes_file, elems_file, field_file, **kwargs):
 
     df_nodes = pd.read_csv(
         io.StringIO(nodes_bytes.decode("utf-8")),
-        delim_whitespace=True,
+        sep=r"\s+",
         header=None,
         skiprows=1,
         names=["id", "x", "y", "z"],
@@ -91,7 +91,7 @@ def update_grid(nodes_file, elems_file, field_file, **kwargs):
         io.StringIO(elems_bytes.decode("utf-8")),
         skiprows=1,
         header=None,
-        delim_whitespace=True,
+        sep=r"\s+",
         engine="python",
         index_col=None,
     ).sort_values(0)
@@ -165,7 +165,7 @@ def update_grid(nodes_file, elems_file, field_file, **kwargs):
             field_bytes = b"".join(field_bytes)
         df_elem_data = pd.read_csv(
             io.StringIO(field_bytes.decode("utf-8")),
-            delim_whitespace=True,
+            sep=r"\s+",
             header=None,
             skiprows=1,
             names=["id", "val"],

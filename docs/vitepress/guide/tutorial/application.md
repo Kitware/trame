@@ -218,29 +218,30 @@ For this application, we want to enable dynamic switching between *local* and *r
 We are creating a single page application with a drawer using `SinglePageWithDrawer`. By default we get a title, toolbar, drawer, and a content section. So we instantiate a `SinglePageWithDrawer` with the `title` of "Viewer" and `on_ready` argument equal to `html_view.update`, which updates the three-dimensional visualization.
 
 ```python
-with SinglePageWithDrawerLayout(server, theme=("theme", "light")) as layout:
-    layout.title.set_text("Viewer")
+def build_ui(self):
+    with SinglePageWithDrawerLayout(server, theme=("theme", "light")) as self.ui:
+        self.ui.title.set_text("Viewer")
 
-    with layout.toolbar:
-        # toolbar components
-        pass
+        with self.ui.toolbar:
+            # toolbar components
+            pass
 
-    with layout.drawer as drawer:
-        # drawer components
-        pass
+        with self.ui.drawer as drawer:
+            # drawer components
+            pass
 
-    with layout.content:
-        # content components
-        with vuetify3.VContainer(
-            fluid=True,
-            classes="pa-0 fill-height",
-        ):
-            view = vtk.VtkRemoteLocalView(renderWindow, namespace="view", mode="local", interactive_ratio=1)
-            ctrl.view_update = view.update              # capture view update method
-            ctrl.view_reset_camera = view.reset_camera  # capture view reset_camera method
+        with self.ui.content:
+            # content components
+            with v3.VContainer(
+                fluid=True,
+                classes="pa-0 fill-height",
+            ):
+                view = vtk.VtkRemoteLocalView(renderWindow, namespace="view", mode="local", interactive_ratio=1)
+                self.ctrl.view_update = view.update              # capture view update method
+                self.ctrl.view_reset_camera = view.reset_camera  # capture view reset_camera method
 ```
 
-**Note**: The `layout.drawer as drawer` syntax is used to get a reference to the drawer to set some of the drawer's properties.
+**Note**: The `self.ui.drawer as drawer` syntax is used to get a reference to the drawer to set some of the drawer's properties.
 
 <div class="print-break"></div>
 <a id="gui_toolbar-id"></a>
@@ -252,11 +253,11 @@ with SinglePageWithDrawerLayout(server, theme=("theme", "light")) as layout:
 We want to create a toolbar with the application logo and title on one end and some standard buttons separated by a vertical divider on the other end. The `VSpacer` is used to push the content the right-side of the application toolbar, and the `VDivider` is used to create the vertical divider, and method `standard_buttons` encapsulates the GUI code to produce these buttons.
 
 ```python
-with layout.toolbar:
+with self.ui.toolbar:
     # toolbar components
-    vuetify3.VSpacer()
-    vuetify3.VDivider(vertical=True, classes="mx-2")
-    standard_buttons()
+    v3.VSpacer()
+    v3.VDivider(vertical=True, classes="mx-2")
+    self.standard_buttons()
 ```
 
 ![Toolbar Buttons](/assets/images/tutorial/toolbar-buttons.jpg)
@@ -264,8 +265,8 @@ with layout.toolbar:
 Three of the buttons have on/off states, so we will use a `VCheckbox` with the `on_icon` and `off_icon` properties and the `v_model` callback to switch between these states. The `resetCamera` button is just using the controller function to allow out-of-order initialization.
 
 ```python
-def standard_buttons():
-    vuetify3.VCheckbox(
+def standard_buttons(self):
+    v3.VCheckbox(
         v_model=("cube_axes_visibility", True),
         on_icon="mdi-cube-outline",
         off_icon="mdi-cube-off-outline",
@@ -273,7 +274,7 @@ def standard_buttons():
         hide_details=True,
         dense=True,
     )
-    vuetify3.VCheckbox(
+    v3.VCheckbox(
         v_model="theme",
         true_value="dark",
         false_value="light",
@@ -283,7 +284,7 @@ def standard_buttons():
         hide_details=True,
         dense=True,
     )
-    vuetify3.VCheckbox(
+    v3.VCheckbox(
         v_model=("viewMode", "local"), # VtkRemoteLocalView => {namespace}Mode=['local', 'remote']
         on_icon="mdi-lan-disconnect",
         off_icon="mdi-lan-connect",
@@ -293,8 +294,8 @@ def standard_buttons():
         hide_details=True,
         dense=True,
     )
-    with vuetify3.VBtn(icon=True, click=ctrl.view_reset_camera):
-        vuetify3.VIcon("mdi-crop-free")
+    with v3.VBtn(icon=True, click=ctrl.view_reset_camera):
+        v3.VIcon("mdi-crop-free")
 ```
 
 The `dark` checkbox is as the previous examples using layout's parameter (`theme`) reactive variable.
@@ -311,19 +312,19 @@ We want to create a drawer with the ***trame*** pipeline widget, a horizontal di
 
 ```python
 # State use to track active UI card
-state.setdefault("active_ui", None) # prevent resetting value if already present
+self.state.setdefault("active_ui", None) # prevent resetting value if already present
 ```
 
 We want a little wider `drawer`, so we set the width to 325 pixels. Next, we add the ***trame*** pipeline widget using the `pipeline_widget` function. Then, we use a `VDivider` to separate the ***trame*** widget from the pipeline cards. Finally, we add the pipeline cards using the `mesh_card` and `contour_card` functions.
 
 ```python
-with layout.drawer as drawer:
+with self.ui.drawer as drawer:
     # drawer components
     drawer.width = 325
-    pipeline_widget()
-    vuetify3.VDivider(classes="mb-2")
-    mesh_card()
-    contour_card()
+    self.pipeline_widget()
+    v3.VDivider(classes="mb-2")
+    self.mesh_card()
+    self.contour_card()
 ```
 
 <a id="pipeline_widget-id"></a>
@@ -335,7 +336,7 @@ with layout.drawer as drawer:
 The ***trame*** widgets are easy to use. Here, we simply create the widget, define the pipelines and their relationships, and define references to the pipeline widgets two callback functions.
 
 ```python
-def pipeline_widget():
+def pipeline_widget(self):
     trame.GitTree(
         sources=(
             "pipeline",
@@ -359,16 +360,16 @@ def pipeline_widget():
 The default GUI card is a simple card with a title, and a body. The card itself is shown (`v_show`) if the `ui_name` is the same as `active_ui`. We use the `VCard` to create the card, and the `VCardTitle` to create the card title, and the `VCardText` to create the space to add individual pipeline GUI components. The stylings for the card colors can be found at [Material Design](https://materializecss.com/color.html).
 
 ```python
-def ui_card(title, ui_name):
-    with vuetify3.VCard(v_show=f"active_ui == '{ui_name}'"):
-        vuetify3.VCardTitle(
+def ui_card(self, title, ui_name):
+    with v3.VCard(v_show=f"active_ui == '{ui_name}'"):
+        v3.VCardTitle(
             title,
             classes="grey lighten-1 py-1 grey--text text--darken-3",
             style="user-select: none; cursor: pointer",
             hide_details=True,
             dense=True,
         )
-        content = vuetify3.VCardText(classes="py-2")
+        content = v3.VCardText(classes="py-2")
     return content
 ```
 
@@ -381,21 +382,21 @@ def ui_card(title, ui_name):
 The `mesh_card` contains strictly default GUI components of a pipeline. First, a dropdown menu for the visual [representation](#gui_representation-id) type. Next, a row with two columns. One contains a dropdown menu for the array/field to [color by](#gui_color_by-id), and the other a dropdown menu for which [color map](#gui_color_map-id) to use. Finally, a slider to control the [opacity](#gui_opacity-id).
 
 ```python
-def mesh_card():
-    with ui_card(title="Mesh", ui_name="mesh"):
-        vuetify3.VSelect(
+def mesh_card(self):
+    with self.ui_card(title="Mesh", ui_name="mesh"):
+        v3.VSelect(
             # Representation
         )
-        with vuetify3.VRow(classes="pt-2", dense=True):
-            with vuetify3.VCol(cols="6"):
-                vuetify3.VSelect(
+        with v3.VRow(classes="pt-2", dense=True):
+            with v3.VCol(cols="6"):
+                v3.VSelect(
                     # Color By
                 )
-            with vuetify3.VCol(cols="6"):
-                vuetify3.VSelect(
+            with v3.VCol(cols="6"):
+                v3.VSelect(
                     # Color Map
                 )
-        vuetify3.VSlider(
+        v3.VSlider(
             # Opacity
         )
 ```
@@ -412,27 +413,27 @@ Since these are default pipeline elements, we will cover these items together wi
 The `contour_card` contains a dropdown menu to select the array/field to [contour by](#contour-by-gui), a slider to control the [contour value](#contour-value-gui), and the default GUI components of a pipeline.
 
 ```python
-def contour_card():
-    with ui_card(title="Contour", ui_name="contour"):
-        vuetify3.VSelect(
+def contour_card(self):
+    with self.ui_card(title="Contour", ui_name="contour"):
+        v3.VSelect(
             # Contour By
         )
-        vuetify3.VSlider(
+        v3.VSlider(
             # Contour Value
         )
-   *    vuetify3.VSelect(
+   *    v3.VSelect(
    *        # Representation
    *    )
-   *    with vuetify3.VRow(classes="pt-2", dense=True):
-   *        with vuetify3.VCol(cols="6"):
-   *            vuetify3.VSelect(
+   *    with v3.VRow(classes="pt-2", dense=True):
+   *        with v3.VCol(cols="6"):
+   *            v3.VSelect(
    *                # Color By
    *            )
-   *        with vuetify3.VCol(cols="6"):
-   *            vuetify3.VSelect(
+   *        with v3.VCol(cols="6"):
+   *            v3.VSelect(
    *                # Color Map
    *            )
-   *    vuetify3.VSlider(
+   *    v3.VSlider(
    *        # Opacity
    *    )
 ```
@@ -467,7 +468,7 @@ class Representation:
 Second, we create a dropdown menu for the representation type. The `VSelect` component is used to create a dropdown menu. The `v_model` uses the state variable `mesh_representation` initialized to be a surface. The `items` is a list of dicts, where the element with the `item_title` parameter as key is the displayed string of the representation, and the element with the `item_value` parameter as key is the value of the representation used for selection.
 
 ```python
-vuetify3.VSelect(
+v3.VSelect(
     # Representation
     v_model=("mesh_representation", Representation.Surface),
     items=(
@@ -494,7 +495,7 @@ The [`update_mesh_representation`](#drawer_callbacks_update_mesh_representation-
 The dropdown menu for the representation type for the contour pipeline is similar to the mesh pipeline, but replace the `v_model` line with the `v_model` line for the contour pipeline.
 
 ```python
-vuetify3.VSelect(
+v3.VSelect(
     # Representation
     v_model=("contour_representation", Representation.Surface),
     # ... same as mesh ...
@@ -512,7 +513,7 @@ The [`update_contour_representation`](#drawer_callbacks_update_contour_represent
 We create a dropdown menu for the color by. The `VSelect` component is used to create the dropdown menu. The `v_model` uses the state variable `mesh_color_array_idx` initialized to be the default_array, 0. The `items` is a list of tuples, where the first element is the display string (`text`) of the array name, and the second element is the value of the array used for selection. For `items`, we use the state variable `array_list` to create the list of arrays initialized by our `dataset_arrays` array of dictionaries we created at read time.
 
 ```python
-vuetify3.VSelect(
+v3.VSelect(
     # Color By
     label="Color by",
     v_model=("mesh_color_array_idx", 0),
@@ -531,7 +532,7 @@ The [`update_mesh_color_by_name`](#drawer_callbacks_update_mesh_color_by_name-id
 The dropdown menu for the color by of the contour pipeline is similar to the mesh pipeline, but replace the `v_model` line with the `v_model` line for the contour pipeline.
 
 ```python
-vuetify3.VSelect(
+v3.VSelect(
     # Color By
     v_model=("contour_color_array_idx", 0),
     # ... same as mesh ...
@@ -559,7 +560,7 @@ class LookupTable:
 Second, we create a dropdown menu for the color map. The `VSelect` component is used to create a dropdown menu. The `v_model` uses the state variable `mesh_color_preset` initialized to be the rainbow color map. The `items` is a list of tuples, where the first element is the display string (`text`) of the color map, and the second element is the value of the color map used for selection.
 
 ```python
-                vuetify3.VSelect(
+                v3.VSelect(
                     # Color Map
                     label="Colormap",
                     v_model=("mesh_color_preset", LookupTable.Rainbow),
@@ -586,7 +587,7 @@ The [`update_mesh_color_preset`](#drawer_callbacks_update_mesh_color_preset-id) 
 The dropdown menu for the color map of the contour pipeline is similar to the mesh pipeline, but replace the `v_model` line with the `v_model` line for the contour pipeline.
 
 ```python
-                vuetify3.VSelect(
+                v3.VSelect(
                     # Color Map
                     v_model=("contour_color_preset", LookupTable.Rainbow),
                     # ... same as mesh ...
@@ -604,7 +605,7 @@ The [`update_contour_color_preset`](#drawer_callbacks_update_contour_color_prese
 We create a slider for the opacity. The `VSlider` component is used to create the slider. The `v_model` uses the state variable `mesh_opacity` initialized to 1.0. The `min` is set to 0 and the `max` is set to 1. The `step` is set to 0.1.
 
 ```python
-        vuetify3.VSlider(
+        v3.VSlider(
             # Opacity
             v_model=("mesh_opacity", 1.0),
             min=0,
@@ -622,7 +623,7 @@ The [`update_mesh_opacity`](#drawer_callbacks_update_mesh_opacity-id) callback i
 The slider for the opacity of the contour pipeline is similar to the mesh pipeline, but replace the `v_model` line with the `v_model` line for the contour pipeline.
 
 ```python
-        vuetify3.VSlider(
+        v3.VSlider(
             # Opacity
             v_model=("contour_opacity", 1.0),
             # ... same as mesh ...
@@ -643,7 +644,7 @@ The [`update_contour_opacity`](#drawer_callbacks_update_contour_opacity-id) call
 We create a dropdown menu for the contour by. The `VSelect` component is used to create the dropdown menu. The `v_model` uses the state variable `contour_by_array_idx` initialized to be the default_array, 0. The `items` is a list of tuples, where the first element is the display string (`text`) of the array name, and the second element is the value of the array used for selection. For `items`, we use the state variable `array_list` to create the list of arrays initialized by our `dataset_arrays` array of dictionaries we created at read time.
 
 ```python
-        vuetify3.VSelect(
+        v3.VSelect(
             # Contour By
             label="Contour by",
             v_model=("contour_by_array_idx", 0),
@@ -668,7 +669,7 @@ We create a slider for the contour value. The `VSlider` component is used to cre
 ![Contour By Selection](/assets/images/tutorial/gui-contour-value.jpg){ width=50% }
 
 ```python
-        vuetify3.VSlider(
+        v3.VSlider(
             # Contour Value
             v_model=("contour_value", contour_value),
             min=("contour_min", default_min),
@@ -691,15 +692,15 @@ The [`update_contour_value`](#drawer_callbacks_update_contour_value-id) callback
 
 ### Toolbar Callbacks
 
-The first toolbar callback is the `cube_axes_visibility` callback, which is used to turn on and off the cube axes. The `update_cube_axes_visibility` function is found by the @state.change decorator for `cube_axes_visibility`. Then we simply set the `cube_axes` actor's `Visibility` property to the value of `cube_axes_visibility`, and update the view.
+The first toolbar callback is the `cube_axes_visibility` callback, which is used to turn on and off the cube axes. The `update_cube_axes_visibility` function is found by the @change decorator for `cube_axes_visibility`. Then we simply set the `cube_axes` actor's `Visibility` property to the value of `cube_axes_visibility`, and update the view.
 
 <a id="toolbar_callbacks_cube_axes_visibility-id"></a>
 
 ```python
-@state.change("cube_axes_visibility")
-def update_cube_axes_visibility(cube_axes_visibility, **kwargs):
+@change("cube_axes_visibility")
+def update_cube_axes_visibility(self, cube_axes_visibility, **kwargs):
     cube_axes.SetVisibility(cube_axes_visibility)
-    ctrl.view_update()
+    self.ctrl.view_update()
 ```
 
 <div class="print-break"></div>
@@ -724,14 +725,14 @@ When a pipeline is selected in the pipeline widget, we want to update the pipeli
 
 ```python
 # Selection Change
-def actives_change(ids):
+def actives_change(self, ids):
     _id = ids[0]
     if _id == "1":  # Mesh
-        state.active_ui = "mesh"
+        self.state.active_ui = "mesh"
     elif _id == "2":  # Contour
-        state.active_ui = "contour"
+        self.state.active_ui = "contour"
     else:
-        state.active_ui = "nothing"
+        self.state.active_ui = "nothing"
 ```
 
 When a pipeline visibility is toggled in the pipeline widget, we want to update the view to add or remove the toggled pipeline. Using the default `visibility_change` function of ***trame*** pipeline widget, we update the visibility of the appropriate pipeline `actor` using `actor.SetVisibility` function with the visibility accessed from the `event["visible"]` dictionary element.
@@ -740,7 +741,7 @@ When a pipeline visibility is toggled in the pipeline widget, we want to update 
 
 ```python
 # Visibility Change
-def visibility_change(event):
+def visibility_change(self, event):
     _id = event["id"]
     _visibility = event["visible"]
 
@@ -748,7 +749,7 @@ def visibility_change(event):
         mesh_actor.SetVisibility(_visibility)
     elif _id == "2":  # Contour
         contour_actor.SetVisibility(_visibility)
-    ctrl.view_update()
+    self.ctrl.view_update()
 ```
 
 <a id="representation_callbacks-id"></a>
@@ -762,7 +763,7 @@ The `update_representation` function updates the `representation` property of an
 
 ```python
 # Representation Callbacks
-def update_representation(actor, mode):
+def update_representation(self, actor, mode):
     property = actor.GetProperty()
     if mode == Representation.Points:
         property.SetRepresentationToPoints()
@@ -782,26 +783,26 @@ def update_representation(actor, mode):
         property.EdgeVisibilityOn()
 ```
 
-The `update_mesh_representation` function is found by the @state.change decorator for `mesh_representation`. We simply call the `update_representation` function with the `mesh_actor` and the `mesh_representation` state, and then update the view.
+The `update_mesh_representation` function is found by the @change decorator for `mesh_representation`. We simply call the `update_representation` function with the `mesh_actor` and the `mesh_representation` state, and then update the view.
 
 <a id="drawer_callbacks_update_mesh_representation-id"></a>
 
 ```python
-@state.change("mesh_representation")
-def update_mesh_representation(mesh_representation, **kwargs):
-    update_representation(mesh_actor, mesh_representation)
-    ctrl.view_update()
+@change("mesh_representation")
+def update_mesh_representation(self, mesh_representation, **kwargs):
+    self.update_representation(mesh_actor, mesh_representation)
+    self.ctrl.view_update()
 ```
 
-Likewise, the `update_contour_representation` function is found by the @state.change decorator for `contour_representation`. We simply call the `update_representation` function with the `mesh_actor` and the `contour_representation` state, and then update the view.
+Likewise, the `update_contour_representation` function is found by the @change decorator for `contour_representation`. We simply call the `update_representation` function with the `mesh_actor` and the `contour_representation` state, and then update the view.
 
 <a id="drawer_callbacks_update_contour_representation-id"></a>
 
 ```python
-@state.change("contour_representation")
-def update_contour_representation(contour_representation, **kwargs):
-    update_representation(contour_actor, contour_representation)
-    ctrl.view_update()
+@change("contour_representation")
+def update_contour_representation(self, contour_representation, **kwargs):
+    self.update_representation(contour_actor, contour_representation)
+    self.ctrl.view_update()
 ```
 
 <a id="color_by_callbacks-id"></a>
@@ -815,7 +816,7 @@ The `color_by_array` function updates the `SelectColorArray` of the `mapper` of 
 
 ```python
 # Color By Callbacks
-def color_by_array(actor, array):
+def color_by_array(self, actor, array):
     _min, _max = array.get("range")
     mapper = actor.GetMapper()
     mapper.SelectColorArray(array.get("text"))
@@ -828,28 +829,28 @@ def color_by_array(actor, array):
     mapper.SetUseLookupTableScalarRange(True)
 ```
 
-The `update_mesh_color_by_name` function is found by the @state.change decorator for `mesh_color_array_idx`. We simply call the `color_by_array` function with the `mesh_actor` and the `array`, and then update the view. The `array` is set using the `mesh_color_array_idx` state on the `dataset_arrays` array of dictionaries.
+The `update_mesh_color_by_name` function is found by the @change decorator for `mesh_color_array_idx`. We simply call the `color_by_array` function with the `mesh_actor` and the `array`, and then update the view. The `array` is set using the `mesh_color_array_idx` state on the `dataset_arrays` array of dictionaries.
 
 <a id="drawer_callbacks_update_mesh_representation-id"></a>
 
 ```python
-@state.change("mesh_color_array_idx")
-def update_mesh_color_by_name(mesh_color_array_idx, **kwargs):
+@change("mesh_color_array_idx")
+def update_mesh_color_by_name(self, mesh_color_array_idx, **kwargs):
     array = dataset_arrays[mesh_color_array_idx]
-    color_by_array(mesh_actor, array)
-    ctrl.view_update()
+    self.color_by_array(mesh_actor, array)
+    self.ctrl.view_update()
 ```
 
-Likewise, the `update_contour_color_by_name` function is found by the @state.change decorator for `contour_color_array_idx`. We simply call the `color_by_array` function with the `contour_actor` and the `array`, and then update the view. The `array` is set using the `contour_color_array_idx` state on the `dataset_arrays` array of dictionaries.
+Likewise, the `update_contour_color_by_name` function is found by the @change decorator for `contour_color_array_idx`. We simply call the `color_by_array` function with the `contour_actor` and the `array`, and then update the view. The `array` is set using the `contour_color_array_idx` state on the `dataset_arrays` array of dictionaries.
 
 <a id="drawer_callbacks_update_contour_color_by_name-id"></a>
 
 ```python
-@state.change("contour_color_array_idx")
+@change("contour_color_array_idx")
 def update_contour_color_by_name(contour_color_array_idx, **kwargs):
     array = dataset_arrays[contour_color_array_idx]
-    color_by_array(contour_actor, array)
-    ctrl.view_update()
+    self.color_by_array(contour_actor, array)
+    self.ctrl.view_update()
 ```
 
 <a id="colormap_callbacks-id"></a>
@@ -862,7 +863,7 @@ The `use_preset` function updates the `lut`, lookup table,  hue, saturation, and
 
 ```python
 # Color Map Callbacks
-def use_preset(actor, preset):
+def use_preset(self, actor, preset):
     lut = actor.GetMapper().GetLookupTable()
     if preset == LookupTable.Rainbow:
         lut.SetHueRange(0.666, 0.0)
@@ -883,53 +884,53 @@ def use_preset(actor, preset):
     lut.Build()
 ```
 
-The `update_mesh_color_preset` function is found by the @state.change decorator for `mesh_color_preset`. We simply call the `use_preset` function with the `mesh_actor` and the `mesh_color_preset` state, and then update the view.
+The `update_mesh_color_preset` function is found by the @change decorator for `mesh_color_preset`. We simply call the `use_preset` function with the `mesh_actor` and the `mesh_color_preset` state, and then update the view.
 
 <a id="drawer_callbacks_update_mesh_color_preset-id"></a>
 
 ```python
-@state.change("mesh_color_preset")
-def update_mesh_color_preset(mesh_color_preset, **kwargs):
-    use_preset(mesh_actor, mesh_color_preset)
-    ctrl.view_update()
+@change("mesh_color_preset")
+def update_mesh_color_preset(self, mesh_color_preset, **kwargs):
+    self.use_preset(mesh_actor, mesh_color_preset)
+    self.ctrl.view_update()
 ```
 
-The `update_contour_color_preset` function is found by the @state.change decorator for `contour_color_preset`. We simply call the `use_preset` function with the `contour_actor` and the `contour_color_preset` state, and then update the view.
+The `update_contour_color_preset` function is found by the @change decorator for `contour_color_preset`. We simply call the `use_preset` function with the `contour_actor` and the `contour_color_preset` state, and then update the view.
 
 <a id="drawer_callbacks_update_contour_color_preset-id"></a>
 
 ```python
-@state.change("contour_color_preset")
-def update_contour_color_preset(contour_color_preset, **kwargs):
-    use_preset(contour_actor, contour_color_preset)
-    ctrl.view_update()
+@change("contour_color_preset")
+def update_contour_color_preset(self, contour_color_preset, **kwargs):
+    self.use_preset(contour_actor, contour_color_preset)
+    self.ctrl.view_update()
 ```
 
 <a id="opacity_callbacks-id"></a>
 
 #### Opacity Callbacks
 
-The `update_mesh_opacity` function is found by the @state.change decorator for `mesh_opacity`. We simply use a `mesh_actor` property and the `mesh_opacity` state to `SetOpacity`, and then update the view.
+The `update_mesh_opacity` function is found by the @change decorator for `mesh_opacity`. We simply use a `mesh_actor` property and the `mesh_opacity` state to `SetOpacity`, and then update the view.
 
 <a id="drawer_callbacks_update_mesh_opacity-id"></a>
 
 ```python
 # Opacity Callbacks
-@state.change("mesh_opacity")
-def update_mesh_opacity(mesh_opacity, **kwargs):
+@change("mesh_opacity")
+def update_mesh_opacity(self, mesh_opacity, **kwargs):
     mesh_actor.GetProperty().SetOpacity(mesh_opacity)
-    ctrl.view_update()
+    self.ctrl.view_update()
 ```
 
-The `update_contour_opacity` function is found by the @state.change decorator for `contour_opacity`. We simply use a `contour_actor` property and the `contour_opacity` state to `SetOpacity`, and then update the view.
+The `update_contour_opacity` function is found by the @change decorator for `contour_opacity`. We simply use a `contour_actor` property and the `contour_opacity` state to `SetOpacity`, and then update the view.
 
 <a id="drawer_callbacks_update_contour_opacity-id"></a>
 
 ```python
-@state.change("contour_opacity")
-def update_contour_opacity(contour_opacity, **kwargs):
+@change("contour_opacity")
+def update_contour_opacity(self, contour_opacity, **kwargs):
     contour_actor.GetProperty().SetOpacity(contour_opacity)
-    ctrl.view_update()
+    self.ctrl.view_update()
 ```
 
 <a id="contour_callbacks-id"></a>
@@ -942,8 +943,8 @@ The `update_contour_by` function updates the `SetInputArrayToProcess` of the `co
 
 ```python
 # Contour Callbacks
-@state.change("contour_by_array_idx")
-def update_contour_by(contour_by_array_idx, **kwargs):
+@change("contour_by_array_idx")
+def update_contour_by(self, contour_by_array_idx, **kwargs):
     array = dataset_arrays[contour_by_array_idx]
     contour_min, contour_max = array.get("range")
     contour_step = 0.01 * (contour_max - contour_min)
@@ -952,26 +953,26 @@ def update_contour_by(contour_by_array_idx, **kwargs):
     contour.SetValue(0, contour_value)
 
     # Update UI
-    state.contour_min = contour_min
-    state.contour_max = contour_max
-    state.contour_value = contour_value
-    state.contour_step = contour_step
+    self.state.contour_min = contour_min
+    self.state.contour_max = contour_max
+    self.state.contour_value = contour_value
+    self.state.contour_step = contour_step
 
     # Update View
-    ctrl.view_update()
+    self.ctrl.view_update()
 ```
 
-the `update_contour_by` function is found by the @state.change decorator for `contour_by_array_idx`. We simply use the `contour` filter and the `array`, and then update the view. The `array` is set using the `contour_by_array_idx` state on the `dataset_arrays` array of dictionaries.
+the `update_contour_by` function is found by the @change decorator for `contour_by_array_idx`. We simply use the `contour` filter and the `array`, and then update the view. The `array` is set using the `contour_by_array_idx` state on the `dataset_arrays` array of dictionaries.
 
-The `update_contour_value` function is found by the @state.change decorator for `contour_value`. We simply use a `contour` filter property and the `contour_value` state to `SetValue`, and then update the view.
+The `update_contour_value` function is found by the @change decorator for `contour_value`. We simply use a `contour` filter property and the `contour_value` state to `SetValue`, and then update the view.
 
 <a id="drawer_callbacks_update_contour_value-id"></a>
 
 ```python
-@state.change("contour_value")
-def update_contour_value(contour_value, **kwargs):
+@change("contour_value")
+def update_contour_value(self, contour_value, **kwargs):
     contour.SetValue(0, float(contour_value))
-    ctrl.view_update()
+    self.ctrl.view_update()
 ```
 
 <a id="start-id"></a>
@@ -981,8 +982,12 @@ def update_contour_value(contour_value, **kwargs):
 There is no change to the `start` function.
 
 ```python
+def main():
+    app = App()
+    app.server.start()
+
 if __name__ == "__main__":
-    server.start()
+    main()
 ```
 
 ## Running the Application

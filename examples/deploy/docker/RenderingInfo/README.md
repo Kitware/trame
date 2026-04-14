@@ -8,10 +8,10 @@ The current example rely trame.tools.vtk to display rendering capabilities of yo
 docker build -t trame-vtk-info .
 ```
 
-# Run the image on port 9000
+# Run the image on port 8080
 
 ```bash
-docker run -it --rm -p 9000:80 trame-vtk-info
+docker run -it --rm -p 8080:80 trame-vtk-info
 ```
 
 # Deploying into CapRover

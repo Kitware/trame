@@ -4,16 +4,16 @@
 docker build -t trame-app .
 ```
 
-# Run the image on port 9000
+# Run the image on port 8080
 
 ```bash
-docker run -it --rm -p 9000:80 trame-app
+docker run -it --rm -p 8080:80 trame-app
 ```
 
 Or if you need some prefix
 
 ```bash
-docker run -it --rm -p 9000:80 -e TRAME_URL_PREFIX=/my-app/sub/path trame-app
+docker run -it --rm -p 8080:80 -e TRAME_URL_PREFIX=/my-app/sub/path trame-app
 ```
 
 

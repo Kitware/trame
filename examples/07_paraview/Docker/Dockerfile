@@ -1,9 +1,10 @@
-FROM kitware/trame:py3.10-ubuntu22.04
+FROM kitware/trame:uv-glvnd
+
+ENV TRAME_PYTHON=3.12
 
 RUN install -d -o trame-user -g trame-user /deploy
-RUN apt update -y && apt install -y libosmesa6-dev
 
-ARG PV_URL='https://www.paraview.org/files/v5.13/ParaView-5.13.3-osmesa-MPI-Linux-Python3.10-x86_64.tar.gz'
+ARG PV_URL='https://www.paraview.org/files/v6.1/ParaView-6.1.0-MPI-Linux-Python3.12-x86_64.tar.gz'
 RUN mkdir -p /opt/paraview && cd /opt/paraview && wget -qO- $PV_URL | tar --strip-components=1 -xzv
 ENV TRAME_PARAVIEW=/opt/paraview
 

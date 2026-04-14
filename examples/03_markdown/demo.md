@@ -2,8 +2,9 @@
 
 ## Image size and Viewer
 
-![gvf](http://www.aqcoder.com/gvf-project.png =x50)
-![ravenq](http://www.aqcoder.com/ravenq-qr.png =50x50)
+<img src="https://octodex.github.com/images/minion.png" width="100px" />
+
+![ravenq](https://octodex.github.com/images/minion.png)
 
 ## GitHub Table of Contents
 
@@ -73,6 +74,16 @@ Term 2
 
 ## AsciiMath
 
+Inline ASCIIMath: ``(1/2[1-(1/2)^n])/(1-(1/2))=s_n``
+
+```ASCIIMath
+oint_Cx^3 dx+4y^2 dy
+
+2=(((3-x)xx2)/(3-x))
+
+sum_(m=1)^oosum_(n=1)^oo(m^2 n)/(3^m(m3^n+n3^m)
+```
+
 ```ASCIIMath
 phi_n(kappa) = 1/(4pi^2 kappa^2)
  int_0^oo (sin(kappa R))/(kappa R)
@@ -84,17 +95,21 @@ phi_n(kappa) = 1/(4pi^2 kappa^2)
 
 ## Subscript: H~2~O
 
-You can also use inline math: `$H_2O$`
+You can also use inline math: $H_2O$
 
 
 ## Superscript: 29^th^
 
-You can also use inline math: `$29^{th}$`
+You can also use inline math: $29^{th}$
 
 
 ## Emoji: :panda_face: :sparkles: :camel: :boom: :pig:
 
 [Emoji Cheat Sheet](http://www.emoji-cheat-sheet.com/)
+
+## Fontawesome: :fa fa-car: :fa-solid fa-flag: :fa-regular fa-flag: :fa fa-bicycle: :fa fa-leaf: :fa-solid fa-heart: :fa-regular fa-heart:
+
+[All the Font Awesome icons](http://fontawesome.io/icons/)
 
 ## code
 

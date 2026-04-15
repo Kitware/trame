@@ -1,4 +1,3 @@
-import paraview.web.venv  # Available in PV 5.10
 from paraview import simple
 
 from trame.app import get_server

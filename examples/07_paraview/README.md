@@ -16,7 +16,7 @@ deactivate
 ## Running an application with ParaView Python
 
 ```bash
-/Application/ParaView-5.10.app/Content/bin/pvpython ./app.py --venv .pvenv
+/Application/ParaView-5.10.app/Content/bin/pvpython --venv .pvenv ./app.py
 ```
 
 Or using PV_VENV environmnent variable
@@ -27,6 +27,4 @@ export PV_VENV=$PWD/.pvenv
 ```
 
 **Note**:
- - venv handling was introduced in ParaView 5.10+ under `import paraview.web.venv`
- - Otherwise you can use our local version of venv.py if not available for your app
  - trame v2 requires ParaView 5.11+

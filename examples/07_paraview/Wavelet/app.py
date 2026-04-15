@@ -5,7 +5,6 @@ Installation requirements:
 
 import asyncio
 
-import paraview.web.venv
 from paraview import simple
 
 from trame.app import asynchronous, get_server

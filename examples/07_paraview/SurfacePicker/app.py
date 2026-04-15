@@ -2,7 +2,6 @@
 
 from typing import Any
 
-import paraview.web.venv
 from paraview import simple
 from trame_server import Server
 from trame_server.controller import Controller

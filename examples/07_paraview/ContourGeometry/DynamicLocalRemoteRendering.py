@@ -5,7 +5,6 @@ Installation requirements:
 
 from pathlib import Path
 
-import paraview.web.venv
 from paraview import simple
 
 from trame.app import get_server

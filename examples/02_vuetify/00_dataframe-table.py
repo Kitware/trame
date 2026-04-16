@@ -91,7 +91,7 @@ class DataframeTable(TrameApp):
     # --------------------------------------------------------------------------------
 
     @change("selection")
-    def selection_change(self, selection=[], **kwargs):
+    def selection_change(self, selection=[], **_):
         selected_df = pd.DataFrame(selection)
 
         # Chart

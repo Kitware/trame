@@ -7,7 +7,7 @@ We can add more Python packages into ParaView by create a virtual environment an
 ## venv for ParaView
 
 ```bash
-python3.9 -m venv .pvenv
+python3.12 -m venv .pvenv
 source .pvenv/bin/activate
 pip install trame>=2.0.0
 deactivate
@@ -27,4 +27,4 @@ export PV_VENV=$PWD/.pvenv
 ```
 
 **Note**:
- - trame v2 requires ParaView 5.11+
+ - trame requires ParaView 5.13+

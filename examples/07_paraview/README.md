@@ -9,7 +9,7 @@ We can add more Python packages into ParaView by create a virtual environment an
 ```bash
 python3.12 -m venv .pvenv
 source .pvenv/bin/activate
-pip install trame>=2.0.0
+pip install trame
 deactivate
 ```
 

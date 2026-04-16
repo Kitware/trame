@@ -11,7 +11,8 @@ import pandas as pd
 
 from trame.app import TrameApp
 from trame.ui.vuetify import SinglePageLayout
-from trame.widgets import vuetify, vega
+from trame.widgets import vega
+from trame.widgets import vuetify as v2
 from trame.decorators import change
 
 # -----------------------------------------------------------------------------
@@ -70,7 +71,7 @@ class DataframeTable(TrameApp):
 
     def prepare_table(self):
         header_options = {"apple": {"sortable": False}}
-        headers, rows = vuetify.dataframe_to_grid(self.DATA_FRAME, header_options)
+        headers, rows = v2.dataframe_to_grid(self.DATA_FRAME, header_options)
 
         self.table = {
             "headers": ("headers", headers),
@@ -133,8 +134,8 @@ class DataframeTable(TrameApp):
         with SinglePageLayout(self.server) as self.ui:
             self.ui.title.set_text("Vuetify table example")
             with self.ui.toolbar:
-                vuetify.VSpacer()
-                vuetify.VTextField(
+                v2.VSpacer()
+                v2.VTextField(
                     v_model=("query",),
                     placeholder="Search",
                     dense=True,
@@ -143,10 +144,10 @@ class DataframeTable(TrameApp):
                 )
 
             with self.ui.content:
-                with vuetify.VRow(classes="justify-center ma-6"):
+                with v2.VRow(classes="justify-center ma-6"):
                     fig = vega.Figure(classes="ma-2", style="width: 100%;")
                     self.ctrl.fig_update = fig.update
-                vuetify.VDataTable(**self.table)
+                v2.VDataTable(**self.table)
 
 
 # -----------------------------------------------------------------------------

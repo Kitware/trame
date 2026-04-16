@@ -26,7 +26,7 @@ class MarkdownApp(TrameApp):
     # -----------------------------------------------------------------------------
 
     @change("file_name")
-    def update_md(self, file_name, **kwargs):
+    def update_md(self, file_name, **_):
         md_file_path = os.path.join(os.path.dirname(__file__), file_name)
         with open(md_file_path, encoding="utf-8") as md:
             self.ctrl.md_update(md.read())

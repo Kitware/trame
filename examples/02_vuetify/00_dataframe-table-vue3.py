@@ -175,10 +175,7 @@ class DataframeTable(TrameApp):
                 self.state.rows = self.rows
                 with v3.VDataTable(**self.table):
                     with v3.Template(
-                        group_header="{ item, columns, toggleGroup, isGroupOpen }",
-                        __properties=[
-                            ("group_header", "v-slot:group-header"),
-                        ],
+                        v_slot_group_header="{ item, columns, toggleGroup, isGroupOpen }",
                     ):
                         with html.Tr():
                             with html.Td(colspan=("columns.length",)):

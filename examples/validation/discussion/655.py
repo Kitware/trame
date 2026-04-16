@@ -57,7 +57,7 @@ with RouterViewLayout(server, "/"):
     with vuetify.VCard():
         vuetify.VCardTitle("This is home")
         with vuetify.VContainer(fluid=True, style="height: 600px;"):
-            with vuetify.VRow(dense=True):
+            with vuetify.VRow(density="compact"):
                 vuetify.VSpacer()
                 figure = plotly.Figure(
                     display_logo=False,
@@ -97,7 +97,7 @@ with SinglePageWithDrawerLayout(server, theme=("theme_mode", "light")) as layout
             false_value="light",
             classes="mx-1",
             hide_details=True,
-            dense=True,
+            density="compact",
         )
         # vuetify.VCheckbox(
         #     v_model="$vuetify.theme.dark",
@@ -107,7 +107,7 @@ with SinglePageWithDrawerLayout(server, theme=("theme_mode", "light")) as layout
         #     off_icon="mdi-lightbulb-outline",
         #     classes="mx-1",
         #     hide_details=True,
-        #     dense=True,
+        #     density="compact",
         # )
 
     with layout.content:

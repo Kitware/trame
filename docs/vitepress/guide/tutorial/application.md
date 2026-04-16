@@ -286,7 +286,7 @@ def standard_buttons():
         off_icon="mdi-cube-off-outline",
         classes="mx-1",
         hide_details=True,
-        dense=True,
+        density="compact",
     )
     vuetify.VCheckbox(
         v_model="$vuetify.theme.dark",
@@ -294,7 +294,7 @@ def standard_buttons():
         off_icon="mdi-lightbulb-outline",
         classes="mx-1",
         hide_details=True,
-        dense=True,
+        density="compact",
     )
     vuetify.VCheckbox(
         v_model=("viewMode", "local"), # VtkRemoteLocalView => {namespace}Mode=['local', 'remote']
@@ -304,7 +304,7 @@ def standard_buttons():
         false_value="remote",
         classes="mx-1",
         hide_details=True,
-        dense=True,
+        density="compact",
     )
     with vuetify.VBtn(icon=True, click=ctrl.view_reset_camera):
         vuetify.VIcon("mdi-crop-free")
@@ -379,7 +379,7 @@ def ui_card(title, ui_name):
             classes="grey lighten-1 py-1 grey--text text--darken-3",
             style="user-select: none; cursor: pointer",
             hide_details=True,
-            dense=True,
+            density="compact",
         )
         content = vuetify.VCardText(classes="py-2")
     return content
@@ -399,7 +399,7 @@ def mesh_card():
         vuetify.VSelect(
             # Representation
         )
-        with vuetify.VRow(classes="pt-2", dense=True):
+        with vuetify.VRow(classes="pt-2", density="compact"):
             with vuetify.VCol(cols="6"):
                 vuetify.VSelect(
                     # Color By
@@ -436,7 +436,7 @@ def contour_card():
    *    vuetify.VSelect(
    *        # Representation
    *    )
-   *    with vuetify.VRow(classes="pt-2", dense=True):
+   *    with vuetify.VRow(classes="pt-2", density="compact"):
    *        with vuetify.VCol(cols="6"):
    *            vuetify.VSelect(
    *                # Color By
@@ -494,7 +494,7 @@ vuetify.VSelect(
     ),
     label="Representation",
     hide_details=True,
-    dense=True,
+    density="compact",
     outlined=True,
     classes="pt-1",
 )
@@ -529,7 +529,7 @@ vuetify.VSelect(
     v_model=("mesh_color_array_idx", 0),
     items=("array_list", dataset_arrays),
     hide_details=True,
-    dense=True,
+    density="compact",
     outlined=True,
     classes="pt-1",
 )
@@ -582,7 +582,7 @@ Second, we create a dropdown menu for the color map. The `VSelect` component is 
                         ],
                     ),
                     hide_details=True,
-                    dense=True,
+                    density="compact",
                     outlined=True,
                     classes="pt-1",
                 )
@@ -620,7 +620,7 @@ We create a slider for the opacity. The `VSlider` component is used to create th
             label="Opacity",
             classes="mt-1",
             hide_details=True,
-            dense=True,
+            density="compact",
         )
 ```
 
@@ -656,7 +656,7 @@ We create a dropdown menu for the contour by. The `VSelect` component is used to
             v_model=("contour_by_array_idx", 0),
             items=("array_list", dataset_arrays),
             hide_details=True,
-            dense=True,
+            density="compact",
             outlined=True,
             classes="pt-1",
         )
@@ -682,7 +682,7 @@ We create a slider for the contour value. The `VSlider` component is used to cre
             label="Value",
             classes="my-1",
             hide_details=True,
-            dense=True,
+            density="compact",
         )
 ```
 

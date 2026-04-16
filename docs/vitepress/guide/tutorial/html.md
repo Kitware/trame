@@ -132,7 +132,7 @@ with SinglePageLayout(server) as layout:
         vuetify.VSwitch(
             v_model="$vuetify.theme.dark",
             hide_details=True,
-            dense=True,
+            density="compact",
         )
         with vuetify.VBtn(
             icon=True,
@@ -182,7 +182,7 @@ with SinglePageLayout(server) as layout:
         vuetify.VSlider(
             v_model=("resolution", DEFAULT_RESOLUTION), # (var_name, initial_value)
             min=3, max=60, step=1,                      # min/max/step
-            hide_details=True, dense=True,              # presentation params
+            hide_details=True, density="compact",       # presentation params
             style="max-width: 300px",                   # css style
         )
         with vuetify.VBtn(icon=True, click=reset_resolution):
@@ -192,7 +192,7 @@ with SinglePageLayout(server) as layout:
         vuetify.VSwitch(
             v_model="$vuetify.theme.dark",
             hide_details=True,
-            dense=True,
+            density="compact",
         )
         with vuetify.VBtn(icon=True, click=ctrl.view_reset_camera):
             vuetify.VIcon("mdi-crop-free")

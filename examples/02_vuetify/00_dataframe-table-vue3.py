@@ -167,7 +167,7 @@ class DataframeTable(TrameApp):
                 v3.VTextField(
                     v_model=("query", ""),
                     placeholder="Search",
-                    dense=True,
+                    density="compact",
                     hide_details=True,
                 )
 

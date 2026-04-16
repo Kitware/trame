@@ -92,7 +92,7 @@ class RemoteURL(TrameApp):
 
             with self.ui.content:
                 with v3.VContainer(fluid=True, classes="fill-height pa-0 ma-0"):
-                    with v3.VRow(dense=True, style="height: 100%;"):
+                    with v3.VRow(density="compact", style="height: 100%;"):
                         with v3.VCol(
                             classes="pa-0",
                             style="border-right: 1px solid #ccc; position: relative;",

@@ -79,7 +79,7 @@ class StHelens:
                     with quasar.QToolbar():
                         with quasar.QToolbarTitle() as title:
                             quasar.QBtn(
-                                dense=True,
+                                density="compact",
                                 flat=True,
                                 round=True,
                                 icon="menu",
@@ -128,7 +128,7 @@ class StHelens:
                                 with quasar.QInput(
                                     filled=True,
                                     v_model=("scene_bg_color", "#ffffff"),
-                                    dense=True,
+                                    density="compact",
                                     classes="q-my-sm",
                                     style=("{ background: scene_bg_color }",),
                                 ):
@@ -168,7 +168,7 @@ class StHelens:
                                 label="Interpolation",
                                 classes="q-mb-md",
                                 v_model=("actor_interpolation", "Flat"),
-                                dense=True,
+                                density="compact",
                                 options=(
                                     "actor_interpolation_options",
                                     ["Flat", "Phong"],
@@ -196,7 +196,7 @@ class StHelens:
                                 label="Representation",
                                 classes="q-mb-md",
                                 v_model=("actor_representation", "Surface"),
-                                dense=True,
+                                density="compact",
                                 options=(
                                     "actor_representation_options",
                                     ["Surface", "Wireframe", "Points"],

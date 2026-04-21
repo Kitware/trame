@@ -31,13 +31,13 @@ jupyter = ["jupyterlab"]
 dev = ["pre-commit", "ruff", "pytest"]
 
 [build-system]
-requires = ['setuptools', 'wheel']
-build-backend = 'setuptools.build_meta'
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
-[tool.setuptools.packages.find]
-where = ["."]
-
-[tool.setuptools.package-data]
+[tool.hatch.build]
+include = [
+  "/trame/**/*.py",
+]
 
 
 [tool.semantic_release]

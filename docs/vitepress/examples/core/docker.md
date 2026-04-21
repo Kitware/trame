@@ -7,8 +7,8 @@ For instance you could deploy the following on a CapRover instance by just runni
 [![Simple deployment over https](/assets/images/deployment/cone-caprover.png)](https://github.com/Kitware/trame-app-cone)
 
 ::: code-group
-<<< @/../../examples/deploy/docker/Dockerfile
-<<< @/../../examples/deploy/docker/captain-definition
+<<< @/../../examples/deploy/docker/VtkRendering/Dockerfile
+<<< @/../../examples/deploy/docker/VtkRendering/captain-definition
 <<< @/../../examples/deploy/docker/VtkRendering/app.py
 <<< @/../../examples/deploy/docker/VtkRendering/setup/apps.yml [./setup/apps.yaml]
 <<< @/../../examples/deploy/docker/VtkRendering/setup/requirements.txt [./setup/requirements.txt]

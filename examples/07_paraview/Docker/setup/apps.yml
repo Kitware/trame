@@ -1,6 +1,8 @@
 trame:
   cmd:
     - /opt/paraview/bin/pvpython
+    - --venv
+    - /deploy/server/venv
     - /deploy/SimpleCone.py
     - --host
     - ${host}

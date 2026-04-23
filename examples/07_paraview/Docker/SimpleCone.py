@@ -1,15 +1,9 @@
 from paraview import simple
 
-from trame.app import get_server
-from trame.ui.vuetify import SinglePageLayout
-from trame.widgets import paraview, vuetify
-
-# -----------------------------------------------------------------------------
-# trame setup
-# -----------------------------------------------------------------------------
-
-server = get_server(client_type="vue2")
-state, ctrl = server.state, server.controller
+from trame.app import TrameApp
+from trame.ui.vuetify3 import SinglePageLayout
+from trame.widgets import vuetify3 as v3, paraview
+from trame.decorators import change
 
 # -----------------------------------------------------------------------------
 # ParaView code
@@ -21,55 +15,70 @@ cone = simple.Cone()
 representation = simple.Show(cone)
 view = simple.Render()
 
-
-@state.change("resolution")
-def update_cone(resolution, **kwargs):
-    cone.Resolution = resolution
-    ctrl.view_update()
-
-
-def update_reset_resolution():
-    state.resolution = DEFAULT_RESOLUTION
-
-
 # -----------------------------------------------------------------------------
-# GUI
+# trame setup
 # -----------------------------------------------------------------------------
 
-state.trame__title = "ParaView cone"
 
-with SinglePageLayout(server) as layout:
-    layout.icon.click = ctrl.view_reset_camera
-    layout.title.set_text("Cone Application")
+class SimpleCone(TrameApp):
+    def __init__(self, server=None):
+        super().__init__(server)
+        self._build_ui()
 
-    with layout.toolbar:
-        vuetify.VSpacer()
-        vuetify.VSlider(
-            v_model=("resolution", DEFAULT_RESOLUTION),
-            min=3,
-            max=60,
-            step=1,
-            hide_details=True,
-            dense=True,
-            style="max-width: 300px",
-        )
-        vuetify.VDivider(vertical=True, classes="mx-2")
-        with vuetify.VBtn(icon=True, click=update_reset_resolution):
-            vuetify.VIcon("mdi-undo-variant")
+    @change("resolution")
+    def update_cone(self, resolution, **kwargs):
+        cone.Resolution = resolution
+        self.ctrl.view_update()
 
-    with layout.content:
-        with vuetify.VContainer(
-            fluid=True,
-            classes="pa-0 fill-height",
-        ):
-            html_view = paraview.VtkRemoteView(view)
-            # html_view = paraview.VtkLocalView(view)
-            ctrl.view_update = html_view.update
-            ctrl.view_reset_camera = html_view.reset_camera
+    def update_reset_resolution(self):
+        self.state.resolution = DEFAULT_RESOLUTION
+
+    # -----------------------------------------------------------------------------
+    # GUI
+    # -----------------------------------------------------------------------------
+
+    def _build_ui(self):
+        self.state.trame__title = "ParaView cone"
+
+        with SinglePageLayout(self.server) as self.ui:
+            self.ui.icon.click = self.ctrl.view_reset_camera
+            self.ui.title.set_text("Cone Application")
+
+            with self.ui.toolbar:
+                v3.VSpacer()
+                v3.VSlider(
+                    v_model=("resolution", DEFAULT_RESOLUTION),
+                    min=3,
+                    max=60,
+                    step=1,
+                    hide_details=True,
+                    dense=True,
+                    style="max-width: 300px",
+                )
+                v3.VDivider(vertical=True, classes="mx-2")
+                with v3.VBtn(icon=True, click=self.update_reset_resolution):
+                    v3.VIcon("mdi-undo-variant")
+
+            with self.ui.content:
+                with v3.VContainer(
+                    fluid=True,
+                    classes="pa-0 fill-height",
+                ):
+                    html_view = paraview.VtkRemoteView(view)
+                    # html_view = paraview.VtkLocalView(view)
+                    self.ctrl.view_update = html_view.update
+                    self.ctrl.view_reset_camera = html_view.reset_camera
+
 
 # -----------------------------------------------------------------------------
 # Main
 # -----------------------------------------------------------------------------
 
+
+def main():
+    app = SimpleCone()
+    app.server.start()
+
+
 if __name__ == "__main__":
-    server.start()
+    main()

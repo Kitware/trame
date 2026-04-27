@@ -56,13 +56,103 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
 
+    - name: Checkout trame-client fork for testing
+      uses: actions/checkout@v4
+      with:
+        repository: jcapriot/trame-client
+        ref: Pep420
+        path: local_trame_client
+    
+    - name: Install trame-client fork for testing
+      run: |
+        cd local_trame_client
+        cd vue2-app
+        npm ci
+        npm run build
+        cd ..
+        cd vue3-app
+        npm ci
+        npm run build
+        cd ..
+        pip install .
+
     - name: Install and Run Tests
       run: |
         pip install ".[dev]"
         pip install -r tests/requirements.txt
         # Run the tests with coverage so we get a coverage report too
         pip install coverage
-        coverage run --source . -m pytest .
+        coverage run --source . -m pytest . --ignore=local_trame_client
+        # Print the coverage report
+        coverage report -m
+
+    - name: Upload Coverage to Codecov
+      uses: codecov/codecov-action@v3
+
+
+  pytest-editable:
+    name: Pytest editable install ${{ matrix.config.name }}
+    runs-on: ${{ matrix.config.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.9"]
+        trame-editable: ["", "-e"]
+        trame-client-editable: ["", "-e"]
+        config:
+        - {
+            name: "Linux",
+            os: ubuntu-latest
+          }
+        # - {
+        #     name: "MacOSX",
+        #     os: macos-latest
+        #   }
+        # - {
+        #     name: "Windows",
+        #     os: windows-latest
+        #   }
+
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Checkout trame-client fork for testing
+      uses: actions/checkout@v4
+      with:
+        repository: jcapriot/trame-client
+        ref: Pep420
+        path: local_trame_client
+    
+    - name: Install trame-client fork for testing
+      run: |
+        cd local_trame_client
+        cd vue2-app
+        npm ci
+        npm run build
+        cd ..
+        cd vue3-app
+        npm ci
+        npm run build
+        cd ..
+        pip install ${{ matrix.trame-client-editable }} .
+
+    - name: Install and Run Tests
+      run: |
+        pip install ${{ matrix.trame-editable}} ".[dev]"
+        pip install -r tests/requirements.txt
+        # Run the tests with coverage so we get a coverage report too
+        pip install coverage
+        coverage run --source . -m pytest . --ignore=local_trame_client
         # Print the coverage report
         coverage report -m
 

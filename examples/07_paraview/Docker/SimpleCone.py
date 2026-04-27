@@ -11,10 +11,6 @@ from trame.decorators import change
 
 DEFAULT_RESOLUTION = 6
 
-cone = simple.Cone()
-representation = simple.Show(cone)
-view = simple.Render()
-
 # -----------------------------------------------------------------------------
 # trame setup
 # -----------------------------------------------------------------------------
@@ -23,11 +19,16 @@ view = simple.Render()
 class SimpleCone(TrameApp):
     def __init__(self, server=None):
         super().__init__(server)
+
+        self.cone = simple.Cone()
+        self.representation = simple.Show(self.cone)
+        self.view = simple.Render()
+
         self._build_ui()
 
     @change("resolution")
-    def update_cone(self, resolution, **kwargs):
-        cone.Resolution = resolution
+    def update_cone(self, resolution, **_kwargs):
+        self.cone.Resolution = resolution
         self.ctrl.view_update()
 
     def update_reset_resolution(self):
@@ -53,6 +54,7 @@ class SimpleCone(TrameApp):
                     step=1,
                     hide_details=True,
                     dense=True,
+                    density="compact",
                     style="max-width: 300px",
                 )
                 v3.VDivider(vertical=True, classes="mx-2")
@@ -64,7 +66,7 @@ class SimpleCone(TrameApp):
                     fluid=True,
                     classes="pa-0 fill-height",
                 ):
-                    html_view = paraview.VtkRemoteView(view)
+                    html_view = paraview.VtkRemoteView(self.view, interactive_ratio=1)
                     # html_view = paraview.VtkLocalView(view)
                     self.ctrl.view_update = html_view.update
                     self.ctrl.view_reset_camera = html_view.reset_camera

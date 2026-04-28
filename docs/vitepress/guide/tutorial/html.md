@@ -29,7 +29,7 @@ We've included, optionally, a `label` and a `suffix` for the text box. The `labe
 Looking through the Vuetify documentation, we see a large number of wonderful user interface (UI) components. ***trame*** exposes Vuetify from within Python. Access to Vuetify is provided through ***trame*** using the following import.
 
 ```python
-from trame.widgets import vuetify3
+from trame.widgets import vuetify3 as v3
 ```
 
 ## Python Vuetify Rules
@@ -62,37 +62,37 @@ field = VTextField(
 
 In both the previous statements `v_model` and `suffix`, we defined and initialized state variables. These variables are available from both the client and server side.
 
-First, we need to get the `state` instance from a trame server to simplify its manipulation.
-
 ```python
-from trame.app import get_server
+from trame.app import TrameApp
 
-server = get_server()
-state = server.state
+class App(TrameApp):
+    # We can now use self.state in the whole class
 ```
 
-From here, we have a couple options to read and update the state
+From here, we have a couple options to read and update the state (`self.state`)
 
-- `state.field` - returns the value of a given state variable (__field__).
-- `state.field = 5` - update or set the __field__ variable to the value `5`.
-- `state.update({ "field": 5, ... })` - update several variables at once
+- `self.state.field` - returns the value of a given state variable (__field__).
+- `self.state.field = 5` - update or set the __field__ variable to the value `5`.
+- `self.state.update({ "field": 5, ... })` - update several variables at once
 
 Let's look at an example leveraging the previously defined text field.
 
 ```python
-def increment_weight():
-    state.myWeight += 1
+class App(TrameApp):
+    # [...]
+    def increment_weight():
+        self.state.myWeight += 1
 
-def set_metric():
-    state.myWeight = 0.453592 * state.myWeight
-    state.currentSuffix = "kg"
+    def set_metric():
+        self.state.myWeight = 0.453592 * state.myWeight
+        self.state.currentSuffix = "kg"
 
-def set_imperial():
-    state["myWeight"] *= 2.20462
-    state["currentSuffix"] = "lb"
+    def set_imperial():
+        self.state["myWeight"] *= 2.20462
+        self.state["currentSuffix"] = "lb"
 ```
 
-In the `increment_weight` function, we use addition assignment for `state.myWeight` to read and update the value of `myWeight` in a single statement. The remaining functions illustrate similar actions but using different syntax for reading and updating a given variable.
+In the `increment_weight` function, we use addition assignment for `self.server.state.myWeight` to read and update the value of `myWeight` in a single statement. The remaining functions illustrate similar actions but using different syntax for reading and updating a given variable.
 
 <div class="print-break"></div>
 
@@ -118,29 +118,35 @@ So with the `SinglePageLayout`, we could add UI elements to either the `toolbar`
 We add all the Vuetify components in a *flow* from left to right, top to bottom to the `layout.toolbar` container.
 
 ```python
-# Use state variable `theme` for the theme with default value 'light'
-with SinglePageLayout(server, theme=("theme", "light")) as layout:
+class AppButtons(TrameApp):
     # [...]
-        # [...]
-            view = vtk.VtkLocalView(renderWindow)
-            ctrl.on_server_ready.add(view.update)
-            ctrl.view_update = view.update # <-- Capture update method (will be useful later)
-            ctrl.view_reset_camera = view.reset_camera # <-- Capture reset_camera method
 
-    with layout.toolbar:
-        vuetify3.VSpacer()
-        vuetify3.VSwitch(
-            v_model="theme",
-            false_value="light", # <-- Value of v_model's variable if switch toggled off
-            true_value="dark", # <-- Value of v_model's variable if switch toggled on
-            hide_details=True,
-            density="compact",
-        )
-        with vuetify3.VBtn(
-            icon=True,
-            click=ctrl.view_reset_camera, # <-- Use that reset_camera (init order does not matter)
-        ):
-            vuetify3.VIcon("mdi-crop-free")
+    def _build_ui(self):
+        # Use state variable `theme` for the theme with default value 'light'
+        with SinglePageLayout(server, theme=("theme", "light")) as self.ui:
+            with self.ui.content:
+                with v3.VContainer(
+                    fluid=True,
+                    classes="pa-0 fill-height",
+                ):
+                    self.view = vtk.VtkLocalView(self.renderWindow)
+                    self.server.ctrl.on_server_ready.add(self.view.update)
+                    self.server.ctrl.view_update = self.view.update # <-- Capture update method (will be useful later)
+                    ctrl.view_reset_camera = self.view.reset_camera # <-- Capture reset_camera method
+
+            with layout.toolbar:
+                v3.VSpacer()
+                v3.VSwitch(
+                    v_model="theme",
+                    false_value="light", # <-- Value of v_model's variable if switch toggled off
+                    true_value="dark", # <-- Value of v_model's variable if switch toggled on
+                    hide_details=True,
+                    density="compact",
+                )
+                v3.VBtn(
+                    icon="mdi-crop-free",
+                    click=self.ctrl.view_reset_camera, # <-- Use that reset_camera (init order does not matter)
+                )
 ```
 **Running the Application**
 
@@ -177,38 +183,33 @@ DEFAULT_RESOLUTION = 6
 Let's add a `VSlider` for adjusting the resolution, a `VBtn` with `VIcon` to reset the resolution to the default value, and a vertical `VDivider` to separate our visualization GUI from the application GUI. The following is added after the `VSpacer` component at the beginning of the `with` `toolbar` *flow*.
 
 ```python
-with SinglePageLayout(server, theme=("theme", "light")) as layout:
+class AppButtons(TrameApp):
     # [...]
-    with layout.toolbar:
-        vuetify3.VSpacer()
-        vuetify3.VSlider(
-            v_model=("resolution", DEFAULT_RESOLUTION), # (var_name, initial_value)
-            min=3, max=60, step=1,                      # min/max/step
-            hide_details=True, density="compact",       # presentation params
-            style="max-width: 300px",                   # css style
-        )
-        with vuetify3.VBtn(icon=True, click=reset_resolution):
-            vuetify3.VIcon("mdi-restore")
-        vuetify3.VDivider(vertical=True, classes="mx-2")
-
-        vuetify3.VSwitch(
-            v_model="theme",
-            false_value="light",
-            true_value="dark",
-            hide_details=True,
-            density="compact",
-        )
-        with vuetify3.VBtn(icon=True, click=ctrl.view_reset_camera):
-            vuetify3.VIcon("mdi-crop-free")
+        def _build_ui(self):
+        with SinglePageLayout(self.server, theme=("theme", "light")) as self.ui:
+            # [...]
+            with self.ui.toolbar:
+                v3.VSpacer()
+                v3.VSlider(
+                    v_model=("resolution", DEFAULT_RESOLUTION), # (var_name, initial_value)
+                    min=3, max=60, step=1,                      # min/max/step
+                    hide_details=True, density="compact",       # presentation params
+                    style="max-width: 300px",                   # css style
+                )
+                v3.VBtn(icon="mdi-restore", click=self.reset_resolution)
+                vuetify3.VDivider(vertical=True, classes="mx-2")
+                # [...] Dark theme switch
 ```
 
 The `VSlider` creates `resolution` as a state variable and is initialized to the default resolution. When interacting with the slider, the code will call a function decorated with `@state.change("resolution")`.
 
 ```python
-@state.change("resolution")
-def update_resolution(resolution, **kwargs):
-    cone_source.SetResolution(resolution)
-    ctrl.view_update()
+class AppButtons(TrameApp):
+    # [...]
+    @change("resolution")
+    def update_resolution(self, resolution, **_kwargs):
+        self.cone_source.SetResolution(resolution)
+        self.ctrl.view_update()
 ```
 
 There is no need to get or update the `resolution` state variable. This update is carried out on the client-side by the v_model. We simply update the `cone_source` appropriately and update the view.
@@ -216,8 +217,10 @@ There is no need to get or update the `resolution` state variable. This update i
 The `VBtn` resets the the resolution when pressed by calling the `reset_resolution` function. This is a `trigger` event, where `v_models` are `change` events. Since we use a function reference, there is no need to use a `@trigger("...")` decorator here. It is created by default behind the scenes.
 
 ```python
-def reset_resolution():
-    state.resolution = DEFAULT_RESOLUTION
+class AppButtons(TrameApp):
+    # [...]
+    def reset_resolution(self):
+        self.state.resolution = DEFAULT_RESOLUTION
 ```
 
 **Note**:

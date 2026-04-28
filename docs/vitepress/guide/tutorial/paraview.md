@@ -64,31 +64,56 @@ For simplified usage, ParaView provides a `simple` package that lets us ***simpl
 ```python
 from paraview import simple
 
-cone = simple.Cone()               # Create a source (reader, filter...)
-representation = simple.Show(cone) # Create a representation in a view (if no view, one is created)
-view = simple.Render()             # Ask to compute image of active view and return the corresponding view
+# [...]
+
+class ConeApp(TrameApp):
+    # [...]
+
+    def _init_paraview(self):
+        self.cone = simple.Cone()               # Create a source (reader, filter...)
+        self.representation = simple.Show(cone) # Create a representation in a view (if no view, one is created)
+        self.view = simple.Render()             # Ask to compute image of active view and return the corresponding view
 ```
 
 With these three lines, we create a full pipeline and a view. Now, we can use ***trame*** to show that view in the client.
 
 ```python
-import paraview.web.venv
-from trame.app import get_server
-from trame.widgets import vuetify3, paraview
+from trame.app import TrameApp
 from trame.ui.vuetify3 import SinglePageLayout
-server = get_server()
-state, ctrl = server.state, server.controller
+from trame.widgets import vuetify3 as v3
+from trame.decorators import change
 
-with SinglePageLayout(server) as layout:
-    with layout.content:
-        vuetify3.VContainer(
-            fluid=True,
-            classes="pa-0 fill-height",
-        ):
-            html_view = paraview.VtkRemoteView(view)
-            # html_view = paraview.VtkLocalView(view)
-            ctrl.view_update = html_view.update
-            ctrl.view_reset_camera = html_view.reset_camera
+# [...]
+
+class ConeApp(TrameApp):
+
+    def __init__(self, server=None):   
+        super().__init__(server)
+
+        self.DEFAULT_RESOLUTION = 6
+
+        self._init_paraview()
+        self._build_ui()
+
+    def _init_paraview(self):
+        # [...]
+    
+    # [...]
+
+    def _build_ui(self):
+        self.state.trame__title = "ParaView cone"
+
+        with SinglePageLayout(self.server) as self.ui:
+            # [...]
+            with self.ui.content:
+                with v3.VContainer(
+                    fluid=True,
+                    classes="pa-0 fill-height",
+                ):
+                    html_view = paraview.VtkRemoteView(self.view)
+                    # html_view = paraview.VtkLocalView(view)
+                    self.ctrl.view_update = html_view.update
+                    self.ctrl.view_reset_camera = html_view.reset_camera
 ```
 
 <div class="print-break"></div>
@@ -96,13 +121,13 @@ with SinglePageLayout(server) as layout:
 The rest of the code looks very similar to the VTK Hello ***trame*** example, but instead of importing the `vtk` module of ***trame***
 
 ```python
-from trame.widgets import vuetify3, vtk
+from trame.widgets import vuetify3 as v3, vtk
 ```
 
 we import the `paraview` module
 
 ```python
-from trame.widgets import vuetify3, paraview
+from trame.widgets import vuetify3 as v3, paraview
 ```
 
 ## GUI
@@ -110,26 +135,49 @@ from trame.widgets import vuetify3, paraview
 Now we can start adding some UI to control some of the parameters that we want to interact with dynamically. Let's first add a slider to control the resolution of the cone. We need to create a method to react when the `resolution` is changed by the slider. In ParaView proxies, object parameters are simple properties that can be get or set in a transparent manner. At this point, we simply need to update the `cone.Resolution` and update the view to see the change.
 
 ```python
-@state.change("resolution")
-def update_cone(resolution, **kwargs):
-    cone.Resolution = resolution
-    html_view.update()
+class ConeApp(TrameApp):
+
+    # [...]
+
+    @change("resolution")
+    def update_cone(self, resolution, **_kwargs):
+        self.cone.Resolution = resolution
+        self.ctrl.view_update()
+
+    def update_reset_resolution(self):
+        self.state.resolution = self.DEFAULT_RESOLUTION
 ```
 
 Now, we can extend the UI with a slider on the `layout.toolbar`
 
 ```python
-DEFAULT_RESOLUTION = 6
+class ConeApp(TrameApp):
 
-with layout.toolbar:
-    vuetify3.VSlider(
-        v_model=("resolution", DEFAULT_RESOLUTION),
-        min=3,
-        max=60,
-        step=1,
-        hide_details=True,
-        density="compact",
-    )
+    # [...]
+
+    def _build_ui(self):
+        self.state.trame__title = "ParaView cone"
+
+        with SinglePageLayout(self.server) as self.ui:
+            self.ui.icon.click = self.ctrl.view_reset_camera
+            self.ui.title.set_text("Cone Application")
+
+            with self.ui.toolbar:
+                v3.VSpacer()
+                v3.VSlider(
+                    v_model=("resolution", self.DEFAULT_RESOLUTION),
+                    min=3,
+                    max=60,
+                    step=1,
+                    hide_details=True,
+                    density="compact",
+                    style="max-width: 300px",
+                )
+                v3.VDivider(vertical=True, classes="mx-2")
+                v3.VBtn(icon="mdi-undo-variant", click=self.update_reset_resolution)
+
+            with self.ui.content:
+                # [...]
 ```
 
 With these few lines, we have created a 3D cone, which we can adjust the resolution all leveraging ParaView.
@@ -153,13 +201,14 @@ Let's analyse the example in `./05_paraview/StateLoader.py`. The ***trame*** cor
 **Script Header**
 
 ```python
-from paraview.web import venv
-from paraview import simple
+from trame.app import TrameApp
+from trame.ui.vuetify3 import SinglePageLayout
+from trame.widgets import vuetify3 as v3
+from trame.widgets import paraview, client
 
 from pathlib import Path
-from trame.app import get_server
-from trame.widgets import vuetify3, paraview, client
-from trame.ui.vuetify3 import SinglePageLayout
+
+from paraview import simple
 ```
 
 **Script Core**
@@ -167,16 +216,30 @@ from trame.ui.vuetify3 import SinglePageLayout
 The rest of the script we've seen before, but we are missing the details of the `load_data` function.
 
 ```python
-def load_data():
-    pass # I'll explain later
+class StateLoaderApp(TrameApp):
+    # [...]
+    def load_data(self):
+        pass # I'll explain later
 
-layout = SinglePage("State Viewer", on_ready=load_data)
-layout.logo.click = "$refs.view.resetCamera()"
-layout.title.set_text("ParaView State Viewer")
-layout.content.add_child(vuetify3.VContainer(fluid=True, classes="pa-0 fill-height"))
+    def _build_ui(self):
+        self.state.trame__title = "State Viewer"
+
+        with SinglePageLayout(self.server) as self.ui:
+            self.ui.icon.click = self.ctrl.view_reset_camera
+            self.ui.title.set_text("ParaView State Viewer")
+
+            with self.ui.content:
+                with v3.VContainer(fluid=True, classes="pa-0 fill-height"):
+                    client.Loading("Loading state")
+
+
+def main():
+    app = StateLoaderApp()
+    app.server.start()
 
 if __name__ == "__main__":
-    layout.start()
+    main()
+
 ```
 
 <div class="print-break"></div>
@@ -195,12 +258,24 @@ The `load_data()` function requires us to code the follow
 The (1) is achieved with the following set of lines. More information on CLI are available [here](https://kitware.github.io/trame/docs/howdoi-cli.html).
 
 ```python
-parser = trame.get_cli_parser()
-parser.add_argument("--data", help="Path to state file", dest="data")
-args, _ = parser.parse_known_args()
+class StateLoaderApp(TrameApp):
 
-full_path = os.path.abspath(args.data)
-working_directory = os.path.dirname(full_path)
+    def __init__(self, server=None):
+        super().__init__(server)
+        self.server.cli.add_argument("--data", help="Path to state file", dest="data")
+        # [...]
+        self.ctrl.on_server_ready.add(self.load_data)
+        # [...]
+
+
+    def load_data(self, **_kwargs):
+        args, _ = self.server.cli.parse_known_args()
+
+        full_path = str(Path(args.data).resolve().absolute())
+        working_directory = str(Path(args.data).parent.resolve().absolute())
+        # [...]
+
+    # [...]
 ```
 
 **Load the state file**
@@ -209,13 +284,22 @@ To achieve (2) with ParaView the following set of lines are needed. ParaView tra
 
 
 ```python
-simple.LoadState(
-    full_path,
-    data_directory=working_directory,
-    restrict_to_data_directory=True,
-)
-view = simple.GetActiveView()
-view.MakeRenderWindowInteractor(True)
+class StateLoaderApp(TrameApp):
+
+    # [...]
+
+    def load_data(self, **_kwargs):
+
+        # [...]
+
+        simple.LoadState(
+            full_path,
+            data_directory=working_directory,
+            restrict_to_data_directory=True,
+        )
+        self.view = simple.GetActiveView()
+        self.view.MakeRenderWindowInteractor(True)
+        simple.Render(self.view)
 ```
 
 **Create and Connect a view element**
@@ -223,7 +307,23 @@ view.MakeRenderWindowInteractor(True)
 Then (3) is similarly as before for VTK.
 
 ```python
-html_view = paraview.VtkRemoteView(view)
+class StateLoaderApp(TrameApp):
+
+    # [...]
+
+    def load_data(self, **_kwargs):
+
+        # [...]
+
+        with SinglePageLayout(self.server) as self.ui:
+
+            # [...]
+
+            with self.ui.content:
+                with v3.VContainer(fluid=True, classes="pa-0 fill-height"):
+                    html_view = paraview.VtkRemoteView(self.view)
+                    self.ctrl.view_reset_camera = html_view.reset_camera
+                    self.ctrl.view_update = html_view.update 
 ```
 
 **Add view element to UI**
@@ -231,8 +331,24 @@ html_view = paraview.VtkRemoteView(view)
 Finally (4) is achieved with the following set of lines, the same way it was achieved with VTK in ***trame*** when switching from remote to local rendering.
 
 ```python
-layout.content.children[0].add_child(html_view)
-layout.flush_content()
+class StateLoaderApp(TrameApp):
+   def __init__(self, server=None):
+        # [...]
+
+        self._build_ui()
+
+    # [...]
+
+    def _build_ui(self):
+        self.state.trame__title = "State Viewer"
+
+        with SinglePageLayout(self.server) as self.ui:
+            self.ui.icon.click = self.ctrl.view_reset_camera
+            self.ui.title.set_text("ParaView State Viewer")
+
+            with self.ui.content:
+                with v3.VContainer(fluid=True, classes="pa-0 fill-height"):
+                    client.Loading("Loading state")
 ```
 
 That's it. You now have a ParaView `trame` application that let you reproduce complex visualization in a web context.
@@ -246,18 +362,18 @@ That's it. You now have a ParaView `trame` application that let you reproduce co
 ## Running the StateLoader
 
 ```bash
-/Applications/ParaView-5.10.0-RC1.app/Contents/bin/pvpython \
-    ./05_paraview/StateLoader.py  \
+/Applications/ParaView-6.1.0.app/Contents/bin/pvpython \
     --venv .pvenv \
+    ./05_paraview/StateLoader.py  \
     --data ./data/pv-state-diskout.pvsm
 # or
-/Applications/ParaView-5.10.0-RC1.app/Contents/bin/pvpython \
-    ./05_paraview/StateLoader.py  \
+/Applications/ParaView-6.1.0.app/Contents/bin/pvpython \
     --venv .pvenv \
+    ./05_paraview/StateLoader.py  \
     --data ./data/pv-state.pvsm
 ```
 
-Your browser should open automatically to `http://localhost:1234/`
+Your browser should open automatically to `http://localhost:8080/`
 
 
 | ![ParaView](/assets/images/examples/PVStateViewer-diskout.jpg){ width=85%} | ![Trame](/assets/images/examples/StateViewer-diskout.jpg) |

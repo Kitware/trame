@@ -8,7 +8,7 @@ ParaView 6+ can be downloaded from [here](https://www.paraview.org/download).
 
 ## Virtual Environment
 
-ParaView comes with its own Python, which may be missing some dependencies for the desired usage. We can add more Python packages into ParaView by creating a virtual environment and then activating it inside the application using the import line `import paraview.web.venv` or by using our [local version](https://github.com/Kitware/trame/blob/master/examples/v1/ParaView/venv.py) and importing it.
+ParaView comes with its own Python, which may be missing some dependencies for the desired usage. We can add more Python packages into ParaView by creating a virtual environment and then activating it.
 
 
 **First**, we need to setup the ParaView add-on python environment, in which we will only install ***trame***, but we could add any other Python libraries that are not included in the ParaView bundle.
@@ -24,7 +24,7 @@ deactivate
 **Note:**
  - We can not use our virtual environment with a `vtk` as our `vtk` library will conflict with the one inside Paraview.
  - Since ParaView includes `vtk`, any VTK example can be run with ParaView assuming the proper code is used to handle the virtual-env loading to get ***trame*** inside our Python script.
- - The python you use for creating your virtual-environment must match the Python version that comes with ParaView. (So far 5.10 and 5.11 use Python 3.9)
+ - The python you use for creating your virtual-environment must match the Python version that comes with ParaView. (So far 6.0 and 6.1 use Python 3.12)
 
 ## Conda environment
 
@@ -42,24 +42,14 @@ conda activate pv-env
 python .../trame-app.py
 ```
 
-## Making ***trame*** available in ParaView
-
-At the very top of our scripts, we need to import our helper script so the `--venv path/to/venv` can be processed.
-
-```python
-import paraview.web.venv # When using downloaded ParaView from Kitware
-```
-
-After that we can import ***trame*** and start using it (assuming we run our application with the `--venv /path/to/venv/with/trame` argument).
-
 ## Running an example
 
 The command line below illustrate how a SimpleCone example can be run on a **Mac** computer where ParaView 5.10 has been installed.
 
 ```bash
-/Applications/ParaView-5.10.1.app/Contents/bin/pvpython \
-    ./05_paraview/SimpleCone.py  \
-    --venv .pvenv
+/Applications/ParaView-6.1.0.app/Contents/bin/pvpython \
+    --venv .pvenv \
+    ./05_paraview/SimpleCone.py
 ```
 
 ![Simple Cone](/assets/images/examples/pvSimpleCone-Remote.jpg)
@@ -139,7 +129,6 @@ with layout.toolbar:
         step=1,
         hide_details=True,
         density="compact",
-        style="max-width: 300px",
     )
 ```
 

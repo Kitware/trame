@@ -184,7 +184,7 @@ with SinglePageLayout(server, theme=("theme", "light")) as layout:
         vuetify3.VSlider(
             v_model=("resolution", DEFAULT_RESOLUTION), # (var_name, initial_value)
             min=3, max=60, step=1,                      # min/max/step
-            hide_details=True, density="compact",              # presentation params
+            hide_details=True, density="compact",       # presentation params
             style="max-width: 300px",                   # css style
         )
         with vuetify3.VBtn(icon=True, click=reset_resolution):

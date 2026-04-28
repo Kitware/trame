@@ -20,7 +20,10 @@ class ExternalJS:
 
     def _build_ui(self):
         with DivLayout(self.server):
-            html.Button("Click Me")
+            html.Button(
+                "Click Me",
+                click="import('https://esm.sh/canvas-confetti@1.9.3').then(c => c.create()())",
+            )
 
 
 def main():

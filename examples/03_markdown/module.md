@@ -27,7 +27,7 @@ graph TD;
 ```
 
 
-```AsciiMath
+```ASCIIMath
 oint_Cx^3 dx+4y^2 dy
 
 2=(((3-x)xx2)/(3-x))

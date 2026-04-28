@@ -11,7 +11,6 @@ import json
 import os
 
 import paraview as pv
-import paraview.web.venv  # Available in PV 5.10-RC2+
 from paraview import simple
 
 from trame.app import asynchronous, get_server

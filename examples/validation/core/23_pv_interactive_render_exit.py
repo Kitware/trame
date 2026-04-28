@@ -1,6 +1,5 @@
 # To run with Paraview
-# pvpython ./examples/validation/core/23_pv_interactive_render_exit.py --venv .venv
-import paraview.web.venv
+# pvpython --venv .venv ./examples/validation/core/23_pv_interactive_render_exit.py
 
 # -----------------------------------------------------------------------------
 # VTK

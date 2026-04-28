@@ -128,7 +128,7 @@ class PlotlyViewer(TrameApp):
                             )
 
             with v3.VMain():
-                with v3.VRow(classes="h-100 pa-1 ma-0", dense=True):
+                with v3.VRow(classes="h-100 pa-1 ma-0", density="compact"):
                     for i in range(4):
                         name = f"slot_{i}"
                         with v3.VCol(cols="6", classes="h-50"):

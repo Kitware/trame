@@ -387,9 +387,15 @@ def mesh_card(self):
         v3.VSelect(
             # Representation
         )
+<<<<<<< HEAD
         with v3.VRow(classes="pt-2", density="compact"):
             with v3.VCol(cols="6"):
                 v3.VSelect(
+=======
+        with vuetify.VRow(classes="pt-2", density="compact"):
+            with vuetify.VCol(cols="6"):
+                vuetify.VSelect(
+>>>>>>> a5b24b210c0724777a4d5961b168214f5433745c
                     # Color By
                 )
             with v3.VCol(cols="6"):
@@ -424,9 +430,15 @@ def contour_card(self):
    *    v3.VSelect(
    *        # Representation
    *    )
+<<<<<<< HEAD
    *    with v3.VRow(classes="pt-2", density="compact"):
    *        with v3.VCol(cols="6"):
    *            v3.VSelect(
+=======
+   *    with vuetify.VRow(classes="pt-2", density="compact"):
+   *        with vuetify.VCol(cols="6"):
+   *            vuetify.VSelect(
+>>>>>>> a5b24b210c0724777a4d5961b168214f5433745c
    *                # Color By
    *            )
    *        with v3.VCol(cols="6"):

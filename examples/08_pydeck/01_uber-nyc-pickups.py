@@ -82,6 +82,7 @@ map_list = [
 
 
 def updateMap(data, id, lat, lon, zoom, **kwarg):
+    data = data.to_dict(orient="records")
     deck = pdk.Deck(
         map_provider="mapbox",
         map_style="mapbox://styles/mapbox/light-v9",

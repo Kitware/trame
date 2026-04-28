@@ -1,3 +1,3 @@
 # VTK Multi Filter Example
 
-![VTK Multi Filter Example](../../../../docs/content/examples/MultiFilter.jpg)
+![VTK Multi Filter Example](./preview.jpg)

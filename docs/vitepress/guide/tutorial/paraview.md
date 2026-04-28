@@ -138,7 +138,7 @@ with layout.toolbar:
         max=60,
         step=1,
         hide_details=True,
-        dense=True,
+        density="compact",
         style="max-width: 300px",
     )
 ```

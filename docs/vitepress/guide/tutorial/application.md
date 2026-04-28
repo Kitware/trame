@@ -272,7 +272,7 @@ def standard_buttons(self):
         off_icon="mdi-cube-off-outline",
         classes="mx-1",
         hide_details=True,
-        dense=True,
+        density="compact",
     )
     v3.VCheckbox(
         v_model="theme",
@@ -282,7 +282,7 @@ def standard_buttons(self):
         false_icon="mdi-lightbulb-outline",
         classes="mx-1",
         hide_details=True,
-        dense=True,
+        density="compact",
     )
     v3.VCheckbox(
         v_model=("viewMode", "local"), # VtkRemoteLocalView => {namespace}Mode=['local', 'remote']
@@ -292,7 +292,7 @@ def standard_buttons(self):
         false_value="remote",
         classes="mx-1",
         hide_details=True,
-        dense=True,
+        density="compact",
     )
     with v3.VBtn(icon=True, click=ctrl.view_reset_camera):
         v3.VIcon("mdi-crop-free")
@@ -367,7 +367,7 @@ def ui_card(self, title, ui_name):
             classes="grey lighten-1 py-1 grey--text text--darken-3",
             style="user-select: none; cursor: pointer",
             hide_details=True,
-            dense=True,
+            density="compact",
         )
         content = v3.VCardText(classes="py-2")
     return content
@@ -387,7 +387,7 @@ def mesh_card(self):
         v3.VSelect(
             # Representation
         )
-        with v3.VRow(classes="pt-2", dense=True):
+        with v3.VRow(classes="pt-2", density="compact"):
             with v3.VCol(cols="6"):
                 v3.VSelect(
                     # Color By
@@ -424,7 +424,7 @@ def contour_card(self):
    *    v3.VSelect(
    *        # Representation
    *    )
-   *    with v3.VRow(classes="pt-2", dense=True):
+   *    with v3.VRow(classes="pt-2", density="compact"):
    *        with v3.VCol(cols="6"):
    *            v3.VSelect(
    *                # Color By
@@ -484,7 +484,7 @@ v3.VSelect(
     item_value="value",
     label="Representation",
     hide_details=True,
-    dense=True,
+    density="compact",
     outlined=True,
     classes="pt-1",
 )
@@ -521,7 +521,7 @@ v3.VSelect(
     item_title="text",
     item_value="value",
     hide_details=True,
-    dense=True,
+    density="compact",
     outlined=True,
     classes="pt-1",
 )
@@ -576,7 +576,7 @@ Second, we create a dropdown menu for the color map. The `VSelect` component is 
                     item_title="text",
                     item_value="value",
                     hide_details=True,
-                    dense=True,
+                    density="compact",
                     outlined=True,
                     classes="pt-1",
                 )
@@ -614,7 +614,7 @@ We create a slider for the opacity. The `VSlider` component is used to create th
             label="Opacity",
             classes="mt-1",
             hide_details=True,
-            dense=True,
+            density="compact",
         )
 ```
 
@@ -652,7 +652,7 @@ We create a dropdown menu for the contour by. The `VSelect` component is used to
             item_title="text",
             item_value="value",
             hide_details=True,
-            dense=True,
+            density="compact",
             outlined=True,
             classes="pt-1",
         )
@@ -678,7 +678,7 @@ We create a slider for the contour value. The `VSlider` component is used to cre
             label="Value",
             classes="my-1",
             hide_details=True,
-            dense=True,
+            density="compact",
         )
 ```
 

@@ -31,17 +31,25 @@ jupyter = ["jupyterlab"]
 dev = ["pre-commit", "ruff", "pytest"]
 
 [build-system]
-requires = ['setuptools', 'wheel']
-build-backend = 'setuptools.build_meta'
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
-[tool.setuptools.packages.find]
-where = ["."]
+[tool.hatch.build]
+include = [
+  "/src/trame/**/*.py",
+]
 
-[tool.setuptools.package-data]
+[tool.hatch.build.targets.wheel]
+packages = ["src/trame"]
 
 
 [tool.semantic_release]
-version_toml = ["pyproject.toml:project.version"]
+version_toml = [
+    "pyproject.toml:project.version",
+]
+version_variables = [
+    "src/trame/__init__.py:__version__",
+]
 build_command = """
   python -m venv .venv
   source .venv/bin/activate
@@ -49,7 +57,7 @@ build_command = """
   python -m build .
 """
 
-[semantic_release.publish]
+[tool.semantic_release.publish]
 dist_glob_patterns = ["dist/*"]
 upload_to_vcs_release = true
 

@@ -80,19 +80,19 @@ Let's look at an example leveraging the previously defined text field.
 ```python
 class App(TrameApp):
     # [...]
-    def increment_weight():
+    def increment_weight(self):
         self.state.myWeight += 1
 
-    def set_metric():
+    def set_metric(self):
         self.state.myWeight = 0.453592 * state.myWeight
         self.state.currentSuffix = "kg"
 
-    def set_imperial():
+    def set_imperial(self):
         self.state["myWeight"] *= 2.20462
         self.state["currentSuffix"] = "lb"
 ```
 
-In the `increment_weight` function, we use addition assignment for `self.server.state.myWeight` to read and update the value of `myWeight` in a single statement. The remaining functions illustrate similar actions but using different syntax for reading and updating a given variable.
+In the `increment_weight` function, we use addition assignment for `self.state.myWeight` to read and update the value of `myWeight` in a single statement. The remaining functions illustrate similar actions but using different syntax for reading and updating a given variable.
 
 <div class="print-break"></div>
 
@@ -123,7 +123,7 @@ class AppButtons(TrameApp):
 
     def _build_ui(self):
         # Use state variable `theme` for the theme with default value 'light'
-        with SinglePageLayout(server, theme=("theme", "light")) as self.ui:
+        with SinglePageLayout(self.server, theme=("theme", "light")) as self.ui:
             with self.ui.content:
                 with v3.VContainer(
                     fluid=True,
@@ -134,7 +134,7 @@ class AppButtons(TrameApp):
                     self.server.ctrl.view_update = self.view.update # <-- Capture update method (will be useful later)
                     ctrl.view_reset_camera = self.view.reset_camera # <-- Capture reset_camera method
 
-            with layout.toolbar:
+            with self.ui.toolbar:
                 v3.VSpacer()
                 v3.VSwitch(
                     v_model="theme",
@@ -185,7 +185,8 @@ Let's add a `VSlider` for adjusting the resolution, a `VBtn` with `VIcon` to res
 ```python
 class AppButtons(TrameApp):
     # [...]
-        def _build_ui(self):
+
+    def _build_ui(self):
         with SinglePageLayout(self.server, theme=("theme", "light")) as self.ui:
             # [...]
             with self.ui.toolbar:

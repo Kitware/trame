@@ -18,6 +18,25 @@ We will start by editing `04_application/app.py` which contain the basic structu
 
 ## Imports
 
+**First**, our ***trame*** imports have also changed. Thus, we will replace
+
+```python
+from trame.app import TrameApp
+from trame.ui.vuetify3 import SinglePageLayout
+from trame.widgets import vuetify3 as v3
+from trame.widgets import vtk
+```
+
+By 
+
+```python
+from trame.app import TrameApp
+from trame.ui.vuetify3 import SinglePageWithDrawerLayout
+from trame.widgets import vuetify3 as v3
+from trame.widgets import vtk, trame
+from trame.decorators import change
+```
+
 Because we are adding `trame` to the list of widgets, we should add it to our environment by running
 
 ```sh

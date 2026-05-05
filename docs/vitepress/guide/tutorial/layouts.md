@@ -1,7 +1,7 @@
 # Layouts
 
-To simplify creation of the graphical user interface (GUI) for the web application, ***trame.ui.vuetify*** defines layouts objects such as `VAppLayout`, `SinglePageLayout`, and `SinglePageWithDrawerLayout`.
-In addition to these `vuetify` layouts we also have a simple `trame.ui.html.DivLayout`.
+To simplify creation of the graphical user interface (GUI) for the web application, ***trame.ui.vuetify3*** defines layouts objects such as `VAppLayout`, `SinglePageLayout`, and `SinglePageWithDrawerLayout`.
+In addition to these `vuetify3` layouts we also have a simple `trame.ui.html.DivLayout`.
 
 All core layouts start with a `VApp` (Vuetifies `v-app`) component. The `VApp` is **REQUIRED** for all applications. It is the mount point for other Vuetify components and functionality and ensures that it propagates the default application variant (dark/light) to children components, and ensures proper cross-browser support for certain click events in browsers like Safari. `VApp` should only be rendered within your application **ONCE**. (More on Vuetify in the next chapter of the tutorial.)
 
@@ -20,27 +20,35 @@ The `VAppLayout` starts with VApp and exposes the children array where one could
 **First**, add the import to `VAppLayout`.
 
 ```python
-from trame.ui.vuetify import VAppLayout
+from trame.ui.vuetify3 import VAppLayout
 ```
 
-**Second**, we instantiate the `layout` object, create the `vtk.VtkLocalView` component, and add it directly to its `root` element using a Vuetify `VContainer` with arguments descripted in the [VTK](vtk) chapter.
+**Second**, in the App class, while building the UI, we instantiate the `self.ui` object, create the `vtk.VtkLocalView` component, and add it directly to its `root` element using a Vuetify `VContainer` with arguments descripted in the [VTK](vtk) chapter.
 
 ```python
-with VAppLayout(server) as layout:
-    with layout.root:
-        with vuetify.VContainer(
-            fluid=True,
-            classes="pa-0 fill-height",
-        ):
-            view = vtk.VtkLocalView(renderWindow)
-            ctrl.on_server_ready.add(view.update)
+class App(TrameApp):
+    # [...]
+
+    def _build_ui(self):
+        with VAppLayout(server) as self.ui:
+            with self.ui.root:
+                with vuetify3.VContainer(
+                    fluid=True,
+                    classes="pa-0 fill-height",
+                ):
+                    view = vtk.VtkLocalView(renderWindow)
+                    self.ctrl.on_server_ready.add(view.update)
 ```
 
 **Finally**, we start the server
 
 ```python
+def main():
+    app = AppCone()
+    app.server.start()
+
 if __name__ == "__main__":
-    server.start()
+    main()
 ```
 
 The `VAppLayout` is really a blank canvas to add your desired Vuetify components.
@@ -66,30 +74,37 @@ The *icon* and *title* sit on the left-hand side of the *toolbar* and are custom
 **First**, we import the `SinglePageLayout` class.
 
 ```python
-from trame.ui.vuetify import SinglePageLayout
+from trame.ui.vuetify3 import SinglePageLayout
 ```
 
-**Second**, we instantiate the `layout` object, maybe change the title, create the `vtk.VtkLocalView` component, and add it to the `content` component's `children` using a Vuetify `VContainer` with arguments descripted in the [VTK]() chapter.
+**Second**, in the App class, while building the UI, we instantiate the `self.ui` object, maybe change the title, create the `vtk.VtkLocalView` component, and add it to the `content` component's `children` using a Vuetify `VContainer` with arguments descripted in the [VTK]() chapter.
 
 ```python
-with SinglePageLayout(server) as layout:
-    layout.title.set_text("Hello trame")
+class AppCone(TrameApp):
+    # [...]
 
-    with layout.content:
-        with vuetify.VContainer(
-            fluid=True,
-            classes="pa-0 fill-height",
-        ):
-            view = vtk.VtkLocalView(renderWindow)
-            ctrl.on_server_ready.add(view.update)
+    def _build_ui(self):
+        with SinglePageLayout(self.server) as self.ui:
+            self.ui.title.set_text("Hello trame")
 
+            with self.ui.content:
+                with v3.VContainer(
+                    fluid=True,
+                    classes="pa-0 fill-height",
+                ):
+                    view = vtk.VtkLocalView(renderWindow)
+                    self.ctrl.on_server_ready.add(view.update)
 ```
 
 **Finally**, we start the server
 
 ```python
+def main():
+    app = AppCone()
+    app.server.start()
+
 if __name__ == "__main__":
-    server.start()
+    main()
 ```
 
 **Running the Application**
@@ -111,30 +126,37 @@ The `SinglePageWithDrawerLayout` extends the `SinglePageLayout` with a *drawer*.
 **First**, we import the `SinglePageWithDrawerLayout` class.
 
 ```python
-from trame.ui.vuetify import SinglePageWithDrawerLayout
+from trame.ui.vuetify3 import SinglePageWithDrawerLayout
 ```
 
-**Second**, we instantiate the `layout` object with access to everything within the `SinglePageLayout` layout.
+**Second**, in the App class, while building the UI, we instantiate the `self.ui` object with access to everything within the `SinglePageWithDrawerLayout` layout.
 
 ```python
-with SinglePageWithDrawerLayout(server) as layout:
-    layout.title.set_text("Hello trame")
+class AppCone(TrameApp):
+    # [...]
 
-    with layout.content:
-        with vuetify.VContainer(
-            fluid=True,
-            classes="pa-0 fill-height",
-        ):
-            view = vtk.VtkLocalView(renderWindow)
-            ctrl.on_server_ready.add(view.update)
+    def _build_ui(self):
+        with SinglePageLayout(self.server) as self.ui:
+            self.ui.title.set_text("Hello trame")
 
+            with self.ui.content:
+                with v3.VContainer(
+                    fluid=True,
+                    classes="pa-0 fill-height",
+                ):
+                    view = vtk.VtkLocalView(renderWindow)
+                    self.ctrl.on_server_ready.add(view.update)
 ```
 
 **Finally**, we start the server
 
 ```python
+def main():
+    app = AppCone()
+    app.server.start()
+
 if __name__ == "__main__":
-    server.start()
+    main()
 ```
 
 **Running the Application**

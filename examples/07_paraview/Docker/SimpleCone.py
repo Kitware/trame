@@ -53,13 +53,11 @@ class SimpleCone(TrameApp):
                     max=60,
                     step=1,
                     hide_details=True,
-                    dense=True,
                     density="compact",
                     style="max-width: 300px",
                 )
                 v3.VDivider(vertical=True, classes="mx-2")
-                with v3.VBtn(icon=True, click=self.update_reset_resolution):
-                    v3.VIcon("mdi-undo-variant")
+                v3.VBtn(icon="mdi-undo-variant", click=self.update_reset_resolution)
 
             with self.ui.content:
                 with v3.VContainer(

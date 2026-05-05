@@ -729,7 +729,7 @@ The first toolbar callback is the `cube_axes_visibility` callback, which is used
 
 ```python
 @change("cube_axes_visibility")
-def update_cube_axes_visibility(self, cube_axes_visibility, **kwargs):
+def update_cube_axes_visibility(self, cube_axes_visibility, **_kwargs):
     cube_axes.SetVisibility(cube_axes_visibility)
     self.ctrl.view_update()
 ```
@@ -820,7 +820,7 @@ The `update_mesh_representation` function is found by the @change decorator for 
 
 ```python
 @change("mesh_representation")
-def update_mesh_representation(self, mesh_representation, **kwargs):
+def update_mesh_representation(self, mesh_representation, **_kwargs):
     self.update_representation(mesh_actor, mesh_representation)
     self.ctrl.view_update()
 ```
@@ -831,7 +831,7 @@ Likewise, the `update_contour_representation` function is found by the @change d
 
 ```python
 @change("contour_representation")
-def update_contour_representation(self, contour_representation, **kwargs):
+def update_contour_representation(self, contour_representation, **_kwargs):
     self.update_representation(contour_actor, contour_representation)
     self.ctrl.view_update()
 ```
@@ -866,7 +866,7 @@ The `update_mesh_color_by_name` function is found by the @change decorator for `
 
 ```python
 @change("mesh_color_array_idx")
-def update_mesh_color_by_name(self, mesh_color_array_idx, **kwargs):
+def update_mesh_color_by_name(self, mesh_color_array_idx, **_kwargs):
     array = dataset_arrays[mesh_color_array_idx]
     self.color_by_array(mesh_actor, array)
     self.ctrl.view_update()
@@ -878,7 +878,7 @@ Likewise, the `update_contour_color_by_name` function is found by the @change de
 
 ```python
 @change("contour_color_array_idx")
-def update_contour_color_by_name(contour_color_array_idx, **kwargs):
+def update_contour_color_by_name(contour_color_array_idx, **_kwargs):
     array = dataset_arrays[contour_color_array_idx]
     self.color_by_array(contour_actor, array)
     self.ctrl.view_update()
@@ -921,7 +921,7 @@ The `update_mesh_color_preset` function is found by the @change decorator for `m
 
 ```python
 @change("mesh_color_preset")
-def update_mesh_color_preset(self, mesh_color_preset, **kwargs):
+def update_mesh_color_preset(self, mesh_color_preset, **_kwargs):
     self.use_preset(mesh_actor, mesh_color_preset)
     self.ctrl.view_update()
 ```
@@ -932,7 +932,7 @@ The `update_contour_color_preset` function is found by the @change decorator for
 
 ```python
 @change("contour_color_preset")
-def update_contour_color_preset(self, contour_color_preset, **kwargs):
+def update_contour_color_preset(self, contour_color_preset, **_kwargs):
     self.use_preset(contour_actor, contour_color_preset)
     self.ctrl.view_update()
 ```
@@ -948,7 +948,7 @@ The `update_mesh_opacity` function is found by the @change decorator for `mesh_o
 ```python
 # Opacity Callbacks
 @change("mesh_opacity")
-def update_mesh_opacity(self, mesh_opacity, **kwargs):
+def update_mesh_opacity(self, mesh_opacity, **_kwargs):
     mesh_actor.GetProperty().SetOpacity(mesh_opacity)
     self.ctrl.view_update()
 ```
@@ -959,7 +959,7 @@ The `update_contour_opacity` function is found by the @change decorator for `con
 
 ```python
 @change("contour_opacity")
-def update_contour_opacity(self, contour_opacity, **kwargs):
+def update_contour_opacity(self, contour_opacity, **_kwargs):
     contour_actor.GetProperty().SetOpacity(contour_opacity)
     self.ctrl.view_update()
 ```
@@ -975,7 +975,7 @@ The `update_contour_by` function updates the `SetInputArrayToProcess` of the `co
 ```python
 # Contour Callbacks
 @change("contour_by_array_idx")
-def update_contour_by(self, contour_by_array_idx, **kwargs):
+def update_contour_by(self, contour_by_array_idx, **_kwargs):
     array = dataset_arrays[contour_by_array_idx]
     contour_min, contour_max = array.get("range")
     contour_step = 0.01 * (contour_max - contour_min)
@@ -1001,7 +1001,7 @@ The `update_contour_value` function is found by the @change decorator for `conto
 
 ```python
 @change("contour_value")
-def update_contour_value(self, contour_value, **kwargs):
+def update_contour_value(self, contour_value, **_kwargs):
     contour.SetValue(0, float(contour_value))
     self.ctrl.view_update()
 ```

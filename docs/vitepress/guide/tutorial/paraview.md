@@ -83,14 +83,15 @@ from trame.ui.vuetify3 import SinglePageLayout
 from trame.widgets import vuetify3 as v3
 from trame.decorators import change
 
+
+DEFAULT_RESOLUTION = 6
+
 # [...]
 
 class ConeApp(TrameApp):
 
     def __init__(self, server=None):   
         super().__init__(server)
-
-        self.DEFAULT_RESOLUTION = 6
 
         self._init_paraview()
         self._build_ui()
@@ -145,7 +146,7 @@ class ConeApp(TrameApp):
         self.ctrl.view_update()
 
     def update_reset_resolution(self):
-        self.state.resolution = self.DEFAULT_RESOLUTION
+        self.state.resolution = DEFAULT_RESOLUTION
 ```
 
 Now, we can extend the UI with a slider on the `layout.toolbar`
@@ -165,7 +166,7 @@ class ConeApp(TrameApp):
             with self.ui.toolbar:
                 v3.VSpacer()
                 v3.VSlider(
-                    v_model=("resolution", self.DEFAULT_RESOLUTION),
+                    v_model=("resolution", DEFAULT_RESOLUTION),
                     min=3,
                     max=60,
                     step=1,

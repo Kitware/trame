@@ -4,13 +4,13 @@ version = "3.12.0"
 description = "Trame, a framework to build applications in plain Python"
 authors = [{ name = "Kitware Inc." }]
 dependencies = [
-    "trame-server>=3.12,<4",
+    "trame-server>=3.12.0,<4",
     "trame-client>=3.12.1,<4",
     "trame-common>=1.2.3,<2",
     "wslink>=2.5.6",
     "pyyaml",                  # for trame.tools.widgets
 ]
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 readme = "README.rst"
 license = { text = "Apache License 2.0" }
 keywords = ["Python", "Interactive", "Web", "Application", "Framework"]

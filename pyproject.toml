@@ -1,6 +1,6 @@
 [project]
 name = "trame"
-version = "3.12.0"
+version = "3.13.0"
 description = "Trame, a framework to build applications in plain Python"
 authors = [{ name = "Kitware Inc." }]
 dependencies = [
@@ -30,6 +30,7 @@ app = ["pywebview"]
 jupyter = ["jupyterlab"]
 dev = ["pre-commit", "ruff", "pytest"]
 
+
 [build-system]
 requires = ['setuptools', 'wheel']
 build-backend = 'setuptools.build_meta'
@@ -40,6 +41,7 @@ where = ["."]
 [tool.setuptools.package-data]
 
 
+
 [tool.semantic_release]
 version_toml = ["pyproject.toml:project.version"]
 build_command = """
@@ -48,10 +50,6 @@ build_command = """
   pip install -U pip build
   python -m build .
 """
-
-[semantic_release.publish]
-dist_glob_patterns = ["dist/*"]
-upload_to_vcs_release = true
 
 [tool.ruff]
 line-length = 88
@@ -78,6 +76,12 @@ docstring-code-line-length = "dynamic"
 
 [tool.ruff.lint.pycodestyle]
 max-line-length = 120
+
+
+[semantic_release.publish]
+dist_glob_patterns = ["dist/*"]
+upload_to_vcs_release = true
+
 
 [lint.pydocstyle]
 convention = "google"

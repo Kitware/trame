@@ -1,6 +1,390 @@
 # CHANGELOG
 
 
+## v3.13.0 (2026-05-10)
+
+### Chores
+
+- **deps**: Bump vite and vitepress in /docs/vitepress
+  ([`d1e7872`](https://github.com/Kitware/trame/commit/d1e7872bb440cf75670481324c4a9e0c79e58814))
+
+Bumps [vite](https://github.com/vitejs/vite/tree/HEAD/packages/vite) to 5.4.20 and updates ancestor
+  dependency [vitepress](https://github.com/vuejs/vitepress). These dependencies need to be updated
+  together.
+
+Updates `vite` from 4.5.14 to 5.4.20 - [Release notes](https://github.com/vitejs/vite/releases) -
+  [Changelog](https://github.com/vitejs/vite/blob/v5.4.20/packages/vite/CHANGELOG.md) -
+  [Commits](https://github.com/vitejs/vite/commits/v5.4.20/packages/vite)
+
+Updates `vitepress` from 1.0.0-rc.13 to 1.6.4 - [Release
+  notes](https://github.com/vuejs/vitepress/releases) -
+  [Changelog](https://github.com/vuejs/vitepress/blob/v1.6.4/CHANGELOG.md) -
+  [Commits](https://github.com/vuejs/vitepress/compare/v1.0.0-rc.13...v1.6.4)
+
+--- updated-dependencies: - dependency-name: vite dependency-version: 5.4.20
+
+dependency-type: indirect
+
+- dependency-name: vitepress dependency-version: 1.6.4
+
+dependency-type: direct:development
+
+...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+
+- **deps-dev**: Bump mdast-util-to-hast in /docs/vitepress
+  ([`6a0f82c`](https://github.com/Kitware/trame/commit/6a0f82cb422d90c550664904e10d0de5e97c84e7))
+
+Bumps [mdast-util-to-hast](https://github.com/syntax-tree/mdast-util-to-hast) from 13.2.0 to 13.2.1.
+  - [Release notes](https://github.com/syntax-tree/mdast-util-to-hast/releases) -
+  [Commits](https://github.com/syntax-tree/mdast-util-to-hast/compare/13.2.0...13.2.1)
+
+--- updated-dependencies: - dependency-name: mdast-util-to-hast dependency-version: 13.2.1
+
+dependency-type: indirect
+
+...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+
+- **deps-dev**: Bump rollup from 4.50.1 to 4.59.0 in /docs/vitepress
+  ([`e113ce9`](https://github.com/Kitware/trame/commit/e113ce9af96dcbeef948b60cb269d4a993dac8d7))
+
+Bumps [rollup](https://github.com/rollup/rollup) from 4.50.1 to 4.59.0. - [Release
+  notes](https://github.com/rollup/rollup/releases) -
+  [Changelog](https://github.com/rollup/rollup/blob/master/CHANGELOG.md) -
+  [Commits](https://github.com/rollup/rollup/compare/v4.50.1...v4.59.0)
+
+--- updated-dependencies: - dependency-name: rollup dependency-version: 4.59.0
+
+dependency-type: indirect
+
+...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+
+- **deps-dev**: Bump vite from 5.4.20 to 5.4.21 in /docs/vitepress
+  ([`3d44825`](https://github.com/Kitware/trame/commit/3d4482554fc5895f1bf36b9b956c6c5e74e71597))
+
+Bumps [vite](https://github.com/vitejs/vite/tree/HEAD/packages/vite) from 5.4.20 to 5.4.21. -
+  [Release notes](https://github.com/vitejs/vite/releases) -
+  [Changelog](https://github.com/vitejs/vite/blob/v5.4.21/packages/vite/CHANGELOG.md) -
+  [Commits](https://github.com/vitejs/vite/commits/v5.4.21/packages/vite)
+
+--- updated-dependencies: - dependency-name: vite dependency-version: 5.4.21
+
+dependency-type: indirect
+
+...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+
+### Continuous Integration
+
+- Run ruff on example
+  ([`857bddc`](https://github.com/Kitware/trame/commit/857bddcdbe94e78827cc1a6eede8c2849a3c877e))
+
+- Update to python 3.10 for testing
+  ([`af4412f`](https://github.com/Kitware/trame/commit/af4412ff21cb1a8c6d1d245e8ef1d1ce74a6a881))
+
+- Website
+  ([`6ea2129`](https://github.com/Kitware/trame/commit/6ea21293d4e82a4889dda892f41983c26fbbc8d1))
+
+- **docker**: Avoid defaults channel for conda
+  ([`5c16bd8`](https://github.com/Kitware/trame/commit/5c16bd8797a0c449d9b6deb3451c124a9ed04479))
+
+The defaults channel is now requiring the terms of service to be accepted. We only really need
+  conda-forge, so just avoid the defaults channel.
+
+Signed-off-by: Patrick Avery <patrick.avery@kitware.com>
+
+- **docker**: Fix uv Dockerfile and scripts
+  ([`a1e4432`](https://github.com/Kitware/trame/commit/a1e4432c2c22c00f4a0fd35ece5582b6fe36803e))
+
+We mainly just needed a root `uv` environment from which to run scripts in the build step.
+
+Signed-off-by: Patrick Avery <patrick.avery@kitware.com>
+
+- **docker**: Use uv instead of pip
+  ([`cf5c824`](https://github.com/Kitware/trame/commit/cf5c8249a24e455f840b3d34fd90608c033f8d3a))
+
+This allows the Python version to be selected in child images, so we are also able to eliminate
+  Python versions in the build matrix.
+
+Signed-off-by: Patrick Avery <patrick.avery@kitware.com>
+
+- **pre-commit**: Change ruff python version to 3.10
+  ([`579ce94`](https://github.com/Kitware/trame/commit/579ce94eacf4fa8c270b1b16b7745544303072d1))
+
+- **python**: Require python 3.10+
+  ([`3bee708`](https://github.com/Kitware/trame/commit/3bee70823db75f83b749d632d4efe705dcdd8df4))
+
+### Documentation
+
+- Dense=true -> density="compact" for vue3
+  ([`d1dbc19`](https://github.com/Kitware/trame/commit/d1dbc19cc2f1ac07b75a687f3b86c2df85be528c))
+
+- Dense=true -> density="compact" for vue3
+  ([`7d818e2`](https://github.com/Kitware/trame/commit/7d818e27cdab1ed610e24135f37ac33d93a78bb8))
+
+- Modernize guides
+  ([`d743680`](https://github.com/Kitware/trame/commit/d7436802289b7774796f9cbc575a9bfb2c21573d))
+
+- Update data_from_remote_url
+  ([`8850d22`](https://github.com/Kitware/trame/commit/8850d22a2f7c12015d4de0b76567f0e4c4eb3931))
+
+- **blog**: Add trame-openfoam blog reference
+  ([`6510a36`](https://github.com/Kitware/trame/commit/6510a361ec3707313d973f58b73e99ff23194ad0))
+
+- **blog**: Add trame-slicer blog post reference
+  ([`cecb92c`](https://github.com/Kitware/trame/commit/cecb92c096a7f282a58ef8f6a81d8382a97bbdf4))
+
+- **blog**: Fix image path
+  ([`3892f91`](https://github.com/Kitware/trame/commit/3892f91305fc93378e63044bf5778f9c5ec438d2))
+
+- **blog**: Fix link
+  ([`d083103`](https://github.com/Kitware/trame/commit/d083103c52453315b364bfd7f10deb7cee1fa719))
+
+- **blogs**: Add better index page
+  ([`6f94a32`](https://github.com/Kitware/trame/commit/6f94a323acb7d0cab7e052c2143aa9561a74726c))
+
+- **blogs**: Add blog infrastructure
+  ([`670dd72`](https://github.com/Kitware/trame/commit/670dd72d17f17457d7c70517a575a705508452a6))
+
+- **download**: Update examples
+  ([`e298cb8`](https://github.com/Kitware/trame/commit/e298cb84b359b1dd11102065b16b642bab296a68))
+
+- **drag-drop**: Add plotly drag and drop example
+  ([`2bdcd24`](https://github.com/Kitware/trame/commit/2bdcd240531a6834970224a30ebe958b1855e33c))
+
+- **drag-drop**: Update drag-and-drop.py
+  ([`738eac2`](https://github.com/Kitware/trame/commit/738eac2fc72930c7983a34cee6fe7766a142b7c2))
+
+- **example**: Add trame slicer MRHead screenshot
+  ([`96cdf86`](https://github.com/Kitware/trame/commit/96cdf8662f1539ce2d570d7e5c0d7aa1eff9cfc7))
+
+- **example**: Add trame-slicer as example
+  ([`a5b5303`](https://github.com/Kitware/trame/commit/a5b53039adec3c5b42738006a3ebf1eb44f53e04))
+
+- **example**: Fix spelling
+  ([`5016288`](https://github.com/Kitware/trame/commit/50162889c3b45a1eb737064fbfd91991312959b6))
+
+- **example**: Fix trame-slicer deadlink in examples
+  ([`516ad2e`](https://github.com/Kitware/trame/commit/516ad2e93eba733e2bfad38f94e628735ffc47da))
+
+- **examples**: Add more examples
+  ([`d9e0f70`](https://github.com/Kitware/trame/commit/d9e0f7078430481442a9f5b0309992febf5e164f))
+
+- **examples**: Bump paraview to 6.1
+  ([`c23b51c`](https://github.com/Kitware/trame/commit/c23b51c112747317d412173f64abdff7daf2858e))
+
+- **examples**: Change **kwargs to **_
+  ([`6fdb80d`](https://github.com/Kitware/trame/commit/6fdb80dca7f308bb5bf0d6272f2fc3298b6f591d))
+
+Ref: https://github.com/Kitware/trame/pull/876#discussion_r3090511969
+
+- **examples**: Change **kwargs to **_ because unused
+  ([`83b0366`](https://github.com/Kitware/trame/commit/83b0366e813f3c854f35532e5baf0170b90ed3bc))
+
+Ref: https://github.com/Kitware/trame/pull/876/changes/
+
+BASE..b763491f00e51b3ce6e6d7a4f888e9b0b00416a7#r3090500370
+
+- **examples**: Change broken image link
+  ([`65a2119`](https://github.com/Kitware/trame/commit/65a2119e302801f99b2a5843eabbe04418e3784f))
+
+- **examples**: Change broken image link
+  ([`f3ba89d`](https://github.com/Kitware/trame/commit/f3ba89d44d629d1ccfecdd575dafcf7dc230b43a))
+
+- **examples**: Change broken image link
+  ([`cba2935`](https://github.com/Kitware/trame/commit/cba29356fe7084afcdb4d290efc43fcb03bc1afa))
+
+- **examples**: Change ParaView URL, example still not working
+  ([`3666585`](https://github.com/Kitware/trame/commit/36665858fd005a9aabc5e421f5cd098be1eb7af3))
+
+- **examples**: Change port back to 8080
+  ([`7507200`](https://github.com/Kitware/trame/commit/75072004fbab10c2f6ef6c48ab8f548b0d45d27b))
+
+Ref: https://github.com/Kitware/trame/pull/876/changes/BASE..
+
+5c591fb6451c3a2c097c76db3b94bb0b9c09ed99#r3080002193
+
+- **examples**: Change port to 9000 used by default
+  ([`69ca93e`](https://github.com/Kitware/trame/commit/69ca93e4348089ba966383e00248f7cc1154a176))
+
+- **examples**: Change to ParaView 5.13.that includes the --venv native arg
+  ([`feb5e0f`](https://github.com/Kitware/trame/commit/feb5e0f9a6b78771aeef894fb35191c8ea7fbf20))
+
+Ref: https://github.com/Kitware/trame/pull/876/changes/
+
+BASE..b763491f00e51b3ce6e6d7a4f888e9b0b00416a7#r3090520084
+
+- **examples**: Fix code snippet path
+  ([`da7c78a`](https://github.com/Kitware/trame/commit/da7c78a4396e7e27443be1736b85dc5c4e2771b8))
+
+Ref: https://github.com/Kitware/trame/actions/runs/24511784824/job/71644607253
+
+- **examples**: Fix colors in example
+  ([`db07a33`](https://github.com/Kitware/trame/commit/db07a33611215c744bad12c6be1d109c9650e394))
+
+- **examples**: Fix confetti example
+  ([`80d66ac`](https://github.com/Kitware/trame/commit/80d66ac7c3bb7d7f4b7edec91774bdcb56fe476e))
+
+- **examples**: Fix data path error and camera reset view error
+  ([`19e9e2e`](https://github.com/Kitware/trame/commit/19e9e2e008d170841964ae59dbcde4de1d9cc9ee))
+
+- **examples**: Fix example by making timestamp serializable
+  ([`ec2d2e9`](https://github.com/Kitware/trame/commit/ec2d2e9a46ddc9bd963ddcc9063bd394041ecf9b))
+
+- **examples**: Fix images' URL to relative path instead of deployed image URL
+  ([`e474658`](https://github.com/Kitware/trame/commit/e4746580aab66c9a8e3242b9515cb62cb1e04108))
+
+- **examples**: Make demo.md features work
+  ([`fbae6cd`](https://github.com/Kitware/trame/commit/fbae6cd26f5207c62e6d86e288ef5fd235a9bcfe))
+
+- **examples**: Make examples work with panda2.2+
+  ([`d79979c`](https://github.com/Kitware/trame/commit/d79979c738ddd45ea8c07e4e944c441048929ee8))
+
+- **examples**: Make it clear that vue2 is used with alias v2
+  ([`e1fcfe5`](https://github.com/Kitware/trame/commit/e1fcfe54377e4cd9ac755ba3332b684be732ca18))
+
+Ref: https://github.com/Kitware/trame/pull/876#discussion_r3090508161
+
+- **examples**: Make panda object serializable
+  ([`17f9cd7`](https://github.com/Kitware/trame/commit/17f9cd794205b1174acbbc2fce881bb5d2204629))
+
+- **examples**: Make panda object serializable
+  ([`12b1eb0`](https://github.com/Kitware/trame/commit/12b1eb024f133116efd025de964dc2a0c32a571b))
+
+- **examples**: Make the paraview with docker example use best practice
+  ([`a5b24b2`](https://github.com/Kitware/trame/commit/a5b24b210c0724777a4d5961b168214f5433745c))
+
+Ref: https://github.com/Kitware/trame/pull/882#discussion_r3134629872
+
+Ref: https://github.com/Kitware/trame/pull/882#discussion_r3134632983
+
+Ref: https://github.com/Kitware/trame/pull/882#discussion_r3134633949
+
+Ref: https://github.com/Kitware/trame/pull/882#discussion_r3134636030
+
+Ref: https://github.com/Kitware/trame/pull/882#discussion_r3134637764
+
+- **examples**: Make the paraview with docker example use best practice
+  ([`8093791`](https://github.com/Kitware/trame/commit/80937917c62349de66ea91e845acee11dca34c37))
+
+Ref: https://github.com/Kitware/trame/pull/882#discussion_r3134629872
+
+Ref: https://github.com/Kitware/trame/pull/882#discussion_r3134632983
+
+Ref: https://github.com/Kitware/trame/pull/882#discussion_r3134633949
+
+Ref: https://github.com/Kitware/trame/pull/882#discussion_r3134636030
+
+Ref: https://github.com/Kitware/trame/pull/882#discussion_r3134637764
+
+- **examples**: Make the paraview with docker example work
+  ([`03d50c6`](https://github.com/Kitware/trame/commit/03d50c6ceeb6b17f356d84793bfb574699bc2928))
+
+- Put --venv argument to `pvpython` - Change `Dockerfile` to select working openGL renderer - Change
+  `Dockerfile` to install libpciaccess and libxcursor - Make `SimpleCone.py` use vuetify3 and
+  TrameApp
+
+Ref: https://github.com/Kitware/trame/issues/875
+
+- **examples**: Make the paraview with docker example work
+  ([`cdd8bdd`](https://github.com/Kitware/trame/commit/cdd8bdd60223c10e52984442f5311397484163c3))
+
+- Put --venv argument to `pvpython` - Change `Dockerfile` to select working openGL renderer - Change
+  `Dockerfile` to install libpciaccess and libxcursor - Make `SimpleCone.py` use vuetify3 and
+  TrameApp
+
+Ref: https://github.com/Kitware/trame/issues/875
+
+- **examples**: Modernize code sample
+  ([`35375b1`](https://github.com/Kitware/trame/commit/35375b1137426d9594bc82ca2a47b98b320976db))
+
+- **examples**: Remove `import paraview.web.venv`
+  ([`bf4a888`](https://github.com/Kitware/trame/commit/bf4a888e1bff6fc46ba0e89c06fe508d1d4c2d2a))
+
+Also replace all mentions of commands like `[pvpython] [script.py] --venv [venv]` by `[pvpython]
+  --venv [venv] [script.py]`
+
+- **examples**: Remove trame-markdown examples' broken features
+  ([`a822053`](https://github.com/Kitware/trame/commit/a822053adc0ef1af27a3666b7d75b941ce18d88a))
+
+- **examples**: Remove useless file, another example file can be used
+  ([`0e7526f`](https://github.com/Kitware/trame/commit/0e7526f965cd1c188d70068956e6c53591ad3f38))
+
+- **examples**: Update how to cli
+  ([`dad575a`](https://github.com/Kitware/trame/commit/dad575afc6b5d2e04193a9fdc56841ddb65d6bc6))
+
+- **examples**: Update version of trame
+  ([`4d63772`](https://github.com/Kitware/trame/commit/4d6377201a9afdd6a3ddf7ef7f36eb8ab5f81eb5))
+
+Ref: https://github.com/Kitware/trame/pull/876/changes/
+
+BASE..bd2d32885c98d004bde76a23394e70b6a5df42e1#r3092867340
+
+- **examples**: Use best practice with TrameApp
+  ([`70bfd33`](https://github.com/Kitware/trame/commit/70bfd3335e06ddcb8118b791552baf92c4e0cc52))
+
+- **examples**: Use best practice with TrameApp
+  ([`755da23`](https://github.com/Kitware/trame/commit/755da23addea39f3e011e6c56875b555cd8abd42))
+
+- **examples**: Use best practice with TrameApp
+  ([`28b07ee`](https://github.com/Kitware/trame/commit/28b07eef9b7d1a45d20cecfb7e280b7e74b7c1a9))
+
+- **examples**: Use paraview venv
+  ([`126653b`](https://github.com/Kitware/trame/commit/126653b7aae67c88e23fc6601006b3bec649ce88))
+
+- **examples**: Use properties of vue3 in paraview with docker example
+  ([`d082499`](https://github.com/Kitware/trame/commit/d08249906009d7a52b8f3994d5759372d6715555))
+
+Ref: https://github.com/Kitware/trame/pull/882#discussion_r3148124174
+
+Ref: https://github.com/Kitware/trame/pull/882#discussion_r3148126979
+
+- **examples**: Use v_slot_group_header
+  ([`b4cdfdd`](https://github.com/Kitware/trame/commit/b4cdfdd54779cdebea4627a630ca01de61b5b7f9))
+
+Ref: https://github.com/Kitware/trame/pull/876/changes/
+
+BASE..b763491f00e51b3ce6e6d7a4f888e9b0b00416a7#r3090494150
+
+- **home**: Add blog listing
+  ([`bd7455e`](https://github.com/Kitware/trame/commit/bd7455ed098a9f179c65ade99196f90c03c4edf3))
+
+- **life-cycle**: Document life_cycle.on_error ([#835](https://github.com/Kitware/trame/pull/835),
+  [`845d7ab`](https://github.com/Kitware/trame/commit/845d7abb6d45cdb242d07e6655e9aad573d300eb))
+
+- **readme**: Update readme to list all life cycle events
+  ([`ea84c98`](https://github.com/Kitware/trame/commit/ea84c98156975a81dc7af2c54dc713cc452dadf0))
+
+- **started**: Add custom cli note
+  ([`9d1ecae`](https://github.com/Kitware/trame/commit/9d1ecae50e2353ba3a60432beac9fa4298da9ba1))
+
+- **tutorial**: Fix typos and improve clarity
+  ([`c63cec3`](https://github.com/Kitware/trame/commit/c63cec3c479b80ed7b2143ae580be8ca63e32985))
+
+- **tutorial**: Upgrade docs/tutorial python version from 3.9 to 3.12
+  ([`bb219af`](https://github.com/Kitware/trame/commit/bb219af256d2374f8d7e7131e7a94e47ce8f8637))
+
+- **vtk**: Add modern remote/local rendering switch
+  ([`447c282`](https://github.com/Kitware/trame/commit/447c2829bb307d0a8f9901bd9c844c3e4b92acb5))
+
+- **vuetify**: 01_menu_v3.py
+  ([`eb22a28`](https://github.com/Kitware/trame/commit/eb22a2867d4fcf72e98925c84872ede2455b7fd9))
+
+- **widgets**: Add dataclass to the list
+  ([`b5371a3`](https://github.com/Kitware/trame/commit/b5371a392ed8dfb29d9a4d3e56ddf867ad1d5e38))
+
+### Features
+
+- **profiler**: Add profiler tool
+  ([`b6dfb22`](https://github.com/Kitware/trame/commit/b6dfb22288fbd7043b71f18eacb0af37efde3eb3))
+
+
 ## v3.12.0 (2025-08-18)
 
 ### Documentation

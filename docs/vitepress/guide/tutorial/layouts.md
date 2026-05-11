@@ -30,7 +30,7 @@ class App(TrameApp):
     # [...]
 
     def _build_ui(self):
-        with VAppLayout(server) as self.ui:
+        with VAppLayout(self.server) as self.ui:
             with self.ui.root:
                 with vuetify3.VContainer(
                     fluid=True,

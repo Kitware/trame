@@ -23,10 +23,10 @@ The `VAppLayout` starts with VApp and exposes the children array where one could
 from trame.ui.vuetify3 import VAppLayout
 ```
 
-**Second**, in the AppLayouts class, while building the UI, we instantiate the `self.ui` object, create the `vtk.VtkLocalView` component, and add it directly to its `root` element using a Vuetify `VContainer` with arguments descripted in the [VTK](vtk) chapter.
+**Second**, in the ConeApp class, while building the UI, we instantiate the `self.ui` object, create the `vtk.VtkLocalView` component, and add it directly to its `root` element using a Vuetify `VContainer` with arguments descripted in the [VTK](vtk) chapter.
 
 ```python
-class AppLayouts(TrameApp):
+class ConeApp(TrameApp):
     # [...]
 
     def _build_ui(self):
@@ -44,7 +44,7 @@ class AppLayouts(TrameApp):
 
 ```python
 def main():
-    app = AppLayouts()
+    app = ConeApp()
     app.server.start()
 
 if __name__ == "__main__":
@@ -77,10 +77,10 @@ The *icon* and *title* sit on the left-hand side of the *toolbar* and are custom
 from trame.ui.vuetify3 import SinglePageLayout
 ```
 
-**Second**, in the AppLayouts class, while building the UI, we instantiate the `self.ui` object, maybe change the title, create the `vtk.VtkLocalView` component, and add it to the `content` component's `children` using a Vuetify `VContainer` with arguments descripted in the [VTK]() chapter.
+**Second**, in the ConeApp class, while building the UI, we instantiate the `self.ui` object, maybe change the title, create the `vtk.VtkLocalView` component, and add it to the `content` component's `children` using a Vuetify `VContainer` with arguments descripted in the [VTK]() chapter.
 
 ```python
-class AppLayouts(TrameApp):
+class ConeApp(TrameApp):
     # [...]
 
     def _build_ui(self):
@@ -100,7 +100,7 @@ class AppLayouts(TrameApp):
 
 ```python
 def main():
-    app = AppLayouts()
+    app = ConeApp()
     app.server.start()
 
 if __name__ == "__main__":
@@ -129,10 +129,10 @@ The `SinglePageWithDrawerLayout` extends the `SinglePageLayout` with a *drawer*.
 from trame.ui.vuetify3 import SinglePageWithDrawerLayout
 ```
 
-**Second**, in the AppLayouts class, while building the UI, we instantiate the `self.ui` object with access to everything within the `SinglePageWithDrawerLayout` layout.
+**Second**, in the ConeApp class, while building the UI, we instantiate the `self.ui` object with access to everything within the `SinglePageWithDrawerLayout` layout.
 
 ```python
-class AppLayouts(TrameApp):
+class ConeApp(TrameApp):
     # [...]
 
     def _build_ui(self):
@@ -152,7 +152,7 @@ class AppLayouts(TrameApp):
 
 ```python
 def main():
-    app = AppLayouts()
+    app = ConeApp()
     app.server.start()
 
 if __name__ == "__main__":

@@ -1,6 +1,6 @@
 [project]
 name = "trame"
-version = "3.13.0"
+version = "3.13.1"
 description = "Trame, a framework to build applications in plain Python"
 authors = [{ name = "Kitware Inc." }]
 dependencies = [
@@ -29,6 +29,7 @@ classifiers = [
 app = ["pywebview"]
 jupyter = ["jupyterlab"]
 dev = ["pre-commit", "ruff", "pytest"]
+
 
 
 [build-system]
@@ -78,9 +79,11 @@ docstring-code-line-length = "dynamic"
 max-line-length = 120
 
 
+
 [semantic_release.publish]
 dist_glob_patterns = ["dist/*"]
 upload_to_vcs_release = true
+
 
 
 [lint.pydocstyle]

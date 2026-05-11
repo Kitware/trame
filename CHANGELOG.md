@@ -1,6 +1,32 @@
 # CHANGELOG
 
 
+## v3.13.1 (2026-05-11)
+
+### Bug Fixes
+
+- **client/server**: Bump versions to working state
+  ([`ebfc7ff`](https://github.com/Kitware/trame/commit/ebfc7ff3f293943a033f9c0a8c3b480c53ea1951))
+
+### Chores
+
+- **deps-dev**: Bump postcss from 8.5.6 to 8.5.14 in /docs/vitepress
+  ([`f9eefbe`](https://github.com/Kitware/trame/commit/f9eefbec64c16a72888647a25bb3dfa7a750e3d1))
+
+Bumps [postcss](https://github.com/postcss/postcss) from 8.5.6 to 8.5.14. - [Release
+  notes](https://github.com/postcss/postcss/releases) -
+  [Changelog](https://github.com/postcss/postcss/blob/main/CHANGELOG.md) -
+  [Commits](https://github.com/postcss/postcss/compare/8.5.6...8.5.14)
+
+--- updated-dependencies: - dependency-name: postcss dependency-version: 8.5.14
+
+dependency-type: indirect
+
+...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+
+
 ## v3.13.0 (2026-05-10)
 
 ### Chores

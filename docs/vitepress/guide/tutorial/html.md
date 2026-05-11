@@ -208,7 +208,7 @@ The `VSlider` creates `resolution` as a state variable and is initialized to the
 class AppButtons(TrameApp):
     # [...]
     @change("resolution")
-    def update_resolution(self, resolution, **_kwargs):
+    def update_resolution(self, resolution, **_):
         self.cone_source.SetResolution(resolution)
         self.ctrl.view_update()
 ```

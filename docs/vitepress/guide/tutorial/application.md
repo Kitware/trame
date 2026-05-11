@@ -237,7 +237,7 @@ For this application, we want to enable dynamic switching between *local* and *r
 We are creating a single page application with a drawer using `SinglePageWithDrawer`. By default we get a title, toolbar, drawer, and a content section. So we instantiate a `SinglePageWithDrawer` with the `title` of "Viewer" and `on_ready` argument equal to `html_view.update`, which updates the three-dimensional visualization.
 
 ```python
-def build_ui(self):
+def _build_ui(self):
     with SinglePageWithDrawerLayout(self.server, theme=("theme", "light")) as self.ui:
         self.ui.title.set_text("Viewer")
 
@@ -284,36 +284,38 @@ with self.ui.toolbar:
 Three of the buttons have on/off states, so we will use a `VCheckbox` with the `on_icon` and `off_icon` properties and the `v_model` callback to switch between these states. The `resetCamera` button is just using the controller function to allow out-of-order initialization.
 
 ```python
-def standard_buttons(self):
-    v3.VCheckbox(
-        v_model=("cube_axes_visibility", True),
-        on_icon="mdi-cube-outline",
-        off_icon="mdi-cube-off-outline",
-        classes="mx-1",
-        hide_details=True,
-        density="compact",
-    )
-    v3.VCheckbox(
-        v_model="theme",
-        true_value="dark",
-        false_value="light",
-        true_icon="mdi-lightbulb-off-outline",
-        false_icon="mdi-lightbulb-outline",
-        classes="mx-1",
-        hide_details=True,
-        density="compact",
-    )
-    v3.VCheckbox(
-        v_model=("viewMode", "local"), # VtkRemoteLocalView => {namespace}Mode=['local', 'remote']
-        on_icon="mdi-lan-disconnect",
-        off_icon="mdi-lan-connect",
-        true_value="local",
-        false_value="remote",
-        classes="mx-1",
-        hide_details=True,
-        density="compact",
-    )
-    v3.VBtn(icon="mdi-crop-free", click=ctrl.view_reset_camera)
+class App(TrameApp):
+    # [...]
+    def standard_buttons(self):
+        v3.VCheckbox(
+            v_model=("cube_axes_visibility", True),
+            on_icon="mdi-cube-outline",
+            off_icon="mdi-cube-off-outline",
+            classes="mx-1",
+            hide_details=True,
+            density="compact",
+        )
+        v3.VCheckbox(
+            v_model="theme",
+            true_value="dark",
+            false_value="light",
+            true_icon="mdi-lightbulb-off-outline",
+            false_icon="mdi-lightbulb-outline",
+            classes="mx-1",
+            hide_details=True,
+            density="compact",
+        )
+        v3.VCheckbox(
+            v_model=("viewMode", "local"), # VtkRemoteLocalView => {namespace}Mode=['local', 'remote']
+            on_icon="mdi-lan-disconnect",
+            off_icon="mdi-lan-connect",
+            true_value="local",
+            false_value="remote",
+            classes="mx-1",
+            hide_details=True,
+            density="compact",
+        )
+        v3.VBtn(icon="mdi-crop-free", click=ctrl.view_reset_camera)
 ```
 
 The `dark` checkbox is as the previous examples using layout's parameter (`theme`) reactive variable.
@@ -329,8 +331,12 @@ The `viewMode` checkbox is used to switch between the *local* and *remote* rende
 We want to create a drawer with the ***trame*** pipeline widget, a horizontal divider, and pipeline cards. The pipeline cards are shown corresponding to the selected pipeline in the ***trame*** pipeline widget. We need create state for the active pipeline card, so we add this to the shared state that can be updated on the state directly.
 
 ```python
-# State use to track active UI card
-self.state.setdefault("active_ui", None) # prevent resetting value if already present
+class App(TrameApp):
+    def __init__(self, server=None):
+        # [...]
+
+        # State use to track active UI card
+        self.state.setdefault("active_ui", None) # prevent resetting value if already present
 ```
 
 We want a little wider `drawer`, so we set the width to 325 pixels. Next, we add the ***trame*** pipeline widget using the `pipeline_widget` function. Then, we use a `VDivider` to separate the ***trame*** widget from the pipeline cards. Finally, we add the pipeline cards using the `mesh_card` and `contour_card` functions.
@@ -341,8 +347,8 @@ with self.ui.drawer as drawer:
     drawer.width = 325
     self.pipeline_widget()
     v3.VDivider(classes="mb-2")
-    self.mesh_card()
-    self.contour_card()
+    mesh_card()
+    contour_card()
 ```
 
 <a id="pipeline_widget-id"></a>
@@ -363,8 +369,8 @@ def pipeline_widget(self):
                 {"id": "2", "parent": "1", "visible": 1, "name": "Contour"},
             ],
         ),
-        actives_change=(actives_change, "[$event]"),
-        visibility_change=(visibility_change, "[$event]"),
+        actives_change=(self.actives_change, "[$event]"),
+        visibility_change=(self.visibility_change, "[$event]"),
     )
 ```
 
@@ -378,7 +384,7 @@ def pipeline_widget(self):
 The default GUI card is a simple card with a title, and a body. The card itself is shown (`v_show`) if the `ui_name` is the same as `active_ui`. We use the `VCard` to create the card, and the `VCardTitle` to create the card title, and the `VCardText` to create the space to add individual pipeline GUI components. The stylings for the card colors can be found at [Material Design](https://materializecss.com/color.html).
 
 ```python
-def ui_card(self, title, ui_name):
+def ui_card(title, ui_name):
     with v3.VCard(v_show=f"active_ui == '{ui_name}'"):
         v3.VCardTitle(
             title,
@@ -400,8 +406,8 @@ def ui_card(self, title, ui_name):
 The `mesh_card` contains strictly default GUI components of a pipeline. First, a dropdown menu for the visual [representation](#gui_representation-id) type. Next, a row with two columns. One contains a dropdown menu for the array/field to [color by](#gui_color_by-id), and the other a dropdown menu for which [color map](#gui_color_map-id) to use. Finally, a slider to control the [opacity](#gui_opacity-id).
 
 ```python
-def mesh_card(self):
-    with self.ui_card(title="Mesh", ui_name="mesh"):
+def mesh_card():
+    with ui_card(title="Mesh", ui_name="mesh"):
         v3.VSelect(
             # Representation
         )
@@ -431,8 +437,8 @@ Since these are default pipeline elements, we will cover these items together wi
 The `contour_card` contains a dropdown menu to select the array/field to [contour by](#contour-by-gui), a slider to control the [contour value](#contour-value-gui), and the default GUI components of a pipeline.
 
 ```python
-def contour_card(self):
-    with self.ui_card(title="Contour", ui_name="contour"):
+def contour_card():
+    with ui_card(title="Contour", ui_name="contour"):
         v3.VSelect(
             # Contour By
         )

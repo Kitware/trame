@@ -313,8 +313,7 @@ def standard_buttons(self):
         hide_details=True,
         density="compact",
     )
-    with v3.VBtn(icon=True, click=ctrl.view_reset_camera):
-        v3.VIcon("mdi-crop-free")
+    v3.VBtn(icon="mdi-crop-free", click=ctrl.view_reset_camera)
 ```
 
 The `dark` checkbox is as the previous examples using layout's parameter (`theme`) reactive variable.

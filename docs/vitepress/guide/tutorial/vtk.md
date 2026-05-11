@@ -169,38 +169,11 @@ class AppCone(TrameApp):
                 ):
                     # html_view = vtk.VtkLocalView(renderWindow)
                     html_view = vtk.VtkRemoteView(renderWindow)
-                    # TODO: missing update when ready...
 ```
 
 We add a **Vuetify** component to the Web application. In this case, a `VContainer`. The arguments include: fluid (to get full width container), classes (CSS stylings), and nest our rendering view component into it.
 
 (More information is available for [vuetify](https://vuetifyjs.com/en/introduction/why-vuetify/).)
-
-## Update and Start
-
-Once the client and server are ready, we need to update the view (`html_view`) by calling  `html_view.update()`.
-
-To enable this call, we need to use the server controller on which we can attach method(s) for various life cycle events.
-The one we are interested here is **on_server_ready** on which to which we can bind our **update** method.
-
-To do so, we revist our code base to extract our server controller and **add** our method to be called on the proper **on_server_ready** life cycle.
-
-```python
-class AppCone(TrameApp):
-    # [...]
-
-    def _build_ui(self):
-        with SinglePageLayout(self.server) as self.ui:
-            self.ui.title.set_text("Hello trame")
-            with self.ui.content:
-                with v3.VContainer(
-                    fluid=True,
-                    classes="pa-0 fill-height",
-                ):
-                    html_view = vtk.VtkLocalView(renderWindow)
-                    self.ctrl.on_server_ready.add(html_view.update) # <--- New line
-
-```
 
 ## Running the Application
 

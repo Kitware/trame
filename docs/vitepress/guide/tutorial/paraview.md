@@ -141,7 +141,7 @@ class ConeApp(TrameApp):
     # [...]
 
     @change("resolution")
-    def update_cone(self, resolution, **_kwargs):
+    def update_cone(self, resolution, **_):
         self.cone.Resolution = resolution
         self.ctrl.view_update()
 
@@ -269,7 +269,7 @@ class StateLoaderApp(TrameApp):
         # [...]
 
 
-    def load_data(self, **_kwargs):
+    def load_data(self, **_):
         args, _ = self.server.cli.parse_known_args()
 
         full_path = str(Path(args.data).resolve().absolute())
@@ -289,7 +289,7 @@ class StateLoaderApp(TrameApp):
 
     # [...]
 
-    def load_data(self, **_kwargs):
+    def load_data(self, **_):
 
         # [...]
 
@@ -312,7 +312,7 @@ class StateLoaderApp(TrameApp):
 
     # [...]
 
-    def load_data(self, **_kwargs):
+    def load_data(self, **_):
 
         # [...]
 

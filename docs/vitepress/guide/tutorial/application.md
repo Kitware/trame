@@ -238,7 +238,7 @@ We are creating a single page application with a drawer using `SinglePageWithDra
 
 ```python
 def build_ui(self):
-    with SinglePageWithDrawerLayout(server, theme=("theme", "light")) as self.ui:
+    with SinglePageWithDrawerLayout(self.server, theme=("theme", "light")) as self.ui:
         self.ui.title.set_text("Viewer")
 
         with self.ui.toolbar:

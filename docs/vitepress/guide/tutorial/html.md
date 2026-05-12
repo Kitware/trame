@@ -38,13 +38,13 @@ Exposing Vuetify in Python was accomplished by making a few syntax changes.
 
 1. We use CamelCase in our Python component's name, while attribute hyphens become underscores. For example, the `v-text-field` component becomes VTextField, and the `v-model` attribute becomes `v_model`.
 
-2. Strings, ints, floats, and booleans used to set attributes are assigned as normal like `vuetify3.VTextField(label="myLabel")` for the `"myLabel"` String.
+2. Strings, ints, floats, and booleans used to set attributes are assigned as normal like `v3.VTextField(label="myLabel")` for the `"myLabel"` String.
 
-3. Expressions or state variables used to set attributes are assigned as a String in a tuple (i.e. surrounded by parenthesis) like `vuetify3.VTextField(label=("myLabel",))`. The comma enforces the usage of a tuple. An optional second parameter is used to provide an initial value like `vuetify3.VTextField(label=("myLabel", "Initial Label"))`.
+3. Expressions or state variables used to set attributes are assigned as a String in a tuple (i.e. surrounded by parenthesis) like `v3.VTextField(label=("myLabel",))`. The comma enforces the usage of a tuple. An optional second parameter is used to provide an initial value like `v3.VTextField(label=("myLabel", "Initial Label"))`.
 
-4. Vuetify implicitly sets boolean properties. For example, if something is to be `disabled`, then one simply writes disabled. In our Python implementation, this is done explicitly like `vuetify3.VTextField(disabled=True)`.
+4. Vuetify implicitly sets boolean properties. For example, if something is to be `disabled`, then one simply writes disabled. In our Python implementation, this is done explicitly like `v3.VTextField(disabled=True)`.
 
-5. For events, HTML uses the `@` like `@click="runMethod"` to set the function to call upon a click event and double quotes on the String name of the function to run. In our Python version of Vuetify, we ignore the `@` and use the reference to the function instead of a the String name of the function call like `vuetify3.VBtn(click=runMethod)`.
+5. For events, HTML uses the `@` like `@click="runMethod"` to set the function to call upon a click event and double quotes on the String name of the function to run. In our Python version of Vuetify, we ignore the `@` and use the reference to the function instead of a the String name of the function call like `v3.VBtn(click=runMethod)`.
 
 Given these rules, we can recreate the JavaScript/HTML text field example in ***trame*** as follows.
 
@@ -198,7 +198,7 @@ class AppButtons(TrameApp):
                     style="max-width: 300px",                   # css style
                 )
                 v3.VBtn(icon="mdi-restore", click=self.reset_resolution)
-                vuetify3.VDivider(vertical=True, classes="mx-2")
+                v3.VDivider(vertical=True, classes="mx-2")
                 # [...] Dark theme switch
 ```
 

@@ -159,7 +159,7 @@ class AppCone(TrameApp):
 
     def _build_ui(self):
 
-        with SinglePageLayout(server) as self.ui:
+        with SinglePageLayout(self.server) as self.ui:
             # [...]
 
             with self.ui.content:

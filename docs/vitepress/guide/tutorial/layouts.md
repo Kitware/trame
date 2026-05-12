@@ -32,7 +32,7 @@ class ConeApp(TrameApp):
     def _build_ui(self):
         with VAppLayout(self.server) as self.ui:
             with self.ui.root:
-                with vuetify3.VContainer(
+                with v3.VContainer(
                     fluid=True,
                     classes="pa-0 fill-height",
                 ):

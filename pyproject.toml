@@ -30,28 +30,36 @@ app = ["pywebview"]
 jupyter = ["jupyterlab"]
 dev = ["pre-commit", "ruff", "pytest"]
 
-
-
-
 [build-system]
-requires = ['setuptools', 'wheel']
-build-backend = 'setuptools.build_meta'
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
-[tool.setuptools.packages.find]
-where = ["."]
+[tool.hatch.build]
+include = [
+  "/src/trame/**/*.py",
+]
 
-[tool.setuptools.package-data]
-
+[tool.hatch.build.targets.wheel]
+packages = ["src/trame"]
 
 
 [tool.semantic_release]
-version_toml = ["pyproject.toml:project.version"]
+version_toml = [
+    "pyproject.toml:project.version",
+]
+version_variables = [
+    "src/trame/__init__.py:__version__",
+]
 build_command = """
   python -m venv .venv
   source .venv/bin/activate
   pip install -U pip build
   python -m build .
 """
+
+[tool.semantic_release.publish]
+dist_glob_patterns = ["dist/*"]
+upload_to_vcs_release = true
 
 [tool.ruff]
 line-length = 88
@@ -78,16 +86,6 @@ docstring-code-line-length = "dynamic"
 
 [tool.ruff.lint.pycodestyle]
 max-line-length = 120
-
-
-
-
-[semantic_release.publish]
-dist_glob_patterns = ["dist/*"]
-upload_to_vcs_release = true
-
-
-
 
 [lint.pydocstyle]
 convention = "google"

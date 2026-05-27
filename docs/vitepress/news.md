@@ -1,3 +1,6 @@
+## Mai 27, 2026
+[Trame client 3.12](https://github.com/Kitware/trame-client/releases/tag/v3.12.0) features a Handler widget to easily register and run JavaScript modules files on the client side with minimal boilerplate. See the examples [here](https://github.com/Kitware/trame-client/tree/master/examples/handler)
+
 ## Mai 28, 2025
 
 [Version 3.10](https://kitware.github.io/trame/guide/versions/features.html#version-3-10) of trame has been released. This version add a new tool for providing information on the rendering backend used by VTK. The tool documentation is available [here](https://trame.readthedocs.io/en/latest/tools.vtk.html), but in a nutshell, this is going to be very useful when debugging cloud deployment for remote rendering setup for either VTK or ParaView.

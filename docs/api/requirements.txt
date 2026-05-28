@@ -39,3 +39,6 @@ trame-formkit
 trame-quasar
 trame-datagrid
 trame-image-tools
+trame-tauri
+trame-gwc
+trame-dockview

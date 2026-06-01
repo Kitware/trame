@@ -28,6 +28,7 @@
 | **2D** |
 | | 👍 [annotations](https://github.com/Kitware/trame-annotations "Widgets for image and video annotations") | trame-annotations | 3 | 4
 | | [bbox](https://github.com/Kitware/trame-bbox "Widget to draw and/or interact with bounding boxes") [🏗️](# "This component has been pushed to capture the current development state but is currently lacking funding to complete it.") | trame-bbox | 2 & 3 | 1 |
+| | 🆕[flow](https://github.com/Kitware/trame-flow "VueFlow node editor") | trame-flow | 3 | 1 |
 | | 🆕👍 [image_tools](https://github.com/Kitware/trame-image-tools "Widgets to zoom/pan images with annotation overlay") | trame-image-tools | 3 | 6
 | **3D** |
 | | [vtk, paraview](https://github.com/Kitware/trame-vtk "Interface with VTK and/or ParaView") | trame-vtk | 2 & 3 | 15 |

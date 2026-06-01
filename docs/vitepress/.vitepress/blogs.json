@@ -3,6 +3,10 @@
     "text": "2026",
     "items": [
       {
+        "text": "Monitor your Simulation in your Web Browser with trame and Catalyst",
+        "link": "/blogs/monitor-your-simulation-in-your-web-browser-with-trame-and-catalyst"
+      },
+      {
         "text": "trame-flow: Interactive flowcharts for your trame application",
         "link": "/blogs/trame-flow-interactive-flowcharts-for-your-trame-application"
       },

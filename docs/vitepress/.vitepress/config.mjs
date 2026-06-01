@@ -183,6 +183,7 @@ export default defineConfig({
             // { text: 'PFB Viewer', link: 'https://github.com/Kitware/pfb-viewer' },
             // { text: 'ParFlow Simulation Modeler', link: 'https://github.com/Kitware/pf-simulation-modeler' },
             { text: "3D Slicer", link: "/examples/apps/trame-slicer" },
+            { text: "Catalyst", link: "/examples/apps/trame-catalyst" },
             { text: "Community", link: "/examples/apps/community" },
           ],
         },

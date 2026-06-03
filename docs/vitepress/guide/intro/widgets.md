@@ -18,7 +18,7 @@
 | | [pvui (ParaView UI)](https://github.com/Kitware/trame-pvui "Widgets that may be used in the Paraview user interface") | trame-pvui | 2 | 4 |
 | | [quasar](https://github.com/Kitware/trame-quasar "Quasar widgets") | trame-quasar | 3 | 123 |
 | | 👍 [simput](https://github.com/Kitware/trame-simput "Create forms from model/proxies") | trame-simput | 2 & 3 | 2 |
-| | [radial-menu](https://github.com/Kitware/trame-radial-menu "Radial Menu GUI widget") | trame-radial-widget | 3 | 3 |
+| | [radial-menu](https://github.com/Kitware/trame-radial-menu "Creates a radial menu around the mouse cursor") | trame-radial-widget | 3 | 3 |
 | | [trame](https://github.com/Kitware/trame-components "Helper components") | trame-components | 2 & 3 [⚠️](# "In the code upgrade to support 2 & 3, some event keys have been updated.") | 11 |
 | | [tweakpane](https://github.com/Kitware/trame-tweakpane "Tweakpane widgets") | trame-tweakpane | 2 & 3 | 10 |
 | | 👍 [vuetify, vuetify2, vuetify3](https://github.com/Kitware/trame-vuetify "Vuetify UI components") | trame-vuetify | 2 & 3 [⚠️](# "The set of components are a bit different with API change. Please look at the 'upgrade guide' for more details.")| 146 & 156 |

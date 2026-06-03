@@ -1,5 +1,0 @@
-include trame/LICENSE
-prune examples
-prune tests
-prune docker
-prune docs

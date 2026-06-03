@@ -4,11 +4,10 @@ from pathlib import Path
 from trame_client.widgets.core import HtmlElement
 
 from trame.app import TrameApp
-from trame.decorators import change
 from trame.ui.html import DivLayout
 from trame.widgets import client, html
 
-LABEL_WIDTH = 0.25
+LABEL_WIDTH = 300
 
 
 class Record:
@@ -66,7 +65,7 @@ class ProfilerAnalyzer:
                 self.tracks.setdefault(record.name, []).append(record)
 
         # Apply offset
-        offset = self.min_time - LABEL_WIDTH
+        offset = self.min_time
         tracks_t0 = []
         for name, records in self.tracks.items():
             tracks_t0.append((name, records[0].t0))
@@ -116,8 +115,8 @@ class ProfilerAnalyzer:
         for i in range(0, 1 + int(self.width / 1000)):
             all_lines.append(
                 {
-                    "x1": (i + LABEL_WIDTH) * 1000,
-                    "x2": (i + LABEL_WIDTH) * 1000,
+                    "x1": i * 1000,
+                    "x2": i * 1000,
                     "y1": y,
                     "y2": y + height,
                     **add_on,
@@ -129,8 +128,8 @@ class ProfilerAnalyzer:
     def texts(self, height, **add_on):
         all_texts = []
         y = 0
-        for name in self.track_names:
-            all_texts.append({"text": name, "y": int(y + 0.75 * height), **add_on})
+        for _ in self.track_names:
+            # all_texts.append({"text": name, "y": int(y + 0.75 * height), **add_on})
             y += height
 
         # Time labels
@@ -138,7 +137,7 @@ class ProfilerAnalyzer:
             all_texts.append(
                 {
                     "text": f"{i}s",
-                    "x": (i + LABEL_WIDTH) * 1000 + 5,
+                    "x": i * 1000 + 5,
                     "y": int(y + 0.75 * height),
                     "text-anchor": "start",
                     # **add_on,
@@ -177,31 +176,48 @@ class Title(HtmlElement):
         super().__init__("title", txt, **kwargs)
 
 
-HEIGHT = 20
+HEIGHT = 28
 
 
 class ProfilerViewer(TrameApp):
     def __init__(self, server=None):
         super().__init__(server)
 
-        self.server.cli.add_argument("--data", required=True)
+        self.server.cli.add_argument("--data", required=True, nargs="+")
         args, _ = self.server.cli.parse_known_args()
-        self.analyser = ProfilerAnalyzer(args.data)
 
-        self.state.width = self.analyser.width
-        self.state.height = (self.analyser.n_tracks + 1) * HEIGHT
-        self.state.rects = self.analyser.rects(height=HEIGHT)
-        self.state.lines = self.analyser.lines(height=HEIGHT)
-        self.state.texts = self.analyser.texts(height=HEIGHT, x=15)
+        self.analysers = [ProfilerAnalyzer(f) for f in args.data]
+
+        self.state.files = [Path(f).name for f in args.data]
+        self.state.offsets = [0 for _ in self.analysers]
+        self.state.label_width = LABEL_WIDTH
+        self.update_profiles()
 
         self._build_ui()
 
-    @change("offset")
-    def _on_offset(self, offset, **_):
-        self.state.texts = self.analyser.texts(
-            height=HEIGHT,
-            x=int(15 + 1000 * float(offset)),
+    def update_profiles(self):
+        self.state.profiles = [
+            {
+                "width": a.width,
+                "height": (a.n_tracks + 1) * HEIGHT,
+                "rects": a.rects(height=HEIGHT, rx=5, ry=5),
+                "lines": a.lines(height=HEIGHT),
+                "texts": a.texts(height=HEIGHT, x=15),
+                "names": a.track_names,
+            }
+            for a in self.analysers
+        ]
+
+    def move(self, file_idx, label_idx, delta):
+        analyser = self.analysers[file_idx]
+        (
+            analyser.track_names[(label_idx + delta) % len(analyser.track_names)],
+            analyser.track_names[label_idx],
+        ) = (
+            analyser.track_names[label_idx],
+            analyser.track_names[(label_idx + delta) % len(analyser.track_names)],
         )
+        self.update_profiles()
 
     def _build_ui(self):
         with DivLayout(self.server) as self.ui:
@@ -212,34 +228,70 @@ class ProfilerViewer(TrameApp):
                 rect.bg {{ fill:#BDBDBD; stroke:black; fill-opacity:1; }}
             """)
             html.H1("Trame profiler", style="text-align: center;")
-            html.Input(
-                type="range",
-                min=0,
-                step=0.25,
-                max=("Math.floor(width/1000)",),
-                v_model=("offset", 0),
-                style="width:100%; margin-bottom: 20px;",
-            )
             client.SizeObserver("viewSize")
-            with html.Svg(
-                viewBox=(
-                    "`${1000 * offset} 0 ${(viewSize?.size?.width||10)} ${height}`",
-                ),
-                width=("viewSize?.size?.width || 10",),
-                height=("height",),
-                __properties=["viewBox"],
-            ):
-                with Rect(v_for="rect, i in rects", key="i", v_bind="rect"):
-                    Title("{{ rect.title }}")
-                Rect(
-                    x=("1000 * offset",),
-                    y=0,
-                    width=LABEL_WIDTH * 1000,
-                    height=(f"height - {HEIGHT}",),
-                    classes="bg",
-                )
-                Line(v_for="line, i in lines", key="i", v_bind="line")
-                Text("{{ t.text }}", v_for="t, i in texts", key="i", v_bind="t")
+
+            with html.Div(v_for="p, i in profiles", key="i"):
+                html.H2("{{ files[i] }}")
+                with html.Div(style="position:relative;"):
+                    with html.Div(
+                        style=(
+                            "`position:absolute;top:0;left:0;height:100%;"
+                            "width:${label_width}px;pointer-events:none;`",
+                        ),
+                    ):
+                        with html.Div(
+                            v_for="n, j in p.names",
+                            key="j",
+                            style=(
+                                f"height:{HEIGHT}px;background:#BDBDBD;outline:solid 1px black;"
+                                "padding-left:15px;display:flex;align-items:center;"
+                                "justify-content:space-between;pointer-events:auto;"
+                            ),
+                        ):
+                            html.Div("{{ n }}")
+                            with html.Div():
+                                html.Button("&#8673;", click=(self.move, "[i, j, -1]"))
+                                html.Button(
+                                    "&#8675;",
+                                    click=(self.move, "[i, j, +1]"),
+                                    style="margin-left: 5px; margin-right:5px;",
+                                )
+
+                    with html.Svg(
+                        style=("`margin-left: ${label_width}px;`",),
+                        viewBox=(
+                            "`${1000 * offsets[i]} 0 "
+                            "${(viewSize?.size?.width||label_width) - label_width} ${p.height}`",
+                        ),
+                        width=("(viewSize?.size?.width || label_width) - label_width",),
+                        height=("p.height",),
+                        __properties=["viewBox"],
+                    ):
+                        with Rect(v_for="rect, i in p.rects", key="i", v_bind="rect"):
+                            Title("{{ rect.title }}")
+                        # Rect(
+                        #     x=("1000 * offset",),
+                        #     y=0,
+                        #     width=LABEL_WIDTH * 1000,
+                        #     height=(f"p.height - {HEIGHT}",),
+                        #     classes="bg",
+                        # )
+                        Line(v_for="line, i in p.lines", key="i", v_bind="line")
+                        Text(
+                            "{{ t.text }}", v_for="t, i in p.texts", key="i", v_bind="t"
+                        )
+
+                    html.Input(
+                        type="range",
+                        min=("0",),
+                        step=("0.25",),
+                        max=("Math.floor(p.width/1000)",),
+                        style="width:100%; margin-bottom: 20px;",
+                        raw_attrs=[
+                            ':value="offsets[i]"',
+                            '''@input="offsets[i]=Number($event.target.value);flushState('offsets')"''',
+                        ],
+                    )
 
 
 def main():

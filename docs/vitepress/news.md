@@ -1,3 +1,10 @@
+## Mai 27, 2026
+[Trame client 3.12](https://github.com/Kitware/trame-client/releases/tag/v3.12.0) features a Handler widget to easily register and run JavaScript modules files on the client side with minimal boilerplate. See the examples [here](https://github.com/Kitware/trame-client/tree/master/examples/handler)
+
+## February 10, 2026
+
+[Trame GWC](https://github.com/Kitware/trame-gwc/releases/tag/v0.2.0) now supports vue3 client following the migration of the Girder Web Components to Vue3.
+
 ## Mai 28, 2025
 
 [Version 3.10](https://kitware.github.io/trame/guide/versions/features.html#version-3-10) of trame has been released. This version add a new tool for providing information on the rendering backend used by VTK. The tool documentation is available [here](https://trame.readthedocs.io/en/latest/tools.vtk.html), but in a nutshell, this is going to be very useful when debugging cloud deployment for remote rendering setup for either VTK or ParaView.
@@ -21,6 +28,10 @@ Trame vuetify has been updated to include [Andromeda 3.8](https://vuetifyjs.com/
 ## February 4, 2025
 
 [Version 3.8](https://kitware.github.io/trame/guide/versions/features.html#version-3-8) of trame has been released. This mainly fixes the `@TrameApp()` decorator so it can be used throw inheritance.
+
+## January 23, 2025
+
+[Trame GWC](https://github.com/Kitware/trame-gwc/releases/tag/v0.1.0) has been released, extending trame widgets with Girder Web Components to simplify connecting to and interacting with Girder databases. These widgets are only available with the vue2 client.
 
 ## October 29, 2024
 

@@ -3,7 +3,7 @@
 In the introduction we just imported an existing example application, but let's look at its internal and explain it.
 
 ::: code-group
-<<< @/../../trame/app/demo.py
+<<< @/../../src/trame/app/demo.py
 :::
 
 ## Key take away

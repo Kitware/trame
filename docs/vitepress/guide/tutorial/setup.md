@@ -31,26 +31,35 @@ Your browser should open to `http://localhost:1234/`
 We start by importing the basic building blocks for our client-server application.
 
 ```python
-from trame.app import get_server
-from trame.ui.vuetify import SinglePageLayout
+from trame.app import TrameApp
+from trame.ui.vuetify3 import SinglePageLayout
 ```
 
-from ***trame***'s `app`, we import the factory function for retrieving a server instance on which we will bind our UI and business logic. We also import a skeleton for a single page client application that relies on vuetify (our main widget library) from `trame.ui.vuetify`.
+from ***trame***'s `app`, we import the factory class we will make an inherited class from for running a server instance on which we will bind our UI and business logic. We also import a skeleton for a single page client application that relies on vuetify (our main widget library) from `trame.ui.vuetify3`.
 
 Next, we define the graphical user interface (GUI) by passing the server to which it should be bound. Then with that layout we update the toolbar's title to read `"Hello trame"`.
 
 ```python
-server = get_server(client_type="vue2")
-
-with SinglePageLayout(server) as layout:
-    layout.title.set_text("Hello trame")
+server = get_server()
+class App(TrameApp):
+    def __init__(self, server=None):
+        super().__init__(server)
+        self._build_ui()
+    
+    def _build_ui(self):
+        with SinglePageLayout(self.server) as self.ui:
+            self.ui.title.set_text("Hello trame")
 ```
 
-Finally, we start the Web server using:
+Finally, we instantiate and run the App with its web server using:
 
 ```python
+def main():
+    app = App()
+    app.server.start()
+
 if __name__ == "__main__":
-    server.start()
+    main()
 ```
 
 `start` can take an optional argument of a *port* number. However, this can be set with command-line arguments (`--port 1234`).

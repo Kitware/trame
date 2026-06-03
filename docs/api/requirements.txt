@@ -32,6 +32,7 @@ trame-leaflet
 trame-simput
 trame-components
 trame-matplotlib
+trame-flow
 
 # Vue 3
 trame-formkit

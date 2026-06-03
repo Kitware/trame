@@ -1,6 +1,121 @@
 # CHANGELOG
 
 
+## v3.13.2 (2026-05-15)
+
+### Bug Fixes
+
+- **profiler**: Add support for multi trace files
+  ([`a6b24d3`](https://github.com/Kitware/trame/commit/a6b24d33a33462994c018bec4fd4eae74fa416c9))
+
+### Documentation
+
+- **examples**: Use cookiecutter's vuetify3 best practices
+  ([`112680b`](https://github.com/Kitware/trame/commit/112680b24aa2fa7edf1cfe030ec062e1b4979892))
+
+- **tutorial**: Change **kwargs with **_kwargs because they are unused
+  ([`f804fb2`](https://github.com/Kitware/trame/commit/f804fb202fb1e384983921e39f848db37c222cd1))
+
+Ref: https://github.com/Kitware/trame-tutorial/commit/adfd845dfe0ba8689ef44327a9904ef031fd9c35
+
+- **tutorial**: Change `vuetify3` with `v3` and server with `self.server`
+  ([`c2ddaf7`](https://github.com/Kitware/trame/commit/c2ddaf79295760bd80d426b27a2328a31c31f27b))
+
+Ref: https://github.com/Kitware/trame/pull/877#discussion_r3222971428
+
+Ref: https://github.com/Kitware/trame/pull/877#discussion_r3222910972
+
+- **tutorial**: Change AppLayouts class name to ConeApp
+  ([`10f18ae`](https://github.com/Kitware/trame/commit/10f18ae45c529e77b3127f178cbbe0d0be6227b7))
+
+- **tutorial**: Change small errors
+  ([`bae3ad7`](https://github.com/Kitware/trame/commit/bae3ad75a8893ad75efaf8a4aec0400bb3a9a80c))
+
+- indentation errors - forgot to put self in class function's arguments - self.server.state =>
+  self.state - one forgotten layout => self.ui
+
+Ref: https://github.com/Kitware/trame/pull/877#discussion_r3154719477
+
+Ref: https://github.com/Kitware/trame/pull/877#discussion_r3154717131
+
+Ref: https://github.com/Kitware/trame/pull/877#discussion_r3154714124
+
+Ref: https://github.com/Kitware/trame/pull/877#discussion_r3154710528
+
+Ref: https://github.com/Kitware/trame/pull/877#discussion_r3154707926
+
+Ref: https://github.com/Kitware/trame/pull/877#discussion_r3154706561
+
+Ref: https://github.com/Kitware/trame/pull/877#discussion_r3154705186
+
+- **tutorial**: Change the doc to match the trame-tutorial update to vue3
+  ([`c4770fb`](https://github.com/Kitware/trame/commit/c4770fb2c5850a655726a07d02cce6c7277e9010))
+
+- **tutorial**: Change the html tutorial page to use trame's best practice
+  ([`af91dac`](https://github.com/Kitware/trame/commit/af91dac4014743f764ad23a4df795d562764b95d))
+
+- **tutorial**: Correct example code and fix typos
+  ([`db8b819`](https://github.com/Kitware/trame/commit/db8b8191a0cca50c0b01b1f491a5416a4b9d3fc6))
+
+- **tutorial**: Make the setup tutorial example use TrameApp
+  ([`d2b0c4d`](https://github.com/Kitware/trame/commit/d2b0c4dbddac488743d3a1032fc2fbead121c86b))
+
+Refs: https://github.com/Kitware/trame/pull/877#discussion_r3198389408
+
+- **tutorial**: Make the user import trame-components
+  ([`fb61ded`](https://github.com/Kitware/trame/commit/fb61ded65cf4ca25bd6b14ca14eebc081226ce7d))
+
+Ref: https://github.com/Kitware/trame/pull/877/changes/
+
+BASE..94fddc861e9ccbec166834bc83e4cb2b4000ef55#r3076435029
+
+- **tutorial**: Put `self.server` instead of `server`
+  ([`ec26bd9`](https://github.com/Kitware/trame/commit/ec26bd9f89687c1247fb5507bb244c70e88404f9))
+
+Ref: https://github.com/Kitware/trame/pull/877#discussion_r3198380669
+
+- **tutorial**: Put helper functions that don't need self out of class
+  ([`bd40c73`](https://github.com/Kitware/trame/commit/bd40c733c71f700e7d3f05c3cd0c4ce2025f043b))
+
+Ref: https://github.com/Kitware/trame/pull/877#discussion_r3198376855
+
+- **tutorial**: Remove view update when server ready
+  ([`6c9b72f`](https://github.com/Kitware/trame/commit/6c9b72fc1126b67591f1e67574ed14ebf051f227))
+
+Ref: https://github.com/Kitware/trame-tutorial/pull/8#discussion_r3198394677
+
+- **tutorial**: Replace **_kwargs with **_
+  ([`0cbc8aa`](https://github.com/Kitware/trame/commit/0cbc8aaf9d40ac97d194290cc7081a8f94bedb7f))
+
+Ref: https://github.com/Kitware/trame-tutorial/pull/8#discussion_r3198402775
+
+- **tutorial**: Update examples to use the TrameApp base class
+  ([`621d028`](https://github.com/Kitware/trame/commit/621d028afe767257b1ccc38312ebf39a96b92fd0))
+
+- **tutorial**: Use AppLayouts instead of AppCone as class name
+  ([`718a1b4`](https://github.com/Kitware/trame/commit/718a1b4b5d2bbe8251a5188ce6b0579a12831ba9))
+
+Ref: https://github.com/Kitware/trame/pull/877#discussion_r3198376855
+
+Ref: https://github.com/Kitware/trame/pull/877#discussion_r3198383591
+
+- **tutorial**: Use icon in VBtn parameter
+  ([`42fc450`](https://github.com/Kitware/trame/commit/42fc45001ca5bcde13462e7206863a39f475dc0e))
+
+Ref: https://github.com/Kitware/trame/pull/877#discussion_r3198372169
+
+- **tutorial**: Use self.server
+  ([`5908ed0`](https://github.com/Kitware/trame/commit/5908ed0cabe873d5d2bb64d6eaf2e7a5e409213b))
+
+Ref: https://github.com/Kitware/trame/pull/877#discussion_r3197791964
+
+- **tutorial**: Use TrameApp in 04_applications
+  ([`b4707aa`](https://github.com/Kitware/trame/commit/b4707aaba10ecfe0bc4be35ef1e5f9de6bf0213d))
+
+- **tutorial**: Use TrameApp in the paraview tutorial
+  ([`2a44b11`](https://github.com/Kitware/trame/commit/2a44b11516679ed4df9eb522517e9373784c2deb))
+
+
 ## v3.13.1 (2026-05-11)
 
 ### Bug Fixes

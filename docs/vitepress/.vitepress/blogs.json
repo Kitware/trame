@@ -1,0 +1,163 @@
+[
+  {
+    "text": "2026",
+    "items": [
+      {
+        "text": "trame-flow: Interactive flowcharts for your trame application",
+        "link": "/blogs/trame-flow-interactive-flowcharts-for-your-trame-application"
+      },
+      {
+        "text": "Faster and better 3D Slicer rendering customization",
+        "link": "/blogs/faster-and-better-3d-slicer-rendering-customization"
+      }
+    ]
+  },
+  {
+    "text": "2025",
+    "items": [
+      {
+        "text": "A Framework for Next-Generation Visual Workflows in Scientific Computing",
+        "link": "/blogs/a-framework-for-next-generation-visual-workflows-in-scientific-computing"
+      },
+      {
+        "text": "trame-slicer: Bringing the power of 3D Slicer to the web",
+        "link": "/blogs/trame-slicer-announcement"
+      },
+      {
+        "text": "Supercomputing Conference 2025",
+        "link": "/blogs/sc25"
+      },
+      {
+        "text": "Bring Powerful 3D Visualization to the Browser with VTK.wasm",
+        "link": "/blogs/bring-powerful-3d-visualization-to-the-browser-with-vtk-wasm"
+      },
+      {
+        "text": "What\u2019s New in trame: Bespoke Workflows for Better Productivity",
+        "link": "/blogs/whats-new-in-trame-bespoke-workflows-for-better-productivity"
+      },
+      {
+        "text": "Using Python to Power Scalable, Sustainable Innovation",
+        "link": "/blogs/using-python-to-power-scalable-sustainable-innovation"
+      },
+      {
+        "text": "How trame Powers Today\u2019s Visualizations",
+        "link": "/blogs/how-trame-powers-todays-visualizations"
+      },
+      {
+        "text": "Faster, simpler Python application execution with uv and trame",
+        "link": "/blogs/faster-simpler-python-application-execution-with-uv-and-trame"
+      },
+      {
+        "text": "Medical Technology Trends to Watch in 2025",
+        "link": "/blogs/medical-technology-trends-to-watch-in-2025"
+      },
+      {
+        "text": "Why Medical Device Leaders Trust Kitware for Medical Image Innovations",
+        "link": "/blogs/why-medical-device-leaders-trust-kitware-for-medical-image-innovations"
+      }
+    ]
+  },
+  {
+    "text": "2024",
+    "items": [
+      {
+        "text": "JupyterLab Trame Manager at J\u00fclich Supercomputing Centre",
+        "link": "/blogs/jupyterlab-trame-manager-at-julich-supercomputing-centre"
+      },
+      {
+        "text": "A Year of Innovation: Our Most Impactful Projects and Technologies in 2024",
+        "link": "/blogs/a-year-of-innovation-our-most-impactful-projects-and-technologies-in-2024"
+      },
+      {
+        "text": "LidarView 5.0 \u2013 new supported sensors, algorithms, and more!",
+        "link": "/blogs/lidarview-5-0-new-supported-sensors-algorithms-and-more"
+      },
+      {
+        "text": "VTK 9.4: A Step Closer to the Ways of Python",
+        "link": "/blogs/vtk-9-4-a-step-closer-to-the-ways-of-python"
+      },
+      {
+        "text": "Simplify Web Application Development with trame",
+        "link": "/blogs/simplify-web-application-development-with-trame"
+      },
+      {
+        "text": "VTK.wasm and its trame integration",
+        "link": "/blogs/vtk-wasm-and-its-trame-integration"
+      },
+      {
+        "text": "Making Modeling and Simulation Tools Accessible on the Web",
+        "link": "/blogs/making-modeling-and-simulation-tools-accessible-on-the-web"
+      },
+      {
+        "text": "trame: Micro-Workflow Use Case",
+        "link": "/blogs/trame-micro-workflow-use-case"
+      },
+      {
+        "text": "trame: Dashboard Use Case",
+        "link": "/blogs/trame-dashboard-use-case"
+      },
+      {
+        "text": "Exposing Web applications with ParaView 5.13 is getting simpler",
+        "link": "/blogs/exposing-web-application-with-paraview-5-13-is-getting-simpler"
+      },
+      {
+        "text": "Make Your Automotive Simulation Tools Available on the Web",
+        "link": "/blogs/make-your-automotive-simulation-tools-available-on-the-web"
+      },
+      {
+        "text": "trame: Architecture and Capabilities",
+        "link": "/blogs/trame-architecture-and-capabilities"
+      },
+      {
+        "text": "Microscopy & Microanalysis",
+        "link": "/blogs/microscopy-microanalysis"
+      },
+      {
+        "text": "Lidar point cloud on the web with trame",
+        "link": "/blogs/visualizing-lidar-point-cloud-on-the-web-with-trame"
+      }
+    ]
+  },
+  {
+    "text": "2023",
+    "items": [
+      {
+        "text": "Transform Your Medical Imaging with Kitware\u2019s Comprehensive Suite of Advanced Visualization Solutions",
+        "link": "/blogs/transform-your-medical-imaging-with-kitwares-comprehensive-suite-of-advanced-visualization-solutions"
+      },
+      {
+        "text": "Supercomputing 2023",
+        "link": "/blogs/supercomputing-2023"
+      },
+      {
+        "text": "trame: Revolutionizing Visual Analytics with Python",
+        "link": "/blogs/trame-revolutionizing-visual-analytics-with-python"
+      },
+      {
+        "text": "The Evolution of Peacock: A Powerful Interface for MOOSE Simulations",
+        "link": "/blogs/the-evolution-of-peacock-a-powerful-interface-for-moose-simulations"
+      },
+      {
+        "text": "VERACore: trame in Application",
+        "link": "/blogs/veracore-trame-in-application"
+      }
+    ]
+  },
+  {
+    "text": "2022",
+    "items": [
+      {
+        "text": "Numerical plasma dynamics from the comfort of your web browser with trame",
+        "link": "/blogs/numerical-plasma-dynamics-from-the-comfort-of-your-web-browser-with-trame"
+      },
+      {
+        "text": "Leveraging MONAI for Medical AI",
+        "link": "/blogs/leveraging-monai-for-medical-ai"
+      },
+      {
+        "text": "Scientific Visualization in 2022",
+        "link": "/blogs/scientific-visualization-in-2022"
+      }
+    ]
+  }
+]

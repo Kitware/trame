@@ -14,16 +14,15 @@ When a trame application is laid out like above, you can just run the following 
 from module import App
 
 app = App()
-await app.ui.ready
-app.ui
+await app.display_cell(height="600px")
 ```
 
 And in case you want to have a second instance independent of the first one, you can do
 
 ```python
 app2 = App('v2')
-await app2.ui.ready
-app2.ui
+
+await app2.display_cell(height="600px")
 ```
 
 ## Changing application state
@@ -69,8 +68,7 @@ with DivLayout(server, 'a', height=30) as ui_a:
         style="width: 100%;",
     )
 
-await ui_a.ready
-ui_a
+await ui_a.display_cell()
 ```
 
 Then you can create more ui on the same server
@@ -83,7 +81,7 @@ with DivLayout(server, 'b', height=30) as ui_b:
     )
     html.Span("{{ slider_a }} / 2 = {{ result }}", style="margin-left: 2rem")
 
-ui_b
+await ui_b.display_cell()
 ```
 
 ![Multi-UI in Jupyter](/assets/images/jupyter/multi-ui.png)

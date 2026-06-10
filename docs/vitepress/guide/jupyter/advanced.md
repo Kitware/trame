@@ -12,9 +12,8 @@ Let's review the various available options
 from module import App
 
 app = App()  
-await app.ui.ready
 app.ui.iframe_builder = "..." # <= force an iframe builder
-app.ui
+await app.display_cell()
 ```
 
 | iframe_builder | URL | Default if |
@@ -24,6 +23,7 @@ app.ui
 | jupyter-extension | ENV(TRAME_JUPYTER_WWW)/servers/{server.name}/ | Extension loaded and available |
 | jupyter-hub | ENV(JUPYTERHUB_SERVICE_PREFIX)proxy/{server.port}/ | If JUPYTERHUB_SERVICE_PREFIX exist |
 | jupyter-hub-host | ENV(JUPYTERHUB_SERVICE_PREFIX)proxy/{host}:{server.port}/ | Never a default |
+| google-colab | google.colab.kernel.proxyPort({server.port}) | If COLAB_RELEASE_TAG or COLAB_BACKEND_VERSION exist |
 
 The selection can also be done via the __TRAME_IFRAME_BUILDER__ environment variable.
 

@@ -1,3 +1,9 @@
+## June 11, 2026
+
+[trame-radial-menu](https://github.com/Kitware/trame-radial-menu/) is a new trame widget that can spawn
+at mouse click with slots for side menus and buttons around.
+![](https://github.com/Kitware/trame-radial-menu/blob/master/picture.png?raw=true)
+
 ## Mai 27, 2026
 [Trame client 3.12](https://github.com/Kitware/trame-client/releases/tag/v3.12.0) features a Handler widget to easily register and run JavaScript modules files on the client side with minimal boilerplate. See the examples [here](https://github.com/Kitware/trame-client/tree/master/examples/handler)
 

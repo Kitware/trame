@@ -47,6 +47,8 @@ jobs:
         run: python update_blogs.py
       - name: Fetch trame repos
         working-directory: docs/vitepress
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python fetch_repos.py
       - name: Build with VitePress
         working-directory: docs/vitepress

@@ -8,7 +8,6 @@ import subprocess
 import os
 import json
 import re
-from jinja2 import Template
 
 
 def minify_graphql(query):
@@ -38,39 +37,41 @@ def retrieve_gh_repos_from_topic(topic: str):
 def retrieve_multiple_repos_graphql(
     repos: list[str], additional_files: dict[str, str] = {}
 ):
-    query = (
-        Template("""
-        query {
-        {%- for repo in repos %}
-            {%- set owner = repo.split('/')[0] %}
-            {%- set name = repo.split('/')[1] %}
-            {%- set alias = repo.replace('/', '_').replace('-', '_') %}
-            {{ alias }}: repository(owner: "{{ owner }}", name: "{{ name }}") {
+    # Build the query parts
+    repo_queries = []
+    for repo in repos:
+        owner, name = repo.split("/")
+        alias = repo.replace("/", "_").replace("-", "_")
+        files_queries = []
+        for file_key, file_path in additional_files.items():
+            files_queries.append(f"""
+                {file_key}: object(expression: "HEAD:{file_path}") {{
+                    ... on Blob {{
+                        text
+                    }}
+                }}""")
+        files_part = "\n".join(files_queries) if files_queries else ""
+        repo_query = f"""
+            {alias}: repository(owner: "{owner}", name: "{name}") {{
                 name
                 nameWithOwner
                 description
                 openGraphImageUrl
-                repositoryTopics(first: 10) {
-                    nodes {
-                        topic {
+                repositoryTopics(first: 10) {{
+                    nodes {{
+                        topic {{
                             name
-                        }
-                    }
-                }
-                {%- for file in additional_files %}
-                {{ file }}: object(expression: "HEAD:{{ additional_files[file] }}") {
-                    ... on Blob {
-                        text
-                    }
-                }
-                {%- endfor %}
-            }
-            {%- endfor %}
-        }
-    """)
-        .render(repos=repos, additional_files=additional_files)
-        .strip()
-    )
+                        }}
+                    }}
+                }}
+                {files_part}
+            }}"""
+        repo_queries.append(repo_query)
+    query = f"""
+        query {{
+            {",".join(repo_queries)}
+        }}
+    """.strip()
     mini_query = minify_graphql(query)
     cmd = ["gh", "api", "graphql", "-f", f"query={mini_query}"]
     data = json.loads(make_gh_request(cmd))["data"]

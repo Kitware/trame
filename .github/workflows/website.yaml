@@ -45,6 +45,9 @@ jobs:
       - name: Update blogs
         working-directory: docs/vitepress
         run: python update_blogs.py
+      - name: Fetch trame repos
+        working-directory: docs/vitepress
+        run: python fetch_repos.py
       - name: Build with VitePress
         working-directory: docs/vitepress
         run: |

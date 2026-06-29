@@ -2,7 +2,8 @@
 import repos from '/repos.json'
 import { ref, computed } from 'vue'
 
-const activeTopic = ref(null)
+const activeTopics = ref(new Set())
+const search = ref('')
 
 const displayableTopics = {
   "trame-maintenance-program": "Maintained",
@@ -14,27 +15,53 @@ const displayableTopics = {
 }
 
 const filtered = computed(() => {
-  return repos.filter(r => 
-    !activeTopic.value || r.topics.includes(activeTopic.value)
-  )
+  const q = search.value.toLowerCase()
+  return repos.filter(r => {
+    const matchesTopics = 
+      activeTopics.value.size === 0 ||
+      [...activeTopics.value].every(t => r.topics.includes(t))
+    const matchesSearch = 
+      !q || 
+      r.name.toLowerCase().includes(q) ||
+      (r.description && r.description.toLowerCase().includes(q)) ||
+      r.topics.some(t => t.toLowerCase().includes(q))
+    return matchesTopics && matchesSearch
+  })
 })
 
+const noTopicSelected = computed(() => {
+  return activeTopics.value.size === 0
+})
+
+const clearFilters = () => {
+  activeTopics.value = new Set() 
+}
+
 function toggleTopic(t) {
-  activeTopic.value = activeTopic.value === t ? null : t
+  const s = new Set(activeTopics.value)
+  s.has(t) ? s.delete(t) : s.add(t)
+  activeTopics.value = s
 }
 </script>
 
 # Known available widgets
 
+<br/>
 <div class="controls">
+  <input v-model="search" class="search" placeholder="Search repos…" />
   <span class="count">{{ filtered.length }} / {{ repos.length }} repos</span>
 </div>
 
 <div class="tag-filters">
-  <button :class="['topic', !activeTopic && 'active']" @click="activeTopic = null">All</button>
+  <button
+    :class="['topic', noTopicSelected && 'active']" 
+    @click="clearFilters()"
+  >
+    All
+  </button>
   <button
     v-for="(label, key) in displayableTopics" :key="key"
-    :class="['topic', activeTopic === key && 'active']"
+    :class="['topic', activeTopics.has(key) && 'active']"
     @click="toggleTopic(key)"
   >{{ label }}</button>
 </div>
@@ -54,7 +81,7 @@ function toggleTopic(t) {
         <div v-for="t in r.topics" :key="t">
           <span
             v-if="displayableTopics[t]"
-            :class="['topic', activeTopic === t && 'active']"
+            :class="['topic', activeTopics.has(t) && 'active']"
             @click="toggleTopic(t)"
           >{{ displayableTopics[t] }}</span>
         </div>
@@ -66,7 +93,15 @@ function toggleTopic(t) {
 <style scoped>
 img {
   max-width: 200px;
-} 
+}
+.search{
+  display: inline-block; 
+  padding: 2px 7px;
+  margin: 2px 2px 2px 0;
+  border-radius: 10px;
+  border: 1px solid var(--vp-c-divider);
+  color: var(--vp-c-text-2);
+}
 .topic {
   display: inline-block; 
   padding: 2px 7px;

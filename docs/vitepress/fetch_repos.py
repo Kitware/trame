@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Generate a repos.json file with information about github repositories with trame as topic.
-Fetches: name, url, description, social preview image, and topics.
+Fetches: name, url, description, social preview image, and topics, using GitHub CLI.
 """
 
 import subprocess

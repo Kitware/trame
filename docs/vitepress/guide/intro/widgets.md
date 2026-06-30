@@ -11,7 +11,9 @@ const displayableTopics = {
   "trame-component": "UI Widget",
   "vtk": "VTK",
   "paraview": "Paraview",
-  "3d-slicer": "3D Slicer"
+  "3d-slicer": "3D Slicer",
+  "vue2": "Vue2",
+  "vue3": "Vue3"
 }
 
 const filtered = computed(() => {

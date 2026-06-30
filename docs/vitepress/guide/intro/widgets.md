@@ -75,8 +75,13 @@ function toggleTopic(t) {
       <td colspan="3" class="empty">No repos match your filters.</td>
     </tr>
     <tr v-for="r in filtered" :key="r.name">
-      <td><a :href="r.url" target="_blank">{{ r.name }}</a><img :src="r.image"/></td>
-      <td class="desc">{{ r.description || '—' }}</td>
+      <td>
+        <div v-if="!r.trustedOwner">⚠️</div>
+        <a :href="r.url" target="_blank">{{ r.name }}</a>
+        <img :src="r.image"/></td>
+      <td class="desc">
+        {{ r.description || '—' }}
+      </td>
       <td>
         <div v-for="t in r.topics" :key="t">
           <span

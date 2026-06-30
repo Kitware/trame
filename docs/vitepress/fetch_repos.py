@@ -85,7 +85,7 @@ def retrieve_multiple_repos_graphql(repos: list[str]):
     return data
 
 
-def repos_to_json(repos, ignored_topics=[]):
+def repos_to_json(repos, ignored_topics=[], trusted_owners=[]):
     table = []
     for repo_data in repos.values():
         topics = []
@@ -101,6 +101,8 @@ def repos_to_json(repos, ignored_topics=[]):
                 "description": repo_data["description"],
                 "image": repo_data["openGraphImageUrl"],
                 "topics": topics,
+                "trustedOwner": repo_data["nameWithOwner"].split("/")[0]
+                in trusted_owners,
             }
         )
     return table
@@ -115,4 +117,6 @@ if __name__ == "__main__":
     )
     repos_datas = retrieve_multiple_repos_graphql(repos)
     with open("repos.json", "w") as f:
-        json.dump(repos_to_json(repos_datas, ["trame"]), f)
+        json.dump(
+            repos_to_json(repos_datas, ["trame"], ["Kitware", "KitwareMedical"]), f
+        )

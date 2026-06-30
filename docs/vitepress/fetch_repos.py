@@ -105,7 +105,7 @@ def repos_to_json(repos, ignored_topics=[], trusted_owners=[]):
                 in trusted_owners,
             }
         )
-    return table
+    return sorted(table, key=lambda r: r["name"].lower())
 
 
 if __name__ == "__main__":
@@ -118,5 +118,7 @@ if __name__ == "__main__":
     repos_datas = retrieve_multiple_repos_graphql(repos)
     with open("repos.json", "w") as f:
         json.dump(
-            repos_to_json(repos_datas, ["trame"], ["Kitware", "KitwareMedical"]), f
+            repos_to_json(repos_datas, ["trame"], ["Kitware", "KitwareMedical"]),
+            f,
+            sort_keys=True,
         )

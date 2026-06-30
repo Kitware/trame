@@ -46,6 +46,8 @@ function toggleTopic(t) {
 
 # Known available widgets
 
+
+⚠️: Non Kitware-owned repository
 <br/>
 <div class="controls">
   <input v-model="search" class="search" placeholder="Search repos…" />
@@ -76,7 +78,7 @@ function toggleTopic(t) {
     </tr>
     <tr v-for="r in filtered" :key="r.name">
       <td>
-        <div v-if="!r.trustedOwner">⚠️</div>
+        <div v-if="!r.trustedOwner" title="Non Kitware-owned">⚠️</div>
         <a :href="r.url" target="_blank">{{ r.name }}</a>
         <img :src="r.image"/></td>
       <td class="desc">

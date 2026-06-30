@@ -1,0 +1,12 @@
+karelvrabeckv/mri-viewer
+kmarchais/mmgpy
+ayenpure/QuickView
+dhruvhaldar/FOAMFlask
+MBradley1985/SAGE-Viewer
+jwindgassen/jupyter-trame-proxy
+utkarshayachit/simplified-batch
+vicentebolea/virtual-thermostat
+linson7017/pymipf
+ndminhvn/interactive-population-visualization
+Chahat08/BioSET_Visualizer
+jph6366/trame-aoc

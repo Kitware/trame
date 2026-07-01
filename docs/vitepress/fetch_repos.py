@@ -1,13 +1,17 @@
 #!/usr/bin/env python3
 """
-Generate a repos.json file with information about github repositories with trame as topic.
-Fetches: name, url, description, social preview image, and topics, using GitHub CLI.
+Generate a repos.json file with information about github repositories with trame
+as topic.
+Fetches: name, url, description, social preview image, topics, stars,
+commit count, PR count, creation date, most recent commit date, and
+whether it was created within the last year.
 """
 
 import subprocess
 import os
 import json
 import re
+from datetime import datetime, timedelta, timezone
 
 
 def minify_graphql(query):
@@ -65,10 +69,27 @@ def retrieve_multiple_repos_graphql(repos: list[str]):
                 nameWithOwner
                 description
                 openGraphImageUrl
+                createdAt
+                stargazerCount
                 repositoryTopics(first: 10) {{
                     nodes {{
                         topic {{
                             name
+                        }}
+                    }}
+                }}
+                pullRequests {{
+                    totalCount
+                }}
+                defaultBranchRef {{
+                    target {{
+                        ... on Commit {{
+                            history(first: 1) {{
+                                totalCount
+                                nodes {{
+                                    committedDate
+                                }}
+                            }}
                         }}
                     }}
                 }}
@@ -87,12 +108,26 @@ def retrieve_multiple_repos_graphql(repos: list[str]):
 
 def repos_to_json(repos, ignored_topics=[], trusted_owners=[]):
     table = []
+    one_year_ago = datetime.now(timezone.utc) - timedelta(days=365)
     for repo_data in repos.values():
         topics = []
         for node in repo_data["repositoryTopics"]["nodes"]:
             if node["topic"]["name"] not in ignored_topics:
                 topics.append(node["topic"]["name"])
         url = f"https://github.com/{repo_data['nameWithOwner']}"
+
+        created_at = datetime.fromisoformat(
+            repo_data["createdAt"].replace("Z", "+00:00")
+        )
+        created_within_last_year = created_at >= one_year_ago
+
+        commit_count = 0
+        last_commit_date = None
+        if repo_data.get("defaultBranchRef"):
+            history = repo_data["defaultBranchRef"]["target"]["history"]
+            commit_count = history["totalCount"]
+            if history.get("nodes"):
+                last_commit_date = history["nodes"][0]["committedDate"]
 
         table.append(
             {
@@ -103,6 +138,12 @@ def repos_to_json(repos, ignored_topics=[], trusted_owners=[]):
                 "topics": topics,
                 "trustedOwner": repo_data["nameWithOwner"].split("/")[0]
                 in trusted_owners,
+                "createdAt": repo_data["createdAt"],
+                "createdWithinLastYear": created_within_last_year,
+                "lastCommitDate": last_commit_date,
+                "stars": repo_data["stargazerCount"],
+                "commitCount": commit_count,
+                "pullRequestCount": repo_data["pullRequests"]["totalCount"],
             }
         )
     return sorted(table, key=lambda r: r["name"].lower())

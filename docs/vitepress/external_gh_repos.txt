@@ -1,6 +1,5 @@
 karelvrabeckv/mri-viewer
 kmarchais/mmgpy
-ayenpure/QuickView
 dhruvhaldar/FOAMFlask
 MBradley1985/SAGE-Viewer
 jwindgassen/jupyter-trame-proxy

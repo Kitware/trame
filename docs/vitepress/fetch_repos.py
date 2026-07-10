@@ -110,7 +110,8 @@ def repos_to_json(repos, ignored_topics=[], trusted_owners=[]):
     table = []
     one_year_ago = datetime.now(timezone.utc) - timedelta(days=365)
     for repo_data in repos.values():
-        topics = []
+        trustedOwner = repo_data["nameWithOwner"].split("/")[0] in trusted_owners
+        topics = [] if trustedOwner else ["..."]
         for node in repo_data["repositoryTopics"]["nodes"]:
             if node["topic"]["name"] not in ignored_topics:
                 topics.append(node["topic"]["name"])
@@ -136,8 +137,7 @@ def repos_to_json(repos, ignored_topics=[], trusted_owners=[]):
                 "description": repo_data["description"],
                 "image": repo_data["openGraphImageUrl"],
                 "topics": topics,
-                "trustedOwner": repo_data["nameWithOwner"].split("/")[0]
-                in trusted_owners,
+                "trustedOwner": trustedOwner,
                 "createdAt": repo_data["createdAt"],
                 "createdWithinLastYear": created_within_last_year,
                 "lastCommitDate": last_commit_date,

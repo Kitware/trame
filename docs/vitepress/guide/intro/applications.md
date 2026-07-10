@@ -9,8 +9,9 @@ const sortDir = ref('desc')
 
 const displayableTopics = {
   "trame-maintenance-program": "Maintenance program",
-  "vue2": "Vue2",
-  "vue3": "Vue3",
+  "vtk": "VTK",
+  "paraview": "Paraview",
+  "3d-slicer": "3D Slicer",
   "...": "Community",
 }
 
@@ -27,7 +28,7 @@ const filtered = computed(() => {
 
   const list = repos.filter(r => {
     // Hide repos with no displayable topics
-    if (!r.topics.includes('trame-component')) {
+    if (!r.topics.includes('trame-app')) {
       return false
     }
 
@@ -56,8 +57,9 @@ const filtered = computed(() => {
 })
 
 const displayableRepoCount = computed(() =>
-  repos.filter(r => r.topics.includes('trame-component')).length
+  repos.filter(r => r.topics.includes('trame-app')).length
 )
+
 
 const noTopicSelected = computed(() => {
   return activeTopics.value.size === 0
@@ -78,7 +80,7 @@ function toggleSortDir() {
 }
 </script>
 
-# Known available widgets
+# Known available applications
 
 
 ⚠️: Non Kitware-owned repository

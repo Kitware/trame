@@ -145,15 +145,15 @@ function toggleSortDir() {
       </td>
       <td>
         <div v-for="t in r.topics" :key="t">
-          <ul>
-            <li
-              v-if="displayableTopics[t]"
-              :class="['topic', activeTopics.has(t) && 'active']"
-              @click="toggleTopic(t)"
+          <a :href="t == '...' ? '' : 'https://github.com/topics/' + t"
+            v-if="displayableTopics[t]"
+          >
+            <span
+              :class="['pill','topic', activeTopics.has(t) && 'active']"
             >
               {{ displayableTopics[t] }}
-            </li>
-          </ul>
+            </span>
+          </a>        
         </div>
       </td>
     </tr>

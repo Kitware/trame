@@ -5,9 +5,9 @@
 # dependencies = [
 #     "trame>=3.10",
 #     "trame-components>=2.5",
-#     "trame-vtklocal",
+#     "trame-vtklocal>=1",
 #     "trame-vuetify",
-#     "vtk==9.5.0rc2",
+#     "vtk>=9.6",
 # ]
 #
 # [[tool.uv.index]]

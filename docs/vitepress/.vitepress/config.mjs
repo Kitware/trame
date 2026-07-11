@@ -105,7 +105,6 @@ export default defineConfig({
             { text: "Course", link: "/guide/intro/course" },
             { text: "API", link: "/guide/intro/api" },
             { text: "Citing", link: "/guide/intro/citing" },
-            // { text: 'Vue 2/3 client', link: '/guide/intro/vue23' },
           ],
         },
         {

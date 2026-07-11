@@ -1,3 +1,5 @@
+# Plotly Charts
+
 ![PlotlyMulti](/assets/images/examples/PlotlyMulti.jpg)
 
 ::: code-group

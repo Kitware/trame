@@ -53,12 +53,12 @@ While the extension should just work, sometime things are not easy. This section
     print(os.environ.get("TRAME_JUPYTER_WWW"))
     ```
     - __TroubleShoot__
-        - Plugin failed to activate `=> ??`
+        - Plugin failed to activate `=> Check the Jupyter Lab server terminal/log output for the activation exception traceback`
 1. Make sure the iframe_builder use the extension resolver
     - __Test__: In a Python cell run the following command and inspect the URL
     ```python
     app.ui._jupyter_content()
     ```
     - __TroubleShoot__
-        - Plugin failed to activate `=> ??`
+        - Plugin failed to activate `=> Check the Jupyter Lab server terminal/log output for the activation exception traceback`
         - Someone override the iframe_builder?

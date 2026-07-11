@@ -48,4 +48,4 @@ At the end of the day, building a trame application is just a matter of orchestr
 
 The best way to get familiar with trame is to follow the [tutorial](/guide/tutorial/), or use the [Cookie Cutter](https://github.com/Kitware/trame-cookiecutter) template to build a new application.
 
-Also check out the demonstrative example [CheatSheet](./intro/cheatsheet), and short [getting started guide](/guide/).
+Also check out the demonstrative example [CheatSheet](./intro/cheatsheet), and short [getting started guide](/guide/intro/getting_started).

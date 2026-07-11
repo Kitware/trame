@@ -90,16 +90,6 @@ os.environ.update(
 
 
 def run_apidoc(_):
-    # Override the apidoc options with what we want
-    apidoc.OPTIONS.clear()
-    apidoc.OPTIONS.extend(
-        [
-            "members",
-            "imported-members",
-            "show-inheritance",
-        ]
-    )
-
     exclude_paths = [
         "env/utils.py",
     ]
@@ -120,6 +110,8 @@ def run_apidoc(_):
         cur_path,
         "-t",
         templates_path,
+        "--automodule-options",
+        "members,imported-members,show-inheritance",
         module_path,
     ] + exclude_paths
 

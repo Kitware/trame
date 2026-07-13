@@ -14,6 +14,7 @@ https://github.com/jwindgassen/jupyter-trame-proxy:
 
 https://github.com/utkarshayachit/simplified-batch:
   topics: [trame, trame-app, paraview]
+  image: https://raw.githubusercontent.com/utkarshayachit/simplified-batch/refs/heads/main/images/trame.gif
 
 https://github.com/vicentebolea/virtual-thermostat:
   topics: [trame, trame-app]
@@ -27,9 +28,10 @@ https://github.com/ndminhvn/interactive-population-visualization:
 
 https://github.com/Chahat08/BioSET_Visualizer:
   topics: [trame, trame-app, vtk]
+  image: https://raw.githubusercontent.com/Chahat08/BioSET_Visualizer/master/src/bioset/ui/assets/icon.jpg
 
-https://github.com/jph6366/trame-aoc:
-  topics: [trame, trame-app]
+# https://github.com/jph6366/trame-aoc:
+#   topics: [trame, trame-app]
 
 https://github.com/brendanjmeade/fennil:
   topics: [trame, trame-app]
@@ -41,10 +43,10 @@ https://github.com/brendanjmeade/parsli:
 
 https://github.com/XAITK/xaitk-saliency-web-demo:
   topics: [trame, trame-app]
-  image: "https://raw.githubusercontent.com/XAITK/xaitk-saliency-web-demo/master/gallery/xaitk-classification-rise-4.jpg"
+  image: "https://raw.githubusercontent.com/XAITK/xaitk-saliency-web-demo/refs/heads/master/gallery/xaitk.png"
 
 https://github.com/festim-dev/festim-gui:
-  topics: [trame, trame-app, vtk]
+  topics: [trame, trame-app, paraview]
 
 https://github.com/cardinalgeo/drilldown:
   topics: [trame, trame-app, vtk]

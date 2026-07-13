@@ -36,17 +36,21 @@ https://github.com/Chahat08/BioSET_Visualizer:
 https://github.com/brendanjmeade/fennil:
   topics: [trame, trame-app]
   image: "https://raw.githubusercontent.com/brendanjmeade/fennil/main/fennil.jpg"
+  trusted: true
 
 https://github.com/brendanjmeade/parsli:
   topics: [trame, trame-app, vtk]
   image: "https://raw.githubusercontent.com/brendanjmeade/parsli/refs/heads/main/parsli.png"
+  trusted: true
 
 https://github.com/XAITK/xaitk-saliency-web-demo:
   topics: [trame, trame-app]
   image: "https://raw.githubusercontent.com/XAITK/xaitk-saliency-web-demo/refs/heads/master/gallery/xaitk.png"
+  trusted: true
 
 https://github.com/festim-dev/festim-gui:
   topics: [trame, trame-app, paraview]
+  trusted: true
 
 https://github.com/cardinalgeo/drilldown:
   topics: [trame, trame-app, vtk]
@@ -67,4 +71,9 @@ https://gitlab.kitware.com/keu-public/trame-catalyst-demo:
   lastCommitDate: "2026-05-28T00:00:00Z"
   pullRequestCount: 0
   stars: 0
+  trusted: true
+
+https://github.com/epicsuite/episcope:
+  topics: [trame, trame-app, vtk]
+  image: https://raw.githubusercontent.com/epicsuite/episcope/refs/heads/main/doc/img/selection.gif
   trusted: true

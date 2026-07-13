@@ -102,6 +102,7 @@ export default defineConfig({
             { text: "How to start", link: "/guide/intro/getting_started" },
             { text: "Cheatsheet", link: "/guide/intro/cheatsheet" },
             { text: "Widgets", link: "/guide/intro/widgets" },
+            { text: "Applications", link: "/guide/intro/applications" },
             { text: "Course", link: "/guide/intro/course" },
             { text: "API", link: "/guide/intro/api" },
             { text: "Citing", link: "/guide/intro/citing" },

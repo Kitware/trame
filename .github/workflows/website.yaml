@@ -5,6 +5,10 @@ name: Deploy VitePress site to Pages
 on:
   push:
     branches: [master]
+  
+  # Runs daily at midnight
+  schedule:
+    - cron: '0 0 * * *' 
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -37,6 +41,9 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Install Python dependencies
+        working-directory: docs/vitepress
+        run: "pip install -r requirements.txt"
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Install dependencies
@@ -45,6 +52,11 @@ jobs:
       - name: Update blogs
         working-directory: docs/vitepress
         run: python update_blogs.py
+      - name: Fetch trame repos
+        working-directory: docs/vitepress
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python fetch_repos.py
       - name: Build with VitePress
         working-directory: docs/vitepress
         run: |

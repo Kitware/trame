@@ -3,15 +3,16 @@ import RepoList from '@theme/RepoList.vue'
 
 const topics = {
   "trame-maintenance-program": "Maintenance program",
-  "vue2": "Vue2",
-  "vue3": "Vue3",
+  "vtk": "VTK",
+  "paraview": "Paraview",
+  "3d-slicer*": "3D Slicer",
   "...": "Community",
 }
 </script>
 
-# Widget catalog
+# Application catalog
 
 ⚠️: Non Kitware-owned repository
 <br/>
 
-<RepoList filter-topic="trame-widget" :displayable-topics="topics" />
+<RepoList filter-topic="trame-app" :displayable-topics="topics" />

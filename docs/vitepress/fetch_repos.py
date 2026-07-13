@@ -1,10 +1,33 @@
 #!/usr/bin/env python3
 """
-Generate a repos.json file with information about github repositories with trame
-as topic.
-Fetches: name, url, description, social preview image, topics, stars,
-commit count, PR count, creation date, most recent commit date, and
-whether it was created within the last year.
+Generate a repos.json file with information about repositories both from repos of trusted github
+owners with `trame` topic and from the `external_repos.yml` file.
+
+Fetches: name, url, description, image, topics, stars, commit count, PR count, creation date, most
+recent commit date, and whether it was created within the last year.
+
+```mermaid
+flowchart LR
+    subgraph Wrapper [
+        info contains: name, description, topics, image url, stars, last commit date, creation date,
+        commits count, PRs count.
+    ]
+        direction LR
+        A[external_repos.yml]
+        B[GH repos in<br> trusted_owners<br> list with <br>`trame` topic]
+        C((+))
+        A -- "trusted <br>+= False" --> C
+        B -- "trusted <br>= True" --> C
+        C -- "url: {<br> trusted,<br> info<br>}" --> D((x))
+        E[Fetch GH <br>for info]
+        D -- GH url --> E
+        D -- non GH url --> F((+))
+        E --> F
+        F -- "+is_new<br>if created<br>within last<br>year" --> G[repos.json]
+    end
+
+    style Wrapper fill:none,stroke:none
+```
 """
 
 import subprocess
@@ -12,6 +35,7 @@ import os
 import json
 import re
 from datetime import datetime, timedelta, timezone
+import yaml
 
 
 def minify_graphql(query):
@@ -32,7 +56,7 @@ def make_gh_request(request: list[str]):
 
 
 def retrieve_gh_repos_from_topic(topic: str, owners: list = []):
-    repos = []
+    repos = {}
     for owner in owners:
         request = [
             "gh",
@@ -45,24 +69,29 @@ def retrieve_gh_repos_from_topic(topic: str, owners: list = []):
             "--limit",
             "1000",
             "--json",
-            "fullName",
+            "url",
         ]
         result = json.loads(make_gh_request(request))
         for t in result:
-            repos.append(t["fullName"])
+            repos[t["url"]] = {"trusted": True}
     return repos
 
 
-def retrieve_gh_repos_from_file(filename: str) -> list[str]:
+def retrieve_repos_from_file(filename: str) -> list[str]:
     with open(filename, "r") as f:
-        return [line.strip() for line in f if line.strip()]
+        repos = yaml.safe_load(f)
+        for repo_url, repo_info in repos.items():
+            repo_info["trusted"] = (
+                repo_info["trusted"] if "trusted" in repo_info else False
+            )
+        return repos
 
 
-def retrieve_multiple_repos_graphql(repos: list[str]):
+def retrieve_multiple_repos_graphql(repos: dict):
     repo_queries = []
-    for repo in repos:
-        owner, name = repo.split("/")
-        alias = repo.replace("/", "_").replace("-", "_")
+    for repo_url, repo_info in repos.items():
+        owner, name = repo_url[19:].split("/")
+        alias = repo_url[19:].replace("/", "_").replace("-", "_")
         repo_query = f"""
             {alias}: repository(owner: "{owner}", name: "{name}") {{
                 name
@@ -106,21 +135,17 @@ def retrieve_multiple_repos_graphql(repos: list[str]):
     return data
 
 
-def repos_to_json(repos, ignored_topics=[], trusted_owners=[]):
-    table = []
-    one_year_ago = datetime.now(timezone.utc) - timedelta(days=365)
-    for repo_data in repos.values():
-        trustedOwner = repo_data["nameWithOwner"].split("/")[0] in trusted_owners
-        topics = [] if trustedOwner else ["..."]
-        for node in repo_data["repositoryTopics"]["nodes"]:
-            if node["topic"]["name"] not in ignored_topics:
-                topics.append(node["topic"]["name"])
-        url = f"https://github.com/{repo_data['nameWithOwner']}"
+def is_gh_url(url):
+    return url.startswith("https://github.com/")
 
-        created_at = datetime.fromisoformat(
-            repo_data["createdAt"].replace("Z", "+00:00")
-        )
-        created_within_last_year = created_at >= one_year_ago
+
+def repos_data_to_json(repos_data):
+    fetched_repos = {}
+    for repo_data in repos_data.values():
+        topics = [
+            node["topic"]["name"] for node in repo_data["repositoryTopics"]["nodes"]
+        ]
+        url = f"https://github.com/{repo_data['nameWithOwner']}"
 
         commit_count = 0
         last_commit_date = None
@@ -130,36 +155,56 @@ def repos_to_json(repos, ignored_topics=[], trusted_owners=[]):
             if history.get("nodes"):
                 last_commit_date = history["nodes"][0]["committedDate"]
 
-        table.append(
-            {
-                "name": repo_data["name"],
-                "url": url,
-                "description": repo_data["description"],
-                "image": repo_data["openGraphImageUrl"],
-                "topics": topics,
-                "trustedOwner": trustedOwner,
-                "createdAt": repo_data["createdAt"],
-                "createdWithinLastYear": created_within_last_year,
-                "lastCommitDate": last_commit_date,
-                "stars": repo_data["stargazerCount"],
-                "commitCount": commit_count,
-                "pullRequestCount": repo_data["pullRequests"]["totalCount"],
-            }
+        fetched_repos[url] = {
+            "name": repo_data["name"],
+            "description": repo_data["description"],
+            "image": repo_data["openGraphImageUrl"],
+            "topics": topics,
+            "createdAt": repo_data["createdAt"],
+            "lastCommitDate": last_commit_date,
+            "stars": repo_data["stargazerCount"],
+            "commitCount": commit_count,
+            "pullRequestCount": repo_data["pullRequests"]["totalCount"],
+        }
+    return fetched_repos
+
+
+def fetch_gh_info(gh_repos):
+    repos_data = retrieve_multiple_repos_graphql(gh_repos)
+    json_repos_info = repos_data_to_json(repos_data)
+
+    fetched_repos_info = json_repos_info.copy()
+    for url, repo_info in gh_repos.items():
+        fetched_repos_info[url] |= repo_info
+    return fetched_repos_info
+
+
+def add_info(repos):
+    one_year_ago = datetime.now(timezone.utc) - timedelta(days=365)
+    for url, repo_info in repos.items():
+        if not repo_info["trusted"]:
+            repo_info["topics"].append("...")
+
+        created_at = datetime.fromisoformat(
+            repo_info["createdAt"].replace("Z", "+00:00")
         )
-    return sorted(table, key=lambda r: r["name"].lower())
+        repo_info["createdWithinLastYear"] = created_at >= one_year_ago
 
 
 if __name__ == "__main__":
-    repos = list(
-        dict.fromkeys(
-            retrieve_gh_repos_from_topic("trame", ["Kitware", "KitwareMedical"])
-            + retrieve_gh_repos_from_file("external_gh_repos.txt")
-        )
-    )
-    repos_datas = retrieve_multiple_repos_graphql(repos)
+    trusted_repos = retrieve_gh_repos_from_topic("trame", ["Kitware", "KitwareMedical"])
+    external_repos = retrieve_repos_from_file("external_repos.yml")
+    repos = trusted_repos | external_repos
+
+    gh_repos = {k: v for k, v in repos.items() if is_gh_url(k)}
+    non_gh_repos = {k: v for k, v in repos.items() if not is_gh_url(k)}
+    fetched_gh_repos = fetch_gh_info(gh_repos)
+    repos_w_info = non_gh_repos | fetched_gh_repos
+    add_info(repos_w_info)
+
     with open("repos.json", "w") as f:
         json.dump(
-            repos_to_json(repos_datas, ["trame"], ["Kitware", "KitwareMedical"]),
+            repos_w_info,
             f,
             sort_keys=True,
         )

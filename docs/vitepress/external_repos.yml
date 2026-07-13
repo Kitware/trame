@@ -1,0 +1,68 @@
+https://github.com/kmarchais/mmgpy:
+  topics: [trame, trame-app, vtk]
+  image: "https://github.com/kmarchais/mmgpy/raw/main/assets/mechanical_piece_remeshing.png"
+
+https://github.com/dhruvhaldar/FOAMFlask:
+  image: "https://github.com/dhruvhaldar/FOAMFlask/raw/dev_pyvista_ts_lkgc/Screenshots/geometry.png"
+
+https://github.com/MBradley1985/SAGE-Viewer:
+  topics: [trame, trame-app]
+  image: "https://raw.githubusercontent.com/MBradley1985/SAGE-Viewer/main/docs/images/hero.png"
+
+https://github.com/jwindgassen/jupyter-trame-proxy:
+  topics: [trame, trame-app, paraview]
+
+https://github.com/utkarshayachit/simplified-batch:
+  topics: [trame, trame-app, paraview]
+
+https://github.com/vicentebolea/virtual-thermostat:
+  topics: [trame, trame-app]
+
+https://github.com/linson7017/pymipf:
+  topics: [trame, trame-app, vtk]
+  image: "https://github.com/linson7017/pymipf/raw/master/imgs/multi_view.png"
+
+https://github.com/ndminhvn/interactive-population-visualization:
+  topics: [trame, trame-app, vtk]
+
+https://github.com/Chahat08/BioSET_Visualizer:
+  topics: [trame, trame-app, vtk]
+
+https://github.com/jph6366/trame-aoc:
+  topics: [trame, trame-app]
+
+https://github.com/brendanjmeade/fennil:
+  topics: [trame, trame-app]
+  image: "https://raw.githubusercontent.com/brendanjmeade/fennil/main/fennil.jpg"
+
+https://github.com/brendanjmeade/parsli:
+  topics: [trame, trame-app, vtk]
+  image: "https://raw.githubusercontent.com/brendanjmeade/parsli/refs/heads/main/parsli.png"
+
+https://github.com/XAITK/xaitk-saliency-web-demo:
+  topics: [trame, trame-app]
+  image: "https://raw.githubusercontent.com/XAITK/xaitk-saliency-web-demo/master/gallery/xaitk-classification-rise-4.jpg"
+
+https://github.com/festim-dev/festim-gui:
+  topics: [trame, trame-app, vtk]
+
+https://github.com/cardinalgeo/drilldown:
+  topics: [trame, trame-app, vtk]
+  image: "https://github.com/cardinalgeo/drilldown/raw/main/media/poster.jpg"
+
+https://github.com/MXJK851/SpinView:
+  topics: [trame, trame-app]
+  image: "https://github.com/MXJK851/SpinView/raw/main/docs/assets/readme.png"
+
+https://gitlab.kitware.com/keu-public/trame-catalyst-demo:
+  topics: [trame, trame-app, vtk]
+  nameWithOwner: "keu-public/trame-catalyst-demo"
+  name: "trame-catalyst-demo"
+  image: "https://gitlab.kitware.com/keu-public/trame-catalyst-demo/-/raw/main/screenshot.png"
+  commitCount: 10
+  createdAt: "2026-05-07T00:00:00Z"
+  description: "A trame application for Catalyst live visualization."
+  lastCommitDate: "2026-05-28T00:00:00Z"
+  pullRequestCount: 0
+  stars: 0
+  trusted: true

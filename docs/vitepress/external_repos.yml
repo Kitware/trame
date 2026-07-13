@@ -34,7 +34,7 @@ https://github.com/Chahat08/BioSET_Visualizer:
 #   topics: [trame, trame-app]
 
 https://github.com/brendanjmeade/fennil:
-  topics: [trame, trame-app]
+  topics: [trame, trame-app, py-deck]
   image: "https://raw.githubusercontent.com/brendanjmeade/fennil/main/fennil.jpg"
   trusted: true
 
@@ -61,7 +61,7 @@ https://github.com/MXJK851/SpinView:
   image: "https://github.com/MXJK851/SpinView/raw/main/docs/assets/readme.png"
 
 https://gitlab.kitware.com/keu-public/trame-catalyst-demo:
-  topics: [trame, trame-app, vtk]
+  topics: [trame, trame-app, paraview]
   nameWithOwner: "keu-public/trame-catalyst-demo"
   name: "trame-catalyst-demo"
   image: "https://gitlab.kitware.com/keu-public/trame-catalyst-demo/-/raw/main/screenshot.png"
@@ -74,6 +74,6 @@ https://gitlab.kitware.com/keu-public/trame-catalyst-demo:
   trusted: true
 
 https://github.com/epicsuite/episcope:
-  topics: [trame, trame-app, vtk]
+  topics: [trame, trame-app, paraview]
   image: https://raw.githubusercontent.com/epicsuite/episcope/refs/heads/main/doc/img/selection.gif
   trusted: true

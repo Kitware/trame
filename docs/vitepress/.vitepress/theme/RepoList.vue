@@ -42,7 +42,13 @@ const filtered = computed(() => {
 
     const matchesTopics =
       activeTopics.value.size === 0 ||
-      [...activeTopics.value].every(t => r.topics.includes(t))
+      [...activeTopics.value].every(activeKey => {
+        if (activeKey.endsWith('*')) {
+          const baseKey = activeKey.slice(0, -1);
+          return r.topics.some(repoTopic => repoTopic.startsWith(baseKey));
+        }
+        return r.topics.includes(activeKey);
+      })
 
     const matchesSearch =
       !q ||
@@ -63,6 +69,43 @@ const filtered = computed(() => {
     return 0
   })
 })
+
+const getDisplayableTagsForRepo = (repoTopics) => {
+  const result = [];
+  const seenKeys = new Set();
+  const topicsMap = props.displayableTopics;
+
+  for (const t of repoTopics) {
+    let matchedKey = null;
+    // Exact match
+    if (topicsMap[t]) {
+      matchedKey = t;
+    } 
+    // Wildcard match
+    else {
+      for (const key in topicsMap) {
+        if (key.endsWith('*')) {
+          const baseKey = key.slice(0, -1);
+          if (t.startsWith(baseKey)) {
+            matchedKey = key;
+            break;
+          }
+        }
+      }
+    }
+
+    if (matchedKey && !seenKeys.has(matchedKey)) {
+      seenKeys.add(matchedKey);
+      result.push({
+        key: matchedKey,
+        githubTopic: t,
+        label: topicsMap[matchedKey]
+      });
+    }
+  }
+
+  return result;
+};
 
 const displayableRepoCount = computed(() =>
   repos.filter(r => r.topics.includes(props.filterTopic)).length
@@ -142,10 +185,10 @@ function toggleSortDir() {
           {{ r.description || '—' }}
         </td>
         <td>
-          <div v-for="t in r.topics" :key="t">
-            <a :href="t == '...' ? '' : 'https://github.com/topics/' + t" v-if="displayableTopics[t]">
-              <span :class="['pill','topic', activeTopics.has(t) && 'active']">
-                {{ displayableTopics[t] }}
+          <div v-for="tag in getDisplayableTagsForRepo(r.topics)" :key="tag.key">
+            <a :href="tag.key === '...' ? '' : 'https://github.com/topics/' + tag.githubTopic">
+              <span :class="['pill', 'topic', activeTopics.has(tag.key) && 'active']">
+                  {{ tag.label }}
               </span>
             </a>        
           </div>

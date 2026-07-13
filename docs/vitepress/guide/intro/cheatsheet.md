@@ -111,6 +111,6 @@ ctrl.on_client_exited = lambda **_: print("Someone is gone...")
 
 ## Conclusion and Next Steps
 
-At this point the fundamentals of trame have been presented. To build fully-fledged applications, the next steps are to learn the various components available for displaying 3D graphics, charts, maps and more. For more details, please refer to the [tutorial](https://kitware.github.io/trame/docs/tutorial.html) or [API](https://trame.readthedocs.io/en/latest/index.html).
+At this point the fundamentals of trame have been presented. Trame is a powerful Python-based integration framework for creating visual analytics applications: from prototypes to professional applications, it offers an innovative approach to "write once and run anywhere" through applications that run from a desktop to a cloud service using a standard web browser.
 
-Trame is a powerful Pyton-based integration framework for creating visual analytics applications. From prototypes to professional applications, trame offers an innovative approach to “write once and run anywhere” through applications that run from a desktop to a cloud service using a standard web browser.
+To build fully-fledged applications, the next steps are to learn the various components available for displaying 3D graphics, charts, maps and more. For more details, please refer to the [tutorial](/guide/tutorial/) or [API](https://trame.readthedocs.io/en/latest/index.html).

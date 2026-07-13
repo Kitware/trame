@@ -4,11 +4,19 @@ Trame aims to streamline the creation of visual analytics applications, with sup
 
 ## Core concepts
 
-Trame allows you to easily share variables between UI components and a Python application. The resulting shared state can be modified by functions and methods invoked from the UI or application. For example, a Python function can be called when a button in the UI is clicked; or the UI can be updated in response to programmatic changes to the state. This document focuses on how you can leverage these capabilities inside your application using trame.
+Let's say you are building a data intensive application. You have a Python codebase organizing your workflows and processing, and now you'd like to add a user interface. trame provides your app with straightforward state management and engaging user interfaces through **Shared State** and **Reactive UI Components**.
+
+trame integrates your application's browser interface with its server backend through a Shared State of key-value pairs. These keys will hold any inputs from the user that you'd like to set as parameters for your processing. They may then hold the results of your computation so that they can be displayed to the user. And they enable modules like trame's vtk component to add interactive 3D visuals to your interface.
+
+When your interface or your server updates one of the keys in the Shared State, the state is efficiently synchronized on both the server and the client. In cases where changes are difficult to notice, such as changing a value deep in a nested dictionary, trame provides methods to mark the data dirty and force a synchronization.
+
+When the Shared State is updated, your interface updates too, thanks to the reactivity of the provided UI components. Under the hood, trame uses Vue and its reactivity to reflect updates in values of the Shared State. This reactivity goes the other way too: trame provides decorators for Python functions so they can be called whenever a value is updated, or when triggered by a button.
+
+The rest of this document walks through both directions in more detail, starting with the Shared State.
 
 ## Shared state
 
-Trame mainly focuses on the Python side, therefore the variables that we aim to use across our application will be defined from Python. The following sections illustate the various ways the shared state can be modified.
+Trame mainly focuses on the Python side, therefore the variables that we aim to use across our application will be defined from Python. The following sections illustrate the various ways the shared state can be modified.
 
 ![Shared state summary](/assets/images/course/state.jpg)
 
@@ -29,7 +37,7 @@ slider = vuetify.VSlider(
 
 ### Listening to changes
 
-Imagine that we want to monitor the value of `slider_value` within our Python application and execute a method when that variable is updated. The code below illustate how we can annotate a function so it can be called when a value of the shared state is modified.
+Imagine that we want to monitor the value of `slider_value` within our Python application and execute a method when that variable is updated. The code below illustrates how we can annotate a function so it can be called when a value of the shared state is modified.
 
 ```python
 from trame.app import get_server
@@ -76,14 +84,14 @@ state.list_variable = []
 state.dict_variable = {}
 
 def edit_state():
-  state.list_variable.append(f"new item {len(state.list_variable)}"")
+  state.list_variable.append(f"new item {len(state.list_variable)}")
   state.dict_variable["a"] = state.dict_variable.setdefault("a", 1) + 1
   state.dirty("list_variable", "dict_variable")
 ```
 
 You can also decide when a state needs to be flushed using it as a context manager.
 Be aware that flushing will only work on variables that are known to be modified/dirty.
-Also such flushing operation is mendatory when running in an async task or coroutine.
+Also such flushing operation is mandatory when running in an async task or coroutine.
 The code below provides a simple example.
 
 ```python
@@ -157,11 +165,24 @@ def reset_camera():
 
 ## Layout management
 
-Layouts are meant to define the core UI elements of an application. Think of FullScreen vs Toolbar, Drawer, Footer and so on. Layouts let you drop pieces of your UI into pre-defined locations. The layout organizes the way an application is structured. It could be defined once, or be redifined at runtime.
+Layouts are meant to define the core UI elements of an application. Think of FullScreen vs Toolbar, Drawer, Footer and so on. Layouts let you drop pieces of your UI into pre-defined locations. The layout organizes the way an application is structured. It could be defined once, or be redefined at runtime.
 
 When creating a layout, you have the opportunity to define the Tab title along with a path to a favicon and a method to call at startup.
 
-## HTML Elements
+```python
+from trame.ui.vuetify3 import SinglePageLayout
+
+with SinglePageLayout(server) as layout:
+  layout.title.set_text("My Application")
+
+  with layout.content:
+    # Add your UI components here
+    ...
+```
+
+`SinglePageLayout` is one of several layouts trame provides (`VAppLayout`, `SinglePageWithDrawerLayout`, `trame.ui.html.DivLayout`, ...). See the [Layouts chapter of the tutorial](/guide/tutorial/layouts) for a full walkthrough of each.
+
+## HTML elements
 
 HTML elements in trame (trame.widgets.html.*) are just helpers for generating HTML content. But because they exist as Python objects, users can interact with them simply by setting attributes on them in plain Python.
 

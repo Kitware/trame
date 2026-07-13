@@ -1,14 +1,14 @@
-vtk==9.4.2
+vtk>=9.6
 
 pygments
-sphinx<8
+sphinx>=9.1
 sphinx_rtd_theme
 
 # Add external widgets
 
 # core
-trame-client>=3.9
-trame-server>=3.4
+trame-client>=3.13.2
+trame-server>=3.12.5
 
 # Vue 2
 trame-grid-layout
@@ -18,7 +18,6 @@ trame-deckgl
 trame-vtk
 trame-vuetify
 trame-iframe
-trame-keycloak
 trame-xterm
 trame-code
 trame-vtk3d
@@ -33,6 +32,7 @@ trame-simput
 trame-components
 trame-matplotlib
 trame-flow
+trame-dataclass
 
 # Vue 3
 trame-formkit
@@ -42,3 +42,4 @@ trame-image-tools
 trame-tauri
 trame-gwc
 trame-dockview
+trame-colormaps

@@ -1,3 +1,5 @@
+# Simple ParaView Cone
+
 [![Simple ParaView cone](/assets/images/examples/pvSimpleCone-Remote.jpg)](https://github.com/Kitware/trame/tree/master/examples/07_paraview/SimpleCone)
 
 ::: code-group

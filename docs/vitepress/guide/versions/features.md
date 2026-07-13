@@ -1,5 +1,17 @@
 # Features by versions
 
+## Version 3.13
+
+The profiler tool gained support for multi-trace files.
+
+## Version 3.12
+
+A new retry tool is available to help launchers deal with flaky application startup.
+
+## Version 3.11
+
+The Jupyter integration gained a CSS helper, and a new `dockview` widget is available.
+
 ## Version 3.10
 
 This version is bringing a new tool around VTK for debugging remote rendering deployment.

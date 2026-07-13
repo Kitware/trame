@@ -44,5 +44,6 @@ Welcome to Trame's documentation!
    tools.widgets
    tools.serve
    tools.vtk
+   tools.profiler
 
 .. include:: ../../../README.rst

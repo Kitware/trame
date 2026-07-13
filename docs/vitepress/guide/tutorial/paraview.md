@@ -256,7 +256,7 @@ The `load_data()` function requires us to code the follow
 
 **Process CLI argument `--data`**
 
-The (1) is achieved with the following set of lines. More information on CLI are available [here](https://kitware.github.io/trame/docs/howdoi-cli.html).
+The (1) is achieved with the following set of lines. More information on CLI arguments are available [here](/guide/intro/getting_started#command-line-arguments).
 
 ```python
 class StateLoaderApp(TrameApp):

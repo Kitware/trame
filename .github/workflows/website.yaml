@@ -65,6 +65,18 @@ jobs:
           mkdir -p .vitepress/dist/trame
           cp -rf .vitepress/dist/logos .vitepress/dist/trame/logos
           cp -rf .vitepress/dist/assets .vitepress/dist/trame/assets
+
+      - name: Download badges
+        working-directory: docs/vitepress/.vitepress/dist/trame
+        run: |
+          mkdir -p downloads
+          curl -o ./downloads/trame.svg https://img.shields.io/pypi/dm/trame
+          curl -o ./downloads/trame-client.svg https://img.shields.io/pypi/dm/trame-client
+          curl -o ./downloads/trame-server.svg https://img.shields.io/pypi/dm/trame-server
+          curl -o ./downloads/trame-vuetify.svg https://img.shields.io/pypi/dm/trame-vuetify
+          curl -o ./downloads/trame-vtk.svg https://img.shields.io/pypi/dm/trame-vtk
+          curl -o ./downloads/trame-vtklocal.svg https://img.shields.io/pypi/dm/trame-vtklocal
+          curl -o ./downloads/trame-rca.svg https://img.shields.io/pypi/dm/trame-rca
       - name: Upload artifact
         id: deployment
         uses: actions/upload-pages-artifact@v3

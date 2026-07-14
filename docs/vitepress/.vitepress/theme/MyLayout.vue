@@ -27,7 +27,7 @@ const { Layout } = DefaultTheme
           data-show-count="false"
           aria-label="Star kitware/trame on GitHub"
       />
-      <img src="https://img.shields.io/pypi/dm/trame" />
+      <img src="https://kitware.github.io/trame/trame/downloads/trame.svg" />
     </template>
   </Layout>
 </template>
@@ -46,8 +46,8 @@ const { Layout } = DefaultTheme
   }
   @media (min-width: 960px) {
     .hero-video {
-      margin-left: 2rem; 
-      width: 100%; 
+      margin-left: 2rem;
+      width: 100%;
       height: 450px;
     }
   }

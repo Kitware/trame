@@ -27,7 +27,7 @@ const { Layout } = DefaultTheme
           data-show-count="false"
           aria-label="Star kitware/trame on GitHub"
       />
-      <img src="https://kitware.github.io/trame/trame/downloads/trame.svg" />
+      <img src="https://kitware.github.io/trame/downloads/trame.svg" />
     </template>
   </Layout>
 </template>

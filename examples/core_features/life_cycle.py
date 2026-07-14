@@ -1,3 +1,8 @@
+"""
+This illustrate how the core works but the base TrameApp
+class with the life_cycle decorator is the way to go.
+"""
+
 from trame.app import get_server
 from trame.ui.html import DivLayout
 

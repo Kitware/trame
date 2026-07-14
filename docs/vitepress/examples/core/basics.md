@@ -22,7 +22,10 @@ The examples presented below are meant to be executed and explored so you can un
 
 ## Life Cycle
 
+::: code-group
+<<< @/../../examples/core_features/life_cycle_class.py
 <<< @/../../examples/core_features/life_cycle.py
+:::
 
 ## Hot Reload
 

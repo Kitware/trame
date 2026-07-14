@@ -4,8 +4,6 @@ Trame v3 is out and is going to break things up. But it should be easy to migrat
 
 On top of making vue3 the new default, we want to shrink the default dependency list by only bundling by default the client and the server. And if the user needs vuetify and/or vtk they will need to list them as dependency of their project (trame-vtk, trame-vuetify). This will allow a leaner core package while still offering the same capabilities as before.
 
-So far we don't have a release date, but while vuetify, vtk and more are already vue2 and 3 compatible. Not everything is available (router, plotly) or will be ported. So until we feel we have a great offering in vue3, we will hold off for the V3 release.
-
 ## New default client_type
 
 The default client_type will be changing from vue2 to vue3 on January 2024.
@@ -20,7 +18,7 @@ server.client_type = "vue3" # instead of 'vue2'
 ## New warning due to breaking change
 
 A message will be printed by default at the startup of trame with the v3 version.
-We are expecting to remove that message during summer 2024.
+We removed that message during summer 2024.
 
 ::: info
 
@@ -82,5 +80,3 @@ os.environ["TRAME_DISABLE_V3_WARNING"] = "1"
 ## API change
 
 Trame in itself won't have API change but it is possible that vue3 widget will have a different API like you can see between vuetify2 and vuetify3, but in general we'll try to maintain full API compatibility.
-
-<!--@include: ../intro/widgets.md-->

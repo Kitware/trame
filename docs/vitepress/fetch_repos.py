@@ -30,6 +30,7 @@ flowchart LR
 ```
 """
 
+import hashlib
 import subprocess
 import os
 import json
@@ -57,21 +58,84 @@ def github_action_formatwarning(message, category, filename, lineno, line=None):
 warnings.formatwarning = github_action_formatwarning
 
 
-class ImageCacheMaker:
-    """Downloads remote images to make the page serve them itself"""
+def extract_image_hash(url: str) -> str:
+    """
+    Extract a stable content identifier from GitHub's image-serving URLs, so
+    that the same file is reused whenever the underlying content is unchanged
+    and a new hash-derived filename is produced whenever it changes.
 
-    _img_id = 0
+    Handles two known GitHub URL formats:
+      - https://opengraph.githubassets.com/<hash>/owner/repo
+        (dynamically rendered OG card; hash changes when repo metadata does)
+      - https://repository-images.githubusercontent.com/<repo_id>/<uuid>
+        (static, user-uploaded social preview image)
+
+    For any other URL (no embedded content hash to rely on), the hash is
+    salted with the current ISO week number, so the cached file is reused
+    for up to a week and then naturally re-downloaded once the week rolls
+    over, giving bounded staleness without needing explicit TTL/eviction
+    logic.
+    """
+    match = re.search(
+        r"opengraph\.githubassets\.com/([0-9a-f]{20,64})/([^/]+)/([^/?#]+)", url
+    )
+    if match:
+        image_hash, owner, repo = match.groups()
+        return f"{owner}-{repo}-{image_hash}"
+
+    match = re.search(
+        r"repository-images\.githubusercontent\.com/(\d+)/"
+        r"([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})",
+        url,
+    )
+    if match:
+        repo_id, image_uuid = match.groups()
+        return f"{repo_id}-{image_uuid}"
+
+    year, week, _ = datetime.now(timezone.utc).isocalendar()
+    weekly_prefix = f"{year}-W{week:02d}"
+    url_hash = hashlib.sha256(url.encode()).hexdigest()
+    return f"{weekly_prefix}-{url_hash}"
+
+
+class ImageCacheMaker:
+    """Downloads remote images to make the page serve them itself.
+
+    Files are named after the hash embedded in the source URL, so unchanged
+    repos resolve to the same filename run after run. Combined with a
+    persisted cache directory (e.g. actions/cache), this means an image is
+    only re-downloaded when its content actually changes.
+    """
 
     def __init__(self, download_dir: Path, serve_url_suffix_base: str):
         """download_dir must be served at serve_url_suffix_base"""
         self._download_dir = download_dir
+        self._download_dir.mkdir(parents=True, exist_ok=True)
         self._serve_url_suffix_base = serve_url_suffix_base
+        self._used_files = set()
 
     def download(self, url: str):
-        download_remote_image(url, self._download_dir / f"{self._img_id}.png")
-        serve_url_suffix = f"{self._serve_url_suffix_base}/{self._img_id}.png"
-        self._img_id += 1
-        return serve_url_suffix
+        image_hash = extract_image_hash(url)
+        filename = f"{image_hash}.png"
+        local_path = self._download_dir / filename
+
+        if local_path.exists():
+            print(f"    Cache hit, skipping download: {filename}")
+        else:
+            download_remote_image(url, local_path)
+
+        self._used_files.add(filename)
+        return f"{self._serve_url_suffix_base}/{filename}"
+
+    def prune_stale(self):
+        """Remove cached images that are no longer referenced by any repo,
+        so the cache doesn't grow unbounded as repos change over time."""
+        if not self._download_dir.exists():
+            return
+        for existing in self._download_dir.iterdir():
+            if existing.is_file() and existing.name not in self._used_files:
+                print(f"    Pruning stale cached image: {existing.name}")
+                existing.unlink()
 
 
 def minify_graphql(query):
@@ -200,10 +264,15 @@ def retrieve_multiple_repos_graphql(repos: dict):
     """.strip()
     mini_query = minify_graphql(query)
     cmd = ["gh", "api", "graphql", "-f", f"query={mini_query}"]
-    try:
-        data = json.loads(make_gh_request(cmd))["data"]
-    except Exception as e:
-        warnings.warn(f"GraphQL request failed: {e}")
+    data = {}
+    attempt = 0
+    while not data and attempt < 5:
+        try:
+            attempt += 1
+            data = json.loads(make_gh_request(cmd))["data"]
+        except Exception as e:
+            warnings.warn(f"GraphQL request failed: {e}, attempt {attempt}/5.")
+    if not data:
         return {}
     missing = [alias for alias, info in data.items() if info is None]
     for alias in missing:
@@ -249,22 +318,27 @@ def repos_data_to_json(repos_data):
 
 
 def fetch_gh_info(gh_repos):
+    fetched_repos_info = {}
     repos_data = retrieve_multiple_repos_graphql(gh_repos)
     json_repos_info = repos_data_to_json(repos_data)
 
-    fetched_repos_info = {}
+    if not json_repos_info:
+        return fetched_repos_info
+
     for url, repo_info in gh_repos.items():
         if url in json_repos_info:
             fetched_repos_info[url] = json_repos_info[url] | repo_info
         else:
             warnings.warn(
                 f"The fetched github repository has a different URL than the one provided. Check "
-                f"that the repository URL in `extrernal_repos.yml` isn't an alias: {url}."
+                f"that the repository URL in `external_repos.yml` isn't an alias: {url}."
             )
     return fetched_repos_info
 
 
 def add_info(repos):
+    if not repos.items():
+        return
     image_cache_maker = ImageCacheMaker(IMAGES_DOWNLOAD_DIR, IMAGES_SERVE_SUFFIX)
     one_year_ago = datetime.now(timezone.utc) - timedelta(days=365)
     for url, repo_info in repos.items():
@@ -277,6 +351,7 @@ def add_info(repos):
         repo_info["createdWithinLastYear"] = created_at >= one_year_ago
 
         repo_info["image"] = image_cache_maker.download(repo_info["remoteImage"])
+    image_cache_maker.prune_stale()
 
 
 if __name__ == "__main__":

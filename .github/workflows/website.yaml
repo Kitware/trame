@@ -52,6 +52,13 @@ jobs:
       - name: Update blogs
         working-directory: docs/vitepress
         run: python update_blogs.py
+      - name: Cache repo images
+        uses: actions/cache@v4
+        with:
+          path: docs/vitepress/public/repos_images
+          key: repo-images-${{ github.run_id }}
+          restore-keys: |
+            repo-images-
       - name: Fetch trame repos
         working-directory: docs/vitepress
         env:

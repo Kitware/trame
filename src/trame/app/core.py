@@ -25,7 +25,7 @@ def apply_client_type(server: Server, client_type: str | None = None) -> Server:
 def get_server(
     name: str | Server | None = None,
     create_if_missing: bool = True,
-    client_type: Literal["vue2", "vue3"] | None = None,
+    client_type: Literal["vue2", "vue3", "react"] | None = None,
     **kwargs,
 ) -> Server | None:
     """Return a server for serving trame applications.
@@ -44,7 +44,7 @@ def get_server(
     :type create_if_missing: bool
 
     :param client_type: If provided, it will set it on the server.
-    :type client_type: None | "vue2" | "vue3"
+    :type client_type: None | "vue2" | "vue3" | "react"
 
     :param **kwargs: any extra keyword args are passed as option to the server instance.
 

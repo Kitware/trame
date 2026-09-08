@@ -109,12 +109,28 @@ export default defineConfig({
           ],
         },
         {
-          text: "Versions: 1, 2, 3",
+          text: "Versions and features",
           items: [
             { text: "Introduction", link: "/guide/versions/" },
             { text: "From 1 to 2", link: "/guide/versions/trame_v1-2" },
             { text: "From 2 to 3", link: "/guide/versions/trame_v2-3" },
+            { text: "From 3 to 4", link: "/guide/versions/trame_v3-4" },
             { text: "Features", link: "/guide/versions/features" },
+          ],
+        },
+        {
+          text: "Vue client",
+          items: [
+            { text: "Introduction", link: "/guide/vue/" },
+            { text: "Getting started", link: "/guide/vue/getting_started" },
+          ],
+        },
+        {
+          text: "React client",
+          items: [
+            { text: "Introduction", link: "/guide/react/" },
+            { text: "Getting started", link: "/guide/react/getting_started" },
+            { text: "Adding widgets", link: "/guide/react/adding_widgets" },
           ],
         },
         {

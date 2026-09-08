@@ -1,5 +1,13 @@
 # Features by versions
 
+## Version 4
+
+Adds support for a new first-class client type: `client_type="react"`. Where
+you previously wrote `client_type="vue3"`, you can now target React instead —
+and everything else about how you build a trame app stays the same. Same
+`TrameApp` base class, same reactive `state`, same event/trigger model, same
+Python-only workflow. [Read more](../react/)
+
 ## Version 3.13
 
 The profiler tool gained support for multi-trace files.

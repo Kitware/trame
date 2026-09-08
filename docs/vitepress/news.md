@@ -1,3 +1,23 @@
+## September 8, 2026
+
+Trame v4 is out with a big new feature! __React__ is now an option in the `client_type='react'`.
+
+If your organization has spent years building a React-based front-end team — a
+component library, a design system, in-house widgets your users already know
+and trust — the idea of "rewrite it in something else" is usually where a good
+project idea goes to die. Trame v4 removes that trade-off.
+
+Starting with this release, **trame can drive React components natively**, with
+the same single-language promise it has always made for its Vue.js core:
+describe your application — and the binding between server-side logic and
+client-side UI — entirely in Python.
+
+<div style="width:50%;margin:0 auto;">
+
+![](./assets/images/examples/trame-mui.png)
+
+</div>
+
 ## August 25, 2026
 
 Discover new community projects, [reusable components](https://kitware.github.io/trame/guide/intro/widgets.html), and [real-world applications](https://kitware.github.io/trame/guide/intro/applications.html) built with trame. Catalogs are dynamically updated daily.

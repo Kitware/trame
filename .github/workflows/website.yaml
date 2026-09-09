@@ -73,39 +73,73 @@ jobs:
           cp -rf .vitepress/dist/logos .vitepress/dist/trame/logos
           cp -rf .vitepress/dist/assets .vitepress/dist/trame/assets
 
+      - name: Cache badges
+        uses: actions/cache@v4
+        with:
+          path: docs/vitepress/.vitepress/dist/downloads
+          key: pypi-badges-${{ github.run_id }}
+          restore-keys: |
+            pypi-badges-
       - name: Download badges
         working-directory: docs/vitepress/.vitepress/dist
         run: |
           mkdir -p downloads
-          curl -o ./downloads/trame.svg https://img.shields.io/pypi/dm/trame
-          curl -o ./downloads/trame-client.svg https://img.shields.io/pypi/dm/trame-client
-          curl -o ./downloads/trame-server.svg https://img.shields.io/pypi/dm/trame-server
-          curl -o ./downloads/trame-common.svg https://img.shields.io/pypi/dm/trame-common
-          curl -o ./downloads/trame-vuetify.svg https://img.shields.io/pypi/dm/trame-vuetify
-          curl -o ./downloads/trame-vtklocal.svg https://img.shields.io/pypi/dm/trame-vtklocal
-          curl -o ./downloads/trame-rca.svg https://img.shields.io/pypi/dm/trame-rca
-          curl -o ./downloads/trame-vtk.svg https://img.shields.io/pypi/dm/trame-vtk
-          curl -o ./downloads/trame-slicer.svg https://img.shields.io/pypi/dm/trame-slicer
-          curl -o ./downloads/trame-tauri.svg https://img.shields.io/pypi/dm/trame-tauri
-          curl -o ./downloads/trame-simput.svg https://img.shields.io/pypi/dm/trame-simput
-          curl -o ./downloads/trame-datagrid.svg https://img.shields.io/pypi/dm/trame-datagrid
-          curl -o ./downloads/trame-code.svg https://img.shields.io/pypi/dm/trame-code
-          curl -o ./downloads/trame-matplotlib.svg https://img.shields.io/pypi/dm/trame-matplotlib
-          curl -o ./downloads/trame-quasar.svg https://img.shields.io/pypi/dm/trame-quasar
-          curl -o ./downloads/trame-image-tools.svg https://img.shields.io/pypi/dm/trame-image-tools
-          curl -o ./downloads/trame-plotly.svg https://img.shields.io/pypi/dm/trame-plotly
-          curl -o ./downloads/trame-iframe.svg https://img.shields.io/pypi/dm/trame-iframe
-          curl -o ./downloads/trame-leaflet.svg https://img.shields.io/pypi/dm/trame-leaflet
-          curl -o ./downloads/trame-vega.svg https://img.shields.io/pypi/dm/trame-vega
-          curl -o ./downloads/trame-components.svg https://img.shields.io/pypi/dm/trame-components
-          curl -o ./downloads/trame-deckgl.svg https://img.shields.io/pypi/dm/trame-deckgl
-          curl -o ./downloads/trame-router.svg https://img.shields.io/pypi/dm/trame-router
-          curl -o ./downloads/trame-markdown.svg https://img.shields.io/pypi/dm/trame-markdown
-          curl -o ./downloads/trame-dataclass.svg https://img.shields.io/pypi/dm/trame-dataclass
-          curl -o ./downloads/trame-xterm.svg https://img.shields.io/pypi/dm/trame-xterm
-          curl -o ./downloads/trame-radial-menu.svg https://img.shields.io/pypi/dm/trame-radial-menu
-          curl -o ./downloads/trame-colormaps.svg https://img.shields.io/pypi/dm/trame-colormaps
-          curl -o ./downloads/trame-dockview.svg https://img.shields.io/pypi/dm/trame-dockview
+          packages="
+            trame
+            trame-client
+            trame-server
+            trame-common
+            trame-vuetify
+            trame-vtklocal
+            trame-rca
+            trame-vtk
+            trame-slicer
+            trame-tauri
+            trame-simput
+            trame-datagrid
+            trame-code
+            trame-matplotlib
+            trame-quasar
+            trame-image-tools
+            trame-plotly
+            trame-iframe
+            trame-leaflet
+            trame-vega
+            trame-components
+            trame-deckgl
+            trame-router
+            trame-markdown
+            trame-dataclass
+            trame-xterm
+            trame-radial-menu
+            trame-colormaps
+            trame-dockview
+          "
+
+          tmpdir="$(mktemp -d)"
+
+          # shields.io returns HTTP 200 even when it can't reach PyPI: it
+          # silently serves this generic fallback badge instead of an error.
+          fallback_md5="b8e23d6c4c939728e75a8e42f0240c85"
+
+          for pkg in $packages; do
+            f="${tmpdir}/${pkg}.svg"
+            dest="./downloads/${pkg}.svg"
+            curl -fsS -o "$f" "https://img.shields.io/pypi/dm/${pkg}" || true
+            sleep 2
+
+            if [ ! -s "$f" ]; then
+              echo "::warning::no response fetching badge for ${pkg}, keeping previous badge"
+              continue
+            fi
+            if [ "$(md5sum "$f" | cut -d' ' -f1)" = "$fallback_md5" ]; then
+              echo "::warning::badge for ${pkg} is shields.io's fallback, keeping previous badge"
+              continue
+            fi
+            mv "$f" "$dest"
+          done
+
+          rm -rf "$tmpdir"
       - name: Upload artifact
         id: deployment
         uses: actions/upload-pages-artifact@v3

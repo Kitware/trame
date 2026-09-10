@@ -31,21 +31,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0 # Not needed if lastUpdated is not enabled
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: 24
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
       - name: Install Python dependencies
         working-directory: docs/vitepress
         run: "pip install -r requirements.txt"
       - name: Setup Pages
-        uses: actions/configure-pages@v3
+        uses: actions/configure-pages@v6
       - name: Install dependencies
         working-directory: docs/vitepress
         run: npm ci
@@ -53,7 +53,7 @@ jobs:
         working-directory: docs/vitepress
         run: python update_blogs.py
       - name: Cache repo images
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: docs/vitepress/public/repos_images
           key: repo-images-${{ github.run_id }}
@@ -78,7 +78,7 @@ jobs:
         run: python fetch_pypi_badges.py
       - name: Upload artifact
         id: deployment
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: docs/vitepress/.vitepress/dist
 
@@ -96,4 +96,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5

@@ -26,33 +26,33 @@ import requests
 PACKAGES = [
     "trame",
     "trame-client",
-    "trame-server",
+    "trame-code",
+    "trame-colormaps",
     "trame-common",
-    "trame-vuetify",
-    "trame-vtklocal",
+    "trame-components",
+    "trame-dataclass",
+    "trame-datagrid",
+    "trame-deckgl",
+    "trame-dockview",
+    "trame-iframe",
+    "trame-image-tools",
+    "trame-leaflet",
+    "trame-markdown",
+    "trame-matplotlib",
+    "trame-plotly",
+    "trame-quasar",
+    "trame-radial-menu",
     "trame-rca",
-    "trame-vtk",
+    "trame-router",
+    "trame-server",
+    "trame-simput",
     "trame-slicer",
     "trame-tauri",
-    "trame-simput",
-    "trame-datagrid",
-    "trame-code",
-    "trame-matplotlib",
-    "trame-quasar",
-    "trame-image-tools",
-    "trame-plotly",
-    "trame-iframe",
-    "trame-leaflet",
     "trame-vega",
-    "trame-components",
-    "trame-deckgl",
-    "trame-router",
-    "trame-markdown",
-    "trame-dataclass",
+    "trame-vtk",
+    "trame-vtklocal",
+    "trame-vuetify",
     "trame-xterm",
-    "trame-radial-menu",
-    "trame-colormaps",
-    "trame-dockview",
 ]
 
 OUTPUT_DIR = Path(__file__).with_name(".vitepress") / "dist" / "downloads"
@@ -61,7 +61,7 @@ LIVE_SITE_URL = "https://kitware.github.io/trame/downloads"
 LABEL = "downloads"
 LABEL_COLOR = "#555"
 MESSAGE_COLOR = "#4b0"
-REQUEST_DELAY_SECONDS = 1.5
+REQUEST_DELAY_SECONDS = 1
 MAX_ATTEMPTS_PER_PACKAGE = 2
 RETRY_BACKOFF_SECONDS = 5
 
@@ -236,59 +236,61 @@ class RateLimited(Exception):
 
 def fetch_monthly_downloads(package: str) -> int | None:
     url = f"https://pypistats.org/api/packages/{package}/recent"
-    for attempt in range(MAX_ATTEMPTS_PER_PACKAGE):
-        try:
-            response = requests.get(url, timeout=10)
-        except requests.RequestException as e:
-            warnings.warn(f"Error fetching stats for {package}: {e}")
-            return None
-
-        if response.status_code == 200:
-            return response.json()["data"]["last_month"]
-
-        if response.status_code == 429:
-            if attempt + 1 < MAX_ATTEMPTS_PER_PACKAGE:
-                time.sleep(RETRY_BACKOFF_SECONDS)
-                continue
-            raise RateLimited(package)
-
-        warnings.warn(
-            f"Failed to fetch stats for {package}, status code: {response.status_code}"
-        )
+    try:
+        response = requests.get(url, timeout=10)
+    except requests.RequestException as e:
+        warnings.warn(f"Error fetching stats for {package}: {e}")
         return None
+
+    if response.status_code == 200:
+        return response.json()["data"]["last_month"]
+
+    if response.status_code == 429:
+        raise RateLimited(package)
+
+    warnings.warn(
+        f"Failed to fetch stats for {package}, status code: {response.status_code}"
+    )
     return None
 
 
 if __name__ == "__main__":
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-    pypistats_down = False
-    for package in PACKAGES:
+    results = {}
+    fetch_list = list(PACKAGES)
+    update_count = 1
+    max_attempts = 5
+
+    while fetch_list and update_count + max_attempts > 0:
+        max_attempts -= 1
+        print(f"\nFetching {len(fetch_list)} packages stats")
+        update_count = 0
+        current_fetch_list = list(fetch_list)
+        fetch_list.clear()
+        for package in current_fetch_list:
+            dest = OUTPUT_DIR / f"{package}.svg"
+
+            if not dest.exists():
+                seed_from_live_site(package, dest)
+
+            try:
+                print(".", end="", flush=True)
+                downloads = fetch_monthly_downloads(package)
+                results[package] = downloads
+                update_count += 1
+            except RateLimited:
+                fetch_list.append(package)
+            finally:
+                time.sleep(REQUEST_DELAY_SECONDS)
+
+    print("\n----------------------")
+    for fail_package in fetch_list:
+        print(f"    {fail_package}: FAILED")
+
+    for package, downloads in results.items():
         dest = OUTPUT_DIR / f"{package}.svg"
-
-        if not dest.exists():
-            seed_from_live_site(package, dest)
-
-        if pypistats_down:
-            print(f"    Skipping {package} (pypistats.org unavailable this run)")
-            continue
-
-        try:
-            downloads = fetch_monthly_downloads(package)
-        except RateLimited:
-            pypistats_down = True
-            warnings.warn(
-                "pypistats.org is rate limiting this run, keeping previous "
-                "badges for all remaining packages"
-            )
-            continue
-        finally:
-            time.sleep(REQUEST_DELAY_SECONDS)
-
-        if downloads is None:
-            print(f"    Keeping previous badge for {package}")
-            continue
-
         message = f"{humanize(downloads)}/month"
         dest.write_text(render_badge(message))
         print(f"    {package}: {message}")
+    print("----------------------")

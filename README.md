@@ -97,9 +97,15 @@ __Citing options__
 }
 ```
 
+__🖼️ Explore what the community has built__
+
+Discover reusable [components](https://kitware.github.io/trame/guide/intro/widgets.html) and inspiring [scientific applications](https://kitware.github.io/trame/guide/intro/applications.html) created with trame by the community.
+
+
 ## Enjoying trame?
 
-Share your experience [with a testimonial](https://github.com/Kitware/trame/issues/18) or [with a brand approval](https://github.com/Kitware/trame/issues/19).
+Share your experience with the community through a  [📢 testimonial or show-and-tell](https://github.com/Kitware/trame/discussions/categories/show-and-tell).
+Your project could get ✨featured in the [component](https://kitware.github.io/trame/guide/intro/widgets.html>) or [application](https://kitware.github.io/trame/guide/intro/applications.html) catalog.
 
 
 ## Optional dependencies

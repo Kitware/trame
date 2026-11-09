@@ -1,3 +1,11 @@
+## November 1, 2026
+
+Explore new open-source medical visualization workflows connecting Trame with Girder:
+
+[GirderMedViewer](https://github.com/KitwareMedical/GirderMedViewer): A VTK-powered 3D visualization dashboard designed to query Girder databases directly. It allows users to browse datasets remotely and stream/render volumetric medical imaging (CT/MRI) and surface meshes in the browser.
+
+[GirderEEGAnnotator](https://github.com/KitwareMedical/GirderEEGAnnotator): An interactive electroencephalography (EEG) viewer and annotation suite built with trame-rca. It navigates EEG recordings stored within BIDS (Brain Imaging Data Structure) datasets hosted on Girder, enabling users to inspect multi-channel signals and write annotations directly back to the database in full compliance with the BIDS specification.
+
 ## September 8, 2026
 
 Trame v4 is out with a big new feature! __React__ is now an option in the `client_type='react'`.

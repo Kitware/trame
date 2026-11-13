@@ -147,6 +147,10 @@ export default defineConfig({
           ],
         },
         {
+          text: "Agents",
+          items: [{ text: "MCP", link: "/guide/mcp/" }],
+        },
+        {
           text: "Jupyter",
           items: [
             { text: "Trame in Jupyter", link: "/guide/jupyter/intro" },

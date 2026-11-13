@@ -1,3 +1,4 @@
+from trame_common.decorators import mcp
 from trame_common.decorators.hot_reload import hot_reload
 from trame_common.decorators.klass import (
     TrameApp,
@@ -16,4 +17,5 @@ __all__ = [
     "life_cycle",
     "hot_reload",
     "task",
+    "mcp",
 ]

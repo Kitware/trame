@@ -4,9 +4,9 @@ version = "4.0.0"
 description = "Trame, a framework to build applications in plain Python"
 authors = [{ name = "Kitware Inc." }]
 dependencies = [
-    "trame-server>=4,<5",
+    "trame-server>=4.2,<5",
     "trame-client>=4,<5",
-    "trame-common>=1.2.7,<2",
+    "trame-common>=1.3.0,<2",
     "wslink>=2.5.7",
     "pyyaml",                  # for trame.tools.widgets
 ]

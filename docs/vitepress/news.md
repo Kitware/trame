@@ -20,11 +20,7 @@ the same single-language promise it has always made for its Vue.js core:
 describe your application — and the binding between server-side logic and
 client-side UI — entirely in Python.
 
-<div style="width:50%;margin:0 auto;">
-
-![](./assets/images/examples/trame-mui.png)
-
-</div>
+![](./assets/images/examples/trame-mui.png){style="width:50%;display:block;margin:0 auto"}
 
 ## August 25, 2026
 
